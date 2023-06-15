@@ -1,33 +1,17 @@
-#formLogin {
-    background: white;
-    text: black;
-    label: rgba(rgba, .7);
-    border: rgba(black, .3);
-    active: black;
-    focus: black;
-    error: red;
+#formLogin form{
+    width:300px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#ccc;
 }
 
-#formLogin block {
-    padding: 1em 1.5em;
-    appearance: none;
-    outline: none; 
-    line-height: normal;
-    border: 1px solid transparent;
-    border-radius: 0;
+#formLogin form label {
+    width:72px;
+	font-weight:bold;
+	display:inline-block;
 }
 
-#form Login input{
-    @extend %formLogin block; 
-    font: inherit;
-    line-height: normal;
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
-    padding-left: 0;
-    border-bottom-color: $border;
-    background: transparent;
-    outline: none;
-}
+
 
   

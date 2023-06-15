@@ -3,6 +3,7 @@
 @section('content')
 
 <div>
+    <h3>Ingreso</h3>
     <form action="#" method="post">
         @csrf
         <label for="usuario">Usuario</label>

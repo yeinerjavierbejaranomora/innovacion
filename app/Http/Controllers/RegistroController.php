@@ -7,4 +7,7 @@ use Illuminate\Http\Request;
 class RegistroController extends Controller
 {
     //
+    public function index() {
+        echo "Hola mundo";
+    }
 }

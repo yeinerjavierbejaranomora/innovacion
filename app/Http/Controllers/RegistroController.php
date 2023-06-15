@@ -22,4 +22,10 @@ class RegistroController extends Controller
         $facultades = DB::table('facultad')->get();
         return $facultades;
     }
+
+    public function programas() {
+        $idFacultad = $_POST['idFacultad'];
+        $programas = DB::table('programas')->find($idFacultad);
+        var_dump($programas);die();
+    }
 }

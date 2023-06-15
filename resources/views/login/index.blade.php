@@ -3,9 +3,10 @@
 @section('content')
 
 
-<div>
-    <h3>Ingreso</h3>
-    <form id= "formLogin" action="#" method="post">
+<h3>Ingreso</h3>
+<div id= "formLogin">
+    
+    <form  action="#" method="post">
         @csrf
         <label for="usuario">Usuario</label>
         <input type="text" title="usuario">

@@ -40,8 +40,8 @@
                     <option value="">Seleccione la facultad</option>
                 </select>
             </div>
-            <div>
-                <label for="">Programas</label>
+            <div id="programas">
+
             </div>
         </form>
     </div>
@@ -79,7 +79,33 @@
         }
 
         $('#facultades').change(function(){
-            alert($(this).val());
+            facultades = $(this);
+            idFacultad = $(this).val();
+            if ($(this).val() != '') {
+                var formData = new FormData();
+                formData.append('idfacultad',idFacultad);
+                $.ajax({
+                    headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                    type: 'post',
+                    url: "{{ route('registro.programas') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        facultades.prop('disabled', true);
+                    },
+                    success: function(data){
+                        console.log(data);
+                        /*facultades.prop('disabled', false)
+                        data.forEach(programa => {
+                            $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
+                        });*/
+                    }
+                });
+            }
         })
     </script>
 @endsection

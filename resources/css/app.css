@@ -1,6 +1,8 @@
-
-
-
-#FormLogin{
-        font-family: "Georgia";
+#FormLogin {
+    background: white;
+    text: black;
+    label: rgba(rgba.10);
+    active: black;
+    focus: black; 
+    error: red;
 }

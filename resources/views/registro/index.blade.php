@@ -54,7 +54,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                 url: "{{ route('registro.roles') }}",
-                method: 'post',
+                method: 'get',
                 success: function(data){
                     data.forEach(rol => {
                         $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);

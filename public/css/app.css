@@ -1,4 +1,4 @@
-#FormLogin {
+#formLogin {
     background: white;
     text: black;
     label: rgba(rgba, .7);
@@ -8,7 +8,7 @@
     error: red;
 }
 
-#FormLogin block {
+#formLogin block {
     padding: 1em 1.5em;
     appearance: none;
     outline: none; 

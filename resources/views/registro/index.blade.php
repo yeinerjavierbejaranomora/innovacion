@@ -77,5 +77,9 @@
                 }
             });
         }
+
+        $('#facultades').change(function(){
+            alert($(this).val());
+        })
     </script>
 @endsection

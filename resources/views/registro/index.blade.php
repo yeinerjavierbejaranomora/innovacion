@@ -21,9 +21,9 @@
                 <label for="">Correo electronico</label>
                 <input type="text">
             </div>
-            <div>
+            {{-- <div>
                 <label for="">Contraseña</label><input type="password">
-            </div>
+            </div> --}}
             <div>
                 <label for="">Rol</label>
                 <select name="rol" id="rol">

@@ -14,7 +14,8 @@
         <input type="password" title="password">
         <br>
         <button type="submit" value="ingresar">Ingresar</button>
-
+        <br>
+        <a href="#">Recuperar Contraseña</a>    
     </form>
 </div>
 

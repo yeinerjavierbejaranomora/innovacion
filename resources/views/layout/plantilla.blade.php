@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
     <title>@yield('title')</title>
 </head>
 

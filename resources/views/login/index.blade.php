@@ -2,8 +2,7 @@
 @section('title', 'Registro')
 @section('content')
 
-<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 <div>
     <h3>Ingreso</h3>
     <form id= "formLogin" action="#" method="post">

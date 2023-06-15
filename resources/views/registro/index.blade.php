@@ -69,7 +69,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                 url: "{{ route('registro.facultades') }}",
-                type: 'post',
+                method: 'post',
                 success: function(data){
                     data.forEach(facultad => {
                         $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);

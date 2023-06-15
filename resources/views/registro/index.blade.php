@@ -71,8 +71,8 @@
                 url: "{{ route('registro.facultades') }}",
                 method: 'post',
                 success: function(data){
-                    data.forEach(rol => {
-                        $('#facultades').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
+                    data.forEach(facultad => {
+                        $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                     });
                 }
             });

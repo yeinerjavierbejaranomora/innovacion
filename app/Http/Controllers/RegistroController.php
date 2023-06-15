@@ -8,6 +8,6 @@ class RegistroController extends Controller
 {
     //
     public function index() {
-        echo "Hola mundo";
+        return view('registro.index');
     }
 }

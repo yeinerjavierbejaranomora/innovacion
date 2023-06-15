@@ -52,7 +52,7 @@
 						<input class="input100" type="password" name="pass" placeholder="Type your password" id="pass">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
-					
+					<br>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>

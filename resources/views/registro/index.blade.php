@@ -50,8 +50,8 @@
         function roles() {
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                 url: "{{ route('registro.roles') }}",
                 method: 'post',
                 success: function(data){

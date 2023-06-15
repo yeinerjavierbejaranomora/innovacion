@@ -18,4 +18,8 @@ class RegistroController extends Controller
         $roles = DB::table('roles')->get();
         return $roles;
     }
+    public function facultades() {
+        $facultades = DB::table('facultad')->get();
+        return $facultades;
+    }
 }

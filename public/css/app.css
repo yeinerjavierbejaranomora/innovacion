@@ -7,7 +7,7 @@
 }
 
 #formLogin form label {
-    width:90px;
+    width:120px;
 	font-weight:bold;
 	display:inline-block;
 }
@@ -24,7 +24,7 @@ form input[type="password"]{
 }
 
 #formLogin form button[type="submit"]{
-	width:100%;
+	width:80%;
 	padding:8px 16px;
 	margin-top:32px;
 	border:1px solid #000;

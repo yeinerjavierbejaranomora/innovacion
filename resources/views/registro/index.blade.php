@@ -49,7 +49,7 @@
         roles();
 
         function roles() {
-            /*$.ajax({
+            $.ajax({
                 headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -60,9 +60,9 @@
                         $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
                     });
                 }
-            })*/
+            })
 
-            $.get("{{ route('registro.roles') }}", {
+            /*$.get("{{ route('registro.roles') }}", {
                     '_token': $('meta[name=csrf-token]').attr('content'),
                 },
                 function(data) {
@@ -71,7 +71,7 @@
                             $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
                         })
                     }
-                })
+                })*/
 
         }
     </script>

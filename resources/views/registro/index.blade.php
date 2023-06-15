@@ -80,10 +80,9 @@
 
         $('#facultades').change(function(){
             facultades = $(this);
-            idFacultad = $(this).val();
             if ($(this).val() != '') {
                 var formData = new FormData();
-                formData.append('idfacultad',idFacultad);
+                formData.append('idfacultad',facultades.val());
                 $.ajax({
                     headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -5,28 +5,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
+	<link rel="stylesheet" href="{{asset('public/css/app.css')}}">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ asset('public/assets/images/icons/favicon.ico') }}"/>
+	<link rel="icon" type="image/png" href="{{asset('public/assets/images/icons/favicon.ico')}}"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/animate/animate.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animate/animate.css')}}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/css-hamburgers/hamburgers.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/animsition/css/animsition.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animsition/css/animsition.min.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/select2/select2.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/select2/select2.min.css')}}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/vendor/daterangepicker/daterangepicker.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/daterangepicker/daterangepicker.css')}}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/main.css')}}">
 <!--===============================================================================================-->
  
 
@@ -34,7 +34,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url( {{ asset('public/assets/images/bg-01.jpg') }});">
+		<div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form" id="miform">
 					<span class="login100-form-title p-b-49">
@@ -77,21 +77,21 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/vendor/animsition/js/animsition.min.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/animsition/js/animsition.min.js')}}"></script>
 <!--=============assets/==================================================================================-->
-	<script src="{{ asset('public/assets/vendor/bootstrap/js/popper.js') }}"></script>
-	<script src="{{ asset('public/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/bootstrap/js/popper.js')}}"></script>
+	<script src="{{ asset('public/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/vendor/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/select2/select2.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/vendor/daterangepicker/moment.min.js') }}"></script>
-	<script src="{{ asset('public/assets/vendor/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+	<script src="{{ asset('public/assets/vendor/vendor/daterangepicker/daterangepicker.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js') }}"></script>
+	<script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('public/assets/js/main.js') }}"></script>
+	<script src="{{ asset('public/assets/js/main.js')}}"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){

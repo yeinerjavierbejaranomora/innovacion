@@ -1,2 +1,1 @@
 require('./bootstrap');
-alert('Prueba');

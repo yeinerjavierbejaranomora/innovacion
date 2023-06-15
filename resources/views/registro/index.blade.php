@@ -89,7 +89,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                     type: 'post',
-                    url: "{{ route('registro.facultades') }}",
+                    url: "{{ route('registro.programas') }}",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -99,10 +99,10 @@
                     },
                     success: function(data){
                         console.log(data);
-                        facultades.prop('disabled', false)
+                        /*facultades.prop('disabled', false)
                         data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
-                        });
+                        });*/
                     }
                 });
             }

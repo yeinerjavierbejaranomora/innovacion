@@ -3,8 +3,9 @@
 @section('content')
 
 <div>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <h3>Ingreso</h3>
-    <form action="#" method="post">
+    <form id= "formLogin" action="#" method="post">
         @csrf
         <label for="usuario">Usuario</label>
         <input type="text" title="usuario">
@@ -12,7 +13,7 @@
         <label for="password">Contraseña</label>
         <input type="password" title="password">
         <br>
-        <button type="submit" value="ingresar" class="button btn-primary">Ingresar</button>
+        <button type="submit" value="ingresar">Ingresar</button>
 
     </form>
 </div>

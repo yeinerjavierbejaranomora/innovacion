@@ -10,10 +10,10 @@
         <input type="text" title="usuario">
         <br>
         <label for="password">Contraseña</label>
-        <input type="password"title="password">
-
+        <input type="password" title="password">
+        <br>
         <button type="submit" value="ingresar" class="button btn-primary">Ingresar</button>
-        
+
     </form>
 </div>
 

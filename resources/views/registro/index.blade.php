@@ -36,7 +36,7 @@
             </div>
             <div>
                 <label for="">Facultad</label>
-                <select name="" id="">
+                <select name="facultades" id="facultades">
                     <option value="">Seleccione la facultad</option>
                 </select>
             </div>
@@ -47,7 +47,7 @@
     </div>
     <script>
         roles();
-
+        facultades();
         function roles() {
             $.ajax({
                 headers: {
@@ -61,18 +61,21 @@
                     });
                 }
             })
+        }
 
-            /*$.get("{{ route('registro.roles') }}", {
-                    '_token': $('meta[name=csrf-token]').attr('content'),
-                },
-                function(data) {
-                    if (data.roles) {
-                        data.roles.forEach(rol => {
-                            $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
-                        })
-                    }
-                })*/
-
+        function facultades(){
+            $.ajax({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                url: "{{ route('registro.facultades') }}",
+                method: 'post',
+                success: function(data){
+                    data.forEach(facultad => {
+                        $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    });
+                }
+            });
         }
     </script>
 @endsection

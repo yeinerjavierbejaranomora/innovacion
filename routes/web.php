@@ -26,7 +26,7 @@ Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro','index')->name('registro.index');
     Route::get('/registro/roles','roles')->name('registro.roles');
     Route::post('/registro/facultades','facultades')->name('registro.facultades');
-    Route::get('/registro/programas','programas')->name('registro.programas');
+    Route::post('/registro/programas','programas')->name('registro.programas');
 });
 
 Route::controller(LoginController::class)->group(function(){

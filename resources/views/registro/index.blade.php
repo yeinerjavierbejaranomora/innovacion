@@ -98,6 +98,7 @@
                         facultades.prop('disabled', true);
                     },
                     success: function(data){
+                        console.log(data);
                         facultades.prop('disabled', false)
                         data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);

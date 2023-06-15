@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/registro',[RegistroController::class,'index']);
+Route::controller(RegistroController::class)->group(function(){
+    Route::get('/registro','index')->name('registro.index');
+});

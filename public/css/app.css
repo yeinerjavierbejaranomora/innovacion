@@ -17,7 +17,17 @@
     border-radius: 0;
 }
 
-
-body {
-    background: white;
+#form Login input{
+    @extend %formLogin block; 
+    font: inherit;
+    line-height: normal;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    padding-left: 0;
+    border-bottom-color: $border;
+    background: transparent;
+    outline: none;
 }
+
+  

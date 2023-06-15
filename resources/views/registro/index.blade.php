@@ -80,6 +80,7 @@
 
         $('#facultades').change(function(){
             facultades = $(this);
+            alertt(facultades.val());
             if ($(this).val() != '') {
                 var formData = new FormData();
                 formData.append('idfacultad',facultades.val());

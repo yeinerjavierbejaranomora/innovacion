@@ -23,13 +23,9 @@
                 <label for="">Correo electronico</label>
                 <input type="text">
             </div>
-            <div>
+            {{-- <div>
                 <label for="">Contraseña</label><input type="password">
-            </div>
-            <div>
-                <label for="">Confirmar contraseña</label>
-                <input type="password">
-            </div>
+            </div> --}}
             <div>
                 <label for="">Rol</label>
                 <select name="rol" id="rol">
@@ -101,7 +97,7 @@
                     success: function(data){
                         console.log(data);
                         facultades.prop('disabled', false)
-                        $('#programas').find('option').remove();
+                        $('#programas').empty();
                         data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });

@@ -2,6 +2,7 @@
 @section('title', 'Registro')
 @section('content')
     <div>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <h3>Registro usuario</h3>
         <form action="" method="post">
             @csrf

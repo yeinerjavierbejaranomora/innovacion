@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro','index')->name('registro.index');
-    Route::post('/registro/roles')->name('registro.roles');
+    Route::post('/registro/roles','roles')->name('registro.roles');
 });

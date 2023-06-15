@@ -16,6 +16,6 @@ class RegistroController extends Controller
 
     public function roles() {
         $roles = DB::table('roles')->get();
-        var_dump($roles);
+        return $roles;
     }
 }

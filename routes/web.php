@@ -17,7 +17,9 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+
+    return view('login_prueba/login');
 });
 
 Route::controller(RegistroController::class)->group(function(){

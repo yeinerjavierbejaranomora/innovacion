@@ -25,10 +25,6 @@
                 <label for="">Contraseña</label><input type="password">
             </div>
             <div>
-                <label for="">Confirmar contraseña</label>
-                <input type="password">
-            </div>
-            <div>
                 <label for="">Rol</label>
                 <select name="rol" id="rol">
                     <option value="">Seleccione le rol</option>

@@ -8,9 +8,9 @@
         @csrf
         <label for="usuario">Usuario</label>
         <input type="text" title="usuario">
-
+        <br>
         <label for="password">Contraseña</label>
-        <input type="text"title="password">
+        <input type="password"title="password">
 
         <button type="submit" value="ingresar" class="button btn-primary">Ingresar</button>
         

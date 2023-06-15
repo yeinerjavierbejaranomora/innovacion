@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,10 @@ Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro','index')->name('registro.index');
     Route::post('/registro/roles','roles')->name('registro.roles');
 });
+
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login','index')->name('login.index');
+    Route::post('/registro/roles','roles')->name('registro.roles');
+});
+
+

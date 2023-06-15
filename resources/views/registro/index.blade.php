@@ -68,7 +68,7 @@
                 headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                url: "{{ route('registro.roles') }}",
+                url: "{{ route('registro.facultades') }}",
                 method: 'post',
                 success: function(data){
                     data.forEach(rol => {

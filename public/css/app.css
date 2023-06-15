@@ -1,14 +1,23 @@
 #FormLogin {
     background: white;
     text: black;
-    label: rgba(rgba.10);
+    label: rgba(rgba, .7);
+    border: rgba(black, .3);
     active: black;
-    focus: black; 
+    focus: black;
     error: red;
 }
 
-body{
-    background:  white;
+#FormLogin block {
+    padding: 1em 1.5em;
+    appearance: none;
+    outline: none; 
+    line-height: normal;
+    border: 1px solid transparent;
+    border-radius: 0;
 }
 
 
+body {
+    background: white;
+}

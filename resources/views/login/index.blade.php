@@ -3,8 +3,8 @@
 @section('content')
 
 
-<h3>Ingreso</h3>
 <div id= "formLogin">
+    <h3>Ingreso</h3>
 
     <form  action="#" method="post">
         @csrf

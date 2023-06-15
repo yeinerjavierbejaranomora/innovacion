@@ -2,7 +2,6 @@
 @section('title', 'Registro')
 @section('content')
     <div>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
         <h3>Registro usuario</h3>
         <form action="" method="post">
             @csrf
@@ -47,20 +46,5 @@
         </form>
     </div>
     <script>
-        roles();
-        function roles() {
-            $.ajax({
-                headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                url: "{{ route('registro.roles') }}",
-                method: 'post',
-                success: function(data){
-                    data.forEach(rol => {
-                        $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
-                    });
-                }
-            })
-        }
     </script>
 @endsection

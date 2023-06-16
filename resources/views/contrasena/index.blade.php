@@ -64,6 +64,8 @@
             if (result.isConfirmed) {
                 Swal.fire(
                     'Contraseña cambiada con exito!',
+                    'Your file has been deleted.',
+                    'success'
                 )
             }
         })

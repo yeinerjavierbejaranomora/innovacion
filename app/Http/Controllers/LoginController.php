@@ -22,6 +22,11 @@ class LoginController extends Controller
         $usuario = Auth::getProvider()->retrieveByCredentials($credenciales);
         return $usuario;*/
         $credentials = $request->only('email', 'password');
-        return $credentials;
+        if (Auth::attempt($credentials)) {
+            // Autenticación exitosa, redirigir a la página deseada
+            //return redirect()->intended('/dashboard');
+            return "Exitosa";
+        }
+        return "fallo";
     }
 }

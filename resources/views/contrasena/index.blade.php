@@ -53,20 +53,19 @@
     $('#miForm').submit(function(e) {
         e.preventDefault();
         Swal.fire({
-            title: '¿Estás seguro que deseas cambiar tu contraseña?',
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            textColor: 'white',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, cambiar!',
-            cancelButtonText: 'Cancelar'
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Contraseña cambiada con exito!',
-                    
-                    'sucess'
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
                 )
             }
         })

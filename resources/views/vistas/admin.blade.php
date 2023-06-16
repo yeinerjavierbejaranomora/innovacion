@@ -1,4 +1,4 @@
-
+@extends('layout.header')
 @yield('menu')
 
 

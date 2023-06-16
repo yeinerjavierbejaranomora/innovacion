@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-lg btn-primary" value="Registrar"> Registrar </button>
+                    <button type="submit" class="login100-form-btn"> Registrar </button>
                 </div>
             </form>
         </div>

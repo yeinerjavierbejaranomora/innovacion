@@ -55,6 +55,7 @@
             title: '¿Estás seguro?',
             text: "¡No podrás deshacer este cambio!",
             icon: 'warning',
+            color: 'white',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

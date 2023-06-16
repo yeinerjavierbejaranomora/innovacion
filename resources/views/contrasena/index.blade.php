@@ -65,7 +65,8 @@
             if (result.isConfirmed) {
                 Swal.fire(
                     'Contraseña cambiada con exito!',
-                    'success'
+                    
+                    'sucess'
                 )
             }
         })

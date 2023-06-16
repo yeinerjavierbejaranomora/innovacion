@@ -35,11 +35,12 @@ class RegistroController extends Controller
 
     public function saveRegistro(UsuarioRegistroRequest $request){
         //return $request->programa;
-        $arrayProgramas = [];
+        $Programas = '';
         foreach($request->programa as $programa):
-            var_dump(intval($programa));
+            //var_dump(intval($programa));
+            $Programas .= $programa.";";
         endforeach;
-        die();
+        var_dump($Programas);die();
         /*if (isset($request->programa)) {
             return "Existe";
         } else {

@@ -35,8 +35,8 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('/registro/roles','roles')->name('registro.roles');
 });
 
-Route::controller(nuevacontrasenaController::class)->group(function(){
-    Route::get('/nuevaContrasena','index')->name('nuevaContrasena.index');
+Route::controller(contrasenaController::class)->group(function(){
+    Route::get('/contrasena','index')->name('contrasena.index');
 });
 
 

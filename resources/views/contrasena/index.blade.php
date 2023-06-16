@@ -1,5 +1,5 @@
 @extends('layout.plantillaFormularios')
-@section('title', 'Nueva Contraseña')
+@section('title', 'Nueva Contrasena')
 @section('content')
 
 <div class="limiter">

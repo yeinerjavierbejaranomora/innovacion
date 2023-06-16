@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class nuevacontrasenaController extends Controller
+class contrasenaController extends Controller
 {
     public function index() {
-        return view('nuevaContrasena.index');
+        return view('contrasena.index');
     }
 }

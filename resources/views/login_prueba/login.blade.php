@@ -92,6 +92,5 @@
 	<script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
 <!--===============================================================================================-->
 	<script src="{{ asset('public/assets/js/main.js')}}"></script>
-
 </body>
 </html>

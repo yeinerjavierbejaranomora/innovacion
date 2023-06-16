@@ -37,15 +37,13 @@ class RegistroController extends Controller
         //return $request->programa;
         $Programas = '';
         foreach($request->programa as $programa):
-            //var_dump(intval($programa));
             $Programas .= $programa.";";
         endforeach;
-        var_dump(trim($Programas,";"));die();
-        /*if (isset($request->programa)) {
+        if (isset($request->programa)) {
             return "Existe";
-        } else {
+        } elseif(!isset($request->programa)) {
             return "No existe";
-        }*/
+        }
         
         if($request->facultad == null):
             $usuario = Usuario::create([

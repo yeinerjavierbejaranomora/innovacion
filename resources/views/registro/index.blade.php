@@ -17,36 +17,25 @@
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
                     <span class="focus-input100" data-symbol="&#xf205;"></span>
                 </div>
-                @error('idbanner')
-                <small class="input100">*{{ $message }}</small>
-                @enderror
+               
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="documento es requerido">
                     <span class="label-input100">Documento de identidad</span>
                     <input class="input100" type="text" name="documento" placeholder="Documento de identidad" id="documento">
                     <span class="focus-input100" data-symbol="&#xf20b;"></span>
-                </div>
-                @error('documento')
-                <small class="input100">*{{ $message }}</small>
-                @enderror
+                </div>              
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="nombre es requerido">
                     <span class="label-input100">Nombre completo</span>
                     <input class="input100" type="text" name="nombre" placeholder="Nombre completo" id="nombre">
                     <span class="focus-input100" data-symbol="&#xf20e;"></span>
                 </div>
-                @error('nombre')
-                <small class="input100">*{{ $message }}</small>
-                @enderror
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="correo es requerido">
                     <span class="label-input100">Correo electronico</span>
                     <input class="input100" type="text" name="correo" placeholder="Correo electronco" id="correo">
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
                 </div>
-                @error('correo')
-                <small class="input100">*{{ $message }}</small>
-                @enderror
 
                 {{-- <div>
                 <label for="">Contraseña</label><input type="password">
@@ -59,9 +48,6 @@
                     </select>
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
-                @error('idrol')
-                <small class="input100">*{{ $message }}</small>
-                @enderror
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="facultades es requerido">
                     <span class="label-input100">Facultad</span>

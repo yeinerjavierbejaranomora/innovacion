@@ -41,7 +41,7 @@ class RegistroController extends Controller
             return "No existe";
         }*/
         
-        if($request->facultad == ''):
+        if($request->facultad == null):
             return "No se puede registrar sin seleccionar una Facultad";
             /*$usuario = Usuario::create([
                 'idBanner'=>$request->idbanner,

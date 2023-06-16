@@ -45,8 +45,8 @@
                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                     <span class="label-input100">ID Banner</span>
                         <input class="input100" type="number" name="idBanner" placeholder="ID Banner" id="idBanner">
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
-                    <span class="focus-input100" data-symbol="&#xf206;"></span>
                     <div>
                         <label for="">Documento</label>
                         <input type="text">

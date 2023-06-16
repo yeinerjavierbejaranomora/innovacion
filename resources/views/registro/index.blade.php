@@ -17,7 +17,7 @@
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
                     <span class="focus-input100" data-symbol="&#xf205;"></span>
                     @error('idbanner')
-                    <small>*{{ $message }}</small>
+                    <small class="input100">*{{ $message }}</small>
                     @enderror
                 </div>
 

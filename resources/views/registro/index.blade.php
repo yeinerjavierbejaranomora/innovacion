@@ -73,7 +73,8 @@
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="programas is required">
                 <span class="label-input100">Programas</span>
-                    <div id="programas"></div>
+                <br>
+                    <div class="input100" id="programas"></div>
                 </div>
 
                 <div class="row justify-content-center">

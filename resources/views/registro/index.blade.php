@@ -52,11 +52,12 @@
                 <label for="">Contraseña</label><input type="password">
             </div> --}}
 
-                <div>
-                    <label for="">Rol</label>
-                    <select name="idrol" id="rol">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
+                    <span class="label-input100">Rol</span>
+                    <select class="input100" name="idrol" id="rol">
                         <option value="">Seleccione el rol</option>
                     </select>
+                    <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                     @error('idrol')
                     <small>*{{ $message }}</small>
                     @enderror

@@ -40,17 +40,16 @@
                 <form action="" method="post" class="login100-form validate-form" id="miform">
                     @csrf
                     <span class="login100-form-title p-b-49">
-						Formulario de registro
-					</span>
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                    <span class="label-input100">ID Banner</span>
+                        Formulario de registro
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner is required">
+                        <span class="label-input100">ID Banner</span>
                         <input class="input100" type="number" name="idBanner" placeholder="ID Banner" id="idBanner">
-            
                         <span class="focus-input100" data-symbol="&#xf205;"></span>
                     </div>
-                    <div>
-                        <label for="">Documento</label>
-                        <input type="text">
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="CC Banner is required">
+                    <span class="label-input100">Documento de identidad</span>
+                        <input class="input100" type="text" name="CC" placeholder="Documento de identidad" id="CC">
                     </div>
                     <div>
                         <label for="">Nombre completo</label>
@@ -200,4 +199,5 @@
         });
     </script>
 </body>
+
 </html>

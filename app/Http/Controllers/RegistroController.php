@@ -34,8 +34,23 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return date('Y-m-d h:i:s');
-        $usuario = Usuario::create([
+        return $request;
+        if($request->facultad == ''):
+            $usuario = Usuario::create([
+                'idBanner'=>$request->idbanner,
+                'documentoDeIdentidad'=>$request->documento,
+                'correo'=>$request->correo,
+                'password'=>bcrypt($request->documento),
+                'nombre'=>$request->nombre,
+                'idRol'=>$request->idrol,
+                'fecha' => date('Y-m-d h:i:s'),
+                'ingreso_plataforma'=>0,
+                'activo' => 1
+            ]);
+        else:
+        endif;
+
+        /*$usuario = Usuario::create([
             'idBanner'=>$request->idbanner,
             'documentoDeIdentidad'=>$request->documento,
             'correo'=>$request->correo,
@@ -43,6 +58,9 @@ class RegistroController extends Controller
             'nombre'=>$request->nombre,
             'idRol'=>$request->idrol,
             'idFacultad'=>$request->idfacultad,
-        ]);
+            'fecha' => date('Y-m-d h:i:s'),
+            'ingreso_plataforma'=>0,
+            'activo' => 1
+        ]);*/
     }
 }

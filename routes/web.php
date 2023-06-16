@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\contrasenaControllerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro','index')->name('registro.index');
-    Route::get('/registroprueba','indexPrueba')->name('registroprueba.index');
     Route::get('/registro/roles','roles')->name('registro.roles');
     Route::post('/registro/facultades','facultades')->name('registro.facultades');
     Route::post('/registro/programas','programas')->name('registro.programas');
@@ -34,6 +33,10 @@ Route::controller(RegistroController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');
     Route::post('/registro/roles','roles')->name('registro.roles');
+});
+
+Route::controller(contrasenaController::class)->group(function(){
+    Route::get('/contrasena','index')->name('contrasena.index');
 });
 
 

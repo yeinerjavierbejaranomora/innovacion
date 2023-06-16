@@ -48,7 +48,6 @@
     </div>
 </div>
 
-
 <script>
     $('#miForm').submit(function(e) {
         e.preventDefault();

@@ -75,7 +75,7 @@
                 method: 'get',
                 success: function(data){
                     data.forEach(rol => {
-                        $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
+                        $('#rol').append(`<option name="programa[]" value="${rol.id}">${rol.nombreRol}</option>`);
                     });
                 }
             })

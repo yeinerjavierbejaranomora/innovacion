@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class cambiocontrasenaController extends Controller
 {
     public function index() {
-        return view('cambioContrasena.index');
+        return view('cambiocontrasena.index');
     }
 }

@@ -34,10 +34,10 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request->facultad;
+        return $request->idfacultad;
         $Programas = '';
         
-        if($request->facultad == null):
+        if($request->idfacultad == null):
             $usuario = User::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,

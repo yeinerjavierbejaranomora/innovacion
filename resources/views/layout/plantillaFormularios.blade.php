@@ -11,6 +11,8 @@
     {{-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> --}}
     <title>@yield('title')</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{asset('public/css/app.css')}}">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="{{asset('public/assets/images/icons/favicon.ico')}}"/>
@@ -56,6 +58,7 @@
     <!--===============================================================================================-->
     <script src="{{ asset('public/assets/js/main.js')}}"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>

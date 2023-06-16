@@ -71,11 +71,14 @@
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
 
-                <div>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="programas is required">
                 <span class="label-input100">Programas</span>
                     <div id="programas"></div>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary justify-content-center" value="Registrar"> Registrar </button>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-primary" value="Registrar"> Registrar </button>
+                </div>
             </form>
         </div>
     </div>

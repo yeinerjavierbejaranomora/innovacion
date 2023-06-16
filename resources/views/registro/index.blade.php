@@ -70,11 +70,12 @@
                     </select>
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
+
                 <div>
-                    <label>Programas</label>
+                <span class="label-input100">Programas</span>
                     <div id="programas"></div>
                 </div>
-                <input type="submit" value="Registrar">
+                <button type="submit" class="btn btn-primary" value="Registrar"> </button>
             </form>
         </div>
     </div>

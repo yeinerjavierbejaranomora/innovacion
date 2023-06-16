@@ -35,11 +35,11 @@ class RegistroController extends Controller
 
     public function saveRegistro(UsuarioRegistroRequest $request){
         //return $request;
-        if (isset($request->programa)) {
+        /*if (isset($request->programa)) {
             return "Existe";
         } else {
             return "No existe";
-        }
+        }*/
         
         if($request->facultad == ''):
             return "No se puede registrar sin seleccionar una Facultad";

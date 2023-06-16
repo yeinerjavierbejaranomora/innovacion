@@ -578,5 +578,5 @@
         </div>
     </div>
 
-    @extends('layout.header')
+    @extends('layout.footer')
  

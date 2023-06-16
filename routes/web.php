@@ -36,4 +36,8 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('/registro/roles','roles')->name('registro.roles');
 });
 
+Route::controller(nuevacontraseñaController::class)->group(function(){
+    Route::get('/nuevaContraseña','index')->name('nuevaContraseña.index');
+});
+
 

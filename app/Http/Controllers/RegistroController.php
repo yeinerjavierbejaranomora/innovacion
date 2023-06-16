@@ -36,14 +36,6 @@ class RegistroController extends Controller
     public function saveRegistro(UsuarioRegistroRequest $request){
         //return $request->programa;
         $Programas = '';
-        /*foreach($request->programa as $programa):
-            $Programas .= $programa.";";
-        endforeach;*/
-        if (isset($request->programa)) {
-            return "Existe";
-        } elseif(!isset($request->programa)) {
-            return "No existe";
-        }
         
         if($request->facultad == null):
             $usuario = Usuario::create([
@@ -71,20 +63,27 @@ class RegistroController extends Controller
                 'activo' => 1
             ]);
         elseif(!isset($request->programa)):
+            foreach($request->programa as $programa):
+                $Programas .= $programa.";";
+            endforeach;
             $usuario = Usuario::create([
-            'idBanner'=>$request->idbanner,
-            'documentoDeIdentidad'=>$request->documento,
-            'correo'=>$request->correo,
-            'password'=>bcrypt($request->documento),
-            'nombre'=>$request->nombre,
-            'idRol'=>$request->idrol,
-            'idFacultad'=>$request->idfacultad,
-            'fecha' => date('Y-m-d h:i:s'),
-            'ingreso_plataforma'=>0,
-            'activo' => 1
-        ]);
+                'idBanner'=>$request->idbanner,
+                'documentoDeIdentidad'=>$request->documento,
+                'correo'=>$request->correo,
+                'password'=>bcrypt($request->documento),
+                'nombre'=>$request->nombre,
+                'idRol'=>$request->idrol,
+                'idFacultad'=>$request->idfacultad,
+                'idPrograma'=>$Programas,
+                'fecha' => date('Y-m-d h:i:s'),
+                'ingreso_plataforma'=>0,
+                'activo' => 1
+            ]);
         endif;
 
+        if($usuario):
+            return "correcto";
+        endif;
         /*$usuario = Usuario::create([
             'idBanner'=>$request->idbanner,
             'documentoDeIdentidad'=>$request->documento,

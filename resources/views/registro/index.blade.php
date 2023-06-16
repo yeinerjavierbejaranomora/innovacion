@@ -75,7 +75,7 @@
                 <span class="label-input100">Programas</span>
                     <div id="programas"></div>
                 </div>
-                <button type="submit" class="btn btn-primary" value="Registrar"> </button>
+                <button type="submit" class="btn btn-primary" value="Registrar"> Registrar </button>
             </form>
         </div>
     </div>

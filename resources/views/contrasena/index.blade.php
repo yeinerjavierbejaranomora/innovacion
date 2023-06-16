@@ -6,7 +6,7 @@
 <div class="limiter">
     <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-            <form action="" method="post" class="login100-form validate-form" id="miform">
+            <form action="" method="post" class="login100-form validate-form" id="miForm">
                 @csrf
                 <span class="login100-form-title p-b-49">
                     Cambio de contraseña
@@ -31,20 +31,44 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="submit" class="login100-form-btn">
-								Cambiar contraseña
-							</button>
-						</div>
-					</div>
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="submit" class="login100-form-btn">
+                            Cambiar contraseña
+                        </button>
+                    </div>
+                </div>
 
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<h4> Universidad Iberoamericana</h4>
-                  		<p>©2023 Todos los derechos reservados.</p>
-					</div>
+                <div class="txt1 text-center p-t-54 p-b-20">
+                    <h4> Universidad Iberoamericana</h4>
+                    <p>©2023 Todos los derechos reservados.</p>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    $('#miForm').submit(function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+    });
+</script>
 @endsection

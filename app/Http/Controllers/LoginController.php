@@ -22,17 +22,14 @@ class LoginController extends Controller
 
         $usuario = Auth::getProvider()->retrieveByCredentials($credenciales);
         return $usuario;*/
-        $credentials = $request->validate([
-            'correo' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        if (Auth::attempt($credentials)) {
-            return "Exito";
-           /* $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
 
-            return redirect()->intended('dashboard');*/
-        }
+    if (Auth::attempt($credentials, $request->filled('remember'))) {
+        $request->session()->regenerate();
 
-        return "fallo";
+        return "Exito";
+    }
+
+    return 'email The provided credentials do not match our records.';
     }
 }

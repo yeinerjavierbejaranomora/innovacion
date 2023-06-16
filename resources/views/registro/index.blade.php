@@ -63,17 +63,19 @@
                     @enderror
                 </div>
 
-                <div>
-                    <label for="">Facultad</label>
-                    <select name="idfacultad" id="facultades">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="facultades is required">
+                    <span class="label-input100">Facultad</span>
+                    <select class="input100" name="idfacultad" id="facultades">
                         <option value="">Seleccione la facultad</option>
                     </select>
+                    <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
+
                 <div>
-                    <label>Programas</label>
+                <span class="label-input100">Programas</span>
                     <div id="programas"></div>
                 </div>
-                <input type="submit" value="Registrar">
+                <button type="submit" class="btn btn-primary" value="Registrar"> </button>
             </form>
         </div>
     </div>
@@ -139,7 +141,7 @@
                     });
                 }
             });
-        }else{
+        } else {
             $('#programas').empty();
         }
     })

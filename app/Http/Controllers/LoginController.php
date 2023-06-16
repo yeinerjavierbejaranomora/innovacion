@@ -12,7 +12,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function login(UsuarioLoginRequest $request){
+    public function login(Request $request){
         //return $request;
         $credenciales = $request->getCredentials();
 
@@ -22,12 +22,17 @@ class LoginController extends Controller
 
         $usuario = Auth::getProvider()->retrieveByCredentials($credenciales);
         return $usuario;
-        /*$credentials = $request->only('correo', 'password');
+        $credentials = $request->validate([
+            'correo' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
         if (Auth::attempt($credentials)) {
-            // Autenticación exitosa, redirigir a la página deseada
-            //return redirect()->intended('/dashboard');
-            return "Exitosa";
+            return "Exito";
+           /* $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');*/
         }
-        return "fallo";*/
+
+        return "fallo";
     }
 }

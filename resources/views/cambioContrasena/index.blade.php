@@ -13,8 +13,8 @@
                 </span>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
-                    <span class="label-input100">Contraseña actual</span>
-                    <input class="input100" type="password" name="contraseña" placeholder="Contraseña actual" id="contraseña">
+                    <span class="label-input100">id Banner</span>
+                    <input class="input100" type="password" name="idBanner" placeholder="idBanner" id="idBanner">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 

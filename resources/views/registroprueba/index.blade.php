@@ -40,34 +40,44 @@
                 <form action="" method="post" class="login100-form validate-form" id="miform">
                     @csrf
                     <span class="login100-form-title p-b-49">
-						Formulario de registro
-					</span>
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                    <span class="label-input100">ID Banner</span>
+                        Formulario de registro
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner is required">
+                        <span class="label-input100">ID Banner</span>
                         <input class="input100" type="number" name="idBanner" placeholder="ID Banner" id="idBanner">
-            
-                        <span class="focus-input100" data-symbol="&#xf2c3;"></span>
+                        <span class="focus-input100" data-symbol="&#xf205;"></span>
                     </div>
-                    <div>
-                        <label for="">Documento</label>
-                        <input type="text">
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="CC is required">
+                        <span class="label-input100">Documento de identidad</span>
+                        <input class="input100" type="text" name="CC" placeholder="Documento de identidad" id="CC">
+                        <span class="focus-input100" data-symbol="&#xf20b;"></span>
                     </div>
-                    <div>
-                        <label for="">Nombre completo</label>
-                        <input type="text">
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="name is required">
+                        <span class="label-input100">Nombre completo</span>
+                        <input class="input100" type="text" name="name" placeholder="Nombre completo" id="name">
+                        <span class="focus-input100" data-symbol="&#xf20e;"></span>
                     </div>
-                    <div>
-                        <label for="">Correo electronico</label>
-                        <input type="text">
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="mail is required">
+                        <span class="label-input100">Correo electronico</span>
+                        <input class="input100" type="text" name="mail" placeholder="Correo electronco" id="mail">
+                        <span class="focus-input100" data-symbol="&#xf15a;"></span>
                     </div>
+
                     {{-- <div>
-                <label for="">Contraseña</label><input type="password">
-            </div> --}}
-                    <div>
-                        <label for="">Rol</label>
-                        <select name="rol" id="rol">
+                <label for="">Contraseña</label>
+                <input type="password">
+                </div> --}}
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
+                        <span class="label-input100">Rol</span>
+                        <br>
+                        <select class="input100" name="rol" id="rol">
                             <option value="">Seleccione el rol</option>
                         </select>
+                        <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                     </div>
                     <div>
                         <label for="">Facultad</label>
@@ -200,4 +210,5 @@
         });
     </script>
 </body>
+
 </html>

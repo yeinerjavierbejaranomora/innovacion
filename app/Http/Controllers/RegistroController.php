@@ -17,7 +17,7 @@ class RegistroController extends Controller
     public function indexPrueba() {
         return view('registroprueba.index');
     }
-    
+
     public function roles() {
         $roles = DB::table('roles')->get();
         return $roles;
@@ -36,7 +36,7 @@ class RegistroController extends Controller
     public function saveRegistro(UsuarioRegistroRequest $request){
         //return $request->programa;
         $Programas = '';
-        
+
         if($request->idfacultad == null):
             $usuario = User::create([
                 'idBanner'=>$request->idbanner,
@@ -82,22 +82,12 @@ class RegistroController extends Controller
                 ]);
             endif;
         endif;
-        
+
 
         if($usuario):
-            return "correcto";
+            return redirect()->route('registro.index')->with('success','Usuario creado correctamente');
+        else:
+            return redirect()->route('registro.index')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
-        /*$usuario = Usuario::create([
-            'idBanner'=>$request->idbanner,
-            'documentoDeIdentidad'=>$request->documento,
-            'correo'=>$request->correo,
-            'password'=>bcrypt($request->documento),
-            'nombre'=>$request->nombre,
-            'idRol'=>$request->idrol,
-            'idFacultad'=>$request->idfacultad,
-            'fecha' => date('Y-m-d h:i:s'),
-            'ingreso_plataforma'=>0,
-            'activo' => 1
-        ]);*/
     }
 }

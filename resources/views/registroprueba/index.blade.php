@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="facultades is required">
-                        <label for="">Facultad</label>
+                    <span class="label-input100">Facultad</span>
                         <select class="input100" name="facultades" id="facultades">
                             <option value="">Seleccione la facultad</option>
                         </select>

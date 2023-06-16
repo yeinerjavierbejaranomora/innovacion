@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
-use App\Http\Controllers\cambiocontrasenaController;
+use App\Http\Controllers\cambioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,13 @@ Route::get('/', function () {
     //return view('welcome');
 
     return view('login_prueba/login');
+});
+
+
+Route::get('admin/', function () {
+    //return view('welcome');
+
+    return view('vistas/admin');
 });
 
 Route::controller(RegistroController::class)->group(function(){
@@ -41,6 +48,6 @@ Route::controller(contrasenaController::class)->group(function(){
     Route::get('/contrasena','index')->name('contrasena.index');
 });
 
-Route::controller(cambiocontrasenaController::class)->group(function(){
-    Route::get('/cambioContrasena','index')->name('cambioContrasena.index');
+Route::controller(cambioController::class)->group(function(){
+    Route::get('/cambio','index')->name('cambio.index');
 });

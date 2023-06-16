@@ -54,7 +54,6 @@
         e.preventDefault();
         Swal.fire({
             title: '¿Estás seguro que deseas cambiar tu contraseña?',
-            text: "No podrás deshacer el cambio!",
             icon: 'warning',
             showCancelButton: true,
             textColor: 'white',
@@ -66,7 +65,6 @@
             if (result.isConfirmed) {
                 Swal.fire(
                     'Contraseña cambiada con exito!',
-                    'Your file has been deleted.',
                     'success'
                 )
             }

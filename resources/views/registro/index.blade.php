@@ -17,21 +17,21 @@
             <div>
                 <label for="">Documento</label>
                 <input type="text" name="documento" id="documento">
-                @error('idbanner')
+                @error('documento')
                     <small>*{{  $message }}</small>
                 @enderror
             </div>
             <div>
                 <label for="">Nombre completo</label>
                 <input type="text" name="nombre" id="nombre">
-                @error('idbanner')
+                @error('nombre')
                     <small>*{{  $message }}</small>
                 @enderror
             </div>
             <div>
                 <label for="">Correo electronico</label>
                 <input type="text" name="correo" id="correo">
-                @error('idbanner')
+                @error('correo')
                     <small>*{{  $message }}</small>
                 @enderror
             </div>
@@ -43,7 +43,7 @@
                 <select name="idrol" id="rol">
                     <option value="">Seleccione le rol</option>
                 </select>
-                @error('idbanner')
+                @error('idrol')
                     <small>*{{  $message }}</small>
                 @enderror
             </div>
@@ -52,7 +52,7 @@
                 <select name="idfacultad" id="facultades">
                     <option value="">Seleccione la facultad</option>
                 </select>
-                @error('idbanner')
+                @error('idfacultad')
                     <small>*{{  $message }}</small>
                 @enderror
             </div>

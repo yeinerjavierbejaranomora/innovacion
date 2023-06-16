@@ -1,5 +1,4 @@
- 
-@extends('layout.header')
+
 
 @section('menu')
  

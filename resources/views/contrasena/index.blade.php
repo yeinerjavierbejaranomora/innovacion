@@ -29,6 +29,20 @@
                     <input class="input100" type="password" name="confirmar" placeholder="Confirmar contraseña" id="confirmar">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
+
+                <div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">
+								Cambiar contraseña
+							</button>
+						</div>
+					</div>
+
+					<div class="txt1 text-center p-t-54 p-b-20">
+						<h4> Universidad Iberoamericana</h4>
+                  		<p>©2023 Todos los derechos reservados.</p>
+					</div>
             </form>
         </div>
     </div>

@@ -1,5 +1,5 @@
 
-@extends('layout.header')
+@extends('header')
 @section('menu')
  
         <!-- Sidebar -->

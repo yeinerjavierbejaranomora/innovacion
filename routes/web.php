@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
-use App\Http\Controllers\cambiocontrasenaController;
+use App\Http\Controllers\cambioController;
 
 /*
 |--------------------------------------------------------------------------

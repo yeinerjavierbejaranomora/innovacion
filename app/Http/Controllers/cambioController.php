@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class cambiocontrasenaController extends Controller
+class cambioController extends Controller
 {
     public function index() {
-        return view('cambioContrasena.index');
+        return view('cambio.index');
     }
 }

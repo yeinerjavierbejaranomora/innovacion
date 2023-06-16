@@ -54,7 +54,6 @@
         e.preventDefault();
         Swal.fire({
             title: '¿Estás seguro que deseas cambiar tu contraseña?',
-            text: "No podrás deshacer el cambio!",
             icon: 'warning',
             showCancelButton: true,
             textColor: 'white',

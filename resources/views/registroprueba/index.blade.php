@@ -50,6 +50,7 @@
                     <div class="wrap-input100 validate-input m-b-23" data-validate="CC Banner is required">
                     <span class="label-input100">Documento de identidad</span>
                         <input class="input100" type="text" name="CC" placeholder="Documento de identidad" id="CC">
+                        <span class="focus-input100" data-symbol="&#xf20b;"></span>
                     </div>
                     <div>
                         <label for="">Nombre completo</label>

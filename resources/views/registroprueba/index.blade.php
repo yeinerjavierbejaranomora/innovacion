@@ -70,11 +70,13 @@
                 <label for="">Contraseña</label>
                 <input type="password">
                 </div> --}}
-                    <div>
-                        <label for="">Rol</label>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
+                        <span class="label-input100">Rol</span>
                         <select name="rol" id="rol">
                             <option value="">Seleccione el rol</option>
                         </select>
+                        <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                     </div>
                     <div>
                         <label for="">Facultad</label>

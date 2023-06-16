@@ -158,6 +158,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'idrol' => 'rol',
+        'idfacultad' => 'facultad'
+    ],
 
 ];

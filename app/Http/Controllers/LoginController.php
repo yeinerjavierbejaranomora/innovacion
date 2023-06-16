@@ -12,14 +12,16 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function login(UsuarioLoginRequest $request){
-        $credenciales = $request->getCredentials();
+    public function login(Request $request){
+        /*$credenciales = $request->getCredentials();
 
         if(!Auth::validate($credenciales)):
             return "Error";
         endif;
 
         $usuario = Auth::getProvider()->retrieveByCredentials($credenciales);
-        return $usuario;
+        return $usuario;*/
+        $credentials = $request->only('email', 'password');
+        return $credentials;
     }
 }

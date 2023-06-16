@@ -12,6 +12,10 @@ class RegistroController extends Controller
         return view('registro.index');
     }
 
+    public function indexPrueba() {
+        return view('registroprueba.index');
+    }
+    
     public function roles() {
         $roles = DB::table('roles')->get();
         return $roles;

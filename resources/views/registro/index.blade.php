@@ -1,6 +1,8 @@
 @extends('layout.plantilla')
 @section('title', 'Registro')
 @section('content')
+
+
     <div>
         <h3>Registro usuario</h3>
         <form action="{{ route('registro.saveregistro') }}" method="post">

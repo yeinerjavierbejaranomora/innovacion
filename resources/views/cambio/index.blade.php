@@ -9,32 +9,32 @@
             <form action="" method="post" class="login100-form validate-form" id="miform">
                 @csrf
                 <span class="login100-form-title p-b-49">
-                    Cambio de contraseña
+                    Recuperar contraseña
                 </span>
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
-                    <span class="label-input100">id Banner</span>
-                    <input class="input100" type="password" name="idBanner" placeholder="idBanner" id="idBanner">
-                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner es requerido">
+                    <span class="label-input100">ID Banner</span>
+                    <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
+                    <span class="focus-input100" data-symbol="&#xf205;"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
-                    <span class="label-input100">Contraseña nueva</span>
-                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="contraseñaNueva">
-                    <span class="focus-input100" data-symbol="&#xf183;"></span>
-                </div>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="documento es requerido">
+                    <span class="label-input100">Documento de identidad</span>
+                    <input class="input100" type="text" name="documento" placeholder="Documento de identidad" id="documento">
+                    <span class="focus-input100" data-symbol="&#xf20b;"></span>
+                </div> 
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="Confirmar es requerido">
-                    <span class="label-input100">Confirmar contraseña</span>
-                    <input class="input100" type="password" name="confirmar" placeholder="Confirmar contraseña" id="confirmar">
-                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="correo es requerido">
+                    <span class="label-input100">Correo electronico</span>
+                    <input class="input100" type="text" name="correo" placeholder="Correo electronco" id="correo">
+                    <span class="focus-input100" data-symbol="&#xf15a;"></span>
                 </div>
 
                 <div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button type="submit" class="login100-form-btn">
-								Cambiar contraseña
+								Consultar
 							</button>
 						</div>
 					</div>

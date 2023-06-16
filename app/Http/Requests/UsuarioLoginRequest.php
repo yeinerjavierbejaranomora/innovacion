@@ -32,17 +32,15 @@ class UsuarioLoginRequest extends FormRequest
 
     public function getCredentials(){
         $correo = $this->get('correo');
-        if($this->isEmail($correo)):
             return [
                 'correo' => $correo,
                 'password' => $this->get('password'),
             ];
-        endif;
     }
 
     public function isEmail($value){
         $factory = $this->container->make(ValidationFactory::class);
 
-        return !$factory->make(['correo'=>$value],['correo'=>'correo'])->fails();
+        return !$factory->make(['correo'=>$value])->fails();
     }
 }

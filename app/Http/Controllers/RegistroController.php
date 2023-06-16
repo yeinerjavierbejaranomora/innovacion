@@ -79,6 +79,19 @@ class RegistroController extends Controller
                 'ingreso_plataforma'=>0,
                 'activo' => 1
             ]);
+        else:
+            $usuario = User::create([
+                'idBanner'=>$request->idbanner,
+                'documentoDeIdentidad'=>$request->documento,
+                'correo'=>$request->correo,
+                'password'=>bcrypt($request->documento),
+                'nombre'=>$request->nombre,
+                'idRol'=>$request->idrol,
+                'idFacultad'=>$request->idfacultad,
+                'fecha' => date('Y-m-d h:i:s'),
+                'ingreso_plataforma'=>0,
+                'activo' => 1
+            ]);
         endif;
 
         if($usuario):

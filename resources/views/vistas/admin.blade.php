@@ -578,4 +578,5 @@
         </div>
     </div>
 
-    
+    @extends('layout.header')
+ 

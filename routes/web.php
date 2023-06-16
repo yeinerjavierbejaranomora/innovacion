@@ -28,6 +28,8 @@ Route::controller(RegistroController::class)->group(function(){
     Route::post('/registro/facultades','facultades')->name('registro.facultades');
     Route::post('/registro/programas','programas')->name('registro.programas');
     Route::post('/registro/save','save','saveRegistro')->name('registro.saveregistro');
+
+    Route::get('/registroprueba','indexPrueba')->name('registroprueba.index');
 });
 
 Route::controller(LoginController::class)->group(function(){

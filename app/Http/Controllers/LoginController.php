@@ -14,20 +14,20 @@ class LoginController extends Controller
 
     public function login(Request $request){
         //return $request;
-        /*$credenciales = $request->getCredentials();
+        $credenciales = $request->getCredentials();
 
         if(!Auth::validate($credenciales)):
             return "Error";
         endif;
 
         $usuario = Auth::getProvider()->retrieveByCredentials($credenciales);
-        return $usuario;*/
-        $credentials = $request->only('correo', 'password');
+        return $usuario;
+        /*$credentials = $request->only('correo', 'password');
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa, redirigir a la página deseada
             //return redirect()->intended('/dashboard');
             return "Exitosa";
         }
-        return "fallo";
+        return "fallo";*/
     }
 }

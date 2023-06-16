@@ -230,10 +230,10 @@ iframe {
   line-height: 1.2;
 
   display: block;
-  width: 100%;
+  width: 75%;
   height: 55px;
   background: transparent;
-  padding: 0 7px 0 43px;
+  padding: 3px 7px 3px 43px;
 }
 
 

@@ -73,6 +73,7 @@
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
                         <span class="label-input100">Rol</span>
+                        <br>
                         <select name="rol" id="rol">
                             <option value="">Seleccione el rol</option>
                         </select>

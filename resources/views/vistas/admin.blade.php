@@ -1,7 +1,7 @@
 
 @extends('layout.header')
-@section('menu')
 
+@section('content')
 
 
         <!-- Content Wrapper -->
@@ -578,6 +578,6 @@
             </div>
         </div>
     </div>
- 
-    @extends('layout.footer')
+ @endsection
+  
  

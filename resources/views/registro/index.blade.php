@@ -63,11 +63,12 @@
                     @enderror
                 </div>
 
-                <div>
-                    <label for="">Facultad</label>
-                    <select name="idfacultad" id="facultades">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="facultades is required">
+                    <span class="label-input100">Facultad</span>
+                    <select class="input100" name="idfacultad" id="facultades">
                         <option value="">Seleccione la facultad</option>
                     </select>
+                    <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
                 <div>
                     <label>Programas</label>
@@ -139,7 +140,7 @@
                     });
                 }
             });
-        }else{
+        } else {
             $('#programas').empty();
         }
     })

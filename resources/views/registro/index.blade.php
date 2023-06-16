@@ -75,7 +75,7 @@
                 <span class="label-input100">Programas</span>
                     <div id="programas"></div>
                 </div>
-                <button type="submit" class= "justify-content-center"class="btn btn-lg btn-primary " value="Registrar"> Registrar </button>
+                <button type="submit" class="btn btn-lg btn-primary justify-content-center" value="Registrar"> Registrar </button>
             </form>
         </div>
     </div>

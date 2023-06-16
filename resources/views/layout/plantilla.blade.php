@@ -54,41 +54,6 @@
     <script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
     <!--===============================================================================================-->
     <script src="{{ asset('public/assets/js/main.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#miform").submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    dataType: "json",
-                    url: "index.php?action=validar",
-                    type: "POST",
-                    data: {
-                        usr: $("#mail").val(),
-                        pass: $("#pass").val()
-                    },
-                    success: function(data) {
-                        if (data.success == false) {
-                            $("#mensaje").show();
-                            $("#mensaje").html(data.msg);
-                            $('.log-status').addClass('wrong-entry');
-                            $('.alert').fadeIn(700);
-                            setTimeout("$('.alert').fadeOut(1800);", 1500);
-                        } else {
-                            window.location = data.link;
-                        }
-                    },
-                    error: function(response) {
-                        $("#mensaje").show();
-                        $("#mensaje").html(response.responseText);
-                    }
-                });
-            });
-            $('.form-control').keypress(function() {
-                $('.log-status').removeClass('wrong-entry');
-            });
-        });
-    </script>
     @yield('content')
 </body>
 

@@ -18,7 +18,17 @@
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
+                    <span class="label-input100">Contraseña nueva</span>
+                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña actual" id="contraseñaNueva">
+                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                </div>
 
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Confirmar es requerido">
+                    <span class="label-input100">Confirmar contraseña</span>
+                    <input class="input100" type="password" name="confirmar" placeholder="Confirmar contraseña" id="confirmar">
+                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                </div>
             </form>
         </div>
     </div>

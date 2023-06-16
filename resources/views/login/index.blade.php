@@ -1,23 +1,49 @@
-@extends('layout.plantilla')
-@section('title', 'Registro')
+@extends('layout.plantillaFormularios')
+@section('title', 'Login')
 @section('content')
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" id="miform">
+					<span class="login100-form-title p-b-49">
+						Sistema de Proyección Ibero
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Usuario es requerido">
+						<span class="label-input100">Correo</span>
+						<input class="input100" type="text" name="username" placeholder="Ingresa tu usuario" id="mail">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña es requerida">
+						<span class="label-input100">Contraseña</span>
+						<br>
+						<input class="input100" type="password" name="pass" placeholder="Ingresa tu contraseña" id="pass">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					<br>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
 
 
-<div id= "formLogin">
-    <h3>Ingreso</h3>
+					<div class="txt1 text-center p-t-54 p-b-20">
+						<h4> Universidad Iberoamericana</h4>
+                  		<p>©2023 Todos los derechos reservados.</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-    <form  action="#" method="post">
-        @csrf
-        <label for="usuario">Usuario</label>
-        <input type="text" title="usuario" placeholder="Escribe tu usuario...">
-        <br>
-        <label for="password">Contraseña</label>
-        <input type="password" title="password" placeholder="Escribe tu contraseña...">
-        <br>
-        <button type="submit" value="ingresar">Ingresar</button>
-        <br>    
-    </form>
-    <a href="#">Recuperar Contraseña</a>    
-</div>
+
+	<div id="dropDownSelect1"></div>
+
+</body>
 
 @endsection

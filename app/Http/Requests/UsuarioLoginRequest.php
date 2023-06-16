@@ -43,6 +43,6 @@ class UsuarioLoginRequest extends FormRequest
     public function isEmail($value){
         $factory = $this->container->make(ValidationFactory::class);
 
-        return !$factory->make(['username'=>$value],['username'=>'correo'])->fails();
+        return !$factory->make(['correo'=>$value],['correo'=>'correo'])->fails();
     }
 }

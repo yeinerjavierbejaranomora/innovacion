@@ -38,12 +38,16 @@
         <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                 <h3>Registro usuario</h3>
-                <form action="" method="post">
+                <form action="" method="post" class="login100-form validate-form" id="miform">
                     @csrf
-                    <div>
-                        <label for="">IDBanner</label>
-                        <input type="number" name="" id="">
+                    <span class="login100-form-title p-b-49">
+						Formulario de registro
+					</span>
+                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                    <span class="label-input100">ID Banner</span>
+                        <input class="input100" type="number" name="idBanner" placeholder="ID Banner" id="idBanner">
                     </div>
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
                     <div>
                         <label for="">Documento</label>
                         <input type="text">

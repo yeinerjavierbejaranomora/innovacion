@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model implements Authenticatable
 {
+    use HasFactory;
     protected $table = 'usuarios';
     protected $fillable =[
         'idBanner','documentoDeIdentidad','correo','password','nombre','idRol','idFacultad','idPrograma','fecha','ingreso_plataforma','activo'

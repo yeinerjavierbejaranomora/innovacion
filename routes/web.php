@@ -27,7 +27,7 @@ Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro/roles','roles')->name('registro.roles');
     Route::post('/registro/facultades','facultades')->name('registro.facultades');
     Route::post('/registro/programas','programas')->name('registro.programas');
-    Route::post('/registro/save','save','saveRegistro')->name('registro.saveregistro');
+    Route::post('/registro/save','saveRegistro')->name('registro.saveregistro');
 });
 
 Route::controller(LoginController::class)->group(function(){

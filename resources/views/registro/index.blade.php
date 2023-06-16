@@ -41,7 +41,7 @@
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="correo is required">
                     <span class="label-input100">Correo electronico</span>
-                    <input class="input100" type="text" name="correo" laceholder="Correo electronco" id="correo">
+                    <input class="input100" type="text" name="correo" placeholder="Correo electronco" id="correo">
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
                     @error('correo')
                     <small>*{{ $message }}</small>

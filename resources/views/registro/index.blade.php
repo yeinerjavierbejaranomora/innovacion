@@ -86,8 +86,6 @@
 							</button>
 						</div>
 					</div>
-                    
-                    <div class="alert" id="mensaje" style="text-align: center;display: none; width: 100%; font-size: 20px;"></div>
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<h4> Universidad Iberoamericana</h4>
@@ -164,34 +162,5 @@
         }
     })
 
-  $(document).ready(function(){
-    $("#miform").submit(function(event){
-      event.preventDefault();
-      $.ajax({
-        dataType:"json",
-        url:"index.php?action=validar",
-        type:"POST",
-        data:{usr:$("#idBanner").val(),pass:$("#documento").val()},
-        success: function(data){
-          if (data.success==false) {
-            $("#mensaje").show();
-            $("#mensaje").html(data.msg);
-            $('.log-status').addClass('wrong-entry');
-            $('.alert').fadeIn(700);
-            setTimeout( "$('.alert').fadeOut(1800);",1500 );
-          } else {
-            window.location=data.link;
-          }
-        },
-        error: function(response) {
-          $("#mensaje").show();
-          $("#mensaje").html(response.responseText);
-        }
-      });
-    });
-    $('.form-control').keypress(function(){
-      $('.log-status').removeClass('wrong-entry');
-    });
-  });
 </script>
 @endsection

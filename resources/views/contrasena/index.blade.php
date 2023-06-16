@@ -65,7 +65,6 @@
             if (result.isConfirmed) {
                 color: 'white'
                 Swal.fire(
-                    
                     'Cambio exitoso',
                     'Tu contraseña fue cambiada.',
                     'success'

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioRegistroRequest;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +38,7 @@ class RegistroController extends Controller
         $Programas = '';
         
         if($request->facultad == null):
-            $usuario = Usuario::create([
+            $usuario = User::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
                 'correo'=>$request->correo,
@@ -50,7 +50,7 @@ class RegistroController extends Controller
                 'activo' => 1
             ]);
         elseif(isset($request->programa)):
-            $usuario = Usuario::create([
+            $usuario = User::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
                 'correo'=>$request->correo,
@@ -66,7 +66,7 @@ class RegistroController extends Controller
             foreach($request->programa as $programa):
                 $Programas .= $programa.";";
             endforeach;
-            $usuario = Usuario::create([
+            $usuario = User::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
                 'correo'=>$request->correo,

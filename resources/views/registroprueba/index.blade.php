@@ -46,7 +46,7 @@
                     <span class="label-input100">ID Banner</span>
                         <input class="input100" type="number" name="idBanner" placeholder="ID Banner" id="idBanner">
             
-                        <span class="focus-input100" data-symbol="&#xf2c1;"></span>
+                        <span class="focus-input100" data-symbol="&#xf2c2;"></span>
                     </div>
                     <div>
                         <label for="">Documento</label>

@@ -1,8 +1,8 @@
-@extends('layout.menu')
+@extends('layout.header')
 @yield('menu')
 
 
-@section('principal')
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -577,6 +577,6 @@
             </div>
         </div>
     </div>
-    @endsection
+ 
     @extends('layout.footer')
  

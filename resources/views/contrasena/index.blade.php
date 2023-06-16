@@ -57,9 +57,11 @@
             text: "No podrás deshacer el cambio!",
             icon: 'warning',
             showCancelButton: true,
+            textColor: 'white',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, cambiar!'
+            confirmButtonText: 'Si, cambiar!',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(

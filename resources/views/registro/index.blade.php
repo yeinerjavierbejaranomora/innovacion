@@ -29,23 +29,29 @@
                     <small>*{{ $message }}</small>
                     @enderror
                 </div>
-                <div>
-                    <label for="">Nombre completo</label>
-                    <input type="text" name="nombre" id="nombre">
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="nombre is required">
+                    <span class="label-input100">Nombre completo</span>
+                    <input class="input100" type="text" name="nombre" placeholder="Nombre completo" id="nombre">
+                    <span class="focus-input100" data-symbol="&#xf20e;"></span>
                     @error('nombre')
                     <small>*{{ $message }}</small>
                     @enderror
                 </div>
-                <div>
-                    <label for="">Correo electronico</label>
-                    <input type="text" name="correo" id="correo">
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="correo is required">
+                    <span class="label-input100">Correo electronico</span>
+                    <input class="input100" type="text" name="correo" laceholder="Correo electronco" id="correo">
+                    <span class="focus-input100" data-symbol="&#xf15a;"></span>
                     @error('correo')
                     <small>*{{ $message }}</small>
                     @enderror
                 </div>
+
                 {{-- <div>
                 <label for="">Contraseña</label><input type="password">
             </div> --}}
+
                 <div>
                     <label for="">Rol</label>
                     <select name="idrol" id="rol">
@@ -55,6 +61,7 @@
                     <small>*{{ $message }}</small>
                     @enderror
                 </div>
+
                 <div>
                     <label for="">Facultad</label>
                     <select name="idfacultad" id="facultades">

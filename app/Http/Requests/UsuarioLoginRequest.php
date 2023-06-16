@@ -30,7 +30,7 @@ class UsuarioLoginRequest extends FormRequest
         ];
     }
 
-    public function getCreentials(){
+    public function getCredentials(){
         $correo = $this->get('correo');
         if($this->isEmail($correo)):
             return [

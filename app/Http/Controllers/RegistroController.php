@@ -37,7 +37,7 @@ class RegistroController extends Controller
         //return $request->programa;
         $Programas = '';
         
-        if($request->facultad == null):
+        if($request->idfacultad == null):
             $usuario = User::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
@@ -49,37 +49,40 @@ class RegistroController extends Controller
                 'ingreso_plataforma'=>0,
                 'activo' => 1
             ]);
-        elseif(isset($request->programa)):
-            $usuario = User::create([
-                'idBanner'=>$request->idbanner,
-                'documentoDeIdentidad'=>$request->documento,
-                'correo'=>$request->correo,
-                'password'=>bcrypt($request->documento),
-                'nombre'=>$request->nombre,
-                'idRol'=>$request->idrol,
-                'idFacultad'=>$request->idfacultad,
-                'fecha' => date('Y-m-d h:i:s'),
-                'ingreso_plataforma'=>0,
-                'activo' => 1
-            ]);
-        elseif(!isset($request->programa)):
-            foreach($request->programa as $programa):
-                $Programas .= $programa.";";
-            endforeach;
-            $usuario = User::create([
-                'idBanner'=>$request->idbanner,
-                'documentoDeIdentidad'=>$request->documento,
-                'correo'=>$request->correo,
-                'password'=>bcrypt($request->documento),
-                'nombre'=>$request->nombre,
-                'idRol'=>$request->idrol,
-                'idFacultad'=>$request->idfacultad,
-                'idPrograma'=>$Programas,
-                'fecha' => date('Y-m-d h:i:s'),
-                'ingreso_plataforma'=>0,
-                'activo' => 1
-            ]);
+        else:
+            if(!isset($request->programa)):
+                $usuario = User::create([
+                    'idBanner'=>$request->idbanner,
+                    'documentoDeIdentidad'=>$request->documento,
+                    'correo'=>$request->correo,
+                    'password'=>bcrypt($request->documento),
+                    'nombre'=>$request->nombre,
+                    'idRol'=>$request->idrol,
+                    'idFacultad'=>$request->idfacultad,
+                    'fecha' => date('Y-m-d h:i:s'),
+                    'ingreso_plataforma'=>0,
+                    'activo' => 1
+                ]);
+            elseif(isset($request->programa)):
+                foreach($request->programa as $programa):
+                    $Programas .= $programa.";";
+                endforeach;
+                $usuario = User::create([
+                    'idBanner'=>$request->idbanner,
+                    'documentoDeIdentidad'=>$request->documento,
+                    'correo'=>$request->correo,
+                    'password'=>bcrypt($request->documento),
+                    'nombre'=>$request->nombre,
+                    'idRol'=>$request->idrol,
+                    'idFacultad'=>$request->idfacultad,
+                    'idPrograma'=>$Programas,
+                    'fecha' => date('Y-m-d h:i:s'),
+                    'ingreso_plataforma'=>0,
+                    'activo' => 1
+                ]);
+            endif;
         endif;
+        
 
         if($usuario):
             return "correcto";

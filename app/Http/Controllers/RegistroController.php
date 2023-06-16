@@ -34,7 +34,7 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        //return $request;
+        return $request->programa;
         /*if (isset($request->programa)) {
             return "Existe";
         } else {
@@ -42,8 +42,7 @@ class RegistroController extends Controller
         }*/
         
         if($request->facultad == null):
-            return "No se puede registrar sin seleccionar una Facultad";
-            /*$usuario = Usuario::create([
+            $usuario = Usuario::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
                 'correo'=>$request->correo,
@@ -53,8 +52,33 @@ class RegistroController extends Controller
                 'fecha' => date('Y-m-d h:i:s'),
                 'ingreso_plataforma'=>0,
                 'activo' => 1
-            ]);*/
-        else:
+            ]);
+        elseif(isset($request->programa)):
+            $usuario = Usuario::create([
+                'idBanner'=>$request->idbanner,
+                'documentoDeIdentidad'=>$request->documento,
+                'correo'=>$request->correo,
+                'password'=>bcrypt($request->documento),
+                'nombre'=>$request->nombre,
+                'idRol'=>$request->idrol,
+                'idFacultad'=>$request->idfacultad,
+                'fecha' => date('Y-m-d h:i:s'),
+                'ingreso_plataforma'=>0,
+                'activo' => 1
+            ]);
+        elseif(!isset($request->programa)):
+            $usuario = Usuario::create([
+            'idBanner'=>$request->idbanner,
+            'documentoDeIdentidad'=>$request->documento,
+            'correo'=>$request->correo,
+            'password'=>bcrypt($request->documento),
+            'nombre'=>$request->nombre,
+            'idRol'=>$request->idrol,
+            'idFacultad'=>$request->idfacultad,
+            'fecha' => date('Y-m-d h:i:s'),
+            'ingreso_plataforma'=>0,
+            'activo' => 1
+        ]);
         endif;
 
         /*$usuario = Usuario::create([

@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layout.plantillaFormularios')
 @section('title', 'Registro')
 @section('content')
 
@@ -12,7 +12,7 @@
                     Formulario de registro
                 </span>
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner es requerido">
                     <span class="label-input100">ID Banner</span>
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
                     <span class="focus-input100" data-symbol="&#xf205;"></span>
@@ -21,7 +21,7 @@
                 <small class="input100">*{{ $message }}</small>
                 @enderror
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="documento is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="documento es requerido">
                     <span class="label-input100">Documento de identidad</span>
                     <input class="input100" type="text" name="documento" placeholder="Documento de identidad" id="documento">
                     <span class="focus-input100" data-symbol="&#xf20b;"></span>
@@ -30,7 +30,7 @@
                 <small class="input100">*{{ $message }}</small>
                 @enderror
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="nombre is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="nombre es requerido">
                     <span class="label-input100">Nombre completo</span>
                     <input class="input100" type="text" name="nombre" placeholder="Nombre completo" id="nombre">
                     <span class="focus-input100" data-symbol="&#xf20e;"></span>
@@ -39,7 +39,7 @@
                 <small class="input100">*{{ $message }}</small>
                 @enderror
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="correo is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="correo es requerido">
                     <span class="label-input100">Correo electronico</span>
                     <input class="input100" type="text" name="correo" placeholder="Correo electronco" id="correo">
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
@@ -52,7 +52,7 @@
                 <label for="">Contraseña</label><input type="password">
             </div> --}}
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="rol es requerido">
                     <span class="label-input100">Rol</span>
                     <select class="input100" name="idrol" id="rol">
                         <option value="">Seleccione el rol</option>
@@ -63,7 +63,7 @@
                 <small class="input100">*{{ $message }}</small>
                 @enderror
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="facultades is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="facultades es requerido">
                     <span class="label-input100">Facultad</span>
                     <select class="input100" name="idfacultad" id="facultades">
                         <option value="">Seleccione la facultad</option>
@@ -71,7 +71,7 @@
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate="programas is required">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="programas es requerido">
                 <span class="label-input100">Programas</span>
                 <br>
                     <div id="programas"></div>

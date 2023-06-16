@@ -32,8 +32,8 @@ class UsuarioLoginRequest extends FormRequest
 
     public function getCredentials()
     {
-        $mail = $this->get('email');
+        $mail = $this->get('correo');
 
-        return $this->only('email','password');
+        return $this->only('correo','password');
     }
 }

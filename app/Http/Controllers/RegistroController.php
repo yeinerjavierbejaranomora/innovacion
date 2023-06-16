@@ -38,6 +38,11 @@ class RegistroController extends Controller
         $usuario = Usuario::create([
             'idBanner'=>$request->idbanner,
             'documentoDeIdentidad'=>$request->documento,
+            'correo'=>$request->correo,
+            'password'=>bcrypt($request->documento),
+            'nombre'=>$request->nombre,
+            'idRol'=>$request->idrol,
+            'idFacultad'=>$request->idfacultad
         ]);
     }
 }

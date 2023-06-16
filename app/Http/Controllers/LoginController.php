@@ -26,7 +26,6 @@ class LoginController extends Controller
             'correo' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        return $credentials;
         if (Auth::attempt($credentials)) {
             return "Exito";
            /* $request->session()->regenerate();

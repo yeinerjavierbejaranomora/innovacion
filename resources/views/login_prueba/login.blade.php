@@ -74,7 +74,7 @@
 	</div>
 	
 
-	<div id="dropDownSelect1"></div>
+	
 	
 <!--===============================================================================================-->
 	<script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>

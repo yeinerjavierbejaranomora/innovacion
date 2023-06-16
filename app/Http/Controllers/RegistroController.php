@@ -40,7 +40,7 @@ class RegistroController extends Controller
             //var_dump(intval($programa));
             $Programas .= $programa.";";
         endforeach;
-        var_dump($Programas);die();
+        var_dump(trim($Programas,";"));die();
         /*if (isset($request->programa)) {
             return "Existe";
         } else {

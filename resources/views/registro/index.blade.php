@@ -131,6 +131,8 @@
                     });
                 }
             });
+        }else{
+            $('#programas').empty();
         }
     })
 </script>

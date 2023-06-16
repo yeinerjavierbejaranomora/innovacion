@@ -29,7 +29,6 @@ class UsuarioRegistroRequest extends FormRequest
             'nombre'=>'required',
             'correo'=>'required',
             'idrol'=>'required',
-            'idfacultad' => 'required',
         ];
     }
 }

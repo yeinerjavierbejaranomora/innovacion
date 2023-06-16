@@ -33,6 +33,6 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request;
+        return $request->idbanner;
     }
 }

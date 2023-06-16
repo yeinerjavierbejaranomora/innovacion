@@ -9,13 +9,13 @@
 						Sistema de Proyección Ibero
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is required">
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Usuario es requerido">
 						<span class="label-input100">Correo</span>
 						<input class="input100" type="text" name="username" placeholder="Ingresa tu usuario" id="mail">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+					<div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña es requerida">
 						<span class="label-input100">Contraseña</span>
 						<br>
 						<input class="input100" type="password" name="pass" placeholder="Ingresa tu contraseña" id="pass">

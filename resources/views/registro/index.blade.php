@@ -5,42 +5,62 @@
 
     <div>
         <h3>Registro usuario</h3>
-        <form action="" method="post">
+        <form action="{{ route('registro.saveregistro') }}" method="post">
             @csrf
             <div>
                 <label for="">IDBanner</label>
-                <input type="number" name="" id="">
+                <input type="number" name="idbanner" id="idbanner">
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
             <div>
                 <label for="">Documento</label>
-                <input type="text">
+                <input type="text" name="documento" id="documento">
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
             <div>
                 <label for="">Nombre completo</label>
-                <input type="text">
+                <input type="text" name="nombre" id="nombre">
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
             <div>
                 <label for="">Correo electronico</label>
-                <input type="text">
+                <input type="text" name="correo" id="correo">
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
             {{-- <div>
                 <label for="">Contraseña</label><input type="password">
             </div> --}}
             <div>
                 <label for="">Rol</label>
-                <select name="rol" id="rol">
+                <select name="idrol" id="rol">
                     <option value="">Seleccione le rol</option>
                 </select>
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
             <div>
                 <label for="">Facultad</label>
-                <select name="facultades" id="facultades">
+                <select name="idfacultad" id="facultades">
                     <option value="">Seleccione la facultad</option>
                 </select>
+                @error('idbanner')
+                    <small>*{{  $message }}</small>
+                @enderror
             </div>
-            <div id="programas">
-
+            <div>
+                <label>Programas</label>
+                <div id="programas"></div>
             </div>
+            <input type="submit" value="Registrar">
         </form>
     </div>
     <script>

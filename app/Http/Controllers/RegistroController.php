@@ -30,4 +30,8 @@ class RegistroController extends Controller
         $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `idFacultad` = :id', ['id' => $idFacultad]);
         return $programas;
     }
+
+    public function saveRegistro(Request $request){
+        return $request;
+    }
 }

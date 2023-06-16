@@ -16,10 +16,10 @@
                     <span class="label-input100">ID Banner</span>
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
                     <span class="focus-input100" data-symbol="&#xf205;"></span>
-                    @error('idbanner')
-                    <small>*{{ $message }}</small>
-                    @enderror
                 </div>
+                @error('idbanner')
+                <small class="input100">*{{ $message }}</small>
+                @enderror
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="documento is required">
                     <span class="label-input100">Documento de identidad</span>

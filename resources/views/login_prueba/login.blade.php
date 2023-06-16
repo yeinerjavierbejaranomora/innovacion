@@ -62,6 +62,8 @@
 							</button>
 						</div>
 					</div>
+
+					<div class="alert" id="mensaje" style="text-align: center;display: none; width: 100%; font-size: 20px;"></div>
 					
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<h4> Universidad Iberoamericana</h4>

@@ -9,7 +9,7 @@
             <form action="{{ route('registro.saveregistro') }}" method="post" class="login100-form validate-form" id="miform">
                 @csrf
                 <span class="login100-form-title p-b-49">
-                        Formulario de registro
+                    Formulario de registro
                 </span>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner is required">
@@ -20,9 +20,11 @@
                     <small>*{{ $message }}</small>
                     @enderror
                 </div>
-                <div>
-                    <label for="">Documento</label>
-                    <input type="text" name="documento" id="documento">
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="documento is required">
+                    <span class="label-input100">Documento de identidad</span>
+                    <input class="input100" type="text" name="documento" placeholder="Documento de identidad" id="documento">
+                    <span class="focus-input100" data-symbol="&#xf20b;"></span>
                     @error('documento')
                     <small>*{{ $message }}</small>
                     @enderror
@@ -47,7 +49,7 @@
                 <div>
                     <label for="">Rol</label>
                     <select name="idrol" id="rol">
-                        <option value="">Seleccione le rol</option>
+                        <option value="">Seleccione el rol</option>
                     </select>
                     @error('idrol')
                     <small>*{{ $message }}</small>

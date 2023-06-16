@@ -34,7 +34,7 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        //return $request->idfacultad;
+        return $request->programa;
         $Programas = '';
         
         if($request->idfacultad == null):

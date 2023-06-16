@@ -10,9 +10,85 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     {{-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> --}}
     <title>@yield('title')</title>
+
+    <link rel="stylesheet" href="{{asset('public/css/app.css')}}">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{{asset('public/assets/images/icons/favicon.ico')}}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animate/animate.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animsition/css/animsition.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/select2/select2.min.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/daterangepicker/daterangepicker.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/main.css')}}">
+<!--===============================================================================================-->
+ 
 </head>
 
 <body>
+	<!--===============================================================================================-->
+    <script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('public/assets/vendor/animsition/js/animsition.min.js')}}"></script>
+    <!--=============assets/==================================================================================-->
+    <script src="{{ asset('public/assets/vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{ asset('public/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('public/assets/vendor/select2/select2.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('public/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+    <script src="{{ asset('public/assets/vendor/vendor/daterangepicker/daterangepicker.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('public/assets/js/main.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#miform").submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    dataType: "json",
+                    url: "index.php?action=validar",
+                    type: "POST",
+                    data: {
+                        usr: $("#mail").val(),
+                        pass: $("#pass").val()
+                    },
+                    success: function(data) {
+                        if (data.success == false) {
+                            $("#mensaje").show();
+                            $("#mensaje").html(data.msg);
+                            $('.log-status').addClass('wrong-entry');
+                            $('.alert').fadeIn(700);
+                            setTimeout("$('.alert').fadeOut(1800);", 1500);
+                        } else {
+                            window.location = data.link;
+                        }
+                    },
+                    error: function(response) {
+                        $("#mensaje").show();
+                        $("#mensaje").html(response.responseText);
+                    }
+                });
+            });
+            $('.form-control').keypress(function() {
+                $('.log-status').removeClass('wrong-entry');
+            });
+        });
+    </script>
     @yield('content')
 </body>
 

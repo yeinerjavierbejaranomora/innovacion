@@ -74,12 +74,10 @@
                 <div class="wrap-input100 validate-input m-b-23" data-validate="programas is required">
                 <span class="label-input100">Programas</span>
                 <br>
-                    <div class="input100" id="programas"></div>
+                    <div id="programas"></div>
                 </div>
 
-                <div class="row justify-content-center">
-                    <button type="submit" class="login100-form-btn"> Registrar </button>
-                </div>
+                
             </form>
         </div>
     </div>

@@ -41,6 +41,6 @@ Route::controller(contrasenaController::class)->group(function(){
     Route::get('/contrasena','index')->name('contrasena.index');
 });
 
-Route::controller(cambiocontrasenaController::class)->group(function(){
-    Route::get('/cambioContrasena','index')->name('cambioContrasena.index');
+Route::controller(cambioController::class)->group(function(){
+    Route::get('/cambio','index')->name('cambio.index');
 });

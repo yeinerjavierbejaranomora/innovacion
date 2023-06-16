@@ -29,166 +29,170 @@
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/main.css')}}">
     <!--===============================================================================================-->
+</head>
+<body>
+    
 
-    <div class="limiter">
-        <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                <h3>Registro usuario</h3>
-                <form action="" method="post">
-                    @csrf
-                    <div>
-                        <label for="">IDBanner</label>
-                        <input type="number" name="" id="">
-                    </div>
-                    <div>
-                        <label for="">Documento</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label for="">Nombre completo</label>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <label for="">Correo electronico</label>
-                        <input type="text">
-                    </div>
-                    {{-- <div>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <h3>Registro usuario</h3>
+            <form action="" method="post">
+                @csrf
+                <div>
+                    <label for="">IDBanner</label>
+                    <input type="number" name="" id="">
+                </div>
+                <div>
+                    <label for="">Documento</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">Nombre completo</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">Correo electronico</label>
+                    <input type="text">
+                </div>
+                {{-- <div>
                 <label for="">Contraseña</label><input type="password">
             </div> --}}
-                    <div>
-                        <label for="">Rol</label>
-                        <select name="rol" id="rol">
-                            <option value="">Seleccione el rol</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="">Facultad</label>
-                        <select name="facultades" id="facultades">
-                            <option value="">Seleccione la facultad</option>
-                        </select>
-                    </div>
-                    <div id="programas">
+                <div>
+                    <label for="">Rol</label>
+                    <select name="rol" id="rol">
+                        <option value="">Seleccione el rol</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Facultad</label>
+                    <select name="facultades" id="facultades">
+                        <option value="">Seleccione la facultad</option>
+                    </select>
+                </div>
+                <div id="programas">
 
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
-        roles();
-        facultades();
+</div>
+<script>
+    roles();
+    facultades();
 
-        function roles() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.roles') }}",
-                method: 'get',
-                success: function(data) {
-                    data.forEach(rol => {
-                        $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
-                    });
-                }
-            })
-        }
-
-        function facultades() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.facultades') }}",
-                method: 'post',
-                success: function(data) {
-                    data.forEach(facultad => {
-                        $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-                    });
-                }
-            });
-        }
-
-        $('#facultades').change(function() {
-            facultades = $(this);
-            if ($(this).val() != '') {
-                var formData = new FormData();
-                formData.append('idfacultad', facultades.val());
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('registro.programas') }}",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        facultades.prop('disabled', true);
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        facultades.prop('disabled', false)
-                        $('#programas').empty();
-                        data.forEach(programa => {
-                            $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
-                        });
-                    }
+    function roles() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.roles') }}",
+            method: 'get',
+            success: function(data) {
+                data.forEach(rol => {
+                    $('#rol').append(`<option value="${rol.id}">${rol.nombreRol}</option>`);
                 });
             }
         })
-    </script>
+    }
 
-    // Scripts para estilos
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/vendor/animsition/js/animsition.min.js')}}"></script>
-    <!--=============assets/==================================================================================-->
-    <script src="{{ asset('public/assets/vendor/bootstrap/js/popper.js')}}"></script>
-    <script src="{{ asset('public/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/vendor/select2/select2.min.js')}}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/vendor/daterangepicker/moment.min.js')}}"></script>
-    <script src="{{ asset('public/assets/vendor/vendor/daterangepicker/daterangepicker.js')}}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('public/assets/js/main.js')}}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#miform").submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    dataType: "json",
-                    url: "index.php?action=validar",
-                    type: "POST",
-                    data: {
-                        usr: $("#mail").val(),
-                        pass: $("#pass").val()
-                    },
-                    success: function(data) {
-                        if (data.success == false) {
-                            $("#mensaje").show();
-                            $("#mensaje").html(data.msg);
-                            $('.log-status').addClass('wrong-entry');
-                            $('.alert').fadeIn(700);
-                            setTimeout("$('.alert').fadeOut(1800);", 1500);
-                        } else {
-                            window.location = data.link;
-                        }
-                    },
-                    error: function(response) {
-                        $("#mensaje").show();
-                        $("#mensaje").html(response.responseText);
-                    }
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                 });
+            }
+        });
+    }
+
+    $('#facultades').change(function() {
+        facultades = $(this);
+        if ($(this).val() != '') {
+            var formData = new FormData();
+            formData.append('idfacultad', facultades.val());
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('registro.programas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    facultades.prop('disabled', true);
+                },
+                success: function(data) {
+                    console.log(data);
+                    facultades.prop('disabled', false)
+                    $('#programas').empty();
+                    data.forEach(programa => {
+                        $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
+                    });
+                }
             });
-            $('.form-control').keypress(function() {
-                $('.log-status').removeClass('wrong-entry');
+        }
+    })
+</script>
+
+// Scripts para estilos
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/vendor/animsition/js/animsition.min.js')}}"></script>
+<!--=============assets/==================================================================================-->
+<script src="{{ asset('public/assets/vendor/bootstrap/js/popper.js')}}"></script>
+<script src="{{ asset('public/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/vendor/select2/select2.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+<script src="{{ asset('public/assets/vendor/vendor/daterangepicker/daterangepicker.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('public/assets/js/main.js')}}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#miform").submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                dataType: "json",
+                url: "index.php?action=validar",
+                type: "POST",
+                data: {
+                    usr: $("#mail").val(),
+                    pass: $("#pass").val()
+                },
+                success: function(data) {
+                    if (data.success == false) {
+                        $("#mensaje").show();
+                        $("#mensaje").html(data.msg);
+                        $('.log-status').addClass('wrong-entry');
+                        $('.alert').fadeIn(700);
+                        setTimeout("$('.alert').fadeOut(1800);", 1500);
+                    } else {
+                        window.location = data.link;
+                    }
+                },
+                error: function(response) {
+                    $("#mensaje").show();
+                    $("#mensaje").html(response.responseText);
+                }
             });
         });
-    </script>
-    @endsection
+        $('.form-control').keypress(function() {
+            $('.log-status').removeClass('wrong-entry');
+        });
+    });
+</script>
+</body>
+</html>

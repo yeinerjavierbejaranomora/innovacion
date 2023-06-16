@@ -75,7 +75,7 @@
                 method: 'get',
                 success: function(data){
                     data.forEach(rol => {
-                        $('#rol').append(`<option name="programa[]" value="${rol.id}">${rol.nombreRol}</option>`);
+                        $('#rol').append(`<option  value="${rol.id}">${rol.nombreRol}</option>`);
                     });
                 }
             })
@@ -119,7 +119,7 @@
                         facultades.prop('disabled', false)
                         $('#programas').empty();
                         data.forEach(programa => {
-                            $('#programas').append(`<label><input type="checkbox" id="" value="${programa.id}"> ${programa.programa}</label><br>`);
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });
                     }
                 });

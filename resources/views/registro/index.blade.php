@@ -58,9 +58,6 @@
                     <select name="idfacultad" id="facultades">
                         <option value="">Seleccione la facultad</option>
                     </select>
-                    @error('idfacultad')
-                    <small>*{{ $message }}</small>
-                    @enderror
                 </div>
                 <div>
                     <label>Programas</label>

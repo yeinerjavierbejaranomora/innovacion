@@ -12,7 +12,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function login(Request $request){
+    public function login(UsuarioLoginRequest $request){
         //return $request;
         $credenciales = $request->getCredentials();
 

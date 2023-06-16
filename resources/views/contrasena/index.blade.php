@@ -20,7 +20,7 @@
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
                     <span class="label-input100">Contraseña nueva</span>
-                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña actual" id="contraseñaNueva">
+                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="contraseñaNueva">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 

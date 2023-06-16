@@ -35,8 +35,15 @@ class RegistroController extends Controller
 
     public function saveRegistro(UsuarioRegistroRequest $request){
         return $request;
+        if (isset($request->programa)) {
+            return "Existe";
+        } else {
+            return "No existe";
+        }
+        
         if($request->facultad == ''):
-            $usuario = Usuario::create([
+            return "No se puede registrar sin seleccionar una Facultad";
+            /*$usuario = Usuario::create([
                 'idBanner'=>$request->idbanner,
                 'documentoDeIdentidad'=>$request->documento,
                 'correo'=>$request->correo,
@@ -46,7 +53,7 @@ class RegistroController extends Controller
                 'fecha' => date('Y-m-d h:i:s'),
                 'ingreso_plataforma'=>0,
                 'activo' => 1
-            ]);
+            ]);*/
         else:
         endif;
 

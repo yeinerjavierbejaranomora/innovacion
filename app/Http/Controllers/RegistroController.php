@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioRegistroRequest;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,10 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request->idbanner;
+        return $request;
+        $usuario = Usuario::create([
+            'idBanner'=>$request->idbanner,
+            'documentoDeIdentidad'=>$request->documento,
+        ]);
     }
 }

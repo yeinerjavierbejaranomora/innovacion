@@ -73,17 +73,18 @@
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
                         <span class="label-input100">Rol</span>
-                        <br>
                         <select class="input100" name="rol" id="rol">
                             <option value="">Seleccione el rol</option>
                         </select>
                         <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                     </div>
-                    <div>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="facultades is required">
                         <label for="">Facultad</label>
-                        <select name="facultades" id="facultades">
+                        <select class="input100" name="facultades" id="facultades">
                             <option value="">Seleccione la facultad</option>
                         </select>
+                        <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                     </div>
                     <div id="programas">
 

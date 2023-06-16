@@ -30,17 +30,10 @@ class UsuarioLoginRequest extends FormRequest
         ];
     }
 
-    public function getCredentials(){
-        $correo = $this->get('correo');
-            return [
-                'correo' => $correo,
-                'password' => $this->get('password'),
-            ];
-    }
+    public function getCredentials()
+    {
+        $mail = $this->get('correo');
 
-    public function isEmail($value){
-        $factory = $this->container->make(ValidationFactory::class);
-
-        return !$factory->make(['correo'=>$value])->fails();
+        return $this->only('correo','password');
     }
 }

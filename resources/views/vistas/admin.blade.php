@@ -1,3 +1,4 @@
+@extends('layout.header')
 @extends('layout.menu')
 @yield('menu')
 

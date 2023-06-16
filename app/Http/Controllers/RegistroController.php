@@ -34,7 +34,7 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request;
+        return date('Y-m-d h:i:s');
         $usuario = Usuario::create([
             'idBanner'=>$request->idbanner,
             'documentoDeIdentidad'=>$request->documento,
@@ -42,7 +42,7 @@ class RegistroController extends Controller
             'password'=>bcrypt($request->documento),
             'nombre'=>$request->nombre,
             'idRol'=>$request->idrol,
-            'idFacultad'=>$request->idfacultad
+            'idFacultad'=>$request->idfacultad,
         ]);
     }
 }

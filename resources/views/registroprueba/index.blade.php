@@ -58,7 +58,7 @@
                     <div>
                         <label for="">Rol</label>
                         <select name="rol" id="rol">
-                            <option value="">Seleccione le rol</option>
+                            <option value="">Seleccione el rol</option>
                         </select>
                     </div>
                     <div>

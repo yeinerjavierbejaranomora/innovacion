@@ -34,7 +34,7 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request->programa;
+        //return $request->programa;
         $Programas = '';
         
         if($request->idfacultad == null):
@@ -50,7 +50,7 @@ class RegistroController extends Controller
                 'activo' => 1
             ]);
         else:
-            if(isset($request->programa)):
+            if(!isset($request->programa)):
                 $usuario = User::create([
                     'idBanner'=>$request->idbanner,
                     'documentoDeIdentidad'=>$request->documento,
@@ -63,7 +63,7 @@ class RegistroController extends Controller
                     'ingreso_plataforma'=>0,
                     'activo' => 1
                 ]);
-            elseif(!isset($request->programa)):
+            elseif(isset($request->programa)):
                 foreach($request->programa as $programa):
                     $Programas .= $programa.";";
                 endforeach;

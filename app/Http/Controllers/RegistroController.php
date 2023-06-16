@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuarioRegistroRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,7 @@ class RegistroController extends Controller
         return $programas;
     }
 
-    public function saveRegistro(Request $request){
+    public function saveRegistro(UsuarioRegistroRequest $request){
         return $request;
     }
 }

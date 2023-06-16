@@ -74,7 +74,7 @@
                     <div class="wrap-input100 validate-input m-b-23" data-validate="rol is required">
                         <span class="label-input100">Rol</span>
                         <br>
-                        <select name="rol" id="rol">
+                        <select name="rol" id="rol" class="form-select" aria-label="Default select example">
                             <option value="">Seleccione el rol</option>
                         </select>
                         <span class="focus-input100" data-symbol="&#xf2f1;"></span>

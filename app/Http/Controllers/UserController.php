@@ -51,7 +51,6 @@ class UserController extends Controller
             *Docente      = 5
             *Estudiante   = 6
        */
-
       // extraemos el rol del usuario logueado
       $id_rol=auth()->user()->id_rol;
 

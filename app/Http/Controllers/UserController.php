@@ -69,6 +69,12 @@ class UserController extends Controller
 
 
     }
+    // funcion para traer todos los usuarios a la vista de administracion
+
+    public function get_users(){
+
+
+    }
 
 
 

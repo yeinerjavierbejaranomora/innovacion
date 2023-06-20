@@ -20,12 +20,13 @@ class cambioController extends Controller
         $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
         ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
-        
-        if(strlen($consulta)>0){
-            return view('nuevacontraseña.index');
+
+        if($consulta == '[]'){
+            return false;
         }
         else{
-            return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+            return view('nuevacontraseña.index');
+            //return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }
 

@@ -48,7 +48,7 @@ Route::controller(LoginController::class)->group(function(){
 });
 
 Route::controller(contrasenaController::class)->group(function(){
-    Route::get('/contrasena','index')->name('contrasena.index');
+    Route::get('/password','index')->name('password.index');
 });
 
 Route::controller(cambioController::class)->group(function(){

@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         return redirect()
             ->back()
-            ->with('error', 'Invalid Credentials');
+            ->withErrors(['errors' => 'Invalid Credentials']);
     }
 
 

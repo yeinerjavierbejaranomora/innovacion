@@ -75,10 +75,7 @@
                 }
             })
         }        
-        else
-        {
-            return false;
-        }
+       
     });
 
 </script>

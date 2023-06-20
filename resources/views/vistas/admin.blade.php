@@ -1,6 +1,6 @@
 
 
-@include('menus.menu')
+
 @extends('layout.header')
 
 
@@ -8,7 +8,7 @@
 
 @section('content')
 
-
+@include('menus.menu')
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 

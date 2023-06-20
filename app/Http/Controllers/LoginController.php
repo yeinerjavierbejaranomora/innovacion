@@ -35,7 +35,10 @@ class LoginController extends Controller
     }
 
     public function cambioPass(CambioPassRequest $request){
-        dd($request->all());
+        //dd($request->all());
+        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->get();
+        var_dump(Hash::check($request->password_actual,$user->password));die();
+        return $user;
     }
 
 

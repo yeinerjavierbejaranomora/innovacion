@@ -21,7 +21,7 @@ class LoginController extends Controller
     {
         if (Auth::check()) :
            if(auth()->user()->ingreso_plataforma == 0):
-            return view('contrasena.index',['id'=>auth()->user()->id]);
+            return  redirect()->route('login.cambio',['id'=>auth()->user()->id]);
         endif;
         return "Hola Usuario".auth()->user()->nombre;
         endif;

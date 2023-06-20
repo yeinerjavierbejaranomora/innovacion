@@ -50,16 +50,16 @@
     </div>
 </div>
 
+@if (session('consultaFallida') == 'OK'): 
 <script>
-    if (session('consultaFallida') == 'OK') {
-        function validacion() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Usuario no encontrado!',
-            })
-        }
+    function validacion() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario no encontrado!',
+        })
     }
 </script>
+@endif
 
 @endsection

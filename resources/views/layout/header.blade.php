@@ -34,6 +34,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+    @yield('menu')
+
 	@yield('content')
 
 

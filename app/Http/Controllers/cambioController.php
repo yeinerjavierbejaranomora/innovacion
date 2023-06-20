@@ -20,10 +20,8 @@ class cambioController extends Controller
         $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
         ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
-        
-        die();
-        var_dump($consulta);
-        if(!empty($consulta)){
+
+        if($consulta == '[]'){
            return view('nuevacontraseña.index');
         }
         else{

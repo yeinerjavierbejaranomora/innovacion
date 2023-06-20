@@ -17,15 +17,19 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function cambio()
+    public function home()
     {
         if (Auth::check()) :
            if(auth()->user()->ingreso_plataforma != 0):
                 return "Hola Usuario".auth()->user()->nombre;
            endif;
-            return view('contrasena.index');
+            return view('contrasena.index',['id'=>auth()->user()->id]);
         endif;
         return redirect()->route('login.index');
+    }
+
+    public function cambio($id){
+        return $id;
     }
 
 
@@ -50,7 +54,7 @@ class LoginController extends Controller
     public function authenticated(Request  $request, $user)
     {
         //return $user;
-        return redirect()->route('login.cambio');
+        return redirect()->route('login.home');
     }
 
     public function logout()

@@ -17,17 +17,18 @@ class cambioController extends Controller
 
     public function consultar(Request $request ) {
 
-        $password = DB::table('users')->where('id','=',$request->id,
+        $consulta = DB::table('users')->where('id','=',$request->id,
         'email','=',$request->email,
         'documento','=',$request->documento)->get();
 
-        if(!empty($password))
+        if(!empty($consulta))
         {
             return view('nuevacontraseña.index');
         }
         else
         {
-            return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+            return false;
+            // return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }
 

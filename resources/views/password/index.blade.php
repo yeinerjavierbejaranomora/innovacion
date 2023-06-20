@@ -53,11 +53,14 @@
 </div>
 
 <script>
+    // * Función para enviar alerta al usuario *
     function validacion() {
+
+        // * Validación para verificar que todos los campos contengan información *
         if ($('#contraseña').val() && $('#nueva').val() && $('#confirmar').val()) {
             $("#miForm").submit(function(e) {
                 e.preventDefault();
-
+                // * Sweet alert *
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: "¡No podrás deshacer este cambio!",

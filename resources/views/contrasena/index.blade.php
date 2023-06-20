@@ -34,7 +34,7 @@
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button type="submit" class="login100-form-btn">
+                        <button type="submit" class="login100-form-btn" onclick="return validacion()">
                             Cambiar contraseña
                         </button>
                     </div>
@@ -50,8 +50,13 @@
 </div>
 
 <script>
+
+    function validacion()
+    {
+
+    
     // Validación para comprobar que los parámetros no están vacíos, antes de enviar el formulario
-    if (($('#contraseña') && $('#nueva') && $('#confirmar')) != null) {
+    if ($("#contraseña").length > 0 && $("#nueva").length > 0 && $("#confirmar").length > 0) {
         // Alerta que advierte al usuario que una vez cambiada su contraseña, no podrá deshacerse el cambio
         $('#miForm').submit(function(e) {
             e.preventDefault();
@@ -77,5 +82,6 @@
             })
         });
     }
+}
 </script>
 @endsection

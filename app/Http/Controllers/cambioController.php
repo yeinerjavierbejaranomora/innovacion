@@ -10,12 +10,12 @@ class cambioController extends Controller
         return view('cambio.index');
     }
 
-    public function consultar() {
-        return view('');
-    }
-
     public function nueva() {
         return view('nuevacontraseña.index');
+    }
+
+    public function consultar() {
+    
     }
 
     public function cambiar() {

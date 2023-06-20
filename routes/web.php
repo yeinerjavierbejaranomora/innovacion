@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     //return view('welcome');
 
-    return view('login/login');
+    return view('login/index');
 });
 
 Route::controller(UserController::class)->group(function(){

@@ -17,9 +17,9 @@ class cambioController extends Controller
 
     public function consultar(Request $request ) {
 
-        $consulta = DB::table('users')->where('id','=',$request->id,
-        'email','=',$request->email,
-        'documento','=',$request->documento)->get();
+        $consulta = DB::table('users')->where([['id','=',$request->id],
+        ['email','=',$request->email],
+        ['documento','=',$request->documento]])->get();
         
         if(!empty($consulta))
         {

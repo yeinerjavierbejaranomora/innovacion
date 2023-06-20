@@ -6,6 +6,7 @@ use App\Http\Requests\UsuarioLoginRequest;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -21,6 +22,8 @@ class LoginController extends Controller
     {
         if (Auth::check()) :
            if(auth()->user()->ingreso_plataforma == 0):
+            $idEncriptado = Crypt::encrypt(auth()->user()->id);
+            return $idEncriptado;
             return  redirect()->route('login.cambio',['id'=>auth()->user()->id]);
         endif;
         return "Hola Usuario".auth()->user()->nombre;

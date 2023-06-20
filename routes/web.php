@@ -1,10 +1,12 @@
 <?php
 
+/** definimos losb controladores para que funcionen las rutas  */
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->name('home.index');
-
+    
 });
 
 

@@ -36,11 +36,6 @@
                     <input class="input100" type="email" name="email" placeholder="Correo electronco" id="correo">
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
                 </div>
-
-                {{-- <div>
-                <label for="">Contraseña</label><input type="password">
-            </div> --}}
-
                 <div class="wrap-input100 validate-input m-b-23" data-validate="rol es requerido">
                     <span class="label-input100">Rol</span>
                     <select class="input100" name="id_rol" id="rol">
@@ -86,6 +81,7 @@
     roles();
     facultades();
 
+    //* Funcion para trear los datos de la tabla roles y cargar los opciones del select/
     function roles() {
         $.ajax({
             headers: {
@@ -101,6 +97,7 @@
         })
     }
 
+    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
         $.ajax({
             headers: {

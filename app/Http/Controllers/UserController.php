@@ -59,8 +59,7 @@ class UserController extends Controller
       $rol_db=DB::table('roles')->where([['id','=',$id_rol],
       ])->get();
 
-      print_r($rol_db);
-      exit;
+     return $rol_db;
 
 
     }

@@ -1,9 +1,8 @@
 
 @extends('layout.header')
-@extends('layout.menu')
 
+<!--  crea,os el contenido principal body -->
 
-@yield('menu')
 @section('content')
 
 

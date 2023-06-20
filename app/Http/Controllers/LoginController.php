@@ -33,7 +33,9 @@ class LoginController extends Controller
             endif;
         /** de lo contrario redirigimos a la vista correspondiente */
 
-        return "Hola Usuario".auth()->user()->nombre;
+        //return "Hola Usuario".auth()->user()->nombre;
+
+        return redirect()->route('home.index');
         endif;
 
         return redirect()->route('login.index');

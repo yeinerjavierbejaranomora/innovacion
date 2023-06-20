@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class cambioController extends Controller
 {
@@ -14,18 +15,16 @@ class cambioController extends Controller
         return view('nuevacontraseña.index');
     }
 
-    public function consultar($id, $email, $documento) {
-
-        $password = DB::table('users')->select('users.password')->where('id','=',$id->id,
-        'email','=',$email->email,
-        'documento','=',$documento->documento);
-
-        if(!empty($password))
-        {
+    public function consultar(Request $request ) {
+    
+        $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
+        ['email','=',$request->correo],
+        ['documento','=',$request->documento]])->get();
+        
+        if(strlen($consulta)>0){
             return view('nuevacontraseña.index');
         }
-        else
-        {
+        else{
             return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }

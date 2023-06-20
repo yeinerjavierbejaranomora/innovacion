@@ -27,7 +27,7 @@ class LoginController extends Controller
         if (Auth::check()) :
             /** si es la primera vez en la plataforma se le solicita cambio de contraseña */
             if(auth()->user()->ingreso_plataforma == 0):
-                
+
                 return  redirect()->route('login.cambio');
 
             endif;
@@ -51,7 +51,7 @@ class LoginController extends Controller
         //dd($request->all());
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
         if(Hash::check($request->password_actual,$user[0]->password)):
-            User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['pasword',bcrypt($request->password)]);
+            User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password',bcrypt($request->password)]);
         endif;
         return $user;
     }

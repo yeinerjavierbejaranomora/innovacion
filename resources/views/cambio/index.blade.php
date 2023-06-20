@@ -49,7 +49,9 @@
 </div>
 
 
-<?php if (session('consultaFallida') == 'Usuario no encontrado') ?>
-<script> alert('Usuario no encontrado en la base de datos') </script>
-
+<?php if (session('consultaFallida') == 'Usuario no encontrado') { ?>
+    <script>
+        alert('Usuario no encontrado en la base de datos')
+    </script>
+<?php } ?>
 @endsection

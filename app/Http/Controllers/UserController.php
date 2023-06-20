@@ -12,15 +12,56 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+
+
+/** campos de usuario
+ * 
+ * 
+ * id":2,
+ * "id_banner":789,
+ * "documento":789,
+ * "nombre":"ihbkj",
+ * "email":"juan@juan.com",
+ * "id_rol":2,
+ * "id_facultad":1,
+ * "programa":"3;6;",
+ * "ingreso_plataforma":1,
+ * "activo":1,
+ * "email_verified_at":null,
+ * "created_at":"2023-06-20T14:45:03.000000Z",
+ * "updated_at":"2023-06-20T17:08:15.000000Z"}
+ * 
+ * 
+ */
 class UserController extends Controller
 {   
-    /// crgamos la vista dependiendo el usuario
+    /// cargamos la vista dependiendo el usuario
     public function home(){
 
-        return auth()->user();
-
+        //return auth()->user();
        // redirect()->route('login.home');
-      
+
+       /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
+
+        /** roles de usuario
+            *Decano       = 1
+            *Director     = 2
+            *Coordinador  = 3
+            *Lider        = 4
+            *Docente      = 5
+            *Estudiante   = 6
+       */
+
+      // extraemos el rol del usuario logueado
+      $id_rol=auth()->user()->id_rol;
+
+      /// traemos los roles de la base de datos para poder cargar la vista
+      $rol_db=DB::table('roles')->where([['id','=',$id_rol],
+      ])->get();
+
+      print_r($rol_db);
+      exit;
+
 
     }
 

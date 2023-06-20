@@ -25,7 +25,8 @@ class cambioController extends Controller
             return view('nuevacontraseña.index');
         }
         else{
-            return view('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+            return false;
+            //return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }
 

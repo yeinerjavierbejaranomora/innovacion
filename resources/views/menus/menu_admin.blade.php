@@ -1,6 +1,6 @@
 
 
- 
+
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -34,10 +34,10 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                       
+
                         <a class="collapse-item" href="buttons.html">Usuarios</a>
                         <a class="collapse-item" href="cards.html">Roles</a>
-                      
+
                     </div>
                 </div>
             </li>
@@ -52,12 +52,12 @@
 
                <!-- Nav Item - Facultades -->
                <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('cambio.cambio') }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Cambio de contraseña</span></a>
             </li>
 
-            
+
             <!-- Nav Item - Perfil -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
@@ -80,4 +80,3 @@
         </ul>
         <!-- End of Sidebar -->
 
-    

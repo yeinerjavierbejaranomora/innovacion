@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::controller(UserController::class)->group(function(){
 
-    Route::get('/vistas','home')->name('home.index');
+    Route::get('/home','home')->name('home.index');
 
 });
 

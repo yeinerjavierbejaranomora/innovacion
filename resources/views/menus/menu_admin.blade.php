@@ -65,10 +65,9 @@
             <!-- Nav Item - salir de la app -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fa fa-sign-out"></i>
+                    <i class="fas fa fa-sign-out"></i>
                     <span>Salir</span></a>
             </li>
-
 
 
         </ul>

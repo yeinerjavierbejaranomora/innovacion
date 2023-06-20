@@ -30,7 +30,7 @@ class LoginController extends Controller
     }
 
     public function cambio(){
-        return auth()->user()->id;
+        return view('cambio.index');
     }
 
 

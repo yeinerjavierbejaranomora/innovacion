@@ -38,7 +38,7 @@ class UserController extends Controller
     /// cargamos la vista dependiendo el usuario
     public function admin(){
 
-       return auth()->user();
+       return auth()->user()->id;
        // redirect()->route('login.home');
 
        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */

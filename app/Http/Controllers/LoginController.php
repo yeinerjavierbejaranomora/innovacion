@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -31,6 +32,10 @@ class LoginController extends Controller
 
     public function cambio(){
         return view('password.index');
+    }
+
+    public function cambioPass(CambioPassRequest $request){
+        dd($request->all());
     }
 
 

@@ -7,7 +7,7 @@
     <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             <!--Formulario para cambio de contraseña-->
-            <form action="{{ route('login.cambiopass') }}" method="post" class="login100-form validate-form" id="miForm">
+            <form action="" method="post" class="login100-form validate-form" id="miForm">
                 @csrf
                 <span class="login100-form-title p-b-49">
                     Cambio de contraseña
@@ -34,7 +34,10 @@
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button type="submit" class="login100-form-btn" onclick="return validacion()">
+                        {{-- <button type="submit" class="login100-form-btn" onclick="return validacion()">
+                            Cambiar contraseña
+                        </button> --}}
+                        <button type="submit" class="login100-form-btn">
                             Cambiar contraseña
                         </button>
                     </div>

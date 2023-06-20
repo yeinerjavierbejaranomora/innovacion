@@ -6,6 +6,7 @@ use App\Http\Requests\UsuarioLoginRequest;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -17,15 +18,19 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function cambio()
+    public function home()
     {
         if (Auth::check()) :
-           if(auth()->user()->ingreso_plataforma != 0):
-                return "Hola Usuario".auth()->user()->nombre;
-           endif;
-            return view('contrasena.index');
+           if(auth()->user()->ingreso_plataforma == 0):
+            return  redirect()->route('login.cambio');
+        endif;
+        return "Hola Usuario".auth()->user()->nombre;
         endif;
         return redirect()->route('login.index');
+    }
+
+    public function cambio(){
+        return view('cambio.index');
     }
 
 
@@ -50,7 +55,7 @@ class LoginController extends Controller
     public function authenticated(Request  $request, $user)
     {
         //return $user;
-        return redirect()->route('login.cambio');
+        return redirect()->route('login.home');
     }
 
     public function logout()

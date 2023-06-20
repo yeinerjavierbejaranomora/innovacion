@@ -12,7 +12,7 @@
                 <span class="login100-form-title p-b-49">
                     Cambio de contraseña
                 </span>
-
+                <h4>{{ auth()->user()->id }}</h4>
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
                     <span class="label-input100">Contraseña actual</span>
                     <input class="input100" type="password" name="contraseña" placeholder="Contraseña actual" id="contraseña">

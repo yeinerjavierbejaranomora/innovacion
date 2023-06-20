@@ -51,14 +51,14 @@ class UserController extends Controller
             *Estudiante   = 6
        */
         // extraemos el rol del usuario logueado
-        $id_rol=auth()->user();
-  
+        $id_rol=auth()->user()->id_rol;
+      
         /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db=DB::table('roles')->where([['id','=',$id_rol]])->get();
 
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol=$rol_db[0]->nombreRol;
-     
+        return  $nombre_rol;
         //return view('login_prueba/login');
         return view('vistas/'.$nombre_rol);
 

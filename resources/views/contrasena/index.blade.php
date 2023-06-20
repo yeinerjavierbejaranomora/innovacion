@@ -76,7 +76,7 @@
             })
         }        
        
-    });
+    }
 
 </script>
 @endsection

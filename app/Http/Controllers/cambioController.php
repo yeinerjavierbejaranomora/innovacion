@@ -22,10 +22,10 @@ class cambioController extends Controller
         ['documento','=',$request->documento]])->get();
 
         if($consulta == '[]'){
-            return false;
+            return view('nuevacontraseña.index');
         }
         else{
-            return view('nuevacontraseña.index');
+            return false;
             //return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }

@@ -28,7 +28,7 @@ Route::get('admin/', function () {
     //return view('welcome');
 
     return view('vistas/admin');
-})->middleware('auth');
+});
 
 /// definimos las rutas para poder  registrar las facultades, roles, programas,etc...
 Route::controller(RegistroController::class)->group(function(){

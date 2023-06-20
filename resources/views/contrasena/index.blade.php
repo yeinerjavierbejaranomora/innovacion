@@ -49,7 +49,8 @@
 </div>
 
 <script>
-    if(($('.contraseña') && $('.contraseñaNueva') && $('.confirmar')) =! null)
+
+    if(($('#contraseña') && $('#contraseñaNueva') && $('#confirmar')) =! null)
     {        
     $('#miForm').submit(function(e) {
             e.preventDefault();     

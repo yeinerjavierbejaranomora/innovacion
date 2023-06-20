@@ -15,6 +15,9 @@ class cambioController extends Controller
         return view('nuevacontraseña.index');
     }
 
+    // * Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos
+    // y así poder llevar a cabo del cambio de contraseña *
+    
     public function consultar(Request $request ) {
     
         $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],

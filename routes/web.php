@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------

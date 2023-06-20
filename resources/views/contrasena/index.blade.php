@@ -74,4 +74,3 @@
     });
 </script>
 @endsection
-@extends('layout.footer')

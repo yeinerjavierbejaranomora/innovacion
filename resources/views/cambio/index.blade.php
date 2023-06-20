@@ -48,9 +48,9 @@
     </div>
 </div>
 
+<script> 
 
-<?php if (session('consultaFallida') == 'Usuario no encontrado') {?>
-    <script> 
+if (session('consultaFallida') == 'Usuario no encontrado') {
     function validacion() {
         Swal.fire({
             icon: 'error',
@@ -58,6 +58,7 @@
             text: 'Usuario no encontrado!',
         })
     }
+}
     </script>
- <?php } ?>
+ 
 @endsection

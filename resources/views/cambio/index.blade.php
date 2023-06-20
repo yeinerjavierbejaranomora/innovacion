@@ -1,4 +1,4 @@
-@extends('layout.plantillaFormularios')
+@extends('layout.header')
 @section('title', 'Cambio Contraseña')
 @section('content')
 
@@ -49,3 +49,4 @@
 </div>
 
 @endsection
+@extends('layout.footer')

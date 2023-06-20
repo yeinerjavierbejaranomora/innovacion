@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin/', function () {
-    //return view('welcome');
+Route::controller(UserController::class)->group(function(){
 
-    return view('vistas/admin');
+    Route::get('/vistas/admin','admin')->name('admin.index');
+
 });
+
+
 
 /// definimos las rutas para poder  registrar las facultades, roles, programas,etc...
 Route::controller(RegistroController::class)->group(function(){

@@ -21,7 +21,7 @@
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
                     <span class="label-input100">Contraseña nueva</span>
-                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="contraseñaNueva">
+                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="nueva">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 
@@ -51,7 +51,7 @@
 
 <script>
     // Validación para comprobar que los parámetros no están vacíos, antes de enviar el formulario
-    if (($('#contraseña') && $('#contraseñaNueva') && $('#confirmar')) != null) {
+    if (($('#contraseña') && $('#nueva') && $('#confirmar')) != null) {
         // Alerta que advierte al usuario que una vez cambiada su contraseña, no podrá deshacerse el cambio
         $('#miForm').submit(function(e) {
             e.preventDefault();

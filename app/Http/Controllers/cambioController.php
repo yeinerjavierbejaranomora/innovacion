@@ -16,20 +16,15 @@ class cambioController extends Controller
     }
 
     public function consultar(Request $request ) {
-        /*{"_token":"uYdZM3MNhw08DJMNxr1Q4F6OpYDBkBwmMInWy57n",
-            "idbanner":"789",
-            "documento":"789",
-            "correo":"juan@juan.com"} */
         
         $retorno = 'Entro a la funcion';
         $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
         ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
-        return $consulta;
         
         if(!empty($consulta))
         {
-            //* return view('nuevacontraseña.index');
+            return view('nuevacontraseña.index');
         }
         else
         {

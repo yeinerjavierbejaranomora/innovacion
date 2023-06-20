@@ -16,7 +16,9 @@ class cambioController extends Controller
     }
 
     public function consultar(Request $request ) {
-
+        
+        $retorno = 'Entro a la funcion';
+        return $retorno;
         $consulta = DB::table('users')->where([['id','=',$request->id],
         ['email','=',$request->email],
         ['documento','=',$request->documento]])->get();

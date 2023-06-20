@@ -6,7 +6,7 @@
 @include('menus.menu_admin')
 <!--  crea,os el contenido principal body -->
 
-@section('content')
+
 
 
         <!-- Content Wrapper -->
@@ -583,7 +583,7 @@
             </div>
         </div>
     </div>
- @endsection
+
   
  
  @include('layout.footer')

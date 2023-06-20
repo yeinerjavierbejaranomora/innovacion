@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class contrasenaController extends Controller
 {
     public function index() {
-        return view('contrasena.index');
+        return view('password.index');
     }
 
     

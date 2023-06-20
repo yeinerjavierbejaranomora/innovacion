@@ -41,7 +41,8 @@ Route::controller(RegistroController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');
     Route::post('login/login','login')->name('login.login');
-    Route::post('/registro/roles','roles')->name('registro.roles');
+    Route::get('/login/cambio','cambio')->name('login.cambio');
+    Route::get('/logout','logout')->name('logout');
 });
 
 Route::controller(contrasenaController::class)->group(function(){
@@ -51,3 +52,4 @@ Route::controller(contrasenaController::class)->group(function(){
 Route::controller(cambioController::class)->group(function(){
     Route::get('/cambio','index')->name('cambio.index');
 });
+

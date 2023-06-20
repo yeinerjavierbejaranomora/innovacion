@@ -32,11 +32,7 @@ Route::get('/vistas/admin','index')->name('admin.index');
 
 });
 
-Route::get('admin/', function () {
-    //return view('welcome');
 
-    return view('vistas/admin');
-});
 
 Route::controller(RegistroController::class)->group(function(){
     Route::get('/registro','index')->name('registro.index');

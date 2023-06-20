@@ -1,11 +1,14 @@
 
+
+
 @extends('layout.header')
+
 
 <!--  crea,os el contenido principal body -->
 
 @section('content')
 
-
+@include('menus.menu')
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 

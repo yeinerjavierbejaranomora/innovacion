@@ -20,22 +20,34 @@ class LoginController extends Controller
         return view('login.index');
     }
 
+    /** funcion para iniciasr session */
     public function home()
     {
+        /** verificamos  si el no se a logueado */
         if (Auth::check()) :
-           if(auth()->user()->ingreso_plataforma == 0):
-            return  redirect()->route('login.cambio');
-        endif;
+            /** si es la primera vez en la plataforma se le solicita cambio de contraseña */
+            if(auth()->user()->ingreso_plataforma == 0):
+                
+                return  redirect()->route('login.cambio');
+
+            endif;
+        /** de lo contrario redirigimos a la vista correspondiente */
+
         return "Hola Usuario".auth()->user()->nombre;
         endif;
+
         return redirect()->route('login.index');
     }
 
+    /** funcion para llamar kla vista de cambio de contraseña */
     public function cambio(){
         return view('password.index');
     }
 
+    /** funcion para realizar el  cambio de la contraseña */
     public function cambioPass(CambioPassRequest $request){
+
+        /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         //dd($request->all());
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
         if(Hash::check($request->password_actual,$user[0]->password)):
@@ -44,9 +56,10 @@ class LoginController extends Controller
         return $user;
     }
 
-
+    /** funcion de verificacion de usuario */
     public function login(UsuarioLoginRequest $req)
     {
+        /** traemos las credenciales del usuario  */
         $credentials = $req->getCredentials();
         //return $credentials;
         if (Auth::attempt($credentials)) {
@@ -63,12 +76,15 @@ class LoginController extends Controller
             ->with('error', 'Invalid Credentials');
     }
 
+
+    /** funcion para redirigir al home si el usuario esta autenticado */
     public function authenticated(Request  $request, $user)
     {
         //return $user;
         return redirect()->route('login.home');
     }
 
+    /** funcion para cerrar sesion  */
     public function logout()
     {
         Session::flush();

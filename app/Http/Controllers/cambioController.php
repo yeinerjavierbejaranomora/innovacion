@@ -31,11 +31,11 @@ class cambioController extends Controller
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
+            
+            if ($consulta == '[]') {
+                return redirect()->route('reesablecerpassword.index')->withErrors('consultaFallida', 'OK');
+            } else {
             $id= $consulta[0]->id;    
-
-        if ($consulta == '[]') {
-            return redirect()->route('reesablecerpassword.index')->withErrors('consultaFallida', 'OK');
-        } else {
             return view('reestablecerpassword.nueva',['id'=>$id]);
         }
     }

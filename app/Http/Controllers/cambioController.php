@@ -29,7 +29,7 @@ class cambioController extends Controller
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
-            $id= $consulta[0]->id;    
+            $id= $consulta[0]->id;
 
         if ($consulta == '[]') {
             return redirect()->route('reesablecerpassword.index')->with('consultaFallida', 'OK');
@@ -45,5 +45,10 @@ class cambioController extends Controller
         if ($cambioPass) :
             return redirect()->route('login.index');
         endif;
+    }
+
+
+    public function consultaCambio($idBanner){
+        return $idBanner;
     }
 }

@@ -22,16 +22,14 @@ class LoginController extends Controller
     {
         if (Auth::check()) :
            if(auth()->user()->ingreso_plataforma == 0):
-            $idEncriptado = Crypt::encrypt(auth()->user()->id);
-            //return $idEncriptado;
-            return  redirect()->route('login.cambio',['id'=>$idEncriptado]);
+            return  redirect()->route('login.cambio');
         endif;
         return "Hola Usuario".auth()->user()->nombre;
         endif;
         return redirect()->route('login.index');
     }
 
-    public function cambio($id){
+    public function cambio(){
         return auth()->user()->id;
     }
 

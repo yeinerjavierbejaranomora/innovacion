@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ActualizarPassRequest;
 
 class cambioController extends Controller
 {
@@ -22,22 +23,23 @@ class cambioController extends Controller
 
     public function consultar(Request $request)
     {
-
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
-        ])->get();
+            ])->get();
+            $id= $consulta[0]->id;    
 
         if ($consulta == '[]') {
             return redirect()->route('cambio.index')->with('consultaFallida', 'OK');
         } else {
-            return view('nuevacontraseña.index');
+            return view('nuevacontraseña.index',['id'=>$id]);
         }
     }
 
     public function actualizar(ActualizarPassRequest $request)
     {
+        return $request;
         $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) :
             return redirect()->route('login.index');

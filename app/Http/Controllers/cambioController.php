@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class cambioController extends Controller
 {
@@ -16,9 +17,9 @@ class cambioController extends Controller
 
     public function consultar(Request $request ) {
 
-        $password = DB::table('users')->select('users.password')->where('id','=',$request->id,
+        $password = DB::table('users')->where('id','=',$request->id,
         'email','=',$request->email,
-        'documento','=',$request->documento);
+        'documento','=',$request->documento)->get();
 
         if(!empty($password))
         {

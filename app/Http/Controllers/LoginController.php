@@ -48,10 +48,9 @@ class LoginController extends Controller
 
         /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         //dd($request->all());
-        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->get();
-        return $user->email;
-
-        var_dump(Hash::check($request->password_actual,$user['password']));die();
+        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
+        var_dump(Hash::check($request->password_actual,$user[0]->password));die();
+        return $user;
     }
 
     /** funcion de verificacion de usuario */

@@ -53,19 +53,27 @@ class User extends Authenticatable
         /**Recibe el valor del campo documento delformulario de registro */
         /**se agrega al campo documento */
         $this->attributes['documento'] = $value;
-        
+        /** El valor del campo documento se usa como password, por ello se cifra con la funcion bcrypt y se almacena en el campo password*/
         $this->attributes['password'] = bcrypt($value);
     }
 
+    /** metodo para crear un string del arreglo programa recibido desde el formulario de registro*/
     public function setProgramaAttribute($value)
     {
+        /** se crea la variable $Programa para el string de los programas*/
         $Programas = '';
+        /**se comprueba que el campo no este vacio*/
         if (isset($value)) :
+            /** Se recorre el arreglo recibido, y se añade a la variable $Programa
+             *  en cada iteracion, añadiendole el ; como separador
+             */
             foreach ($value as $programa) :
                 $Programas .= $programa . ";";
             endforeach;
+            /**En el campo programa se añade el contenido de la variable $Programa */
             $this->attributes['programa'] = $Programas;
         else:
+            /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $this->attributes['programa'] = '';
         endif;
     }

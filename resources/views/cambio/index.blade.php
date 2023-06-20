@@ -49,7 +49,15 @@
 </div>
 
 
-<?php if (session('consultaFallida') == 'Usuario no encontrado') { 
-    
- } ?>
+<?php if (session('consultaFallida') == 'Usuario no encontrado') {?>
+    <script> 
+    function validacion() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario no encontrado!',
+        })
+    }
+    </script>
+ <?php } ?>
 @endsection

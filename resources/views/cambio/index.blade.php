@@ -22,7 +22,7 @@
                     <span class="label-input100">Documento de identidad</span>
                     <input class="input100" type="text" name="documento" placeholder="Documento de identidad" id="documento">
                     <span class="focus-input100" data-symbol="&#xf20b;"></span>
-                </div> 
+                </div>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="correo es requerido">
                     <span class="label-input100">Correo electronico</span>
@@ -31,20 +31,21 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="submit" class="login100-form-btn">
-								Consultar
-							</button>
-						</div>
-					</div>
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="submit" class="login100-form-btn">
+                            Consultar
+                        </button>
+                    </div>
+                </div>
 
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<h4> Universidad Iberoamericana</h4>
-                  		<p>©2023 Todos los derechos reservados.</p>
-					</div>
+                <div class="txt1 text-center p-t-54 p-b-20">
+                    <h4> Universidad Iberoamericana</h4>
+                    <p>©2023 Todos los derechos reservados.</p>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
 @endsection

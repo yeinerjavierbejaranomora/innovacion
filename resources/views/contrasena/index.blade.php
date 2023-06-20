@@ -1,4 +1,4 @@
-@extends('layout.plantillaFormularios')
+@extends('layout.header')
 @section('title', 'Nueva Contrasena')
 @section('content')
 
@@ -74,3 +74,5 @@
     });
 </script>
 @endsection
+
+@extends('layout.footer')

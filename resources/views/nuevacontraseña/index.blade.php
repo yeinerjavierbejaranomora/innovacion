@@ -45,7 +45,7 @@
 
 <script>
     function validacion() {
-        if ($('#contraseña').val() && $('#nueva').val() && $('#confirmar').val()) {
+        if ($('#nueva').val() && $('#confirmar').val()) {
             $("#miForm").submit(function(e) {
                 e.preventDefault();
 

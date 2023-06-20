@@ -12,7 +12,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Usuario es requerido">
 						<span class="label-input100">Correo</span>
-						<input class="input100" type="text" name="correo" placeholder="Ingresa tu usuario" id="mail">
+						<input class="input100" type="text" name="email" placeholder="Ingresa tu usuario" id="mail">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 

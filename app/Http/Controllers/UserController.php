@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {   
     /// crgamos la vista dependiendo el usuario
-    public function index(){
+    public function home(){
 
         return  redirect()->route('login.home');
         //auth()->user()->documento;

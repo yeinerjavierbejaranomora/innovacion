@@ -58,7 +58,7 @@ class UserController extends Controller
 
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol=$rol_db[0]->nombreRol;
-        return  $nombre_rol;
+     
         //return view('login_prueba/login');
         return view('vistas/'.$nombre_rol);
 

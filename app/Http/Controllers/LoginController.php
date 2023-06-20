@@ -20,10 +20,10 @@ class LoginController extends Controller
     public function home()
     {
         if (Auth::check()) :
-           if(auth()->user()->ingreso_plataforma != 0):
-                return "Hola Usuario".auth()->user()->nombre;
-           endif;
+           if(auth()->user()->ingreso_plataforma == 0):
             return view('contrasena.index',['id'=>auth()->user()->id]);
+        endif;
+        return "Hola Usuario".auth()->user()->nombre;
         endif;
         return redirect()->route('login.index');
     }

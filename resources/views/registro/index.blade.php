@@ -27,7 +27,7 @@
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="nombre es requerido">
                     <span class="label-input100">Nombre completo</span>
-                    <input class="input100" type="text" name="name" placeholder="Nombre completo" id="nombre">
+                    <input class="input100" type="text" name="nombre" placeholder="Nombre completo" id="nombre">
                     <span class="focus-input100" data-symbol="&#xf20e;"></span>
                 </div>
 

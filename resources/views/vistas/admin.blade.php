@@ -1,7 +1,9 @@
 
-@extends('layout.header')
 
 @include('menus.menu')
+@extends('layout.header')
+
+
 <!--  crea,os el contenido principal body -->
 
 @section('content')

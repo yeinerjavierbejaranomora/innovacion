@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class RegistroController extends Controller
 {
     //
+    /** Carga la vista del formulario de registro */
     public function index() {
         return view('registro.index');
     }
@@ -18,75 +19,38 @@ class RegistroController extends Controller
         return view('registroprueba.index');
     }
 
+    /** Traer los datos de la tabla roles */
     public function roles() {
         $roles = DB::table('roles')->get();
         return $roles;
     }
+
+    /** Trae los datos de la tabla facultades */
     public function facultades() {
         $facultades = DB::table('facultad')->get();
         return $facultades;
     }
 
+    /** Trae los datos dela tabla programas si el id coincide con el que se ricibe por POST desde el formulario de registro */
     public function programas() {
         $idFacultad = $_POST['idfacultad'];
         $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `idFacultad` = :id', ['id' => $idFacultad]);
         return $programas;
     }
 
+
+    /** Recibe los datos validados del formulario de registro luego de pasar por el UsuarioRegistroRequet
+     * y realiza la insercion del usuario en la tabla users
+     */
     public function saveRegistro(UsuarioRegistroRequest $request){
-        //return $request;
+        /** Inserta los datos validades en la tabla users usando el model Userphp */
         $usuario = User::create($request->validated());
-
-        /*if($request->idfacultad == null):
-            $usuario = User::create([
-                'idBanner'=>$request->idbanner,
-                'documentoDeIdentidad'=>$request->documento,
-                'correo'=>$request->correo,
-                'password'=>bcrypt($request->documento),
-                'nombre'=>$request->nombre,
-                'idRol'=>$request->idrol,
-                'fecha' => date('Y-m-d h:i:s'),
-                'ingreso_plataforma'=>0,
-                'activo' => 1
-            ]);
-        else:
-            if(!isset($request->programa)):
-                $usuario = User::create([
-                    'idBanner'=>$request->idbanner,
-                    'documentoDeIdentidad'=>$request->documento,
-                    'correo'=>$request->correo,
-                    'password'=>bcrypt($request->documento),
-                    'nombre'=>$request->nombre,
-                    'idRol'=>$request->idrol,
-                    'idFacultad'=>$request->idfacultad,
-                    'fecha' => date('Y-m-d h:i:s'),
-                    'ingreso_plataforma'=>0,
-                    'activo' => 1
-                ]);
-            elseif(isset($request->programa)):
-                foreach($request->programa as $programa):
-                    $Programas .= $programa.";";
-                endforeach;
-                $usuario = User::create([
-                    'idBanner'=>$request->idbanner,
-                    'documentoDeIdentidad'=>$request->documento,
-                    'correo'=>$request->correo,
-                    'password'=>bcrypt($request->documento),
-                    'nombre'=>$request->nombre,
-                    'idRol'=>$request->idrol,
-                    'idFacultad'=>$request->idfacultad,
-                    'idPrograma'=>$Programas,
-                    'fecha' => date('Y-m-d h:i:s'),
-                    'ingreso_plataforma'=>0,
-                    'activo' => 1
-                ]);
-            endif;
-        endif;*/
-
-
+        /** si la insercion es correcta */
         if($usuario):
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('registro.index')->with('success','Usuario creado correctamente');
         else:
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('registro.index')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }

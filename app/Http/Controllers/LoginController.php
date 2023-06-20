@@ -39,7 +39,7 @@ class LoginController extends Controller
         //dd($request->all());
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
         if(Hash::check($request->password_actual,$user[0]->password)):
-            User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['pasword',bcsqrt($request->password)]);
+            User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['pasword',bcrypt($request->password)]);
         endif;
         return $user;
     }

@@ -34,7 +34,7 @@
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button type="submit" class="login100-form-btn" onclick=" return validacion()">
+                        <button type="submit" class="login100-form-btn" onclick="validacion()">
                             Cambiar contraseña
                         </button>
                     </div>

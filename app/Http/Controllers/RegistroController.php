@@ -35,6 +35,7 @@ class RegistroController extends Controller
 
     public function saveRegistro(UsuarioRegistroRequest $request){
         return $request;
+        $usuario = User::create($request->validated());
         //$Programas = '';
 
         /*if($request->idfacultad == null):
@@ -84,10 +85,10 @@ class RegistroController extends Controller
         endif;*/
 
 
-        /*if($usuario):
+        if($usuario):
             return redirect()->route('registro.index')->with('success','Usuario creado correctamente');
         else:
             return redirect()->route('registro.index')->withErrors(['errors' => 'Usuario no se ha podido crear']);
-        endif;*/
+        endif;
     }
 }

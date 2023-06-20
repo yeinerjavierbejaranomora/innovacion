@@ -21,6 +21,8 @@ class cambioController extends Controller
         ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
         
+        die();
+        var_dump($consulta);
         if(!empty($consulta)){
            return view('nuevacontraseña.index');
         }

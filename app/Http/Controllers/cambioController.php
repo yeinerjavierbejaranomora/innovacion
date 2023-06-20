@@ -16,12 +16,16 @@ class cambioController extends Controller
     }
 
     public function consultar(Request $request ) {
+        /*{"_token":"uYdZM3MNhw08DJMNxr1Q4F6OpYDBkBwmMInWy57n",
+            "idbanner":"789",
+            "documento":"789",
+            "correo":"juan@juan.com"} */
         
-        return $request;
         $retorno = 'Entro a la funcion';
-        $consulta = DB::table('users')->where([['id','=',$request->id],
-        ['email','=',$request->email],
+        $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
+        ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
+        return $consulta;
         
         if(!empty($consulta))
         {
@@ -32,7 +36,6 @@ class cambioController extends Controller
             return false;
             // return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
-        return $consulta;
     }
 
     public function cambiar() {

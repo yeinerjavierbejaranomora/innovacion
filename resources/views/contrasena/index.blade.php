@@ -50,7 +50,9 @@
 
 <script>
     $('#miForm').submit(function(e) {
-        e.preventDefault();
+        if(($('.contraseña') && $('.contraseñaNueva') && $('.confirmar')) =! null)
+        {        
+            e.preventDefault();     
         Swal.fire({
             title: '¿Estás seguro?',
             text: "¡No podrás deshacer este cambio!",
@@ -71,6 +73,7 @@
                 )
             }
         })
+    }
     });
 </script>
 @endsection

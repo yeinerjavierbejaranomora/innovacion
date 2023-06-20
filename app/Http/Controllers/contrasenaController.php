@@ -9,4 +9,6 @@ class contrasenaController extends Controller
     public function index() {
         return view('contrasena.index');
     }
+
+    
 }

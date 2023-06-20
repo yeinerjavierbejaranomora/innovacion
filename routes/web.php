@@ -22,6 +22,7 @@ Route::get('/', function () {
 
     return view('login_prueba/login');
 });
+
 Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->name('home.index');

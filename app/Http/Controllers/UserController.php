@@ -38,7 +38,7 @@ class UserController extends Controller
     /// cargamos la vista dependiendo el usuario
     public function home(){
 
-        //return auth()->user();
+       return auth()->user();
        // redirect()->route('login.home');
 
        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
@@ -52,13 +52,13 @@ class UserController extends Controller
             *Estudiante   = 6
        */
       // extraemos el rol del usuario logueado
-      $id_rol=auth()->user()->id_rol;
+     // $id_rol=auth()->user()->id_rol;
 
       /// traemos los roles de la base de datos para poder cargar la vista
-      $rol_db=DB::table('roles')->where([['id','=',$id_rol],
-      ])->get();
+     // $rol_db=DB::table('roles')->where([['id','=',$id_rol],
+     // ])->get();//
 
-     return $rol_db;
+     //return $rol_db;
 
 
     }

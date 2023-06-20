@@ -1,5 +1,3 @@
-
-
 <!-- End of Main Content -->
 
 <!-- Footer -->

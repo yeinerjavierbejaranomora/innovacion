@@ -1,6 +1,4 @@
- 
-
-
+@extends('header')
 @section('menu')
  
         <!-- Sidebar -->

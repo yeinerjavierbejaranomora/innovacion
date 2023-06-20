@@ -50,8 +50,10 @@ class User extends Authenticatable
     ];
 
     public function setDocumentoAttribute($value){
-        //var_dump($value);die();
+        /**Recibe el valor del campo documento delformulario de registro */
+        /**se agrega al campo documento */
         $this->attributes['documento'] = $value;
+        
         $this->attributes['password'] = bcrypt($value);
     }
 
@@ -68,5 +70,5 @@ class User extends Authenticatable
         endif;
     }
 
-    
+
 }

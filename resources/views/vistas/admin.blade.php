@@ -1,14 +1,14 @@
 
 
 
-@extends('layout.header')
+@include('layout.header')
 
-
+@include('menus.menu_admin')
 <!--  crea,os el contenido principal body -->
 
-@section('content')
 
-@include('menus.menu')
+
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -583,6 +583,7 @@
             </div>
         </div>
     </div>
- @endsection
+
   
  
+ @include('layout.footer')

@@ -12,22 +12,22 @@
                 <span class="login100-form-title p-b-49">
                     Cambio de contraseña
                 </span>
-
+                <h4>{{ auth()->user()->id }}</h4>
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
                     <span class="label-input100">Contraseña actual</span>
-                    <input class="input100" type="password" name="contraseña" placeholder="Contraseña actual" id="contraseña">
+                    <input class="input100" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
                     <span class="label-input100">Contraseña nueva</span>
-                    <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="nueva">
+                    <input class="input100" type="password" name="password" placeholder="Contraseña nueva" id="nueva">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Confirmar es requerido">
                     <span class="label-input100">Confirmar contraseña</span>
-                    <input class="input100" type="password" name="confirmar" placeholder="Confirmar contraseña" id="confirmar">
+                    <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
                     <span class="focus-input100" data-symbol="&#xf183;"></span>
                 </div>
 

@@ -42,7 +42,6 @@ class UserController extends Controller
        // redirect()->route('login.home');
 
        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
-
         /** roles de usuario
             *Decano       = 1
             *Director     = 2

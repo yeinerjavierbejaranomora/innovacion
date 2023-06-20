@@ -51,7 +51,7 @@ class LoginController extends Controller
         //dd($request->all());
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
         if(Hash::check($request->password_actual,$user[0]->password)):
-            $cambioPass = User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password'=> bcrypt($request->password)],['ingreso_plataforma'=>1]);
+            $cambioPass = User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password'=> bcrypt($request->password),'ingreso_plataforma'=>1]);
             if($cambioPass):
                 return redirect()->route('login.index');
             endif;

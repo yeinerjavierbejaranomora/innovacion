@@ -30,7 +30,7 @@ class LoginController extends Controller
     }
 
     public function cambio(){
-        return view('cambio.index');
+        return view('password.index');
     }
 
 

@@ -10,12 +10,12 @@ class cambioController extends Controller
 {
     public function index()
     {
-        return view('cambio.index');
+        return view('reestablecerpassword.index');
     }
 
     public function nueva()
     {
-        return view('nuevacontraseña.index');
+        return view('reestablecerpassword.nueva');
     }
 
     // * Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos
@@ -31,9 +31,9 @@ class cambioController extends Controller
             $id= $consulta[0]->id;    
 
         if ($consulta == '[]') {
-            return redirect()->route('cambio.index')->with('consultaFallida', 'OK');
+            return redirect()->route('reesablecerpassword.index')->with('consultaFallida', 'OK');
         } else {
-            return view('nuevacontraseña.index',['id'=>$id]);
+            return view('reestablecerpassword.nueva',['id'=>$id]);
         }
     }
 

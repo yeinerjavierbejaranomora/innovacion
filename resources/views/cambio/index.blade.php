@@ -47,6 +47,7 @@
         </div>
     </div>
 </div>
+
 <?php
 if (session('consultaFallida') == 'Usuario no encontrado')
 {

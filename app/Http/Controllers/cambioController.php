@@ -9,11 +9,12 @@ use App\Http\Requests\ActualizarPassRequest;
 
 class cambioController extends Controller
 {
+    // * Método para acceder a la vista de reestablecer contraseña *
     public function index()
     {
         return view('reestablecerpassword.index');
     }
-
+    // * Método para acceder a la vista de cambio de contraseña *
     public function nueva()
     {
         return view('reestablecerpassword.nueva');
@@ -24,26 +25,32 @@ class cambioController extends Controller
 
     public function consultar(Request $request)
     {
+        // * Consulta MySQL *
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
+        // * Variable para guardar id *  
             $id= $consulta[0]->id;    
 
         if ($consulta == '[]') {
-            return redirect()->route('reesablecerpassword.index')->with('consultaFallida', 'OK');
+            return redirect()->route('reesablecerpassword.index')->withErrors('consultaFallida', 'OK');
         } else {
             return view('reestablecerpassword.nueva',['id'=>$id]);
         }
     }
 
+    // * Métodod que actualiza la contraseña del usuario 
+
     public function actualizar(ActualizarPassRequest $request)
     {
-        echo 'entro';
         $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
-        if ($cambioPass) :
-            return redirect()->route('login.index');
-        endif;
+        if ($cambioPass) {
+            return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
+        }
+        else {
+            return with('Fail', 'Error');
+        }
     }
 }

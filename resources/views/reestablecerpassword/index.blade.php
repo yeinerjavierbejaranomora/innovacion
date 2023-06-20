@@ -30,6 +30,18 @@
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
                 </div>
 
+                <!-- * Errores * -->
+
+                @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
@@ -48,17 +60,16 @@
     </div>
 </div>
 
-<script> 
-
-if (session('consultaFallida') == 'OK') {
-    function validacion() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Usuario no encontrado!',
-        })
+<script>
+    if (session('consultaFallida') == 'OK') {
+        function validacion() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario no encontrado!',
+            })
+        }
     }
-}
-    </script>
- 
+</script>
+
 @endsection

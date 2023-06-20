@@ -31,7 +31,6 @@ class cambioController extends Controller
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
-        // * Variable para guardar id *  
             $id= $consulta[0]->id;    
 
         if ($consulta == '[]') {
@@ -52,5 +51,10 @@ class cambioController extends Controller
         else {
             return with('Fail', 'Error');
         }
+    }
+
+
+    public function consultaCambio($idBanner){
+        return $idBanner;
     }
 }

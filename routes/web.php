@@ -43,7 +43,7 @@ Route::controller(RegistroController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');
     Route::post('login/login','login')->name('login.login');
-    Route::get('/login/home/','home')->middleware('guest')->name('login.home');
+    Route::get('/login/home/','home')->middleware('auth')->name('login.home');
     Route::get('/login/cambio/','cambio')->name('login.cambio');
     Route::post('/login/cambiopass','cambioPass')->name('login.cambiopass');
     Route::get('/logout','logout')->name('logout');

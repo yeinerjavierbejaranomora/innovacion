@@ -27,7 +27,8 @@ class cambioController extends Controller
         }
         else
         {
-            return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+            return false;
+            // return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }
 

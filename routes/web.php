@@ -71,14 +71,22 @@ Route::controller(LoginController::class)->group(function(){
 
 });
 
+// *Ruta para contraseña*
 Route::controller(contrasenaController::class)->group(function(){
     Route::get('/password','index')->name('password.index');
 });
 
 
+// *Rutas para cambio de contraseña*
 Route::controller(cambioController::class)->group(function(){
+
+// *Ruta para ver el formulario del cambio de contraseña para pedir los datos al usuario
     Route::get('/cambio','index')->name('cambio.index');
+
+// *Ruta para consular los datos ingresados por el usuario    
     Route::post('/cambio/cambio','consultar')->name('cambio.consultar');
+    
+// Ruta para ver el formulario de cambio de contraseña    
     Route::get('/nueva','nueva')->name('nueva.index');
 });
 

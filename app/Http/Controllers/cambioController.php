@@ -20,16 +20,17 @@ class cambioController extends Controller
         $consulta = DB::table('users')->where('id','=',$request->id,
         'email','=',$request->email,
         'documento','=',$request->documento)->get();
-
+        
         if(!empty($consulta))
         {
-            return view('nuevacontraseña.index');
+            //* return view('nuevacontraseña.index');
         }
         else
         {
             return false;
             // return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
+        return $consulta;
     }
 
     public function cambiar() {

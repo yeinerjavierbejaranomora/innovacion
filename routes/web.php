@@ -43,6 +43,7 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('login/login','login')->name('login.login');
     Route::get('/login/home/','home')->name('login.home');
     Route::get('/login/cambio/','cambio')->name('login.cambio');
+    Route::post('/login/cambiopass','cambioPass')->name('login.cambiopass');
     Route::get('/logout','logout')->name('logout');
 });
 

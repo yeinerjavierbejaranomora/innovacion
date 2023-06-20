@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,9 @@ class LoginController extends Controller
         /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         //dd($request->all());
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
-        var_dump(Hash::check($request->password_actual,$user[0]->password));die();
+        if(Hash::check($request->password_actual,$user[0]->password)):
+            User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['pasword',bcsqrt($request->password)]);
+        endif;
         return $user;
     }
 

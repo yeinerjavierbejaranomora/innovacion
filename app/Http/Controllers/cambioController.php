@@ -14,8 +14,20 @@ class cambioController extends Controller
         return view('nuevacontraseña.index');
     }
 
-    public function consultar() {
-    
+    public function consultar($id, $email, $documento) {
+
+        $password = DB::table('users')->select('users.password')->where('id','=',$id->id,
+        'email','=',$email->email,
+        'documento','=',$documento->documento);
+
+        if(!empty($password))
+        {
+            return view('nuevacontraseña.index');
+        }
+        else
+        {
+            return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+        }
     }
 
     public function cambiar() {

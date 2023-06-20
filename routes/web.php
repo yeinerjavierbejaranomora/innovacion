@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->name('home.index');
-    
+
 });
 
 
@@ -43,7 +43,7 @@ Route::controller(RegistroController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');
     Route::post('login/login','login')->name('login.login');
-    Route::get('/login/home/','home')->name('login.home');
+    Route::get('/login/home/','home')->middleware('auth')->name('login.home');
     Route::get('/login/cambio/','cambio')->name('login.cambio');
     Route::post('/login/cambiopass','cambioPass')->name('login.cambiopass');
     Route::get('/logout','logout')->name('logout');
@@ -55,7 +55,7 @@ Route::controller(contrasenaController::class)->group(function(){
 
 Route::controller(cambioController::class)->group(function(){
     Route::get('/cambio','index')->name('cambio.index');
-    Route::post('/cambio/cambio','consultar')->name('cambio.consultar');
-    Route::post('/cambio/cambio/nueva','actualizar')->name('cambio.actualizar');
+    Route::post('/confirmar','consultar')->name('cambio.consultar');
+    Route::post('/nueva','actualizar')->name('cambio.actualizar');
 });
 

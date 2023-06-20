@@ -39,7 +39,7 @@ class cambioController extends Controller
 
     public function actualizar(ActualizarPassRequest $request)
     {
-        return $request;
+        echo 'entro';
         $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) :
             return redirect()->route('login.index');

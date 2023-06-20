@@ -50,7 +50,7 @@
 
 <script> 
 
-if (session('consultaFallida') == 'Usuario no encontrado') {
+if (session('consultaFallida') == 'OK') {
     function validacion() {
         Swal.fire({
             icon: 'error',

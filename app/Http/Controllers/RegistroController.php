@@ -34,7 +34,7 @@ class RegistroController extends Controller
     }
 
     public function saveRegistro(UsuarioRegistroRequest $request){
-        return $request;
+        //return $request;
         $usuario = User::create($request->validated());
         //$Programas = '';
 

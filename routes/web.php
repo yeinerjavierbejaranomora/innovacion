@@ -1,5 +1,6 @@
 <?php
 
+/** definimos losb controladores para que funcionen las rutas  */
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;

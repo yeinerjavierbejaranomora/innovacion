@@ -33,7 +33,7 @@ class cambioController extends Controller
             ])->get();
             
             if ($consulta == '[]') {
-                return redirect()->route('reesablecerpassword.index')->withErrors('consultaFallida', 'OK');
+                return redirect()->route('reestablecerpassword.index')->withErrors('consultaFallida', 'OK');
             } else {
             $id= $consulta[0]->id;    
             return view('reestablecerpassword.nueva',['id'=>$id]);

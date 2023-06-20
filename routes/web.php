@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::controller(UserController::class)->group(function(){
 
-    Route::get('/home','home')->middleware('auth')->middleware('cache.headers:no-store,no-cache,private,must-revalidate;etag')->name('home.index');
+    Route::get('/home','home')->middleware('auth')->name('home.index');
 
 });
 

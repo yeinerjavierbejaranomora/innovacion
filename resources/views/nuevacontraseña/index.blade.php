@@ -12,7 +12,7 @@
                 <span class="login100-form-title p-b-49">
                     Recuperar contraseña
                 </span>
-                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                <input type="hidden" name="id" value="{{ $id }}">
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
                     <span class="label-input100">Contraseña nueva</span>
                     <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="nueva">

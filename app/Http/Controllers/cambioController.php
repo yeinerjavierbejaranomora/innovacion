@@ -27,12 +27,13 @@ class cambioController extends Controller
             ['id_banner', '=', $request->idbanner],
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
-        ])->get();
+            ])->get();
+            $id= $consulta[0]->id;    
 
         if ($consulta == '[]') {
             return redirect()->route('cambio.index')->with('consultaFallida', 'OK');
         } else {
-            return view('nuevacontraseña.index');
+            return view('nuevacontraseña.index',['id'=>$id]);
         }
     }
 

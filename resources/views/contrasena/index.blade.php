@@ -1,4 +1,4 @@
-@extends('layout.header')
+@extends('layout.plantillaFormularios')
 @section('title', 'Nueva Contrasena')
 @section('content')
 

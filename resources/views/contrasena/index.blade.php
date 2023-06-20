@@ -51,9 +51,9 @@
 <script>
     $('#miForm').submit(function(e) {
         e.preventDefault();
-
         if(($('.contraseña') && $('.contraseñaNueva') && $('.confirmar')) =! null)
         {        
+            die();
         Swal.fire({
             title: '¿Estás seguro?',
             text: "¡No podrás deshacer este cambio!",

@@ -42,6 +42,7 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');
     Route::post('login/login','login')->name('login.login');
     Route::get('/login/cambio','cambio')->name('login.cambio');
+    Route::get('/logout','logout')->name('logout');
 });
 
 Route::controller(contrasenaController::class)->group(function(){

@@ -25,15 +25,16 @@ class UsuarioLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'correo'=>'required',
+            //
+            'email' => 'required',
             'password' => 'required',
         ];
     }
 
     public function getCredentials()
     {
-        $mail = $this->get('correo');
+        $mail = $this->get('email');
 
-        return $this->only('correo','password');
+        return $this->only('email','password');
     }
 }

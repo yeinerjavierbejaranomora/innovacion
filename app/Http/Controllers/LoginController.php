@@ -65,12 +65,17 @@ class LoginController extends Controller
     /** funcion de verificacion de usuario */
     public function login(UsuarioLoginRequest $req)
     {
-        /** traemos las credenciales del usuario  */
+        /**  autenticar al usuario en el sistema, realizando la validacion con el metodo getCredentials del Request
+         * solo se valida el email y la password
+         */
         $credentials = $req->getCredentials();
+        /** Si regresa True, se regresa una instancion del proveedor de auteticación, para recuperar los datos e interartuar con la DB
+         * y obtener las credenciales del usuario
+         */
         if (Auth::attempt($credentials)) {
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
             Auth::login($user, $remember = true);
-
+            /**se llama el metodo authenticated para realizar el redireccionamiento al home  */
             return $this->authenticated($req, $user);
         }
 
@@ -83,7 +88,6 @@ class LoginController extends Controller
     /** funcion para redirigir al home si el usuario esta autenticado */
     public function authenticated(Request  $request, $user)
     {
-        //return $user;
         return redirect()->route('login.home');
     }
 

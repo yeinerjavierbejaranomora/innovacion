@@ -47,7 +47,7 @@ class LoginController extends Controller
     public function authenticated(Request  $request, $user)
     {
         //return $user;
-        return redirect()->route('home');
+        return redirect()->route('login.cambio');
     }
 
     public function logout()

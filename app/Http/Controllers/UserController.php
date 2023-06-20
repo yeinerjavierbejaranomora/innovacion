@@ -57,7 +57,9 @@ class UserController extends Controller
       /// traemos los roles de la base de datos para poder cargar la vista
       $rol_db=DB::table('roles')->where([['id','=',$id_rol]])->get();//
 
-     return $rol_db;
+
+      //return view('login_prueba/login');
+     return $rol_db['nombreRol'];
 
 
     }

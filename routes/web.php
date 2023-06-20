@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->name('home.index');
-
+    
 });
 
 

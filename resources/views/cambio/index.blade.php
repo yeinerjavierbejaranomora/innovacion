@@ -49,4 +49,3 @@
 </div>
 
 @endsection
-@extends('layout.footer')

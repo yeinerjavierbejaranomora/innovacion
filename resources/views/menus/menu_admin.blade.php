@@ -50,6 +50,13 @@
                     <span>Facultades</span></a>
             </li>
 
+               <!-- Nav Item - Facultades -->
+               <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Cambio de contraseña</span></a>
+            </li>
+
             
             <!-- Nav Item - Perfil -->
             <li class="nav-item">

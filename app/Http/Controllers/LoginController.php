@@ -35,7 +35,7 @@ class LoginController extends Controller
 
         //return "Hola Usuario".auth()->user()->nombre;
 
-        return redirect()->route('login.index');
+        return redirect()->route('admin.index');
         endif;
 
         return redirect()->route('login.index');

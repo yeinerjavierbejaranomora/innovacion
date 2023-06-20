@@ -52,7 +52,7 @@
 
                <!-- Nav Item - Facultades -->
                <li class="nav-item">
-                <a class="nav-link" href="{{ route('cambio.cambio',['idbanner'=>$auth()->user()->id_banner]) }}">
+                <a class="nav-link" href="{{ route('cambio.cambio',['idbanner'=>auth()->user()->id_banner]) }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Cambio de contraseña</span></a>
             </li>

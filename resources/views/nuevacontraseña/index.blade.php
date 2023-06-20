@@ -7,12 +7,12 @@
     <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-01.jpg')}});">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             <!--Formulario para recuperar de contraseña-->
-            <form action="" method="post" class="login100-form validate-form" id="miForm">
+            <form action="{{Route'cambio.actualizar'}}" method="post" class="login100-form validate-form" id="miForm">
                 @csrf
                 <span class="login100-form-title p-b-49">
                     Recuperar contraseña
                 </span>
-
+                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
                     <span class="label-input100">Contraseña nueva</span>
                     <input class="input100" type="password" name="contraseñaNueva" placeholder="Contraseña nueva" id="nueva">
@@ -43,15 +43,18 @@
     </div>
 </div>
 
-<script>
-    function validacion() {
-        if ($('#nueva') != $('#confirmar')) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Las contraseñas deben coincidir!',
-            })
+<!--
+    <script>
+        function validacion() {
+            if ($('#nueva') != $('#confirmar')) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Las contraseñas deben coincidir!',
+                })
+            }
         }
-    }
-</script>
+    </script>
+-->
+
 @endsection

@@ -35,7 +35,9 @@ class LoginController extends Controller
     }
 
     public function cambioPass(CambioPassRequest $request){
-        dd($request->all());
+        //dd($request->all());
+        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id);
+        return $user;
     }
 
 

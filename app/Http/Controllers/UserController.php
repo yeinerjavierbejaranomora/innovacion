@@ -17,9 +17,9 @@ class UserController extends Controller
     /// crgamos la vista dependiendo el usuario
     public function home(){
 
-        return auth()->user()->documento;
+        return auth()->user();
 
-        //redirect()->route('login.home');
+       // redirect()->route('login.home');
       
 
     }

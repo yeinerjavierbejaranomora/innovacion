@@ -20,7 +20,9 @@ class LoginController extends Controller
     public function cambio()
     {
         if (Auth::check()) :
-            return auth()->user()->ingreso_plataforma;
+           if(auth()->user()->ingreso_plataforma != 0):
+                return "Hola Usuario".auth()->user()->nombre;
+           endif;
             return view('contrasena.index');
         endif;
         return redirect()->route('login.index');

@@ -48,11 +48,8 @@
     </div>
 </div>
 
-<?php
-if (session('consultaFallida') == 'Usuario no encontrado')
-{
-    ?>
+
+<?php if (session('consultaFallida') == 'Usuario no encontrado') ?>
 <script> alert('Usuario no encontrado en la base de datos') </script>
-}
 
 @endsection

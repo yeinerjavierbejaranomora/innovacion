@@ -49,9 +49,9 @@
 </div>
 
 <script>
+    if(($('.contraseña') && $('.contraseñaNueva') && $('.confirmar')) =! null)
+    {        
     $('#miForm').submit(function(e) {
-        if(($('.contraseña') && $('.contraseñaNueva') && $('.confirmar')) =! null)
-        {        
             e.preventDefault();     
         Swal.fire({
             title: '¿Estás seguro?',
@@ -72,8 +72,8 @@
                     'success'
                 )
             }
-        })
-    }
+        })  
     });
+}
 </script>
 @endsection

@@ -46,7 +46,7 @@
              <!-- Nav Item - Facultades -->
              <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-graduation-cap"></i>
                     <span>Facultades</span></a>
             </li>
 
@@ -54,7 +54,7 @@
             <!-- Nav Item - Perfil -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-key"></i>
                     <span>Perfil</span></a>
             </li>
 
@@ -65,7 +65,7 @@
             <!-- Nav Item - salir de la app -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa fa-sign-out"></i>
                     <span>Salir</span></a>
             </li>
 

@@ -32,7 +32,7 @@ class LoginController extends Controller
     }
 
     public function cambio($id){
-        return $id;
+        return auth()->user()->id;
     }
 
 

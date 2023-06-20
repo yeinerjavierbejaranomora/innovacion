@@ -53,7 +53,7 @@ Route::controller(contrasenaController::class)->group(function(){
 
 Route::controller(cambioController::class)->group(function(){
     Route::get('/cambio','index')->name('cambio.index');
-    Route::get('/cambio/cambio','consultar')->name('consultar.index');
+    Route::post('/cambio/cambio','consultar')->name('consultar.index');
     Route::get('/nueva','nueva')->name('nueva.index');
 });
 

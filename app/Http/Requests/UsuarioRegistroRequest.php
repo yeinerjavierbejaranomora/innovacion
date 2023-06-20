@@ -24,11 +24,15 @@ class UsuarioRegistroRequest extends FormRequest
     public function rules()
     {
         return [
-            'idbanner'=>'required',
-            'documento' => 'required|unique:usuarios,correo',
+            'id_banner'=>'required',
+            'documento'=>'required',
+            'email'=>'required | unique:users,email',
             'nombre'=>'required',
-            'correo'=>'required',
-            'idrol'=>'required',
+            'id_rol'=>'required',
+            'id_facultad'=>'',
+            'programa'=>'',
+            'ingreso_plataforma'=>'',
+            'activo'=>'',
         ];
     }
 }

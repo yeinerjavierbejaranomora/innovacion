@@ -17,9 +17,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'usuarios';
-    protected $fillable =[
-        'idBanner','documentoDeIdentidad','correo','password','nombre','idRol','idFacultad','idPrograma','fecha','ingreso_plataforma','activo'
+    protected $fillable = [
+        'id_banner',
+        'documento',
+        'email',
+        'password',
+        'nombre',
+        'id_rol',
+        'id_facultad',
+        'programa',
+        'ingreso_plataforma',
+        'activo',
     ];
 
     /**
@@ -41,7 +49,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value){
+    public function setDocumentoAttribute($value){
+        //var_dump($value);die();
+        $this->attributes['documento'] = $value;
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function setProgramaAttribute($value)
+    {
+        $Programas = '';
+        if (isset($value)) :
+            foreach ($value as $programa) :
+                $Programas .= $programa . ";";
+            endforeach;
+            $this->attributes['programa'] = $Programas;
+        else:
+            $this->attributes['programa'] = '';
+        endif;
     }
 }

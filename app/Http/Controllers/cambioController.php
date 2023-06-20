@@ -17,9 +17,9 @@ class cambioController extends Controller
 
     public function consultar(Request $request ) {
     
-        $consulta = DB::table('users')->where(['id_banner','=',$request->idbanner],
+        $consulta = DB::table('users')->where([['id_banner','=',$request->idbanner],
         ['email','=',$request->correo],
-        ['documento','=',$request->documento])->get();
+        ['documento','=',$request->documento]])->get();
         
         if(empty($consulta)){
            return view('nuevacontraseña.index');

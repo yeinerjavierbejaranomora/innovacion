@@ -17,7 +17,8 @@ class UserController extends Controller
     /// crgamos la vista dependiendo el usuario
     public function admin(){
 
-        return auth()->user()->documento;
+        return view('admin.index');
+        //auth()->user()->documento;
       
 
     }

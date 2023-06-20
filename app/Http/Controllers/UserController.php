@@ -53,7 +53,7 @@ class UserController extends Controller
        */
         // extraemos el rol del usuario logueado
         $id_rol=auth()->user()->id_rol;
-
+        return   $id_rol;
         /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db=DB::table('roles')->where([['id','=',$id_rol]])->get();
 

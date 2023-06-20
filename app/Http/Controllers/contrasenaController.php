@@ -9,6 +9,5 @@ class contrasenaController extends Controller
     public function index() {
         return view('password.index');
     }
-
-    
+  
 }

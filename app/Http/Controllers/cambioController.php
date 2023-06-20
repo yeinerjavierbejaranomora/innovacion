@@ -21,11 +21,12 @@ class cambioController extends Controller
         ['email','=',$request->correo],
         ['documento','=',$request->documento]])->get();
         
-        if(strlen($consulta)>0){
-            return view('nuevacontraseña.index');
+        if(strlen($consulta)>1){
+           return view('nuevacontraseña.index');
         }
         else{
-            return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
+           return false;
+            //return redirect()->route('cambio.index')->with('consultaFallida', 'Usuario no encontrado');
         }
     }
 

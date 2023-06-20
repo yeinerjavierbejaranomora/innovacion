@@ -14,11 +14,11 @@ class cambioController extends Controller
         return view('nuevacontraseña.index');
     }
 
-    public function consultar($id, $email, $documento) {
+    public function consultar(Request $request ) {
 
-        $password = DB::table('users')->select('users.password')->where('id','=',$id->id,
-        'email','=',$email->email,
-        'documento','=',$documento->documento);
+        $password = DB::table('users')->select('users.password')->where('id','=',$request->id,
+        'email','=',$request->email,
+        'documento','=',$request->documento);
 
         if(!empty($password))
         {

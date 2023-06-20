@@ -59,7 +59,7 @@ class UserController extends Controller
 
 
       //return view('login_prueba/login');
-     return $rol_db['nombreRol'];
+     return $rol_db->nombreRol;
 
 
     }

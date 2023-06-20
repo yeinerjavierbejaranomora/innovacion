@@ -45,31 +45,12 @@
 
 <script>
     function validacion() {
-        if ($('#nueva').val() && $('#confirmar').val()) {
-            $("#miForm").submit(function(e) {
-                e.preventDefault();
-
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "¡No podrás deshacer este cambio!",
-                    icon: 'warning',
-                    color: 'white',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, cambiar!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        color: 'white'
-                        Swal.fire(
-                            'Cambio exitoso',
-                            'Tu contraseña fue cambiada.',
-                            'success'
-                        )
-                    }
-                })
-            });
+        if ($('#nueva') != $('#confirmar')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Las contraseñas deben coincidir!',
+            })
         }
     }
 </script>

@@ -22,7 +22,14 @@ Route::get('/', function () {
 
     return view('login_prueba/login');
 });
+Route::controller(UserController::class)->group(function(){
 
+    Route::get('/home','index')->name('home.index');
+
+Route::get('/vistas/admin','index')->name('admin.index');
+
+
+});
 
 Route::get('admin/', function () {
     //return view('welcome');

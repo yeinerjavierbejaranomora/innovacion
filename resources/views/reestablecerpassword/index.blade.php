@@ -30,8 +30,6 @@
                     <span class="focus-input100" data-symbol="&#xf15a;"></span>
                 </div>
 
-                <!-- * Errores * -->
-
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
@@ -50,7 +48,7 @@
     </div>
 </div>
 
-@if (session('consultaFallida') == 'OK'): 
+@if (session('error') == 'OK'): 
 <script>
     function validacion() {
         Swal.fire({

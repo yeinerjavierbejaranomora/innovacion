@@ -216,7 +216,7 @@
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"></p>
+                                            <p class="text-muted mb-0">{{$programas}}</p>
                                         </div>
                                     </div>
                                     <hr>

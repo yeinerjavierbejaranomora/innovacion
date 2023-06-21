@@ -25,6 +25,7 @@ class cambioController extends Controller
 
     public function consultar(Request $request)
     {
+
         // * Consulta MySQL *
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],
@@ -33,8 +34,7 @@ class cambioController extends Controller
             ])->get();
 
             if ($consulta == '[]') {
-                $error = 'OK';
-                return view('reestablecerpassword.index');
+                return redirect()->route('cambio.index')->with('error','Credenciales invalidos!');
             } else {
             $id= $consulta[0]->id;
             return view('reestablecerpassword.nueva',['id'=>$id]);

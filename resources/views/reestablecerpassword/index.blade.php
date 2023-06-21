@@ -36,21 +36,15 @@
                         <button type="submit" class="login100-form-btn">
                             Consultar
                         </button>
-
-                        <? if ($error == 'OK') : ?>
-                            <script>
-                                function validacion() {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Usuario no encontrado!',
-                                        color: 'white',
-                                    })
-                                }
-                            </script>
-                        <? endif; ?>
                     </div>
                 </div>
+                <br>
+
+                @if(\Session::get('error'))
+                <div class="alert alert-primary text-center" style="color: black;" role="alert">
+                    {{\Session::get('error')}}
+                </div>
+                @endif
 
                 <div class="txt1 text-center p-t-54 p-b-20">
                     <h4> Universidad Iberoamericana</h4>
@@ -61,6 +55,21 @@
     </div>
 </div>
 
-
-
+<!--
+@if(\Session::get('error'))
+<script>
+    function validacion() {
+        $("#miform").submit(function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario no encontrado!',
+                color: 'white',
+            })
+        });
+    }
+</script>
+@endif
+*/
+-->
 @endsection

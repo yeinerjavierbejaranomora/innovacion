@@ -36,8 +36,6 @@
                         <button type="submit" class="login100-form-btn">
                             Consultar
                         </button>
-
-                        
                     </div>
                 </div>
 
@@ -50,6 +48,17 @@
     </div>
 </div>
 
+<? if ($error == 'OK'): ?>
+<script>
+    function validacion() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario no encontrado!',
+        })
+    }
+</script>
+<? endif; ?>
 
 
 @endsection

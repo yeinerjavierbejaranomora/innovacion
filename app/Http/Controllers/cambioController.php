@@ -25,6 +25,7 @@ class cambioController extends Controller
 
     public function consultar(Request $request)
     {
+        
         // * Consulta MySQL *
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],

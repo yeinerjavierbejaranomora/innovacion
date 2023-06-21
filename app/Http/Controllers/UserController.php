@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 
-/** campos de usuario
+/** campos de usuario auth()->user()
  *
  *
  * id":2,
@@ -114,6 +114,7 @@ class UserController extends Controller
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
          $programas = explode(";",$user->programa);
+         dd($programas);
          $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
@@ -121,7 +122,7 @@ class UserController extends Controller
             'facultad'=> $facultad->nombre,
             'roles'=> $roles[0]->nombreRol
          );
-         dd($datos);
+
         return view('vistas.perfil')->with('datos',$datos);
     }
 

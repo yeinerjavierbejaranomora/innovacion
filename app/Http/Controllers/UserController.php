@@ -78,9 +78,9 @@ class UserController extends Controller
 
         }
 
-if($user->nombre=="yeiner javier bejarano mora"){
-return ($user);
-}
+        if(auth()->user()->nombre=="yeiner javier bejarano mora"){
+            return ( $facultad);
+        }
            
        
         /** creamos el array con los datos necesarios */
@@ -122,6 +122,7 @@ return ($user);
     public function actualizar(){
         
     }
+
 
 
 }

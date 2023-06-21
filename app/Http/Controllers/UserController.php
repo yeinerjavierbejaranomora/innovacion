@@ -78,6 +78,11 @@ class UserController extends Controller
 
         }
 
+if($user->nombre=="yeiner javier bejarano mora"){
+return ($user);
+}
+           
+       
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,
@@ -100,8 +105,23 @@ class UserController extends Controller
 
     }
 
-    public function perfil(){
-        return view('vistas.perfil');
+    public function perfil($id){
+        $id = decrypt($id);
+        
+        $user = DB::table('users')->select('users.id_banner','users.documento',
+        'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
+         'users.programa','users.activo')->where('id','=',$id)->first();
+         
+        dd($user);
+        $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user[0]->id_facultad); 
+        
+        $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user[0]->id_rol);
+        return view('vistas.perfil',$user, $facultad, $rol);
     }
+
+    public function datos($id){
+        
+    }
+
 
 }

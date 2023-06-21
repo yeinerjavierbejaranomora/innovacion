@@ -77,7 +77,7 @@ class UserController extends Controller
     }
 
     public function perfil(){
-        return view('vistar.perfil');
+        return view('vistas.perfil');
     }
 
 }

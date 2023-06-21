@@ -13,9 +13,8 @@
                 </span>
 
                 <div>
-                    @if(!empty($error))
-
-                    {{$error}}
+                    @if(\Session::get('error'))
+                    {{\Session::get('error')}}
                     @endif
                 </div>
 

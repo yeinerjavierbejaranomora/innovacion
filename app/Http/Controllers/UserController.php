@@ -72,7 +72,7 @@ class UserController extends Controller
             $facultad=DB::table('facultad')->where([['id','=',$user->id_facultad]])->get();
 
         }else{
-            
+
             /** si es super admin trae todas las facultades */
             $facultad=DB::table('facultad')->get();
 
@@ -82,14 +82,14 @@ class UserController extends Controller
            * return ( $facultad);
         *}
         */
-           
-       
+
+
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,
             'facultad'=>$facultad
         );
-       
+
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas/'.$nombre_rol)->with('datos',$datos);
 
@@ -102,7 +102,8 @@ class UserController extends Controller
     }
 
     public function get_users(){
-
+        $users = User::all();
+        return $users;
 
     }
 
@@ -111,28 +112,19 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        if( $user->id_facultad!= NULL){
+         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
 
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-            $facultad = $facultad->nombre;
+         $programas = explode(";",$user->programa);
+         foreach ($programas as $key => $value) {
+             $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
+             $nombre_programas[$value]=$consulta[0]->programa;   
+             //dd($consulta[0]->programa);
+        }
 
-            $programas = explode(";",$user->programa);
-            foreach ($programas as $key => $value) {
-                $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-                $nombre_programas[$value]=$consulta[0]->programa;   
-                //dd($consulta[0]->programa);
-            }
-    
-            // dd($nombre_programas);
-        
-    }
-    else{
-        $facultad =  $nombre_programas = NULL;
-    }
-    $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-
+        // dd($nombre_programas);
+         $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
-            'facultad'=> $facultad,
+            'facultad'=> $facultad->nombre,
             'roles'=> $roles[0]->nombreRol,
             'programa'=> $nombre_programas
          );
@@ -141,12 +133,12 @@ class UserController extends Controller
     }
 
     public function actualizar(){
-        
+
     }
 
     public function facultad(){
 
-        
+
     }
 
 

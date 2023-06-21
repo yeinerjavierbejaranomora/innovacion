@@ -73,9 +73,8 @@ class LoginController extends Controller
          * y obtener las credenciales del usuario
          */
         if (Auth::attempt($credentials)) {
-            $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-            Auth::login($user, $remember = true);
+            $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
             /// traemos los roles de la base de datos para poder cargar la vista
             $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();
@@ -83,7 +82,11 @@ class LoginController extends Controller
             /*traempos el nombre del rol para cargar la vista*/
             $nombre_rol=$rol_db[0]->nombreRol;
             $user->nombre_rol=$nombre_rol;
-           
+
+
+            Auth::login($user, $remember = true);
+
+        
             /**se llama el metodo authenticated para realizar el redireccionamiento al home  */
             return $this->authenticated($req, $user);
         }

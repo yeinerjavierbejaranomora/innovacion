@@ -55,6 +55,8 @@ class cambioController extends Controller
 
 
     public function consultaCambio($idBanner){
-        return decrypt($idBanner);
+        $idBanner = decrypt($idBanner);
+        $user = User::find($idBanner);
+        return $user;
     }
 }

@@ -218,9 +218,11 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
+                                                @if($datos['programa'])
                                             @foreach ($datos['programa'] as $key => $value)    
                                             {{$value}} <br>
                                             @endforeach
+                                            @endif
                                         </p>
 
                                         </div>

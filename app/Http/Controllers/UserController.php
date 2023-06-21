@@ -102,9 +102,10 @@ class UserController extends Controller
     }
 
     public function get_users(){
-        $users = User::all();
+        /*$users = User::all();
         $users = json_encode($users);
-        return $users;
+        return $users;*/
+        return DB::eloquent(User::query())->toJson();
 
     }
 
@@ -115,18 +116,18 @@ class UserController extends Controller
 
         if( $user->id_facultad!= NULL){
 
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
+            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first();
             $facultad = $facultad->nombre;
 
             $programas = explode(";",$user->programa);
             foreach ($programas as $key => $value) {
                 $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-                $nombre_programas[$value]=$consulta[0]->programa;   
+                $nombre_programas[$value]=$consulta[0]->programa;
                 //dd($consulta[0]->programa);
             }
-    
+
             // dd($nombre_programas);
-        
+
     }
     else{
         $facultad =  $nombre_programas = NULL;

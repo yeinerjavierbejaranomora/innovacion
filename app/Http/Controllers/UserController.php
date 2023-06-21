@@ -77,10 +77,12 @@ class UserController extends Controller
             $facultad=DB::table('facultad')->get();
 
         }
-        return($user);
 
-       return($facultad);
-        exit;
+if($user->nombre=="yeiner javier bejarano mora"){
+return ($user);
+}
+           
+       
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,
@@ -120,5 +122,6 @@ class UserController extends Controller
     public function datos($id){
         
     }
+
 
 }

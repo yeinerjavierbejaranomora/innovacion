@@ -29,6 +29,7 @@ Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->middleware('auth')->name('home.index');
     Route::get('/home/perfil', 'perfil')->middleware('auth')->name('user.perfil');
+    Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
 });
 
 

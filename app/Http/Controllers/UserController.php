@@ -78,6 +78,9 @@ class UserController extends Controller
 
         }
 
+
+        var_dump($facultad);
+        exit;
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,

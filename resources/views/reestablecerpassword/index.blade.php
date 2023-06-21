@@ -57,13 +57,16 @@
 @if(\Session::get('error')):
         <script>
             function validacion() {
+                $("#miform").submit(function(e) {
+                e.preventDefault();
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Usuario no encontrado!',
                     color: 'white',
                 })
-            }
+            });
+        }
         </script>
 @endif
 */

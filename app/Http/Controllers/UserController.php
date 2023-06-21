@@ -102,6 +102,7 @@ class UserController extends Controller
     public function get_users(){
         $users = User::all();
         $users = json_encode($users);
+    }
     public function get_users()
     {
         //$users = User::all();

@@ -167,7 +167,7 @@
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -176,7 +176,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -185,7 +185,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -194,7 +194,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -203,7 +203,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -212,7 +212,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
@@ -221,7 +221,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Estado</p>
                                         </div>
                                         <div class="col-sm-9">

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ActualizarPassRequest;
+use App\Http\Requests\CambioPassRequest;
 
 class cambioController extends Controller
 {
@@ -65,7 +66,7 @@ class cambioController extends Controller
         endif;
     }
 
-    public function cambioSave(CambioRequest $request){
+    public function cambioSave(CambioPassRequest $request){
         dd($request->all());
     }
 }

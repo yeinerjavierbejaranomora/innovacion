@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div "alert alert-primary" role="alert">
+                <div class="alert alert-primary" role="alert">
                     @if(\Session::get('error'))
                     {{\Session::get('error')}}
                     @endif

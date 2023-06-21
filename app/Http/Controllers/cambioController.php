@@ -34,7 +34,7 @@ class cambioController extends Controller
             ])->get();
 
             if ($consulta == '[]') {
-                return redirect()->route('cambio.index')->with('error','credenciales invalidos!');
+                return redirect()->route('cambio.index')->with('error','Credenciales invalidos!');
             } else {
             $id= $consulta[0]->id;
             return view('reestablecerpassword.nueva',['id'=>$id]);

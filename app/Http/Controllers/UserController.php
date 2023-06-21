@@ -147,7 +147,7 @@ class UserController extends Controller
         return view('vistas.perfil')->with('datos', $datos);
     }
     // *Método para actualizar los datos del usuario*
-    public function actualizar()
+    public function editar()
     {
     }
 }

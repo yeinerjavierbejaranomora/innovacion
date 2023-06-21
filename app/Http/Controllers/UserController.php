@@ -77,10 +77,10 @@ class UserController extends Controller
             $facultad=DB::table('facultad')->get();
 
         }
-        return($user);
 
-       return($facultad);
-        exit;
+        self::debug($user->nombre,$facultad);
+           
+       
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,
@@ -105,6 +105,15 @@ class UserController extends Controller
 
     public function perfil(){
         return view('vistas.perfil');
+    }
+
+
+    public function debug($user,$variable){
+
+        if(auth()->user()->nombre==$user){
+            return ($variable);
+        }else
+            return false;
     }
 
 }

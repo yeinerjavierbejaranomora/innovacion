@@ -39,6 +39,7 @@
                     </div>
                 </div>
 
+                <br>
                 <div class="alert alert-primary" role="alert">
                     @if(\Session::get('error'))
                     {{\Session::get('error')}}

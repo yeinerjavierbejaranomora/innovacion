@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Perfil -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.perfil',['id'=>encrypt(auth()->user()->id)]) }}') }}">
+                <a class="nav-link" href="{{ route('user.perfil',['id'=>encrypt(auth()->user()->id)]) }}">
                     <i class="fas fa-key"></i>
                     <span>Perfil</span></a>
             </li>

@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
-    
+
 
 
     <title>@yield('title')</title>
@@ -24,8 +24,13 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('public/general/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <script src="{{asset('public/general/vendor/jquery/jquery.min.js')}}"></script>
 
- 
+    {{-- Datatale --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+
+
 </head>
 
 <body id="page-top">
@@ -34,7 +39,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-  
+
 
 	<!--@yield('content')-->
 

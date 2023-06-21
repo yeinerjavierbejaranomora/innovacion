@@ -109,9 +109,7 @@ class UserController extends Controller
     public function perfil($id){
         $id = decrypt($id);
 
-        $user = DB::table('users')->select('users.id_banner','users.documento',
-        'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
-         'users.programa','users.activo')->where('id','=',$id)->first(); 
+        $user = auth()->user();
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
@@ -119,7 +117,12 @@ class UserController extends Controller
          $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-        return view('vistas.perfil', ['user'=>$user],['facultad'=>$facultad], ['roles'=>$roles], );
+         $datos=array(
+            'facultad'=> $facultad->nombre,
+            'roles'=> $roles[0]->nombreRol
+         );
+
+        return view('vistas.perfil')->with('datos',$datos);
     }
 
     public function actualizar(){

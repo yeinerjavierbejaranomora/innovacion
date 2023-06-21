@@ -58,9 +58,9 @@ class cambioController extends Controller
         $idBanner = decrypt($idBanner);
         $user = User::where('id_banner',$idBanner)->first();
         if($user != []):
-            return $user;
+            return view('reestablecerpassword.cambio');
         else:
-            return "vacio";
+            return redirect()->route('home.index');
         endif;
     }
 }

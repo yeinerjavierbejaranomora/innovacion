@@ -78,7 +78,9 @@ class UserController extends Controller
 
         }
 
-        self::debug($user->nombre,$facultad);
+        if(auth()->user()->nombre=="yeiner javier bejarano mora"){
+            return ( $facultad);
+        }
            
        
         /** creamos el array con los datos necesarios */
@@ -122,12 +124,5 @@ class UserController extends Controller
     }
 
 
-    public function debug($user,$variable){
-
-        if(auth()->user()->nombre=="yeiner javier bejarano mora"){
-            return ($variable);
-        }else
-            return false;
-    }
 
 }

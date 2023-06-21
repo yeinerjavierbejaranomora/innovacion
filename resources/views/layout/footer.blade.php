@@ -30,6 +30,9 @@
 
     <script src="{{asset('public/general/js/demo/chart-pie-demo.js')}}"></script>
 
+    {{-- Datatable --}}
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 </body>
 
 </html>

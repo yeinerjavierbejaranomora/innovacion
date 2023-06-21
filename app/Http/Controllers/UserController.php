@@ -112,12 +112,11 @@ class UserController extends Controller
         $user = auth()->user();
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-         $nombre_programas = '';
 
          $programas = explode(";",$user->programa);
          foreach ($programas as $key => $value) {
              $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             $nombre_programas.=$consulta[0]->programa.' \n ';   
+             $nombre_programas=$consulta[0]->programa;   
              //dd($consulta[0]->programa);
         }
        // dd($nombre_programas);

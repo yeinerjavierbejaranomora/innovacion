@@ -242,4 +242,3 @@
         </div>
     </div>
 </div>
-@include('layout.footer')

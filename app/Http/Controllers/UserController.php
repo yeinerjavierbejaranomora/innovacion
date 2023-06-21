@@ -117,7 +117,7 @@ class UserController extends Controller
          
          $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->first();
          
-        return view('vistas.perfil',$user, $facultad, $rol);
+        return view('vistas.perfil', $user, $facultad, $rol);
     }
 
     public function actualizar(){

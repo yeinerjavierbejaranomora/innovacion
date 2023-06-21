@@ -55,6 +55,7 @@
     </div>
 </div>
 
+<!--
 @if(\Session::get('error'))
 <script>
     function validacion() {
@@ -70,4 +71,5 @@
 </script>
 @endif
 */
+-->
 @endsection

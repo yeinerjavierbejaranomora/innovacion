@@ -54,21 +54,31 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="myTable" class="display">
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
-                                        <tr>
-                                            <th>Column 1</th>
-                                            <th>Column 2</th>
-                                        </tr>
-                                    </thead>
+                                        <thead>
+                                            <tr>
+                                                <th>First name</th>
+                                                <th>Last name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Row 1 Data 1</td>
-                                            <td>Row 1 Data 2</td>
+                                            <td>Tiger</td>
+                                            <td>Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>$320,800</td>
                                         </tr>
                                         <tr>
-                                            <td>Row 2 Data 1</td>
-                                            <td>Row 2 Data 2</td>
+                                            <td>Garrett</td>
+                                            <td>Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>$170,750</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -97,7 +107,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable({
+        $('#example').DataTable({
             columnDefs: [{
                     targets: [0],
                     orderData: [0, 1],

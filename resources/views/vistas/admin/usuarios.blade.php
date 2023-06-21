@@ -22,16 +22,16 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                 
+
                         <div class="input-group">
-                          
+
                             <div class="input-group-append">
                                 <h3> Bienvenido {{auth()->user()->nombre}}</h3>
                             </div>
                         </div>
-               
 
-                
+
+
 
                 </nav>
                 <!-- End of Topbar -->
@@ -56,7 +56,6 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +80,6 @@
     </a>
 
 
-  
+
  <!-- incluimos el footer -->
  @include('layout.footer')

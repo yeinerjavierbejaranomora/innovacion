@@ -57,9 +57,10 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                              <h4> Facultad de {{$value->nombre}}</h4></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Estudiantes $40,000</div>
+                                              <h6> Facultad de {{$value->nombre}}</h6></div>
+                                            <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $40,000</p></div>
                                         </div>
+                                        
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>

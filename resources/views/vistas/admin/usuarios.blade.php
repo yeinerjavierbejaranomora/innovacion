@@ -54,7 +54,7 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="myTable" class="display">
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <thead>
                                             <tr>
@@ -107,7 +107,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable({
+        $('#example').DataTable({
             columnDefs: [{
                     targets: [0],
                     orderData: [0, 1],

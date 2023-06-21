@@ -37,18 +37,7 @@
                             Consultar
                         </button>
 
-                        <? if ($error == 'OK') : ?>
-                            <script>
-                                function validacion() {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...',
-                                        text: 'Usuario no encontrado!',
-                                        color: 'white',
-                                    })
-                                }
-                            </script>
-                        <? endif; ?>
+                        
                     </div>
                 </div>
 

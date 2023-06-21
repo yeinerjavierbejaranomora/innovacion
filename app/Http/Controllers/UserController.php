@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 
-/** campos de usuario
+/** campos de usuario auth()->user()
  *
  *
  * id":2,

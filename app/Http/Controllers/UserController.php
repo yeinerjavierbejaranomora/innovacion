@@ -101,8 +101,7 @@ class UserController extends Controller
     }
 
     public function get_users(){
-        $users = User::all();
-        return $users;
+
 
     }
 

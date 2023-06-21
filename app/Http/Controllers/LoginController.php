@@ -34,8 +34,16 @@ class LoginController extends Controller
         /** de lo contrario redirigimos a la vista correspondiente */
 
         //return "Hola Usuario".auth()->user()->nombre;
+  /// traemos los roles de la base de datos para poder cargar la vista
+            $rol_db=DB::table('roles')->where([['id','=',auth()->user()->id_rol]])->get();
 
-        return redirect()->route('home.index');
+            /*traempos el nombre del rol para cargar la vista*/
+            $nombre_rol=$rol_db[0]->nombreRol;
+            auth()->user()->nombre_rol=$nombre_rol;
+
+
+
+            return redirect()->route('home.index');
         endif;
 
         return redirect()->route('login.index');
@@ -73,15 +81,14 @@ class LoginController extends Controller
          * y obtener las credenciales del usuario
          */
         if (Auth::attempt($credentials)) {
-            $user = Auth::getProvider()->retrieveByCredentials($credentials);
-            Auth::login($user, $remember = true);
-            /// traemos los roles de la base de datos para poder cargar la vista
-            $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();
 
-            /*traempos el nombre del rol para cargar la vista*/
-            $nombre_rol=$rol_db[0]->nombreRol;
-            $user->nombre_rol=$nombre_rol;
-            dd($user->nombre_rol);
+            $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+          
+
+            Auth::login($user, $remember = true);
+
+        
             /**se llama el metodo authenticated para realizar el redireccionamiento al home  */
             return $this->authenticated($req, $user);
         }

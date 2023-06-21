@@ -99,6 +99,9 @@ class UserController extends Controller
         return view('vistas.admin.usuarios');
     }
 
+    public function get_users(){
+        $users = User::all();
+        $users = json_encode($users);
     public function get_users()
     {
         //$users = User::all();

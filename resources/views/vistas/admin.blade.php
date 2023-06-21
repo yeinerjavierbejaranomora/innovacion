@@ -60,6 +60,7 @@
                                               <h6> Facultad de {{$value->nombre}}</h6></div>
                                             <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $40,000</p></div>
                                         </div>
+                                        
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>

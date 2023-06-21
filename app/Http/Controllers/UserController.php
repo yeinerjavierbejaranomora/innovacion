@@ -124,7 +124,7 @@ class UserController extends Controller
 
     public function debug($user,$variable){
 
-        if(auth()->user()->nombre==$user){
+        if(auth()->user()->nombre=="yeiner javier bejarano mora"){
             return ($variable);
         }else
             return false;

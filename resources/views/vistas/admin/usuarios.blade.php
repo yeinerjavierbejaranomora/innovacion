@@ -95,7 +95,11 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
 
 <!-- incluimos el footer -->
 @include('layout.footer')

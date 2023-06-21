@@ -50,10 +50,9 @@ class cambioController extends Controller
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
         }
         else {
-            return with('Fail', 'Error');
+            return redirect()->route('confirmar.index')-> with('error', 'Cambio no valido!');
         }
     }
-
 
     public function consultaCambio($idBanner){
         $idBanner = decrypt($idBanner);

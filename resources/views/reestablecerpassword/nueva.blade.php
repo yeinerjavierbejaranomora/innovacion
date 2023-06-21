@@ -34,6 +34,12 @@
                     </div>
                 </div>
 
+                @if(\Session::get('error'))
+                <div class="alert alert-primary text-center" style="color: black;" role="alert">
+                    {{\Session::get('error')}}
+                </div>
+                @endif
+                
                 <div class="txt1 text-center p-t-54 p-b-20">
                     <h4> Universidad Iberoamericana</h4>
                     <p>©2023 Todos los derechos reservados.</p>
@@ -43,18 +49,5 @@
     </div>
 </div>
 
-<!--
-    <script>
-        function validacion() {
-            if ($('#nueva') != $('#confirmar')) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Las contraseñas deben coincidir!',
-                })
-            }
-        }
-    </script>
--->
 
 @endsection

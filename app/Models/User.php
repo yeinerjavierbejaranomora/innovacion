@@ -28,6 +28,7 @@ class User extends Authenticatable
         'programa',
         'ingreso_plataforma',
         'activo',
+        'nombre_rol'
     ];
 
     /**

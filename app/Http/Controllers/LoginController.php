@@ -34,7 +34,7 @@ class LoginController extends Controller
         /** de lo contrario redirigimos a la vista correspondiente */
 
         //return "Hola Usuario".auth()->user()->nombre;
-  /// traemos los roles de la base de datos para poder cargar la vista
+        /// traemos los roles de la base de datos para poder cargar la vista
             $rol_db=DB::table('roles')->where([['id','=',auth()->user()->id_rol]])->get();
 
             /*traempos el nombre del rol para cargar la vista*/

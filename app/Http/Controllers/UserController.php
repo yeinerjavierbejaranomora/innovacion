@@ -112,18 +112,20 @@ class UserController extends Controller
         $user = auth()->user();
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-         
+         $nombre_programas = '';
+
          $programas = explode(";",$user->programa);
          foreach ($programas as $key => $value) {
              $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             $nombre_programas[$value]=$consulta[0]->programa;   
+             $nombre_programas.=$consulta[0]->programa.' ; ';   
              //dd($consulta[0]->programa);
         }
-        dd($nombre_programas);
+       // dd($nombre_programas);
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
             'facultad'=> $facultad->nombre,
-            'roles'=> $roles[0]->nombreRol
+            'roles'=> $roles[0]->nombreRol,
+            'programa'=> $nombre_programas
          );
 
         return view('vistas.perfil')->with('datos',$datos);

@@ -48,7 +48,7 @@
     </div>
 </div>
 
-@if (session('error') == 'OK'): 
+<? if ($error == 'OK'): ?>
 <script>
     function validacion() {
         Swal.fire({
@@ -58,6 +58,6 @@
         })
     }
 </script>
-@endif
+<? endif; ?>
 
 @endsection

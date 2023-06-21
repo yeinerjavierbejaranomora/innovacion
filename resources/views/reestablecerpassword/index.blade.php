@@ -44,6 +44,7 @@
                                         icon: 'error',
                                         title: 'Oops...',
                                         text: 'Usuario no encontrado!',
+                                        color: 'white',
                                     })
                                 }
                             </script>

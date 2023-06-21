@@ -58,14 +58,15 @@ class UserController extends Controller
          */
 
         /** definimos la variable usuario */
+        
         $user = auth()->user();
-dd($user->nombre_rol);
+
         /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
 
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
-
+        auth()->user()->nombre_rol=$nombre_rol;
         /** traemos las facultades del sistema  */
         if (!empty($user->id_facultad)) {
 
@@ -77,6 +78,8 @@ dd($user->nombre_rol);
             $facultad = DB::table('facultad')->get();
         }
 
+
+        dd($user->nombre_rol);
         /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
          * return ( $facultad);
          *}

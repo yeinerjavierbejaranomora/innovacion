@@ -102,10 +102,9 @@ class UserController extends Controller
     }
 
     public function get_users(){
-        /*$users = User::all();
+        $users = User::all();
         $users = json_encode($users);
-        return $users;*/
-        return DB::eloquent(User::query())->toJson();
+        return $users;
 
     }
 

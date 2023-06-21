@@ -232,7 +232,6 @@
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">Inactivo</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -240,8 +239,7 @@
                     </div>
                 </div>
             </section>
-
-
-
-
-            @include('layout.footer')
+        </div>
+    </div>
+</div>
+@include('layout.footer')

@@ -48,17 +48,17 @@
     </div>
 </div>
 
-<? if ($error == 'OK'): ?>
-<script>
-    function validacion() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Usuario no encontrado!',
-        })
-    }
-</script>
-<? endif; ?>
-
+<? if ($error == 'credenciales invalidos') : ?>
+    <script>
+        function validacion() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario no encontrado!',
+                color: 'white',
+            })
+        }
+    </script>
+<? endif ?>
 
 @endsection

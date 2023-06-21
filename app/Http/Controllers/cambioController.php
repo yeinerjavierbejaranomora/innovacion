@@ -67,6 +67,6 @@ class cambioController extends Controller
     }
 
     public function cambioSave(CambioPassRequest $request){
-        dd($request->all());
+        
     }
 }

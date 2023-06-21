@@ -75,6 +75,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
             Auth::login($user, $remember = true);
+            dd($user->id);
             /**se llama el metodo authenticated para realizar el redireccionamiento al home  */
             return $this->authenticated($req, $user);
         }

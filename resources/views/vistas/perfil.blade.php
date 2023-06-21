@@ -207,7 +207,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$facultad->nombre }}</p>
+                                            <p class="text-muted mb-0">{{$facultad[0]->nombre }}</p>
                                         </div>
                                     </div>
                                     <hr>

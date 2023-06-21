@@ -111,14 +111,11 @@ class UserController extends Controller
 
         $user = DB::table('users')->select('users.id_banner','users.documento',
         'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
-         'users.programa','users.activo')->where('id','=',$id)->first();
-        
-         $programa = DB::table('programas')->select('programas.programa')->where('id','=',$user->programa)->first(); 
-         dd($programa);
+         'users.programa','users.activo')->where('id','=',$id)->first(); 
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
-         $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->first();
+         $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          
         return view('vistas.perfil', compact('user'), compact('facultad'), compact('programa'), compact('rol'));
     }

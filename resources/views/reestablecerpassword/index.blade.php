@@ -54,11 +54,10 @@
     </div>
 </div>
 
-@if(\Session::get('error')):
+@if(\Session::get('error'))
         <script>
             function validacion() {
                 $("#miform").submit(function(e) {
-                e.preventDefault();
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',

@@ -109,12 +109,10 @@ class UserController extends Controller
     public function perfil($id){
         $id = decrypt($id);
 
-        $user = DB::table('users')->select('users.id_banner','users.documento',
-        'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
-         'users.programa','users.activo')->where('id','=',$id)->first(); 
+        $user = auth()->user();
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-         
+         dd($facultad);
          $programas = explode(";",$user->programa);
          $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 

@@ -112,7 +112,7 @@ class UserController extends Controller
         'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
          'users.programa','users.activo')->where('id','=',$id)->first();
          
-         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user[0]->id_facultad); 
+         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad); 
          dd($facultad);
         
         $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol);

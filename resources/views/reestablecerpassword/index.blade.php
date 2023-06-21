@@ -13,7 +13,9 @@
                 </span>
 
                 <div>
-                        {{$error}}
+                    @if(count($error)>0)
+                    {{$error}}
+                    @endif
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner es requerido">

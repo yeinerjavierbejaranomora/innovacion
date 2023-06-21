@@ -13,7 +13,7 @@
                 </span>
 
                 <div>
-                    @if(count($error)>0)
+                    @if(!empty($error))
                     {{$error}}
                     @endif
                 </div>

@@ -33,7 +33,7 @@ class cambioController extends Controller
             ])->get();
 
             if ($consulta == '[]') {
-                return view('reestablecerpassword.index')->withErrors('error', 'OK');
+                return view('reestablecerpassword.index')->with('error', 'OK');
             } else {
             $id= $consulta[0]->id;
             return view('reestablecerpassword.nueva',['id'=>$id]);
@@ -55,6 +55,6 @@ class cambioController extends Controller
 
 
     public function consultaCambio($idBanner){
-        return encrypt($idBanner);
+        return decrypt($idBanner);
     }
 }

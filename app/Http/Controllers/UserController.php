@@ -65,7 +65,7 @@ class UserController extends Controller
         $nombre_rol=$rol_db[0]->nombreRol;
 
         //return view('login_prueba/login');
-        return view('vistas/'.$nombre_rol);
+        return view('vistas/'.$nombre_rol)->with('rol',$nombre_rol);;
 
 
     }

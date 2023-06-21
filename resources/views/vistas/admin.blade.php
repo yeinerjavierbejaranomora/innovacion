@@ -22,6 +22,14 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                 
+                        <div class="input-group">
+                          
+                            <div class="input-group-append">
+                                <h3>{{auth()->user()->nombre}}</h3>
+                            </div>
+                        </div>
+               
 
                 
 

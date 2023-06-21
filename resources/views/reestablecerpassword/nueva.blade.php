@@ -34,9 +34,9 @@
                     </div>
                 </div>
 
-                @if(\Session::get('error'))
+                @if(\Session::get('Error'))
                 <div class="alert alert-primary text-center" style="color: black;" role="alert">
-                    {{\Session::get('error')}}
+                    {{\Session::get('Error')}}
                 </div>
                 @endif
                 

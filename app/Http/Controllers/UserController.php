@@ -55,17 +55,37 @@ class UserController extends Controller
             *Docente      = 5
             *Estudiante   = 6
        */
-        // extraemos el rol del usuario logueado
-        $id_rol=auth()->user()->id_rol;
+
+        /** definimos la variable usuario */
+        $user=auth()->user();
 
         /// traemos los roles de la base de datos para poder cargar la vista
-        $rol_db=DB::table('roles')->where([['id','=',$id_rol]])->get();
+        $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();
 
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol=$rol_db[0]->nombreRol;
 
-        //return view('login_prueba/login');
-        return view('vistas/'.$nombre_rol)->with('rol',$nombre_rol);;
+        /** traemos las facultades del sistema  */
+        if(!empty($user->id_facultad)){
+
+            /** trae la facultad asignada */
+            $facultad=DB::table('facultad')->where([['id','=',$user->id_facultad]])->get();
+
+        }else{
+            
+            /** si es super admin trae todas las facultades */
+            $facultad=DB::table('facultad')->get();
+
+        }
+
+        /** creamos el array con los datos necesarios */
+        $datos=array(
+            'rol'=>$nombre_rol,
+            'facultad'=>$facultad
+        );
+       
+        /** cargamos la vista predeterminada para cada rol con la data */
+        return view('vistas/'.$nombre_rol)->with('datos',$datos);
 
 
     }

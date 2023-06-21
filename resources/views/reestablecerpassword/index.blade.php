@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<?if ($error == 'credenciales invalidos') : ?>
+@if(\Session::get('error')):
         <script>
             function validacion() {
                 Swal.fire({
@@ -65,6 +65,6 @@
                 })
             }
         </script>
-        <? endif ?>
+@endif
 */
 @endsection

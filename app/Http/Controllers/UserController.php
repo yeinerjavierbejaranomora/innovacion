@@ -114,9 +114,11 @@ class UserController extends Controller
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
          $programas = explode(";",$user->programa);
-         dd($programas);
-         $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
-
+         foreach ($programas as $key => $value) {
+             $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
+             dd($consulta);
+             // $nombre_programas[$value]=$consulta[0]->programa;   
+        }
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
             'facultad'=> $facultad->nombre,

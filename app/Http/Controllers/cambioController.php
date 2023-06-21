@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class cambioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['only'=>['consultaCambio','cambioSave']]);
+    }
+    
     // * Método para acceder a la vista de reestablecer contraseña *
     public function index()
     {

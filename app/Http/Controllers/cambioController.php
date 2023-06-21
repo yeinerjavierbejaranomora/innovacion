@@ -75,15 +75,15 @@ class cambioController extends Controller
         /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */
         if(Hash::check($request->password_actual,$user->password)):
             /** Se realiza el update de la password si el id y el documento son iguales a los datos que vienen del formulario  */
-            $cambioPass = User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password'=> bcrypt($request->password)]);
+            $cambioPass = User::where('id','=',$request->id)->update(['password'=> bcrypt($request->password)]);
             /**si el update se hace correctamente se redirige al formulario de login */
             if($cambioPass):
                 return redirect()->route('login.index');
             else:
-                return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Error al modificar la contraseña']);
+                return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Error al modificar la contraseña.']);
             endif;
         else:
-            return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Ingrese contraseña actual']);
+            return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Ingrese contraseña actual.']);
         endif;
     }
 }

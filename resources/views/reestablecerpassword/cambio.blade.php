@@ -12,6 +12,9 @@
                 <span class="login100-form-title p-b-49">
                     Cambio de contraseña
                 </span>
+                @if(count($errors)>0)
+                    <h4>{{$erros}}</h4>
+                @endif
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
                     <span class="label-input100">Contraseña actual</span>

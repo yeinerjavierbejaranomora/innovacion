@@ -79,7 +79,7 @@ class UserController extends Controller
         }
 
 
-        dd($user->nombre_rol);
+       // dd($user->nombre_rol);
         /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
          * return ( $facultad);
          *}

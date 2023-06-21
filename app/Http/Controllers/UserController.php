@@ -57,7 +57,7 @@ class UserController extends Controller
        */
 
         /** definimos la variable usuario */
-        $user=auth()->user();
+        $user = auth()->user();
 
         /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();

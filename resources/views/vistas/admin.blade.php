@@ -52,6 +52,7 @@
                     @foreach($datos['facultad'] as $key => $value)
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                            <a href="{{ route('facultad.index') }}">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -60,13 +61,14 @@
                                               <h6> Facultad de {{$value->nombre}}</h6></div>
                                             <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $40,000</p></div>
                                         </div>
-                                        
+
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                         @endforeach
                     </div>

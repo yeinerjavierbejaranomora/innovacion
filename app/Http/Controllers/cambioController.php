@@ -72,7 +72,7 @@ class cambioController extends Controller
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->first();
         return $user->id_banner;
         /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */
-        if(Hash::check($request->password_actual,$user[0]->password)):
+        if(Hash::check($request->password_actual,$user->password)):
             /** Se realiza el update de la password si el id y el documento son iguales a los datos que vienen del formulario  */
             $cambioPass = User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password'=> bcrypt($request->password),'ingreso_plataforma'=>1]);
             /**si el update se hace correctamente se redirige al formulario de login */

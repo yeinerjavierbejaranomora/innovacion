@@ -12,6 +12,10 @@
                     Recuperar contraseña
                 </span>
 
+                <div>
+                        {{$error}}
+                </div>
+
                 <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner es requerido">
                     <span class="label-input100">ID Banner</span>
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
@@ -48,17 +52,18 @@
     </div>
 </div>
 
-<? if ($error == 'credenciales invalidos') : ?>
-    <script>
-        function validacion() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Usuario no encontrado!',
-                color: 'white',
-            })
-        }
-    </script>
-<? endif ?>
-
+<!--  if ($error == 'credenciales invalidos') : ?>
+        <script>
+            function validacion() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Usuario no encontrado!',
+                    color: 'white',
+                })
+            }
+        </script>
+        <? endif ?>
+    -->
+*/
 @endsection

@@ -154,9 +154,9 @@
                             <div class="card mb-4">
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                    <h5 class="my-3">{{ $user->nombre }}</h5>
+                                    <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1">  </p>
-                                    <p class="text-muted mb-4">{{ $facultad->nombre }}</p>
+                                    <p class="text-muted mb-4">{{ $datos->facultad }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button type="button" class="btn btn-outline-primary ms-1">Actualizar datos</button>
                                     </div>
@@ -172,7 +172,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $user->id_banner }}</p>
+                                            <p class="text-muted mb-0">{{ auth()->user()->id_banner }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -181,7 +181,7 @@
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $user->documento }}</p>
+                                            <p class="text-muted mb-0">{{auth()->user()->documento }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -190,7 +190,7 @@
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $user->email }}</p>
+                                            <p class="text-muted mb-0">{{auth()->user()->email }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -199,7 +199,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $roles}}</p>
+                                            <p class="text-muted mb-0">{{ $datos->roles}}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -208,7 +208,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$facultad->nombre }}</p>
+                                            <p class="text-muted mb-0">{{$datos->facultad }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -226,7 +226,7 @@
                                             <p class="mb-0">Estado</p>
                                         </div>
 
-                                        @if ($user->activo = 1)
+                                        @if (auth()->user()->activo = 1)
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">Activo</p>
                                         </div>

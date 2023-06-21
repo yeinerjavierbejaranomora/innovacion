@@ -119,7 +119,8 @@ class UserController extends Controller
              $nombre_programas=$consulta[0]->programa;   
              //dd($consulta[0]->programa);
         }
-       // dd($nombre_programas);
+
+        dd($nombre_programas);
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
             'facultad'=> $facultad->nombre,

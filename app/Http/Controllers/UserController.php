@@ -102,8 +102,8 @@ class UserController extends Controller
     }
 
     public function get_users(){
-        //$users = User::all();
-        $users =array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+        $users = User::all();
+        $users = json_encode($users);
         return $users;
 
     }
@@ -113,30 +113,18 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        if( $user->id_facultad!= NULL){
+         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first();
 
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-            $facultad = $facultad->nombre;
-
-            $programas = explode(";",$user->programa);
-            foreach ($programas as $key => $value) {
-                $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-                $nombre_programas[$value]=$consulta[0]->programa;   
-                //dd($consulta[0]->programa);
-            }
-    
-            // dd($nombre_programas);
-        
-    }
-    else{
-        $facultad =  $nombre_programas = NULL;
-    }
-    $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-
+         $programas = explode(";",$user->programa);
+         foreach ($programas as $key => $value) {
+             $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
+             // $nombre_programas[$value]=$consulta[0]->programa;
+             dd($consulta[0]->programa);
+        }
+         $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
-            'facultad'=> $facultad,
-            'rol'=> $roles[0]->nombreRol,
-            'programa'=> $nombre_programas
+            'facultad'=> $facultad->nombre,
+            'roles'=> $roles[0]->nombreRol
          );
 
         return view('vistas.perfil')->with('datos',$datos);

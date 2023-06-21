@@ -17,8 +17,8 @@ class cambioController extends Controller
     // * Método para acceder a la vista de cambio de contraseña *
     public function nueva($id)
     {
-        return decrypt($id);
-        return view('reestablecerpassword.nueva');
+        $id =decrypt($id);
+        return view('reestablecerpassword.nueva',['id'=>$id]);
     }
 
     // * Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos

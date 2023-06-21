@@ -134,7 +134,7 @@ class UserController extends Controller
 
          $datos=array(
             'facultad'=> $facultad,
-            'roles'=> $roles[0]->nombreRol,
+            'rol'=> $roles[0]->nombreRol,
             'programa'=> $nombre_programas
          );
 

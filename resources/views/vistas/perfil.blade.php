@@ -156,7 +156,7 @@
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1">  </p>
-                                    <p class="text-muted mb-4">{{ $datos->facultad }}</p>
+                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button type="button" class="btn btn-outline-primary ms-1">Actualizar datos</button>
                                     </div>
@@ -199,7 +199,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $datos->roles}}</p>
+                                            <p class="text-muted mb-0">{{ $datos['roles']}}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -208,7 +208,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$datos->facultad }}</p>
+                                            <p class="text-muted mb-0">{{$datos['facultad'] }}</p>
                                         </div>
                                     </div>
                                     <hr>

@@ -119,7 +119,11 @@ class UserController extends Controller
          $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-        return view('vistas.perfil', [['user'=>$user],['facultad'=>$facultad], ['roles'=>$roles[0]->nombreRol]], );
+         $datos=array(
+            'facultad'=> $facultad,
+            'roles'=> $roles[0]->nombreRol
+         );
+        return view('vistas.perfil')->with('datos',$datos);
     }
 
     public function actualizar(){

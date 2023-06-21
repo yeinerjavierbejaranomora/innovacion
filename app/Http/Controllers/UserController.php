@@ -116,7 +116,7 @@ class UserController extends Controller
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
          $programas = explode(";",$user->programa);
-         $nombre_programas = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
+         $nombre_programas[] = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
         

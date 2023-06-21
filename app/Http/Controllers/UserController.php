@@ -117,11 +117,10 @@ class UserController extends Controller
          
          $programas = explode(";",$user->programa);
          $nombre_programas = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
-         dd($nombre_programas);
 
          $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          
-        return view('vistas.perfil', compact('user'), compact('facultad'), compact('programas'),compact('rol'));
+        return view('vistas.perfil', compact('user'), compact('facultad'), compact('nombre_programas'),compact('rol'));
     }
 
     public function actualizar(){

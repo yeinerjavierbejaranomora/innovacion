@@ -121,7 +121,7 @@ class UserController extends Controller
             'facultad'=> $facultad->nombre,
             'roles'=> $roles[0]->nombreRol
          );
-         dd($datos);
+
         return view('vistas.perfil')->with('datos',$datos);
     }
 

@@ -9,7 +9,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">{{$datos['rol']}}</div>
+                <div class="sidebar-brand-text mx-3"></div>
             </a>
 
             <!-- Divider -->
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Perfil -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.perfil',['id'=>encrypt(auth()->user()->id)]) }}') }}">
+                <a class="nav-link" href="{{ route('user.perfil',['id'=>encrypt(auth()->user()->id)]) }}">
                     <i class="fas fa-key"></i>
                     <span>Perfil</span></a>
             </li>

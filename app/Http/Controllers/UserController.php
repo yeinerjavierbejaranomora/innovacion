@@ -108,19 +108,19 @@ class UserController extends Controller
 
     public function perfil($id){
         $id = decrypt($id);
-        
+
         $user = DB::table('users')->select('users.id_banner','users.documento',
         'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
          'users.programa','users.activo')->where('id','=',$id)->first();
          
-        dd($user);
-        $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user[0]->id_facultad); 
-        
-        $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user[0]->id_rol);
+         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
+         
+         $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->first();
+         
         return view('vistas.perfil',$user, $facultad, $rol);
     }
 
-    public function datos($id){
+    public function actualizar(){
         
     }
 

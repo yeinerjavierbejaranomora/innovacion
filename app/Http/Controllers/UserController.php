@@ -79,7 +79,7 @@ class UserController extends Controller
         }
 
 
-        var_dump($facultad);
+       return($facultad);
         exit;
         /** creamos el array con los datos necesarios */
         $datos=array(

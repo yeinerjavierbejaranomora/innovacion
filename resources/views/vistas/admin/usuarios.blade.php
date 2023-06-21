@@ -95,7 +95,25 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1],
+                },
+                {
+                    targets: [1],
+                    orderData: [1, 0],
+                },
+                {
+                    targets: [4],
+                    orderData: [4, 0],
+                },
+            ],
+        });
+    });
+</script>
 
 <!-- incluimos el footer -->
 @include('layout.footer')

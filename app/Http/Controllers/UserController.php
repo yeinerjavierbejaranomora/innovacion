@@ -107,7 +107,7 @@ return ($user);
 
     public function perfil($id){
         $id = decrypt($id);
-        
+
         $user = DB::table('users')->select('users.id_banner','users.documento',
         'users.nombre', 'users.email', 'users.id_rol', 'users.id_facultad',
          'users.programa','users.activo')->where('id','=',$id)->first();
@@ -119,7 +119,7 @@ return ($user);
         return view('vistas.perfil',$user, $facultad, $rol);
     }
 
-    public function datos($id){
+    public function actualizar(){
         
     }
 

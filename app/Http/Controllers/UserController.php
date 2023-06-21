@@ -112,19 +112,28 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
+        if( $user->id_facultad!= NULL){
 
-         $programas = explode(";",$user->programa);
-         foreach ($programas as $key => $value) {
-             $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             $nombre_programas[$value]=$consulta[0]->programa;   
-             //dd($consulta[0]->programa);
-        }
+            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
+            $facultad = $facultad->nombre;
 
-        // dd($nombre_programas);
-         $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
+            $programas = explode(";",$user->programa);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
+                $nombre_programas[$value]=$consulta[0]->programa;   
+                //dd($consulta[0]->programa);
+            }
+    
+            // dd($nombre_programas);
+        
+    }
+    else{
+        $facultad =  $nombre_programas = NULL;
+    }
+    $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
+
          $datos=array(
-            'facultad'=> $facultad->nombre,
+            'facultad'=> $facultad,
             'roles'=> $roles[0]->nombreRol,
             'programa'=> $nombre_programas
          );

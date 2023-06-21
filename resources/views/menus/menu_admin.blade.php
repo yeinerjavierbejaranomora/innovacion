@@ -9,7 +9,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">{{$rol}}</div>
+                <div class="sidebar-brand-text mx-3">{{$datos->rol}}</div>
             </a>
 
             <!-- Divider -->

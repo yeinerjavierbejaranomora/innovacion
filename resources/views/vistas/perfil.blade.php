@@ -154,9 +154,9 @@
                             <div class="card mb-4">
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                    <h5 class="my-3">Nombre Usuario</h5>
-                                    <p class="text-muted mb-1">Rol</p>
-                                    <p class="text-muted mb-4">Facultad</p>
+                                    <h5 class="my-3">{{ $user->nombre }}</h5>
+                                    <p class="text-muted mb-1"> {{  }}</p>
+                                    <p class="text-muted mb-4">{{ $facultad->nombre }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button type="button" class="btn btn-outline-primary ms-1">Actualizar datos</button>
                                     </div>
@@ -171,7 +171,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->id_banner }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -180,7 +180,7 @@
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->documento }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -189,7 +189,7 @@
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Ejemplo@ejemplo.com</p>
+                                            <p class="text-muted mb-0">{{ $user->email }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -207,7 +207,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{$facultad->nombre }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -216,7 +216,7 @@
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->programa }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -224,9 +224,15 @@
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Estado</p>
                                         </div>
+                                        @if ($user->activo = 1)
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Activo/Inactivo</p>
+                                            <p class="text-muted mb-0">Activo</p>
                                         </div>
+                                        @else
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">Inactivo</p>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -234,8 +240,7 @@
                     </div>
                 </div>
             </section>
-
-
-
-
-            @include('layout.footer')
+        </div>
+    </div>
+</div>
+@include('layout.footer')

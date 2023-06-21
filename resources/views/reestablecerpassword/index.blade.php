@@ -41,7 +41,7 @@
                 <br>
 
                 @if(\Session::get('error'))
-                <div class="alert alert-primary" style="color: white;" role="alert">
+                <div class="alert alert-primary" style="color: black;" role="alert">
                     {{\Session::get('error')}}
                 </div>
                 @endif

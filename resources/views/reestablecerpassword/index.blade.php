@@ -14,6 +14,7 @@
 
                 <div>
                     @if(!empty($error))
+
                     {{$error}}
                     @endif
                 </div>

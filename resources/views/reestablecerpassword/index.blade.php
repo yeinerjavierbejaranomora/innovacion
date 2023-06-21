@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<!--  if ($error == 'credenciales invalidos') : ?>
+<?if ($error == 'credenciales invalidos') : ?>
         <script>
             function validacion() {
                 Swal.fire({
@@ -66,6 +66,5 @@
             }
         </script>
         <? endif ?>
-    -->
 */
 @endsection

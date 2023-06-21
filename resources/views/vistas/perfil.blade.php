@@ -224,7 +224,15 @@
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Estado</p>
                                         </div>
-                                       
+                                        @if ($user->activo = 1)
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">Activo</p>
+                                        </div>
+                                        @endif
+                                        @else
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">Inactivo</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

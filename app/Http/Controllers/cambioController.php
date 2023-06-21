@@ -69,7 +69,7 @@ class cambioController extends Controller
 
     public function cambioSave(CambioPassRequest $request){
         /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
-        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->first();
+        $user = DB::table('users')->select('users.email','users.password','users.id_banner')->where('id','=',$request->id)->first();
         return $user->id_banner;
         /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */
         if(Hash::check($request->password_actual,$user->password)):

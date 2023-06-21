@@ -40,6 +40,7 @@
                 </div>
                 <br>
 
+                <!-- *Div que muestra un error en caso de que exista* -->
                 @if(\Session::get('error'))
                 <div class="alert alert-primary text-center" style="color: black;" role="alert">
                     {{\Session::get('error')}}
@@ -56,6 +57,7 @@
 </div>
 
 <!--
+    Sweet alert
 @if(\Session::get('error'))
 <script>
     function validacion() {

@@ -252,6 +252,5 @@
             </section>
         </div>
     </div>
+    @include('layout.footer')
 </div>
-</div>
-@include('layout.footer')

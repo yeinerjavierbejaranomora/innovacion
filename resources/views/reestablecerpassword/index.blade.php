@@ -12,12 +12,6 @@
                     Recuperar contraseña
                 </span>
 
-                <div>
-                    @if(\Session::get('error'))
-                    {{\Session::get('error')}}
-                    @endif
-                </div>
-
                 <div class="wrap-input100 validate-input m-b-23" data-validate="idBanner es requerido">
                     <span class="label-input100">ID Banner</span>
                     <input class="input100" type="number" name="idbanner" placeholder="ID Banner" id="idbanner">
@@ -43,6 +37,12 @@
                             Consultar
                         </button>
                     </div>
+                </div>
+
+                <div "alert alert-primary" role="alert">
+                    @if(\Session::get('error'))
+                    {{\Session::get('error')}}
+                    @endif
                 </div>
 
                 <div class="txt1 text-center p-t-54 p-b-20">

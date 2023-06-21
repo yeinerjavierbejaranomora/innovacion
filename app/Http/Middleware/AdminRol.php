@@ -16,7 +16,10 @@ class AdminRol
      */
     public function handle(Request $request, Closure $next)
     {
-        //return $next($request);
-        return auth()->user()->id_rol;
+        if(auth()->user()->id_rol == 9):
+            return $next($request);
+        else:
+            return redirect()->route('home.index');
+        endif;
     }
 }

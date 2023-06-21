@@ -38,14 +38,14 @@
                         </button>
                     </div>
                 </div>
-                    <br>
-                    <br>
-                    
+                <br>
+                <br>
+
+                @if(\Session::get('error'))
                 <div class="alert alert-primary" role="alert">
-                    @if(\Session::get('error'))
                     {{\Session::get('error')}}
-                    @endif
                 </div>
+                @endif
 
                 <div class="txt1 text-center p-t-54 p-b-20">
                     <h4> Universidad Iberoamericana</h4>
@@ -57,18 +57,18 @@
 </div>
 
 @if(\Session::get('error'))
-        <script>
-            function validacion() {
-                $("#miform").submit(function(e) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Usuario no encontrado!',
-                    color: 'white',
-                })
-            });
-        }
-        </script>
+<script>
+    function validacion() {
+        $("#miform").submit(function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario no encontrado!',
+                color: 'white',
+            })
+        });
+    }
+</script>
 @endif
 */
 @endsection

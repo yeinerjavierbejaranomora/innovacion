@@ -2,7 +2,7 @@
 
 @include('layout.header')
 
-@include('menus.menu_Estudiante')
+@include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
 

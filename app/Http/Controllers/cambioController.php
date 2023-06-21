@@ -33,7 +33,9 @@ class cambioController extends Controller
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
-
+        
+        /* Si encuentra el usuario en la base de datos le permite acceder al formulario para 
+        cambiar la contraseña */
             if ($consulta == '[]') {
                 return redirect()->route('cambio.index')->with('error','Credenciales invalidos!');
             } else {

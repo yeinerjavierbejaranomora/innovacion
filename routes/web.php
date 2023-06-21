@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group(function(){
 
     Route::get('/home','home')->middleware('auth')->name('home.index');
-
+    Route::get('/home/perfil', 'perfil')->middleware('auth')->name('user.perfil');
 });
 
 
@@ -61,4 +61,6 @@ Route::controller(cambioController::class)->group(function(){
     Route::get('/home/cambiopassword/{idbanner}','consultaCambio')->middleware('auth')->name('cambio.cambio');
     Route::post('/home/cambiopassword/','cambioSave')->middleware('auth')->name('cambio.cambiosave');
 });
+
+
 

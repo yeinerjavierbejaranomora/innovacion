@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class cambioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['only'=>['consultaCambio','cambioSave']]);
+    }
+    
     // * Método para acceder a la vista de reestablecer contraseña *
     public function index()
     {
@@ -59,16 +64,28 @@ class cambioController extends Controller
         }
     }
 
+    /** Funcicon para mostrar el formulario para cambiar la contraseña
+     * recibe como parametro el idBanner cifrado
+      */
     public function consultaCambio($idBanner){
+
+        /** Se decifra el idBanner */
         $idBanner = decrypt($idBanner);
+        /**Se realiaza la consulta para combrar que exita el usuario */
         $user = User::where('id_banner',$idBanner)->first();
+        /** Si es diferente al vacio lleva a la vista  */
         if($user != []):
             return view('reestablecerpassword.cambio');
+        /** En caso contrario redirige al inicio */
         else:
             return redirect()->route('home.index');
         endif;
     }
 
+    /** Funcion para realizar el update de la contraseña
+     * recibiendo los datos del formulario por medio del CambioPassRequest
+     * validando que se traigan datos y que las contraseñas nuevas coincidan
+     */
     public function cambioSave(CambioPassRequest $request){
         /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         $user = DB::table('users')->select('users.email','users.password','users.id_banner')->where('id','=',$request->id)->first();
@@ -80,9 +97,11 @@ class cambioController extends Controller
             if($cambioPass):
                 return redirect()->route('login.index');
             else:
+            /**si el update falla redirige nuevamente al formulario de cambio de contraseña */
                 return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Error al modificar la contraseña.']);
             endif;
         else:
+            /** si la contraseña actual no corresponde a la registrada en la DB, redirige al formulario de cambio de contraseña */
             return redirect()->route('cambio.cambio',['idbanner'=>encrypt($user->id_banner)])->withErrors(['errors'=>'Ingrese contraseña actual.']);
         endif;
     }

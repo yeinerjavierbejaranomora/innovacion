@@ -116,8 +116,8 @@ class UserController extends Controller
          $programas = explode(";",$user->programa);
          foreach ($programas as $key => $value) {
              $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             dd($consulta);
              // $nombre_programas[$value]=$consulta[0]->programa;   
+             dd($consulta->programa);
         }
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(

@@ -114,6 +114,7 @@ class UserController extends Controller
          'users.programa','users.activo')->where('id','=',$id)->first();
         
          $programa = DB::table('programas')->select('programas.programa')->where('id','=',$user->programa)->first(); 
+         dd($programa);
 
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          

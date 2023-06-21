@@ -31,17 +31,16 @@ class cambioController extends Controller
             ['email', '=', $request->correo],
             ['documento', '=', $request->documento]
             ])->get();
-            
+
             if ($consulta == '[]') {
-                $error = 'OK';
-                return view('reestablecerpassword.index')->$error;
+                return view('reestablecerpassword.index')->withErrors('error', 'OK');
             } else {
-            $id= $consulta[0]->id;    
+            $id= $consulta[0]->id;
             return view('reestablecerpassword.nueva',['id'=>$id]);
         }
     }
 
-    // * Método que actualiza la contraseña del usuario 
+    // * Métodod que actualiza la contraseña del usuario 
 
     public function actualizar(ActualizarPassRequest $request)
     {
@@ -56,6 +55,6 @@ class cambioController extends Controller
 
 
     public function consultaCambio($idBanner){
-        return $idBanner;
+        return decrypt($idBanner);
     }
 }

@@ -63,4 +63,8 @@ class cambioController extends Controller
             return redirect()->route('home.index');
         endif;
     }
+
+    public function cambioSave(CambioRequest $request){
+        dd($request->all());
+    }
 }

@@ -107,12 +107,15 @@ class UserController extends Controller
         return $users;
 
     }
-
+        // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
     public function perfil($id){
+
+        // *Inicialmente desencripta el id*
         $id = decrypt($id);
-
+        // *Definimos la variable usuario con todos sus datos*
         $user = auth()->user();
-
+        // *Hacemos la validación de si el usuario tiene o no facultad puesto que los administradores
+        // no la tienen*
         if( $user->id_facultad!= NULL){
 
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
@@ -122,11 +125,8 @@ class UserController extends Controller
             foreach ($programas as $key => $value) {
                 $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
                 $nombre_programas[$value]=$consulta[0]->programa;   
-                //dd($consulta[0]->programa);
             }
-    
-            // dd($nombre_programas);
-        
+         
     }
     else{
         $facultad =  $nombre_programas = NULL;
@@ -141,16 +141,9 @@ class UserController extends Controller
 
         return view('vistas.perfil')->with('datos',$datos);
     }
-
+        // *Método para actualizar los datos del usuario*
     public function actualizar(){
 
     }
-
-    public function facultad(){
-
-
-    }
-
-
 
 }

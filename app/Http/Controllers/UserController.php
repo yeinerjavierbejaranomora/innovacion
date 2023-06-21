@@ -72,7 +72,7 @@ class UserController extends Controller
             $facultad=DB::table('facultad')->where([['id','=',$user->id_facultad]])->get();
 
         }else{
-            
+
             /** si es super admin trae todas las facultades */
             $facultad=DB::table('facultad')->get();
 
@@ -82,27 +82,27 @@ class UserController extends Controller
            * return ( $facultad);
         *}
         */
-           
-       
+
+
         /** creamos el array con los datos necesarios */
         $datos=array(
             'rol'=>$nombre_rol,
             'facultad'=>$facultad
         );
-       
+
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas/'.$nombre_rol)->with('datos',$datos);
 
 
     }
     // funcion para traer todos los usuarios a la vista de administracion
-
     public function userView(){
         return view('vistas.admin.usuarios');
     }
 
     public function get_users(){
-
+        $users = User::all();
+        return $users;
 
     }
 
@@ -111,12 +111,12 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
-         
+         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first();
+
          $programas = explode(";",$user->programa);
          foreach ($programas as $key => $value) {
              $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             $nombre_programas[$value]=$consulta[0]->programa;   
+             $nombre_programas[$value]=$consulta[0]->programa;
              //dd($consulta[0]->programa);
         }
         dd($nombre_programas);
@@ -130,12 +130,12 @@ class UserController extends Controller
     }
 
     public function actualizar(){
-        
+
     }
 
     public function facultad(){
 
-        
+
     }
 
 

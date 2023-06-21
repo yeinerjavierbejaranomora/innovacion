@@ -251,4 +251,5 @@
         </div>
     </div>
 </div>
+<br>
 @include('layout.footer')

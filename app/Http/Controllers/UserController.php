@@ -77,7 +77,7 @@ class UserController extends Controller
             $facultad=DB::table('facultad')->get();
 
         }
-
+        return($user);
 
        return($facultad);
         exit;

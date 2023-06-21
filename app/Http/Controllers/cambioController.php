@@ -15,8 +15,9 @@ class cambioController extends Controller
         return view('reestablecerpassword.index');
     }
     // * Método para acceder a la vista de cambio de contraseña *
-    public function nueva()
+    public function nueva($id)
     {
+        return decrypt($id);
         return view('reestablecerpassword.nueva');
     }
 
@@ -36,8 +37,8 @@ class cambioController extends Controller
             if ($consulta == '[]') {
                 return redirect()->route('cambio.index')->with('error','Credenciales invalidos!');
             } else {
-            $id= $consulta[0]->id;
-            return view('reestablecerpassword.nueva',['id'=>$id]);
+            $id= encrypt($consulta[0]->id);
+            return redirect()->route('cambio.nueva',['id'=>$id]);
         }
     }
 

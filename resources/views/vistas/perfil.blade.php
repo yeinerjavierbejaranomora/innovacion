@@ -199,7 +199,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $datos['roles']}}</p>
+                                            <p class="text-muted mb-0">{{ $datos['rol']}}</p>
                                         </div>
                                     </div>
                                     <hr>

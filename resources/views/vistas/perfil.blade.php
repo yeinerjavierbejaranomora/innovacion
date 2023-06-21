@@ -171,7 +171,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->id_banner }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -180,7 +180,7 @@
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->documento }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -189,7 +189,7 @@
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Ejemplo@ejemplo.com</p>
+                                            <p class="text-muted mb-0">{{ $user->email }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -216,7 +216,7 @@
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">...</p>
+                                            <p class="text-muted mb-0">{{ $user->programa }}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -225,7 +225,7 @@
                                             <p class="mb-0">Estado</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Activo/Inactivo</p>
+                                            <p class="text-muted mb-0">{{ $user->activo }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -210,6 +210,7 @@
                                             <p class="text-muted mb-0">...</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Programas</p>
@@ -218,6 +219,7 @@
                                             <p class="text-muted mb-0">...</p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Estado</p>

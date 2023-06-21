@@ -41,10 +41,11 @@ class cambioController extends Controller
         }
     }
 
-    // * Métodod que actualiza la contraseña del usuario
+    // * Método que actualiza la contraseña del usuario
 
     public function actualizar(ActualizarPassRequest $request)
     {
+        dd($request->all());
         $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) {
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');

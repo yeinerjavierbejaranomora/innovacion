@@ -35,7 +35,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="buttons.html">Usuarios</a>
+                        <a class="collapse-item" href="{{ route('admin.users') }}">Usuarios</a>
                         <a class="collapse-item" href="cards.html">Roles</a>
 
                     </div>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Perfil -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.perfil',['idbanner'=>encrypt(auth()->user()->id_banner)]) }}') }}">
+                <a class="nav-link" href="{{ route('user.perfil',['id'=>encrypt(auth()->user()->id)]) }}') }}">
                     <i class="fas fa-key"></i>
                     <span>Perfil</span></a>
             </li>

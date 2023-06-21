@@ -78,9 +78,10 @@ class UserController extends Controller
 
         }
 
-        if(auth()->user()->nombre=="yeiner javier bejarano mora"){
-            return ( $facultad);
-        }
+       /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
+           * return ( $facultad);
+        *}
+        */
            
        
         /** creamos el array con los datos necesarios */

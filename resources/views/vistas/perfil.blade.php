@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-8">
                             <div class="card mb-4">
                                 <div class="card-body">
@@ -208,7 +208,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$facultad[0]->nombre }}</p>
+                                            <p class="text-muted mb-0">{{$facultad->nombre }}</p>
                                         </div>
                                     </div>
                                     <hr>

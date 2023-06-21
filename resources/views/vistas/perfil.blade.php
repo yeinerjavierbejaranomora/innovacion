@@ -228,11 +228,11 @@
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">Activo</p>
                                         </div>
-                                        @endif
                                         @else
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">Inactivo</p>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

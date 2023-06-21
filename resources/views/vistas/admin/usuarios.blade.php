@@ -83,14 +83,7 @@
     $(document).ready(function() {
         $('#example').DataTable({
             ajax: '{{ route('admin.getusers') }}',
-        columns: [
-            { data: 'ib_banner' },
-            { data: 'nombre' },
-            { data: 'documento' },
-            { data: 'email' },
-            { data: 'rol' },
-            { data: 'salary' },
-        ],
+        
         });
     });
 </script>

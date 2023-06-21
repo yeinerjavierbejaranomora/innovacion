@@ -58,5 +58,6 @@ Route::controller(cambioController::class)->group(function(){
     Route::post('/confirmar','consultar')->name('cambio.consultar');
     Route::post('/confirmar/nueva','actualizar')->name('cambio.actualizar');
     Route::get('/home/cambiopassword/{idbanner}','consultaCambio')->middleware('auth')->name('cambio.cambio');
+    Route::post('/home/cambiopassword/','cambioSave')->middleware('auth')->name('cambio.cambiosave');
 });
 

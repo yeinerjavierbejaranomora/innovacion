@@ -96,13 +96,14 @@ class UserController extends Controller
 
     }
     // funcion para traer todos los usuarios a la vista de administracion
+
     public function userView(){
         return view('vistas.admin.usuarios');
     }
 
     public function get_users(){
-        $users = User::all();
-        return $users;
+
+
     }
 
     public function perfil($id){
@@ -115,10 +116,9 @@ class UserController extends Controller
          $programas = explode(";",$user->programa);
          foreach ($programas as $key => $value) {
              $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-             $nombre_programas[$value]=$consulta[0]->programa;
-             //dd($consulta[0]->programa);
+             // $nombre_programas[$value]=$consulta[0]->programa;
+             dd($consulta[0]->programa);
         }
-        dd($nombre_programas);
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
          $datos=array(
             'facultad'=> $facultad->nombre,

@@ -115,7 +115,7 @@ class UserController extends Controller
          $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first(); 
          
          $rol = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->first();
-         return $facultad;
+         return $rol;
         // return view('vistas.perfil',$user, $facultad, $rol);
     }
 

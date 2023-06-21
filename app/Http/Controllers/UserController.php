@@ -119,8 +119,8 @@ class UserController extends Controller
          $nombre_programas = DB::table('programas')->select('programas.programa')->where('id','=',$programas)->get();   
 
          $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-         
-        return view('vistas.perfil', compact('user'),  compact('facultad'), 'roles');
+        
+        return view('vistas.perfil', compact('user'), compact('facultad'), compact("roles"));
     }
 
     public function actualizar(){

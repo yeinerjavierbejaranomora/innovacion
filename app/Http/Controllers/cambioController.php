@@ -51,7 +51,7 @@ class cambioController extends Controller
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
         }
         else {
-            return redirect()->route('confirmar.index')-> with('error', 'Cambio no valido!');
+            return redirect()->route('cambio.nueva')-> with('error', 'Cambio no valido!');
         }
     }
 

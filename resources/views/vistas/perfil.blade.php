@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-
+                            <!--Datos del Usuario-->
                         <div class="col-lg-8">
                             <div class="card mb-4">
                                 <div class="card-body">
@@ -218,7 +218,9 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
+                                                <!--Validación para saber si el usuario tiene algún programa-->
                                                 @if($datos['programa'])
+                                                <!--Ciclo para recorrer el array de programas e imprimirlos en pantalla-->
                                                 @foreach ($datos['programa'] as $key => $value)
                                                 {{$value}} <br>
                                                 @endforeach
@@ -232,7 +234,7 @@
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Estado</p>
                                         </div>
-
+                                        <!--Validación para verificar si el usuario se encuentra activo o no-->
                                         @if (auth()->user()->activo = 1)
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">Activo</p>

@@ -33,7 +33,7 @@
 					</div>
 					
 					<br>
-					<div class="justify-content-center text-align-center">
+					<div class="justify-content-center text-center">
 						<a href="{{ route('cambio.index') }}" class="link-primary">¿Oldivaste tu contraseña?</a>
 					</div>
 

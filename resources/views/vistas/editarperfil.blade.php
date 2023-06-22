@@ -263,7 +263,7 @@
     roles();
 
     function roles() {
-        rol_actual = '{{auth()->user()->id_facultad}}';
+        rol_actual = '{{auth()->user()->id_rol}}';
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -272,7 +272,7 @@
             method: 'get',
             success: function(data) {
                 data.forEach(rol => {
-                    $('#rol').append(`<option ${roles.nombreRol == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`);
+                    $('#rol').append(`<option ${roles.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`);
                 });
             }
         })

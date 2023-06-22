@@ -159,7 +159,9 @@
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <!--Botón que permite actualizar los datos del Usuario-->
-                                        <button type="button" class="btn btn-outline-primary ms-1" href="{{ route('user.editar',['id'=>encrypt(auth()->user()->id)]) }}">Actualizar datos</button>
+                                        <a href="{{ route('user.editar',['id'=>encrypt(auth()->user()->id)]) }}">
+                                            <button type="button" class="btn btn-outline-primary ms-1">Actualizar datos</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

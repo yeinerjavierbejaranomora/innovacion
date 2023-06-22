@@ -155,7 +155,7 @@ class UserController extends Controller
     // *Método para actualizar los datos del usuario*
     public function editar($id)
     {
-        return view()
+        return view('vistas.editar');
     }
 
     ///** funcion para cargar vistas de facultades */

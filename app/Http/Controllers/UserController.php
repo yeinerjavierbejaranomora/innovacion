@@ -195,10 +195,10 @@ class UserController extends Controller
     }
 
     // *Método que actualiza en la base de datos la edición del usuario
-    public function actualizar($id)
+    public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
-        
+        dd($request);
     }
 
     ///** funcion para cargar vistas de facultades */

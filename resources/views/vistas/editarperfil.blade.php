@@ -162,6 +162,8 @@
                         <div class="col-lg-8">
                             <div class="card mb-4">
                                 <form action="{{ route('user.actualizar',['id'=>encrypt(auth()->user()->id)]) }}" method="post" id="miForm">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

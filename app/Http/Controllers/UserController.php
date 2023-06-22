@@ -42,46 +42,45 @@ class UserController extends Controller
     }
 
     /// cargamos la vista dependiendo el usuario
-    public function home(){
+    public function home()
+    {
 
-       //return auth()->user()->id;
-       // redirect()->route('login.home');
+        //return auth()->user()->id;
+        // redirect()->route('login.home');
 
-       /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
+        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
         /** roles de usuario
-            *Decano       = 1
-            *Director     = 2
-            *Coordinador  = 3
-            *Lider        = 4
-            *Docente      = 5
-            *Estudiante   = 6
-       */
+         *Decano       = 1
+         *Director     = 2
+         *Coordinador  = 3
+         *Lider        = 4
+         *Docente      = 5
+         *Estudiante   = 6
+         */
 
         /** definimos la variable usuario */
 
         $user = auth()->user();
 
         /// traemos los roles de la base de datos para poder cargar la vista
-        $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
 
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
-        auth()->user()->nombre_rol=$nombre_rol;
+        auth()->user()->nombre_rol = $nombre_rol;
         /** traemos las facultades del sistema  */
-        if(!empty($user->id_facultad)){
+        if (!empty($user->id_facultad)) {
 
             /** trae la facultad asignada */
-            $facultad=DB::table('facultad')->where([['id','=',$user->id_facultad]])->get();
-
-        }else{
+            $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
+        } else {
 
             /** si es super admin trae todas las facultades */
-            $facultad=DB::table('facultad')->get();
-
+            $facultad = DB::table('facultad')->get();
         }
 
 
-       // dd($user->nombre_rol);
+        // dd($user->nombre_rol);
         /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
          * return ( $facultad);
          *}
@@ -89,72 +88,81 @@ class UserController extends Controller
 
 
         /** creamos el array con los datos necesarios */
-        $datos=array(
-            'rol'=>$nombre_rol,
-            'facultad'=>$facultad
+        $datos = array(
+            'rol' => $nombre_rol,
+            'facultad' => $facultad
         );
 
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas/'.$nombre_rol)->with('datos',$datos);
-
-
+        return view('vistas/' . $nombre_rol)->with('datos', $datos);
     }
 
     // funcion para traer todos los usuarios a la vista de administracion
 
     public function userView(Request $request)
     {
-        if($request->ajax()):
+        if ($request->ajax()) :
             return datatables()->of(User::All())->toJson();
         endif;
         return view('vistas.admin.usuarios');
     }
 
-    public function get_users(){
+    public function get_users()
+    {
         $users = User::all();
         $users = json_encode($users);
         return $users;
-
     }
 
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
-    public function perfil($id){
+    public function perfil($id)
+    {
         $id = decrypt($id);
 
         $user = auth()->user();
 
-        if( $user->id_facultad!= NULL){
+        if ($user->id_facultad != NULL) {
+            $this->getfacultadyprograma($id);
+        } else {
+            $facultad =  $nombre_programas = NULL;
+        }
+        
+        $this->getrol($id);
 
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id','=',$user->id_facultad)->first();
-            $facultad = $facultad->nombre;
+        $datos = array(
+            'facultad' => $facultad,
+            'rol' => $roles[0]->nombreRol,
+            'programa' => $nombre_programas
+        );
 
-            $programas = explode(";",$user->programa);
-            foreach ($programas as $key => $value) {
-                $consulta = DB::table('programas')->select('programa')->where('id','=',$value)->get();
-                $nombre_programas[$value]=$consulta[0]->programa;
-                //dd($consulta[0]->programa);
-            }
-
-            // dd($nombre_programas);
-
-    }
-    else{
-        $facultad =  $nombre_programas = NULL;
-    }
-    $roles = DB::table('roles')->select('roles.nombreRol')->where('id','=',$user->id_rol)->get();
-
-         $datos=array(
-            'facultad'=> $facultad,
-            'rol'=> $roles[0]->nombreRol,
-            'programa'=> $nombre_programas
-         );
-         
-        return view('vistas.perfil')->with('datos',$datos);
+        return view('vistas.perfil')->with('datos', $datos);
     }
 
-    public function getfacultadyrol(){
 
+    // *Función que captura la facultad y el programa del usuario
+    public function getfacultadyprograma($id)
+    {
+        $user = auth()->user();
+        $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
+        $facultad = $facultad->nombre;
+
+        $programas = explode(";", $user->programa);
+        foreach ($programas as $key => $value) {
+            $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+            $nombre_programas[$value] = $consulta[0]->programa;
+        }
+        return ;
     }
+
+    // *Función que captura el rol del usuario
+
+    public function getrol($id)
+    {
+        $user = auth()->user();
+        $roles = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $user->id_rol)->get();
+        return $roles;
+    }
+
 
     // *Método para actualizar los datos del usuario*
     public function editar($id)
@@ -164,9 +172,9 @@ class UserController extends Controller
     }
 
     ///** funcion para cargar vistas de facultades */
-    public function facultad(){
+    public function facultad()
+    {
         dd(auth()->user());
         return auth()->user()->nombre;
     }
-
 }

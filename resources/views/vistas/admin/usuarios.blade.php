@@ -87,8 +87,6 @@
             ajax: {
                 url: "{{ route('admin.getusers') }}",
                 type: "POST",
-                url: "{{ route('admin.getusers') }}",
-                type: "POST",
                 contentType: "application/json",
                 data: function(d) {
                     return JSON.stringify(d)

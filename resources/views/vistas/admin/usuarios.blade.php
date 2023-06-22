@@ -86,11 +86,11 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('admin.getusers') }}",
-                type: "POST",
+                /*type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d.data)
-                },
+                    return JSON.stringify(d)
+                },*/
                 //dataSrc: ''
             },
             columns: [{

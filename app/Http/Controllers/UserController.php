@@ -112,7 +112,9 @@ class UserController extends Controller
     {
         $users = User::all();
         $users = json_encode($users);
-        return $users;
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $users));
+        //return $users;
     }
 
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro

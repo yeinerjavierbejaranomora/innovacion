@@ -31,7 +31,7 @@ Route::controller(UserController::class)->group(function(){
     /** cuando el login es correcto y existe la sesion del usuario va a la pagina de inicio  */
     Route::get('/home','home')->middleware('auth')->name('home.index');
     /** para cargar las vistas predefinidas en la facultad */
-    Route::get('/home/facultad/','facultad')->middleware('auth')->name('facultad.index');
+    Route::get('/home/facultad/{$id}','facultad')->middleware('auth')->name('facultad.index');
     /** cargamos la vista del perfil del usuario */
     Route::get('/home/perfil/{id}', 'perfil')->middleware('auth')->name('user.perfil');
     /** cargamos la vista de administracion de usuarios */

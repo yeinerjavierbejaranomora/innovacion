@@ -188,7 +188,7 @@
                                                 <p class="mb-0">Email</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="email" class="form-control" name="nuevoemail"value="{{auth()->user()->email }}"></p>
+                                                <p class="text-muted mb-0"><input type="email" class="form-control" name="nuevoemail" value="{{auth()->user()->email }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -197,7 +197,11 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="text" class="form-control" name="nuevorol" id="rol" value="{{ $datos['rol']}}"></p>
+                                                <p class="text-muted mb-0">
+                                                    <select class="form-select" name="id_rol" id="rol">
+                                                        <option value="">"{{ $datos['rol']}}"></option>
+                                                    </select>
+                                                </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -206,7 +210,7 @@
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select form-select-lg mb-3" name="id_facultad" id="facultades">
-                                                
+
                                             </select>
                                         </div>
                                         <hr>
@@ -214,7 +218,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Programas</p>
                                             </div>
-                                            <div class="col-sm-9 form-check" >
+                                            <div class="col-sm-9 form-check">
                                                 <div id="programas"></div>
                                             </div>
                                         </div>
@@ -257,6 +261,7 @@
 <script>
     facultades();
     roles();
+
     function roles() {
         $.ajax({
             headers: {
@@ -273,7 +278,7 @@
     }
     //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
-        id_facultad ='{{auth()->user()->id_facultad}}';
+        id_facultad = '{{auth()->user()->id_facultad}}';
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

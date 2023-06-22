@@ -203,9 +203,9 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="text" class="form-control" value="{{$datos['facultad'] }}" id="facultades"></p>
-                                            </div>
+                                            <select class="form-select" name="id_facultad" id="facultades">
+                                                <option value="">Seleccione la facultad</option>
+                                            </select>
                                         </div>
                                         <hr>
                                         <div class="row">
@@ -236,10 +236,10 @@
                                             </label>
                                             @endif
                                         </div>
-                                            <br>
-                                            <div class="d-flex justify-content-center mb-2">
-                                                <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
-                                            </div>
+                                        <br>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -253,6 +253,22 @@
 </div>
 
 <script>
+    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                });
+            }
+        });
+    }
+
     $('#facultades').change(function() {
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/

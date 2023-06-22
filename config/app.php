@@ -179,7 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /**Yara Datatable Provideres */
-        Yajra\DataTables\DataTablesServiceProvider::class,
+        //Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 

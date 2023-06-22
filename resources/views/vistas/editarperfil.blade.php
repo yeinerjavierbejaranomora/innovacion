@@ -154,9 +154,7 @@
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> </p>
                                     <p class="text-muted mb-4"></p>
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <button type="button" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -214,7 +212,7 @@
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
-                                        <div id="programas"></div>
+                                            <div id="programas"></div>
                                         </div>
                                     </div>
                                     <hr>
@@ -232,11 +230,14 @@
                                         </div>
                                         @else
                                         <input class="form-check-input" type="checkbox" value="" id="Checkbox">
-                                            <label class="form-check-label" for="Checkbox">
-                                                Activo
-                                            </label>
+                                        <label class="form-check-label" for="Checkbox">
+                                            Activo
+                                        </label>
                                         @endif
 
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +251,7 @@
 </div>
 
 <script>
-$('#facultades').change(function() {
+    $('#facultades').change(function() {
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {
@@ -287,5 +288,4 @@ $('#facultades').change(function() {
             facultades.prop('disabled', false)
         }
     })
-
 </script>

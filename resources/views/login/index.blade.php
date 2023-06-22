@@ -34,7 +34,7 @@
 					
 					<br>
 					<div class="justify-content-center text-center">
-						<a href="{{ route('cambio.index') }}" class="link-primary">¿Oldivaste tu contraseña?</a>
+						<a href="{{ route('cambio.index') }}" class="link-primary">¿Olvidaste tu contraseña?</a>
 					</div>
 
 					<div class="txt1 text-center p-t-54 p-b-20">

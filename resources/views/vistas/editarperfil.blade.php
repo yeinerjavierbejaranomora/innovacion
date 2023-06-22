@@ -197,11 +197,9 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0">
                                                     <select class="form-select" name="id_rol" id="rol">
                                                         <option value=""></option>
-                                                    </select>
-                                                </p>
+                                                    </select>                                           
                                             </div>
                                         </div>
                                         <hr>

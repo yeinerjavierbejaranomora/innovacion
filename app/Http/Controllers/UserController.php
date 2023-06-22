@@ -169,7 +169,16 @@ class UserController extends Controller
     public function editar($id)
     {
         $id = decrypt($id);
-        return view('vistas.editarperfil');
+        list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
+        $roles = $this->getrol($id);
+
+        $datos = array(
+            'facultad' => $facultad,
+            'rol' => $roles[0]->nombreRol,
+            'programa' => $nombre_programas
+        );
+
+        return view('vistas.editarperfil')->with('datos', $datos);
     }
 
     ///** funcion para cargar vistas de facultades */

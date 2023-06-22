@@ -196,7 +196,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text"></p>
+                                            <p class="text-muted mb-0"><input type="text" value="{{ $datos['rol']}}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -205,7 +205,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text"></p>
+                                            <p class="text-muted mb-0"><input type="text" value="{{$datos['facultad'] }}"></p>
                                         </div>
                                     </div>
                                     <hr>

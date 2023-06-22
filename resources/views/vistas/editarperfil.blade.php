@@ -196,7 +196,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Rol</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col mb-3">
                                                     <select class="form-select" name="id_rol" id="rol">
                                                         <option value=""></option>
                                                     </select>                                           

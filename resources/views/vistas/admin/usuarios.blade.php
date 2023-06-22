@@ -89,7 +89,7 @@
                 type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d)
+                    return JSON.stringify(d.data)
                 },
                 //dataSrc: ''
             },

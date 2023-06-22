@@ -204,7 +204,7 @@ class UserController extends Controller
                 ['documento', '=', $request->nuevodocumento],
                 ['activo','=', $request->estado],
                 ])->where('id','=',$id->id);
-        $update = DB::table()
+        $update = DB::table();
 
     }
 

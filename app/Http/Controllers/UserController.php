@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Yajra\DataTables\DataTables;
+// use Yajra\DataTables\DataTables;
 
 
 /** campos de usuario auth()->user()

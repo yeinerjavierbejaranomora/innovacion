@@ -119,7 +119,6 @@ class UserController extends Controller
         $id = decrypt($id);
 
         $user = auth()->user();
-        dd($user->nombre_rol);
 
         if( $user->id_facultad!= NULL){
 
@@ -150,15 +149,14 @@ class UserController extends Controller
         return view('vistas.perfil')->with('datos',$datos);
     }
 
-    
-
-    public function actualizar(){
+    public function getfacultadyrol(){
 
     }
 
     // *Método para actualizar los datos del usuario*
     public function editar($id)
     {
+        $id = decrypt($id);
         return view('vistas.editarperfil');
     }
 

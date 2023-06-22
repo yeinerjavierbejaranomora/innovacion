@@ -80,16 +80,6 @@
 </a>
 
 <script>
-    $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.roles') }}",
-            method: 'get',
-            success: function(data) {
-                console.log(data);
-            }
-    })
     $(document).ready(function() {
         $('#example').DataTable({
             processing: true,
@@ -104,7 +94,7 @@
                     {data: 'rol', name: 'id_rol'},
                 ],
 
-                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
     });
 </script>

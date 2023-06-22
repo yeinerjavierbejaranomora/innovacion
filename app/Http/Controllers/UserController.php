@@ -110,7 +110,7 @@ class UserController extends Controller
 
     public function get_users()
     {
-        $users = User::all()->toJson();
+        $users = User::all();
         $users = json_encode($users);
         return $users;
     }

@@ -204,7 +204,7 @@
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select form-select-lg mb-3" id="facultades">
-                                                <option selected>{{ $datos['facultad'] }}</option>
+                                                
                                             </select>
                                         </div>
                                         <hr>
@@ -256,6 +256,7 @@
     facultades();
     //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
+        id_facultad ='{{auth()->user()->id_facultad}}';
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -264,13 +265,13 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#facultades').append(`<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`);
                 });
             }
         });
     }
 
-    $('#facultades').change(function() {
+    $('#facultades').each(function() {
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {

@@ -204,7 +204,7 @@
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select" name="id_facultad" id="facultades">
-                                                <option value="">Seleccione la facultad</option>
+                                                <option selected>{{ $datos['facultad'] }}</option>
                                             </select>
                                         </div>
                                         <hr>

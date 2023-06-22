@@ -170,7 +170,7 @@
                                                 <p class="mb-0">Id Banner</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"> <input type="text" class="form-control" value="{{ auth()->user()->id_banner }}"></p>
+                                                <p class="text-muted mb-0"> <input type="text" class="form-control" name="nuevoid" value="{{ auth()->user()->id_banner }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -179,7 +179,7 @@
                                                 <p class="mb-0">Documento de identidad</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="number" class="form-control" value="{{auth()->user()->documento }}"></p>
+                                                <p class="text-muted mb-0"><input type="number" class="form-control" name="nuevodocumento" value="{{auth()->user()->documento }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -188,7 +188,7 @@
                                                 <p class="mb-0">Email</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="email" class="form-control" value="{{auth()->user()->email }}"></p>
+                                                <p class="text-muted mb-0"><input type="email" class="form-control" name="nuevoemail"value="{{auth()->user()->email }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -197,7 +197,7 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="text" class="form-control" value="{{ $datos['rol']}}"></p>
+                                                <p class="text-muted mb-0"><input type="text" class="form-control" name="nuevorol" id="rol" value="{{ $datos['rol']}}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -226,13 +226,13 @@
                                             <!--Validación para verificar si el usuario se encuentra activo o no-->
                                             @if (auth()->user()->activo = 1)
                                             <div class="col-sm-9">
-                                                <input class="form-check-input" type="checkbox" value="" id="Checkbox" checked>
+                                                <input class="form-check-input" type="checkbox" value="" name="estado" id="Checkbox" checked>
                                                 <label class="form-check-label" for="Checkbox">
                                                     Activo
                                                 </label>
                                             </div>
                                             @else
-                                            <input class="form-check-input" type="checkbox" value="" id="Checkbox">
+                                            <input class="form-check-input" type="checkbox" value="" name="estado" id="Checkbox">
                                             <label class="form-check-label" for="Checkbox">
                                                 Activo
                                             </label>
@@ -256,6 +256,21 @@
 
 <script>
     facultades();
+    roles();
+    function roles() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.roles') }}",
+            method: 'get',
+            success: function(data) {
+                data.forEach(rol => {
+                    $('#rol').append(`<option  value="${rol.id}">${rol.nombreRol}</option>`);
+                });
+            }
+        })
+    }
     //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
         id_facultad ='{{auth()->user()->id_facultad}}';

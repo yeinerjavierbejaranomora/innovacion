@@ -178,7 +178,7 @@ class UserController extends Controller
     }
 
 
-    // *Método para actualizar los datos del usuario*
+    // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id)
     {
         $id = decrypt($id);
@@ -192,6 +192,13 @@ class UserController extends Controller
         );
 
         return view('vistas.editarperfil')->with('datos', $datos);
+    }
+
+    // *Método que actualiza en la base de datos la edición del usuario
+    public function actualizar($id)
+    {
+        $id = decrypt($id);
+        
     }
 
     ///** funcion para cargar vistas de facultades */

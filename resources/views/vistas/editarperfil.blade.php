@@ -161,7 +161,7 @@
                         <!--Datos del Usuario-->
                         <div class="col-lg-8">
                             <div class="card mb-4">
-                                <form action="">
+                                <form action="{{ route('user.actualizar',['id'=>encrypt(auth()->user()->id)]) }}" method="post" id="miForm">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -272,7 +272,6 @@
     }
 
     $('#facultades').each(function() {
-        alert("{{auth()->user()->id_facultad}}");
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {

@@ -34,8 +34,11 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/facultad/','facultad')->middleware('auth')->name('facultad.index');
     /** cargamos la vista del perfil del usuario */
     Route::get('/home/perfil/{id}', 'perfil')->middleware('auth')->name('user.perfil');
-    /** cargamos la vista de administracion de usuarios */
+    /** cargamos la vista para editar los datos del usuario */
     Route::get('/home/editar/{id}', 'editar')->middleware('auth')->name('user.editar');
+    /** actualizar los datos del usuario */
+    Route::get('/home/actualizar/{id}', 'actualizar')->middleware('auth')->name('user.actualizar');
+    /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     /** cargamos ña vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');

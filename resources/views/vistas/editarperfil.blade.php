@@ -198,7 +198,6 @@
                                             </div>
                                             <div class="col mb-3">
                                                     <select class="form-select" name="id_rol" id="rol">
-                                                        <option value=""></option>
                                                     </select>                                           
                                             </div>
                                         </div>
@@ -207,9 +206,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <select class="form-select " name="id_facultad" id="facultades">
-
-                                            </select>
+                                            <select class="form-select" name="id_facultad" id="facultades"></select>
                                         </div>
                                         <hr>
                                         <div class="row">

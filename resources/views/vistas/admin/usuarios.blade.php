@@ -97,6 +97,7 @@
                     return JSON.stringify(d)
                 },
                 dataSrc: 'result.data'*/
+                dataSrc: 'cellarViews.cellarView',
             },
             columns: [{
                     data: 'id_banner'

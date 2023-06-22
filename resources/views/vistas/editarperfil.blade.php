@@ -5,9 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-
-
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -158,8 +155,7 @@
                                     <p class="text-muted mb-1"> </p>
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     <div class="d-flex justify-content-center mb-2">
-                                        <!--Botón que permite actualizar los datos del Usuario-->
-                                        <button type="button" class="btn btn-outline-primary ms-1" href="{{ route('user.editar',['id'=>encrypt(auth()->user()->id)]) }}">Actualizar datos</button>
+                                        <button type="button" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +169,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ auth()->user()->id_banner }}</p>
+                                            <p class="text-muted mb-0"> <input type="text">{{ auth()->user()->id_banner }}</p>
                                         </div>
                                     </div>
                                     <hr>

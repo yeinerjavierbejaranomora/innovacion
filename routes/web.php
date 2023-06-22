@@ -30,8 +30,10 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home','home')->middleware('auth')->name('home.index');
     Route::get('/home/facultad/','facultad')->middleware('auth')->name('facultad.index');
     Route::get('/home/perfil/{id}', 'perfil')->middleware('auth')->name('user.perfil');
+    Route::get('/home/editar/{id}', 'editar')->middleware('auth')->name('user.editar');
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
+
 });
 
 

@@ -81,18 +81,18 @@
 
 <script>
     $(document).ready(function() {
-        $data = $.post('{{ route('admin.getusers') }}',function(data){
-            console.log(data);
-        })
         $('#example').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.getusers') }}",
-                method: "POST",
-                contentType: "application/json",
+
+
+            url: "{{ route('admin.getusers') }}",
+                /*type: "POST",
+                contentType: "application/json",*/
                 data: function(d) {
-                    console.log(JSON.stringify(d))
+                    console.log(JSON.stringify(d));
+                    return JSON.stringify(d)
                 },
                 dataSrc: 'result.data'
             },

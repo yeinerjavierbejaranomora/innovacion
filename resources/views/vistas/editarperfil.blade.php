@@ -153,7 +153,7 @@
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> </p>
-                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                                    <p class="text-muted mb-4"></p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button type="button" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
                                     </div>

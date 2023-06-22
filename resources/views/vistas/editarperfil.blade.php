@@ -300,7 +300,7 @@
         if ($(this).val() != '') {
             //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
             var formData = new FormData();
-            dd(formData);
+            var_dump(formData);
             //* Se añade el par clave/valor con el valor del select/
             formData.append('idfacultad', facultades.val());
             //* Se envia el id de facultad pormedio de ajax para recibir los programas relacionados al id enviado/

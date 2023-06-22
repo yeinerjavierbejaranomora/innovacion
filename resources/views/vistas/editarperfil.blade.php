@@ -204,7 +204,7 @@
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select form-select-lg mb-3" id="facultades">
-                                                <option selected>{{ $datos['facultad'] }}</option>
+                                                
                                             </select>
                                         </div>
                                         <hr>
@@ -265,7 +265,6 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-
                     $('#facultades').append(`<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`);
                 });
             }

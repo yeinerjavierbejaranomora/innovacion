@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                         </div>
-                            <!--Datos del Usuario-->
+                        <!--Datos del Usuario-->
                         <div class="col-lg-8">
                             <div class="card mb-4">
                                 <div class="card-body">
@@ -215,7 +215,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
-                                               <input type="text">
+                                                <input type="text">
                                             </p>
 
                                         </div>
@@ -228,11 +228,14 @@
                                         <!--Validación para verificar si el usuario se encuentra activo o no-->
                                         @if (auth()->user()->activo = 1)
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="checked">Activo</p>
+                                            <input class="form-check-input" type="checkbox" value="" id="Checkbox">
+                                            <label class="form-check-label" for="Checkbox">
+                                                Activo
+                                            </label>
                                         </div>
                                         @else
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="check">Activo</p>
+                                            <p class="text-muted mb-0"><input type="checkbox">Activo</p>
                                         </div>
                                         @endif
 

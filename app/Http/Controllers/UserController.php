@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Datatables;
 
 
 /** campos de usuario auth()->user()
@@ -101,8 +102,8 @@ class UserController extends Controller
 
     public function userView(Request $request)
     {
-        if ($request->ajax()) :
-            return datatables()->of(User::All())->toJson();
+        if($request->ajax()):
+            return Datatables::of(User::All())->toJson();
         endif;
         return view('vistas.admin.usuarios');
     }
@@ -139,19 +140,13 @@ class UserController extends Controller
     }
 
 
-    // *Función que captura la facultad y el programa del usuario
-    public function getfacultadyprograma($id)
-    {
-        $user = auth()->user();
-        $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
-        $facultad = $facultad->nombre;
+         $datos=array(
+            'facultad'=> $facultad,
+            'rol'=> $roles[0]->nombreRol,
+            'programa'=> $nombre_programas
+         );
 
-        $programas = explode(";", $user->programa);
-        foreach ($programas as $key => $value) {
-            $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
-            $nombre_programas[$value] = $consulta[0]->programa;
-        }
-        return ;
+        return view('vistas.perfil')->with('datos',$datos);
     }
 
     // *Función que captura el rol del usuario

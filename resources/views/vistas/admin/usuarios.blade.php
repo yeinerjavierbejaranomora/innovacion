@@ -92,9 +92,9 @@
                 method: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    console.log(JSON.stringify(d.data))
+                    console.log(JSON.stringify(d))
                 },
-                dataSrc: 'result.data'
+                //dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'

@@ -89,19 +89,25 @@
                 type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify({
-                        "nombres": nombre,
-                        "email": correo
-                    });
+                    return JSON.stringify();
                 },
                 dataSrc: 'result.data'
             },
             columns: [{
-                    nombre
+                    data: 'id_banner'
                 },
                 {
-                    correo
-                }
+                    data: 'documnto'
+                },
+                {
+                    data: 'nombre'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'nombreRol'
+                },
             ],
 
             //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

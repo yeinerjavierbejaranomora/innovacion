@@ -81,15 +81,15 @@
 
 <script>
     $(document).ready(function() {
-        $data = $.post('{{ route('admin.getusers') }}',{},function(data){
-            console.log(data);
-        })
         $('#example').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: "{{ route('admin.getusers') }}",
-                method: "POST",
+                type: "POST",
                 contentType: "application/json",
                 data: function(d) {
                     console.log(JSON.stringify(d))

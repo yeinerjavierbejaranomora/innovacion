@@ -207,6 +207,9 @@
                                                 <option selected>{{ $datos['facultad'] }}</option>
                                             </select>
                                         </div>
+                                        <div>
+                                        {{auth()->user()->id_facultad}}
+                                        </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

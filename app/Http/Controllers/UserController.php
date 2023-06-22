@@ -111,7 +111,7 @@ class UserController extends Controller
     public function get_users()
     {
         $users = User::all();
-        $users = json_encode($users);
+        //$users = json_encode($users);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $users));
         //return $users;

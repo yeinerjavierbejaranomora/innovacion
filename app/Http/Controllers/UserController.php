@@ -40,6 +40,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     /// cargamos la vista dependiendo el usuario
     public function home()
     {
@@ -95,8 +96,8 @@ class UserController extends Controller
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas/' . $nombre_rol)->with('datos', $datos);
     }
-    // funcion para traer todos los usuarios a la vista de administracion
 
+    // funcion para traer todos los usuarios a la vista de administracion
     public function userView()
     {
         return view('vistas.admin.usuarios');
@@ -105,13 +106,14 @@ class UserController extends Controller
     public function get_users(){
         $users = User::all();
         $users = json_encode($users);
-   // }
-   // public function get_users()
-   // {
+        // }
+        // public function get_users()
+        // {
         //$users = User::all();
         $users = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
         return $users;
     }
+
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
     public function perfil($id)
     {
@@ -149,9 +151,17 @@ class UserController extends Controller
         // *Se retorna la vista y el arreglo con los datos*
         return view('vistas.perfil')->with('datos', $datos);
     }
+
     // *Método para actualizar los datos del usuario*
     public function editar($id)
     {
         return view()
     }
+
+    ///** funcion para cargar vistas de facultades */
+    public function facultad(){
+        dd(auth()->user());
+        return auth()->user()->nombre;
+    }
+
 }

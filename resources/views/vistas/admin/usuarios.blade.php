@@ -97,7 +97,7 @@
                     data: 'id_banner'
                 },
                 {
-                    data: 'documnto'
+                    data: 'documento'
                 },
                 {
                     data: 'nombre'

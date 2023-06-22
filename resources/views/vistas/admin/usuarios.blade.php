@@ -89,11 +89,12 @@
 
             url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
-                contentType: "application/json",
+                contentType: "application/json",*/
                 data: function(d) {
+                    console.log(JSON.stringify(d));
                     return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'*/
+                dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'

@@ -85,11 +85,13 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.getusers') }}",
+
+
+            url: "{{ route('admin.getusers') }}",
                 type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d)
+                    return JSON.stringify(d.data)
                 },
                 dataSrc: 'result.data'
             },
@@ -97,7 +99,7 @@
                     data: 'id_banner'
                 },
                 {
-                    data: 'documnto'
+                    data: 'documento'
                 },
                 {
                     data: 'nombre'

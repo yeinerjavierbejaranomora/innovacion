@@ -169,7 +169,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"> <input type="text">{{ auth()->user()->id_banner }}</p>
+                                            <p class="text-muted mb-0"> <input type="text" value="{{ auth()->user()->id_banner }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -178,7 +178,7 @@
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{auth()->user()->documento }}</p>
+                                            <p class="text-muted mb-0"><input type="number" value="{{auth()->user()->documento }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -187,7 +187,7 @@
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{auth()->user()->email }}</p>
+                                            <p class="text-muted mb-0"><input type="email" value="{{auth()->user()->email }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -196,7 +196,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"></p>
+                                            <p class="text-muted mb-0"><input type="text"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -205,7 +205,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"></p>
+                                            <p class="text-muted mb-0"><input type="text"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -215,7 +215,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
-                                               
+                                               <input type="text">
                                             </p>
 
                                         </div>
@@ -228,11 +228,11 @@
                                         <!--Validación para verificar si el usuario se encuentra activo o no-->
                                         @if (auth()->user()->activo = 1)
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Activo</p>
+                                            <p class="text-muted mb-0"><input type="checked">Activo</p>
                                         </div>
                                         @else
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Inactivo</p>
+                                            <p class="text-muted mb-0"><input type="check">Activo</p>
                                         </div>
                                         @endif
 

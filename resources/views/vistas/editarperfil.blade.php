@@ -253,6 +253,22 @@
 </div>
 
 <script>
+    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                });
+            }
+        });
+    }
+
     $('#facultades').change(function() {
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/

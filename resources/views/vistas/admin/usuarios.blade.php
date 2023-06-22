@@ -85,7 +85,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('registro.roles') }}",
+                url: "{{ route('admin.getusers') }}",
                 type: "POST",
                 contentType: "application/json",
                 data: function(d) {

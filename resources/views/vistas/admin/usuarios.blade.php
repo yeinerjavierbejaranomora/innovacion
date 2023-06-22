@@ -92,8 +92,8 @@
                 type: "GET",
                 contentType: "application/json",
                 data: function(d) {
-                    console.log(JSON.stringify(d.data))
-                    return JSON.stringify(d.data)
+                    console.log(JSON.stringify(d))
+                    return JSON.stringify(d)
                 },
                 dataSrc: 'result.data'
             },

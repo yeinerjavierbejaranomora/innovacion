@@ -203,9 +203,9 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="text" class="form-control" value="{{$datos['facultad'] }}" id="facultades"></p>
-                                            </div>
+                                            <select class="form-select" name="id_facultad" id="facultades">
+                                                <option value="">Seleccione la facultad</option>
+                                            </select>
                                         </div>
                                         <hr>
                                         <div class="row">
@@ -236,10 +236,10 @@
                                             </label>
                                             @endif
                                         </div>
-                                            <br>
-                                            <div class="d-flex justify-content-center mb-2">
-                                                <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
-                                            </div>
+                                        <br>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -85,6 +85,9 @@
             processing: true,
             serverSide: true,
             ajax: {
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: "{{ route('admin.getusers') }}",
                 type: "POST",
                 //contentType: "application/json",

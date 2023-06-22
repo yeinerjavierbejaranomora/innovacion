@@ -45,7 +45,7 @@
 
              <!-- Nav Item - Facultades -->
              <li class="nav-item">
-                <a class="nav-link" href="{{ route('facultad.index',['id'=>encrypt(auth()->user()->id_banner)])}}">
+                <a class="nav-link" href="{{ route('facultad.index') }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Facultades</span></a>
             </li>

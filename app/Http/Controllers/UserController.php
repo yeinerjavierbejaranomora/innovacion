@@ -158,7 +158,7 @@ class UserController extends Controller
     }
 
     ///** funcion para cargar vistas de facultades */
-    public function facultad($id){
+    public function facultad(){
         dd(auth()->user());
         return auth()->user()->nombre;
     }

@@ -235,11 +235,11 @@
                                                 Activo
                                             </label>
                                             @endif
+                                        </div>
                                             <br>
                                             <div class="d-flex justify-content-center mb-2">
                                                 <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
                                             </div>
-                                        </div>
                                     </div>
                                 </form>
                             </div>

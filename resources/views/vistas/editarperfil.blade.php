@@ -295,6 +295,7 @@
     }
 
     $('#facultades').each(function() {
+        alert('entre');
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Datatables;
+// use Yajra\DataTables\DataTables;
 
 
 /** campos de usuario auth()->user()
@@ -103,7 +103,7 @@ class UserController extends Controller
     public function userView(Request $request)
     {
         if ($request->ajax()) :
-            return Datatables::of(User::All())->toJson();
+            return DataTables::of(User::All())->toJson();
         endif;
         return view('vistas.admin.usuarios');
     }

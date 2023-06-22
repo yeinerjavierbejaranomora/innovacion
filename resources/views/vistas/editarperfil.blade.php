@@ -199,7 +199,7 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0">
                                                     <select class="form-select" name="id_rol" id="rol">
-                                                        <option value="">"{{ $datos['rol']}}"></option>
+                                                        <option value=""></option>
                                                     </select>
                                                 </p>
                                             </div>
@@ -263,6 +263,7 @@
     roles();
 
     function roles() {
+        rol_actual = '{{auth()->user()->id_facultad}}';
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -271,7 +272,7 @@
             method: 'get',
             success: function(data) {
                 data.forEach(rol => {
-                    $('#rol').append(`<option  value="${rol.id}">${rol.nombreRol}</option>`);
+                    $('#rol').append(`<option ${roles.nombreRol == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`);
                 });
             }
         })

@@ -82,8 +82,17 @@
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-            ajax: '{{ route('admin.getusers') }}',
-        
+            $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.roles') }}",
+            method: 'get',
+            success: function(data) {
+                
+            }
+        })
+
         });
     });
 </script>

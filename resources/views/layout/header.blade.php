@@ -24,7 +24,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('public/general/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-    <script src="{{asset('public/general/vendor/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('public/general/vendor/jquery/jquery.min.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
     {{-- Datatale --}}
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">

@@ -81,7 +81,7 @@
 
 <script>
     $(document).ready(function() {
-        $data = $.post('{{ route('admin.getusers') }}',function(data){
+        $data = $.post('{{ route('admin.getusers') }}',{},function(data){
             console.log(data);
         })
         $('#example').DataTable({

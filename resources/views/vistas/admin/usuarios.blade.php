@@ -89,7 +89,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 url: "{{ route('admin.getusers') }}",
-                type: "POST",
+                type: "GET",
                 contentType: "application/json",
                 data: function(d) {
                     console.log(JSON.stringify(d))

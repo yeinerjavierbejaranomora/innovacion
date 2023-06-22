@@ -81,6 +81,9 @@
 
 <script>
     $(document).ready(function() {
+        $data = $.getJSON('{{ route('admin.getusers') }}',function(data){
+            console.log(data);
+        })
         $('#example').DataTable({
             processing: true,
             serverSide: true,

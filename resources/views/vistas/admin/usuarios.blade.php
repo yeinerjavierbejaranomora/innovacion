@@ -80,30 +80,23 @@
 </a>
 
 <script>
+    $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.roles') }}",
+            method: 'get',
+            success: function(data) {
+                console.log(data);
+            }
+    })
     $(document).ready(function() {
         $('#example').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.users') }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-            ]
+            ajax: {
+                url: "{{ route('registro.roles') }}"
+            }
         });
     });
 </script>

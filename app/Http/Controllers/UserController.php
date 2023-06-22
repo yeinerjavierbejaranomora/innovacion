@@ -102,9 +102,9 @@ class UserController extends Controller
 
     public function userView(Request $request)
     {
-        if ($request->ajax()) :
+        /*if ($request->ajax()) :
             return DataTables::of(User::All())->toJson();
-        endif;
+        endif;*/
         return view('vistas.admin.usuarios');
     }
 
@@ -130,7 +130,7 @@ class UserController extends Controller
             // * Si el usuario es un administrador no tendrá facultad*
             $facultad =  $nombre_programas = NULL;
         }
-        // * Función para obtener el rol del usuario 
+        // * Función para obtener el rol del usuario
         $roles = $this->getrol($id);
         // *Array para retornar todos los datos obtenidos
         $datos = array(

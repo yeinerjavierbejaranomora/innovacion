@@ -102,7 +102,6 @@ class UserController extends Controller
 
     // funcion para traer todos los usuarios a la vista de administracion
 
-    public function userView(){
     public function userView()
     {
         return view('vistas.admin.usuarios');
@@ -111,14 +110,9 @@ class UserController extends Controller
     public function get_users(){
         $users = User::all();
         $users = json_encode($users);
-<<<<<<< HEAD
-    public function get_users()
-    {
-=======
         // }
         // public function get_users()
         // {
->>>>>>> a6ea2c86f9bdeb88a423cca43250a436217ea5a7
         //$users = User::all();
         $users = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
         return $users;
@@ -126,9 +120,6 @@ class UserController extends Controller
     }
 
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
-    public function perfil($id)
-    {
-
     public function perfil($id){
         $id = decrypt($id);
 

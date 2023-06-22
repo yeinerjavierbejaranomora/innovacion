@@ -82,11 +82,11 @@
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-            // serverSide: true,
+            processing: true,
+            serverSide: true,
             ajax: {
                 url: "{{ route('registro.roles') }}",
                 dataSrc: 'cellarViews.cellarView',
-                processing: true,
             },
             columns: [
                     {data:  'id_banner'},

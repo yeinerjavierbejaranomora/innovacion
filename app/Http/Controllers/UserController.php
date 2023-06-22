@@ -122,21 +122,23 @@ class UserController extends Controller
         $id = decrypt($id);
         // *Definimos la variable usuario con todos sus datos*
         $user = auth()->user();
-
+        // *Validación para determinar si el usuario cuenta con una facultad*
         if ($user->id_facultad != NULL) {
+            // *Se llama la función para obtener facultad y programa del usuario*
            list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
         } else {
+            // * Si el usuario es un administrador no tendrá facultad*
             $facultad =  $nombre_programas = NULL;
         }
-
+        // * Función para obtener el rol del usuario 
         $roles = $this->getrol($id);
-
+        // *Array para retornar todos los datos obtenidos
         $datos = array(
             'facultad' => $facultad,
             'rol' => $roles[0]->nombreRol,
             'programa' => $nombre_programas
         );
-
+        // *Retornar vista y arreglo con los datos*
         return view('vistas.perfil')->with('datos', $datos);
     }
 
@@ -144,15 +146,19 @@ class UserController extends Controller
     // *Función que captura la facultad y el programa del usuario
     public function getfacultadyprograma($id)
     {
+        // *Obtenemos los datos del usuario*
         $user = auth()->user();
+        // *Consulta para obtener el nombre de la facultad según el ID de esta
         $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
         $facultad = $facultad->nombre;
-
+        // *Explode para que muestre los programas por separado
         $programas = explode(";", $user->programa);
+        // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
         foreach ($programas as $key => $value) {
             $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
             $nombre_programas[$value] = $consulta[0]->programa;
         }
+        // *Retornar programas y facultad
         return [$nombre_programas, $facultad];
     }
 
@@ -160,8 +166,11 @@ class UserController extends Controller
 
     public function getrol($id)
     {
+        // *Obtenemos los datos del usuario
         $user = auth()->user();
+        // *Se obtiene el nombre del rol del usuario
         $roles = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $user->id_rol)->get();
+        // *Retornar nombre del rol
         return $roles;
     }
 

@@ -219,7 +219,7 @@
                                                 <p class="mb-0">Programas</p>
                                             </div>
                                             <div class="col-sm-9 form-check">
-                                                <div id="programas"></div>
+                                                <div id="programas" name="programas"></div>
                                             </div>
                                         </div>
                                         <hr>
@@ -300,7 +300,6 @@
         if ($(this).val() != '') {
             //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
             var formData = new FormData();
-            var_dump(formData);
             //* Se añade el par clave/valor con el valor del select/
             formData.append('idfacultad', facultades.val());
             //* Se envia el id de facultad pormedio de ajax para recibir los programas relacionados al id enviado/

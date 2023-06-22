@@ -202,10 +202,13 @@ class UserController extends Controller
         $update = DB::table('users')->update('users')->set([
                 ['id_banner', '=', $request->nuevoid],
                 ['documento', '=', $request->nuevodocumento],
+                ['email', '=', $request->nuevoemail],
+                ['id_rol', '=', $request->id_rol],
+                ['id_facultad','=', $request->id_facultad],
+                ['programa','=', $request->programas],
                 ['activo','=', $request->estado],
-                ])->where('id','=',$id->id);
-        $update = DB::table();
-
+                ])->where('id','=',$id->id)->get();
+                
     }
 
     ///** funcion para cargar vistas de facultades */

@@ -93,7 +93,7 @@
                 contentType: "application/json",
                 data: function(d) {
                     console.log(JSON.stringify(d))
-                    return JSON.stringify(d)
+                    return JSON.stringify(d.data)
                 },
                 dataSrc: 'result.data'
             },

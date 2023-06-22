@@ -271,7 +271,7 @@
         });
     }
 
-    $('#facultades').change(function() {
+    $('#facultades').each(function() {
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {

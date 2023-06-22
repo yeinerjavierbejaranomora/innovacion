@@ -203,7 +203,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" id="facultades">
+                                            <select class="form-select form-select-lg mb-3" id="facultades">
                                                 <option selected>{{ $datos['facultad'] }}</option>
                                             </select>
                                         </div>
@@ -253,6 +253,7 @@
 </div>
 
 <script>
+    facultades();
     //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
         $.ajax({

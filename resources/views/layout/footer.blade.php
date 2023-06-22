@@ -12,7 +12,7 @@
 
     <!--===============================================================================================-->
   <!-- Bootstrap core JavaScript-->
-  
+
 
     <script src="{{asset('public/general/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -22,16 +22,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('public/general/js/sb-admin-2.min.js')}}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{asset('public/general/vendor/chart.js/Chart.min.js')}}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{asset('public/general/js/demo/chart-area-demo.js')}}"></script>
 
-    <script src="{{asset('public/general/js/demo/chart-pie-demo.js')}}"></script>
-
-    {{-- Datatable --}}
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 </body>
 

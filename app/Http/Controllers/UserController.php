@@ -114,7 +114,7 @@ class UserController extends Controller
         ->select('users.id_banner','users.documento','users.nombre','users.email','roles.nombreRol')->get();
         //$users = json_encode($users);
         header("Content-Type: application/json");
-        echo json_encode(array($users));
+        echo json_encode(array('data'=>$users));
         //return $users;
     }
 

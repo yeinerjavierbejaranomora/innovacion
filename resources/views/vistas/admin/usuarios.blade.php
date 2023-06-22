@@ -85,16 +85,34 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('registro.roles') }}"
+                url: "{{ route('registro.roles') }}",
+                type: "POST",
+                contentType: "application/json",
+                data: function(d) {
+                    return JSON.stringify({
+                        "nombres": nombre,
+                        "apellido1": apellido
+                    });
+                },
             },
-            columns: [
-                    {data: 'idBanner', name: 'id_banner'},
-                    {data: 'nombre', name: 'nombre'},
-                    {data: 'correo', name: 'email'},
-                    {data: 'rol', name: 'id_rol'},
-                ],
+            columns: [{
+                    data: 'id_banner'
+                },
+                {
+                    data: 'documnto'
+                },
+                {
+                    data: 'nombre'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'nombreRol'
+                },
+            ],
 
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
     });
 </script>

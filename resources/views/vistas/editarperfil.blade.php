@@ -212,7 +212,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Programas</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-9 form-check" >
                                                 <div id="programas"></div>
                                             </div>
                                         </div>

@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 /** definimos las rutas por controlador en este caso son las del usuario logueado */
 Route::controller(UserController::class)->group(function(){
-    
+
     /** cuando el login es correcto y existe la sesion del usuario va a la pagina de inicio  */
     Route::get('/home','home')->middleware('auth')->name('home.index');
     /** para cargar las vistas predefinidas en la facultad */

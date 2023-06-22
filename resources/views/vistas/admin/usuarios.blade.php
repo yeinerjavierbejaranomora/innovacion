@@ -82,8 +82,13 @@
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-            processing: true,
-            serverSide: true,
+
+            "language": {
+                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                },
+                            
+                                "paging": true,
+                                "processing": true,
             ajax: {
                 url: "{{ route('admin.getusers') }}",
                 /*type: "POST",

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Datatables;
 
 
 /** campos de usuario auth()->user()
@@ -105,7 +106,7 @@ class UserController extends Controller
     public function userView(Request $request)
     {
         if($request->ajax()):
-            return datatables()->of(User::All())->toJson();
+            return Datatables::of(User::All())->toJson();
         endif;
         return view('vistas.admin.usuarios');
     }
@@ -148,7 +149,7 @@ class UserController extends Controller
             'rol'=> $roles[0]->nombreRol,
             'programa'=> $nombre_programas
          );
-         
+
         return view('vistas.perfil')->with('datos',$datos);
     }
 

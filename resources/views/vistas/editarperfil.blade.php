@@ -264,6 +264,7 @@
 
     function roles() {
         rol_actual = '{{auth()->user()->id_rol}}';
+        alert(rol_actual);
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

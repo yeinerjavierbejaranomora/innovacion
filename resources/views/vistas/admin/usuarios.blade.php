@@ -83,12 +83,9 @@
     $(document).ready(function() {
         $('#example').DataTable({
 
-            "language": {
-                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                                },
-                            
-                                "paging": true,
-                                "processing": true,
+            
+            processing: true,
+            serverSide: true,
             ajax: {
                 url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
@@ -97,7 +94,6 @@
                     return JSON.stringify(d)
                 },
                 dataSrc: 'result.data'*/
-                dataSrc: 'cellarViews.cellarView',
             },
             columns: [{
                     data: 'id_banner'

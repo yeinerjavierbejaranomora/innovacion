@@ -169,7 +169,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"> <input type="text" value="{{ auth()->user()->id_banner }}"></p>
+                                            <p class="text-muted mb-0"> <input type="text" class="form-control" value="{{ auth()->user()->id_banner }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -178,7 +178,7 @@
                                             <p class="mb-0">Documento de identidad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" value="{{auth()->user()->documento }}"></p>
+                                            <p class="text-muted mb-0"><input type="number" class="form-control" value="{{auth()->user()->documento }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -187,7 +187,7 @@
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="email" value="{{auth()->user()->email }}"></p>
+                                            <p class="text-muted mb-0"><input type="email" class="form-control" value="{{auth()->user()->email }}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -196,7 +196,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" value="{{ $datos['rol']}}"></p>
+                                            <p class="text-muted mb-0"><input type="text" class="form-control" value="{{ $datos['rol']}}"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -205,7 +205,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" value="{{$datos['facultad'] }}"></p>
+                                            <p class="text-muted mb-0"><input type="text" class="form-control" value="{{$datos['facultad'] }}"></p>
                                         </div>
                                     </div>
                                     <hr>

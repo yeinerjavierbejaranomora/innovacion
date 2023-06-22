@@ -117,8 +117,9 @@ class UserController extends Controller
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
     public function perfil($id)
     {
+        // *Inicialmente decripta el id*
         $id = decrypt($id);
-
+        // *Definimos la variable usuario con todos sus datos*
         $user = auth()->user();
 
         if ($user->id_facultad != NULL) {

@@ -295,7 +295,6 @@
     }
 
     $('#facultades').each(function() {
-        alert('entre');
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {
@@ -318,6 +317,7 @@
                     facultades.prop('disabled', true);
                 },
                 success: function(data) {
+                    alert('llegue');
                     console.log(data);
                     facultades.prop('disabled', false)
                     $('#programas').empty();

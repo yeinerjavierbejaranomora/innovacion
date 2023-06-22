@@ -115,7 +115,7 @@
 
 
 
-    
+
     //* Comprueba si el select de facultades cambia de valor/
     $('#facultades').change(function() {
         facultades = $(this);

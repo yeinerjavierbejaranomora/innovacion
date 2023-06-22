@@ -203,8 +203,8 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <select class="form-select" name="id_facultad" id="facultades">
-                                                <option value="">Seleccione la facultad</option>
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" id="facultades">
+                                                <option selected>{{ $datos['facultad'] }}</option>
                                             </select>
                                         </div>
                                         <hr>

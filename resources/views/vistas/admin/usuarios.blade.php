@@ -91,9 +91,9 @@
                 type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d.data)
+                    return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'
+                //dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'

@@ -86,14 +86,12 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('admin.getusers') }}",
-                /*type: "POST",
-                url: "{{ route('admin.getusers') }}",
-                /*type: "POST",
-                contentType: "application/json",
+                type: "POST",
+                //contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d)
-                },*/
-                //dataSrc: ''
+                    return JSON.stringify(d.data)
+                },
+                dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'

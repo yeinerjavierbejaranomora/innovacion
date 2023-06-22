@@ -25,31 +25,54 @@ Route::get('/', function () {
     return view('login/index');
 });
 
+/** definimos las rutas por controlador en este caso son las del usuario logueado */
 Route::controller(UserController::class)->group(function(){
-
+    
+    /** cuando el login es correcto y existe la sesion del usuario va a la pagina de inicio  */
     Route::get('/home','home')->middleware('auth')->name('home.index');
+    /** para cargar las vistas predefinidas en la facultad */
     Route::get('/home/facultad/','facultad')->middleware('auth')->name('facultad.index');
+    /** cargamos la vista del perfil del usuario */
     Route::get('/home/perfil/{id}', 'perfil')->middleware('auth')->name('user.perfil');
+    /** cargamos la vista de administracion de usuarios */
+    Route::get('/home/editar/{id}', 'editar')->middleware('auth')->name('user.editar');
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
+    /** cargamos ña vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
+
 });
 
-
+/** definimos las rutas para el registro de usuarios */
 Route::controller(RegistroController::class)->group(function(){
+    /** esta primera es la encargada de llevarme al formulario de registro de usuarios para el aplicativo */
     Route::get('/registro','index')->name('registro.index');
+    /** esta es para realizar el registro de  mas roles  */
     Route::get('/registro/roles','roles')->name('registro.roles');
+    /** esta es para registrar nuevas facultades  */
     Route::post('/registro/facultades','facultades')->name('registro.facultades');
+    /** para registrar nuevos programas */
     Route::post('/registro/programas','programas')->name('registro.programas');
+    /** para salvar todos los registros */
     Route::post('/registro/save','saveRegistro')->name('registro.saveregistro');
 });
 
+
+/*** definimos las rutas para el login */
 Route::controller(LoginController::class)->group(function(){
+    /** cargamosn el inicio de la app el login */
     Route::get('/login','index')->name('login.index');
+    /** para cargar y llamar las funciones del login */
     Route::post('login/login','login')->name('login.login');
+    /** si los datos son correctos  enviamos al home */
     Route::get('/login/home/','home')->middleware('auth')->name('login.home');
+    /** para los cambios de contraseña */
     Route::get('/login/cambio/','cambio')->name('login.cambio');
+    /** cargamos el formulario de cambio */
     Route::post('/login/cambiopass','cambioPass')->name('login.cambiopass');
+    /** ruta para cerar sesion */
     Route::get('/logout','logout')->name('logout');
+    /// para cambiar el password interno
+    Route::post('/login/admin','cambio_Pass')->name('login_interno.cambiopass');
 });
 
 Route::controller(contrasenaController::class)->group(function(){

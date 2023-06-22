@@ -40,6 +40,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     /// cargamos la vista dependiendo el usuario
     public function home(){
 
@@ -57,14 +58,15 @@ class UserController extends Controller
        */
 
         /** definimos la variable usuario */
+
         $user = auth()->user();
-dd($user);
+
         /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db=DB::table('roles')->where([['id','=',$user->id_rol]])->get();
 
         /*traempos el nombre del rol para cargar la vista*/
-        $nombre_rol=$rol_db[0]->nombreRol;
-
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol=$nombre_rol;
         /** traemos las facultades del sistema  */
         if(!empty($user->id_facultad)){
 
@@ -78,10 +80,12 @@ dd($user);
 
         }
 
-       /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
-           * return ( $facultad);
-        *}
-        */
+
+       // dd($user->nombre_rol);
+        /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
+         * return ( $facultad);
+         *}
+         */
 
 
         /** creamos el array con los datos necesarios */
@@ -95,9 +99,12 @@ dd($user);
 
 
     }
+
     // funcion para traer todos los usuarios a la vista de administracion
 
     public function userView(){
+    public function userView()
+    {
         return view('vistas.admin.usuarios');
     }
 
@@ -108,15 +115,19 @@ dd($user);
     public function get_users()
     {
 =======
-   // }
-   // public function get_users()
-   // {
+        // }
+        // public function get_users()
+        // {
 >>>>>>> a6ea2c86f9bdeb88a423cca43250a436217ea5a7
         //$users = User::all();
         $users = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
         return $users;
 
     }
+
+    // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
+    public function perfil($id)
+    {
 
     public function perfil($id){
         $id = decrypt($id);
@@ -156,11 +167,16 @@ dd($user);
 
     }
 
-    public function facultad(){
-
-
+    // *Método para actualizar los datos del usuario*
+    public function editar($id)
+    {
+        return view('vistas.editar');
     }
 
-
+    ///** funcion para cargar vistas de facultades */
+    public function facultad(){
+        dd(auth()->user());
+        return auth()->user()->nombre;
+    }
 
 }

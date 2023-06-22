@@ -93,7 +93,7 @@
                 data: function(d) {
                     return JSON.stringify(d)
                 },*/
-                dataSrc: ''
+                //dataSrc: ''
             },
             columns: [{
                     data: 'id_banner'

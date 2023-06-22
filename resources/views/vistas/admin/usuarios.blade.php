@@ -86,12 +86,14 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('registro.roles') }}",
-                dtype: "POST",
+                type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({
-                    "nombre": nombre,
-                    "email": correo
-                })
+                data: function(d) {
+                    return JSON.stringify({
+                        "nombres": nombre,
+                        "apellido1": apellido
+                    });
+                },
             },
             columns: [{
                     data: 'id_banner'

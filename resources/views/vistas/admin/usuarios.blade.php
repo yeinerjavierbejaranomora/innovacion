@@ -85,13 +85,15 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.getusers') }}",
-                /*type: "POST",
-                contentType: "application/json",
+
+
+            url: "{{ route('admin.getusers') }}",
+                type: "POST",
+                //contentType: "application/json",
                 data: function(d) {
                     return JSON.stringify(d)
-                },*/
-                //dataSrc: ''
+                },
+                dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'
@@ -110,7 +112,7 @@
                 },
             ],
 
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
     });
 </script>

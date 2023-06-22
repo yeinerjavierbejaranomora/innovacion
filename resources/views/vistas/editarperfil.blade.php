@@ -259,8 +259,8 @@
 </div>
 
 <script>
-    facultades();
     roles();
+    facultades();
 
     function roles() {
         rol_actual = '{{auth()->user()->id_rol}}';

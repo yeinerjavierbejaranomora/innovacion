@@ -119,7 +119,7 @@ class UserController extends Controller
         $id = decrypt($id);
 
         $user = auth()->user();
-        dd($user);
+        dd($user->nombre_rol);
 
         if( $user->id_facultad!= NULL){
 

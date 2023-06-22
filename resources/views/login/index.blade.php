@@ -31,8 +31,9 @@
 							</button>
 						</div>
 					</div>
-
-					<div class="justify-content-center">
+					
+					<br>
+					<div class="justify-content-center text-align-center">
 						<a href="{{ route('cambio.index') }}" class="link-primary">¿Oldivaste tu contraseña?</a>
 					</div>
 

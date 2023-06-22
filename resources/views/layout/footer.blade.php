@@ -23,14 +23,14 @@
     <script src="{{asset('public/general/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('public/general/vendor/chart.js/Chart.min.js')}}"></script>
+    {{-- <script src="{{asset('public/general/vendor/chart.js/Chart.min.js')}}"></script> --}}
 
     <!-- Page level custom scripts -->
     <script src="{{asset('public/general/js/demo/chart-area-demo.js')}}"></script>
 
     <script src="{{asset('public/general/js/demo/chart-pie-demo.js')}}"></script>
 
-    
+
 
 </body>
 

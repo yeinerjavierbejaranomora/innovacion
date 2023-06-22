@@ -85,17 +85,15 @@
             processing: true,
             serverSide: true,
             ajax: {
-                headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('admin.getusers') }}",
-                type: "GET",
+
+
+            url: "{{ route('admin.getusers') }}",
+                /*type: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    console.log(JSON.stringify(d))
                     return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'
+                dataSrc: 'result.data'*/
             },
             columns: [{
                     data: 'id_banner'

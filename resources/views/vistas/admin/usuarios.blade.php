@@ -87,11 +87,13 @@
             ajax: {
                 url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
+                url: "{{ route('admin.getusers') }}",
+                /*type: "POST",
                 contentType: "application/json",
                 data: function(d) {
                     return JSON.stringify(d)
-                },
-                dataSrc: 'result.data'*/
+                },*/
+                dataSrc: ''
             },
             columns: [{
                     data: 'id_banner'

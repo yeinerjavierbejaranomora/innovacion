@@ -152,8 +152,8 @@
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
-                                    <p class="text-muted mb-1"> </p>
-                                    <p class="text-muted mb-4"></p>
+                                    <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
+                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
 
                                 </div>
                             </div>
@@ -161,85 +161,87 @@
                         <!--Datos del Usuario-->
                         <div class="col-lg-8">
                             <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Id Banner</p>
+                                <form action="">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Id Banner</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"> <input type="text" class="form-control" value="{{ auth()->user()->id_banner }}"></p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"> <input type="text" class="form-control" value="{{ auth()->user()->id_banner }}"></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Documento de identidad</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="number" class="form-control" value="{{auth()->user()->documento }}"></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Documento de identidad</p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Email</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="email" class="form-control" value="{{auth()->user()->email }}"></p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" class="form-control" value="{{auth()->user()->documento }}"></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Rol</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" class="form-control" value="{{ $datos['rol']}}"></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Email</p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Facultad</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" class="form-control" value="{{$datos['facultad'] }}" id="facultades"></p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="email" class="form-control" value="{{auth()->user()->email }}"></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Programas</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div id="programas"></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Rol</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" class="form-control" value="{{ $datos['rol']}}"></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Facultad</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" class="form-control" value="{{$datos['facultad'] }}" id="facultades"></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Programas</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <div id="programas"></div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3 text-dark">
-                                            <p class="mb-0">Estado</p>
-                                        </div>
-                                        <!--Validación para verificar si el usuario se encuentra activo o no-->
-                                        @if (auth()->user()->activo = 1)
-                                        <div class="col-sm-9">
-                                            <input class="form-check-input" type="checkbox" value="" id="Checkbox" checked>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Estado</p>
+                                            </div>
+                                            <!--Validación para verificar si el usuario se encuentra activo o no-->
+                                            @if (auth()->user()->activo = 1)
+                                            <div class="col-sm-9">
+                                                <input class="form-check-input" type="checkbox" value="" id="Checkbox" checked>
+                                                <label class="form-check-label" for="Checkbox">
+                                                    Activo
+                                                </label>
+                                            </div>
+                                            @else
+                                            <input class="form-check-input" type="checkbox" value="" id="Checkbox">
                                             <label class="form-check-label" for="Checkbox">
                                                 Activo
                                             </label>
-                                        </div>
-                                        @else
-                                        <input class="form-check-input" type="checkbox" value="" id="Checkbox">
-                                        <label class="form-check-label" for="Checkbox">
-                                            Activo
-                                        </label>
-                                        @endif
-
-                                        <div class="d-flex justify-content-center mb-2">
-                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                            @endif
+                                            <br>
+                                            <div class="d-flex justify-content-center mb-2">
+                                                <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

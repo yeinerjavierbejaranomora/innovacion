@@ -80,19 +80,18 @@
 </a>
 
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            $.ajax({
+    $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: "{{ route('registro.roles') }}",
             method: 'get',
             success: function(data) {
-                
+                console.log(data);
             }
-        })
-
+    })
+    $(document).ready(function() {
+        $('#example').DataTable({
         });
     });
 </script>

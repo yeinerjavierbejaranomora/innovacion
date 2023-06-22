@@ -209,7 +209,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <select class="form-select form-select-lg mb-3" name="id_facultad" id="facultades">
+                                            <select class="form-select " name="id_facultad" id="facultades">
 
                                             </select>
                                         </div>

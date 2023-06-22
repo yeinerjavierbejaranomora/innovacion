@@ -44,7 +44,7 @@
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-23">
+                <div class="wrap-input100 m-b-23">
                     <span class="label-input100">Facultad</span>
                     <select class="input100" name="id_facultad" id="facultades">
                         <option value="">Seleccione la facultad</option>
@@ -52,7 +52,7 @@
                     <span class="focus-input100" data-symbol="&#xf2f1;"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-23">
+                <div class="wrap-input100 m-b-23">
                 <span class="label-input100">Programas</span>
                 <br>
                     <div id="programas"></div>

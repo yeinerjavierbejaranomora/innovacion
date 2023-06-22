@@ -196,7 +196,7 @@
                                             <p class="mb-0">Rol</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{ $datos['rol']}}</p>
+                                            <p class="text-muted mb-0"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -205,7 +205,7 @@
                                             <p class="mb-0">Facultad</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$datos['facultad'] }}</p>
+                                            <p class="text-muted mb-0"></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -215,13 +215,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
-                                                <!--Validación para saber si el usuario tiene algún programa-->
-                                                @if($datos['programa'])
-                                                <!--Ciclo para recorrer el array de programas e imprimirlos en pantalla-->
-                                                @foreach ($datos['programa'] as $key => $value)
-                                                {{$value}} <br>
-                                                @endforeach
-                                                @endif
+                                               
                                             </p>
 
                                         </div>

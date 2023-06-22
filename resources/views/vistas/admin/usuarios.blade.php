@@ -86,17 +86,31 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('registro.roles') }}",
-                dataSrc: 'cellarViews.cellarView',
+                dtype: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "nombre": nombre,
+                    "email": correo
+                })
             },
-            columns: [
-                    {data:  'id_banner'},
-                    {data:  'documnto'},
-                    {data: 'nombre'},
-                    {data: 'email'},
-                    {data: 'nombreRol'},
-                ],
+            columns: [{
+                    data: 'id_banner'
+                },
+                {
+                    data: 'documnto'
+                },
+                {
+                    data: 'nombre'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'nombreRol'
+                },
+            ],
 
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
     });
 </script>

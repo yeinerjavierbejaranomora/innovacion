@@ -112,10 +112,10 @@ class UserController extends Controller
     {
         $users = DB::table('users')->join('roles','roles.id','=','users.id_rol')
         ->select('users.id_banner','users.documento','users.nombre','users.email','roles.nombreRol')->get();
-        $users = json_encode($users);
-        //header("Content-Type: application/json");
-        //echo json_encode(array('data'=>$users));
-        return $users;
+        //$users = json_encode($users);
+        header("Content-Type: application/json");
+        echo json_encode(array('data'=>$users));
+        //return $users;
     }
 
     // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
@@ -208,7 +208,7 @@ class UserController extends Controller
                 ['programa','=', $request->programas],
                 ['activo','=', $request->estado],
                 ])->where('id','=',$id->id)->get();
-                
+
     }
 
     ///** funcion para cargar vistas de facultades */

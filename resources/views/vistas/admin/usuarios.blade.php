@@ -92,7 +92,7 @@
                 method: "POST",
                 contentType: "application/json",
                 data: function(d) {
-                    return JSON.stringify(d)
+                    console.log(JSON.stringify(d.data))
                 },
                 dataSrc: 'result.data'
             },

@@ -80,9 +80,7 @@
 </a>
 
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            $.ajax({
+    $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -91,8 +89,9 @@
             success: function(data) {
                 console.log(data);
             }
-        })
-
+    })
+    $(document).ready(function() {
+        $('#example').DataTable({
         });
     });
 </script>

@@ -207,9 +207,6 @@
                                                 <option selected>{{ $datos['facultad'] }}</option>
                                             </select>
                                         </div>
-                                        <div>
-                                        {{auth()->user()->id_facultad}}
-                                        </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -259,6 +256,7 @@
     facultades();
     //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
     function facultades() {
+        alert('{{auth()->user()->id_facultad}}')
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

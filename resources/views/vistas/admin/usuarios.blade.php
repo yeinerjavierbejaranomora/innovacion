@@ -82,18 +82,18 @@
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
-
-            
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.getusers') }}",
-                /*type: "POST",
+
+
+            url: "{{ route('admin.getusers') }}",
+                type: "POST",
                 contentType: "application/json",
                 data: function(d) {
                     return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'*/
+                dataSrc: 'result.data'
             },
             columns: [{
                     data: 'id_banner'

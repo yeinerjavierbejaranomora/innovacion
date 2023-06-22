@@ -169,7 +169,7 @@
                                             <p class="mb-0">Id Banner</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"> <input type="text" class="form-control" value="{{ auth()->user()->id_banner }}"></p>
+                                            <p class="text-muted mb-0"> <input type="text" class="form-control" rows="4"value="{{ auth()->user()->id_banner }}"></p>
                                         </div>
                                     </div>
                                     <hr>

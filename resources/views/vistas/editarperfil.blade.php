@@ -272,6 +272,7 @@
     }
 
     $('#facultades').each(function() {
+        alert("{{auth()->user()->id_facultad}}");
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {

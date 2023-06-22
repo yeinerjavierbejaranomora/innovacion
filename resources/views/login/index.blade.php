@@ -32,6 +32,9 @@
 						</div>
 					</div>
 
+					<div class="justify-content-center">
+						<a href="{{ route('cambio.index') }}" class="link-primary">¿Oldivaste tu contraseña?</a>
+					</div>
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<h4> Universidad Iberoamericana</h4>

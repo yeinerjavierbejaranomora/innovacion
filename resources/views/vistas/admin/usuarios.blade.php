@@ -91,25 +91,17 @@
                 data: function(d) {
                     return JSON.stringify({
                         "nombres": nombre,
-                        "apellido1": apellido
+                        "email": correo
                     });
                 },
+                dataSrc: 'result.data'
             },
             columns: [{
-                    data: 'id_banner'
+                    nombre
                 },
                 {
-                    data: 'documnto'
-                },
-                {
-                    data: 'nombre'
-                },
-                {
-                    data: 'email'
-                },
-                {
-                    data: 'nombreRol'
-                },
+                    correo
+                }
             ],
 
             //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

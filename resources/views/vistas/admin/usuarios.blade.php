@@ -88,10 +88,11 @@
                 url: "{{ route('registro.roles') }}"
             },
             columns: [
-                    {data: 'idBanner', name: 'id_banner'},
-                    {data: 'nombre', name: 'nombre'},
-                    {data: 'correo', name: 'email'},
-                    {data: 'rol', name: 'id_rol'},
+                    {data:  'id_banner'},
+                    {data:  'documnto'},
+                    {data: 'nombre'},
+                    {data: 'email'},
+                    {data: 'nombreRol'},
                 ],
 
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

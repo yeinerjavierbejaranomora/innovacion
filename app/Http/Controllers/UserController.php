@@ -119,6 +119,7 @@ class UserController extends Controller
         $id = decrypt($id);
 
         $user = auth()->user();
+        dd($user);
 
         if( $user->id_facultad!= NULL){
 
@@ -145,9 +146,11 @@ class UserController extends Controller
             'rol'=> $roles[0]->nombreRol,
             'programa'=> $nombre_programas
          );
-
+         
         return view('vistas.perfil')->with('datos',$datos);
     }
+
+    
 
     public function actualizar(){
 

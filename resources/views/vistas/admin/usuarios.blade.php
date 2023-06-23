@@ -127,7 +127,7 @@
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
-                    console.log(entro);
+                    console.log('entro');
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
 

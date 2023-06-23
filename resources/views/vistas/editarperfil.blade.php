@@ -216,7 +216,7 @@
                                             <div class="col mb-3">
                                                 <select class="form-select" name="id_rol" id="rol"></select>
                                                 @foreach ($roles as $rol)
-                                                <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }}value="{{ $rol->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }}value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                                                 @endforeach
                                             </div>
                                         </div>

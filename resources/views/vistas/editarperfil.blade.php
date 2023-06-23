@@ -317,7 +317,7 @@
                     console.log(data);
                     data.forEach(programa => {
                         //console.log(programasSeparados.includes(programa.id));
-                        console.log(programasSeparados.some(e => date.includes(parseInt(e))));
+                        console.log(programasSeparados.some(e => data.includes(parseInt(e))));
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });

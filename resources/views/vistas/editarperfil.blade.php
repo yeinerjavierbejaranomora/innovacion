@@ -320,10 +320,10 @@
                         id_facultades.push(parseInt(programa.id));
                         console.log(id_facultades);
                         //console.log(programasSeparados.includes(programa.id));
-                        console.log(programasSeparados.some(e => id_facultades.includes(e)));
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
+                    console.log(programasSeparados.some(e => id_facultades.includes(e)));
                 })
             }
         });

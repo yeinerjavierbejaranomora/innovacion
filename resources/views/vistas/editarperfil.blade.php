@@ -183,7 +183,8 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="id_banner"
-                                                        value="{{ auth()->user()->id_banner }}"></p>
+                                                        value="{{ auth()->user()->id_banner }}"
+                                                        ${{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -259,7 +260,7 @@
                                                     </label>
                                                 </div>
                                             @else
-                                                <input class="form-check-input" type="checkbox" 
+                                                <input class="form-check-input" type="checkbox"
                                                     name="estado" id="Checkbox">
                                                 <label class="form-check-label" for="Checkbox">
                                                     Activo

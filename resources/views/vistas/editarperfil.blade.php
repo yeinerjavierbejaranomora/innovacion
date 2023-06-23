@@ -184,7 +184,7 @@
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="id_banner"
                                                         value="{{ auth()->user()->id_banner }}"
-                                                        ${{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
+                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -194,7 +194,8 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="number" class="form-control"
-                                                        name="documento" value="{{ auth()->user()->documento }}">
+                                                        name="documento" value="{{ auth()->user()->documento }}"
+                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
                                                 </p>
                                             </div>
                                         </div>
@@ -205,7 +206,8 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="email" class="form-control"
-                                                        name="email" value="{{ auth()->user()->email }}"></p>
+                                                        name="email" value="{{ auth()->user()->email }}"
+                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -215,7 +217,7 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                <select class="form-select" name="id_rol" id="rol">
+                                                <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol == 9 ? 'disabled' : '' }}>
                                                     @foreach ($roles as $rol)
                                                     <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
                                                     @endforeach

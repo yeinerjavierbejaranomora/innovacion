@@ -147,11 +147,11 @@ class UserController extends Controller
         $id=base64_decode(urldecode($id));
        
 
-        if(is_numeric($id))
+        if(!is_numeric($id))
         {
             echo 'entro';
         }
-
+        
 
         dd($id);
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();

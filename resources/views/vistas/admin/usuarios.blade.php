@@ -91,7 +91,7 @@
             $('#example').DataTable({
                 "data": data.data,
 
-                    dd(data);
+                    dd(data),
                 "columns": [{
                         data: 'id_banner',
                         title: 'Id Banner'

@@ -252,14 +252,14 @@
                                             <!--Validación para verificar si el usuario se encuentra activo o no-->
                                             @if (auth()->user()->activo = 1)
                                                 <div class="col-sm-9">
-                                                    <input class="form-check-input" type="checkbox" value=""
+                                                    <input class="form-check-input" type="checkbox"
                                                         name="estado" id="Checkbox" checked>
                                                     <label class="form-check-label" for="Checkbox">
                                                         Activo
                                                     </label>
                                                 </div>
                                             @else
-                                                <input class="form-check-input" type="checkbox" value=""
+                                                <input class="form-check-input" type="checkbox" 
                                                     name="estado" id="Checkbox">
                                                 <label class="form-check-label" for="Checkbox">
                                                     Activo

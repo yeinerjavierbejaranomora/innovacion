@@ -287,7 +287,6 @@
 
         $('#facultades').each(function(){
             programas = '{{ auth()->user()->programa }}';
-            programas = programas.trim();
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 
@@ -321,6 +320,32 @@
                 })
             }
         });
+
+        $('#facultades').change(function(){
+            programas = '{{ auth()->user()->programa }}';
+            programasSeparados = programas.split(";").map(Number);
+            console.log(programasSeparados);
+
+            id_facultad = $(this);
+
+            if($(this).val != ''){
+                $.post('{{  route('registro.programas') }}',{
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    idfacultad: id_facultad.val(),
+                },function(data){
+                    for (let i = 0; i < data.length; i++) {
+                        if (programasSeparados.includes(data[i]['id'])){
+                            console.log("encontrado");
+                            $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
+                        }else{
+                            console.log("no encontrado");
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
+                        }
+                    }
+
+                })
+            }
+        })
 
 
 </script>

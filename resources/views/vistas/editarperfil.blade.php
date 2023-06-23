@@ -316,13 +316,7 @@
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
                         if (programasSeparados != '') {
-                            for (let index = 0; index < data.length; index++) {
-                                console.log(programasSeparados[index]);
-                                /*if (programasSeparados[index] == programa.id) {
-                                    console.log("Encontrado");
-                                }*/
-                            }
-                            //console.log("No encntrado");
+                            console.log(programasSeparados.includes(programa.id));
                         } else {
 
                         }

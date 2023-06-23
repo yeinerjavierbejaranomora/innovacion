@@ -195,7 +195,6 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
-        $user = auth()->user();
         $update = DB::table('users')->update('users')->set([
             ['id_banner', '=', $request->nuevoid],
             ['documento', '=', $request->nuevodocumento],
@@ -205,6 +204,7 @@ class UserController extends Controller
             ['programa', '=', $request->programas],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
+            
     }
 
     ///** funcion para cargar vistas de facultades */

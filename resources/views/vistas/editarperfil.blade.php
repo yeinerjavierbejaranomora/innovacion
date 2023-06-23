@@ -288,7 +288,7 @@
         });
     }
 
-    alert($('#facultades').value());
+    alert($('#facultades').val());
 
     $('#facultades').each(function() {
         facultades = $(this);

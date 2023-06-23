@@ -80,6 +80,16 @@
 </a>
 
 <script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "{{ route('admin.getusers') }}";
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status ==200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+        }
+    }
     $(document).ready(function() {
         $('#example').DataTable({
             processing: true,
@@ -90,11 +100,11 @@
             url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
                 contentType: "application/json",*/
-                data: function(d) {
+                /*data: function(d) {
                     console.log(JSON.stringify(d));
                     return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'
+                dataSrc: 'result.data'*/
             },
             columns: [{
                     data: 'id_banner'

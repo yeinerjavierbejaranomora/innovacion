@@ -202,7 +202,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
-                                                <p class="mb-0">Id Banner</p>
+                                                <p class="mb-0">Nombre Completo</p>
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"

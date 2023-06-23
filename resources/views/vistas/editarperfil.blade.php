@@ -6,7 +6,26 @@
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
-<script>roles();</script>
+<script>
+roles();
+function roles() {
+            rol_actual = '{{ auth()->user()->id_rol }}';
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('registro.roles') }}",
+                method: 'get',
+                success: function(data) {
+                    data.forEach(rol => {
+                        $('#rol').append(
+                            `<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`
+                            );
+                    });
+                }
+            })
+        }
+</script>
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
@@ -280,23 +299,7 @@
 <script>
         //facultades();
 
-        function roles() {
-            rol_actual = '{{ auth()->user()->id_rol }}';
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.roles') }}",
-                method: 'get',
-                success: function(data) {
-                    data.forEach(rol => {
-                        $('#rol').append(
-                            `<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`
-                            );
-                    });
-                }
-            })
-        }
+
         //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
         function facultades() {
             id_facultad = '{{ auth()->user()->id_facultad }}';

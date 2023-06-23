@@ -216,13 +216,16 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        {{ $facultades }}
+                                        @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            <select class="form-select" name="facultades" id="facultades"></select>
+                                            @foreach ($facultades as $facultad)
+                                            <select class="form-select" name="facultades" id="facultades" value="{{ $facultad->id }}">{{ $facultad->nombre }}</select>
+                                            @endforeach
                                         </div>
+                                        @endif
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

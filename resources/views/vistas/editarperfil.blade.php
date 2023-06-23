@@ -302,6 +302,7 @@
         }
 
         $('#facultades').each(function(){
+            programas = '{{ auth()->user()->programa }}'
             id_facultad = $(this).val();
             programas = $('#programas');
 

@@ -90,6 +90,7 @@
             console.log(data);
             $('#example').DataTable({
                 "data": data.data,
+                
 
                 "columns": [{
                         data: 'id_banner'
@@ -107,7 +108,7 @@
                         data: 'nombreRol'
                     },
                     {
-                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-light fa-eraser'></i></i></button>"
+                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-solid fa-folder-minus'></i></button>"
                     }
                 ],
                 "language": {

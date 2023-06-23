@@ -202,6 +202,18 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Nombre Completo</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"> <input type="text"
+                                                        class="form-control" name="nombre"
+                                                        value="{{ auth()->user()->nombre }}"
+                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Email</p>
                                             </div>
                                             <div class="col-sm-9">
@@ -217,7 +229,7 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol == 9 ? 'disabled' : '' }}>
+                                                <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
                                                     @foreach ($roles as $rol)
                                                     <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
                                                     @endforeach

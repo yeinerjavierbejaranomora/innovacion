@@ -127,18 +127,18 @@
         }
     }
 
-    obtener_data_editar("#example tbody", table);
-
+    
     function obtener_data_editar(tbody, table) {
         $(tbody).on("click", "button.editar", function() {
-
+            
             var data = table.row($(this).parents("tr")).data();
             console.log(data);
-
+            
             $(location).attr('href', "vistas.editarperfil" + encrypt(data.id));
-
+            
         })
     }
+    obtener_data_editar("#example tbody", table);
 
 
 

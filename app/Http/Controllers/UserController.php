@@ -142,20 +142,38 @@ class UserController extends Controller
     }
 
     // *Método para cargar la vista de edicion de datos del usuario*
-    public function editar()
+    public function editar($id)
     {
-        // *Se llama la función para obtener facultad y programa del usuario*
-        list($nombre_programas, $facultad) = $this->getfacultadyprograma();
-        // *Función para obtener el rol del usuario
-        $rol = $this->getrol();
+        $id = decrypt($id);
+        $consulta = DB::DB::table('users')->select('*')->where('id', '=', $id)->get();
+        dd($consulta);
+        if($consulta[0]->id_facultad != NULL)
+        {
+            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
+            $facultad = $facultad->nombre;
+            // *Explode para que muestre los programas por separado
+            $programa = trim($consulta[0]->programa, ';');
+            $programas = explode(";", $programa);
+            //$programas = explode(";", $user->programa);
+            // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
+            foreach ($programas as $key => $value) {
+                $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                $nombre_programas[$value] = $nombres[0]->programa;
+        }
+    }
+       else{
+        $facultad =  $nombre_programas = NULL;
+       }
+        $rol = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $consulta[0]->id_rol)->get();
         $roles = Roles::all();
         $facultades = DB::table('facultad')->get();
-        //return $facultades;
-        // *Se crea un arreglo con los datos obtenidos
+     
         $datos = array(
             'facultad' => $facultad,
             'rol' => $rol[0]->nombreRol,
-            'programa' => $nombre_programas
+            'programa' => $nombre_programas,
+            'usuario'=>
+            
         );
 
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);

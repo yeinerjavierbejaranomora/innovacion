@@ -6,6 +6,7 @@
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
+<script>roles();</script>
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
@@ -277,8 +278,6 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        roles();
         //facultades();
 
         function roles() {
@@ -311,6 +310,5 @@
                 });
             })
         }
-    });
 
 </script>

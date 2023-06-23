@@ -116,7 +116,7 @@
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<div class='form-check form-check-inline form-switch'> <input type='checkbox' class='form-check-input' id='p' checked><label class='form-check-label' for='p'> Activo </label> </div>",
+                        defaultContent: "<label class='switch'><input type='checkbox'><span class='slider round'></span></label>",
                         title:'Inactivar'
                     }
                 ],

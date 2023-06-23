@@ -319,8 +319,9 @@
                     // });
                         for (let i = 0; i < data.length; i++) {
                             for (let j = 0; j < programasSeparados.length; j++) {
-                                const element = programasSeparados[j];
-                                console.log(element);
+                                if (data[i][id] === programasSeparados[j]) {
+                                    console.log(true);
+                                }
                             }
                         }
                 })

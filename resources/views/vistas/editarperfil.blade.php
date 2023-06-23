@@ -305,6 +305,7 @@
             programas = '{{ auth()->user()->programa }}';
             programasSeparados = programas.split(";");
             console.log(programasSeparados);
+            
             id_facultad = $(this);
 
             if($(this).val != ''){

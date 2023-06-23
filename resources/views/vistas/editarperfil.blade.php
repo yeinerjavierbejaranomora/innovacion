@@ -325,7 +325,6 @@
                     });
                     for (let i = 0; i < id_facultades.length; i++) {
                         console.log(programasSeparados.includes(id_facultades[i]));
-
                     }
                     //console.log(programasSeparados.some(e => id_facultades.includes(e)));
 

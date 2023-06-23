@@ -55,7 +55,7 @@
                         <div class="card-body">
                             <div class="table">
                                 <table id="example" class="display" style="width:100%">
-                                <h1>{{prueba}}</h1>    
+                                    
                             </table>
                             </div>
                         </div>

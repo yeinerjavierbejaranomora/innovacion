@@ -194,7 +194,8 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="number" class="form-control"
-                                                        name="documento" value="{{ auth()->user()->documento }}">
+                                                        name="documento" value="{{ auth()->user()->documento }}"
+                                                        ${{ auth()->user()->id_rol == 9 ? 'disabled' : '' }}>
                                                 </p>
                                             </div>
                                         </div>

@@ -197,7 +197,7 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                    <select class="form-select" name="id_rol" id="rol"></select>                                           
+                                                    <select class="form-select" name="id_rol" id="rol"></select>
                                             </div>
                                         </div>
                                         <hr>
@@ -290,8 +290,9 @@
 
     $('#facultades').each(function() {
         facultades = $(this);
+        alert(facultades.val());
         //* comprueba que el valor de facultados sea diferente a vacio/
-        if ($(this).val() != '') {
+        /*if ($(this).val() != '') {
             //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
             var formData = new FormData();
             //* Se añade el par clave/valor con el valor del select/
@@ -323,6 +324,6 @@
         } else {
             $('#programas').empty();
             facultades.prop('disabled', false)
-        }
+        }*/
     })
 </script>

@@ -200,6 +200,12 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        <div class="wrap-input100 validate-input m-b-23" data-validate="nombre es requerido">
+                                            <span class="label-input100">Nombre completo</span>
+                                            <input class="input100" type="text" name="nombre" placeholder="Nombre completo" id="nombre" value="{{ auth()->user()->documento }}">
+                                            <span class="focus-input100" data-symbol="&#xf20e;"></span>
+                                        </div>
+                                        <hr>
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Email</p>

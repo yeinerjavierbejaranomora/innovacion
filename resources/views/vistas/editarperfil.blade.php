@@ -314,6 +314,3 @@
     });
 
 </script>
-<script>
-    alert($('#facultades').val());
-</script>

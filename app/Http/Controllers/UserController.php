@@ -145,6 +145,7 @@ class UserController extends Controller
     public function editar($id)
     {
         dd($id);
+        
         $id=base64_decode(urldecode($id));
        
 

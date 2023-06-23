@@ -145,6 +145,12 @@ class UserController extends Controller
     public function editar($id)
     {
         $id=base64_decode(urldecode($id));
+        if(is_array($id))
+        {
+            echo 'entro';
+        }
+
+
         dd($id);
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
         if($consulta[0]->id_facultad != NULL)

@@ -54,8 +54,7 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="example" class="display" style="width:100%">
-                                    
+                                <table id="example" class="display" style="width:100%">    
                             </table>
                             </div>
                         </div>

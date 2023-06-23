@@ -302,7 +302,8 @@
         }
 
         $('#facultades').each(function(){
-            programas = '{{ auth()->user()->programa }}'
+            programas = '{{ auth()->user()->programa }}';
+            alert(programas);
             id_facultad = $(this);
 
             if($(this).val != ''){
@@ -312,6 +313,7 @@
                 },function(data){
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
+                        if
                         $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 })

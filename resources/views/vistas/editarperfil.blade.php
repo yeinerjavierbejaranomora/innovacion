@@ -319,7 +319,6 @@
                             for (let index = 0; index < programasSeparados.length; index++) {
                                 console.log(programas.includes(programasSeparados[index]))
                             }
-                            console.log("No encontrado");
                         } else {
 
                         }

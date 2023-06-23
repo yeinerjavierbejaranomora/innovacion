@@ -96,6 +96,7 @@
                     {data: 'nombre'},
                     {data: 'email'},
                     {data: 'nombreRol'},
+                    {"defaultContent":'<button>editar</button>'}
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

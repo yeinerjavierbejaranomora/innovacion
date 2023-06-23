@@ -204,7 +204,13 @@ class UserController extends Controller
             ['programa', '=', $request->programas],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
-
+        /* if ($update){
+            // return redirect()->route('user.perfil')-> with('Sucess', 'Actualizacion exitosa!');
+            }
+            else{
+              // return redirect()->route('user.perfil')-> with('Error', 'Actualizacion fallida!');   
+            }*/
+            
     }
 
     ///** funcion para cargar vistas de facultades */

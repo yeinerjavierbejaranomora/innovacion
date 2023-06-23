@@ -146,6 +146,7 @@ class UserController extends Controller
     {
         $id=$id;
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
+        // :(
         return($consulta);
         if($consulta[0]->id_facultad != NULL)
         {

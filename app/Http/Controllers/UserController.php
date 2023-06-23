@@ -145,6 +145,7 @@ class UserController extends Controller
     public function editar($id)
     {
         $id=base64_decode(urldecode($id));
+        dd($id->value);
         if(is_object($id))
         {
             echo 'entro';

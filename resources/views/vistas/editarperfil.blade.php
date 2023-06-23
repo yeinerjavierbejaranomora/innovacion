@@ -303,13 +303,13 @@
 
         $('#facultades').each(function(){
             programas = '{{ auth()->user()->programa }}'
-            id_facultad = $(this).val();
+            id_facultad = $(this);
             programas = $('#programas');
 
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
-                    idfacultad = id_facultad,
+                    idfacultad = id_facultad.val(),
                 },function(data){
                     console.log(data);
                 })

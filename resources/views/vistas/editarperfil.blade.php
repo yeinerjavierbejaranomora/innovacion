@@ -288,6 +288,8 @@
         });
     }
 
+    alert($('#facultades').val());
+
     $('#facultades').each(function() {
         facultades = $(this);
         alert($(this).val());

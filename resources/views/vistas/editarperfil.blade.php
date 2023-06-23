@@ -318,8 +318,10 @@
                     //     //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     // });
                         for (let i = 0; i < data.length; i++) {
-                            const element = data[i];
-                            console.log(element);
+                            for (let j = 0; j < programasSeparados.length; j++) {
+                                const element = programasSeparados[j];
+                                console.log(element);
+                            }
                         }
                 })
             }

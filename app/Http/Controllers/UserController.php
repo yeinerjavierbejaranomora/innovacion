@@ -144,7 +144,7 @@ class UserController extends Controller
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id)
     {
-        $id=$id;
+        $id=base64_decode(urldecode($id));
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
         if($consulta[0]->id_facultad != NULL)
         {

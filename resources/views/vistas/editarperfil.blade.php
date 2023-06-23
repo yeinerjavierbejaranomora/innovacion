@@ -311,7 +311,10 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    console.log(data);
+                    data.forEach(programa => {
+                        //* Se crea un input tipo checkbox para cada programa recibido/
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                    });
                 })
             }
         });

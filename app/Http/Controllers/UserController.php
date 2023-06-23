@@ -113,7 +113,7 @@ class UserController extends Controller
     public function get_users()
     {
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
-            ->select('users.id_banner', 'users.documento', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
+            ->select('users.id_banner', 'users.documento','users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
         //$users = json_encode($users);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $users));

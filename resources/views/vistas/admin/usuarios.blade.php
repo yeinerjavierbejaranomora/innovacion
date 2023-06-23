@@ -110,13 +110,14 @@
                     },
                     {
                         data: 'nombreRol',
-                        title:'Rol'                    },
+                        title:'Rol'
+                    },
                     {
                         defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<label class='switch'><input type='checkbox'><span class='slider round'></span></label>",
+                        defaultContent: "<input data-id='activo' class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{activo ? 'checked' : '' }}>",
                         title:'Inactivar'
                     }
                 ],

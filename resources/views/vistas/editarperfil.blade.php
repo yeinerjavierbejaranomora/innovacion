@@ -223,7 +223,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $facutad->id == auth()->user()->id_facultad ? 'selected' : '' }}value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -279,7 +279,7 @@
 <script>
     $(document).ready(function() {
         roles();
-        facultades();
+        //facultades();
 
         function roles() {
             rol_actual = '{{ auth()->user()->id_rol }}';

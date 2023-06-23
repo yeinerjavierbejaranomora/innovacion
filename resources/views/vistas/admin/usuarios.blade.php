@@ -106,7 +106,7 @@
                     },
                     {
                         data: 'email',
-                        tittle:'Correo electrónico'
+                        tittle:'Email'
                     },
                     {
                         data: 'nombreRol',

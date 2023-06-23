@@ -333,6 +333,7 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
+                    $('#programas').empty();
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
                             console.log("encontrado");

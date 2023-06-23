@@ -290,7 +290,7 @@
 
     $('#facultades').each(function() {
         facultades = $(this);
-        alert(facultades.val());
+        alert($(this).val());
         //* comprueba que el valor de facultados sea diferente a vacio/
         /*if ($(this).val() != '') {
             //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/

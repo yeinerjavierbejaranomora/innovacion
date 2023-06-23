@@ -319,7 +319,7 @@
                     // });
                         for (let i = 0; i < data.length; i++) {
                             for (let j = 0; j < programasSeparados.length; j++) {
-                                if (data[i]['id'] ===  parseInt(programasSeparados[j])) {
+                                if (data[i][0] ===  parseInt(programasSeparados[j])) {
                                     console.log(true);
                                 }
                             }

@@ -319,7 +319,7 @@
                     // });
                         for (let i = 0; i < data.length; i++) {
                             for (let j = 0; j < programasSeparados.length; j++) {
-                                if (data.inlucdes(programasSeparados[j])) {
+                                if (data.includes(programasSeparados[j])) {
                                     console.log(true);
                                 }else{
                                     console.log(false);

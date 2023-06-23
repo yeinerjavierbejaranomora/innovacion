@@ -314,6 +314,7 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
+                    console.log(data);
                     data.forEach(programa => {
                         if(programasSeparados.includes(programa.id)){
                             console.log("Encontrado");

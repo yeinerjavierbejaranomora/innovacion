@@ -88,9 +88,22 @@
         if (this.readyState == 4 && this.status ==200) {
             var data = JSON.parse(this.responseText);
             console.log(data);
+            $('#example').DataTable({
+                data:data.data
+                columns: [{
+                    data: 'id_banner'},
+                    {data: 'documento'},
+                    {data: 'nombre'},
+                    {data: 'email'},
+                    {data: 'nombreRol'},
+                ],
+
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
         }
     }
-    $(document).ready(function() {
+
+    /*$(document).ready(function() {
         $('#example').DataTable({
             processing: true,
             serverSide: true,
@@ -105,7 +118,7 @@
                     return JSON.stringify(d)
                 },
                 dataSrc: 'result.data'*/
-            },
+            /*},
             columns: [{
                     data: 'id_banner'
                 },
@@ -125,7 +138,7 @@
 
             //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
-    });
+    });*/
 </script>
 
 <!-- incluimos el footer -->

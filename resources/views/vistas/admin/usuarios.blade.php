@@ -110,13 +110,14 @@
                     },
                     {
                         data: 'nombreRol',
-                        title:'Rol'                    },
+                        title:'Rol'
+                    },
                     {
                         defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<label class='switch'><input type='checkbox'><span class='slider round'></span></label>",
+                        defaultContent: '<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"><label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label><div>',
                         title:'Inactivar'
                     }
                 ],

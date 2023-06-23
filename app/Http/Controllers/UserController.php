@@ -144,7 +144,7 @@ class UserController extends Controller
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id)
     {
-        dd($id[0]->value);
+        dd($id);
         $id=base64_decode(urldecode($id));
        
 

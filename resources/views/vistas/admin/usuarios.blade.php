@@ -114,7 +114,7 @@
                     {
                         defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title:'Editar'                    
-                    }
+                    },
                     {
                         defaultContent: "<input class='form-check-input' type='checkbox' role='switch' id='flexSwitchCheckChecked' checked>",
                         title:'Inactivar'

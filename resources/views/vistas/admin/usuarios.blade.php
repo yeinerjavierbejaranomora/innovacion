@@ -96,7 +96,7 @@
                     },
                     {
                         data: 'documento',
-                        title:'Documento de identidad'
+                        title: 'Documento de identidad'
                     },
                     {
                         data: 'nombre',
@@ -108,15 +108,15 @@
                     },
                     {
                         data: 'nombreRol',
-                        title:'Rol'
+                        title: 'Rol'
                     },
                     {
-                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title:'Editar'                    
+                        defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar'
                     },
                     {
-                        defaultContent: "<input data-id= class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{activo ? 'checked' : '' }}>",
-                        title:'Inactivar'
+                        defaultContent: "<input data-id=activo class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{activo ? 'checked' : '' }}>",
+                        title: 'Inactivar'
                     }
                 ],
                 "language": {
@@ -127,6 +127,24 @@
             });
         }
     }
+
+    obtener_data_editar("#example tbody", table);
+
+    {
+        function obtener_data_editar(tbody, table) {
+            $(tbody).on("click", "button.editar", function() {
+
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+
+                $(location).attr('href', "vistas.editarperfil" + data.id);
+
+            })
+        }
+    }
+
+
+
 
     /*$(document).ready(function() {
         $('#example').DataTable({

@@ -113,7 +113,7 @@ class UserController extends Controller
     public function get_users()
     {
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
-            ->select('users.id_banner', 'users.documento','users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
+            ->select('users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
         //$users = json_encode($users);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $users));
@@ -154,7 +154,7 @@ class UserController extends Controller
             'programa' => $nombre_programas
         );
 
-        return view('vistas.editarperfil',['datos' => $datos,'roles' => $roles,'facultades'=>$facultades]);
+        return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);
     }
 
     // *Función que captura la facultad y el programa del usuario
@@ -168,7 +168,7 @@ class UserController extends Controller
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
             $facultad = $facultad->nombre;
             // *Explode para que muestre los programas por separado
-            $programa = trim($user->programa,';');
+            $programa = trim($user->programa, ';');
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
@@ -208,13 +208,7 @@ class UserController extends Controller
             ['programa', '=', $request->programas],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
-        /* if ($update){
-            // return redirect()->route('user.perfil')-> with('Sucess', 'Actualizacion exitosa!');
-            }
-            else{
-              // return redirect()->route('user.perfil')-> with('Error', 'Actualizacion fallida!');
-            }*/
-
+        return redirect()->route('user.perfil')->with('Sucess', 'Actualizacion exitosa!');
     }
 
     ///** funcion para cargar vistas de facultades */

@@ -313,7 +313,11 @@
             $.post('{{ route('registro.facultades') }}',{
                 _token: $('meta[name="csrf-token"]').attr('content'),
             },function(data){
-                console.log(data);
+                data.forEach(facultad => {
+                        $('#facultades').append(
+                            `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
+                            );
+                    });
             })
         }
     });

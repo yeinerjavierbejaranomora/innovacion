@@ -152,7 +152,7 @@ class UserController extends Controller
             'programa' => $nombre_programas
         );
 
-        return view('vistas.editarperfil',['datos' => $datos,'facultades'->$facultades]);
+        return view('vistas.editarperfil',['datos' => $datos,'facultades'=>$facultades]);
     }
 
     // *Función que captura la facultad y el programa del usuario

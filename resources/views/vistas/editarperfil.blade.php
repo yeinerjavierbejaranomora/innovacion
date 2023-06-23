@@ -216,6 +216,7 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        {{ $facultades }}
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>

@@ -313,18 +313,12 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
+                    for (let index = 0; index < programasSeparados.length; index++) {
                     data.forEach(programa => {
-                        //* Se crea un input tipo checkbox para cada programa recibido/
-                        if (programasSeparados != '') {
-                            for (let index = 0; index < programasSeparados.length; index++) {
-                                console.log(programas.includes(programasSeparados[index]))
-                            }
-                        } else {
-
-                        }
-
+                        console.log(programa.id);
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
+                }
                 })
             }
         });

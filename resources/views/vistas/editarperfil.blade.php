@@ -316,6 +316,7 @@
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
                         if (programasSeparados != '') {
+                            
                             console.log(programasSeparados.includes(programa.id));
                         } else {
 

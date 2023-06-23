@@ -325,10 +325,9 @@
 
                             console.log(programas.includes(programasSeparados[index]))
 
-                            console.log("No encntrado");
-                        } else {
-
                         }
+
+                        console.log('No encontrado');
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
 

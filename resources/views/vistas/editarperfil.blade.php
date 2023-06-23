@@ -6,6 +6,7 @@
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
+
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
@@ -207,14 +208,20 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        @if($roles != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                <select class="form-select" name="id_rol" id="rol"></select>
+                                                <select class="form-select" name="id_rol" id="rol">
+                                                    @foreach ($roles as $rol)
+                                                    <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
+                                        @endif
                                         <hr>
                                         @if($facultades != '')
                                         <div class="row">
@@ -277,43 +284,8 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        roles();
-        //facultades();
+        $('#facultades').each(function(){
+            alert($(this).val());
+        });
 
-        function roles() {
-            rol_actual = '{{ auth()->user()->id_rol }}';
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.roles') }}",
-                method: 'get',
-                success: function(data) {
-                    data.forEach(rol => {
-                        $('#rol').append(
-                            `<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`
-                            );
-                    });
-                }
-            })
-        }
-        //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
-        function facultades() {
-            id_facultad = '{{ auth()->user()->id_facultad }}';
-            $.post('{{ route('registro.facultades') }}',{
-                _token: $('meta[name="csrf-token"]').attr('content'),
-            },function(data){
-                data.forEach(facultad => {
-                    $('#facultades').append(
-                        `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
-                    );
-                });
-            })
-        }
-    });
-
-</script>
-<script>
-    alert($('#facultades').val());
 </script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
 use App\Models\Facultad;
+use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
@@ -142,17 +143,18 @@ class UserController extends Controller
         // *Se llama la función para obtener facultad y programa del usuario*
         list($nombre_programas, $facultad) = $this->getfacultadyprograma();
         // *Función para obtener el rol del usuario
-        $roles = $this->getrol();
+        $rol = $this->getrol();
+        $roles = Roles::all();
         $facultades = DB::table('facultad')->get();
         //return $facultades;
         // *Se crea un arreglo con los datos obtenidos
         $datos = array(
             'facultad' => $facultad,
-            'rol' => $roles[0]->nombreRol,
+            'rol' => $rol[0]->nombreRol,
             'programa' => $nombre_programas
         );
 
-        return view('vistas.editarperfil',['datos' => $datos,'facultades'=>$facultades]);
+        return view('vistas.editarperfil',['datos' => $datos,'roles' => $roles,'facultades'=>$facultades]);
     }
 
     // *Función que captura la facultad y el programa del usuario

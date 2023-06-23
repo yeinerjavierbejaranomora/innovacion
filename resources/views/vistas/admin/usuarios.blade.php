@@ -80,7 +80,30 @@
 </a>
 
 <script>
-    $(document).ready(function() {
+    var xmlhttp = new XMLHttpRequest();
+    var url = "{{ route('admin.getusers') }}";
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status ==200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            $('#example').DataTable({
+                "data":data.data,
+                "columns": [
+                    {data: 'id_banner'},
+                    {data: 'documento'},
+                    {data: 'nombre'},
+                    {data: 'email'},
+                    {data: 'nombreRol'},
+                ],
+
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
+        }
+    }
+
+    /*$(document).ready(function() {
         $('#example').DataTable({
             processing: true,
             serverSide: true,
@@ -90,12 +113,12 @@
             url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
                 contentType: "application/json",*/
-                data: function(d) {
+                /*data: function(d) {
                     console.log(JSON.stringify(d));
                     return JSON.stringify(d)
                 },
-                dataSrc: 'result.data'
-            },
+                dataSrc: 'result.data'*/
+            /*},
             columns: [{
                     data: 'id_banner'
                 },
@@ -115,7 +138,7 @@
 
             //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         });
-    });
+    });*/
 </script>
 
 <!-- incluimos el footer -->

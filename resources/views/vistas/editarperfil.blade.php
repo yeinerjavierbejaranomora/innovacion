@@ -318,14 +318,14 @@
                     console.log(data);
                     data.forEach(programa => {
                         id_facultades.push(parseInt(programa.id));
-                        console.log(id_facultades);
+                        //console.log(id_facultades);
                         //console.log(programasSeparados.includes(programa.id));
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                     for (let i = 0; i < id_facultades.length; i++) {
-                        programasSeparados.includes(id_facultades[i]);
-                        
+                        console.log(programasSeparados.includes(id_facultades[i]));
+
                     }
                     //console.log(programasSeparados.some(e => id_facultades.includes(e)));
 

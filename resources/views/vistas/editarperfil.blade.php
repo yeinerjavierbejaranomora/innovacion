@@ -323,8 +323,8 @@
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
-                    for (let i = 0; i < id_facultades.length; i++) {
-                        if (programasSeparados.includes(id_facultades[i])){
+                    for (let i = 0; i < data.length; i++) {
+                        if (programasSeparados.includes(data[i]['id'])){
                             console.log("encontrado");
                         }else{
                             console.log("no encontrado");

@@ -87,7 +87,7 @@
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-           var table= $('#example').DataTable({
+            var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
                         data: 'id_banner',
@@ -124,21 +124,22 @@
 
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            console.log(table);
+
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    console.log(entro);
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log(data);
+
+                    $(location).attr('href', "vistas.editarperfil" + encrypt(data.id));
+
+                })
+            }
+            obtener_data_editar("#example tbody", table);
+
         }
     }
-    
-    function obtener_data_editar(tbody, table) {
-        $(tbody).on("click", "button.editar", function() {
-            console.log(entro);
-            var data = table.row($(this).parents("tr")).data();
-            console.log(data);
-            
-            $(location).attr('href', "vistas.editarperfil" + encrypt(data.id));
-            
-        })
-    }
-    obtener_data_editar("#example", table);
+
 
 
 

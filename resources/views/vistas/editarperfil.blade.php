@@ -303,7 +303,7 @@
 
         $('#facultades').each(function(){
             programas = '{{ auth()->user()->programa }}';
-            alert(programas);
+            console.log(programas);
             id_facultad = $(this);
 
             if($(this).val != ''){

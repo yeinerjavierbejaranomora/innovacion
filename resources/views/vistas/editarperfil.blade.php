@@ -221,9 +221,11 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
-                                            @foreach ($facultades as $facultad)
-                                            <select class="form-select" name="facultades" id="facultades" value="{{ $facultad->id }}">{{ $facultad->nombre }}</select>
-                                            @endforeach
+                                            <select class="form-select" name="facultades" id="facultades">
+                                                @foreach ($facultades as $facultad)
+                                                <option value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         @endif
                                         <hr>

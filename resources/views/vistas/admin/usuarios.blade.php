@@ -96,7 +96,7 @@
                     {data: 'nombre'},
                     {data: 'email'},
                     {data: 'nombreRol'},
-                    {defaultContent:"<button type='button' class='btn' style:'color:#dfc14e'><i class='fa-regular fa-pen-to-square'></i></button>"}
+                    {defaultContent:"<button type='button' class='btn' style:'background-color:#dfc14e'><i class='fa-regular fa-pen-to-square'></i></button> <button type='button' class='btn' style:'background-color:d0ab4b'><i class='fa-regular fa-trash'></i></button>"}
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

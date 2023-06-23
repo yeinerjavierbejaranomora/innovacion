@@ -146,8 +146,6 @@ class UserController extends Controller
     {
         $id=$id;
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
-        // :(
-        return($consulta);
         if($consulta[0]->id_facultad != NULL)
         {
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
@@ -173,6 +171,7 @@ class UserController extends Controller
             'facultad' => $facultad,
             'rol' => $rol[0]->nombreRol,
             'programa' => $nombre_programas,
+            'user'=>$consulta[0]
         );
 
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);

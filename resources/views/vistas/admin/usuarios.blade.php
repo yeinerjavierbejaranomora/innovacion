@@ -89,8 +89,8 @@
             var data = JSON.parse(this.responseText);
             console.log(data);
             $('#example').DataTable({
-                data:data.data
-                columns: [{
+                "data":data.data
+                "columns": [{
                     data: 'id_banner'},
                     {data: 'documento'},
                     {data: 'nombre'},

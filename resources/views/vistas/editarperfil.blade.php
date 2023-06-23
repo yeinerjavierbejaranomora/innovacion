@@ -309,7 +309,7 @@
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
-                    idfacultad = id_facultad.val(),
+                    idfacultad: id_facultad.val(),
                 },function(data){
                     console.log(data);
                 })

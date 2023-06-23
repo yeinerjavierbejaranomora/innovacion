@@ -224,8 +224,7 @@
                                         @endif
                                         <hr>
                                         {{auth()->user()->id_facultad}}
-                                        {{ $facultades[0]->id }}
-                                        
+                                        {{ $facultades }}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

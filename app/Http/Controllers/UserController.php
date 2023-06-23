@@ -152,7 +152,6 @@ class UserController extends Controller
             $id=decrypt($id_llegada);
         }
         
-        dd($id);
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
         if($consulta[0]->id_facultad != NULL)
         {

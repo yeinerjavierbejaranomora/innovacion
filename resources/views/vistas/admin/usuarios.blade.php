@@ -124,8 +124,8 @@
 
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
+            var_dump(table);
         }
-        var_dump(table);
     }
     
     function obtener_data_editar(tbody, table) {

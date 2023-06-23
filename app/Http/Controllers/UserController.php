@@ -146,7 +146,7 @@ class UserController extends Controller
     {
         $id = decrypt($id);
         $consulta = DB::DB::table('users')->select('*')->where('id', '=', $id)->get();
-        dd($consulta);
+        return($consulta);
         if($consulta[0]->id_facultad != NULL)
         {
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
@@ -172,8 +172,6 @@ class UserController extends Controller
             'facultad' => $facultad,
             'rol' => $rol[0]->nombreRol,
             'programa' => $nombre_programas,
-            'usuario'=>
-            
         );
 
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);

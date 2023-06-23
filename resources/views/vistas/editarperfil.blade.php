@@ -271,9 +271,9 @@
 </div>
 
 <script>
-    roles();
-    facultades();
     $(document).ready(function() {
+        roles();
+        facultades();
 
         function roles() {
             rol_actual = '{{ auth()->user()->id_rol }}';

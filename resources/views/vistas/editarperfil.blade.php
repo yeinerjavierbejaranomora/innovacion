@@ -161,7 +161,7 @@
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                         alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                        <h5 class="my-3">{{ $datos['user'] }}</h5>
+                                        <h5 class="my-3">{{ $datos['user']->id }}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
 
@@ -183,8 +183,8 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="id_banner"
-                                                        value="{{ auth()->user()->id_banner }}"
-                                                        {{ $datos['user']['id_rol'] != 9 ? 'disabled' : '' }}></p>
+                                                        value="{{ $datos['user']->id_banner }}"
+                                                        {{ $datos['user']->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -194,8 +194,8 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="number" class="form-control"
-                                                        name="documento" value="{{ auth()->user()->documento }}"
-                                                        {{ auth()->user()->$datos['user']['id_rol'] ? 'disabled' : '' }}>
+                                                        name="documento" value="{{ $datos['user']->documento  }}"
+                                                        {{ $datos['user']->id_rol != 9 ? 'disabled' : '' }}>
                                                 </p>
                                             </div>
                                         </div>
@@ -207,8 +207,8 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="nombre"
-                                                        value="{{ auth()->user()->nombre }}"
-                                                        {{ auth()->$datos['user']['id_rol'] != 9 ? 'disabled' : '' }}></p>
+                                                        value="{{ $datos['user']->nombre }}"
+                                                        {{ $datos['user']->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -218,8 +218,8 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="email" class="form-control"
-                                                        name="email" value="{{ auth()->user()->email }}"
-                                                        {{ auth()->$datos['user']['id_rol'] != 9 ? 'disabled' : '' }}></p>
+                                                        name="email" value="{{ $datos['user']->email }}"
+                                                        {{ $datos['user']->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -229,9 +229,9 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
+                                                <select class="form-select" name="id_rol" id="rol" {{ $datos['user']->id_rol != 9 ? 'disabled' : '' }}>
                                                     @foreach ($roles as $rol)
-                                                    <option {{ $rol->id == $datos['user']['id_rol'] ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
+                                                    <option {{ $rol->id == $datos['user']->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -245,7 +245,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == $datos['user']['id_facultad'] ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -265,7 +265,7 @@
                                                 <p class="mb-0">Estado</p>
                                             </div>
                                             <!--Validación para verificar si el usuario se encuentra activo o no-->
-                                            @if ($datos['user']['activo'] = 1)
+                                            @if ($datos['user']->activo = 1)
                                                 <div class="col-sm-9">
                                                     <input class="form-check-input" type="checkbox"
                                                         name="estado" id="Checkbox" checked>
@@ -301,7 +301,7 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "$datos['user']['programa']";
+            programas = "$datos['user']->programa";
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 
@@ -337,7 +337,7 @@
         });
 
         $('#facultades').change(function(){
-            programas = "$datos['user']['programa']";
+            programas = "$datos['user']->programa";
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 

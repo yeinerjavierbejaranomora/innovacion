@@ -304,7 +304,6 @@
         $('#facultades').each(function(){
             programas = '{{ auth()->user()->programa }}'
             id_facultad = $(this);
-            programas = $('#programas');
 
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{

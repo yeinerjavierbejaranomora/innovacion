@@ -96,6 +96,10 @@ class UserController extends Controller
             'facultad' => $facultad
         );
 
+        if($nombre_rol === 'Admin'){
+            $nombre_rol = strtolower($nombre_rol);
+        }
+
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
@@ -199,6 +203,7 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
+        return $request;
         $update = DB::table('users')->update('users')->set([
             ['id_banner', '=', $request->nuevoid],
             ['documento', '=', $request->nuevodocumento],

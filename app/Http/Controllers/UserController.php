@@ -182,7 +182,13 @@ class UserController extends Controller
     public function editar($id)
     {
         $id = decrypt($id);
-        list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
+        if ($user->id_facultad != NULL) {
+            // *Se llama la función para obtener facultad y programa del usuario*
+           list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
+        } else {
+            // * Si el usuario es un administrador no tendrá facultad*
+            $facultad =  $nombre_programas = NULL;
+        }
         $roles = $this->getrol($id);
 
         $datos = array(

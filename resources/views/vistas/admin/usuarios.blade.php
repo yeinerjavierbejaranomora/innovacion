@@ -90,8 +90,6 @@
             console.log(data);
             $('#example').DataTable({
                 "data": data.data,
-
-                    dd(data),
                 "columns": [{
                         data: 'id_banner',
                         title: 'Id Banner'
@@ -117,7 +115,7 @@
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<input data-id='activo' class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{activo ? 'checked' : '' }}>",
+                        defaultContent: "<input data-id='data.activo' class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{data.activo ? 'checked' : '' }}>",
                         title:'Inactivar'
                     }
                 ],

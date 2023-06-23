@@ -316,10 +316,8 @@
                 },function(data){
                     console.log(data);
                     data.forEach(programa => {
-                        if(programasSeparados.includes(programa.id)){
-                            console.log(programasSeparados.includes(programa.id));
-                        }
-                        console.log("No encontrado");
+                        console.log(programasSeparados.includes(programa.id));
+                        
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 })

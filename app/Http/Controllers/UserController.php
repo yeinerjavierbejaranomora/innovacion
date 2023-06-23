@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
+use App\Models\Facultad;
 use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
@@ -137,11 +138,13 @@ class UserController extends Controller
 
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar()
-    {  
+    {
         // *Se llama la función para obtener facultad y programa del usuario*
         list($nombre_programas, $facultad) = $this->getfacultadyprograma();
         // *Función para obtener el rol del usuario
         $roles = $this->getrol();
+        $facultades = Facultad::all();
+        return $facultades;
         // *Se crea un arreglo con los datos obtenidos
         $datos = array(
             'facultad' => $facultad,

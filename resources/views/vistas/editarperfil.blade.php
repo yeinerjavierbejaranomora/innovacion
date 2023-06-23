@@ -314,8 +314,11 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
+                    id_facultades=[];
                     console.log(data);
                     data.forEach(programa => {
+                        id_facultades.push(parseInt(programa.id));
+                        console.log(id_facultades);
                         //console.log(programasSeparados.includes(programa.id));
                         console.log(programasSeparados.some(e => data.includes(parseInt(e))));
 

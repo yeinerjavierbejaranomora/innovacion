@@ -182,7 +182,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
-                                                        class="form-control" name="nuevoid"
+                                                        class="form-control" name="id_banner"
                                                         value="{{ auth()->user()->id_banner }}"></p>
                                             </div>
                                         </div>
@@ -193,7 +193,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="number" class="form-control"
-                                                        name="nuevodocumento" value="{{ auth()->user()->documento }}">
+                                                        name="documento" value="{{ auth()->user()->documento }}">
                                                 </p>
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="email" class="form-control"
-                                                        name="nuevoemail" value="{{ auth()->user()->email }}"></p>
+                                                        name="email" value="{{ auth()->user()->email }}"></p>
                                             </div>
                                         </div>
                                         <hr>

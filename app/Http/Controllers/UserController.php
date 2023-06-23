@@ -110,31 +110,21 @@ class UserController extends Controller
 
     public function get_users()
     {
-        $users = DB::table('users')->join('roles','roles.id','=','users.id_rol')
-        ->select('users.id_banner','users.documento','users.nombre','users.email','roles.nombreRol')->get();
+        $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
+            ->select('users.id_banner', 'users.documento', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
         //$users = json_encode($users);
         header("Content-Type: application/json");
-        echo json_encode(array('data'=>$users));
+        echo json_encode(array('data' => $users));
         //return $users;
     }
 
-    // *Método para mostrar todos sus datos al Usuario, recibe el id de usuario como parámetro
-    public function perfil($id)
+    // *Método para mostrar todos sus datos al Usuario
+    public function perfil()
     {
-        // *Inicialmente decripta el id*
-        $id = decrypt($id);
-        // *Definimos la variable usuario con todos sus datos*
-        $user = auth()->user();
-        // *Validación para determinar si el usuario cuenta con una facultad*
-        if ($user->id_facultad != NULL) {
-            // *Se llama la función para obtener facultad y programa del usuario*
-           list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
-        } else {
-            // * Si el usuario es un administrador no tendrá facultad*
-            $facultad =  $nombre_programas = NULL;
-        }
+        // *Se llama la función para obtener facultad y programa del usuario*
+        list($nombre_programas, $facultad) = $this->getfacultadyprograma();
         // * Función para obtener el rol del usuario
-        $roles = $this->getrol($id);
+        $roles = $this->getrol();
         // *Array para retornar todos los datos obtenidos
         $datos = array(
             'facultad' => $facultad,
@@ -145,53 +135,13 @@ class UserController extends Controller
         return view('vistas.perfil')->with('datos', $datos);
     }
 
-
-    // *Función que captura la facultad y el programa del usuario
-    public function getfacultadyprograma($id)
-    {
-        // *Obtenemos los datos del usuario*
-        $user = auth()->user();
-        // *Consulta para obtener el nombre de la facultad según el ID de esta
-        $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
-        $facultad = $facultad->nombre;
-        // *Explode para que muestre los programas por separado
-        $programas = explode(";", $user->programa);
-        // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
-        foreach ($programas as $key => $value) {
-            $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
-            $nombre_programas[$value] = $consulta[0]->programa;
-        }
-        // *Retornar programas y facultad
-        return [$nombre_programas, $facultad];
-    }
-
-    // *Función que captura el rol del usuario
-
-    public function getrol($id)
-    {
-        // *Obtenemos los datos del usuario
-        $user = auth()->user();
-        // *Se obtiene el nombre del rol del usuario
-        $roles = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $user->id_rol)->get();
-        // *Retornar nombre del rol
-        return $roles;
-    }
-
-
     // *Método para cargar la vista de edicion de datos del usuario*
-    public function editar($id)
-    {
-        $id = decrypt($id);
-        
-        $user = auth()->user();
-        if ($user->id_facultad != NULL) {
-            // *Se llama la función para obtener facultad y programa del usuario*
-           list( $nombre_programas, $facultad) = $this->getfacultadyprograma($id);
-        } else {
-            // * Si el usuario es un administrador no tendrá facultad*
-            $facultad =  $nombre_programas = NULL;
-        }
-        $roles = $this->getrol($id);
+    public function editar()
+    {  
+        // *Se llama la función para obtener facultad y programa del usuario*
+        list($nombre_programas, $facultad) = $this->getfacultadyprograma();
+        // * Función para obtener el rol del usuario
+        $roles = $this->getrol();
 
         $datos = array(
             'facultad' => $facultad,
@@ -202,21 +152,56 @@ class UserController extends Controller
         return view('vistas.editarperfil')->with('datos', $datos);
     }
 
+    // *Función que captura la facultad y el programa del usuario
+    public function getfacultadyprograma()
+    {
+        // *Obtenemos los datos del usuario*
+        $user = auth()->user();
+        // *Validación para determinar si el usuario cuenta con una facultad*
+        if ($user->id_facultad != NULL) {
+            // *Consulta para obtener el nombre de la facultad según el ID de esta
+            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
+            $facultad = $facultad->nombre;
+            // *Explode para que muestre los programas por separado
+            $programas = explode(";", $user->programa);
+            // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                $nombre_programas[$value] = $consulta[0]->programa;
+            }
+        } else {
+            $facultad =  $nombre_programas = NULL;
+        }
+        // *Retornar programas y facultad
+        return [$nombre_programas, $facultad];
+    }
+
+    // *Función que captura el rol del usuario
+
+    public function getrol()
+    {
+        // *Obtenemos los datos del usuario
+        $user = auth()->user();
+        // *Se obtiene el nombre del rol del usuario
+        $roles = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $user->id_rol)->get();
+        // *Retornar nombre del rol
+        return $roles;
+    }
+
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
         $user = auth()->user();
         $update = DB::table('users')->update('users')->set([
-                ['id_banner', '=', $request->nuevoid],
-                ['documento', '=', $request->nuevodocumento],
-                ['email', '=', $request->nuevoemail],
-                ['id_rol', '=', $request->id_rol],
-                ['id_facultad','=', $request->facultades],
-                ['programa','=', $request->programas],
-                ['activo','=', $request->estado],
-                ])->where('id','=',$id->id)->get();
-
+            ['id_banner', '=', $request->nuevoid],
+            ['documento', '=', $request->nuevodocumento],
+            ['email', '=', $request->nuevoemail],
+            ['id_rol', '=', $request->id_rol],
+            ['id_facultad', '=', $request->facultades],
+            ['programa', '=', $request->programas],
+            ['activo', '=', $request->estado],
+        ])->where('id', '=', $id->id)->get();
     }
 
     ///** funcion para cargar vistas de facultades */

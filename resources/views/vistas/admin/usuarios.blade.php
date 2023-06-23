@@ -130,7 +130,7 @@
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
                     
-                    $(location).attr('href', "editar"+ data.id);
+                    $(location).attr('href', "editar/"+ data.id);
 
                 })
             }

@@ -305,7 +305,7 @@
             programas = '{{ auth()->user()->programa }}';
             programasSeparados = programas.split(";");
             console.log(programasSeparados);
-            
+
             id_facultad = $(this);
 
             if($(this).val != ''){
@@ -315,8 +315,18 @@
                 },function(data){
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
+                        if (programasSeparados != '') {
+                            for (let index = 0; index < programasSeparados.length; index++) {
+                                if (programasSeparados[index] == programa.id) {
+                                    console.log("Encontrado");
+                                }
+                            }
+                            console.log("No encntrado");
+                        } else {
 
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                        }
+
+                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 })
             }

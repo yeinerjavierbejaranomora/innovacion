@@ -172,6 +172,7 @@ class UserController extends Controller
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             foreach ($programas as $key => $value) {
                 $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                return $consulta;
                 $nombre_programas[$value] = $consulta[0]->programa;
             }
         } else {
@@ -210,9 +211,9 @@ class UserController extends Controller
             // return redirect()->route('user.perfil')-> with('Sucess', 'Actualizacion exitosa!');
             }
             else{
-              // return redirect()->route('user.perfil')-> with('Error', 'Actualizacion fallida!');   
+              // return redirect()->route('user.perfil')-> with('Error', 'Actualizacion fallida!');
             }*/
-            
+
     }
 
     ///** funcion para cargar vistas de facultades */

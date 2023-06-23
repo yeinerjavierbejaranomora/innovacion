@@ -173,7 +173,7 @@ class UserController extends Controller
             'programa' => $nombre_programas,
             'user'=>$consulta[0]
         );
-
+        dd($datos);
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);
     }
 

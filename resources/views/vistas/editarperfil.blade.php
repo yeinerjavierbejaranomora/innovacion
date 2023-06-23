@@ -310,7 +310,7 @@
                 }
             });*/
 
-            $.post('{{ auth()->user()->id_facultad }}',{
+            $.post('{{ route('registro.facultades') }}',{
                 _token: $('meta[name="csrf-token"]').attr('content'),
             },function(data){
                 console.log(data);

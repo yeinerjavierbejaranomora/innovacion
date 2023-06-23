@@ -182,6 +182,7 @@ class UserController extends Controller
     public function editar($id)
     {
         $id = decrypt($id);
+        
         $user = auth()->user();
         if ($user->id_facultad != NULL) {
             // *Se llama la función para obtener facultad y programa del usuario*

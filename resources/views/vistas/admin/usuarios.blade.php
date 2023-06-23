@@ -127,11 +127,11 @@
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
-                    console.log('entro');
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
-
-                    $(location).attr('href', "vistas.editarperfil" + encrypt(data.id));
+                    
+                    var id = window.btoa(data.id);
+                    $(location).attr('href', "editar" + "/"+ data.id);
 
                 })
             }

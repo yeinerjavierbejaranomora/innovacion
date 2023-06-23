@@ -224,6 +224,7 @@
                                         @endif
                                         <hr>
                                         {{auth()->user()->id_facultad}}
+                                        {{ $facultad[0]>i }}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -231,7 +232,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }}value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

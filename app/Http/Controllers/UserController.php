@@ -145,7 +145,7 @@ class UserController extends Controller
     public function editar($id)
     {
         $id=$id;
-        $consulta = DB::DB::table('users')->select('*')->where('id', '=', $id)->get();
+        $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
         return($consulta);
         if($consulta[0]->id_facultad != NULL)
         {

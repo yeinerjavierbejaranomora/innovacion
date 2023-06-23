@@ -146,6 +146,7 @@ class UserController extends Controller
     {
         $id=base64_decode(urldecode($id));
         dd($id[0]->value);
+        
         if(is_object($id))
         {
             echo 'entro';

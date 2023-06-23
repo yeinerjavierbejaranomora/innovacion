@@ -204,7 +204,7 @@ class UserController extends Controller
                 ['documento', '=', $request->nuevodocumento],
                 ['email', '=', $request->nuevoemail],
                 ['id_rol', '=', $request->id_rol],
-                ['id_facultad','=', $request->id_facultad],
+                ['id_facultad','=', $request->facultades],
                 ['programa','=', $request->programas],
                 ['activo','=', $request->estado],
                 ])->where('id','=',$id->id)->get();

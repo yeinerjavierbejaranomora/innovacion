@@ -96,6 +96,10 @@ class UserController extends Controller
             'facultad' => $facultad
         );
 
+        if($nombre_rol === 'admin'){
+            $nombre_rol = ucwords($nombre_rol);
+        }
+
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }

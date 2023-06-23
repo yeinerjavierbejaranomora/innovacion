@@ -5,9 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-
-
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 

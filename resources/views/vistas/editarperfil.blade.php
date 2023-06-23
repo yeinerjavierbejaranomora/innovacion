@@ -288,7 +288,7 @@
         });
     }
 
-    alert($('#facultades').val());
+
 
     $('#facultades').each(function() {
         facultades = $(this);
@@ -328,4 +328,7 @@
             facultades.prop('disabled', false)
         }*/
     })
+</script>
+<script>
+    alert($('#facultades').val());
 </script>

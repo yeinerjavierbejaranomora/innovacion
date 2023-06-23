@@ -208,37 +208,32 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        @if ($roles != '')
-                                            <div class="row">
-                                                <div class="col-sm-3 text-dark">
-                                                    <p class="mb-0">Rol</p>
-                                                </div>
-                                                <div class="col mb-3">
-                                                    <select class="form-select" name="id_rol" id="rol">
-                                                        @foreach ($roles as $rol)
-                                                            <option
-                                                                {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }}
-                                                                value="{{ $rol->id }}">{{ $rol->nombreRol }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                        @if($roles != '')
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Rol</p>
                                             </div>
-                                        @endif
-                                        <hr>
-                                        @if ($facultades != '')
-                                            <div class="row">
-                                                <div class="col-sm-3 text-dark">
-                                                    <p class="mb-0">Facultad</p>
-                                                </div>
-                                                <select class="form-select" name="facultades" id="facultades">
-                                                    @foreach ($facultades as $facultad)
-                                                        <option
-                                                            {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }}value="{{ $facultad->id }}">
-                                                            {{ $facultad->nombre }}</option>
+                                            <div class="col mb-3">
+                                                <select class="form-select" name="id_rol" id="rol">
+                                                    @foreach ($roles as $rol)
+                                                    <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div>
+                                        @endif
+                                        <hr>
+                                        @if($facultades != '')
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Facultad</p>
+                                            </div>
+                                            <select class="form-select" name="facultades" id="facultades">
+                                                @foreach ($facultades as $facultad)
+                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }}value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         @endif
                                         <hr>
                                         <div class="row">
@@ -289,52 +284,43 @@
 </div>
 
 <script>
-    //facultades();
+        //facultades();
 
 
-    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
-    function facultades() {
-        id_facultad = '{{ auth()->user()->id_facultad }}';
-        $.post('{{ route('registro.facultades') }}', {
-            _token: $('meta[name="csrf-token"]').attr('content'),
-        }, function(data) {
-            data.forEach(facultad => {
-                $('#facultades').append(
-                    `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
-                );
-            });
-        })
-    }
-
-    $('#facultades').each(function() {
-        programas = '{{ auth()->user()->programa }}';
-        programasSeparados = programas.split(";");
-        console.log(programasSeparados);
-
-        id_facultad = $(this);
-
-        if ($(this).val != '') {
-            $.post('{{ route('registro.programas') }}', {
+        //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
+        function facultades() {
+            id_facultad = '{{ auth()->user()->id_facultad }}';
+            $.post('{{ route('registro.facultades') }}',{
                 _token: $('meta[name="csrf-token"]').attr('content'),
-                idfacultad: id_facultad.val(),
-            }, function(data) {
-                for (let index = 0; index < programasSeparados.length; index++) {
-                    data.forEach(programa => {
-                        //* Se crea un input tipo checkbox para cada programa recibido/
-                        if (programasSeparados != '') {
-
-                            console.log(programas.includes(programasSeparados[index]))
-
-                        }
-
-                        console.log('No encontrado');
-
-                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-
-
-                    });
-                }
+            },function(data){
+                data.forEach(facultad => {
+                    $('#facultades').append(
+                        `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
+                    );
+                });
             })
         }
-    });
+
+        $('#facultades').each(function(){
+            programas = '{{ auth()->user()->programa }}';
+            programasSeparados = programas.split(";");
+            console.log(programasSeparados);
+
+            id_facultad = $(this);
+
+            if($(this).val != ''){
+                $.post('{{  route('registro.programas') }}',{
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    idfacultad: id_facultad.val(),
+                },function(data){
+                    data.forEach(programa => {
+                        programa = programasSeparados[0];
+                        console.log(programa);
+                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                    });
+                })
+            }
+        });
+
+
 </script>

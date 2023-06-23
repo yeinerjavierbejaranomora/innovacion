@@ -315,7 +315,7 @@
                     idfacultad: id_facultad.val(),
                 },function(data){
                     data.forEach(programa => {
-                        if(programasSeparados.incudes(programa.id)){
+                        if(programasSeparados.includes(programa.id)){
                             console.log("Encontrado");
                         }
                         console.log("No encontrado");

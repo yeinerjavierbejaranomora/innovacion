@@ -313,12 +313,11 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    for (let index = 0; index < programasSeparados.length; index++) {
                     data.forEach(programa => {
-                        console.log(programa.id);
+                        programa = programasSeparados[0];
+                        console.log(programa);
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
-                }
                 })
             }
         });

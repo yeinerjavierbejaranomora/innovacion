@@ -148,7 +148,7 @@ class UserController extends Controller
         list($nombre_programas, $facultad) = $this->getfacultadyprograma();
         // *Función para obtener el rol del usuario
         $rol = $this->getrol();
-        if(auth()->user()->id_rol != 9):
+        if(auth()->user()->id_rol == 9):
             $roles = Roles::all();
         else:
             $roles = DB::table('roles')->where('id','<>',9);

@@ -284,21 +284,8 @@
 </div>
 
 <script>
-        //facultades();
-
-
-        //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
-        function facultades() {
-            id_facultad = '{{ auth()->user()->id_facultad }}';
-            $.post('{{ route('registro.facultades') }}',{
-                _token: $('meta[name="csrf-token"]').attr('content'),
-            },function(data){
-                data.forEach(facultad => {
-                    $('#facultades').append(
-                        `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
-                    );
-                });
-            })
-        }
+        $('#facultades').each(function(){
+            alert($(this).val());
+        });
 
 </script>

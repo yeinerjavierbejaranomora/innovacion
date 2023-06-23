@@ -144,7 +144,7 @@ class UserController extends Controller
         // *Función para obtener el rol del usuario
         $roles = $this->getrol();
         $facultades = DB::table('facultad')->get();
-        return $facultades;
+        //return $facultades;
         // *Se crea un arreglo con los datos obtenidos
         $datos = array(
             'facultad' => $facultad,
@@ -152,7 +152,7 @@ class UserController extends Controller
             'programa' => $nombre_programas
         );
 
-        return view('vistas.editarperfil')->with('datos', $datos);
+        return view('vistas.editarperfil')->with(['datos' => $datos,'facultades'->$facultades]);
     }
 
     // *Función que captura la facultad y el programa del usuario

@@ -95,7 +95,7 @@ class UserController extends Controller
         );
 
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas/' . $nombre_rol)->with('datos', $datos);
+        return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
 
     // funcion para traer todos los usuarios a la vista de administracion

@@ -143,7 +143,7 @@ class UserController extends Controller
         list($nombre_programas, $facultad) = $this->getfacultadyprograma();
         // *Función para obtener el rol del usuario
         $roles = $this->getrol();
-        $facultades = DB::table('facultades')->get();
+        $facultades = DB::table('facultad')->get();
         return $facultades;
         // *Se crea un arreglo con los datos obtenidos
         $datos = array(

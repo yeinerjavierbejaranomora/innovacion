@@ -311,7 +311,7 @@
             });*/
 
             $.post('{{ auth()->user()->id_facultad }}',{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                _token:'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },function(data){
                 console.log(data);
             })

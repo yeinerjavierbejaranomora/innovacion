@@ -302,7 +302,7 @@
         }
 
         $('#facultades').each(function(){
-            id_facultad = $(this).val());
+            id_facultad = $(this).val();
             programas = $('#programas');
 
             if($(this).val != ''){
@@ -314,5 +314,6 @@
                 })
             }
         });
+
 
 </script>

@@ -22,7 +22,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -36,14 +37,17 @@
 
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 <li class="nav-item dropdown no-arrow d-sm-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-search fa-fw"></i>
                     </a>
                     <!-- Dropdown - Messages -->
-                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
                         <form class="form-inline mr-auto w-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
@@ -56,13 +60,15 @@
 
                 <!-- alertas -->
                 <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
                         <span class="badge badge-danger badge-counter">3+</span>
                     </a>
                     <!-- Dropdown - Alerts -->
-                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="alertsDropdown">
                         <h6 class="dropdown-header">
                             Alerts Center
                         </h6>
@@ -108,12 +114,14 @@
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                         <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
@@ -150,7 +158,8 @@
                         <div class="col-lg-4">
                             <div class="card mb-4">
                                 <div class="card-body text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
@@ -161,7 +170,8 @@
                         <!--Datos del Usuario-->
                         <div class="col-lg-8">
                             <div class="card mb-4">
-                                <form action="{{ route('user.actualizar',['id'=>encrypt(auth()->user()->id)]) }}" method="post" id="miForm">
+                                <form action="{{ route('user.actualizar', ['id' => encrypt(auth()->user()->id)]) }}"
+                                    method="post" id="miForm">
                                     @csrf
                                     @method('PUT')
                                     <div class="card-body">
@@ -170,7 +180,9 @@
                                                 <p class="mb-0">Id Banner</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"> <input type="text" class="form-control" name="nuevoid" value="{{ auth()->user()->id_banner }}"></p>
+                                                <p class="text-muted mb-0"> <input type="text"
+                                                        class="form-control" name="nuevoid"
+                                                        value="{{ auth()->user()->id_banner }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -179,7 +191,9 @@
                                                 <p class="mb-0">Documento de identidad</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="number" class="form-control" name="nuevodocumento" value="{{auth()->user()->documento }}"></p>
+                                                <p class="text-muted mb-0"><input type="number" class="form-control"
+                                                        name="nuevodocumento" value="{{ auth()->user()->documento }}">
+                                                </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -188,7 +202,8 @@
                                                 <p class="mb-0">Email</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="email" class="form-control" name="nuevoemail" value="{{auth()->user()->email }}"></p>
+                                                <p class="text-muted mb-0"><input type="email" class="form-control"
+                                                        name="nuevoemail" value="{{ auth()->user()->email }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -197,7 +212,7 @@
                                                 <p class="mb-0">Rol</p>
                                             </div>
                                             <div class="col mb-3">
-                                                    <select class="form-select" name="id_rol" id="rol"></select>
+                                                <select class="form-select" name="id_rol" id="rol"></select>
                                             </div>
                                         </div>
                                         <hr>
@@ -223,22 +238,25 @@
                                             </div>
                                             <!--Validación para verificar si el usuario se encuentra activo o no-->
                                             @if (auth()->user()->activo = 1)
-                                            <div class="col-sm-9">
-                                                <input class="form-check-input" type="checkbox" value="" name="estado" id="Checkbox" checked>
+                                                <div class="col-sm-9">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        name="estado" id="Checkbox" checked>
+                                                    <label class="form-check-label" for="Checkbox">
+                                                        Activo
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    name="estado" id="Checkbox">
                                                 <label class="form-check-label" for="Checkbox">
                                                     Activo
                                                 </label>
-                                            </div>
-                                            @else
-                                            <input class="form-check-input" type="checkbox" value="" name="estado" id="Checkbox">
-                                            <label class="form-check-label" for="Checkbox">
-                                                Activo
-                                            </label>
                                             @endif
                                         </div>
                                         <br>
                                         <div class="d-flex justify-content-center mb-2">
-                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar Actualización</button>
+                                            <button type="submit" class="btn btn-outline-primary ms-1">Finalizar
+                                                Actualización</button>
                                         </div>
                                     </div>
                                 </form>
@@ -253,41 +271,46 @@
 </div>
 
 <script>
-    roles();
-    facultades();
+    $(document).ready(function() {
+        roles();
+        facultades();
 
-    function roles() {
-        rol_actual = '{{auth()->user()->id_rol}}';
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.roles') }}",
-            method: 'get',
-            success: function(data) {
-                data.forEach(rol => {
-                    $('#rol').append(`<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`);
-                });
-            }
-        })
-    }
-    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
-    function facultades() {
-        id_facultad = '{{auth()->user()->id_facultad}}';
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.facultades') }}",
-            method: 'post',
-            success: function(data) {
-                data.forEach(facultad => {
-                    $('#facultades').append(`<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`);
-                });
-            }
-        });
-    }
-
+        function roles() {
+            rol_actual = '{{ auth()->user()->id_rol }}';
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('registro.roles') }}",
+                method: 'get',
+                success: function(data) {
+                    data.forEach(rol => {
+                        $('#rol').append(
+                            `<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`
+                            );
+                    });
+                }
+            })
+        }
+        //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
+        function facultades() {
+            id_facultad = '{{ auth()->user()->id_facultad }}';
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('registro.facultades') }}",
+                method: 'post',
+                success: function(data) {
+                    data.forEach(facultad => {
+                        $('#facultades').append(
+                            `<option ${facultad.id == id_facultad ? 'selected':''} value="${facultad.id}">${facultad.nombre}</option>`
+                            );
+                    });
+                }
+            });
+        }
+    });
 
 
     $('#facultades').each(function() {

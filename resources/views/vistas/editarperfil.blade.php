@@ -208,6 +208,7 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        {{ $roles }}
                                         @if($roles != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -216,7 +217,7 @@
                                             <div class="col mb-3">
                                                 <select class="form-select" name="id_rol" id="rol">
                                                     @foreach ($roles as $rol)
-                                                    <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }}value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                                                    <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

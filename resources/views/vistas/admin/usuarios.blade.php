@@ -54,8 +54,8 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="example" class="display" style="width:100%">    
-                            </table>
+                                <table id="example" class="display" style="width:100%">
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -82,21 +82,33 @@
 <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('admin.getusers') }}";
-    xmlhttp.open("GET",url,true);
+    xmlhttp.open("GET", url, true);
     xmlhttp.send();
-    xmlhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status ==200) {
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
             console.log(data);
             $('#example').DataTable({
-                "data":data.data,
-                "columns": [
-                    {data: 'id_banner'},
-                    {data: 'documento'},
-                    {data: 'nombre'},
-                    {data: 'email'},
-                    {data: 'nombreRol'},
-                    {defaultContent:"<button type='button' class='btn btn-secondary'><i class='fa-regular fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-regular fa-user-slash'></i></button>"}
+                "data": data.data,
+
+                "columns": [{
+                        data: 'id_banner'
+                    },
+                    {
+                        data: 'documento'
+                    },
+                    {
+                        data: 'nombre'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'nombreRol'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-regular fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-regular fa-user-slash'></i></button>"
+                    }
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -117,12 +129,12 @@
             url: "{{ route('admin.getusers') }}",
                 /*type: "POST",
                 contentType: "application/json",*/
-                /*data: function(d) {
-                    console.log(JSON.stringify(d));
-                    return JSON.stringify(d)
-                },
-                dataSrc: 'result.data'*/
-            /*},
+    /*data: function(d) {
+        console.log(JSON.stringify(d));
+        return JSON.stringify(d)
+    },
+    dataSrc: 'result.data'*/
+    /*},
             columns: [{
                     data: 'id_banner'
                 },

@@ -223,6 +223,8 @@
                                         </div>
                                         @endif
                                         <hr>
+                                        {{auth()->user()->id_facultad}}
+                                        {{ $facultad[0]->id }}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -230,7 +232,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }}value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -319,8 +321,10 @@
                     // });
                         for (let i = 0; i < data.length; i++) {
                             for (let j = 0; j < programasSeparados.length; j++) {
-                                if (data[i]['id'] === programasSeparados[j]) {
+                                if (data.includes(programasSeparados[j])) {
                                     console.log(true);
+                                }else{
+                                    console.log(false);
                                 }
                             }
                         }

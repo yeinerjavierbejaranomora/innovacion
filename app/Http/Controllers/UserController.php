@@ -152,7 +152,7 @@ class UserController extends Controller
             'programa' => $nombre_programas
         );
 
-        return view('vistas.editarperfil')->with(['datos' => $datos,'facultades'->$facultades]);
+        return view('vistas.editarperfil',['datos' => $datos,'facultades'->$facultades]);
     }
 
     // *Función que captura la facultad y el programa del usuario
@@ -204,7 +204,7 @@ class UserController extends Controller
             ['programa', '=', $request->programas],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
-            
+
     }
 
     ///** funcion para cargar vistas de facultades */

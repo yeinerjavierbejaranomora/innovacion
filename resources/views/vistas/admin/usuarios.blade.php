@@ -129,9 +129,8 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
-                    
-                    var id = window.btoa(data.id);
-                    $(location).attr('href', "vistas.editarperfil" + id);
+                
+                    $(location).attr('href', "vistas.editarperfil" + data.id);
 
                 })
             }

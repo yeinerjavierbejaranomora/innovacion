@@ -6,26 +6,7 @@
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
-<script>
-roles();
-function roles() {
-            rol_actual = '{{ auth()->user()->id_rol }}';
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.roles') }}",
-                method: 'get',
-                success: function(data) {
-                    data.forEach(rol => {
-                        $('#rol').append(
-                            `<option ${rol.id == rol_actual ? 'selected':''} value="${rol.id}">${rol.nombreRol}</option>`
-                            );
-                    });
-                }
-            })
-        }
-</script>
+
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->

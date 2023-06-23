@@ -321,13 +321,13 @@
                 for (let index = 0; index < programasSeparados.length; index++) {
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
-                        if (programasSeparados != '') {
+                        encontrado =programas.includes(programasSeparados[index])
 
-                            console.log(programas.includes(programasSeparados[index]))
-
-                        }
-
+                        if (condition) {
+                            console.log("Encontrado");
+                        } else {
                         console.log('No encontrado');
+                        }
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
 

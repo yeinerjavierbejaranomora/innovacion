@@ -22,7 +22,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('public/general/js/sb-admin-2.min.js')}}"></script>
 
-
+    <!-- Font awesome for Icons-->
+    <script src="https://kit.fontawesome.com/def3229fdd.js" crossorigin="anonymous"></script>
 
 
 </body>

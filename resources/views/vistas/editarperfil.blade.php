@@ -223,8 +223,6 @@
                                         </div>
                                         @endif
                                         <hr>
-                                        {{auth()->user()->id_facultad}}
-                                        {{ $facultades }}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -309,25 +307,20 @@
             console.log(programasSeparados);
 
             id_facultad = $(this);
+            alert(id_facultad.val());
 
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    // data.forEach(programa => {
-                    //     console.log(programa.id);
-                    //     //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-                    // });
-                        for (let i = 0; i < data.length; i++) {
-                            for (let j = 0; j < programasSeparados.length; j++) {
-                                if (data.includes(programasSeparados[j])) {
-                                    console.log(true);
-                                }else{
-                                    console.log(false);
-                                }
-                            }
+                    data.forEach(programa => {
+                        if(programasSeparados.includes(programa.id)){
+                            console.log("Encontrado");
                         }
+                        console.log("No encontrado");
+                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                    });
                 })
             }
         });

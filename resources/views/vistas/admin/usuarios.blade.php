@@ -116,7 +116,7 @@
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<div class='form-check form-switch'> <input class='form-check-input' type='checkbox' role='switch' id='flexSwitchCheckChecked' checked><label class='form-check-label' for='flexSwitchCheckChecked'>Checked switch checkbox input</label> </div>",
+                        defaultContent: "<div class='form-check form-check-inline form-switch'> <input type='checkbox' class='form-check-input' id='p' checked><label class='form-check-label' for='p'> Activo </label> </div>",
                         title:'Inactivar'
                     }
                 ],

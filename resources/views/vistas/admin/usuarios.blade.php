@@ -107,7 +107,7 @@
                         data: 'nombreRol'
                     },
                     {
-                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-regular fa-trash'></i></button> <button type='button' class='btn btn-secondary'></i></button>"
+                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>"
                     }
                 ],
                 "language": {

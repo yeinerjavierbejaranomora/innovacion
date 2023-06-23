@@ -321,6 +321,8 @@
                             for (let j = 0; j < programasSeparados.length; j++) {
                                 if (data[i][0] ===  parseInt(programasSeparados[j])) {
                                     console.log(true);
+                                }else{
+                                    console.log(false);
                                 }
                             }
                         }

@@ -115,7 +115,7 @@
                         title:'Editar'                    
                     },
                     {
-                        defaultContent: "<input data-id=activo class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' {{activo ? 'checked' : '' }}>",
+                        defaultContent: "<input data-id= class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive' >",
                         title:'Inactivar'
                     }
                 ],

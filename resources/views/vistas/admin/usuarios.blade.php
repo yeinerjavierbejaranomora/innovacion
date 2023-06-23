@@ -113,7 +113,7 @@
                         title:'Rol'                    },
                     {
                         defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-solid fa-folder-minus'></i></button>",
-                        title:' '
+                        title:'Editar/Inactivar'
                     }
                 ],
                 "language": {

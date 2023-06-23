@@ -55,16 +55,6 @@
                         <div class="card-body">
                             <div class="table">
                                 <table id="example" class="display" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th">Salary</th>
-                                        </tr>
-                                    </thead>
                                 </table>
                             </div>
                         </div>

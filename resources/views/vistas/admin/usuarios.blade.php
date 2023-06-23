@@ -94,23 +94,26 @@
 
                 "columns": [{
                         data: 'id_banner',
-                        title: 'Id'
+                        title: 'Id Banner'
                     },
                     {
                         data: 'documento',
                         title:'Documento de identidad'
                     },
                     {
-                        data: 'nombre'
+                        data: 'nombre',
+                        title: 'Nombre de usuario'
                     },
                     {
-                        data: 'email'
+                        data: 'email',
+                        tittle:'Email'
                     },
                     {
-                        data: 'nombreRol'
-                    },
+                        data: 'nombreRol',
+                        title:'Rol'                    },
                     {
-                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-solid fa-folder-minus'></i></button>"
+                        defaultContent: "<button type='button' class='btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button> <button type='button' class='btn btn-secondary'><i class='fa-solid fa-folder-minus'></i></button>",
+                        title:' '
                     }
                 ],
                 "language": {

@@ -131,7 +131,7 @@
                     console.log(data);
                     
                     var id = window.btoa(data.id);
-                    $(location).attr('href', "editar" + data.id);
+                    $(location).attr('href', "editar" + "/"+ data.id);
 
                 })
             }

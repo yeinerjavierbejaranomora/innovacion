@@ -203,6 +203,7 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
+        return $id;
         $update = DB::table('users')->update('users')->set([
             ['id_banner', '=', $request->nuevoid],
             ['documento', '=', $request->nuevodocumento],

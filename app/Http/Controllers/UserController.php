@@ -169,10 +169,11 @@ class UserController extends Controller
             $facultad = $facultad->nombre;
             // *Explode para que muestre los programas por separado
             $programas = explode(";", $user->programa);
+            return $programas;
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             foreach ($programas as $key => $value) {
                 $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
-                $nombre_programas[$value] = trim($consulta[0]->programa);
+                $nombre_programas[$value] = $consulta[0]->programa;
             }
         } else {
             $facultad =  $nombre_programas = NULL;

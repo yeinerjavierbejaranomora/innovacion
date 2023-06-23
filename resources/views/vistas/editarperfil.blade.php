@@ -314,7 +314,7 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    id_facultades=[];
+                    /*id_facultades=[];
                     console.log(data);
                     data.forEach(programa => {
                         id_facultades.push(parseInt(programa.id));
@@ -322,7 +322,7 @@
                         //console.log(programasSeparados.includes(programa.id));
 
                         //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-                    });
+                    });*/
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
                             console.log("encontrado");

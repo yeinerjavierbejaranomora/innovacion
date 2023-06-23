@@ -161,7 +161,7 @@
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                         alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                    <h5 class="my-3">{{ $datos['user'=>'nombre'] }}</h5>
+                                    <h5 class="my-3">{{ $datos->user->nombre }}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
 

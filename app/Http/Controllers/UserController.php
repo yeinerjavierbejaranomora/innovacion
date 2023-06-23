@@ -96,8 +96,8 @@ class UserController extends Controller
             'facultad' => $facultad
         );
 
-        if($nombre_rol === 'admin'){
-            $nombre_rol = ucwords($nombre_rol);
+        if($nombre_rol === 'Admin'){
+            $nombre_rol = strtolower($nombre_rol);
         }
 
         /** cargamos la vista predeterminada para cada rol con la data */

@@ -313,7 +313,7 @@
                 },function(data){
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
-                        if
+                        
                         $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 })

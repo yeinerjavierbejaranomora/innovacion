@@ -90,13 +90,15 @@
             console.log(data);
             $('#example').DataTable({
                 "data": data.data,
-                
+
 
                 "columns": [{
-                        data: 'id_banner'
+                        data: 'id_banner',
+                        title: 'Id'
                     },
                     {
-                        data: 'documento'
+                        data: 'documento',
+                        title:'Documento de identidad'
                     },
                     {
                         data: 'nombre'

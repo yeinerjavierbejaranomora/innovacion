@@ -332,10 +332,7 @@
         $('#facultades').change(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
-
             id_facultad = $(this);
-
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),

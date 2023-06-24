@@ -301,8 +301,7 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "{{ auth()->user()->id_facultad }}";
-            
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 

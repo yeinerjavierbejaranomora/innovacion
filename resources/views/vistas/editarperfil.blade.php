@@ -303,7 +303,6 @@
         $('#facultades').each(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
 
             id_facultad = $(this);
 
@@ -313,7 +312,6 @@
                     idfacultad: id_facultad.val(),
                 },function(data){
                     /*id_facultades=[];*/
-                    console.log(data);
                     /*data.forEach(programa => {
                         id_facultades.push(parseInt(programa.id));
                         //console.log(id_facultades);

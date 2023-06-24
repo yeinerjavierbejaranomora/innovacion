@@ -323,10 +323,8 @@
                     });*/
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }
@@ -351,10 +349,8 @@
                     $('#programas').empty();
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }

@@ -303,9 +303,7 @@
         $('#facultades').each(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-
             id_facultad = $(this);
-
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -326,7 +324,6 @@
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }
-                    //console.log(programasSeparados.some(e => id_facultades.includes(e)));
 
                 })
             }

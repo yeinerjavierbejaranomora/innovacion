@@ -158,11 +158,7 @@
         }
     }
 
-    function agregarFacultad(){
-        $('#modal').on("click", "button.crear",function(){
-            console.log('entre');
-        })
-    }
+   
 
 </script>
 @include('layout.footer')

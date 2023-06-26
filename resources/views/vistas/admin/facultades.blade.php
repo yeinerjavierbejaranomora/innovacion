@@ -158,7 +158,6 @@
         }
     }
 
-    
     /* function agregarFacultad(){ 
         $('#miForm').submit(function(e){
             event.preventDefault();

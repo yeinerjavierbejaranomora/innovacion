@@ -86,12 +86,12 @@
                                     <label for="message-text" class="col-form-label">Codigo de la facultad</label>
                                     <input type="text" class="form-control" id="codFacultad">
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="crear btn btn-primary" onclick="agregarFacultad()">Crear</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="crear btn btn-primary" onclick="agregarFacultad()">Crear</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,10 @@
         }
     }
 
-    function agregarFacultad(){  
+    function agregarFacultad(){ 
+        $('#miForm').submit(function(e){
+            event.preventDefault();
             console.log('entre');
+        })
     }
 </script>

@@ -237,7 +237,7 @@
                                         </div>
                                         @endif
                                         <hr>
-                                        {{ $datos['user']}}
+                                        {{ $datos['user'][0] }}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

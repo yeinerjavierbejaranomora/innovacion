@@ -189,7 +189,7 @@ class UserController extends Controller
         }
         // *Si el usuario no tiene un facultad se preocede a dejar vacío dicho campo
         else {
-            $facultad =  $nombre_programas = NULL;
+            $facultad =  $nombre_programas = '';
         }
         $rol = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $consulta[0]->id_rol)->get();
         $roles = Roles::all();

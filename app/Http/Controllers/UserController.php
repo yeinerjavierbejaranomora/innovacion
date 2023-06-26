@@ -202,7 +202,6 @@ class UserController extends Controller
     {
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
-        dd(auth()->user()->programa);
         // *Validación para determinar si el usuario cuenta con una facultad*
         if ($user->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
@@ -249,6 +248,21 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
+        $Programas = '';
+        /**se comprueba que el campo no este vacio*/
+        if (isset($programa)) :
+            /** Se recorre el arreglo recibido, y se añade a la variable $Programa
+             *  en cada iteracion, añadiendole el ; como separador
+             */
+            foreach ($request->programa as $programa) :
+                $Programas .= $programa . ";";
+            endforeach;
+            /**En el campo programa se añade el contenido de la variable $Programa */
+
+        else:
+            /** Si el valor recibido es vacio se pasa al campo este valor vacio */
+            $Programas = '';
+        endif;
         //return $activo;
         if ($request->activo != 'on') :
             $activo = 0;

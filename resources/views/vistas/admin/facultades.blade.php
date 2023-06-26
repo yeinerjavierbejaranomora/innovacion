@@ -121,10 +121,8 @@
                                     <label for="message-text" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="edit btn btn-primary">Editar</button>
-                                </div>
                             </form>
                         </div>
                     </div>

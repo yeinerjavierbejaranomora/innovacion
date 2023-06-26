@@ -302,7 +302,6 @@
         $('#facultades').each(function(){
             programas = '{{ auth()->user()->programa }}';
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
 
             id_facultad = $(this);
 
@@ -322,14 +321,11 @@
                     });*/
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }
-                    //console.log(programasSeparados.some(e => id_facultades.includes(e)));
 
                 })
             }
@@ -347,10 +343,8 @@
                     $('#programas').empty();
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }5

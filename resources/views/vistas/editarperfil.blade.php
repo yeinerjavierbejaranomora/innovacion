@@ -174,6 +174,7 @@
                                 <form action="{{ route('user.actualizar', ['id' => encrypt($datos['user']->id)]) }}"
                                     method="POST" id="miForm">
                                     @csrf
+                                    {{ $datos['user']->id }}
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

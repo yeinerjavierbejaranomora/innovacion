@@ -160,8 +160,9 @@
 
     function agregarFacultad(){ 
         $('#miForm').submit(function(e){
-            console.log('entre');
             event.preventDefault();
+            var data = $("miForm").val();
+            console.log(data);
         })
     }
 </script>

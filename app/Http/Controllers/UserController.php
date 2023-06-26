@@ -148,6 +148,7 @@ class UserController extends Controller
             'codFacultad'=>$request[0]->codFacultad,
             'nombre'=>$request[0]->nombre,
         ]);
+        
             if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');

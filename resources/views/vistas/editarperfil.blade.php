@@ -309,7 +309,7 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "{{ $datos['user']->programa }}";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
 
             id_facultad = $(this);
@@ -343,7 +343,7 @@
         });
 
         $('#facultades').change(function(){
-            programas = "{{ $datos['user']->programa }}";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
 

@@ -149,10 +149,10 @@ class UserController extends Controller
         ]);
             if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');
+            return redirect()->route('admin.facultades')->with('success','Facultad creada correctamente');
         else:
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('vistas.admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
         endif;
     }
     // *Método para mostrar todos sus datos al Usuario

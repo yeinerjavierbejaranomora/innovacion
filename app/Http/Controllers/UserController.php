@@ -159,16 +159,12 @@ class UserController extends Controller
 
     public function updatefacultad(CrearFacultadRequest $request)
     {
-        print_r($request->id);
-        exit;
+       dd($request);
 
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update([
-            'codFacultad' => $request->editcodFacultad,
-            'nombre' => $request->editnombre,
-        ])->where('id', '=', $request->id);
+      /*  $facultad = DB::table('facultad')->update(['codFacultad' => $request->editcodFacultad,'nombre' => $request->editnombre])->where('id', '=', $request->id);*/
 
-        if ($facultad) :
+        if ($request) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.facultades')->with('success', 'Actualización exitosa');
         else :

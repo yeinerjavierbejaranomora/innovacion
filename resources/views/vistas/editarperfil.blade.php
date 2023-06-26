@@ -336,9 +336,6 @@
         });
 
         $('#facultades').change(function(){
-<<<<<<< HEAD
-            programas = '{{ auth()->user()->programa }}';
-=======
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
 

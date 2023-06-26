@@ -302,7 +302,7 @@ class UserController extends Controller
         endif;
         //return $Programas;
         //return $activo;
-        if ($request->activo != 'on') :
+        if ($request->estado != 'on') :
             $activo = 0;
         else :
             $activo = 1;

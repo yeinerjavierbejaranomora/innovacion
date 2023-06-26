@@ -207,7 +207,6 @@ class UserController extends Controller
     {
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
-        dd(auth()->user()->programa);
         // *Validación para determinar si el usuario cuenta con una facultad*
         if ($user->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
@@ -219,12 +218,14 @@ class UserController extends Controller
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             foreach ($programas as $key => $value) {
+                var_dump($value);
                 $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
                 $nombre_programas[$value] = $consulta[0]->programa;
             }
         } else {
             $facultad =  $nombre_programas = NULL;
         }
+        die();
         // *Retornar programas y facultad
         return [$nombre_programas, $facultad];
     }
@@ -254,6 +255,22 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
+        $Programas = '';
+        /**se comprueba que el campo no este vacio*/
+        if (isset($programa)) :
+            /** Se recorre el arreglo recibido, y se añade a la variable $Programa
+             *  en cada iteracion, añadiendole el ; como separador
+             */
+            foreach ($request->programa as $programa) :
+                $Programas .= $programa . ";";
+            endforeach;
+            /**En el campo programa se añade el contenido de la variable $Programa */
+
+        else:
+            /** Si el valor recibido es vacio se pasa al campo este valor vacio */
+            $Programas = '';
+        endif;
+        //return $Programas;
         //return $activo;
         if ($request->activo != 'on') :
             $activo = 0;
@@ -269,13 +286,13 @@ class UserController extends Controller
                 'email' => $email,
                 'id_rol' => $idRol,
                 'id_facultad' => $idFacultad,
-                'programa' => $programa,
+                'programa' => $Programas,
                 'activo' => $activo,
             ]);
         if ($actualizar) :
-            return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+            return  redirect()->route('user.perfil',['id'=> $id])->with('Sucess', 'Actualizacion exitosa!');
         else :
-            return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
+            return redirect()->route('user.perfil',['id'=> $id])->withErrors('Error', 'Error al actuaizar los datos del usuario');
         endif;
     }
 }

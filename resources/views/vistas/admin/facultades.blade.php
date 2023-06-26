@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Codigo de la facultad</label>
-                                    <input type="text" class="form-control" id="codFacultad>
+                                    <input type="text" class="form-control" id="codFacultad">
                                 </div>
                             </form>
                         </div>
@@ -100,7 +100,7 @@
         <!-- /.container-fluid -->
 
     </div>
-
+    @include('layout.footer')
 </div>
 <!-- End of Content Wrapper -->
 
@@ -157,6 +157,9 @@
             obtener_data_editar("#example tbody", table);
         }
     }
-    
+    function agregarFacultad(){
+        $('#modal').on("click", "button.crear",function(){
+            console.log('entre');
+        })
+    }
 </script>
-@include('layout.footer')

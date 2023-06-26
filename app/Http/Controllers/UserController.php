@@ -345,9 +345,9 @@ class UserController extends Controller
 
         $inactivarUser = DB::table('users')->where('id',$id)->update(['activo'=>0]);
         if ($inactivarUser) :
-            return  true;
+            return  "true";
         else :
-            return false;
+            return "false";
         endif;
     }
 

@@ -137,7 +137,8 @@
 
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.eliminar", function() {
-                    alert("Hola");
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log(data);
                 });
             }
 

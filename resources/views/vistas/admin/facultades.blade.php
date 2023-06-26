@@ -158,7 +158,9 @@
         }
     }
 
-    function agregarFacultad(){ 
+
+    
+    /* function agregarFacultad(){ 
         $('#miForm').submit(function(e){
             event.preventDefault();
             //let nombre = $('#nombre').val();
@@ -170,7 +172,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
                 type: 'post',
-                url:"{{ route('User.crear_facultad' )}}",
+                url:"{{ route('user.crear_facultad' )}}",
                 data: data,
                 cache: false,
                 contentType: false,
@@ -178,5 +180,5 @@
             })
             
         })
-    }
+    } */
 </script>

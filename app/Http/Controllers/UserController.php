@@ -290,7 +290,7 @@ class UserController extends Controller
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         if(isset($request->estado)){
             return "existe";
         }else{

@@ -264,7 +264,7 @@
                                                 <p class="mb-0">Estado</p>
                                             </div>
                                             <!--Validación para verificar si el usuario se encuentra activo o no-->
-                                            @if (auth()->user()->activo = 1)
+                                            @if (auth()->user()->activo = 1 && auth()->user()->id_rol != 9)
                                                 <div class="col-sm-9">
                                                     <input class="form-check-input" type="checkbox"
                                                         name="estado" id="Checkbox" checked>

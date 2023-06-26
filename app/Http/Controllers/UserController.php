@@ -143,7 +143,7 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        dd($request->request);
+        dd($request->request->parameters);
         $facultad = DB::table('facultad')->insert([
             'codFacultad'=>$request[0]->codFacultad,
             'nombre'=>$request[0]->nombre,
@@ -271,7 +271,7 @@ class UserController extends Controller
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $id = decrypt($id);
         $idBanner = $request->id_banner;
         $documento = $request->documento;

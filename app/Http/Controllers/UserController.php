@@ -171,6 +171,7 @@ class UserController extends Controller
         //return $id;
         // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
+        dd($consulta);
 
         // *Condicional para determinar si el usuario cuenta con una facultad
         if ($consulta[0]->id_facultad != NULL) {

@@ -180,7 +180,7 @@
             });
 
             var inputs = $('.input');
-            console.long(inputs);
+            console.log(inputs);
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {

@@ -343,7 +343,7 @@
         });
 
         $('#facultades').change(function(){
-            programas = "{{ auth()->user()->programa }}";
+            programas = "{{ $datos['user']->id->programa }}";
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
 

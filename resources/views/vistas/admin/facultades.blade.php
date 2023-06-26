@@ -158,25 +158,5 @@
         }
     }
 
-    /* function agregarFacultad(){ 
-        $('#miForm').submit(function(e){
-            event.preventDefault();
-            //let nombre = $('#nombre').val();
-            //let codigo = $('#codFacultad').val();
-            var data = $(this).serialize();
-            console.log(data);
-           $.ajax({
-                headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-                type: 'post',
-                url:"{{ route('user.crear_facultad' )}}",
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false
-            })
-            
-        })
-    } */
+   
 </script>

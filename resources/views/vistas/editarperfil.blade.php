@@ -349,7 +349,7 @@
             id_facultad = $(this);
 
 
-            if($(this).val != ''){
+            if($('#facultades').val() != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),

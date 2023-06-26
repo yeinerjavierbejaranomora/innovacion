@@ -343,7 +343,12 @@ class UserController extends Controller
             $id = decrypt($id_llegada);
         }
 
-        return $id;
+        $inactivarUser = DB::table('users')->where('id',$id)->update(['activo'=>0]);
+        if ($inactivarUser) :
+            return  true;
+        else :
+            return false;
+        endif;
     }
 
     /** fucion para generar  materias faltantes

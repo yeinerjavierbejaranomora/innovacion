@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button class="agregar btn btn-secondary"  >Agregar nueva Facultad</button>
+                            <button href="#" class="agregar btn btn-secondary"  >Agregar nueva Facultad</button>
                         </div>
                         <br>
                     </div>

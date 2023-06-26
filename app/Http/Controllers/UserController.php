@@ -123,6 +123,12 @@ class UserController extends Controller
         echo json_encode(array('data' => $users));
     }
 
+    public function facultadView(Request $request)
+    {
+        /**Se retorna la vista del listado de facultades */
+        return view('vistas.admin.facultades');
+    }
+
     ///** funcion para cargar vistas de facultades */
     public function get_facultades()
     {

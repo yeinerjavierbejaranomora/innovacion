@@ -42,8 +42,10 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     /** cargamos ña vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
+    /** cargamos la vista de administracion de facultades */
+    Route::get('/home/facultad','facultadView')->middleware('auth','admin')->name('admin.facultades');
     /** cargamos la vista para mostrar todas las facultades */
-    Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.facultades');
+    Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
 });
 
 /** definimos las rutas para el registro de usuarios */

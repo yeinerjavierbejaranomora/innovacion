@@ -128,7 +128,6 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
 
                     $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
 
@@ -138,7 +137,7 @@
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
+                    console.log(encodeURIComponent(window.btoa(data.id)));
                 });
             }
 

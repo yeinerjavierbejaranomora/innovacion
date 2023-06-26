@@ -90,7 +90,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="crear btn btn-primary" return="agregarFacultad()">Crear</button>
+                            <button type="button" class="crear btn btn-primary" onclick="agregarFacultad()">Crear</button>
                         </div>
                     </div>
                 </div>
@@ -157,9 +157,8 @@
             obtener_data_editar("#example tbody", table);
         }
     }
-    function agregarFacultad(){
-        $('#exampleModal').on("click", "button.crear",function(){
+
+    function agregarFacultad(){  
             console.log('entre');
-        })
     }
 </script>

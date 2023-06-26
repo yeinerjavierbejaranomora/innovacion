@@ -99,6 +99,10 @@
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-trash'></i></button>",
+                        title: 'Eliminar'
                     }, 
                 ],
                 "language": {
@@ -112,7 +116,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);            
-                    $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
+                    $(location).attr('href', "#");
 
                 })
             }        

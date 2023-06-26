@@ -169,9 +169,12 @@
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-                "method" : "POST",
-                "URL" :"{{'user.crear_facultad'}}",
-                "data": data
+                type: 'post',
+                url:"{{'user.crear_facultad'}}",
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false
             })
             
         })

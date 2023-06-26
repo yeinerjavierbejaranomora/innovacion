@@ -137,7 +137,6 @@
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
                     Swal.fire({
                         title: "Desea eliminar el usuario " + data.nombre,
                         icon: 'warning',
@@ -151,8 +150,8 @@
                             $.post('{{ route('user.inactivar') }}', {
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
-                            }, function(data) {
-                                if (data == "true") {
+                            }, function(result) {
+                                if (result == "true") {
                                     Swal.fire({
                                         title: "Usuario eleminado",
                                         html: "El usuario <strong>" + data.nombre +
@@ -170,9 +169,9 @@
                                             $.post('{{ route('user.deshacerinactivar') }}', {
                                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                                 id: encodeURIComponent(window.btoa(data.id)),
-                                            }, function(data) {
-                                                console.log(data);
-                                                if (data == 'true') {
+                                            }, function(result) {
+                                                console.log(result);
+                                                if (result == 'true') {
                                                     location.reload();
                                                 }
                                             });

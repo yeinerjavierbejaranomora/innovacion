@@ -97,21 +97,21 @@
                 </div>
             </div>
 
-            <!--Modal para editar facultad-->
-            <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal fade" id="editar_facultad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Editar facultad</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva faculad</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="Form" method="post" action="{{route('admin.updatefacultad')}}">
+                            <form id="miForm" method="post" action="{{ route('admin.updatefacultad') }}">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id">
+                                    <input type="number" id="id" name="id">
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
@@ -121,13 +121,17 @@
                                     <label for="message-text" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="edit btn btn-primary">Editar</button>
-                            </form>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="crear btn btn-primary">Editar</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+         
 
         </div>
         <!-- /.container-fluid -->
@@ -165,7 +169,7 @@
                         title: 'Nombre Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
                     },
                     {
@@ -186,7 +190,7 @@
             $(tbody).on("click", "button.editar", function() {
 
                 var data = table.row($(this).parents("tr")).data();
-                console.log(data);
+        
                 codFacultad = $("#editcodFacultad").val(data.codFacultad);
                 nombre = $("#editnombre").val(data.nombre);
                 id = $("#id").val(data.id);

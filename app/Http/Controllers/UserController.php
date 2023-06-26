@@ -143,11 +143,11 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        dd($request->all());
+    
         
         $facultad = DB::table('facultad')->insert([
-            'codFacultad'=>$request[0]->codFacultad,
-            'nombre'=>$request[0]->nombre,
+            'codFacultad'=>$request->codFacultad,
+            'nombre'=>$request->nombre,
         ]);
         dd($facultad);
             if($facultad):

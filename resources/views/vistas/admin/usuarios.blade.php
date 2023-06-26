@@ -139,7 +139,7 @@
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
                     Swal.fire({
-                        title: "Desea eliminar el usuario " +data.nombre,
+                        title: "Desea eliminar el usuario " + data.nombre,
                         icon: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,
@@ -148,11 +148,37 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{route('user.inactivar')}}',{
+                            $.post('{{ route('user.inactivar') }}', {
                                 '_token': $('meta[name=csrf-token]').attr('content'),
-                                id:encodeURIComponent(window.btoa(data.id)),
-                            },function(data){
-                                console.log(data);
+                                id: encodeURIComponent(window.btoa(data.id)),
+                            }, function(data) {
+                                if (data == "true") {
+                                    Swal.fire({
+                                        title: "Usuario eleminado",
+                                        html: "El usuario <strong>" + data.nombre +
+                                            " con el documento " + data.documento +
+                                            "</strong> a sido dado de baja",
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonText: "Aceptar",
+                                        cancelButtonText: "Deshacer",
+                                        cancelButtonColor: '#DC3545',
+                                    }).then(result => {
+                                        if (result.value) {
+                                            location.reload();
+                                        } else {
+                                            $.post('{{ route('user.deshacerinactivar') }}', {
+                                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                                id: encodeURIComponent(window.btoa(data.id)),
+                                            }, function(data) {
+                                                console.log(data);
+                                                if (data == 'true') {
+                                                    location.reload();
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
                             })
 
                         }

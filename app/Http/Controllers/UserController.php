@@ -351,6 +351,21 @@ class UserController extends Controller
         endif;
     }
 
+    public function deshacerInactivarUser(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $inactivarUser = DB::table('users')->where('id',$id)->update(['activo'=>1]);
+        if ($inactivarUser) :
+            return  "true";
+        else :
+            return "false";
+        endif;
+    }
+
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
       */

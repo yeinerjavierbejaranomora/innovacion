@@ -345,11 +345,10 @@ class UserController extends Controller
 
         $inactivarUser = DB::table('users')->where('id',$id)->update(['activo'=>0]);
         if ($inactivarUser) :
-            return  redirect()->route('admin.users')->with('Sucess', 'Se ha eliminado el usuario!');
+            return  true;
         else :
-            return redirect()->route('admin.users')->withErrors('Error', 'Error al eliminar el usuario');
+            return false;
         endif;
-        return $id;
     }
 
     /** fucion para generar  materias faltantes

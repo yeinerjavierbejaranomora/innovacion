@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="miForm" method="POST">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="nombre">

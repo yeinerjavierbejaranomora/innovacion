@@ -352,7 +352,13 @@ class UserController extends Controller
     }
 
     public function deshacerInactivarUser(){
-        return $_POST;
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        return $id;
     }
 
     /** fucion para generar  materias faltantes

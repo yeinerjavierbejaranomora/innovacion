@@ -89,13 +89,17 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'codFacultad',
+                        data: 'codfacultad',
                         title: 'Codigo de facultad'
                     },
                     {
                         data: 'nombre',
                         title: 'Nombre Facultad'
-                    },    
+                    },   
+                    {
+                        defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar'
+                    }, 
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

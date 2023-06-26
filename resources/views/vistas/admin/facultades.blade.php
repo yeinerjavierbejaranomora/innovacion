@@ -111,6 +111,9 @@
                             <form id="Form" method="post" action="{{route('admin.updatefacultad')}}">
                                 @csrf
                                 <div>
+                                    <input type="number hidden" id="id" >
+                                </div>
+                                <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
                                 </div>
@@ -188,6 +191,8 @@
                     console.log(data);
                     codFacultad= $("#editcodFacultad").val(data.codFacultad);
                     nombre= $("#editnombre").val(data.nombre);
+                    id= $("#id").val(data.id);
+                    console.log(id);
                 });
             }
 

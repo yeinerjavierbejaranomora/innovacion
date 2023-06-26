@@ -311,10 +311,11 @@
         $('#facultades').each(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
+            cosole.log(programasSeparados)
 
             id_facultad = $(this);
 
-            if($(this).val != '' || $(this).val != 0){
+            if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),

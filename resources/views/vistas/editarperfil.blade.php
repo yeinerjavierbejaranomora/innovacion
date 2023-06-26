@@ -230,7 +230,7 @@
                                             <div class="col mb-3">
                                                 <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
                                                     @foreach ($roles as $rol)
-                                                    <option {{ $rol->id == auth()->user()->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
+                                                    <option {{ $rol->id == $datos['user']->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -244,7 +244,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == auth()->user()->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -164,6 +164,7 @@
             let nombre = $('#nombre').val();
             let codigo = $('#codFacultad').val();
             console.log(nombre);
+            console.log(codigo);
         })
     }
 </script>

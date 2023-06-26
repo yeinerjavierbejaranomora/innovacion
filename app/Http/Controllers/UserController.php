@@ -108,20 +108,19 @@ class UserController extends Controller
 
     public function userView(Request $request)
     {
-        /*if ($request->ajax()) :
-            return DataTables::of(User::All())->toJson();
-        endif;*/
+        /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.usuarios');
     }
 
     public function get_users()
     {
+        /**Realiza la consulta anidada para onbtener el usuario con su rol */
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
             ->select('users.id','users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
-        //$users = json_encode($users);
+        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arrglo de users */
         echo json_encode(array('data' => $users));
-        //return $users;
     }
 
     // *Método para mostrar todos sus datos al Usuario
@@ -146,14 +145,14 @@ class UserController extends Controller
     {
         // *Condición para descencriptar el id del usuario
         $id=base64_decode(urldecode($id_llegada));
-       
+
         if(!is_numeric($id))
         {
             $id=decrypt($id_llegada);
         }
         // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
-        
+
         // *Condicional para determinar si el usuario cuenta con una facultad
         if($consulta[0]->id_facultad != NULL)
         {
@@ -229,6 +228,27 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
+        $idBanner = $request->id_banner;
+        $documento = $request->documento;
+        $nombre = $request->nombre;
+        $email = $request->email;
+        $idBanner = $request->id_banner;
+        $idRol = $request->id_rol;
+        $idFacultad = $request->facultades;
+        $programa = $request->programa;
+        $activo = $request->activo;
+
+        $actualizar = DB::table('users')->where('id',$id)
+                    ->update([
+                        'id_banner' => $idBanner,
+                        'documento' => $documento,
+                        'nombre' => $nombre,
+                        'email' => $email,
+                        'id_rol' => $idRol,
+                        'id_facultad' => $idFacultad,
+                        'programa' => $programa,
+                        'activo' => $activo,
+                    ]);
         return $request;
         $update = DB::table('users')->update('users')->set([
             ['id_banner', '=', $request->nuevoid],

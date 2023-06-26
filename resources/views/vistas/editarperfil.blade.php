@@ -174,6 +174,7 @@
                                 <form action="{{ route('user.actualizar', ['id' => encrypt($datos['user']->id)]) }}"
                                     method="POST" id="miForm">
                                     @csrf
+                                    {{ $datos['user']->id }}
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -311,11 +312,10 @@
         $('#facultades').each(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-            cosole.log(programasSeparados)
 
             id_facultad = $(this);
 
-            if($(this).val != ''){
+            if($(this).val != '' || $(this).val == 0){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),

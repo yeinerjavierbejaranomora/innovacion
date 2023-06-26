@@ -170,7 +170,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
                 "method" : "POST",
-                "URL" :"{{'User.crear_facultad'}}"
+                "URL" :"{{'user.crear_facultad'}}",
+                "data": "data"
             })
             
         })

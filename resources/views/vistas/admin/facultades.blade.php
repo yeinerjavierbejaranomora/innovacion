@@ -58,9 +58,10 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-4 justify-content-start">
+                        <div class="col-4 justify-content-center">
                             <button class="agregar btn btn-secondary"  >Agregar nueva Facultad</button>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>

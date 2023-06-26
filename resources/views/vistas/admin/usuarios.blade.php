@@ -138,6 +138,7 @@
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(encodeURIComponent(window.btoa(data.id)));
+                    
                 });
             }
 

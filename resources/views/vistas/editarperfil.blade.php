@@ -301,20 +301,16 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "$datos['user']->programa";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
-
             id_facultad = $(this);
-
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    /*id_facultades=[];
-                    console.log(data);
-                    data.forEach(programa => {
+                    /*id_facultades=[];*/
+                    /*data.forEach(programa => {
                         id_facultades.push(parseInt(programa.id));
                         //console.log(id_facultades);
                         //console.log(programasSeparados.includes(programa.id));
@@ -323,26 +319,20 @@
                     });*/
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }
-                    //console.log(programasSeparados.some(e => id_facultades.includes(e)));
 
                 })
             }
         });
 
         $('#facultades').change(function(){
-            programas = "$datos['user']->programa";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
-
             id_facultad = $(this);
-
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -351,10 +341,8 @@
                     $('#programas').empty();
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
-                            console.log("encontrado");
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }else{
-                            console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
                     }

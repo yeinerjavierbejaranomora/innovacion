@@ -162,7 +162,7 @@
         $('#miForm').submit(function(e){
             event.preventDefault();
             let data = $('miForm').val();
-            console.log('data');
+            console.log(data);
         })
     }
 </script>

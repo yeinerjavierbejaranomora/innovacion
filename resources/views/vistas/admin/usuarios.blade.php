@@ -137,9 +137,9 @@
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(encodeURIComponent(window.btoa(data.id)));
+                    console.log(data.id);
                     Swal.fire({
-                        title: "Desea eliminar el usuario " +data.id,
+                        title: "Desea eliminar el usuario " +data.nombre,
                         icon: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,

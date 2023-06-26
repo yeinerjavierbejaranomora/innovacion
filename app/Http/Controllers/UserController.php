@@ -207,7 +207,7 @@ class UserController extends Controller
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             foreach ($programas as $key => $value) {
-                dd($key);
+                dd($value);
                 $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
                 $nombre_programas[$value] = $consulta[0]->programa;
             }

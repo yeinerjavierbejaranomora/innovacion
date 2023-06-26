@@ -122,7 +122,7 @@
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="edit btn btn-primary">Editar</button>
+                                <button type="submit" class="edit btn btn-primary">Editar</button>
                             </form>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
         <!-- /.container-fluid -->
 
     </div>
- 
+
 </div>
 <!-- End of Content Wrapper -->
 
@@ -177,54 +177,57 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });   
+            });
 
-            obtener_data_editar("#example tbody",table);
-            }
-
-            function obtener_data_editar(tbody, table) {
-                $(tbody).on("click", "button.editar", function() {
-                    
-                    var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
-                    codFacultad= $("#editcodFacultad").val(data.codFacultad);
-                    nombre= $("#editnombre").val(data.nombre);
-                    id= $("#id").val(data.id);
-                });
-            }
-
+            obtener_data_editar("#example tbody", table);
         }
 
-    
-        $("#Form").on('submit',function(e){
-        e.preventDefault();
-        var formData = new FormData();
-        console.log(formData);
-        $.ajax({        
-                type: 'post',
-                url: "{{ route('admin.updatefacultad') }}",
-                data: formData,
-                success: function(response) {
-                Swal.fire(
-                'Eliminado!',
-                'Actualizacion exitosa.',
-                'Accion realizada con exito'
-                )
-                table.ajax.reload();
-            },
-            failure: function (response) {
-                swal(
-                "Error",
-                "Nose pudo actualizar.", // had a missing comma
-                "error"
-                )
-            },
-        });
+        function obtener_data_editar(tbody, table) {
+            $(tbody).on("click", "button.editar", function() {
+
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                codFacultad = $("#editcodFacultad").val(data.codFacultad);
+                nombre = $("#editnombre").val(data.nombre);
+                id = $("#id").val(data.id);
+            });
+        }
+
+    }
+
+
+    $("#Form").on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    console.log(formData);
+    $.ajax({
+        url: "{{ route('admin.updatefacultad') }}",
+        type: "POST",
+        data: formData,
+        processData: false, // tell jQuery not to process the data
+        contentType: false // tell jQuery not to set contentType
+    });
+    /*$.ajax({        
+            type: 'post',
+            url: "{{ route('admin.updatefacultad') }}",
+            data: formData,
+            success: function(response) {
+            Swal.fire(
+            'Eliminado!',
+            'Actualizacion exitosa.',
+            'Accion realizada con exito'
+            )
+            table.ajax.reload();
+        },
+        failure: function (response) {
+            swal(
+            "Error",
+            "Nose pudo actualizar.", // had a missing comma
+            "error"
+            )
+        },
+    }); */
 
     })
-
-            
-          
-    
 </script>
 @include('layout.footer')

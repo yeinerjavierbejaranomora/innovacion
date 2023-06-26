@@ -229,14 +229,13 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
-        return $request;
         $update = DB::table('users')->update('users')->set([
-            ['id_banner', '=', $request->nuevoid],
-            ['documento', '=', $request->nuevodocumento],
-            ['email', '=', $request->nuevoemail],
+            ['id_banner', '=', $request->id_banner],
+            ['documento', '=', $request->documento],
+            ['email', '=', $request->email],
             ['id_rol', '=', $request->id_rol],
             ['id_facultad', '=', $request->facultades],
-            ['programa', '=', $request->programas],
+            ['programa', '=', $request->programa],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
         return view('vistas.perfil')->with('Sucess', 'Actualizacion exitosa!');

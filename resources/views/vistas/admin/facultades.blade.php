@@ -124,8 +124,5 @@
         }
     }
 
-
-
-
 </script>
 @include('layout.footer')

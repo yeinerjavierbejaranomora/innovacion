@@ -199,6 +199,7 @@
         $("#Form").on('submit',function(e){
         e.preventDefault();
         var formData = new FormData();
+        console.log(formData);
         $.ajax({
             headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

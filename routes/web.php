@@ -38,6 +38,8 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/editar/{id}', 'editar')->middleware('auth')->name('user.editar');
     /** actualizar los datos del usuario */
     Route::post('/home/actualizar/{id}', 'actualizar')->middleware('auth')->name('user.actualizar');
+    Route::post('home/inactivar','inactivarUser')->middleware('auth')->name('user.inactivar');
+    Route::post('home/deshacerinactivar','deshacerInactivarUser')->middleware('auth')->name('user.deshacerinactivar');
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     /** cargamos ña vista para mostarar todos los usuarios */
@@ -48,6 +50,8 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
     /** para salvar las facultades */
     Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
+    /** para actualizar las facultades */
+    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
 });
 
 /** definimos las rutas para el registro de usuarios */

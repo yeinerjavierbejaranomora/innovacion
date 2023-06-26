@@ -117,7 +117,7 @@ class UserController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el usuario con su rol */
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
-            ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
+            ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->where('users.activo','=',1)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
@@ -134,7 +134,7 @@ class UserController extends Controller
     public function get_facultades()
     {
         /* Consulta para obtener las facultades */
-        $facultades = DB::table('facultad')->select('facultad.codFacultad', 'facultad.nombre')->get();
+        $facultades = DB::table('facultad')->select('facultad.id','facultad.codFacultad', 'facultad.nombre')->get();
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */
@@ -143,23 +143,39 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        dd($request->request);
-        
-
-        
+        /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
         $facultad = DB::table('facultad')->insert([
-            'codFacultad'=>$request[0]->codFacultad,
-            'nombre'=>$request[0]->nombre,
+            'codFacultad' => $request->codFacultad,
+            'nombre' => $request->nombre,
         ]);
-        dd($facultad);
-            if($facultad):
+        if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');
-        else:
+            return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
+        else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('vistas.admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
         endif;
     }
+
+    public function updatefacultad(CrearFacultadRequest $request)
+    {
+        dd($request);
+        /** Consulta para actualizar facultad */
+        $facultad = DB::table('facultad')->update([
+            'codFacultad' => $request->editcodFacultad,
+            'nombre' => $request->editnombre,
+        ])->where('id', '=', $request->id);
+
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('admin.facultades')->with('success', 'Actualización exitosa');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'No fue posible actualizar']);
+        endif;
+    }
+
+
     // *Método para mostrar todos sus datos al Usuario
     public function perfil()
     {
@@ -275,6 +291,11 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         //dd($request->all());
+        if(isset($request->estado)){
+            return "existe";
+        }else{
+            return "no existe";
+        }
         $id = decrypt($id);
         $idBanner = $request->id_banner;
         $documento = $request->documento;
@@ -336,12 +357,44 @@ class UserController extends Controller
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         endif;
+    }
 
+    public function inactivarUser()
+    {
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
 
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $inactivarUser = DB::table('users')->where('id', $id)->update(['activo' => 0]);
+        if ($inactivarUser) :
+            return  "true";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function deshacerInactivarUser()
+    {
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $inactivarUser = DB::table('users')->where('id', $id)->update(['activo' => 1]);
+        if ($inactivarUser) :
+            return  "true";
+        else :
+            return "false";
+        endif;
     }
 
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
+
       */
     public function Generar_faltantes(){
 
@@ -359,7 +412,8 @@ class UserController extends Controller
         $periodo='SELECT * FROM `periodo` WHERE  `mes`='+$mes+ '';
 
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
+
+        $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
+
     }
-
-
 }

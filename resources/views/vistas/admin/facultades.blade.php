@@ -78,7 +78,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="miForm" method="post" action="{{ route('admin.guardarfacultad') }}">
-                            @csrf
+                                @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
                                     <input type="text" class="form-control" id="codFacultad" name="codFacultad">
@@ -87,11 +87,45 @@
                                     <label for="message-text" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="crear btn btn-primary">Crear</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="crear btn btn-primary">Crear</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal para editar facultad-->
+            <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar facultad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="Form" method="post" action="{{route('admin.updatefacultad')}}">
+                                @csrf
+                                <div>
+                                    <input type="number" id="id" hidden>
+                                </div>
+                                <div>
+                                    <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
+                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Nombre de la facultad</label>
+                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="edit btn btn-primary">Editar</button>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -114,6 +148,7 @@
 </a>
 
 <script>
+    // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('admin.getfacultades') }}";
     xmlhttp.open("GET", url, true);
@@ -132,7 +167,7 @@
                         title: 'Nombre Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
                     },
                     {
@@ -143,19 +178,29 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });
+            });   
+
+            obtener_data_editar("#example tbody",table);
+            }
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
+                    
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
-                    $(location).attr('href', "#");
-
-                })
+                    codFacultad= $("#editcodFacultad").val(data.codFacultad);
+                    nombre= $("#editnombre").val(data.nombre);
+                    id= $("#id").val(data.id);
+                    console.log(id);
+                });
             }
-            obtener_data_editar("#example tbody", table);
+
         }
-    }
+
+        
+
+            
+          
+    
 </script>

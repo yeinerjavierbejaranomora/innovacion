@@ -114,7 +114,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<input data-id= class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive'>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-solid fa-user-minus'></i></button>",
                         title: 'Inactivar'
                     }
                 ],
@@ -128,14 +128,65 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
-                    
-                    $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
+
+                    $(location).attr('href', "editar/" + encodeURIComponent(window.btoa(data.id)));
 
                 })
             }
-        
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.eliminar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    Swal.fire({
+                        title: "Desea eliminar el usuario " + data.nombre,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{ route('user.inactivar') }}', {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                            }, function(result) {
+                                if (result == "true") {
+                                    Swal.fire({
+                                        title: "Usuario eleminado",
+                                        html: "El usuario <strong>" + data.nombre +
+                                            " con el documento " + data.documento +
+                                            "</strong> a sido dado de baja",
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonText: "Aceptar",
+                                        cancelButtonText: "Deshacer",
+                                        cancelButtonColor: '#DC3545',
+                                    }).then(result => {
+                                        if (result.value) {
+                                            location.reload();
+                                        } else {
+                                            $.post('{{ route('user.deshacerinactivar') }}', {
+                                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                                id: encodeURIComponent(window.btoa(data.id)),
+                                            }, function(result) {
+                                                console.log(result);
+                                                if (result == 'true') {
+                                                    location.reload();
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            })
+
+                        }
+                    });
+                });
+            }
+
             obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
 
         }
     }

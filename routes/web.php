@@ -39,6 +39,7 @@ Route::controller(UserController::class)->group(function(){
     /** actualizar los datos del usuario */
     Route::post('/home/actualizar/{id}', 'actualizar')->middleware('auth')->name('user.actualizar');
     Route::post('home/inactivar','inactivarUser')->middleware('auth')->name('user.inactivar');
+    Route::post('home/deshacerinactivar','deshacerInactivarUser')->middleware('auth')->name('user.deshacerinactivar');
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     /** cargamos ña vista para mostarar todos los usuarios */

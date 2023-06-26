@@ -351,6 +351,10 @@ class UserController extends Controller
         endif;
     }
 
+    public function deshacerInactivarUser(){
+        return $_POST;
+    }
+
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
       */

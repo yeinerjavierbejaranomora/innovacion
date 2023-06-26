@@ -291,11 +291,7 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         //dd($request->all());
-        if(isset($request->estado)){
-            return "existe";
-        }else{
-            return "no existe";
-        }
+
         $id = decrypt($id);
         $idBanner = $request->id_banner;
         $documento = $request->documento;
@@ -326,11 +322,15 @@ class UserController extends Controller
         endif;
         //return $Programas;
         //return $activo;
-        if ($request->estado != 'on') :
-            $activo = 0;
-        else :
+        if(isset($request->estado)){
+            if ($request->estado != 'on') :
+                $activo = 0;
+            else :
+                $activo = 1;
+            endif;
+        }else{
             $activo = 1;
-        endif;
+        }
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([

@@ -167,7 +167,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'"><i class='fa-regular fa-square-minus'></i></button>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'><i class='fa-regular fa-square-minus'></i></button>",
                         title: 'Eliminar'
                     },
                 ],

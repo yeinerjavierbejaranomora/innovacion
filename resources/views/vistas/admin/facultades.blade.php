@@ -80,7 +80,7 @@
 
 <script>
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('admin.getusers') }}";
+    var url = "{{ route('admin.getfacultades') }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

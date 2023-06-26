@@ -59,9 +59,39 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary"  >Agregar nueva Facultad</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#exampleModal" data-whatever="modal">Agregar nueva Facultad</button>
                         </div>
                         <br>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal para agregar nueva facultad-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva faculad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Codigo de la facultad</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Crear</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +129,7 @@
                     {
                         data: 'nombre',
                         title: 'Nombre Facultad'
-                    },   
+                    },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
@@ -107,7 +137,7 @@
                     {
                         defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
                         title: 'Eliminar'
-                    }, 
+                    },
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -119,14 +149,13 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);            
+                    console.log(data);
                     $(location).attr('href', "#");
 
                 })
-            }        
+            }
             obtener_data_editar("#example tbody", table);
         }
     }
-
 </script>
 @include('layout.footer')

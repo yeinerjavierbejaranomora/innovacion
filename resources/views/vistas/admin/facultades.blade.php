@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="POST">
+                            <form id="miForm" method="POST" action="{{ route('admin.guardarfacultad') }}">
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre">

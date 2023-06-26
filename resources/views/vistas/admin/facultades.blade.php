@@ -170,7 +170,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
                 type: 'post',
-                url:"{{ route('user.crear_facultad' )}}",
+                url:"{{ route('User.crear_facultad' )}}",
                 data: data,
                 cache: false,
                 contentType: false,

@@ -353,7 +353,7 @@
                     idfacultad: id_facultad.val(),
                 },function(data){
                     $('#programas').empty();
-                    if(id_facultad.val() == 0){
+                    if(id_facultad.val == 0){
                         $('#programas').empty();
                     }
                     for (let i = 0; i < data.length; i++) {

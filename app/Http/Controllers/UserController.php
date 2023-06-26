@@ -206,6 +206,12 @@ class UserController extends Controller
             'programa' => $nombre_programas,
             'user' => $consulta[0]
         );
+
+        if($id === auth()->user()->id):
+            return "Es auth";
+        else:
+            return "Es usuario";
+        endif;
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);
     }
 

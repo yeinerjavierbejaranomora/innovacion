@@ -185,6 +185,7 @@
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data[codFaculad]);
                 console.log(data);
+        
                 
             });  
             }

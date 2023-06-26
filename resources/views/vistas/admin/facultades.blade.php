@@ -90,7 +90,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Crear</button>
+                            <button type="button" class="crear btn btn-primary">Crear</button>
                         </div>
                     </div>
                 </div>

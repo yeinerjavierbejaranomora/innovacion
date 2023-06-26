@@ -141,7 +141,7 @@ class UserController extends Controller
         echo json_encode(array('data' => $facultades));
     }
 
-    public function crear_facultad(CrearFacultadRequest $request)
+    public function savefacultad(CrearFacultadRequest $request)
     {
         dd($request);
         $facultad = facultad::create($request->validated());

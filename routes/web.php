@@ -47,7 +47,7 @@ Route::controller(UserController::class)->group(function(){
     /** cargamos la vista para mostrar todas las facultades */
     Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
     /** para salvar las facultades */
-    Route::post('/home/facultades/save','crear_facultad')->middleware('auth','admin')->name('admin.guardarfacultad');
+    Route::post('/home/facultades/save','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
 });
 
 /** definimos las rutas para el registro de usuarios */

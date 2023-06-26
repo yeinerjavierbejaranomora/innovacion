@@ -193,7 +193,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="number" class="form-control"
-                                                        name="documento" value="{{ auth()->user()->documento }}"
+                                                        name="documento" value="{{ $datos['user']->documento }}"
                                                         {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
                                                 </p>
                                             </div>
@@ -206,7 +206,7 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="nombre"
-                                                        value="{{ auth()->user()->nombre }}"
+                                                        value="{{ $datos['user']->nombre }}"
                                                         {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>
@@ -217,7 +217,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"><input type="email" class="form-control"
-                                                        name="email" value="{{ auth()->user()->email }}"
+                                                        name="email" value="{{ $datos['user']->email }}"
                                                         {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
                                             </div>
                                         </div>

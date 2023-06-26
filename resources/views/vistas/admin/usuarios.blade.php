@@ -146,7 +146,17 @@
                         cancelButtonColor: '#DC3545',
                         cancelButtonText: "No, Cancelar",
                         confirmButtonText: "Si"
-                    }).then(result => {});
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{route('user.inactivar')}}',{
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id:encodeURIComponent(window.btoa(data.id)),
+                            },function(data){
+                                console.log(data);
+                            })
+
+                        }
+                    });
                 });
             }
 

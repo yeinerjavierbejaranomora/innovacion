@@ -142,7 +142,7 @@ class UserController extends Controller
     }
 
     public function savefacultad(CrearFacultadRequest $request)
-    {   
+    {
         $facultad = DB::table('facultad')->insert([
             'codFacultad'=>$request->codFacultad,
             'nombre'=>$request->nombre,
@@ -335,11 +335,15 @@ class UserController extends Controller
 
     }
 
+    public function inactivarUser() {
+        return $_POST;
+    }
+
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
       */
     public function Generar_faltantes(){
-        
+
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
     }
 

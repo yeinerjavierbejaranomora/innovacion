@@ -163,8 +163,9 @@
             event.preventDefault();
             let nombre = $('#nombre').val();
             let codigo = $('#codFacultad').val();
-            console.log(nombre);
-            console.log(codigo);
+
+            var data = new FormData('#miForm');
+            console.log(data);
         })
     }
 </script>

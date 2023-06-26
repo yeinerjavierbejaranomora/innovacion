@@ -275,7 +275,7 @@
                                                     {{-- @if ($datos['user']->activo = 1) --}}
                                                         <div class="col-sm-9">
                                                             <input class="form-check-input" type="checkbox"
-                                                            name="estado" id="Checkbox" ${{ $datos['user']->activo = 1 ? 'checked' : ''}}>
+                                                            name="estado" id="Checkbox" ${{ $datos['user']->activo == 1 ? 'checked' : ''}}>
                                                             <label class="form-check-label" for="Checkbox">
                                                                 Activo
                                                             </label>

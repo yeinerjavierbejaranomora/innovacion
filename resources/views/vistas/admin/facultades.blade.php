@@ -161,8 +161,9 @@
     function agregarFacultad(){ 
         $('#miForm').submit(function(e){
             event.preventDefault();
-            let data = $('miForm').val();
-            console.log(data);
+            let nombre = $('#nombre').val();
+            let codigo = $('#codFacultad').val();
+            console.log(nombre);
         })
     }
 </script>

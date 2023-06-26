@@ -244,7 +244,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @if ($datos['user']->id_facultad == '')
-                                                    <option value="" selected >Seleccione una facultad</option>
+                                                    <option value="0" selected >Seleccione una facultad</option>
                                                     @foreach ($facultades as $facultad)
                                                         <option  value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                     @endforeach

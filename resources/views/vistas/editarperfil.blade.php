@@ -313,7 +313,7 @@
             programasSeparados = programas.split(";").map(Number);
 
             id_facultad = $(this);
-            alert($('#facultades').value())
+            alert($('#facultades').value)
 
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{

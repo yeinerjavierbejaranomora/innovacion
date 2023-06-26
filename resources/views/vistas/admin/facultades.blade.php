@@ -158,7 +158,7 @@
         }
     }
     function agregarFacultad(){
-        $('#modal').on("click", "button.crear",function(){
+        $('#exampleModal').on("click", "button.crear",function(){
             console.log('entre');
         })
     }

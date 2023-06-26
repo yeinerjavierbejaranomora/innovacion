@@ -137,15 +137,15 @@
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(encodeURIComponent(window.btoa(data.id)));
+                    console.log(data);
                     Swal.fire({
-                        title: "Desea eliminar el usuario " +data.id,
+                        title: "Desea eliminar el usuario " +data.nombre,
                         icon: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,
                         cancelButtonColor: '#DC3545',
-                        cancelButtonText: "Cancelar",
-                        confirmButtonText: "Si, dar de baja"
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
                     }).then(result => {});
                 });
             }

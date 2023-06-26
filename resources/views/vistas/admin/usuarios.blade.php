@@ -114,7 +114,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<input data-id= class='toggle-class' type='checkbox' data-onstyle='success' data-offstyle='danger' data-toggle='toggle' data-on='Active' data-off='Inactive'>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Inactivar'
                     }
                 ],
@@ -129,12 +129,12 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
-                    
+
                     $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
 
                 })
             }
-        
+
             obtener_data_editar("#example tbody", table);
 
         }

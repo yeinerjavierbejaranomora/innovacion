@@ -159,6 +159,7 @@ class UserController extends Controller
 
     public function updatefacultad(CrearFacultadRequest $request)
     {
+        dd($request);
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update([
             'codFacultad' => $request->codFacultad,

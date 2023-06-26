@@ -248,6 +248,7 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
+        return $programa;
         $Programas = '';
         /**se comprueba que el campo no este vacio*/
         if (isset($programa)) :

@@ -78,6 +78,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="miForm" method="post" action="{{ route('admin.guardarfacultad') }}">
+                            @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre">

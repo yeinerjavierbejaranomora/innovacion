@@ -343,6 +343,12 @@ class UserController extends Controller
             $id = decrypt($id_llegada);
         }
 
+        $inactivarUser = DB::table('users')->where('id',$id)->update(['activo'=>0]);
+        if ($inactivarUser) :
+            return  redirect()->route('admin.users')->with('Sucess', 'Se ha eliminado el usuario!');
+        else :
+            return redirect()->route('admin.users')->withErrors('Error', 'Error al eliminar el usuario');
+        endif;
         return $id;
     }
 

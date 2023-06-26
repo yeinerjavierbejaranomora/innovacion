@@ -112,11 +112,11 @@
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
-                                    <input type="text" class="form-control" id="codFacultad" name="codFacultad">
+                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre de la facultad</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -186,7 +186,8 @@
                     
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data);
-
+                    codFacultad= $("#editcodFacultad").val(data.codFacultad);
+                    nombre= $("#editnombre").val(data.nombre);
                 });
             }
 

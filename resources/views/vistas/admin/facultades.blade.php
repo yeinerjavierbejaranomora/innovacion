@@ -145,6 +145,7 @@
 </a>
 
 <script>
+    // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('admin.getfacultades') }}";
     xmlhttp.open("GET", url, true);
@@ -178,6 +179,9 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             }
+            var modal = $('#modalEditar');
+            $(tbody).on("click", "button.editar", function(e) {
+                console.log('entra');
+            });  
         }
-    
 </script>

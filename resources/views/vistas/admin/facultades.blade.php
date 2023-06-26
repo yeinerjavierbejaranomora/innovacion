@@ -77,7 +77,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-<?php dd($facultades); ?>
 
 <script>
     var xmlhttp = new XMLHttpRequest();

@@ -287,6 +287,11 @@ class UserController extends Controller
         else :
             $activo = 1;
         endif;
+                if ($id === auth()->user()->id) :
+                    return "Es auth";
+                else :
+                    return "Es usuario";
+                endif;
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
@@ -300,11 +305,6 @@ class UserController extends Controller
                 'activo' => $activo,
             ]);
 
-        if ($id === auth()->user()->id) :
-            return "Es auth";
-        else :
-            return "Es usuario";
-        endif;
         if ($actualizar) :
             return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
         else :

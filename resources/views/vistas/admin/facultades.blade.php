@@ -161,10 +161,9 @@
     function agregarFacultad(){ 
         $('#miForm').submit(function(e){
             event.preventDefault();
-            let nombre = $('#nombre').val();
-            let codigo = $('#codFacultad').val();
-
-            var data = new FormData('#miForm');
+            //let nombre = $('#nombre').val();
+            //let codigo = $('#codFacultad').val();
+            var data = $(this).serialize();
             console.log(data);
         })
     }

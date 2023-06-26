@@ -177,26 +177,22 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });   
+            obtener_data_editar("#example tbody",table);
             }
-        }
-
-        var inputs = $('.input');
-
             function obtener_data_editar(tbody, table) {
                 console.log(table);
                 $(tbody).on("click", "button.editar", function() {
                     
                     var data = table.row($(this).parents("tr")).data();
 
-                    agregarData(data);
                 });
             }
-            count =0;
-            function agregarData(data) {
-                console.log(data);
-                for (let index of inputs) {
-                    index.value()= data[count].textContent;
-                    count +=1;
-                }
+
+        }
+
+        
+
+            
+          
     
 </script>

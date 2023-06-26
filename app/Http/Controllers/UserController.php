@@ -145,6 +145,8 @@ class UserController extends Controller
     {
         dd($request->request);
         
+
+        
         $facultad = DB::table('facultad')->insert([
             'codFacultad'=>$request[0]->codFacultad,
             'nombre'=>$request[0]->nombre,

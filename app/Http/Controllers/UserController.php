@@ -248,7 +248,6 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
-        return $programa;
         $Programas = '';
         /**se comprueba que el campo no este vacio*/
         if (isset($programa)) :
@@ -264,6 +263,7 @@ class UserController extends Controller
             /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $Programas = '';
         endif;
+        return $Programas;
         //return $activo;
         if ($request->activo != 'on') :
             $activo = 0;

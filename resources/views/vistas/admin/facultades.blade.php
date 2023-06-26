@@ -67,7 +67,6 @@
 
     </div>
 
-
 </div>
 <!-- End of Content Wrapper -->
 
@@ -80,6 +79,6 @@
 </a>
 
 <script>
-    
+
 </script>
 @include('layout.footer')

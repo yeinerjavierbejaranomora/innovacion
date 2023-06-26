@@ -347,10 +347,10 @@
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
 
+            if(id_facultad.val == 0){
+                    $('#programas').empty();
+                }
             if($(this).val != ''){
-                if(id_facultad.val == 0){
-                        $('#programas').empty();
-                    }
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),

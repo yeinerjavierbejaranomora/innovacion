@@ -129,7 +129,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
 
-                    $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
+                    $(location).attr('href', "editar/" + encodeURIComponent(window.btoa(data.id)));
 
                 })
             }
@@ -138,7 +138,15 @@
                 $(tbody).on("click", "button.eliminar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(encodeURIComponent(window.btoa(data.id)));
-                    
+                    Swal.fire({
+                        title: "Desea eliminar el usuario " +data.id,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: "Si, dar de baja"
+                    }).then(result => {});
                 });
             }
 

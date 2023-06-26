@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 </head>

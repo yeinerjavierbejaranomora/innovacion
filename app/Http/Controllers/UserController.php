@@ -183,7 +183,7 @@ class UserController extends Controller
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             //dd($programas);
-            if(empty($programas)):
+            if(empty($programa)):
                 return "Vacio";
             else:
                 return "No Vacio";

@@ -79,6 +79,45 @@
 </a>
 
 <script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "{{ route('admin.getusers') }}";
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var table = $('#example').DataTable({
+                "data": data.data,
+                "columns": [{
+                        data: 'codFacultad',
+                        title: 'Codigo de facultad'
+                    },
+                    {
+                        data: 'nombre',
+                        title: 'Nombre Facultad'
+                    },    
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
+
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log(data);            
+                    $(location).attr('href', "editar/"+ encodeURIComponent(window.btoa(data.id)));
+
+                })
+            }        
+            obtener_data_editar("#example tbody", table);
+        }
+    }
+
+
+
 
 </script>
 @include('layout.footer')

@@ -143,6 +143,7 @@ class UserController extends Controller
 
     public function crear_facultad(CrearFacultadRequest $request)
     {
+        dd($request);
         $facultad = facultad::create($request->validated());
         if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

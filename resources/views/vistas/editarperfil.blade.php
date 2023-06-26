@@ -237,16 +237,22 @@
                                         </div>
                                         @endif
                                         <hr>
-                                        {{ $datos['user']->id_facultad}}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
-                                                @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
-                                                @endforeach
+                                                @if ($datos['user']->id_facultad == '')
+                                                    <option value="" selected >Seleccione una facultad</option>
+                                                    @foreach ($facultades as $facultad)
+                                                        <option  value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($facultades as $facultad)
+                                                        <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                         @endif
@@ -308,7 +314,7 @@
 
             id_facultad = $(this);
 
-            if($(this).val != ''){
+            if($(this).val != '' || $(this).val() == 0){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
@@ -331,6 +337,8 @@
                     }
 
                 })
+            }else{
+                $('#programas').empty();
             }
         });
 

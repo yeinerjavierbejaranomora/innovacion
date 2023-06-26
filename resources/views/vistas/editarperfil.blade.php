@@ -222,6 +222,7 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        {{ auth()->user()->programa }}
                                         @if($roles != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

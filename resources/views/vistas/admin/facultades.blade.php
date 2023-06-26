@@ -175,11 +175,12 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });
+            });   
+            }
+        }
 
-            var inputs = $('.input');
+        var inputs = $('.input');
 
             function obtener_data_editar(tbody, table) {
                 console.log(table);
@@ -197,7 +198,5 @@
                     index.value()= data[count].textContent;
                     count +=1;
                 }
-            }
-        }
-    }
+    
 </script>

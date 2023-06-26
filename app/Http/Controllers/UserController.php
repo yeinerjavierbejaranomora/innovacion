@@ -225,7 +225,6 @@ class UserController extends Controller
         } else {
             $facultad =  $nombre_programas = NULL;
         }
-        die();
         // *Retornar programas y facultad
         return [$nombre_programas, $facultad];
     }

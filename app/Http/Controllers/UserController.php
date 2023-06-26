@@ -237,7 +237,7 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->activo;
-        return $activo;
+        return $request->activo;
 
         $actualizar = DB::table('users')->where('id',$id)
                     ->update([

@@ -144,8 +144,8 @@
                         showCancelButton: true,
                         showCloseButton: true,
                         cancelButtonColor: '#DC3545',
-                        cancelButtonText: "Cancelar",
-                        confirmButtonText: "Si, dar de baja"
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
                     }).then(result => {});
                 });
             }

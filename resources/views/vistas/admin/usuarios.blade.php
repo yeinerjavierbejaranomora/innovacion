@@ -151,8 +151,8 @@
                             $.post('{{ route('user.inactivar') }}', {
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
-                            }, function(data) {
-                                if (data == "true") {
+                            }, function(result) {
+                                if (result == "true") {
                                     console.log(data);
                                     /*Swal.fire({
                                         title: "Usuario eleminado",

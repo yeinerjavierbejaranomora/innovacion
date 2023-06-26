@@ -89,7 +89,7 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'codfacultad',
+                        data: 'codFacultad',
                         title: 'Codigo de facultad'
                     },
                     {

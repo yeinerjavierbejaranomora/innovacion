@@ -80,11 +80,11 @@
                             <form>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                    <input type="text" class="form-control" id="nombre">
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Codigo de la facultad</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <input type="text" class="form-control" id="codFacultad">
                                 </div>
                             </form>
                         </div>

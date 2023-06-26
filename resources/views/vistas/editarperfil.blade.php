@@ -300,7 +300,7 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "{{ $datos['user']->programa }}";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
             if($(this).val != ''){
@@ -329,7 +329,7 @@
         });
 
         $('#facultades').change(function(){
-            programas = "{{ $datos['user']->programa }}";
+            programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
             if($(this).val != ''){
@@ -344,7 +344,7 @@
                         }else{
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
-                    }
+                    }5
 
                 })
             }

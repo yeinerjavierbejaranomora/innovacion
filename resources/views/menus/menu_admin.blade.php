@@ -45,7 +45,7 @@
 
              <!-- Nav Item - Facultades -->
              <li class="nav-item">
-                <a class="nav-link" href="{{ route('facultad.index') }}">
+                <a class="nav-link" href="{{ route('admin.facultades') }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Facultades</span></a>
             </li>
@@ -64,10 +64,6 @@
                     <i class="fas fa-key"></i>
                     <span>Perfil</span></a>
             </li>
-
-
-
-
 
             <!-- Nav Item - salir de la app -->
             <li class="nav-item">

@@ -134,11 +134,11 @@ class UserController extends Controller
     public function get_facultades()
     {
         /* Consulta para obtener las facultades */
-        $facultades = DB::table('facultad')->select('facultad.codFacultad','facultad.nombre')->get();
+        $facultades = DB::table('facultad')->select('facultad.codFacultad', 'facultad.nombre')->get();
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */
-        echo json_encode(array('data'=>$facultades));
+        echo json_encode(array('data' => $facultades));
     }
 
     public function crear_facultad(CrearFacultadRequest $request)
@@ -184,7 +184,7 @@ class UserController extends Controller
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 
         // *Condicional para determinar si el usuario cuenta con una facultad
-        if ($consulta[0]->id_facultad != NULL || $consulta->programa != NULL || !empty($consulta->programa)) {
+        if ($consulta[0]->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
             $facultad = $facultad->nombre;
@@ -193,10 +193,15 @@ class UserController extends Controller
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
-            foreach ($programas as $key => $value) {
-                $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
-                $nombre_programas[$value] = $nombres[0]->programa;
-            }
+            //dd($programas);
+            if (empty($programa)) :
+                $nombre_programas = NULL;
+            else :
+                foreach ($programas as $key => $value) {
+                    $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                    $nombre_programas[$value] = $nombres[0]->programa;
+                }
+            endif;
         }
         // *Si el usuario no tiene un facultad se preocede a dejar vacío dicho campo
         else {
@@ -212,6 +217,7 @@ class UserController extends Controller
             'programa' => $nombre_programas,
             'user' => $consulta[0]
         );
+
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);
     }
 
@@ -221,7 +227,7 @@ class UserController extends Controller
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
         // *Validación para determinar si el usuario cuenta con una facultad*
-        if ($user->id_facultad != NULL || $user->programa !=NULL) {
+        if ($user->id_facultad != NULL || $user->programa != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
             $facultad = $facultad->nombre;
@@ -268,7 +274,7 @@ class UserController extends Controller
         $programa = $request->programa;
         $activo = $request->estado;
         $Programas = '';
-        if($idFacultad == 0):
+        if ($idFacultad == 0) :
             $idFacultad = NULL;
         endif;
         /**se comprueba que el campo no este vacio*/
@@ -281,7 +287,7 @@ class UserController extends Controller
             endforeach;
             /**En el campo programa se añade el contenido de la variable $Programa */
 
-        else:
+        else :
             /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $Programas = '';
         endif;
@@ -292,6 +298,11 @@ class UserController extends Controller
         else :
             $activo = 1;
         endif;
+                if ($id === auth()->user()->id) :
+                    return "Es auth";
+                else :
+                    return "Es usuario";
+                endif;
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
@@ -304,10 +315,11 @@ class UserController extends Controller
                 'programa' => $Programas,
                 'activo' => $activo,
             ]);
+
         if ($actualizar) :
-            return  redirect()->route('user.perfil',['id'=> encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
+            return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
         else :
-            return redirect()->route('user.perfil',['id'=> encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+            return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
         endif;
     }
 }

@@ -174,7 +174,6 @@
                                 <form action="{{ route('user.actualizar', ['id' => encrypt($datos['user']->id)]) }}"
                                     method="POST" id="miForm">
                                     @csrf
-                                    {{ $datos['user']->id }}
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -310,7 +309,7 @@
 <script>
 
         $('#facultades').each(function(){
-            programas = "{{ auth()->user()->programa }}";
+            programas = "{{ $datos['user']->programa }}";
             programasSeparados = programas.split(";").map(Number);
 
             id_facultad = $(this);

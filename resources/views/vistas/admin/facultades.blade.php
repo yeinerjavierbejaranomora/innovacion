@@ -200,14 +200,10 @@
         e.preventDefault();
         var formData = new FormData();
         console.log(formData);
-        $.ajax({
-            headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+        $.ajax({        
                 type: 'post',
                 url: "{{ route('admin.updatefacultad') }}",
                 data: formData,
-                cache: false,
                 success: function(response) {
                 Swal.fire(
                 'Eliminado!',

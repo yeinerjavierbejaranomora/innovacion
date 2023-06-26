@@ -210,7 +210,7 @@ class UserController extends Controller
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
         // *Validación para determinar si el usuario cuenta con una facultad*
-        if ($user->id_facultad != NULL) {
+        if ($user->id_facultad != NULL || $user->programa !=NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
             $facultad = $facultad->nombre;

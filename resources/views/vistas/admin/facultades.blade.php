@@ -166,6 +166,11 @@
             var data = $(this).serialize();
             console.log(data);
 
+            $.ajax({
+                "method" : "POST",
+                "URL" :""
+
+            })
         })
     }
 </script>

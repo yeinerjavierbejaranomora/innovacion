@@ -287,11 +287,6 @@ class UserController extends Controller
         else :
             $activo = 1;
         endif;
-                if ($id === auth()->user()->id) :
-                    return "Es auth";
-                else :
-                    return "Es usuario";
-                endif;
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
@@ -305,10 +300,20 @@ class UserController extends Controller
                 'activo' => $activo,
             ]);
 
-        if ($actualizar) :
-            return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
+        if ($id === auth()->user()->id) :
+            if ($actualizar) :
+                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
+            else :
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+            endif;
         else :
-            return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+            if ($actualizar) :
+                return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+            else :
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+            endif;
         endif;
+
+
     }
 }

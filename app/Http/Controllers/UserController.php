@@ -143,7 +143,7 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        $facultad = DB::table('facultad')->insert('facultad.codFacultad','facultan.nombre')->values($request[0]->codFacultad,$request[0]->nombre);
+        $facultad = DB::table('facultad')->insert('facultad.codFacultad','facultad.nombre')->values($request[0]->codFacultad,$request[0]->nombre);
         dd($facultad);
         if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

@@ -167,6 +167,8 @@ class UserController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+
+        return $id;
         // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 

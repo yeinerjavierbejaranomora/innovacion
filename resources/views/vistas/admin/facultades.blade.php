@@ -164,11 +164,11 @@
                         title: 'Nombre Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'><i class='fa-regular fa-square-minus'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary' data-toggle='modal' data-target='#modalEditar' data-whatever='modal'><i class='fa-regular fa-square-minus'></i></button>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'></i></button>",
                         title: 'Eliminar'
                     },
                 ],

@@ -111,7 +111,7 @@
                             <form id="Form" method="post" action="{{route('admin.updatefacultad')}}">
                                 @csrf
                                 <div>
-                                    <input type="number hidden" id="id" >
+                                    <input type="number" id="id" hidden>
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>

@@ -244,7 +244,7 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @if ($datos['user']->id_facultad == '')
-                                                    <option value="0" selected >Seleccione una facultad</option>
+                                                    <option value="" selected >Seleccione una facultad</option>
                                                     @foreach ($facultades as $facultad)
                                                         <option  value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
                                                     @endforeach
@@ -313,8 +313,9 @@
             programasSeparados = programas.split(";").map(Number);
 
             id_facultad = $(this);
+            alert($('#facultades').value())
 
-            if($(this).val != '' && $(this).val == 0){
+            if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
@@ -348,7 +349,7 @@
             id_facultad = $(this);
 
 
-            if($(this).val != '' && $(this).val != 0){
+            if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),

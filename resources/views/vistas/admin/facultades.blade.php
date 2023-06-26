@@ -58,6 +58,8 @@
                                 </table>
                             </div>
                         </div>
+
+                        <button class="agregar btn btn-secondary">Agregar nueva Facultad</button>
                     </div>
                 </div>
             </div>
@@ -101,7 +103,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-delete-right'></i></button>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
                         title: 'Eliminar'
                     }, 
                 ],

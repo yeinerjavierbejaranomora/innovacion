@@ -279,7 +279,7 @@ class UserController extends Controller
                 'email' => $email,
                 'id_rol' => $idRol,
                 'id_facultad' => $idFacultad,
-                'programa' => $programa,
+                'programa' => $Programas,
                 'activo' => $activo,
             ]);
         if ($actualizar) :

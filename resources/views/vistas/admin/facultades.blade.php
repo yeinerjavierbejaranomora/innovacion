@@ -157,7 +157,8 @@
             obtener_data_editar("#example tbody", table);
         }
     }
-    function agregarFacultad(){
+
+    function agregarFacultad(modal){
         $('#exampleModal').on("click", "button.crear",function(){
             console.log('entre');
         })

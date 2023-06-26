@@ -200,7 +200,7 @@ class UserController extends Controller
         if ($user->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
-            dd($facultad);
+            dd($facultad->nombre);
             $facultad = $facultad->nombre;
             // *Explode para que muestre los programas por separado
             $programa = trim($user->programa, ';');

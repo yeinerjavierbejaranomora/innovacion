@@ -182,7 +182,9 @@
             var inputs = $('.input');
 
             function obtener_data_editar(tbody, table) {
+                console.log(table);
                 $(tbody).on("click", "button.editar", function() {
+                    
                     var data = table.row($(this).parents("tr")).data();
 
                     agregarData(data);

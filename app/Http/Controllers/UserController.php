@@ -144,6 +144,7 @@ class UserController extends Controller
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id_llegada)
     {
+        // *Condición para descencriptar el id del usuario
         $id=base64_decode(urldecode($id_llegada));
        
         if(!is_numeric($id))
@@ -151,10 +152,13 @@ class UserController extends Controller
             echo 'entro';
             $id=decrypt($id_llegada);
         }
-        
+        // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
+        
+        // *Condicional para determinar si el usuario cuenta con una facultad
         if($consulta[0]->id_facultad != NULL)
         {
+            // *Consulta para obtener el nombre de la facultad
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
             $facultad = $facultad->nombre;
             // *Explode para que muestre los programas por separado
@@ -167,13 +171,14 @@ class UserController extends Controller
                 $nombre_programas[$value] = $nombres[0]->programa;
         }
     }
+    // *Si el usuario no tiene un facultad se preocede a dejar vacío dicho campo
        else{
         $facultad =  $nombre_programas = NULL;
        }
         $rol = DB::table('roles')->select('roles.nombreRol')->where('id', '=', $consulta[0]->id_rol)->get();
         $roles = Roles::all();
         $facultades = DB::table('facultad')->get();
-     
+    // *Arreglo con los datos obtenudos dentro del método
         $datos = array(
             'facultad' => $facultad,
             'rol' => $rol[0]->nombreRol,

@@ -24,6 +24,7 @@ class CrearFacultadRequest extends FormRequest
     public function rules()
     {
         return [
+            'id',
             'codFacultad'=>'required',
             'nombre'=>'required',
         ];

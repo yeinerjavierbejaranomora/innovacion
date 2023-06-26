@@ -319,9 +319,9 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
-                    /*id_facultades=[];
+                    /*id_facultades=[];*/
                     console.log(data);
-                    data.forEach(programa => {
+                    /*data.forEach(programa => {
                         id_facultades.push(parseInt(programa.id));
                         //console.log(id_facultades);
                         //console.log(programasSeparados.includes(programa.id));

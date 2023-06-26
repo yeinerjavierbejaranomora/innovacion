@@ -147,7 +147,8 @@ class UserController extends Controller
             'codFacultad'=>$request[0]->codFacultad,
             'nombre'=>$request[0]->nombre,
         ]);
-        dd($request);
+        dd($facultad);
+
 
             if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

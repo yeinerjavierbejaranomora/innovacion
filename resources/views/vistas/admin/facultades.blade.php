@@ -80,6 +80,9 @@
                             <form id="miForm" method="post" action="{{ route('admin.guardarfacultad') }}">
                                 @csrf
                                 <div>
+                                    <input type="number" id="id" hidden>
+                                </div>
+                                <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
                                     <input type="text" class="form-control" id="codFacultad" name="codFacultad">
                                 </div>

@@ -179,26 +179,37 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });   
 
-            obtener_data_editar("#example tbody",table);
-            }
-
-            function obtener_data_editar(tbody, table) {
-                $(tbody).on("click", "button.editar", function() {
-                    
-                    var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
-                    codFacultad= $("#editcodFacultad").val(data.codFacultad);
-                    nombre= $("#editnombre").val(data.nombre);
-                    id= $("#id").val(data.id);
-                });
-            }
+           
 
         }
-
     
     $("#Form").on('submit',function(e){
         e.preventDefault();
-        alert("entro");
+        var formData = new FormData();
+        $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('admin.updatefacultad') }}",
+                data: formData,
+                cache: false,
+                success: function(response) {
+                Swal.fire(
+                'Eliminado!',
+                'Actualizacion exitosa.',
+                'Accion realizada con exito'
+                )
+                table.ajax.reload();
+            },
+            failure: function (response) {
+                swal(
+                "Error",
+                "Nose pudo actualizar.", // had a missing comma
+                "error"
+                )
+            },
+        });
 
     })
 

@@ -119,7 +119,7 @@ class UserController extends Controller
             ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arrglo de users */
+        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $users));
     }
 
@@ -132,7 +132,12 @@ class UserController extends Controller
     ///** funcion para cargar vistas de facultades */
     public function get_facultades()
     {
-
+        /* Consulta para obtener las facultades */
+        $facultades = DB::table('facultad')->select('facultad.codFacultad','facultad.nombre')->get();
+        /* Mostrar los datos en formato JSON*/
+        header("Content-Type: application/json");
+        /* Se pasa a formato JSON el arreglo de facultades */
+        echo json_encode(array('data'=>$facultades));
     }
 
 

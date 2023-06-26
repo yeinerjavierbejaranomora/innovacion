@@ -165,6 +165,7 @@
             //let codigo = $('#codFacultad').val();
             var data = $(this).serialize();
             console.log(data);
+            
         })
     }
 </script>

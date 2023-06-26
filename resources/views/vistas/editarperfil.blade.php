@@ -347,14 +347,13 @@
             programasSeparados = programas.split(";").map(Number);
             id_facultad = $(this);
 
-            
-            if($(this).val != '' && id_facultad.val != 0){
+
+            if($(this).val != '' && $(this).val != 0){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
                 },function(data){
                     $('#programas').empty();
-
                     for (let i = 0; i < data.length; i++) {
                         if (programasSeparados.includes(data[i]['id'])){
                             $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);

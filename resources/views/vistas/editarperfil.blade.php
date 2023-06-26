@@ -311,6 +311,7 @@
         $('#facultades').each(function(){
             programas = "{{ $datos['user']->programa }}";
             programasSeparados = programas.split(";").map(Number);
+            console.log(programasSeparados);
 
             id_facultad = $(this);
 

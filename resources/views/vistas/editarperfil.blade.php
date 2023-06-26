@@ -285,8 +285,8 @@
                                                     name="estado" id="Checkbox">
                                                     <label class="form-check-label" for="Checkbox">
                                                         Activo
-                                                    </label> --}}
-                                                    @endif
+                                                    </label>
+                                                    @endif--}}
                                             </div>
                                         @endif
                                         <br>

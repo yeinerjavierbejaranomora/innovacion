@@ -239,9 +239,9 @@ class UserController extends Controller
         $activo = $request->estado;
         //return $activo;
         if($request->activo != 'on'):
-            return 0;
+            $activo = 0;
         else:
-            return 1;
+            $activo = 1;
         endif;
 
         $actualizar = DB::table('users')->where('id',$id)

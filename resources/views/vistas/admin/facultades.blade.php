@@ -80,11 +80,11 @@
                             <form id="miForm" method="POST">
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
-                                    <input type="text" class="form-control" id="nombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Codigo de la facultad</label>
-                                    <input type="text" class="form-control" id="codFacultad">
+                                    <input type="text" class="form-control" id="codFacultad" name="codFacultad">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -165,11 +165,12 @@
             //let codigo = $('#codFacultad').val();
             var data = $(this).serialize();
             console.log(data);
-
             $.ajax({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
                 "method" : "POST",
-                "URL" :""
-
+                "URL" :"{{'User.crear_facultad'}}"
             })
         })
     }

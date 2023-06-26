@@ -67,7 +67,7 @@
             </div>
 
             <!--Modal para agregar nueva facultad-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Crear</button>
+                            <button type="button" class="crear btn btn-primary">Crear</button>
                         </div>
                     </div>
                 </div>
@@ -157,5 +157,12 @@
             obtener_data_editar("#example tbody", table);
         }
     }
+
+    function agregarFacultad(){
+        $('#modal').on("click", "button.crear",function(){
+            console.log('entre');
+        })
+    }
+
 </script>
 @include('layout.footer')

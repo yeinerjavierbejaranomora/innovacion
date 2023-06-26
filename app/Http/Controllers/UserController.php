@@ -326,7 +326,7 @@ class UserController extends Controller
             if ($actualizar) :
                 return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
             else :
-                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+                return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         endif;
 

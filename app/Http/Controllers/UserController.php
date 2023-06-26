@@ -143,9 +143,7 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        dd($request->request);
-        
-
+        dd($request->all());
         
         $facultad = DB::table('facultad')->insert([
             'codFacultad'=>$request[0]->codFacultad,

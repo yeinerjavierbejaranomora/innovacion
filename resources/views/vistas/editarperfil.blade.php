@@ -346,7 +346,7 @@
             programas = "{{ $datos['user']->programa }}";
             programasSeparados = programas.split(";").map(Number);
 
-            if($(this).val != ''){
+            if($(this).val != '' && $(this).val == 0){
                 $.post('{{  route('registro.programas') }}',{
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     idfacultad: id_facultad.val(),
@@ -361,6 +361,8 @@
                     }5
 
                 })
+            }else{
+                $('#programas').empty();
             }
         })
 

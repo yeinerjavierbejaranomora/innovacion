@@ -173,7 +173,7 @@ class UserController extends Controller
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 
         // *Condicional para determinar si el usuario cuenta con una facultad
-        if ($consulta[0]->id_facultad != NULL || $consulta->programa != NULL || !empty($consulta->programa)) {
+        if ($consulta[0]->id_facultad != NULL ) {
             // *Consulta para obtener el nombre de la facultad
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
             $facultad = $facultad->nombre;
@@ -182,6 +182,7 @@ class UserController extends Controller
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
+            dd($programas);
             foreach ($programas as $key => $value) {
                 $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
                 $nombre_programas[$value] = $nombres[0]->programa;

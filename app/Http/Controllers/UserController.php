@@ -208,14 +208,13 @@ class UserController extends Controller
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
         // *Validación para determinar si el usuario cuenta con una facultad*
-        dd($user->programa);
         if ($user->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
             $facultad = $facultad->nombre;
             // *Explode para que muestre los programas por separado
             $programa = trim($user->programa, ';');
-            $programas = explode(",", $programa);
+            $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             foreach ($programas as $key => $value) {
@@ -225,7 +224,6 @@ class UserController extends Controller
         } else {
             $facultad =  $nombre_programas = NULL;
         }
-        die();
         // *Retornar programas y facultad
         return [$nombre_programas, $facultad];
     }

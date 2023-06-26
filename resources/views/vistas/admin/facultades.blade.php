@@ -180,7 +180,6 @@
             });
 
             var inputs = $('.input');
-            console.log(inputs);
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -189,12 +188,12 @@
                     agregarData(data);
                 });
             }
-
+            count =0;
             function agregarData(data) {
                 console.log(data);
-                for(let index of inputs)
-                {
-                    console.log(index);
+                for (let index of inputs) {
+                    index.value()= data[count].textContent;
+                    count +=1;
                 }
             }
         }

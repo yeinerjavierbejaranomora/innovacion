@@ -171,7 +171,7 @@
             },
                 "method" : "POST",
                 "URL" :"{{'user.crear_facultad'}}",
-                "data": "data"
+                "data": data
             })
             
         })

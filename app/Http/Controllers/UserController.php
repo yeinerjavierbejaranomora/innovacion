@@ -184,14 +184,13 @@ class UserController extends Controller
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
             //dd($programas);
             if(empty($programa)):
-                return "Vacio";
+                $nombre_programas = NULL;
             else:
-                return "No Vacio";
+                foreach ($programas as $key => $value) {
+                    $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                    $nombre_programas[$value] = $nombres[0]->programa;
+                }
             endif;
-            foreach ($programas as $key => $value) {
-                $nombres = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
-                $nombre_programas[$value] = $nombres[0]->programa;
-            }
         }
         // *Si el usuario no tiene un facultad se preocede a dejar vacío dicho campo
         else {

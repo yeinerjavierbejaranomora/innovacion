@@ -192,6 +192,10 @@
 
             function agregarData(data) {
                 console.log(data);
+                for(let index of inputs)
+                {
+                    console.log(index);
+                }
             }
         }
     }

@@ -165,13 +165,14 @@
             //let codigo = $('#codFacultad').val();
             var data = $(this).serialize();
             console.log(data);
-            $.ajax({
+           /* $.ajax({
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
                 "method" : "POST",
                 "URL" :"{{'User.crear_facultad'}}"
             })
+            */
         })
     }
 </script>

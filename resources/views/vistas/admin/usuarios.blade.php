@@ -136,7 +136,9 @@
             }
 
             function obtener_data_inactivar(tbody, table) {
-                alert('Hola');
+                $(tbody).on("click", "button.eliminar", function() {
+                    alert("Hola");
+                });
             }
 
             obtener_data_editar("#example tbody", table);

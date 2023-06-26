@@ -117,7 +117,7 @@ class UserController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el usuario con su rol */
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
-            ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
+            ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->where('users.activo','=',1)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

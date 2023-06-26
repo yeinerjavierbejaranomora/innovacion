@@ -237,7 +237,7 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->activo;
-        if($request->activo != 'on'):
+        if($request->activo != 1):
             return 0;
         else:
             return 1;

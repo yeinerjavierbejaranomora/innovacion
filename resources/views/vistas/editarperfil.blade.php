@@ -222,39 +222,48 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        @if($roles != '')
-                                        <div class="row">
-                                            <div class="col-sm-3 text-dark">
-                                                <p class="mb-0">Rol</p>
+                                        @if ($roles != '')
+                                            <div class="row">
+                                                <div class="col-sm-3 text-dark">
+                                                    <p class="mb-0">Rol</p>
+                                                </div>
+                                                <div class="col mb-3">
+                                                    <select class="form-select" name="id_rol" id="rol"
+                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
+                                                        @foreach ($roles as $rol)
+                                                            <option
+                                                                {{ $rol->id == $datos['user']->id_rol ? 'selected' : '' }}
+                                                                value="{{ $rol->id }}">{{ $rol->nombreRol }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="col mb-3">
-                                                <select class="form-select" name="id_rol" id="rol" {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}>
-                                                    @foreach ($roles as $rol)
-                                                    <option {{ $rol->id == $datos['user']->id_rol ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
                                         @endif
                                         <hr>
-                                        @if($facultades != '' || $facultades = NULL)
-                                        <div class="row">
-                                            <div class="col-sm-3 text-dark">
-                                                <p class="mb-0">Facultad</p>
+                                        @if ($facultades != '' || ($facultades = null))
+                                            <div class="row">
+                                                <div class="col-sm-3 text-dark">
+                                                    <p class="mb-0">Facultad</p>
+                                                </div>
+                                                <select class="form-select" name="facultades" id="facultades">
+                                                    @if ($datos['user']->id_facultad == '')
+                                                        <option value="" selected>Seleccione una facultad
+                                                        </option>
+                                                        @foreach ($facultades as $facultad)
+                                                            <option value="{{ $facultad->id }}">
+                                                                {{ $facultad->nombre }}</option>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($facultades as $facultad)
+                                                            <option
+                                                                {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }}
+                                                                value="{{ $facultad->id }}">{{ $facultad->nombre }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
                                             </div>
-                                            <select class="form-select" name="facultades" id="facultades">
-                                                @if ($datos['user']->id_facultad == '')
-                                                    <option value="" selected >Seleccione una facultad</option>
-                                                    @foreach ($facultades as $facultad)
-                                                        <option  value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($facultades as $facultad)
-                                                        <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
                                         @endif
                                         <hr>
                                         <div class="row">
@@ -272,21 +281,23 @@
                                                     <p class="mb-0">Estado</p>
                                                 </div>
                                                 <!--Validación para verificar si el usuario se encuentra activo o no-->
-                                                    @if ($datos['user']->activo == 1)
-                                                        <div class="col-sm-9">
-                                                            <input class="form-check-input" type="checkbox"
+                                                @if ($datos['user']->activo == 1)
+                                                    <div class="col-sm-9">
+                                                        <input class="form-check-input" type="checkbox"
                                                             name="estado" id="Checkbox" checked>
-                                                            <label class="form-check-label" for="Checkbox">
-                                                                Activo
-                                                            </label>
-                                                        </div>
-                                                    @else
-                                                    <input class="form-check-input" type="checkbox"
-                                                    name="estado" id="Checkbox">
-                                                    <label class="form-check-label" for="Checkbox">
-                                                        Activo
-                                                    </label>
-                                                    @endif
+                                                        <label class="form-check-label" for="Checkbox">
+                                                            Activo
+                                                        </label>
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-9">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="estado" id="Checkbox">
+                                                        <label class="form-check-label" for="Checkbox">
+                                                            Activo
+                                                        </label>
+                                                    </div>
+                                                @endif
                                             </div>
                                         @endif
                                         <br>
@@ -307,67 +318,73 @@
 </div>
 
 <script>
+    $('#facultades').each(function() {
+        programas = "{{ $datos['user']->programa }}";
+        programasSeparados = programas.split(";").map(Number);
 
-        $('#facultades').each(function(){
-            programas = "{{ $datos['user']->programa }}";
-            programasSeparados = programas.split(";").map(Number);
+        id_facultad = $(this);
 
-            id_facultad = $(this);
+        if ($('#facultades').val() != '') {
+            $.post('{{ route('registro.programas') }}', {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                idfacultad: id_facultad.val(),
+            }, function(data) {
+                /*id_facultades=[];
+                console.log(data);
+                data.forEach(programa => {
+                    id_facultades.push(parseInt(programa.id));
+                    //console.log(id_facultades);
+                    //console.log(programasSeparados.includes(programa.id));
 
-            if($('#facultades').val() != ''){
-                $.post('{{  route('registro.programas') }}',{
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    idfacultad: id_facultad.val(),
-                },function(data){
-                    /*id_facultades=[];
-                    console.log(data);
-                    data.forEach(programa => {
-                        id_facultades.push(parseInt(programa.id));
-                        //console.log(id_facultades);
-                        //console.log(programasSeparados.includes(programa.id));
-
-                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-                    });*/
-                    for (let i = 0; i < data.length; i++) {
-                        if (programasSeparados.includes(data[i]['id'])){
-                            $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
-                        }else{
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
-                        }
+                    //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                });*/
+                for (let i = 0; i < data.length; i++) {
+                    if (programasSeparados.includes(data[i]['id'])) {
+                        $('#programas').append(
+                            `<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`
+                        );
+                    } else {
+                        $('#programas').append(
+                            `<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`
+                        );
                     }
+                }
 
-                })
-            }else{
+            })
+        } else {
+            $('#programas').empty();
+        }
+    });
+
+    $('#facultades').change(function() {
+        programas = "{{ $datos['user']->programa }}";
+        programasSeparados = programas.split(";").map(Number);
+        id_facultad = $(this);
+
+
+        if ($('#facultades').val() != '') {
+            $.post('{{ route('registro.programas') }}', {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                idfacultad: id_facultad.val(),
+            }, function(data) {
                 $('#programas').empty();
-            }
-        });
+                $('#facultades').remove('option');
+                for (let i = 0; i < data.length; i++) {
+                    if (programasSeparados.includes(data[i]['id'])) {
+                        $('#programas').append(
+                            `<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`
+                        );
+                    } else {
+                        $('#programas').append(
+                            `<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`
+                        );
+                    }
+                }
+                5
 
-        $('#facultades').change(function(){
-            programas = "{{ $datos['user']->programa }}";
-            programasSeparados = programas.split(";").map(Number);
-            id_facultad = $(this);
-
-
-            if($('#facultades').val() != ''){
-                $.post('{{  route('registro.programas') }}',{
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    idfacultad: id_facultad.val(),
-                },function(data){
-                    $('#programas').empty();
-                    $('#facultades').remove('option');
-                    for (let i = 0; i < data.length; i++) {
-                        if (programasSeparados.includes(data[i]['id'])){
-                            $('#programas').append(`<label><input type="checkbox" checked id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
-                        }else{
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
-                        }
-                    }5
-
-                })
-            }else{
-                $('#programas').empty();
-            }
-        })
-
-
+            })
+        } else {
+            $('#programas').empty();
+        }
+    })
 </script>

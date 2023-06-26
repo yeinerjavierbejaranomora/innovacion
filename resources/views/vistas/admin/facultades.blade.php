@@ -179,12 +179,24 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });   
 
-           
+            obtener_data_editar("#example tbody",table);
+            }
+
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log(data);
+                    codFacultad= $("#editcodFacultad").val(data.codFacultad);
+                    nombre= $("#editnombre").val(data.nombre);
+                    id= $("#id").val(data.id);
+                });
+            }
 
         }
-    }
+
     
-    $("#Form").on('submit',function(e){
+        $("#Form").on('submit',function(e){
         e.preventDefault();
         var formData = new FormData();
         $.ajax({

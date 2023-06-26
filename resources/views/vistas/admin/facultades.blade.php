@@ -179,9 +179,12 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             }
+
             var modal = $('#modalEditar');
+            function obtener_data_editar(tbody, table) {
             $(tbody).on("click", "button.editar", function(e) {
                 console.log('entra');
             });  
+        }
         }
 </script>

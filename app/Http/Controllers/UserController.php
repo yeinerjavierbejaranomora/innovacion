@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
+use App\Http\Requests\CrearFacultadRequest;
 use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
@@ -140,7 +141,17 @@ class UserController extends Controller
         echo json_encode(array('data' => $facultades));
     }
 
-
+    public function crear_facultad(CrearFacultadRequest $request)
+    {
+        $facultad = facultad::create($request->validated());
+        if($facultad):
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');
+        else:
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('vistas.admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+        endif;
+    }
     // *Método para mostrar todos sus datos al Usuario
     public function perfil()
     {

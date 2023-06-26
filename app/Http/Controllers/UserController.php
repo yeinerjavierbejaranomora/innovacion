@@ -239,7 +239,7 @@ class UserController extends Controller
             ['programa', '=', $request->programas],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
-        return redirect()->route('user.perfil')->with('Sucess', 'Actualizacion exitosa!');
+        return view('vistas.perfil')->with('Sucess', 'Actualizacion exitosa!');
     }
 
     ///** funcion para cargar vistas de facultades */

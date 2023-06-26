@@ -337,6 +337,8 @@
                     }
 
                 })
+            }else{
+                $('#programas').empty();
             }
         });
 

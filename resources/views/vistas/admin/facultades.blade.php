@@ -101,7 +101,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-trash'></i></button>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-delete-right'></i></button>",
                         title: 'Eliminar'
                     }, 
                 ],

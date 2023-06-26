@@ -311,6 +311,7 @@
         $('#facultades').each(function(){
             programas = "{{ auth()->user()->programa }}";
             programasSeparados = programas.split(";").map(Number);
+            cosole.log(programasSeparados)
 
             id_facultad = $(this);
 

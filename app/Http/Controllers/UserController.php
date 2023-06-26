@@ -249,17 +249,11 @@ class UserController extends Controller
                         'programa' => $programa,
                         'activo' => $activo,
                     ]);
-        return $request;
-        $update = DB::table('users')->update('users')->set([
-            ['id_banner', '=', $request->id_banner],
-            ['documento', '=', $request->documento],
-            ['email', '=', $request->email],
-            ['id_rol', '=', $request->id_rol],
-            ['id_facultad', '=', $request->facultades],
-            ['programa', '=', $request->programa],
-            ['activo', '=', $request->estado],
-        ])->where('id', '=', $id->id)->get();
-        return view('vistas.perfil')->with('Sucess', 'Actualizacion exitosa!');
+        if($actualizar):
+            return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+        else:
+            return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
+        endif;
     }
 
     ///** funcion para cargar vistas de facultades */

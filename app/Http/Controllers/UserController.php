@@ -228,6 +228,7 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
+<<<<<<< HEAD
         $idBanner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;
@@ -250,16 +251,18 @@ class UserController extends Controller
                         'activo' => $activo,
                     ]);
         return $request;
+=======
+>>>>>>> ecad028133141923c2ebd2d9dd2d0e403b86b590
         $update = DB::table('users')->update('users')->set([
-            ['id_banner', '=', $request->nuevoid],
-            ['documento', '=', $request->nuevodocumento],
-            ['email', '=', $request->nuevoemail],
+            ['id_banner', '=', $request->id_banner],
+            ['documento', '=', $request->documento],
+            ['email', '=', $request->email],
             ['id_rol', '=', $request->id_rol],
             ['id_facultad', '=', $request->facultades],
-            ['programa', '=', $request->programas],
+            ['programa', '=', $request->programa],
             ['activo', '=', $request->estado],
         ])->where('id', '=', $id->id)->get();
-        return redirect()->route('user.perfil')->with('Sucess', 'Actualizacion exitosa!');
+        return view('vistas.perfil')->with('Sucess', 'Actualizacion exitosa!');
     }
 
     ///** funcion para cargar vistas de facultades */

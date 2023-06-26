@@ -100,7 +100,7 @@
         <!-- /.container-fluid -->
 
     </div>
-
+    @include('layout.footer')
 </div>
 <!-- End of Content Wrapper -->
 
@@ -163,4 +163,3 @@
         })
     }
 </script>
-@include('layout.footer')

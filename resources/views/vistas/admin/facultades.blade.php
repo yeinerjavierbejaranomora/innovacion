@@ -108,7 +108,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="Form" method="post" action="#">
+                            <form id="Form" method="post" action="">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>

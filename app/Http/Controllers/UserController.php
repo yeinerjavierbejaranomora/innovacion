@@ -263,7 +263,7 @@ class UserController extends Controller
             /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $Programas = '';
         endif;
-        return $Programas;
+        //return $Programas;
         //return $activo;
         if ($request->activo != 'on') :
             $activo = 0;

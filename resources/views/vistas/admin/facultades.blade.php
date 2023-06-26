@@ -157,6 +157,4 @@
             obtener_data_editar("#example tbody", table);
         }
     }
-
-   
 </script>

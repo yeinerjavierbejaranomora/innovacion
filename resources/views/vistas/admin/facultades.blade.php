@@ -78,11 +78,11 @@
                         </div>
                         <div class="modal-body">
                             <form id="miForm" method="POST">
-                                <div class="form-group">
+                                <div>
                                     <label for="recipient-name" class="col-form-label">Nombre de la facultad</label>
                                     <input type="text" class="form-control" id="nombre">
                                 </div>
-                                <div class="form-group">
+                                <div>
                                     <label for="message-text" class="col-form-label">Codigo de la facultad</label>
                                     <input type="text" class="form-control" id="codFacultad">
                                 </div>
@@ -165,7 +165,7 @@
             //let codigo = $('#codFacultad').val();
             var data = $(this).serialize();
             console.log(data);
-            
+
         })
     }
 </script>

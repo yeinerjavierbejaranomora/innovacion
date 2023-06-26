@@ -108,7 +108,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="{{ route('admin.updatefacultad') }}">
+                            <form id="miForm" method="get" action="{{ route('admin.updatefacultad') }}">
                                 @csrf
                                 <div>
                                     <input type="number" id="id" name="id">

@@ -184,7 +184,7 @@
             $(tbody).on("click", "button.editar", function() {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data[codFaculad]);
-                console.log('data');
+                console.log(data);
             });  
             }
 

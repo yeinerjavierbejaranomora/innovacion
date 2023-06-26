@@ -300,11 +300,7 @@
 <script>
 
         $('#facultades').each(function(){
-<<<<<<< HEAD
             programas = '{{ auth()->user()->programa }}';
-=======
-            programas = "{{ auth()->user()->programa }}";
->>>>>>> 1d28a265117f0438aeb113ab1439d3647e4f522b
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 
@@ -344,11 +340,7 @@
             programas = '{{ auth()->user()->programa }}';
 =======
             programas = "{{ auth()->user()->programa }}";
->>>>>>> 1d28a265117f0438aeb113ab1439d3647e4f522b
             programasSeparados = programas.split(";").map(Number);
-            console.log(programasSeparados);
-
-            id_facultad = $(this);
 
             if($(this).val != ''){
                 $.post('{{  route('registro.programas') }}',{

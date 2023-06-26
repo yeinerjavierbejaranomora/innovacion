@@ -172,9 +172,9 @@
                                                 id: encodeURIComponent(window.btoa(data.id)),
                                             }, function(data) {
                                                 console.log(data);
-                                                // if (data == 1) {
-                                                //     location.reload();
-                                                // }
+                                                if (data == 'true') {
+                                                    location.reload();
+                                                }
                                             });
                                         }
                                     });

@@ -154,7 +154,7 @@
                             }, function(result) {
                                 if (result == "true") {
                                     console.log(data);
-                                    /*Swal.fire({
+                                    Swal.fire({
                                         title: "Usuario eleminado",
                                         html: "El usuario <strong>" + data.nombre +
                                             " con el documento " + data.documento +
@@ -171,14 +171,14 @@
                                             $.post('{{ route('user.deshacerinactivar') }}', {
                                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                                 id: encodeURIComponent(window.btoa(data.id)),
-                                            }, function(data) {
-                                                console.log(data);
-                                                if (data == 'true') {
+                                            }, function(result) {
+                                                console.log(result);
+                                                if (result == 'true') {
                                                     location.reload();
                                                 }
                                             });
                                         }
-                                    });*/
+                                    });
                                 }
                             })
 

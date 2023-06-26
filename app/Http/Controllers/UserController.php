@@ -143,8 +143,8 @@ class UserController extends Controller
 
     public function savefacultad(CrearFacultadRequest $request)
     {
-        dd($request);
         $facultad = facultad::create($request->validated());
+        dd($facultad);
         if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');

@@ -243,12 +243,15 @@
                                                 <p class="mb-0">Facultad</p>
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
-                                                @foreach ($facultades as $facultad)
                                                 @if ($datos['user']->id_facultad == '')
-                                                    <option value="">Seleccione una facultad</option>
+                                                    <option value="" selected >Seleccione una facultad</option>
+                                                    @foreach ($facultades as $facultad)
+                                                        <option  value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                    @endif
                                                 @else
-                                                    <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
-                                                @endif
+                                                    @foreach ($facultades as $facultad)
+                                                        <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>

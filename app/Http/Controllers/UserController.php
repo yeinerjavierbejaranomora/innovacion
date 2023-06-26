@@ -133,7 +133,7 @@ class UserController extends Controller
     public function get_facultades()
     {
         /* Consulta para obtener las facultades */
-        $facultades = DB::table('facultad')->select('codFacultad','nombre')->get();
+        $facultades = DB::table('facultad')->select('facultad.codFacultad','facultad.nombre')->get();
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */

@@ -173,7 +173,7 @@ class UserController extends Controller
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 
         // *Condicional para determinar si el usuario cuenta con una facultad
-        if ($consulta[0]->id_facultad != NULL || $consulta->programa !=NULL) {
+        if ($consulta[0]->id_facultad != NULL || $consulta->programa != NULL || !empty($consulta->programa)) {
             // *Consulta para obtener el nombre de la facultad
             $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $consulta[0]->id_facultad)->first();
             $facultad = $facultad->nombre;

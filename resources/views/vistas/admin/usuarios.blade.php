@@ -153,7 +153,7 @@
                                 id: encodeURIComponent(window.btoa(data.id)),
                             }, function(data) {
                                 if (data == "true") {
-                                    console.log(data.id);
+                                    console.log(data);
                                     /*Swal.fire({
                                         title: "Usuario eleminado",
                                         html: "El usuario <strong>" + data.nombre +

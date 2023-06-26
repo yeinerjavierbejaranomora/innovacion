@@ -121,7 +121,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Editar</button>
+                            <button type="submit" class="edit btn btn-primary">Editar</button>
                         </div>
                         </form>
                     </div>
@@ -182,7 +182,7 @@
 
             var modal = $('#modalEditar');
             function obtener_data_editar(tbody, table) {
-            $(tbody).on("click", "button.editar", function(e) {
+            $(tbody).on("click", "button.editar", function() {
                 console.log('entra');
             });  
         }

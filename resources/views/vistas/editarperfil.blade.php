@@ -237,7 +237,6 @@
                                         </div>
                                         @endif
                                         <hr>
-                                        {{ $datos['user']->id_facultad}}
                                         @if($facultades != '')
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -245,7 +244,11 @@
                                             </div>
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
-                                                <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                @if ($datos['user']->id_facultad != '')
+                                                    <option value="">Seleccione una facultad</option>
+                                                @else
+                                                    <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                         </div>

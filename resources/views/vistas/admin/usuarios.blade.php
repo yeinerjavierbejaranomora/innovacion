@@ -114,7 +114,7 @@
                         title: 'Editar'
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-user-minus'></i></button>",
                         title: 'Inactivar'
                     }
                 ],

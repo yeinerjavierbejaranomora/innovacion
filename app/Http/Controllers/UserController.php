@@ -137,6 +137,7 @@ class UserController extends Controller
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */
+        dd($facultades);
         echo json_encode(array('data'=>$facultades));
     }
 

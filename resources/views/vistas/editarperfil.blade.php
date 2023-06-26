@@ -300,7 +300,11 @@
 <script>
 
         $('#facultades').each(function(){
+<<<<<<< HEAD
             programas = '{{ auth()->user()->programa }}';
+=======
+            programas = "{{ auth()->user()->programa }}";
+>>>>>>> 1d28a265117f0438aeb113ab1439d3647e4f522b
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 
@@ -336,7 +340,11 @@
         });
 
         $('#facultades').change(function(){
+<<<<<<< HEAD
             programas = '{{ auth()->user()->programa }}';
+=======
+            programas = "{{ auth()->user()->programa }}";
+>>>>>>> 1d28a265117f0438aeb113ab1439d3647e4f522b
             programasSeparados = programas.split(";").map(Number);
             console.log(programasSeparados);
 
@@ -356,7 +364,7 @@
                             console.log("no encontrado");
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data[i]['id']}"> ${data[i]['programa']}</label><br>`);
                         }
-                    }
+                    }5
 
                 })
             }

@@ -242,6 +242,7 @@
                                             <div class="col-sm-3 text-dark">
                                                 <p class="mb-0">Facultad</p>
                                             </div>
+                                            {{ $datos['user']->id_facultad }}
                                             <select class="form-select" name="facultades" id="facultades">
                                                 @foreach ($facultades as $facultad)
                                                 <option {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }} value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>

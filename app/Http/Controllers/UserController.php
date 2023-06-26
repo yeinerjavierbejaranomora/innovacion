@@ -202,7 +202,7 @@ class UserController extends Controller
     {
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
-        dd($user->programa);
+        dd(auth()->user()->programa);
         // *Validación para determinar si el usuario cuenta con una facultad*
         if ($user->id_facultad != NULL) {
             // *Consulta para obtener el nombre de la facultad según el ID de esta

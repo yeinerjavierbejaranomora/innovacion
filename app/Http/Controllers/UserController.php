@@ -149,7 +149,6 @@ class UserController extends Controller
        
         if(!is_numeric($id))
         {
-            echo 'entro';
             $id=decrypt($id_llegada);
         }
         // *Consulta SQL para obtener todos los datos del id

@@ -236,8 +236,8 @@ class UserController extends Controller
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
         $programa = $request->programa;
-        $activo = $request->activo;
-        return $request;
+        $activo = $request->estado;
+        return $activo;
         if($request->activo != 1):
             return 0;
         else:

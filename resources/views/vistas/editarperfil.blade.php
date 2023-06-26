@@ -266,7 +266,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        @if (auth()->user()->id_rol == 9 && auth()->user()->id === $datos['user']->id)
+                                        @if (auth()->user()->id_rol == 9 && auth()->user()->id != $datos['user']->id)
                                             <div class="row">
                                                 <div class="col-sm-3 text-dark">
                                                     <p class="mb-0">Estado</p>

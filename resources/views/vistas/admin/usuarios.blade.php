@@ -153,7 +153,8 @@
                                 id: encodeURIComponent(window.btoa(data.id)),
                             }, function(data) {
                                 if (data == "true") {
-                                    Swal.fire({
+                                    console.log(data.id);
+                                    /*Swal.fire({
                                         title: "Usuario eleminado",
                                         html: "El usuario <strong>" + data.nombre +
                                             " con el documento " + data.documento +
@@ -177,7 +178,7 @@
                                                 }
                                             });
                                         }
-                                    });
+                                    });*/
                                 }
                             })
 

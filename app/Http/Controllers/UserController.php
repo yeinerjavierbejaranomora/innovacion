@@ -291,6 +291,11 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         dd($request->all());
+        if(isset($request->estado)){
+            return "existe";
+        }else{
+            return "no existe";
+        }
         $id = decrypt($id);
         $idBanner = $request->id_banner;
         $documento = $request->documento;

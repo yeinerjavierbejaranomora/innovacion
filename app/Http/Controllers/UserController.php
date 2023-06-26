@@ -142,22 +142,17 @@ class UserController extends Controller
     }
 
     public function savefacultad(CrearFacultadRequest $request)
-    {
-        dd($request->request);
-        
-
-        
+    {   
         $facultad = DB::table('facultad')->insert([
-            'codFacultad'=>$request[0]->codFacultad,
-            'nombre'=>$request[0]->nombre,
+            'codFacultad'=>$request->codFacultad,
+            'nombre'=>$request->nombre,
         ]);
-        dd($facultad);
             if($facultad):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('vistas.admin.facultades')->with('success','Facultad creada correctamente');
+            return redirect()->route('admin.facultades')->with('success','Facultad creada correctamente');
         else:
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('vistas.admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
         endif;
     }
     // *Método para mostrar todos sus datos al Usuario
@@ -339,4 +334,14 @@ class UserController extends Controller
 
 
     }
+
+    /** fucion para generar  materias faltantes
+     * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
+      */
+    public function Generar_faltantes(){
+        
+        $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
+    }
+
+
 }

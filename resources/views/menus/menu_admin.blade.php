@@ -102,7 +102,6 @@
 facultades();
     //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
-        alert('entro');
         $.ajax({
             
             headers: {
@@ -116,6 +115,8 @@ facultades();
                 });
             }
         });
+        console.log(data);
+        
     }
     </script>
     

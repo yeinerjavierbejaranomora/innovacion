@@ -23,9 +23,8 @@ class MafiController extends Controller
     public function getDataMafi(){
         $yearActual = date('Y');
         $mesActual =  date('n');
-        return $yearActual;
-        $periodos = Periodo::all();
-        //return $periodos;
+        $periodos = Periodo::all()->where('year',$yearActual);
+        return $periodos;
         foreach($periodos as $periodo):
             if($periodo->mes == $mesActual):
                 $formacionContinua = $periodo->formacion_continua;

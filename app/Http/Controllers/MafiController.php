@@ -44,7 +44,7 @@ class MafiController extends Controller
         $data = DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
-                ->where('autorizado_asistir','LIKE','ACTIVO')
+                ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
                 ->get();
 

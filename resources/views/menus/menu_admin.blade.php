@@ -113,10 +113,10 @@
                     $('#Facultades').prepend(`<a class="collapse-item" href="#">${facultad.nombre}</a>`);
                 });
             }
-        });     
+        });  
+
     }
 
     </script>
-
 
     

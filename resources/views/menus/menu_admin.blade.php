@@ -61,7 +61,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
-                <a class="collapse-item" href="#">Programas</a>
+                <a class="collapse-item" href="{{ route('facultad.programas') }}">Programas</a>
                 <a class="collapse-item" href="#">Especialización</a>
                 <a class="collapse-item" href="#">Maestría</a>
                 <a class="collapse-item" href="#">Periodos</a>

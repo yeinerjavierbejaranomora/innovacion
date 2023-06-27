@@ -108,5 +108,16 @@ Route::controller(cambioController::class)->group(function(){
     Route::post('/home/cambiopassword/','cambioSave')->middleware('auth')->name('cambio.cambiosave');
 });
 
+/** Controlador para el menú desplegable de facultades */
+Route::controller(facultadController::class)->grouo(function(){
+    /** Ruta para cargar la vista de programas*/
+    Route::get('/home/programas','view_programas')->middleware('auth','admin')->name('facultad.programas');
 
+    /** Ruta para obtener todos los programas (pregrados) */
+    Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
+    /** Ruta para obtener todos las especializaciones*/
+    Route::get('/home/getespecializacion','get_especializacion')->middleware('auth','admin')->name('facultad.getespecializacion');
+    /** Ruta para obtener todos las especializaciones maestrias */
+    Route::get('/home/getmaestria','get_maestria')->middleware('auth','admin')->name('facultad.getmaestria');
+});
 

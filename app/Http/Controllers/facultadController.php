@@ -135,6 +135,11 @@ class facultadController extends Controller
         echo json_encode(array('data' => $reglas));
     }
 
+    public function facultad()
+    {
+        return view('vistas.admin.facultad');
+    }
+
     /** Función para mostrar los programas según el id de la facultad */
     public function mostrarfacultad($nombre,$id_llegada)
     {

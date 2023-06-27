@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mafi;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MafiController extends Controller
 {

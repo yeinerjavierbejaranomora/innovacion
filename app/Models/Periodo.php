@@ -17,6 +17,6 @@ class Periodo extends Model
         'Pregrado_semestar',
         'especializacion',
         'maestrias',
-        'año'
+        'year',
     ];
 }

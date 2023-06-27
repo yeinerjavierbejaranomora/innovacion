@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mafi;
+use App\Models\MafiReplica;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,7 +54,7 @@ class MafiController extends Controller
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
                 dd($value);
-                $insertar = Mafi::create([
+                $insertar = MafiReplica::create([
                     'idbanner'=> $value->idbanner,
                     'primer_apellido'=> $value->primer_apellido,
                     'programa'=> $value->programa,

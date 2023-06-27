@@ -26,13 +26,13 @@ class MafiController extends Controller
         foreach($periodos as $periodo):
             if($periodo->mes == $mesActual):
                 $formacionContinua = $periodo->formacion_continua;
-                $pregradoCuatrimestral = $periodo->year + $periodo->Pregrado_cuatrimestar;
+                $pregradoCuatrimestral = "$periodo->year"."$periodo->Pregrado_cuatrimestar";
                 $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestar;
                 $especializacion = $periodo->year + $periodo->especializacion;
                 $maestria = $periodo->year + $periodo->maestria;
             endif;
         endforeach;
-        return $pregradoSemestral;
+        return $pregradoCuatrimestral;
         die();
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/

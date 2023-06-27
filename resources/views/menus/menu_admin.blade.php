@@ -111,7 +111,7 @@ facultades();
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#facultades').append(`<a value="${facultad.id}">${facultad.nombre}</a>`);
+                    $('#facultades').append(`<a class="collapse item">${facultad.nombre}</a>`);
                 });
             }
         });

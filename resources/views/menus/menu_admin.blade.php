@@ -113,7 +113,7 @@
 
                     nombre_facultad=facultad.nombre;
                     id_facultad=facultad.id;
-                    ruta='facultad.facultad'+id_facultad;
+                    ruta='home/facultad/'+id_facultad;
 
                     $('#Facultades').prepend('<a class="collapse-item" href="'+ruta+'">'+nombre_facultad+'</a>');
                 });

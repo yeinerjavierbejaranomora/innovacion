@@ -109,13 +109,12 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    console.log(facultad);
+                    console.log(data);
                     $('#Facultades').prepend(`<a class="collapse-item" href="{{route('facultad.facultad')}}">${facultad.nombre}</a>`);
                 });
             }
         });  
-       
-        console.log(data);
+
     }
     </script>
 

@@ -43,15 +43,10 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
-            <span>Facultades </span>
+            <span> Facultades </span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-                <a class="collapse-item" href="{{ route('admin.users') }}">
-                </a>
-                <a class="collapse-item" href="cards.html"></a>
-
+            <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             </div>
         </div>
     </li>
@@ -65,7 +60,7 @@
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración de facultades</a>
+                <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
                 <a class="collapse-item" href="#">Programas</a>
                 <a class="collapse-item" href="#">Especialización</a>
                 <a class="collapse-item" href="#">Maestría</a>
@@ -102,3 +97,22 @@
 
 </ul>
 <!-- End of Sidebar -->
+<script>
+
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#facultades').append(`<a value="${facultad.id}">${facultad.nombre}</a>`);
+                });
+            }
+        });
+    }
+    </script>
+    

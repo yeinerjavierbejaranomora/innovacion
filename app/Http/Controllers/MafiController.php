@@ -49,11 +49,10 @@ class MafiController extends Controller
                 ->orderBy('id')
                 ->get()
                 ->chunk(200);
-        dd($data[16]);
 
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
-                dd($value->idbanner);
+                dd($value);
             endforeach;
         endforeach;
         //$contData = count($data);

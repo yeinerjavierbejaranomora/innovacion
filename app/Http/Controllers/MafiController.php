@@ -41,17 +41,15 @@ class MafiController extends Controller
         endforeach;
 
         /** Consulta de los datos tabla datMafi */
-        $datos = [];
-        DB::table('datosMafi')
+        $data = DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
                 ->orderBy('id')
-                ->chunk(100, function($data){
-                    $datos[]=$data;
-                });
-                dd($datos);
+                ->get()
+                ->chunk(200);
+        dd($data);
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

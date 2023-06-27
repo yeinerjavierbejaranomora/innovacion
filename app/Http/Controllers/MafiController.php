@@ -42,7 +42,7 @@ class MafiController extends Controller
 
         /** Consulta de los datos tabla datMafi */
         $data = DB::table('datosMafi')
-                ->where('estado','<>','Inactivo')
+                ->where('estad','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])

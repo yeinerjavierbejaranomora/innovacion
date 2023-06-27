@@ -137,7 +137,6 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/getperiodos','get_periodos')->middleware('auth','admin')->name('facultad.getperiodos');
     /** Ruta para obtener todas las reglas de negocio */
     Route::get('/home/getreglas','get_reglas')->middleware('auth','admin')->name('facultad.getreglas');
-
 });
 
 

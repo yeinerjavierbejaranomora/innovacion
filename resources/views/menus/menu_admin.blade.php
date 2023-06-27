@@ -114,7 +114,6 @@
             }
         });  
         console.log('entra');
-
     }
     </script>
 

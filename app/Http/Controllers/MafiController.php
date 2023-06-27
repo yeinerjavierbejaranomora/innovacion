@@ -53,6 +53,21 @@ class MafiController extends Controller
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
                 dd($value);
+                $insertar = Mafi::create([
+                    'idbanner'=> $value->idbanner,
+                    'primer_apellido'=> $value->primer_apellido,
+                    'programa'=> $value->programa,
+                    'codprograma'=> $value->codprograma,
+                    'cadena'=> $value->cadena,
+                    'periodo'=> $value->periodo,
+                    'estado'=> $value->estado,
+                    'tipoestudiante'=> $value->tipoestudiante,
+                    'ruta_academica'=> $value->ruta_academica,
+                    'sello'=> $value->sello,
+                    'operador'=> $value->operador,
+                    'autorizado_asistir'=> $value->autorizado_asistir,
+                    'fecha_registro_sistema'=>date('Y-m-d H:i:s'),
+                ]);
             endforeach;
         endforeach;
         //$contData = count($data);

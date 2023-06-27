@@ -94,9 +94,8 @@
             <i class="fas fa-sign-out-alt"></i>
             <span>Salir</span></a>
     </li>
-
-
 </ul>
+
 <!-- End of Sidebar -->
 <script>
     facultades();

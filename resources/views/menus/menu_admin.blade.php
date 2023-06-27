@@ -41,12 +41,12 @@
     <!-- Nav Item - Menu desplegable "Facultades"-->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Facultades" aria-expanded="true" aria-controls="Facultades">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
             <span> Facultades </span>
         </a>
-        <div id="Facultades" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded" >
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded id="Facultades"" >
             </div>
         </div>
     </li>
@@ -109,13 +109,13 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#Facultades').prepend(`<a class="collapse item" href="#">${facultad.nombre}</a>`);
+                    $('#Facultades').prepend(`<a class="collapse-item" href="#">${facultad.nombre}</a>`);
                 });
             }
         });     
         console.log(data);
     }
-    
+
     </script>
 
 

@@ -119,6 +119,8 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/maestria','view_maestria')->middleware('auth','admin')->name('facultad.maestria');
     /** Ruta para cargar la vista de educacion continua*/
     Route::get('/home/educacioncontinua','view_continua')->middleware('auth','admin')->name('facultad.continua');
+    /** Ruta cargar la vista de los periodos */
+    Route::get('/home/periodos','view_periodos')->middleware('auth','admin')->name('facultad.periodos');
     /** Ruta para obtener todos los programas (pregrados) */
     Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
     /** Ruta para obtener todos las especializaciones*/
@@ -127,6 +129,8 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/getmaestria','get_maestria')->middleware('auth','admin')->name('facultad.getmaestria');
     /** Ruta para obtener todos los programas de educación continua */
     Route::get('/home/getcontinua','get_continua')->middleware('auth','admin')->name('facultad.getcontinua');
+    /** Ruta para obtener todos los periodos */
+    Route::get('/home/getperiodos','get_periodos')->middleware('auth','admin')->name('facultad.getperiodos');
 
 });
 

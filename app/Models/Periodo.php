@@ -13,7 +13,7 @@ class Periodo extends Model
         'id',
         'mes',
         'formacion_continua',
-        'Pregrado_cuatrimestre',
+        'Pregrado_cuatrimestar',
         'Pregrado_semestar',
         'especializacion',
         'maestrias',

@@ -40,11 +40,20 @@ class facultadController extends Controller
         return view('vistas.admin.maestria');
     }
 
+    /** Función para cargar la vista de educación continua */
     public function view_continua()
     {
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.educacioncontinua');
     }
+
+    /** Función para cargar la vista de periodos */
+    public function view_periodos()
+    {
+        /**Se retorna la vista del listado usuarios */
+        return view('vistas.admin.periodos');
+    }
+
 
     /** Función para traer todos los programas */
     public function get_programas()
@@ -97,6 +106,16 @@ class facultadController extends Controller
          header("Content-Type: application/json");
          /**Se pasa a formato JSON el arreglo de users */
          echo json_encode(array('data' => $programas));
+     }
+
+     public function get_periodos()
+     {
+        $periodos = DB::table('periodo')->select('id','mes','formacion_continua','Pregrado_cuatrimestral',
+        'Pregrado_semestral','especializacion','maestrias','year')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $periodos));
      }
 
 }

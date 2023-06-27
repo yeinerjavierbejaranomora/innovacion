@@ -42,6 +42,7 @@
                 </div>
             </li>
 
+            <hr class="sidebar-divider">
             <!-- Nav Item - Menu desplegable "Facultades"-->
 
             <li class="nav-item">

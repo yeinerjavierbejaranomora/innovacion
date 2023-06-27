@@ -63,7 +63,7 @@
                 <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
                 <a class="collapse-item" href="{{ route('facultad.programas') }}">Programas</a>
                 <a class="collapse-item" href="{{ route('facultad.especializacion') }}">Especialización</a>
-                <a class="collapse-item" href="#">Maestría</a>
+                <a class="collapse-item" href="{{ route('facultad.maestria') }}">Maestría</a>
                 <a class="collapse-item" href="#">Periodos</a>
                 <a class="collapse-item" href="#">Reglas de negocio</a>
 

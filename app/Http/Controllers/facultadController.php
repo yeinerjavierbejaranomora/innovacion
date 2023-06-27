@@ -26,6 +26,13 @@ class facultadController extends Controller
         return view('vistas.admin.programas');
     }
 
+    /** Función para cargar la vista de las especializaciones */
+    public function view_especializacion()
+    {
+        /**Se retorna la vista del listado usuarios */
+        return view('vistas.admin.especializacion');
+    }
+
     /** Función para traer todos los programas */
     public function get_programas()
     {
@@ -33,6 +40,18 @@ class facultadController extends Controller
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.codprograma', 'programas.programa', 'facultad.nombre')
             ->where('programas.tabla','=','pregrado')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $programas));
+    }
+
+    public function get_especializacion()
+    {
+        /**Realiza la consulta anidada para onbtener el programa con su facultad */
+        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->select('programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->where('programas.tabla','=','especializacion')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

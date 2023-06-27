@@ -113,6 +113,8 @@ Route::controller(cambioController::class)->group(function(){
 Route::controller(facultadController::class)->group(function(){
     /** Ruta para cargar la vista de programas*/
     Route::get('/home/programas','view_programas')->middleware('auth','admin')->name('facultad.programas');
+    /** Ruta para cargar la vista de programas*/
+    Route::get('/home/especializacion','view_especializacion')->middleware('auth','admin')->name('facultad.especializacion');
     /** Ruta para obtener todos los programas (pregrados) */
     Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
     /** Ruta para obtener todos las especializaciones*/

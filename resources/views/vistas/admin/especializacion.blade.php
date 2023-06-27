@@ -39,7 +39,7 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Programas</h1>
+                <h1 class="h3 mb-0 text-gray-800">Especializaciones</h1>
                 {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nueva especializacion</button>
                         </div>
                         <br>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva especializacion</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -83,11 +83,11 @@
                                     <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
+                                    <label for="recipient-name" class="col-form-label">Codigo de la especializacion</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
+                                    <label for="message-text" class="col-form-label">Nombre de la especializacion</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
                                 <div>
@@ -125,7 +125,7 @@
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.getprogramas') }}";
+    var url = "{{ route('facultad.getespecializacion') }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
@@ -139,7 +139,7 @@
                     },
                     {
                         data: 'programa',
-                        title: 'Programa'
+                        title: 'Especialización'
                     },
                     {
                         data: 'nombre',

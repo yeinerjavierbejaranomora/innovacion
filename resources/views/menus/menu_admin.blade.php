@@ -113,7 +113,8 @@
                     $('#Facultades').prepend(`<a class="collapse-item" href="#">${facultad.nombre}</a>`);
                 });
             }
-        });     
+        });  
+           
     }
     // {{route('facultad.facultad',['facultad'=>${facultad.nombre}],['id'=>encrypt(${facultad.id})])}}
     </script>

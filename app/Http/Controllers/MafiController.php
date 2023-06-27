@@ -49,7 +49,7 @@ class MafiController extends Controller
                 ->orderBy('id')
                 ->get()
                 ->chunk(200);
-        dd($data);
+        dd($data[0]);
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

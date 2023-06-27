@@ -32,7 +32,7 @@ class MafiController extends Controller
                 $maestria = $periodo->year.$periodo->maestria;
             endif;
         endforeach;
-        return $formacionContinua;
+        return $pregradoSemestral;
         die();
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/

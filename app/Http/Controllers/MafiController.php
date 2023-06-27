@@ -46,6 +46,7 @@ class MafiController extends Controller
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
+                ->orderBy('id')
                 ->chunk(100, function($data){
                     dd($data);
                 });

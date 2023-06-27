@@ -46,14 +46,22 @@ class MafiController extends Controller
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
-                ->take(50)->get();
-        dd($data);
+                ->get();
         $contData = count($data);
+        $contKeys = 0;
+        $data = (array) $data;
         $numeroDatos = 200;
         $contadorGeneral = ceil($contData / $numeroDatos);
+        dd(array_chunk($data,$contadorGeneral));
         for ($i=0; $i < $contadorGeneral; $i++):
-            for ($i=0; $i < $numeroDatos; $i++) {
-                # code...
+
+            foreach ($data as $key => $value) {
+                if($key === $contKeys):
+
+                    return 'entra';
+                else:
+                    return 'No entro';
+                endif;
             }
         endfor;
         /*$data = Mafi::where([['estado','<>','Inactivo']]);

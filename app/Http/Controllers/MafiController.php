@@ -41,6 +41,7 @@ class MafiController extends Controller
         endforeach;
 
         /** Consulta de los datos tabla datMafi */
+        $datos = [];
         DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
@@ -48,8 +49,9 @@ class MafiController extends Controller
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
                 ->orderBy('id')
                 ->chunk(100, function($data){
-                    dd($data);
+                    $datos[]=$data;
                 });
+                dd($datos);
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

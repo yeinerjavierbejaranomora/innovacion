@@ -55,6 +55,11 @@ Route::controller(UserController::class)->group(function(){
     /** para actualizar las facultades */
    // Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     Route::get('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    //** Ruta para cargar vista con los roles */
+    Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
+    //** Ruta para mostrar todos los roles */
+    Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
+
 });
 
 Route::controller(MafiController::class)->group(function(){
@@ -123,6 +128,8 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/educacioncontinua','view_continua')->middleware('auth','admin')->name('facultad.continua');
     /** Ruta cargar la vista de los periodos */
     Route::get('/home/periodos','view_periodos')->middleware('auth','admin')->name('facultad.periodos');
+    /** Ruta para obtener todas las reglas de negocio */
+    Route::get('/home/reglasdenegocio','view_reglas')->middleware('auth','admin')->name('facultad.reglas');
     /** Ruta para obtener todos los programas (pregrados) */
     Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
     /** Ruta para obtener todos las especializaciones*/
@@ -133,7 +140,8 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/getcontinua','get_continua')->middleware('auth','admin')->name('facultad.getcontinua');
     /** Ruta para obtener todos los periodos */
     Route::get('/home/getperiodos','get_periodos')->middleware('auth','admin')->name('facultad.getperiodos');
-
+    /** Ruta para obtener todas las reglas de negocio */
+    Route::get('/home/getreglas','get_reglas')->middleware('auth','admin')->name('facultad.getreglas');
 });
 
 

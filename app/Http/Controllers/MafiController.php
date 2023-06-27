@@ -21,22 +21,34 @@ class MafiController extends Controller
     }
 
     public function getDataMafi(){
+        /** Año y Mes Actual*/
         $yearActual = date('Y');
         $mesActual =  date('n');
-        return $yearActual;
-        $periodos = Periodo::all();
+        /** Consulta para traer los periodos por el año actual*/
+        $periodos = Periodo::all()->where('year',$yearActual);
         //return $periodos;
+        /** Recorrer el array de los periodos optenidos */
         foreach($periodos as $periodo):
+            /** Comparar de los periodos cual corresponde con mes actual */
             if($periodo->mes == $mesActual):
+                /** Se crea variables para cada periodo*/
                 $formacionContinua = $periodo->formacion_continua;
                 $pregradoCuatrimestral = $periodo->year.$periodo->Pregrado_cuatrimestral;
-                $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestral;
-                $especializacion = $periodo->year + $periodo->especializacion;
-                $maestria = $periodo->year + $periodo->maestria;
+                $pregradoSemestral = $periodo->year.$periodo->Pregrado_semestral;
+                $especializacion = $periodo->year.$periodo->especializacion;
+                $maestria = $periodo->year.$periodo->maestria;
             endif;
         endforeach;
-        return $pregradoCuatrimestral;
-        die();
+
+        /** Consulta de los datos tabla datMafi */
+        $data = DB::table('datosMafi')
+                ->where('estado','<>','Inactivo')
+                ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
+                ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])
+                ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
+                ->get();
+
+        return count($data);
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }

@@ -22,36 +22,43 @@ class facultadController extends Controller
     /** Función para cargar la vista de los programas */
     public function view_programas()
     {
-        /**Se retorna la vista del listado usuarios */
+        /**Se retorna la vista de los programas de pregado */
         return view('vistas.admin.programas');
     }
 
     /** Función para cargar la vista de las especializaciones */
     public function view_especializacion()
     {
-        /**Se retorna la vista del listado usuarios */
+        /**Se retorna la vista de la especialización */
         return view('vistas.admin.especializacion');
     }
 
     /** Función para cargar la vista de las maestrías */
     public function view_maestria()
     {
-        /**Se retorna la vista del listado usuarios */
+        /**Se retorna la vista de la maestría */
         return view('vistas.admin.maestria');
     }
 
     /** Función para cargar la vista de educación continua */
     public function view_continua()
     {
-        /**Se retorna la vista del listado usuarios */
+        /**Se retorna la vista de educación continua */
         return view('vistas.admin.educacioncontinua');
     }
 
     /** Función para cargar la vista de periodos */
     public function view_periodos()
     {
-        /**Se retorna la vista del listado usuarios */
+        /**Se retorna la vista de los periodos */
         return view('vistas.admin.periodos');
+    }
+
+    /** Función para cargar la vista de las reglas de negocio */
+    public function view_reglas()
+    {
+        /**Se retorna la vista de las reglas de negocio */
+        return view('vistas.admin.reglasnegocio');
     }
 
 
@@ -110,12 +117,19 @@ class facultadController extends Controller
 
      public function get_periodos()
      {
-        $periodos = DB::table('periodo')->select('id','mes','formacion_continua','Pregrado_cuatrimestral',
-        'Pregrado_semestral','especializacion','maestrias','year')->get();
+        $periodos = DB::table('periodo')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $periodos));
+     }
+
+     public function get_reglas()
+     {
+        $reglas = DB::table('reglasNegocio')->get();
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $reglas));
      }
 
 }

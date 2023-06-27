@@ -101,7 +101,7 @@
     facultades();
     //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
-       var data = $.ajax({       
+       var ajax = $.ajax({       
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -113,7 +113,7 @@
                 });
             }
         });  
-        console.log (data);
+        console.log(ajax);
     }
     </script>
 

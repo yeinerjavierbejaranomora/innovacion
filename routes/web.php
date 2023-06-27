@@ -8,6 +8,7 @@ use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
 use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\facultadController;
 
 /*
 |--------------------------------------------------------------------------

@@ -22,7 +22,7 @@ class MafiController extends Controller
     public function getDataMafi(){
         $mesActual =  date('n');
         $periodos = Periodo::all();
-        return $periodos->mes;
+        return $periodos[0]->mes;
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }

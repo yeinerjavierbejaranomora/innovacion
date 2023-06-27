@@ -76,7 +76,7 @@ class MafiController extends Controller
         /** marca de ingreso */
         //$marca_de_ingreso = $periodo;
         
-        dd($periodo[0]);
+        dd($periodo);
 
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
 

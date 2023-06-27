@@ -51,7 +51,7 @@ class MafiController extends Controller
 
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
-        $sql='SELECT * FROM `periodo` WHERE  `mes`=$mes';
+        $sql='SELECT * FROM `periodo` WHERE  `mes`=05';
 
         $periodo = DB::select($sql);
         dd($periodo);

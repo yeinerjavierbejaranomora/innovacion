@@ -24,12 +24,12 @@ class MafiController extends Controller
         $periodos = Periodo::all();
 
         foreach($periodos as $periodo):
-            if($periodo->mes):
+            if($periodo->mes == $mesActual):
                 $formacionContinua = $periodo->formacion_continua;
-                $pregradoCuatrimestral = $periodo->year.$periodo->Pregrado_cuatrimestar;
-                $pregradoSemestral = $periodo->year.$periodo->Pregrado_semestar;
-                $especializacion = $periodo->year.$periodo->especializacion;
-                $maestria = $periodo->year.$periodo->maestria;
+                $pregradoCuatrimestral = $periodo->year + $periodo->Pregrado_cuatrimestar;
+                $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestar;
+                $especializacion = $periodo->year + $periodo->especializacion;
+                $maestria = $periodo->year + $periodo->maestria;
             endif;
         endforeach;
         return $pregradoSemestral;

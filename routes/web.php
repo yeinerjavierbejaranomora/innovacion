@@ -144,9 +144,9 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/getreglas','get_reglas')->middleware('auth','admin')->name('facultad.getreglas');
 
     /** Ruta para ver los programas por facultad */
-    Route::get('/home/{nombre}/{id}', 'facultad')->middleware('auth')->name('facultad.facultad');
+    Route::get('/home/{nombre}/{id}', 'mostrarfacultad')->middleware('auth')->name('facultad.facultad');
     /** Ruta para traer los programas por facultad */
-    Route::post('/home/{facultad}/{id}', 'actualizar')->middleware('auth')->name('facultad.facultad'); 
+     
 });
 
 

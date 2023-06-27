@@ -55,7 +55,11 @@ class MafiController extends Controller
 
         $sql='SELECT * FROM `periodo` WHERE  `mes`=6';
 
-        $periodo = DB::select($sql);
+        $periodo =DB::table('periodo')
+        ->where('mes', $mes)
+        ->get();
+
+        
         dd($periodo);
 
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';

@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
+use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -53,6 +54,11 @@ Route::controller(UserController::class)->group(function(){
     /** para actualizar las facultades */
    // Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     Route::get('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+});
+
+Route::controller(MafiController::class)->group(function(){
+    //carga de mafis
+    Route::get('/home/admin/mafi','inicioMafi')->middleare('auth','admin')->name('admin.mafi');
 });
 
 /** definimos las rutas para el registro de usuarios */

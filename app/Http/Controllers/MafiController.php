@@ -41,14 +41,16 @@ class MafiController extends Controller
         endforeach;
 
         /** Consulta de los datos tabla datMafi */
-        $data = DB::table('datosMafi')
+        DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
-                ->toArray();
-        $contData = count($data);
-        $contKeys = 0;
+                ->chunk(100, function($data){
+                    dd($data);
+                });
+        //$contData = count($data);
+        /*$contKeys = 0;
         //$data = (array) $data;
         //dd($data);
         $numeroDatos = 200;
@@ -64,7 +66,7 @@ class MafiController extends Controller
                     return 'No entro';
                 endif;
             }
-        endfor;
+        endfor;*/
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }

@@ -80,7 +80,7 @@
 </a>
 
 <script>
-    var xmlhttp = new XMLHttpRequest();
+    /*var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('admin.getusers') }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();

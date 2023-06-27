@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Session;
 class facultadController extends Controller
 {
     /** Función para cargar la vista de los programas */
-    public function view_programas(Request $request)
+    public function view_programas()
     {
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.programas');

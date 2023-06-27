@@ -150,7 +150,7 @@
                         <div class="col-lg-4">
                             <div class="card mb-4">
                                 <div class="card-body text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <img src="https://www.freepik.es/iconos-gratis/simbolo-usuario-negro-macho_724420.htm#query=usuario&position=0&from_view=keyword&track=sph" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> {{ $datos['rol'] }}</p>
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>

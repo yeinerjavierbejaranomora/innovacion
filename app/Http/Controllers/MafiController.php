@@ -51,7 +51,7 @@ class MafiController extends Controller
                 ->chunk(200);
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
-                dd($value);
+                dd($value->estado);
             endforeach;
         endforeach;
         //$contData = count($data);

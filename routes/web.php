@@ -46,9 +46,9 @@ Route::controller(UserController::class)->group(function(){
     /** cargamos ña vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
     /** cargamos la vista de administracion de facultades */
-    Route::get('/home/facultad','facultadView')->middleware('auth','admin')->name('admin.facultades');
+    Route::get('/home/amdministracionFacultades','facultadView')->middleware('auth','admin')->name('admin.facultades');
     /** cargamos la vista para mostrar todas las facultades */
-    Route::get('/home/administracionFacultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
+    Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
     /** para salvar las facultades */
     Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
     /** para actualizar las facultades */

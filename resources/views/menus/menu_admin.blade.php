@@ -114,7 +114,6 @@ facultades();
                 });
             }
         });     
-
     }
     </script>
     

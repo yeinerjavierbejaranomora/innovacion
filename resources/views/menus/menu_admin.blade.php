@@ -42,6 +42,26 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Menu desplegable "Facultades"-->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-address-book"></i>
+                    <span>Facultades </span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{ route('admin.users') }}">
+                        </a>
+                        <a class="collapse-item" href="cards.html"></a>
+
+                    </div>
+                </div>
+            </li>
+
+
 
              <!-- Nav Item - Facultades -->
              <li class="nav-item">

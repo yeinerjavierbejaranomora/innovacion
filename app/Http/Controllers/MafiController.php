@@ -21,12 +21,17 @@ class MafiController extends Controller
     }
 
     public function getDataMafi(){
+        /** Año y Mes Actual*/
         $yearActual = date('Y');
         $mesActual =  date('n');
+        /** Consulta para traer los periodos por el año actual*/
         $periodos = Periodo::all()->where('year',$yearActual);
-        return $periodos;
+        //return $periodos;
+        /** Recorrer el array de los periodos optenidos */
         foreach($periodos as $periodo):
+            /** Comparar de los periodos cual corresponde con mes actual */
             if($periodo->mes == $mesActual):
+                /** Se crea variables para cada periodo*/
                 $formacionContinua = $periodo->formacion_continua;
                 $pregradoCuatrimestral = $periodo->year.$periodo->Pregrado_cuatrimestral;
                 $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestral;
@@ -34,8 +39,16 @@ class MafiController extends Controller
                 $maestria = $periodo->year + $periodo->maestria;
             endif;
         endforeach;
-        return $pregradoCuatrimestral;
-        die();
+
+        /** Consulta de los datos tabla datMafi */
+        $data = DB::table('users')
+                ->where('estado','<>','Inactivo')
+                ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
+                ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])
+                ->whereIn('periodo',['202313','202333','202343','202353'])
+                ->get();
+
+        return count($data);
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }

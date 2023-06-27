@@ -114,9 +114,9 @@
                 });
             }
         });  
-           
+
     }
-    // {{route('facultad.facultad',['facultad'=>${facultad.nombre}],['id'=>encrypt(${facultad.id})])}}
+
     </script>
 
     

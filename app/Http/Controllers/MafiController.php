@@ -21,7 +21,9 @@ class MafiController extends Controller
     }
 
     public function getDataMafi(){
+        $yearActual = date('Y');
         $mesActual =  date('n');
+        return $yearActual;
         $periodos = Periodo::all();
         //return $periodos;
         foreach($periodos as $periodo):

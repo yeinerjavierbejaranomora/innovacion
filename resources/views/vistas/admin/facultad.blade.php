@@ -39,7 +39,7 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Maestrías</h1>
+                <h1 class="h3 mb-0 text-gray-800">Programas Facultad de</h1>
                 {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nueva maestría</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
                         </div>
                         <br>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva maestría</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -83,15 +83,11 @@
                                     <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo de la maestría</label>
+                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre de la maestría</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
+                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
                         </div>

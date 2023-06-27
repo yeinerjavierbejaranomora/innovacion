@@ -40,8 +40,6 @@ class MafiController extends Controller
 
 
     public function Generar_faltantes(){
-
-
         /** traemos la fecha actual para poder comparar con el periodo */
         $fechaActual=date('Y-m-d h:i:s');
         $fechaSegundos=strtotime($fechaActual);
@@ -52,7 +50,7 @@ class MafiController extends Controller
 
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
-        $sql='SELECT * FROM `periodo` WHERE  `mes`='+$mes+ '';
+        $sql='SELECT * FROM `periodo` WHERE  `mes`=$mes';
 
         $periodo = DB::select($sql);
         dd($periodo);

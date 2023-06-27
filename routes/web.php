@@ -109,7 +109,7 @@ Route::controller(cambioController::class)->group(function(){
 });
 
 /** Controlador para el menú desplegable de facultades */
-Route::controller(facultadController::class)->grouo(function(){
+Route::controller(facultadController::class)->group(function(){
     /** Ruta para cargar la vista de programas*/
     Route::get('/home/programas','view_programas')->middleware('auth','admin')->name('facultad.programas');
 
@@ -120,4 +120,6 @@ Route::controller(facultadController::class)->grouo(function(){
     /** Ruta para obtener todos las especializaciones maestrias */
     Route::get('/home/getmaestria','get_maestria')->middleware('auth','admin')->name('facultad.getmaestria');
 });
+
+
 

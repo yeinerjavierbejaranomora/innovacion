@@ -32,7 +32,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item" href="{{ route('admin.users') }}">Usuarios</a>
-                <a class="collapse-item" href="cards.html">Roles</a>
+                <a class="collapse-item" href="{{ route('admin.roles') }}">Roles</a>
 
             </div>
         </div>

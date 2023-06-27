@@ -124,10 +124,25 @@ class UserController extends Controller
         echo json_encode(array('data' => $users));
     }
 
-    public function facultad_view(Request $request)
+    public function get_roles()
+    {
+        $roles = DB::table('roles')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $roles));
+    }
+    
+    public function facultad_view()
     {
         /**Se retorna la vista del listado de facultades */
         return view('vistas.admin.administracionfacultades');
+    }
+
+    public function roles_view()
+    {
+        /**Se retorna la vista del listado usuarios */
+        return view('vistas.admin.roles');
     }
 
     ///** funcion para cargar vistas de facultades */
@@ -140,6 +155,7 @@ class UserController extends Controller
         /* Se pasa a formato JSON el arreglo de facultades */
         echo json_encode(array('data' => $facultades));
     }
+
 
     public function savefacultad(CrearFacultadRequest $request)
     {

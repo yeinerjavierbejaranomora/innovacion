@@ -55,6 +55,11 @@ Route::controller(UserController::class)->group(function(){
     /** para actualizar las facultades */
    // Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     Route::get('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    //** Ruta para cargar vista con los roles */
+    Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
+    //** Ruta para mostrar todos los roles */
+    Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
+
 });
 
 Route::controller(MafiController::class)->group(function(){

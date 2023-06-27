@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#exampleModal" data-whatever="modal">Agregar nueva Facultad</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
                         </div>
                         <br>
                     </div>
@@ -67,7 +67,7 @@
                 </div>
 
                 <!--Modal para agragar un programa nuevo-->  
-            <div class="modal fade" id="editar_facultad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

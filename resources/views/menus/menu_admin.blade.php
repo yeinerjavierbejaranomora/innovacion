@@ -61,9 +61,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
 
                 <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
-                <a class="collapse-item" href="#">Programas</a>
-                <a class="collapse-item" href="#">Especialización</a>
-                <a class="collapse-item" href="#">Maestría</a>
+                <a class="collapse-item" href="{{ route('facultad.programas') }}">Programas</a>
+                <a class="collapse-item" href="{{ route('facultad.especializacion') }}">Especialización</a>
+                <a class="collapse-item" href="{{ route('facultad.maestria') }}">Maestría</a>
                 <a class="collapse-item" href="#">Periodos</a>
                 <a class="collapse-item" href="#">Reglas de negocio</a>
 
@@ -98,11 +98,10 @@
 </ul>
 <!-- End of Sidebar -->
 <script>
-
-facultades();
+    facultades();
     //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
-        $.ajax({       
+       var data = $.ajax({       
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -110,10 +109,13 @@ facultades();
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#Facultades').append(`<a class="collapse item">${facultad.nombre}</a>`);
+                    $('#Facultades').prepend(`<a class="collapse-item" href="#">${facultad.nombre}</a>`);
                 });
             }
         });     
     }
+
     </script>
+
+
     

@@ -8,6 +8,7 @@ use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
 use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\facultadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::controller(UserController::class)->group(function(){
     /** cargamos ña vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
     /** cargamos la vista de administracion de facultades */
-    Route::get('/home/facultad','facultadView')->middleware('auth','admin')->name('admin.facultades');
+    Route::get('/home/amdministracionfacultades','facultad_view')->middleware('auth','admin')->name('admin.facultades');
     /** cargamos la vista para mostrar todas las facultades */
     Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
     /** para salvar las facultades */
@@ -107,6 +108,24 @@ Route::controller(cambioController::class)->group(function(){
     Route::get('/home/cambiopassword/{idbanner}','consultaCambio')->middleware('auth')->name('cambio.cambio');
     Route::post('/home/cambiopassword/','cambioSave')->middleware('auth')->name('cambio.cambiosave');
 });
+
+/** Controlador para el menú desplegable de facultades */
+Route::controller(facultadController::class)->group(function(){
+    /** Ruta para cargar la vista de programas*/
+    Route::get('/home/programas','view_programas')->middleware('auth','admin')->name('facultad.programas');
+    /** Ruta para cargar la vista de especializaciones*/
+    Route::get('/home/especializacion','view_especializacion')->middleware('auth','admin')->name('facultad.especializacion');
+    /** Ruta para cargar la vista de maestrias*/
+    Route::get('/home/maestria','view_maestria')->middleware('auth','admin')->name('facultad.maestria');
+    /** Ruta para obtener todos los programas (pregrados) */
+    Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
+    /** Ruta para obtener todos las especializaciones*/
+    Route::get('/home/getespecializacion','get_especializacion')->middleware('auth','admin')->name('facultad.getespecializacion');
+    /** Ruta para obtener todos las especializaciones maestrias */
+    Route::get('/home/getmaestria','get_maestria')->middleware('auth','admin')->name('facultad.getmaestria');
+});
+
+
 
 
 

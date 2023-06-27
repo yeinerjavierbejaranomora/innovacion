@@ -47,7 +47,7 @@ class MafiController extends Controller
                 ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
                 ->take(50)->get();
-        return $data;
+        dd($data);
         $contData = count($data);
         $numeroDatos = 200;
         $contadorGeneral = ceil($contData / $numeroDatos);

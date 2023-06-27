@@ -52,7 +52,7 @@ class MafiController extends Controller
         $data = (array) $data;
         $numeroDatos = 200;
         $contadorGeneral = ceil($contData / $numeroDatos);
-        dd(array_chunk($data,$numeroDatos));
+        dd(array_chunk($data,$contadorGeneral));
         for ($i=0; $i < $contadorGeneral; $i++):
 
             foreach ($data as $key => $value) {

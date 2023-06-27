@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="{{ route('') }}">
+                            <form id="miForm" method="get" action="#">
                                 @csrf
                                 <div>
                                     <input type="number" id="id" name="id">

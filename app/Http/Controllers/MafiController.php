@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mafi;
 use Illuminate\Http\Request;
 
 class MafiController extends Controller
@@ -15,5 +16,10 @@ class MafiController extends Controller
 
     public function inicioMafi() {
         return view('vistas.admin.mafi');
+    }
+
+    public function getDataMafi(){
+        $data = Mafi::all();
+        return $data;
     }
 }

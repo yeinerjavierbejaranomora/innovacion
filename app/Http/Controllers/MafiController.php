@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mafi;
+use App\Models\Periodo;
 use Illuminate\Http\Request;
 
 class MafiController extends Controller
@@ -19,8 +20,10 @@ class MafiController extends Controller
     }
 
     public function getDataMafi(){
-        $data = Mafi::all();
-        return $data;
+        $periodos = Periodo::all();
+        return $periodos;
+        /*$data = Mafi::where([['estado','<>','Inactivo']]);
+        $dataLongitud = count($data);*/
     }
 
 

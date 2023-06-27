@@ -207,27 +207,7 @@
         processData: false, // tell jQuery not to process the data
         contentType: false // tell jQuery not to set contentType
     });
-    /*$.ajax({        
-            type: 'post',
-            url: "{{ route('admin.updatefacultad') }}",
-            data: formData,
-            success: function(response) {
-            Swal.fire(
-            'Eliminado!',
-            'Actualizacion exitosa.',
-            'Accion realizada con exito'
-            )
-            table.ajax.reload();
-        },
-        failure: function (response) {
-            swal(
-            "Error",
-            "Nose pudo actualizar.", // had a missing comma
-            "error"
-            )
-        },
-    }); */
-
+    
     })
 </script>
 @include('layout.footer')

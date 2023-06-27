@@ -122,3 +122,5 @@ Route::controller(facultadController::class)->group(function(){
 
 
 
+
+

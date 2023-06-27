@@ -50,7 +50,7 @@ class MafiController extends Controller
 
         $contData = count($data);
         $numeroDatos = 200;
-        return $contData / $numeroDatos;
+        return ceil($contData / $numeroDatos);
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }

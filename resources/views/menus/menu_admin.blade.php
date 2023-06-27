@@ -41,12 +41,12 @@
     <!-- Nav Item - Menu desplegable "Facultades"-->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Facultades" aria-expanded="true" aria-controls="Facultades">
             <i class="fas fa-address-book"></i>
             <span> Facultades </span>
         </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
+        <div id="Facultades" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded" >
             </div>
         </div>
     </li>

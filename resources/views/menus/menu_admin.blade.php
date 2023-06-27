@@ -43,7 +43,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
-            <span> Gestión facultades </span>
+            <span> Facultades </span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
@@ -55,7 +55,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-graduation-cap"></i>
-            <span>Facultades </span>
+            <span>Gestión facultades</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -114,9 +114,8 @@ facultades();
                     $('#facultades').append(`<a class="collapse item">${facultad.nombre}</a>`);
                 });
             }
-        });
-        console.log(data);
-        
+        });     
+        console.log(facultad);
     }
     </script>
     

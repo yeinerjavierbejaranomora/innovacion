@@ -23,7 +23,7 @@ class MafiController extends Controller
         $mesActual =  date('n');
         $periodos = Periodo::all();
         foreach($periodos as $periodo):
-        var_dump($periodos[0]->mes);
+        var_dump($periodo->mes);
         endforeach;
         die();
         /*$data = Mafi::where([['estado','<>','Inactivo']]);

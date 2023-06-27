@@ -22,12 +22,12 @@ class MafiController extends Controller
     public function getDataMafi(){
         $mesActual =  date('n');
         $periodos = Periodo::all();
-        return $periodos;
+        //return $periodos;
         foreach($periodos as $periodo):
             if($periodo->mes == $mesActual):
                 $formacionContinua = $periodo->formacion_continua;
-                $pregradoCuatrimestral = "$periodo->year"."$periodo->Pregrado_cuatrimestar";
-                $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestar;
+                $pregradoCuatrimestral = $periodo->year.$periodo->Pregrado_cuatrimestral;
+                $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestral;
                 $especializacion = $periodo->year + $periodo->especializacion;
                 $maestria = $periodo->year + $periodo->maestria;
             endif;

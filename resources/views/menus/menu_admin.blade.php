@@ -109,9 +109,9 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
+                    console.log(facultad);
                     $('#Facultades').prepend(`<a class="collapse-item" href="{{route('facultad.facultad','id'->1)}}">${facultad.nombre}</a>`);
-                console.log(facultad);
-                
+
                 });
             }
         });  

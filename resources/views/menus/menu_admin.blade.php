@@ -115,7 +115,7 @@
                     id_facultad=facultad.id;
                     ruta='home/facultad/'+id_facultad;
 
-                    $('#Facultades').prepend('<a class="collapse-item" href="'+ruta+'">'+nombre_facultad+'</a>');
+                    $('#Facultades').append('<a class="collapse-item" href="'+ruta+'">'+nombre_facultad+'</a>');
                 });
             }
 

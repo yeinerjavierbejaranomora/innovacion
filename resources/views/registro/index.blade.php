@@ -97,7 +97,7 @@
         })
     }
 
-    //* Funcion para trear los datos de la tabla facutades y cargar los opciones del select/
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
         $.ajax({
             headers: {

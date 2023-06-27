@@ -43,15 +43,10 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
-            <span>Facultades </span>
+            <span> Facultades </span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-                <a class="collapse-item" href="{{ route('admin.users') }}">
-                </a>
-                <a class="collapse-item" href="cards.html"></a>
-
+            <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             </div>
         </div>
     </li>
@@ -60,12 +55,12 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-graduation-cap"></i>
-            <span>Facultades </span>
+            <span>Gestión facultades</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración de facultades</a>
+                <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
                 <a class="collapse-item" href="#">Programas</a>
                 <a class="collapse-item" href="#">Especialización</a>
                 <a class="collapse-item" href="#">Maestría</a>
@@ -80,7 +75,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
             <i class="fas fa-key"></i>
-            <span>Perfil </span>
+            <span>Perfil</span>
         </a>
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -102,3 +97,25 @@
 
 </ul>
 <!-- End of Sidebar -->
+<script>
+
+facultades();
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({
+            
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#facultades').append(`<a class="collapse item">${facultad.nombre}</a>`);
+                });
+            }
+        });     
+        console.log(facultad);
+    }
+    </script>
+    

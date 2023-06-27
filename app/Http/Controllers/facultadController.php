@@ -67,69 +67,104 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id','programas.codprograma', 'programas.programa', 'facultad.nombre')
-            ->where('programas.tabla','=','pregrado')->get();
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->where('programas.tabla', '=', 'pregrado')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $programas));
     }
 
-     /** Función para traer todas las especializaciones */
+    /** Función para traer todas las especializaciones */
 
     public function get_especializacion()
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id','programas.codprograma', 'programas.programa', 'facultad.nombre')
-            ->where('programas.tabla','=','especializacion')->get();
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->where('programas.tabla', '=', 'especializacion')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $programas));
     }
 
-     /** Función para traer todas las maestrías */
+    /** Función para traer todas las maestrías */
 
-     public function get_maestria()
-     {
-         /**Realiza la consulta anidada para onbtener el programa con su facultad */
-         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-             ->select('programas.id','programas.codprograma', 'programas.programa', 'facultad.nombre')
-             ->where('programas.tabla','=','MAESTRIA')->get();
-         /**mostrar los datos en formato JSON */
-         header("Content-Type: application/json");
-         /**Se pasa a formato JSON el arreglo de users */
-         echo json_encode(array('data' => $programas));
-     }
+    public function get_maestria()
+    {
+        /**Realiza la consulta anidada para onbtener el programa con su facultad */
+        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->where('programas.tabla', '=', 'MAESTRIA')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $programas));
+    }
 
-     public function get_continua()
-     {
-         /**Realiza la consulta anidada para onbtener el programa con su facultad */
-         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-             ->select('programas.id','programas.codprograma', 'programas.programa', 'facultad.nombre')
-             ->where('programas.tabla','=','EDUCACION CONTINUA')->get();
-         /**mostrar los datos en formato JSON */
-         header("Content-Type: application/json");
-         /**Se pasa a formato JSON el arreglo de users */
-         echo json_encode(array('data' => $programas));
-     }
+    public function get_continua()
+    {
+        /**Realiza la consulta anidada para onbtener el programa con su facultad */
+        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->where('programas.tabla', '=', 'EDUCACION CONTINUA')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $programas));
+    }
 
-     public function get_periodos()
-     {
+    public function get_periodos()
+    {
+        /** Se obtiene toda la tabla de periodo*/
         $periodos = DB::table('periodo')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $periodos));
-     }
+    }
 
-     public function get_reglas()
-     {
+    public function get_reglas()
+    {
+        /** Se obtiene toda la tabla de reglas de negocio */
         $reglas = DB::table('reglasNegocio')->get();
+        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $reglas));
-     }
+    }
 
+    public function facultad()
+    {
+        return view('vistas.admin.facultad');
+    }
+
+    /** Función para mostrar los programas según el id de la facultad */
+    public function mostrarfacultad($id_llegada)
+    {
+        // Decripta el id que recibe
+        $id = decrypt($id_llegada);
+        // Consulta para obtener los programas según id de facultad
+        $facultad = DB::table('programas')->select('id', 'codporgrama', 'programa')
+            ->where('id_facultad', '=', $id)->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $facultad));
+    }
+
+    public function mostrarmallacurricular($cod_llegada)
+    {
+        // Decripta el id que recibe
+        $codigo = decrypt($id_llegada);
+        // Consulta para obtener la malla curricular del programa
+        $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
+         /**mostrar los datos en formato JSON */
+         header("Content-Type: application/json");
+         /**Se pasa a formato JSON el arreglo de users */
+         echo json_encode(array('data' => $malla));
+    }
+
+    
 }

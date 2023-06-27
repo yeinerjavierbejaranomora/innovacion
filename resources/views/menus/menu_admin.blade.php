@@ -110,7 +110,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#Facultades').prepend(`<a class="collapse-item" href="#">${facultad.nombre}</a>`);
+                    $('#Facultades').prepend(`<a class="collapse-item" href="{{route('facultad.facultad',['nombre'=>${facultad.nombre}],['id'=>encrypt(${facultad.id})])}}">${facultad.nombre}</a>`);
                 });
             }
         });     

@@ -112,6 +112,7 @@
                     $('#Facultades').prepend(`<a class="collapse-item" href="{{route('facultad.facultad'}}">${facultad.nombre}</a>`);
                 });
             }
+            
         });  
         console.log (data);
     }

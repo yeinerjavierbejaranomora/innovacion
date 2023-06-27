@@ -41,7 +41,7 @@ class MafiController extends Controller
         endforeach;
 
         /** Consulta de los datos tabla datMafi */
-        $data = DB::table('users')
+        $data = DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])

@@ -48,7 +48,9 @@ class MafiController extends Controller
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
                 ->get();
 
-        return count($data);
+        $contData = count($data);
+        $numeroDatos = 200;
+        return $contData / $numeroDatos;
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }
@@ -71,7 +73,7 @@ class MafiController extends Controller
         ->where('mes', $mes)
         ->get();
 
-        
+
         dd($periodo[0]->mes);
 
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';

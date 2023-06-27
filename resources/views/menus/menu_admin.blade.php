@@ -110,7 +110,7 @@ facultades();
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#Facultades').append(`<a class="collapse item">${facultad.nombre}</a>`);
+                    $('#Facultades').prepend(`<a class="collapse item">${facultad.nombre}</a>`);
                 });
             }
         });     

@@ -98,6 +98,23 @@
 </ul>
 <!-- End of Sidebar -->
 <script>
+    facultades();
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({       
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#Facultades').prepend(`<a class="collapse item">${facultad.nombre}</a>`);
+                });
+            }
+        });     
+    }
+    </script>
 
 
     

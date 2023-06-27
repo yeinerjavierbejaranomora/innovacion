@@ -44,11 +44,18 @@ class MafiController extends Controller
         $data = DB::table('datosMafi')
                 ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
-                ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])
+                ->where('autorizado_asistir','LIKE','ACTIVO%')
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])
-                ->get();
-
-        return count($data);
+                ->take(50)->get();
+        dd($data);
+        $contData = count($data);
+        $numeroDatos = 200;
+        $contadorGeneral = ceil($contData / $numeroDatos);
+        for ($i=0; $i < $contadorGeneral; $i++):
+            for ($i=0; $i < $numeroDatos; $i++) {
+                # code...
+            }
+        endfor;
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
     }
@@ -67,7 +74,16 @@ class MafiController extends Controller
 
         $sql='SELECT * FROM `periodo` WHERE  `mes`=6';
 
-        $periodo = DB::select($sql);
+        $periodo =DB::table('periodo')
+        ->where('mes', $mes)
+        ->get();
+        $periodo =$periodo[0];
+
+
+        dd($periodo[0]->mes);
+        /** marca de ingreso */
+        //$marca_de_ingreso = $periodo;
+
         dd($periodo);
 
         $consulta_estudiantes ='SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';

@@ -34,15 +34,15 @@ class MafiController extends Controller
                 /** Se crea variables para cada periodo*/
                 $formacionContinua = $periodo->formacion_continua;
                 $pregradoCuatrimestral = $periodo->year.$periodo->Pregrado_cuatrimestral;
-                $pregradoSemestral = $periodo->year + $periodo->Pregrado_semestral;
-                $especializacion = $periodo->year + $periodo->especializacion;
-                $maestria = $periodo->year + $periodo->maestria;
+                $pregradoSemestral = $periodo->year.$periodo->Pregrado_semestral;
+                $especializacion = $periodo->year.$periodo->especializacion;
+                $maestria = $periodo->year.$periodo->maestria;
             endif;
         endforeach;
 
         /** Consulta de los datos tabla datMafi */
         $data = DB::table('datosMafi')
-                ->where('estad','<>','Inactivo')
+                ->where('estado','<>','Inactivo')
                 ->whereIn('sello',['TIENE RETENCION','TIENE SELLO FINANCIERO'])
                 ->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA','ACTIVO EN PLATAFORMA ICETEX'])
                 ->whereIn('periodo',[$pregradoCuatrimestral,$pregradoSemestral,$especializacion,$maestria])

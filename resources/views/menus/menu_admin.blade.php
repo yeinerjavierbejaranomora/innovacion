@@ -66,7 +66,7 @@
                 <a class="collapse-item" href="{{ route('facultad.maestria') }}">Maestría</a>
                 <a class="collapse-item" href="{{ route('facultad.continua') }}">Educación continua</a>
                 <a class="collapse-item" href="{{ route('facultad.periodos') }}">Periodos</a>
-                <a class="collapse-item" href="#">Reglas de negocio</a>
+                <a class="collapse-item" href="{{ route('facultad.reglas') }}">Reglas de negocio</a>
 
             </div>
         </div>

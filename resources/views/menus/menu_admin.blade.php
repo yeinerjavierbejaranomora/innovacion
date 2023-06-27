@@ -41,7 +41,7 @@
     <!-- Nav Item - Menu desplegable "Facultades"-->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" href="#collapseThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
             <span> Facultades </span>
         </a>
@@ -115,7 +115,7 @@
                     id_facultad=facultad.id;
                     ruta='home/facultad/'+id_facultad;
 
-                    $('#Facultades').prepend('<a class="collapse-item" href="'+ruta+'">'+nombre_facultad+'</a>');
+                    $('#Facultades').append('<a class="collapse-item" href="'+ruta+'" >'+nombre_facultad+'</a>');
                 });
             }
 

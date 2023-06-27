@@ -58,7 +58,7 @@ Route::controller(UserController::class)->group(function(){
 
 Route::controller(MafiController::class)->group(function(){
     //carga de mafis
-    Route::get('/home/admin/mafi','inicioMafi')->middleare('auth','admin')->name('admin.mafi');
+    Route::get('/home/admin/mafi','inicioMafi')->middlware('auth','admin')->name('admin.mafi');
 });
 
 /** definimos las rutas para el registro de usuarios */

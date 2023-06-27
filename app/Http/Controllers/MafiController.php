@@ -50,6 +50,7 @@ class MafiController extends Controller
         $contData = count($data);
         $contKeys = 0;
         $data = (array) $data;
+        dd($data);
         $numeroDatos = 200;
         $contadorGeneral = ceil($contData / $numeroDatos);
         dd(array_chunk($data,$contadorGeneral));

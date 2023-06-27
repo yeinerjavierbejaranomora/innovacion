@@ -113,6 +113,7 @@
                 });
             }
         });  
+        console.log (data);
     }
     </script>
 

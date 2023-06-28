@@ -83,16 +83,28 @@
                                     <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <label for="recipient-name" class="col-form-label">Fecha inicio ciclo 1</label>
+                                    <input type="text" class="form-control" id="ciclo1" name="ciclo1">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <label for="recipient-name" class="col-form-label">Fecha inicio ciclo 2</label>
+                                    <input type="text" class="form-control" id="ciclo2" name="ciclo2">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <label for="recipient-name" class="col-form-label">Fecha inicio temprano</label>
+                                    <input type="text" class="form-control" id="temprano" name="temprano">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Fecha inicio periodo</label>
+                                    <input type="text" class="form-control" id="periodo" name="periodo">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Activo</label>
+                                    <input type="text" class="form-control" id="activo" name="activo">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Año</label>
+                                    <input type="text" class="form-control" id="año" name="año">
                                 </div>
                         </div>
                         <div class="modal-footer">

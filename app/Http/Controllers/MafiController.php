@@ -53,7 +53,6 @@ class MafiController extends Controller
 
         $primerId= $data[0][0]->id;
         $ultimoRegistroId=0;
-        return $primerId;
 
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
@@ -76,6 +75,7 @@ class MafiController extends Controller
                 $ultimoRegistroId = $value->id;
             endforeach;
         endforeach;
+        return $ultimoRegistroId;
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

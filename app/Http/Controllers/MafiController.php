@@ -214,12 +214,21 @@ class MafiController extends Controller
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
-
+         $mes = date('n', $fechaSegundos);
+         
          $periodo = DB::table('periodo')->get();
+
          foreach ($periodo as $key => $value) {
+
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
-            dd($ciclo1[1]);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
+
+            if($ciclo1[1]==$mes|| $ciclo2[1]==$mes){
+                dd($ciclo1);
+            }
+            
+           
+          
          }
 
          dd($periodo);

@@ -70,7 +70,7 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
-        dd($data);
+        dd($data[0]);
 
         if (!empty($data)) :
             $primerId = $data[0][0]->id;

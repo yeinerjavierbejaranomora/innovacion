@@ -87,7 +87,6 @@
             </div>
         </div>
     </li>
-    {{$facultad}}
     <!-- Nav Item - salir de la app -->
     <li class="nav-item">
         <a class="nav-link" href="/logout">

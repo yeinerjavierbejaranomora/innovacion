@@ -116,6 +116,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+
 <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.mostrarprogramas', ['id' => encrypt($facultad->id)]) }}";

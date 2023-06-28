@@ -15,6 +15,6 @@ class LogAplicacion extends Model
         'fechaInicio',
         'fechaFin',
         'accion',
-        'decripcion'
+        'descripcion'
     ];
 }

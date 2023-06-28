@@ -152,29 +152,27 @@
                 $(tbody).on("click", "button.editar", function() {
 
                     var data = table.row($(this).parents("tr")).data();
-                    alert(data);
 
                     Swal.fire({
                         title: 'Actualizar información',
                         html: `
                             <form>
-                            <input type="text" class="form-control" placeholder="codFacultad"> 
-                            <input type="text" class="form-control" placeholder="nombre"> 
-                        
+                            <input type="text" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
+                            <br> 
+                            <input type="text" value="${data.nombre}" class="form-control" placeholder="nombre">                      
                             </form>
                         `,
-                        icon: 'warning',
+                        icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!'
+                        confirmButtonText: 'Editar'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
+                            $.post('{{ route('admin.updatefacultad') }}', {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                        })
                         }
                     })
                 });

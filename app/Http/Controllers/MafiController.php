@@ -209,16 +209,21 @@ class MafiController extends Controller
     }
 
 
-    public function periodos(){
+    public function periodo(){
 
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
-         dd($fechaActual);
+         
+         $periodo = DB::table('periodo')->get();
+         foreach ($periodo as $key => $value) {
+            $ciclo1=explode('-',$value->fechaInicioCiclo1);
+            dd($ciclo1[1]);
+            $ciclo2=explode('-',$value->fechaInicioCiclo2);
+         }
 
-         $periodo = DB::table('periodo')
-         ->whereBetween('fechaInicioCiclo1',$fechaActual)
-             ->get();
+         dd($periodo);
+
          $periodo = $periodo[0];
 
 

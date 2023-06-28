@@ -145,6 +145,7 @@ class facultadController extends Controller
     {
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
+        dd($id);
         // Consulta para obtener los programas según id de facultad
         $facultad = DB::table('programas')->select('id', 'codprograma', 'programa')
             ->where('id_facultad', '=', $id)->get();

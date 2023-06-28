@@ -167,14 +167,24 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Editar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.post('{{ route('admin.updatefacultad') }}', {
-                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                id: encodeURIComponent(window.btoa(data.id)),
-                                codFacultad: $('#codigo').val(),
-                                nombre: $('#nombre').val(),
-                        })
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{ route('
+                                admin.updatefacultad ') }}', {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codFacultad: $('#codigo').val(),
+                                    nombre: $('#nombre').val(),
+                                },
+                                function(result) {
+                                    if (result == "true") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'sucess'
+                                        })
+                                    }
+                                }
+                            )
                         }
                     })
                 });

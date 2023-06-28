@@ -53,6 +53,7 @@ class MafiController extends Controller
 
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
+                dd($value);
                 $insertar = MafiReplica::create([
                     'idbanner'=> $value->idbanner,
                     'primer_apellido'=> $value->primer_apellido,

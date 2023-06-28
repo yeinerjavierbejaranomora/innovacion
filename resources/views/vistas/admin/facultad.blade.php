@@ -117,7 +117,6 @@
 </a>
 
 <!--Script-->
-
 <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.mostrarprogramas', $_GET['id']) }}";

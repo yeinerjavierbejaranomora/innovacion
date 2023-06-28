@@ -111,7 +111,7 @@
                             <form id="miForm" method="get" action="{{ route('admin.updatefacultad') }}">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id">
+                                    <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>

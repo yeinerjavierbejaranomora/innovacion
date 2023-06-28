@@ -110,7 +110,4 @@ function facultades(){
 </ul>
  
 <!-- End of Sidebar -->
-<script>
-    </script>
-
     

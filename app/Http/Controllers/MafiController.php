@@ -96,6 +96,7 @@ class MafiController extends Controller
                                 'operador' => $value->operador,
                                 'autorizado_asistir' => $value->autorizado_asistir,
                             ]);
+                            $numeroRegistros++;
                         endif;
                     else:
                         $insertar = MafiReplica::create([
@@ -112,11 +113,11 @@ class MafiController extends Controller
                             'operador' => $value->operador,
                             'autorizado_asistir' => $value->autorizado_asistir,
                         ]);
+                        $numeroRegistros++;
                     endif;
 
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
-                    $numeroRegistros++;
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

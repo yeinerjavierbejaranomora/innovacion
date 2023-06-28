@@ -155,10 +155,14 @@ class facultadController extends Controller
         echo json_encode(array('data' => $facultad));
     }
 
-    public function mostrarmallacurricular($cod_llegada)
+    public function malla($codigo){
+
+        $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', decrypt($codigo))->get();
+        return view('visas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->nombre]);
+    }
+
+    public function mostrarmallacurricular($coddigo)
     {
-        // Decripta el id que recibe
-        $codigo = decrypt($id_llegada);
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
          /**mostrar los datos en formato JSON */

@@ -158,10 +158,11 @@ class facultadController extends Controller
 
     public function malla($codigo){
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();
+       
         return view('visas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->nombre]);
     }
 
-    public function mostrarmallacurricular($coddigo)
+    public function mostrarmallacurricular($codigo)
     {
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();

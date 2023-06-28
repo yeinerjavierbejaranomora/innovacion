@@ -171,6 +171,9 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+
+        $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','estudiantes']])->orderBy('id', 'desc')->first();
+        //return $log->idFin;
         $data = DB::table('datosMafiReplica')
                 ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
                 ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')

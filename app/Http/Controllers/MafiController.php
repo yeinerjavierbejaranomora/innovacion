@@ -78,25 +78,46 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                    //dd($value->idbanner);
-                    $insertar = MafiReplica::create([
-                        'idbanner' => $value->idbanner,
-                        'primer_apellido' => $value->primer_apellido,
-                        'programa' => $value->programa,
-                        'codprograma' => $value->codprograma,
-                        'cadena' => $value->cadena,
-                        'periodo' => $value->periodo,
-                        'estado' => $value->estado,
-                        'tipoestudiante' => $value->tipoestudiante,
-                        'ruta_academica' => $value->ruta_academica,
-                        'sello' => $value->sello,
-                        'operador' => $value->operador,
-                        'autorizado_asistir' => $value->autorizado_asistir,
-                    ]);
+                    //dd($value->sello);
+                    if($value->sello === 'TIENE RETENCION'):
+                        $consultaActivoPlataforma = DB::table('datosMafi')->where([['id','=',$value->id],['sello','=',$value->sello]])->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA', 'ACTIVO EN PLATAFORMA ICETEX'])->first();
+                        if($consultaActivoPlataforma):
+                            $insertar = MafiReplica::create([
+                                'idbanner' => $value->idbanner,
+                                'primer_apellido' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'codprograma' => $value->codprograma,
+                                'cadena' => $value->cadena,
+                                'periodo' => $value->periodo,
+                                'estado' => $value->estado,
+                                'tipoestudiante' => $value->tipoestudiante,
+                                'ruta_academica' => $value->ruta_academica,
+                                'sello' => $value->sello,
+                                'operador' => $value->operador,
+                                'autorizado_asistir' => $value->autorizado_asistir,
+                            ]);
+                            $numeroRegistros++;
+                        endif;
+                    else:
+                        $insertar = MafiReplica::create([
+                            'idbanner' => $value->idbanner,
+                            'primer_apellido' => $value->primer_apellido,
+                            'programa' => $value->programa,
+                            'codprograma' => $value->codprograma,
+                            'cadena' => $value->cadena,
+                            'periodo' => $value->periodo,
+                            'estado' => $value->estado,
+                            'tipoestudiante' => $value->tipoestudiante,
+                            'ruta_academica' => $value->ruta_academica,
+                            'sello' => $value->sello,
+                            'operador' => $value->operador,
+                            'autorizado_asistir' => $value->autorizado_asistir,
+                        ]);
+                        $numeroRegistros++;
+                    endif;
 
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
-                    $numeroRegistros++;
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

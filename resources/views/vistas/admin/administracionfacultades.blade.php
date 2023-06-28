@@ -147,40 +147,42 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log(data);
+
+                    Swal.fire({
+                        title: 'Actualizar información',
+                        html: `
+                            <form>
+                            <input type="text" class="form-control" placeholder="codFacultad"> 
+                            <input type="text" class="form-control" placeholder="nombre"> 
+                        
+                            </form>
+                        `,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+                });
+            }
+
             obtener_data_editar("#example tbody", table);
         }
 
-        function obtener_data_editar(tbody, table) {
-            $(tbody).on("click", "button.editar", function() {
-
-                var data = table.row($(this).parents("tr")).data();
-                alert(data.codFacultad);
-
-                Swal.fire({
-                    title: 'Actualizar información',
-                    html: `
-                        <form>
-                        <input type="text" class="form-control" placeholder="codFacultad"> 
-                        <input type="text" class="form-control" placeholder="nombre"> 
-                    
-                        </form>
-                    `,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        }
 
     }
 

@@ -125,10 +125,9 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
-        alert('entro');
         if (this.readyState == 4 && this.status == 200) {
+            alert('entro');
             var data = JSON.parse(this.responseText);
-            alert('entra');
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{

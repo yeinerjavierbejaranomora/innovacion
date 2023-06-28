@@ -108,13 +108,13 @@ class MafiController extends Controller
                 'fechaInicio' => $fechaInicio,
                 'fechaFin' => $fechaFin,
                 'accion' => 'Insert',
-                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id' . $ultimoRegistroId,
+                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId .',insertando '.$numeroRegistros .'registros',
             ]);
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
                 'accion' => 'Insert',
-                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id' . $ultimoRegistroId,
+                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId .',insertando '.$numeroRegistros .'registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
             if($insertLog && $insertIndiceCambio):

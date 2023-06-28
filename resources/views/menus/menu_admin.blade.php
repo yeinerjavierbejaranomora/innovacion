@@ -5,7 +5,7 @@ function facultades(){
     return $facultades;
 }
 
-
+facultades();
 ?>
 
 <!-- Sidebar -->

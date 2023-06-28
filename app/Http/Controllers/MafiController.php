@@ -202,7 +202,7 @@ class MafiController extends Controller
     }
 
 
-    public function periodos(){
+    public function periodo(){
 
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d ');

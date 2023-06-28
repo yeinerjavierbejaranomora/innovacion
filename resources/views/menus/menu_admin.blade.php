@@ -49,7 +49,7 @@
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             
             <!--Foreach-->
-        <?php dd($facultades)?>
+        <?php ?>
         
         </div>
         </div>

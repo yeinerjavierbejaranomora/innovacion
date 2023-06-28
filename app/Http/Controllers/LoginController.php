@@ -42,7 +42,7 @@ class LoginController extends Controller
             auth()->user()->nombre_rol=$nombre_rol;
 
             $facultades=DB::table('facultad')->get();
-
+            dd($facultades);
             return redirect()->route('home.index',$facultades);
         endif;
 

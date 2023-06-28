@@ -24,7 +24,7 @@ class ProgramasRequest extends FormRequest
     public function rules()
     {
         return [
-            'codprograma'=>'required',
+            'codprograma',
         ];
     }
 }

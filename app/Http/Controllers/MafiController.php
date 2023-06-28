@@ -75,7 +75,7 @@ class MafiController extends Controller
                 $ultimoRegistroId = $value->id;
             endforeach;
         endforeach;
-        return "primer id registrado: " .$primerId. ', Ultimo id registrado'. $ultimoRegistroId;
+        return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

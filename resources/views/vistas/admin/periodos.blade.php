@@ -142,7 +142,7 @@
                         title: 'Fecha de inicio ciclo 1'
                     },
                     {
-                        data: 'FechaIncioCiclo2',
+                        data: 'fechaInicioCiclo2',
                         title: 'Fecha de inicio ciclo 2'
                     },
                     {

@@ -178,6 +178,7 @@ class MafiController extends Controller
             $data = DB::table('datosMafiReplica')
                 ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
                 ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')
+                ->select('datosMafiReplica.*')
                 ->where([['programas.activo','=',1],['periodo.periodoActivo','=',1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()

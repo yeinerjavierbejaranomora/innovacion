@@ -141,7 +141,7 @@
                     },
                     {
                         data: 'orden',
-                        title: 'Orden
+                        title: 'Orden'
                     },
                     {
                         data: 'curso',
@@ -175,9 +175,9 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-        }
-        
+        }  
     }
 </script>
+
 @include('layout.footer')
 

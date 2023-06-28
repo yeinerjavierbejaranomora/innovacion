@@ -240,17 +240,30 @@ class MafiController extends Controller
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
 
-            if (in_array((int)$mes[1], $ciclo1)||in_array((int)$mes[1], $ciclo2)) {
+            if (in_array((int)$mes[1], $ciclo1)) {
                 $affected = DB::table('periodo')
                 ->where('id', $value->id)
-                ->update(['periodoActivo' => 1]);
+                ->update(['periodoActivo' => 1,'activoCiclo1'=>1]);
             }
             else{
                 $affected = DB::table('periodo')
                 ->where('id', $value->id)
-                ->update(['periodoActivo' => 0]);
+                ->update(['periodoActivo' => 0,'activoCiclo1'=>0]);
 
             }
+
+            if (in_array((int)$mes[1], $ciclo2)) {
+                $affected = DB::table('periodo')
+                ->where('id', $value->id)
+                ->update(['periodoActivo' => 1,'activoCiclo2'=>1]);
+            }
+            else{
+                $affected = DB::table('periodo')
+                ->where('id', $value->id)
+                ->update(['periodoActivo' => 0,'activoCiclo2'=>0]);
+
+            }
+
 
          }
          $periodo = DB::table('periodo')->get();

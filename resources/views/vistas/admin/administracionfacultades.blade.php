@@ -162,11 +162,11 @@
                             <input type="text" value="${data.nombre}" class="form-control" placeholder="nombre">                      
                             </form>
                         `,
-                        icon: 'warning',
+                        icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!'
+                        confirmButtonText: 'Editar'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.post('{{ route('admin.updatefacultad') }}', {

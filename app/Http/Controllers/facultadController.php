@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
 use App\Http\Requests\CrearFacultadRequest;
+use App\Http\Requests\ProgramasRequest;
 use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
@@ -155,7 +156,7 @@ class facultadController extends Controller
         echo json_encode(array('data' => $facultad));
     }
 
-    public function malla(Request $request){
+    public function malla(ProgramasRequest $request){
         dd($request->codigo);
 
 

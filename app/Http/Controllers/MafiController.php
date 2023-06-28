@@ -70,7 +70,11 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
-        return $data;
+        if(!empty($data)):
+            return "No vacio";
+        else:
+            return "Vacio";
+        endif;
 
         if (!empty($data)) :
             $primerId = $data[0][0]->id;

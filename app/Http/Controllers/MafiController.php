@@ -45,7 +45,7 @@ class MafiController extends Controller
             endif;
         endforeach;
 
-        $log = DB::table('logAplicacion')->where('accion', 'Insert')->orderBy('id', 'desc')->first();
+        $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','datosMafiReplica']])->orderBy('id', 'desc')->first();
         //return $log->idFin;
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */

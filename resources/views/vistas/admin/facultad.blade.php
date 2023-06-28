@@ -167,9 +167,9 @@
             function obtener_malla(tbody, table) {
                 $(tbody).on("click", "button.malla", function() {           
                     var data = table.row($(this).parents("tr")).data();
-                    codigo = data.codprograma;
+                    id = data.codprograma;
                     
-                    $(location).attr('href', "/home/malla/" + codigo);
+                    $(location).attr('href', "/home/malla/" + id);
 
                 });
             }

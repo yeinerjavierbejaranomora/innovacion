@@ -115,7 +115,7 @@
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas') }}";
+    var url = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

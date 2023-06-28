@@ -178,6 +178,7 @@
             });
         }  
     }
+    
 </script>
 
 @include('layout.footer')

@@ -112,10 +112,14 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+<?php 
+$ruta = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
+?>
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
+    var url = "$ruta";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

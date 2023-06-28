@@ -118,7 +118,7 @@
 
 <script>
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.programas') }}";
+    var url = "{{ route('facultad.mostrarprogramas') }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

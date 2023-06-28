@@ -147,12 +147,9 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
-
                     var data = table.row($(this).parents("tr")).data();
-
                     Swal.fire({
                         title: 'Actualizar información',
                         html: `
@@ -166,16 +163,19 @@
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
                             $.post('{{ route('admin.updatefacultad') }}', {
+                                    
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codFacultad: $('#codigo').val(),
                                     nombre: $('#nombre').val(),
                                 },
                                 function(result) {
+                                    alert('entra');
                                     if (result == "true") {
                                         Swal.fire({
                                             title: "Información actualizada",

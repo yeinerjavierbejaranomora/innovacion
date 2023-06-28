@@ -114,6 +114,7 @@
 </a>
 
 <?php 
+dd($facultades);
 $ruta = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
 ?>
 <script>

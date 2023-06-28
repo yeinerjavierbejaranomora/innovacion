@@ -129,6 +129,7 @@ class MafiController extends Controller
                 'fechaInicio' => $fechaInicio,
                 'fechaFin' => $fechaFin,
                 'accion' => 'Insert',
+                'tabla_afectada' => 'datosMafiReplica',
                 'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId .',insertando '.$numeroRegistros .' registros',
             ]);
 
@@ -193,22 +194,22 @@ class MafiController extends Controller
          ->whereBetween('fechaInicioCiclo1',$fechaActual)
              ->get();
          $periodo = $periodo[0];
- 
- 
+
+
          dd($periodo[0]->mes);
          /** marca de ingreso */
          //$marca_de_ingreso = $periodo;
- 
+
          dd($periodo);
 
     }
 
     public function Generar_faltantes()
     {
-       
+
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
-    
+
 
         $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
 

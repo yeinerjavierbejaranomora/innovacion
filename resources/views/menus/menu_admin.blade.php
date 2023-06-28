@@ -47,7 +47,7 @@ function facultades(){
     <!-- Nav Item - Menu desplegable "Facultades"-->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#collapseThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
             <span> Facultades </span>
         </a>
@@ -61,7 +61,7 @@ function facultades(){
                     {{$facultad->nombre}}
                     </a>
             @endforeach
-        </div>
+            </div>
         </div>
     </li>
 

@@ -186,7 +186,18 @@ class MafiController extends Controller
         else:
         endif;
         //dd($data[0]);
-
+        if(str_contains($data[0][3]->tipoestudiante,'TRANSFERENTE EXTERNO')):
+            $concultaTrasferente = DB::table('datosMafiReplica')
+            ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
+            ->where('datosMafiReplica.idbanner','=',$data[0][3]->idbanner)->count();
+            if($concultaTrasferente == 0):
+                return "No tiene historial";
+            else:
+                return "Tiene historial";
+            endif;
+        else:
+            return "No";
+        endif;
 
 
         if (!empty($data[0])) :
@@ -197,7 +208,12 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
-                        return "Si";
+                        $concultaTrasferente = DB::table('datosMafiReplica')
+                        ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
+                        ->where('datosMafiReplica.idbanner','=',$value->idbanner)->first();
+                        if($concultaTrasferente):
+                        else:
+                        endif;
                     else:
                         return "No";
                     endif;
@@ -216,7 +232,7 @@ class MafiController extends Controller
          $fechaSegundos = strtotime($fechaActual);
          $mes = date('n', $fechaSegundos);
          //dd($mes);
-         
+
          $periodo = DB::table('periodo')->get();
 
          foreach ($periodo as $key => $value) {
@@ -227,9 +243,9 @@ dd($ciclo1);
             if($ciclo1[1]=== $mes|| $ciclo2[1]=== $mes){
                 dd($value->fechaInicioCiclo1);
             }
-            
-           
-          
+
+
+
          }
 
          dd($periodo);

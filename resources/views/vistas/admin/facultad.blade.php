@@ -50,11 +50,14 @@
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
+                            <!--Datatable-->
                             <div class="table">
                                 <table id="example" class="display" style="width:100%">
                                 </table>
                             </div>
                         </div>
+
+
                         <div class="col-4 justify-content-center">
                             <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
                         </div>

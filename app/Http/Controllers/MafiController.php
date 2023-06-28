@@ -26,6 +26,8 @@ class MafiController extends Controller
 
     public function getDataMafi()
     {
+        /// para activar el perodo activo en la base de datos
+        $this->periodo();
         /** Año y Mes Actual*/
         $yearActual = date('Y');
         $mesActual =  date('n');

@@ -187,11 +187,7 @@ class MafiController extends Controller
         endif;
         //dd($data[0]);
 
-        if(str_contains($data[0][4]->tipoestudiante,'TRANSFERENTE EXTERNO')):
-            return "Si";
-        else:
-            return "No";
-        endif;
+
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -201,7 +197,9 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
+                        return "Si";
                     else:
+                        return "No";
                     endif;
                 endforeach;
             endforeach;

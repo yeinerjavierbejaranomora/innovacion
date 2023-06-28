@@ -144,7 +144,7 @@
                     {
                         defaultContent: "<button type='button' class='malla btn btn-warning' ><i class='fa-solid fa-list'></i></button>",
                         title: 'Malla Curricular' 
-                    }
+                    },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
@@ -163,7 +163,6 @@
         }
 
     }
-
 </script>
 
 @include('layout.footer')

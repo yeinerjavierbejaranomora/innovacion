@@ -185,10 +185,12 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
-        dd($data[0]);
+        //dd($data[0]);
 
-        if(str_contains($data[0]->tipoestudiante,'TRANSFERENTE EXTERNO')):
+        if(str_contains($data[0][3]->tipoestudiante,'TRANSFERENTE EXTERNO')):
+            return "Si";
         else:
+            return "No";
         endif;
 
         if (!empty($data[0])) :

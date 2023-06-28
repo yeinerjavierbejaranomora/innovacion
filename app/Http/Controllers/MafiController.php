@@ -70,9 +70,9 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
-        dd($data[0]);
+        //dd($data[0]);
 
-        if (!empty($data)) :
+        if (!empty($data[0])) :
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');

@@ -123,6 +123,7 @@
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.mostrarprogramas', ['id'=>$id]) }}";
     xmlhttp.open("GET", url, true);
+    alert('entro');
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

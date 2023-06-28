@@ -167,15 +167,13 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('admin.updatefacultad') }}', {
-                                    
+                            $.post('{{ route('admin.updatefacultad') }}', {                             
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codFacultad: $('#codigo').val(),
                                     nombre: $('#nombre').val(),
                                 },
                                 function(result) {
-                                    alert('entra');
                                     if (result == "true") {
                                         Swal.fire({
                                             title: "Información actualizada",

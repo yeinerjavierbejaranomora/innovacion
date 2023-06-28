@@ -239,7 +239,7 @@ class MafiController extends Controller
 
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
-
+dd($ciclo1);
             if($ciclo1[1]=== $mes|| $ciclo2[1]=== $mes){
                 dd($value->fechaInicioCiclo1);
             }

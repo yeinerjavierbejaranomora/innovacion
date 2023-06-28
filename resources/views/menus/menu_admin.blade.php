@@ -1,9 +1,3 @@
-<?php 
-function facultades(){
-    $facultades=DB::table('facultad')->get();
-    return $facultades;
-}
-?>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -53,15 +47,7 @@ function facultades(){
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
-            <!--Llamado a función-->     
-            <?php $facultades=facultades();?>       
-            <!--Foreach-->
-            @foreach ($facultades as $facultad)
-                    <a class="collapse-item" href="{{ route('facultad.facultad', ['id' => encrypt($facultad->id)]) }}" return="$facultades">
-                    {{$facultad->nombre}}
-                    </a>
-            @endforeach
-        </div>
+            </div>
         </div>
     </li>
 
@@ -101,6 +87,7 @@ function facultades(){
             </div>
         </div>
     </li>
+
     <!-- Nav Item - salir de la app -->
     <li class="nav-item">
         <a class="nav-link" href="/logout">
@@ -108,8 +95,33 @@ function facultades(){
             <span>Salir</span></a>
     </li>
 </ul>
- 
-<!-- End of Sidebar -->
 
+<!-- End of Sidebar -->
+<script>
+    facultades();
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+    function facultades() {
+       var data = $.ajax({       
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    console.log(data);
+
+                    nombre_facultad=facultad.nombre;
+                    id_facultad=facultad.id;
+                    ruta='home/facultad/'+id_facultad;
+
+                    $('#Facultades').append('<a class="collapse-item" href="'+ruta+'" >'+nombre_facultad+'</a>');
+                });
+            }
+
+        });  
+
+    }
+    </script>
 
     

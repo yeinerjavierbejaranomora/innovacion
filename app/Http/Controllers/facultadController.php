@@ -157,8 +157,7 @@ class facultadController extends Controller
     }
 
     public function malla(ProgramasRequest $request){
-        dd($request->codigo);
-
+        dd($request->codprograma);
 
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', decrypt($codigo))->get();
         return view('visas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->nombre]);

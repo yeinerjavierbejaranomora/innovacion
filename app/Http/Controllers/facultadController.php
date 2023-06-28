@@ -171,6 +171,5 @@ class facultadController extends Controller
          /**Se pasa a formato JSON el arreglo de users */
          echo json_encode(array('data' => $malla));
     }
-
-    
+ 
 }

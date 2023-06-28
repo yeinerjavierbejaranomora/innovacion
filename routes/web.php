@@ -150,6 +150,8 @@ Route::controller(facultadController::class)->group(function(){
 
     /** Ruta para visualizar la malla curricular */
     Route::get('/home/malla/{codigo}', 'malla')->middleware('auth')->name('facultad.malla');
+    /** Ruta para visualizar la malla curricular */
+    Route::get('/home/getmalla/{codigo}', 'mostrarmallacurricular')->middleware('auth')->name('facultad.getmalla');
 });
 
 

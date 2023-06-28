@@ -56,6 +56,7 @@ function facultades(){
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             <?php $facultades=facultades();?>
+            
             <!--Foreach-->
             @foreach ($facultades as $facultad)
                     <a href="">

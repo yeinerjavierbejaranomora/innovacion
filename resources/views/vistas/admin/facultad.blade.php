@@ -113,10 +113,8 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<?php 
-dd($facultades);
+    {{$facultades}}
 
-?>
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();

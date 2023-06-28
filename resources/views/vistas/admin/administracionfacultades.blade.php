@@ -153,15 +153,7 @@
         function obtener_data_editar(tbody, table) {
             $(tbody).on("click", "button.editar", function() {
 
-                var data = table.row($(this).parents("tr")).data();
-                alert(data);
-
-                for(let item of data)
-                {
-                    var id = item.id;
-                    var codFacultad =  item.codFacultad;
-                    var nombre = item.nombre;
-                }
+                
 
 
                 Swal.fire({

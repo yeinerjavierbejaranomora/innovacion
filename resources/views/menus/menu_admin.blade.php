@@ -59,7 +59,7 @@ function facultades(){
             
             <!--Foreach-->
             @foreach ($facultades as $facultad)
-                    <a class="collapse-item" href="{{ route('facultad.facultad', ['id' => encrypt($facultad->id)]) }}" return="$facultad">
+                    <a class="collapse-item" href="{{ route('facultad.facultad', ['id' => encrypt($facultad->id)]) }}" return="$facultades">
                     {{$facultad->nombre}}
                     </a>
             @endforeach

@@ -135,9 +135,17 @@ class facultadController extends Controller
         echo json_encode(array('data' => $reglas));
     }
 
-    public function facultad()
+    public function facultad($id_llegada)
     {
-
+         // Decripta el id que recibe
+         $id = decrypt($id_llegada);
+         // Consulta para obtener los programas según id de facultad
+         $facultad = DB::table('programas')->select('id', 'codporgrama', 'programa')
+             ->where('id_facultad', '=', $id)->get();
+         /**mostrar los datos en formato JSON */
+         header("Content-Type: application/json");
+         /**Se pasa a formato JSON el arreglo de users */
+         echo json_encode(array('data' => $facultad));
         return view('vistas.admin.facultad');
     }
 

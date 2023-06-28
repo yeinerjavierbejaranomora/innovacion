@@ -50,20 +50,20 @@ class MafiController extends Controller
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */
             $data = DB::table('datosMafi')
-                ->where('estado', '<>', 'Inactivo')
+                ->where('estado', '=', 'Activo')
                 ->whereIn('sello', ['TIENE RETENCION', 'TIENE SELLO FINANCIERO'])
-                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-                ->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
+                //->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                //->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
                 ->orderBy('id')
                 ->get()
                 ->chunk(200);
 
         else :
             $data = DB::table('datosMafi')
-                ->where('estado', '<>', 'Inactivo')
+                ->where('estado', '=', 'Activo')
                 ->whereIn('sello', ['TIENE RETENCION', 'TIENE SELLO FINANCIERO'])
-                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-                ->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
+                //->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                //->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
                 ->where('id', '>', $log->idFin)
                 ->orderBy('id')
                 ->get()

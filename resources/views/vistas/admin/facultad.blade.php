@@ -163,15 +163,15 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             obtener_malla("#example tbody", table);
-        }
-        function obtener_malla(tbody, table) {
-            $(tbody).on("click", "button.malla", function() {
-                console.log('entra');
-                var data = table.row($(this).parents("tr")).data();
-
-                id_Facultad = data.id;
-                console.log(id_Facultad);
-            });
+            function obtener_malla(tbody, table) {
+                $(tbody).on("click", "button.malla", function() {
+                    console.log('entra');
+                    var data = table.row($(this).parents("tr")).data();
+    
+                    id_Facultad = data.id;
+                    console.log(id_Facultad);
+                });
+            }
         }
         
     }

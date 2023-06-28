@@ -30,7 +30,7 @@ function facultades(){
 
     <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-address-book"></i>
             <span>Gestión de usuarios. </span>
         </a>
@@ -47,7 +47,7 @@ function facultades(){
     <!-- Nav Item - Menu desplegable "Facultades"-->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" href="#collapseThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-address-book"></i>
             <span> Facultades </span>
         </a>
@@ -61,13 +61,13 @@ function facultades(){
                     {{$facultad->nombre}}
                     </a>
             @endforeach
-            </div>
+        </div>
         </div>
     </li>
 
     <!--Nav Item - Menú desplegable "Gestión de Facultades"-->
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-graduation-cap"></i>
             <span>Gestión facultades</span>
         </a>
@@ -88,7 +88,7 @@ function facultades(){
 
     <!--Nav Item - Menú desplegable "Perfil"-->
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
             <i class="fas fa-key"></i>
             <span>Perfil</span>
         </a>
@@ -110,4 +110,6 @@ function facultades(){
 </ul>
  
 <!-- End of Sidebar -->
+
+
     

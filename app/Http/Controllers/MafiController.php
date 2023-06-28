@@ -72,6 +72,7 @@ class MafiController extends Controller
         endif;
 
         if (!empty($data[0])) :
+            $numeroRegistros = 0;
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -95,6 +96,7 @@ class MafiController extends Controller
 
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
+                    $numeroRegistros++;
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

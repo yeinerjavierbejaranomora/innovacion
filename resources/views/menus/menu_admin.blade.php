@@ -1,3 +1,13 @@
+<?php 
+function facultades(){
+    $facultades=DB::table('facultad')->get();
+    dd($facultades);
+    return $facultades;
+}
+
+
+?>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 

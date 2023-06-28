@@ -215,7 +215,7 @@ class MafiController extends Controller
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
          $mes = date('n', $fechaSegundos);
-        // dd($mes);
+         //dd($mes);
          
          $periodo = DB::table('periodo')->get();
 
@@ -224,7 +224,7 @@ class MafiController extends Controller
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
 
-            if($ciclo1[1]==$mes|| $ciclo2[1]==$mes){
+            if($ciclo1[1]=== $mes|| $ciclo2[1]=== $mes){
                 dd($value->fechaInicioCiclo1);
             }
             

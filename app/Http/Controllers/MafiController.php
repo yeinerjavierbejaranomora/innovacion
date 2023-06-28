@@ -46,7 +46,7 @@ class MafiController extends Controller
         endforeach;
 
         $log = DB::table('logAplicacion')->where('accion', 'Insert')->orderBy('id', 'desc')->first();
-        return $log;
+        //return $log->id;
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */
             $data = DB::table('datosMafi')
@@ -64,7 +64,7 @@ class MafiController extends Controller
                 ->whereIn('sello', ['TIENE RETENCION', 'TIENE SELLO FINANCIERO'])
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
-                ->where('id', '>', $log[0]->idFin)
+                ->where('id', '>', $log->idFin)
                 ->orderBy('id')
                 ->get()
                 ->chunk(200);

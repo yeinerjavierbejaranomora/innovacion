@@ -5,7 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -121,7 +120,7 @@
 <!--Script-->
 <script>
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas',[ 'id'=> encrypt($facultades->id)]) }}";
+    var url = "{{ route('facultad.mostrarprogramas',[ 'id'=> encrypt($facultades[0]->id)]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

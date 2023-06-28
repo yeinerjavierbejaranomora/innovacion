@@ -11,7 +11,7 @@ class MafiReplica extends Model
     protected $table = 'datosMafiReplica';
     protected $fillable = [
         'id',
-        'idBanner',
+        'idbanner',
         'primer_apellido',
         'programa',
         'codprograma',
@@ -23,6 +23,5 @@ class MafiReplica extends Model
         'sello',
         'operador',
         'autorizado_asistir',
-        'fecha_registro_sistema'
     ];
 }

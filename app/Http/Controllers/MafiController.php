@@ -51,8 +51,12 @@ class MafiController extends Controller
                 ->get()
                 ->chunk(200);
 
+        $primerId= $data[0][0]->id;
+        return $primerId;
+
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
+                //dd($value->idbanner);
                 $insertar = MafiReplica::create([
                     'idbanner'=> $value->idbanner,
                     'primer_apellido'=> $value->primer_apellido,
@@ -66,7 +70,6 @@ class MafiController extends Controller
                     'sello'=> $value->sello,
                     'operador'=> $value->operador,
                     'autorizado_asistir'=> $value->autorizado_asistir,
-                    'fecha_registro_sistema'=>date('Y-m-d H:i:s'),
                 ]);
             endforeach;
         endforeach;
@@ -90,6 +93,10 @@ class MafiController extends Controller
         endfor;*/
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
+    }
+
+    public function getDataMafiReplica(){
+
     }
 
 

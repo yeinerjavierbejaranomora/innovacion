@@ -134,28 +134,28 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'mes',
-                        title: 'Mes'
+                        data: 'periodos',
+                        title: 'Periodo'
                     },
                     {
-                        data: 'formacion_continua',
-                        title: 'Formación continua'
+                        data: 'FechaIncioCiclo1',
+                        title: 'Fecha de inicio ciclo 1'
                     },
                     {
-                        data: 'Pregrado_cuatrimestral',
-                        title: 'Pregrado cuatrimestral'
+                        data: 'FechaIncioCiclo2',
+                        title: 'Fecha de inicio ciclo 2'
                     },
                     {
-                        data: 'Pregrado_semestral',
-                        title: 'Pregrado semestral'
+                        data: 'fechaInicioTemprano',
+                        title: 'Fecha inicio temprano'
                     },
                     {
-                        data: 'especializacion',
-                        title: 'Especialización'
+                        data: 'fechaInicioPeriodo',
+                        title: 'Fecha inicio periodo'
                     },
                     {
-                        data: 'maestrias',
-                        title: 'Maestrías'
+                        data: 'periodoActivo',
+                        title: 'Periodo activo'
                     },
                     {
                         data: 'year',

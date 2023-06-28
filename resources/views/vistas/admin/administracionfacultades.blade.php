@@ -133,7 +133,7 @@
                         title: 'Nombre Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
                     },
                     {
@@ -155,9 +155,16 @@
 
                 var data = table.row($(this).parents("tr")).data();
                 alert(data);
+
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Actualizar información',
+                    html: `
+                        <form>
+                        <input type="text" class="form-control" placeholder="codFacultad"> 
+                        <input type="text" class="form-control" placeholder="nombre"> 
+                    
+                        </form>
+                    `,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

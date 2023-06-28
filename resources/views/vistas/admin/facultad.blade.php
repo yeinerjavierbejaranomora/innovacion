@@ -162,7 +162,7 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            console.log(table);
+            obtener_malla("#example tbody", table);
         }
         function obtener_malla(tbody, table) {
             $(tbody).on("click", "button.malla", function() {
@@ -172,7 +172,7 @@
                 console.log(id_Facultad);
             });
         }
-        obtener_malla();
+        
     }
 </script>
 

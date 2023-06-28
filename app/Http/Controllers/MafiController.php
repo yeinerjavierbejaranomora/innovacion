@@ -173,7 +173,7 @@ class MafiController extends Controller
     {
 
         $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','estudiantes']])->orderBy('id', 'desc')->first();
-        //return $log->idFin;
+        return $log;
         $data = DB::table('datosMafiReplica')
                 ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
                 ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')

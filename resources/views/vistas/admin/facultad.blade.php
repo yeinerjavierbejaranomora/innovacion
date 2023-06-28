@@ -116,6 +116,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<!--Script-->
 
 <script>
     var xmlhttp = new XMLHttpRequest();

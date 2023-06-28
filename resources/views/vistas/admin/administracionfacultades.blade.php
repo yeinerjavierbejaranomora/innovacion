@@ -154,7 +154,7 @@
             $(tbody).on("click", "button.editar", function() {
 
                 var data = table.row($(this).parents("tr")).data();
-                alert(data);
+                alert(data.codFacultad);
 
                 Swal.fire({
                     title: 'Actualizar información',

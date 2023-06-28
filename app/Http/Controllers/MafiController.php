@@ -52,6 +52,7 @@ class MafiController extends Controller
                 ->chunk(200);
 
         $primerId= $data[0][0]->id;
+        $ultimoRegistroId=0;
         return $primerId;
 
         foreach($data as $keys => $estudiantes):
@@ -71,6 +72,8 @@ class MafiController extends Controller
                     'operador'=> $value->operador,
                     'autorizado_asistir'=> $value->autorizado_asistir,
                 ]);
+
+                $ultimoRegistroId = $value->id;
             endforeach;
         endforeach;
         //$contData = count($data);

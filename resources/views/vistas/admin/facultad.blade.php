@@ -113,6 +113,49 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<script>
+    // * Datatable para mostrar todas las Facultades *
+    var xmlhttp = new XMLHttpRequest();
+    var url = "{{ route('facultad.mostrarprogramas', ['id'=>encrypt($id)] }}";
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var table = $('#example').DataTable({
+                "data": data.data,
+                "columns": [{
+                        data: 'codprograma',
+                        title: 'Codigo de programa'
+                    },
+                    {
+                        data: 'programa',
+                        title: 'Maestría'
+                    },
+                    {
+                        data: 'tabla',
+                        title: 'Curso'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
+                        title: 'Eliminar'
+                    },
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
+            console.log(table);
+        }
+
+    }
+
+</script>
 
 
 

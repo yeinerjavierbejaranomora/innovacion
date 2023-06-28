@@ -55,8 +55,8 @@ function facultades(){
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
-            <?php $facultades=facultades();?>
-            
+            <!--Llamado a función-->     
+            <?php $facultades=facultades();?>       
             <!--Foreach-->
             @foreach ($facultades as $facultad)
                     <a class="collapse-item" href="{{ route('facultad.facultad', ['id' => encrypt($facultad->id)]) }}" return="$facultades">

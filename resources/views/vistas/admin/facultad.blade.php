@@ -126,7 +126,6 @@
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            alert('entro');
             var data = JSON.parse(this.responseText);
             var table = $('#example').DataTable({
                 "data": data.data,
@@ -142,6 +141,10 @@
                         data: 'tabla',
                         title: 'Curso'
                     },
+                    {
+                        defaultContent: "<button type='button' class='malla btn btn-warning' ><i class='fa-solid fa-list'></i></button>",
+                        title: 'Malla Curricular' 
+                    }
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'

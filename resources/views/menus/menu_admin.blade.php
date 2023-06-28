@@ -60,7 +60,7 @@ function facultades(){
             <!--Foreach-->
             @foreach ($facultades as $facultad)
                     <a class="collapse-item" href="">
-                    {{$facultad->nombre}};
+                    {{$facultad->nombre}}
                     </a>
             @endforeach
         </div>

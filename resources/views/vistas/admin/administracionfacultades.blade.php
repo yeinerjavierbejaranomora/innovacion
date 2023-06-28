@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-         
+
 
         </div>
         <!-- /.container-fluid -->
@@ -190,48 +190,62 @@
             $(tbody).on("click", "button.editar", function() {
 
                 var data = table.row($(this).parents("tr")).data();
-        
-                codFacultad = $("#editcodFacultad").val(data.codFacultad);
-                nombre = $("#editnombre").val(data.nombre);
-                id = $("#id").val(data.id);
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
             });
         }
 
     }
 
-/*
-    $("#Form").on('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData();
-    console.log(formData);
-    $.ajax({
-        url: "{{ route('admin.updatefacultad') }}",
-        type: "POST",
-        data: formData,
-        processData: false, // tell jQuery not to process the data
-        contentType: false // tell jQuery not to set contentType
-    });
-    /*$.ajax({        
-            type: 'post',
+    /*
+        $("#Form").on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        console.log(formData);
+        $.ajax({
             url: "{{ route('admin.updatefacultad') }}",
+            type: "POST",
             data: formData,
-            success: function(response) {
-            Swal.fire(
-            'Eliminado!',
-            'Actualizacion exitosa.',
-            'Accion realizada con exito'
-            )
-            table.ajax.reload();
-        },
-        failure: function (response) {
-            swal(
-            "Error",
-            "Nose pudo actualizar.", // had a missing comma
-            "error"
-            )
-        },
-    }); *
+            processData: false, // tell jQuery not to process the data
+            contentType: false // tell jQuery not to set contentType
+        });
+        /*$.ajax({        
+                type: 'post',
+                url: "{{ route('admin.updatefacultad') }}",
+                data: formData,
+                success: function(response) {
+                Swal.fire(
+                'Eliminado!',
+                'Actualizacion exitosa.',
+                'Accion realizada con exito'
+                )
+                table.ajax.reload();
+            },
+            failure: function (response) {
+                swal(
+                "Error",
+                "Nose pudo actualizar.", // had a missing comma
+                "error"
+                )
+            },
+        }); *
 
-    })*/
+        })*/
 </script>
 @include('layout.footer')

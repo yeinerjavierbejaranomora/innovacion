@@ -77,7 +77,7 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
 
-        return "Fecha inicio: " .$primerId. ', Fecha Fin '. $ultimoRegistroId;
+        return "Fecha inicio: " .$fechaInicio. ', Fecha Fin '. $fechaFin;
         //return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
 
         //$contData = count($data);

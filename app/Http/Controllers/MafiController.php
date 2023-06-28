@@ -171,7 +171,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
         if (empty($log)) :
@@ -224,17 +224,15 @@ class MafiController extends Controller
         endif;
     }
 
-
+//*** funcion para activar los periodos automaticamente */
     public function periodo(){
 
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d');
          
          $mes =explode('-',$fechaActual) ;
-         //dd($mes);
-
          $periodo = DB::table('periodo')->get();
-
+        dd($mes);
          foreach ($periodo as $key => $value) {
 
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
@@ -269,9 +267,6 @@ class MafiController extends Controller
     
                 }
 
-
-
-
             }
             else{
                 $affected = DB::table('periodo')
@@ -282,16 +277,7 @@ class MafiController extends Controller
 
          }
 
-         dd($periodo);
-
-         $periodo = $periodo[0];
-
-
-         dd($periodo[0]->mes);
-         /** marca de ingreso */
-         //$marca_de_ingreso = $periodo;
-
-         dd($periodo);
+        return true;
 
     }
 

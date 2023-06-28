@@ -155,8 +155,8 @@ class facultadController extends Controller
         echo json_encode(array('data' => $facultad));
     }
 
-    public function malla($codigo){
-
+    public function malla(Request $request){
+        dd($request);
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', decrypt($codigo))->get();
         return view('visas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->nombre]);
     }

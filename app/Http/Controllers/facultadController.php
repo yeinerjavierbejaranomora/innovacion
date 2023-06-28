@@ -138,6 +138,7 @@ class facultadController extends Controller
     public function facultad($id)
     {
         $facultades=DB::table('facultad')->get();
+        dd($facultades);
         return view('vistas.admin.facultad',$facultades);
     }
 

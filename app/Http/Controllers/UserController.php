@@ -177,7 +177,7 @@ class UserController extends Controller
     {
       
         /** Consulta para actualizar facultad */
-      /*  $facultad = DB::table('facultad')->update(['codFacultad' => $request->editcodFacultad,'nombre' => $request->editnombre])->where('id', '=', $request->id);*/
+        $facultad = DB::table('facultad')->update(['codFacultad' => $request->editcodFacultad,'nombre' => $request->editnombre])->where('id', '=', $request->id);
 
         if ($request) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

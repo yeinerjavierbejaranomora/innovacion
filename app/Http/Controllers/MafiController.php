@@ -244,10 +244,7 @@ class MafiController extends Controller
                 dd((int)$ciclo1[1],(int)$mes[1]);
             }
 
-            if((int)$ciclo1[1]== ){
-                dd((int)$ciclo1[1],$mes,$mes[1]);
-            }
-
+         
 
 
          }

@@ -78,7 +78,7 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                    dd($value->sello);
+                    //dd($value->sello);
                     if($value->sello === 'TIENE RETENCION'):
                         return "Tiene retencion, verificar activo plataforma";
                     else:

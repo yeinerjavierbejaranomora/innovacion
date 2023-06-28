@@ -138,7 +138,7 @@
                         title: 'Periodo'
                     },
                     {
-                        data: 'FechaIncioCiclo1',
+                        data: 'fechaInicioCiclo1',
                         title: 'Fecha de inicio ciclo 1'
                     },
                     {

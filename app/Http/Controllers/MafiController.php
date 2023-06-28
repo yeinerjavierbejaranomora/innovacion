@@ -173,16 +173,32 @@ class MafiController extends Controller
     {
 
         $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','estudiantes']])->orderBy('id', 'desc')->first();
-        return $log;
-        $data = DB::table('datosMafiReplica')
+        //return $log;
+        if (empty($log)) :
+            $data = DB::table('datosMafiReplica')
                 ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
                 ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')
+                ->select('datosMafiReplica.*')
                 ->where([['programas.activo','=',1],['periodo.periodoActivo','=',1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
                 ->chunk(200);
+        else:
+        endif;
 
-        dd($data);
+        if (!empty($data[0])) :
+            $numeroRegistros = 0;
+            $primerId = $data[0][0]->id;
+            $ultimoRegistroId = 0;
+            $fechaInicio = date('Y-m-d H:i:s');
+            foreach ($data as $keys => $estudiantes) :
+                foreach ($estudiantes as $key => $value) :
+                    dd($value);
+                endforeach;
+            endforeach;
+        else:
+            return "No hay registros para replicar";
+        endif;
     }
 
 

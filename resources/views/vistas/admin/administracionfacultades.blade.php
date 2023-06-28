@@ -157,9 +157,9 @@
                         title: 'Actualizar información',
                         html: `
                             <form>
-                            <input type="text" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
+                            <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
                             <br> 
-                            <input type="text" value="${data.nombre}" class="form-control" placeholder="nombre">                      
+                            <input type="text" id="nombre name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre">                      
                             </form>
                         `,
                         icon: 'info',
@@ -172,6 +172,8 @@
                             $.post('{{ route('admin.updatefacultad') }}', {
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
+                                codFacultad: $('#codigo').val(),
+                                nombre: $('#nombre').val(),
                         })
                         }
                     })

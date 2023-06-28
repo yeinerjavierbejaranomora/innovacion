@@ -185,6 +185,9 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
+        //dd($data[0]);
+
+
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -193,7 +196,11 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                    dd($value);
+                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
+                        return "Si";
+                    else:
+                        return "No";
+                    endif;
                 endforeach;
             endforeach;
         else:

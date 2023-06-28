@@ -173,11 +173,19 @@ class UserController extends Controller
         endif;
     }
 
-    public function updatefacultad(CrearFacultadRequest $request)
+    public function updatefacultad()
     {
-      
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $codFacultad = $_POST['codFacultad'];
+        $nombre = $_POST['nombre'];
+
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $request->editcodFacultad,'nombre' => $request->editnombre])->where('id', '=', $request->id);
+        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id', '=', $id);
 
         if ($request) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

@@ -185,7 +185,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
-        dd($data);
+        dd($data[0]);
 
         if(str_contains($data[0]->tipoestudiante,'TRANSFERENTE EXTERNO')):
         else:
@@ -214,7 +214,7 @@ class MafiController extends Controller
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
-         
+
          $periodo = DB::table('periodo')->get();
          foreach ($periodo as $key => $value) {
             $ciclo1=explode('-',$value->fechaInicioCiclo1);

@@ -172,7 +172,7 @@
                 console.log(id_Facultad);
             });
         }
-
+        obtener_malla();
     }
 </script>
 

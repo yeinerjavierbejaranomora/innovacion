@@ -118,7 +118,7 @@
 
 <script>
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas') }}";
+    var url = "{{ route('facultad.mostrarprogramas', ['id' => encrypt($facultad->id)])) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

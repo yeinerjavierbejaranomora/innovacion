@@ -46,7 +46,7 @@ class MafiController extends Controller
         endforeach;
 
         $log = DB::table('logAplicacion')->where('accion', 'Insert')->orderBy('id', 'desc')->first();
-        return $log->idFin;
+        //return $log->idFin;
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */
             $data = DB::table('datosMafi')
@@ -70,8 +70,9 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
+        dd($data[0]);
 
-        //if (!$data) :
+        if (!empty($data)) :
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -118,9 +119,9 @@ class MafiController extends Controller
             if($insertLog && $insertIndiceCambio):
                 return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
             endif;
-        /*else:
+        else:
             return "No hay registros para replicar";
-        endif;*/
+        endif;
 
         //$contData = count($data);
         /*$contKeys = 0;

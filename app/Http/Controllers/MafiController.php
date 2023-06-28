@@ -71,7 +71,7 @@ class MafiController extends Controller
 
         endif;
 
-        if (!$data) :
+        //if (!$data) :
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -118,9 +118,9 @@ class MafiController extends Controller
             if($insertLog && $insertIndiceCambio):
                 return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
             endif;
-        else:
+        /*else:
             return "No hay registros para replicar";
-        endif;
+        endif;*/
 
         //$contData = count($data);
         /*$contKeys = 0;

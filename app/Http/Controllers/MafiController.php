@@ -51,7 +51,7 @@ class MafiController extends Controller
                 ->get()
                 ->chunk(200);
 
-        $primerId= $data[0][0];
+        $primerId= $data[0][0]->id;
         return $primerId;
 
         foreach($data as $keys => $estudiantes):

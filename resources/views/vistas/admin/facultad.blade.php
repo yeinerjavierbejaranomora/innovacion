@@ -90,12 +90,12 @@
                                     <label for="message-text" class="col-form-label">Nombre del programa</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="crear btn btn-primary">Crear</button>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
 
 
 <script>
-    // * Datatable para mostrar todas las Facultades *
+    // * Datatable para mostrar los programas de la Facultad *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.mostrarprogramas', ['id'=>$id]) }}";
     xmlhttp.open("GET", url, true);
@@ -162,7 +162,5 @@
     }
 
 </script>
-
-
 
 @include('layout.footer')

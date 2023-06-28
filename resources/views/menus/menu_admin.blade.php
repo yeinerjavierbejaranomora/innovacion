@@ -113,7 +113,7 @@
 
                     nombre_facultad=facultad.nombre;
                     id_facultad=facultad.id;
-                    ruta='/home/facultad/'+id_facultad;
+                    ruta='/home/facultad/encrypt(' + id_facultad + ')';
 
                     $('#Facultades').append('<a class="collapse-item" href=" '+ ruta +'" >' + nombre_facultad + '</a>');
                 });

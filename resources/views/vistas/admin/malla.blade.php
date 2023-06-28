@@ -129,7 +129,7 @@
                 "data": data.data,
                 "order": [[1,'asc'],[3,'asc']],
                 "columns": [{
-                        data: 'codprograma',
+                        data: 'codprograma', "visible": false,
                         title: 'Codigo de programa'
                     },
                     {

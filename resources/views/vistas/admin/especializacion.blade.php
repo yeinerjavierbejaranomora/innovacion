@@ -134,7 +134,7 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'codprograma',
+                        data: 'codprograma', "visible": false,
                         title: 'Codigo de programa'
                     },
                     {

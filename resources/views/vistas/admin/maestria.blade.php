@@ -135,7 +135,7 @@
                 "data": data.data,
                 "columns": [{
                         data: 'codprograma',
-                        title: 'Codigo de programa'
+                        title: 'Codigo de programa' ,"visible": false,
                     },
                     {
                         data: 'programa',

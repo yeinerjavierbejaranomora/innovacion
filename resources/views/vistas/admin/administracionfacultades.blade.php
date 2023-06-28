@@ -152,7 +152,6 @@
                 $(tbody).on("click", "button.editar", function() {
 
                     var data = table.row($(this).parents("tr")).data();
-                    alert(data);
 
                     Swal.fire({
                         title: 'Actualizar información',
@@ -170,11 +169,10 @@
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
+                            $.post('{{ route('admin.updatefacultad') }}', {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                        })
                         }
                     })
                 });

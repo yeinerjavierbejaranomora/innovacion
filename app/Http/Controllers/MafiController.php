@@ -51,6 +51,9 @@ class MafiController extends Controller
                 ->get()
                 ->chunk(200);
 
+        $primerId= $data[0][0];
+        return $primerId;
+
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
                 //dd($value->idbanner);
@@ -90,6 +93,10 @@ class MafiController extends Controller
         endfor;*/
         /*$data = Mafi::where([['estado','<>','Inactivo']]);
         $dataLongitud = count($data);*/
+    }
+
+    public function getDataMafiReplica(){
+
     }
 
 

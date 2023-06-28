@@ -154,7 +154,7 @@
             $(tbody).on("click", "button.editar", function() {
 
                 var data = table.row($(this).parents("tr")).data();
-                console.log(data);
+                alert(data);
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",

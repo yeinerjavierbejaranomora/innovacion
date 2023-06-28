@@ -137,8 +137,7 @@ class facultadController extends Controller
 
     public function facultad(Request $request)
     {
-        dd($request->id);
-        return view('vistas.admin.facultad');
+        return view('vistas.admin.facultad',['id'=>$request->id]);
     }
 
     /** Función para mostrar los programas según el id de la facultad */

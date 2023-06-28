@@ -228,9 +228,9 @@ class MafiController extends Controller
     public function periodo(){
 
          /** traemos la fecha actual para poder comparar con el periodo */
-         $fechaActual = date('Y-m-d ');
-         $fechaSegundos = strtotime($fechaActual);
-         $mes = date('n', $fechaSegundos);
+         $fechaActual = date('Y-m-d');
+         
+         $mes =explode('-',$fechaActual) ;
          dd($mes);
 
          $periodo = DB::table('periodo')->get();

@@ -138,7 +138,7 @@ class facultadController extends Controller
     public function facultad()
     {
         $facultades=DB::table('facultad')->get();
-        return view('vistas.admin.facultad',$facultades);
+        return view('vistas.admin.facultad' , $facultades);
     }
 
     /** Función para mostrar los programas según el id de la facultad */

@@ -135,8 +135,9 @@ class facultadController extends Controller
         echo json_encode(array('data' => $reglas));
     }
 
-    public function facultad()
+    public function facultad(Request $request)
     {
+        dd($request);
         return view('vistas.admin.facultad');
     }
 

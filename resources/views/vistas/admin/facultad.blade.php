@@ -148,11 +148,13 @@
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        title: 'Editar',
+                        className: "text-center"
                     },
                     {
                         defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        title: 'Eliminar',
+                        className: "text-center"
                     },
                 ],
                 "language": {

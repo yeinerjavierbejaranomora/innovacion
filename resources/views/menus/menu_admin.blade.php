@@ -96,6 +96,8 @@
 </ul>
 
 
+
+
 <!-- End of Sidebar -->
 <script>
     facultades();

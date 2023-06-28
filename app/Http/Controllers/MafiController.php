@@ -232,7 +232,7 @@ class MafiController extends Controller
          
          $mes =explode('-',$fechaActual) ;
          $periodo = DB::table('periodo')->get();
-        dd($mes);
+     
          foreach ($periodo as $key => $value) {
 
             $ciclo1=explode('-',$value->fechaInicioCiclo1);

@@ -3,9 +3,7 @@ function facultades(){
     $facultades=DB::table('facultad')->get();
     return $facultades;
 }
-
 ?>
-
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 

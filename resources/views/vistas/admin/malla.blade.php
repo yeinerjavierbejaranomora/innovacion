@@ -127,6 +127,7 @@
             var data = JSON.parse(this.responseText);
             var table = $('#example').DataTable({
                 "data": data.data,
+                "order": [[1,'desc'],[3,'desc']],
                 "columns": [{
                         data: 'codprograma',
                         title: 'Codigo de programa'

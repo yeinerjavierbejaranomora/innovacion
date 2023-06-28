@@ -5,7 +5,7 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-
+{{$facultades}}
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 

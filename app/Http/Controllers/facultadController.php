@@ -135,7 +135,7 @@ class facultadController extends Controller
         echo json_encode(array('data' => $reglas));
     }
 
-    public function facultad($id)
+    public function facultad()
     {
         $facultades=DB::table('facultad')->get();
         dd($facultades);

@@ -70,9 +70,8 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
-        dd($data);
 
-        if (!empty($data)) :
+        if (!$data) :
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -116,9 +115,11 @@ class MafiController extends Controller
                 'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id' . $ultimoRegistroId,
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
-        endif;
-        if($insertLog && $insertIndiceCambio):
-            return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+            if($insertLog && $insertIndiceCambio):
+                return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+            endif;
+        else:
+            return "No hay registros para replicar";
         endif;
 
         //$contData = count($data);

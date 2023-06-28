@@ -209,6 +209,11 @@ class MafiController extends Controller
          $fechaSegundos = strtotime($fechaActual);
          
          $periodo = DB::table('periodo')->get();
+         foreach ($periodo as $key => $value) {
+            $ciclo1=explode('-',$value->fechaInicioCiclo1);
+            dd($ciclo1);
+            $ciclo2=explode('-',$value->fechaInicioCiclo2);
+         }
 
          dd($periodo);
 

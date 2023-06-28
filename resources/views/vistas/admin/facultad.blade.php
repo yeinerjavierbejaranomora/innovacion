@@ -135,11 +135,11 @@
                     },
                     {
                         data: 'programa',
-                        title: 'Maestría'
+                        title: 'Programa'
                     },
                     {
                         data: 'tabla',
-                        title: 'Curso'
+                        title: 'Tipo de programa'
                     },
                     {
                         defaultContent: "<button type='button' class='malla btn btn-warning' ><i class='fa-solid fa-list'></i></button>",

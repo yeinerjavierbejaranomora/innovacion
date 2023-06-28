@@ -113,10 +113,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<?php   
 
-$ruta='facultad.mostrarprogramas/'+$id;
-?>
 
 <script>
     // * Datatable para mostrar todas las Facultades *

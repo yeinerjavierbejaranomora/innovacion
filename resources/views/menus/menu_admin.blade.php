@@ -110,8 +110,7 @@ function facultades(){
             <span>Salir</span></a>
     </li>
 </ul>
-
-
+ 
 <!-- End of Sidebar -->
 <script>
     </script>

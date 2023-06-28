@@ -53,7 +53,7 @@ class MafiController extends Controller
 
         $primerId= $data[0][0]->id;
         $ultimoRegistroId=0;
-
+        $fechaInicio = date('Y-m-d H:i:s');
         foreach($data as $keys => $estudiantes):
             foreach($estudiantes as $key => $value):
                 //dd($value->idbanner);
@@ -75,7 +75,11 @@ class MafiController extends Controller
                 $ultimoRegistroId = $value->id;
             endforeach;
         endforeach;
-        return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+        $fechaFin = date('Y-m-d H:i:s');
+
+        return "Fecha inicio: " .$fechaInicio. ', Fecha Fin '. $fechaFin;
+        //return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+
         //$contData = count($data);
         /*$contKeys = 0;
         //$data = (array) $data;

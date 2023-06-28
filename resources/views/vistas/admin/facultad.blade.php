@@ -166,8 +166,9 @@
         }
         function obtener_malla(tbody, table) {
             $(tbody).on("click", "button.malla", function() {
-
+                console.log('entra');
                 var data = table.row($(this).parents("tr")).data();
+
                 id_Facultad = data.id;
                 console.log(id_Facultad);
             });

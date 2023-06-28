@@ -1,3 +1,11 @@
+<?php 
+function facultades(){
+    $facultades=DB::table('facultad')->get();
+    return $facultades;
+}
+
+?>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -47,7 +55,15 @@
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
-            </div>
+            <?php $facultades=facultades();?>
+            
+            <!--Foreach-->
+            @foreach ($facultades as $facultad)
+                    <a class="collapse-item" href="">
+                    {{$facultad->nombre}}
+                    </a>
+            @endforeach
+        </div>
         </div>
     </li>
 
@@ -96,33 +112,8 @@
 </ul>
 
 
- 
 <!-- End of Sidebar -->
 <script>
-    facultades();
-    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
-    function facultades() {
-       var data = $.ajax({       
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.facultades') }}",
-            method: 'post',
-            success: function(data) {
-                data.forEach(facultad => {
-                    console.log(data);
-
-                    nombre_facultad=facultad.nombre;
-                    id_facultad=facultad.id;
-                    ruta='home/facultad/'+id_facultad;
-
-                    $('#Facultades').append('<a class="collapse-item" href="'+ruta+'" >'+nombre_facultad+'</a>');
-                });
-            }
-
-        });  
-
-    }
     </script>
 
     

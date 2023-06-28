@@ -118,7 +118,7 @@ class MafiController extends Controller
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
             if($insertLog && $insertIndiceCambio):
-                return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+                return "Numero de registros: '.$numeroRegistros.'=> primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
             endif;
         else:
             return "No hay registros para replicar";

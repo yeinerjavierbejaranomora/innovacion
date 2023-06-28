@@ -66,8 +66,9 @@ Route::controller(MafiController::class)->group(function(){
     //carga de mafis
     Route::get('/home/admin/mafi','inicioMafi')->middleware('auth','admin')->name('admin.mafi');
     Route::get('/home/admin/datamafi', 'getDataMafi')->middleware('auth','admin')->name('admin.getdatamafi');
+    Route::get('/home/admin/datamafireplica', 'getDataMafiReplica')->middleware('auth','admin')->name('admin.getdatamafireplica');
     Route::get('/home/admin/Generar_faltantes', 'Generar_faltantes')->middleware('auth','admin')->name('admin.Generar_faltantes');
-    
+
 });
 
 /** definimos las rutas para el registro de usuarios */
@@ -146,7 +147,7 @@ Route::controller(facultadController::class)->group(function(){
     /** Ruta para ver los programas por facultad */
     Route::get('/home/facultad/{id}', 'facultad')->middleware('auth')->name('facultad.facultad');
     /** Ruta para traer los programas por facultad */
-    Route::get('/home/programas/{id}', 'mostrarfacultad')->middleware('auth')->name('facultad.mostrarprogramas'); 
+    Route::get('/home/programas/{id}', 'mostrarfacultad')->middleware('auth')->name('facultad.mostrarprogramas');
 
     /** Ruta para visualizar la malla curricular */
     Route::get('/home/malla/{codigo}', 'malla')->middleware('auth')->name('facultad.malla');

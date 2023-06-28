@@ -117,10 +117,11 @@
 </a>
 
 
+
 <!--Script-->
 <script>
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas',[ 'id'=> $_GET['$id']]) }}";
+    var url = "{{ route('facultad.mostrarprogramas',[ 'id'=> $_GET['id']]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

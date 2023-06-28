@@ -176,6 +176,7 @@ class UserController extends Controller
     public function updatefacultad()
     {
         $id_llegada = $_POST['id'];
+        dd($id_llegada);
         $id = base64_decode(urldecode($id_llegada));
 
         if (!is_numeric($id)) {

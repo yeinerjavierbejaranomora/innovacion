@@ -137,7 +137,7 @@ class facultadController extends Controller
 
     public function facultad(Request $request)
     {
-        dd($request);
+        dd($request->id);
         return view('vistas.admin.facultad');
     }
 

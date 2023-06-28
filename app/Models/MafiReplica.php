@@ -23,6 +23,5 @@ class MafiReplica extends Model
         'sello',
         'operador',
         'autorizado_asistir',
-        'fecha_registro_sistema'
     ];
 }

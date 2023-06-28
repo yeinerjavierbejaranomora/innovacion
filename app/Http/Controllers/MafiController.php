@@ -66,7 +66,6 @@ class MafiController extends Controller
                     'sello'=> $value->sello,
                     'operador'=> $value->operador,
                     'autorizado_asistir'=> $value->autorizado_asistir,
-                    'fecha_registro_sistema'=>date('Y-m-d H:i:s'),
                 ]);
             endforeach;
         endforeach;

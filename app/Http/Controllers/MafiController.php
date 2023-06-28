@@ -231,7 +231,7 @@ class MafiController extends Controller
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
          $mes = date('n', $fechaSegundos);
-         //dd($mes);
+         dd($mes);
 
          $periodo = DB::table('periodo')->get();
 

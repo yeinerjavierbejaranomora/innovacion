@@ -113,6 +113,6 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-
-
 <!--Script-->
+
+@include('layout.footer')

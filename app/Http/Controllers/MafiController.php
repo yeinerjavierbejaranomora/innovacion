@@ -70,7 +70,7 @@ class MafiController extends Controller
                 ->chunk(200);
 
         endif;
-        if($data != ''):
+        if($data[0] != ''):
             return "No vacio";
         else:
             return "Vacio";

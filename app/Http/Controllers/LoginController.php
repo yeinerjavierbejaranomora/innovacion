@@ -41,9 +41,9 @@ class LoginController extends Controller
             $nombre_rol=$rol_db[0]->nombreRol;
             auth()->user()->nombre_rol=$nombre_rol;
 
+            $facultades=DB::table('facultad')->get();
 
-
-            return redirect()->route('home.index');
+            return redirect()->route('home.index',$facultades);
         endif;
 
         return redirect()->route('login.index');

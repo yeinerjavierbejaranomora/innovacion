@@ -76,7 +76,7 @@ class MafiController extends Controller
             return "Vacio";
         endif;
 
-        if (!empty($data)) :
+        if (!empty($data[0])) :
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');

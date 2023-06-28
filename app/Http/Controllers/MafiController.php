@@ -185,6 +185,13 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
+        //dd($data[0]);
+
+        if(str_contains($data[0][4]->tipoestudiante,'TRANSFERENTE EXTERNO')):
+            return "Si";
+        else:
+            return "No";
+        endif;
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -193,7 +200,9 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                    dd($value);
+                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
+                    else:
+                    endif;
                 endforeach;
             endforeach;
         else:
@@ -207,11 +216,11 @@ class MafiController extends Controller
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d ');
          $fechaSegundos = strtotime($fechaActual);
-         
+
          $periodo = DB::table('periodo')->get();
          foreach ($periodo as $key => $value) {
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
-            dd($ciclo1);
+            dd($ciclo1[1]);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
          }
 

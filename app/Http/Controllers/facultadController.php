@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CambioPassRequest;
 use App\Http\Requests\UsuarioLoginRequest;
 use App\Http\Requests\CrearFacultadRequest;
+use App\Http\Requests\ProgramasRequest;
 use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
@@ -155,10 +156,14 @@ class facultadController extends Controller
         echo json_encode(array('data' => $facultad));
     }
 
-    public function mostrarmallacurricular($cod_llegada)
+    public function malla($codigo){
+        $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();
+       
+        return view('vistas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->programa]);
+    }
+
+    public function mostrarmallacurricular($codigo)
     {
-        // Decripta el id que recibe
-        $codigo = decrypt($id_llegada);
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
          /**mostrar los datos en formato JSON */
@@ -166,6 +171,5 @@ class facultadController extends Controller
          /**Se pasa a formato JSON el arreglo de users */
          echo json_encode(array('data' => $malla));
     }
-
-    
+ 
 }

@@ -36,7 +36,7 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Programas Facultad de {{$nombre}}</h1>
+                <h1 class="h3 mb-0 text-gray-800">Malla curricular del programa {{$nombre}}</h1>
                 {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
@@ -116,12 +116,10 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-
-
 <script>
     // * Datatable para mostrar los programas de la Facultad *
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas', ['id'=>$id]) }}";
+    var url = "{{ route('facultad.getmalla', ['codigo'=>$codigo]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
@@ -129,22 +127,38 @@
             var data = JSON.parse(this.responseText);
             var table = $('#example').DataTable({
                 "data": data.data,
+                "order": [[1,'asc'],[3,'asc']],
                 "columns": [{
                         data: 'codprograma',
                         title: 'Codigo de programa'
                     },
                     {
-                        data: 'programa',
-                        title: 'Programa'
+                        data: 'semestre',
+                        title: 'Semestre'
                     },
                     {
-                        data: 'tabla',
-                        title: 'Tipo de programa'
+                        data: 'ciclo',
+                        title: 'Ciclo'
                     },
                     {
-                        defaultContent: "<button type='button' class='malla btn btn-warning'><i class='fa-solid fa-list'></i></button>",
-                        title: 'Malla Curricular', 
-                        className: "text-center" 
+                        data: 'orden',
+                        title: 'Orden'
+                    },
+                    {
+                        data: 'curso',
+                        title: 'Curso'
+                    },
+                    {
+                        data: 'codigoCurso',
+                        title: 'Codigo curso'
+                    },
+                    {
+                        data: 'creditos',
+                        title: 'Numero de créditos'
+                    },
+                    {
+                        data: 'prerequisito',
+                        title: 'Pre-requisitos'
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
@@ -162,20 +176,10 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            obtener_malla("#example tbody", table);
-
-            function obtener_malla(tbody, table) {
-                $(tbody).on("click", "button.malla", function() {           
-                    var data = table.row($(this).parents("tr")).data();
-                    codprograma = data.codprograma;
-                    
-                    $(location).attr('href', "/home/malla/" + codprograma);
-
-                });
-            }
-        }
-        
+        }  
     }
+    
 </script>
 
 @include('layout.footer')
+

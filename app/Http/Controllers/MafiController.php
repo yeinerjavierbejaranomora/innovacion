@@ -182,31 +182,33 @@ class MafiController extends Controller
     }
 
 
+    public function periodos(){
+
+         /** traemos la fecha actual para poder comparar con el periodo */
+         $fechaActual = date('Y-m-d ');
+         $fechaSegundos = strtotime($fechaActual);
+         dd($fechaActual);
+
+         $periodo = DB::table('periodo')
+         ->whereBetween('fechaInicioCiclo1',$fechaActual)
+             ->get();
+         $periodo = $periodo[0];
+ 
+ 
+         dd($periodo[0]->mes);
+         /** marca de ingreso */
+         //$marca_de_ingreso = $periodo;
+ 
+         dd($periodo);
+
+    }
+
     public function Generar_faltantes()
     {
-        /** traemos la fecha actual para poder comparar con el periodo */
-        $fechaActual = date('Y-m-d h:i:s');
-        $fechaSegundos = strtotime($fechaActual);
-
-        $dia = date('j', $fechaSegundos);
-        $mes = date('n', $fechaSegundos);
-        $año = date('Y', $fechaSegundos);
-
+       
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
-        $sql = 'SELECT * FROM `periodo` WHERE  `mes`=6';
-
-        $periodo = DB::table('periodo')
-            ->where('mes', $mes)
-            ->get();
-        $periodo = $periodo[0];
-
-
-        dd($periodo[0]->mes);
-        /** marca de ingreso */
-        //$marca_de_ingreso = $periodo;
-
-        dd($periodo);
+    
 
         $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
 

@@ -97,42 +97,6 @@
                 </div>
             </div>
 
-
-            <div class="modal fade" id="editar_facultad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva faculad</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="miForm" method="get" action="{{ route('admin.updatefacultad') }}">
-                                @csrf
-                                <div>
-                                    <input type="number" id="id" name="id">
-                                </div>
-                                <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo de la facultad</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Nombre de la facultad</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Editar</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-         
-
         </div>
         <!-- /.container-fluid -->
 
@@ -190,48 +154,62 @@
             $(tbody).on("click", "button.editar", function() {
 
                 var data = table.row($(this).parents("tr")).data();
-        
-                codFacultad = $("#editcodFacultad").val(data.codFacultad);
-                nombre = $("#editnombre").val(data.nombre);
-                id = $("#id").val(data.id);
+                alert(data);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
             });
         }
 
     }
 
-/*
-    $("#Form").on('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData();
-    console.log(formData);
-    $.ajax({
-        url: "{{ route('admin.updatefacultad') }}",
-        type: "POST",
-        data: formData,
-        processData: false, // tell jQuery not to process the data
-        contentType: false // tell jQuery not to set contentType
-    });
-    /*$.ajax({        
-            type: 'post',
+    /*
+        $("#Form").on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        console.log(formData);
+        $.ajax({
             url: "{{ route('admin.updatefacultad') }}",
+            type: "POST",
             data: formData,
-            success: function(response) {
-            Swal.fire(
-            'Eliminado!',
-            'Actualizacion exitosa.',
-            'Accion realizada con exito'
-            )
-            table.ajax.reload();
-        },
-        failure: function (response) {
-            swal(
-            "Error",
-            "Nose pudo actualizar.", // had a missing comma
-            "error"
-            )
-        },
-    }); *
+            processData: false, // tell jQuery not to process the data
+            contentType: false // tell jQuery not to set contentType
+        });
+        /*$.ajax({        
+                type: 'post',
+                url: "{{ route('admin.updatefacultad') }}",
+                data: formData,
+                success: function(response) {
+                Swal.fire(
+                'Eliminado!',
+                'Actualizacion exitosa.',
+                'Accion realizada con exito'
+                )
+                table.ajax.reload();
+            },
+            failure: function (response) {
+                swal(
+                "Error",
+                "Nose pudo actualizar.", // had a missing comma
+                "error"
+                )
+            },
+        }); *
 
-    })*/
+        })*/
 </script>
 @include('layout.footer')

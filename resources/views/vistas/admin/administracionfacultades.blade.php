@@ -156,13 +156,14 @@
 
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: `
+                        html: "
                             <form>
-                            <input type="text" class="form-control" placeholder="codFacultad"> 
+                            <input type="text" class="form-control" placeholder="codFacultad">
+                            <br> 
                             <input type="text" class="form-control" placeholder="nombre"> 
                         
                             </form>
-                        `,
+                        "",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

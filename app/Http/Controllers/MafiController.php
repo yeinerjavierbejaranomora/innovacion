@@ -211,7 +211,7 @@ class MafiController extends Controller
          $periodo = DB::table('periodo')->get();
          foreach ($periodo as $key => $value) {
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
-            dd($ciclo1);
+            dd($ciclo1[1]);
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
          }
 

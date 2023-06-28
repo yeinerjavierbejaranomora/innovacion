@@ -118,7 +118,6 @@
                     $('#Facultades').append("<a class='collapse-item' href='{{route('facultad.facultad','id'== "+ id_facultad + ")}}' >"+ nombre_facultad +"</a>");
                 });
             }
-
         });  
 
     }

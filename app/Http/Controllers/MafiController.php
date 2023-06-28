@@ -118,6 +118,8 @@ class MafiController extends Controller
             if($insertLog && $insertIndiceCambio):
                 return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
             endif;
+        else:
+            return "No hay registros para replicar";
         endif;
 
         //$contData = count($data);

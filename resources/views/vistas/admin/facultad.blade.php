@@ -36,7 +36,7 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Programas Facultad de</h1>
+                <h1 class="h3 mb-0 text-gray-800">Programas Facultad de {{$nombre}}</h1>
                 {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
@@ -50,11 +50,14 @@
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
+                            <!--Datatable-->
                             <div class="table">
                                 <table id="example" class="display" style="width:100%">
                                 </table>
                             </div>
                         </div>
+
+
                         <div class="col-4 justify-content-center">
                             <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
                         </div>
@@ -87,12 +90,12 @@
                                     <label for="message-text" class="col-form-label">Nombre del programa</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="crear btn btn-primary">Crear</button>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -113,15 +116,12 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<?php   
 
-$ruta='facultad.mostrarprogramas/'+$id;
-?>
 
 <script>
-    // * Datatable para mostrar todas las Facultades *
+    // * Datatable para mostrar los programas de la Facultad *
     var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.mostrarprogramas', ['id'=>encrypt($id)]) }}";
+    var url = "{{ route('facultad.mostrarprogramas', ['id'=>$id]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
@@ -135,19 +135,26 @@ $ruta='facultad.mostrarprogramas/'+$id;
                     },
                     {
                         data: 'programa',
-                        title: 'Maestría'
+                        title: 'Programa'
                     },
                     {
                         data: 'tabla',
-                        title: 'Curso'
+                        title: 'Tipo de programa'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='malla btn btn-warning' ><i class='fa-solid fa-list'></i></button>",
+                        title: 'Malla Curricular', 
+                        className: "text-center" 
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        title: 'Editar',
+                        className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
+                        title: 'Eliminar',
+                        className: "text-center"
                     },
                 ],
                 "language": {
@@ -155,13 +162,19 @@ $ruta='facultad.mostrarprogramas/'+$id;
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            console.log(table);
+            obtener_malla("#example tbody", table);
+
+            function obtener_malla(tbody, table) {
+                $(tbody).on("click", "button.malla", function() {
+                    alert('entra');
+                    var data = table.row($(this).parents("tr")).data();
+                    id_Facultad = data.id;
+                    alert(id_Facultad);
+                });
+            }
         }
-
+        
     }
-
 </script>
-
-
 
 @include('layout.footer')

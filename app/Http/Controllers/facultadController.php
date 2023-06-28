@@ -137,8 +137,8 @@ class facultadController extends Controller
 
     public function facultad(Request $request)
     {
-        dd($request->id);
-        return view('vistas.admin.facultad');
+        $nombre = DB::table('facultad')->select('nombre')->where('id', '=', decrypt($request->id))->get();
+        return view('vistas.admin.facultad',['id'=>$request->id],['nombre'=>$nombre[0]->nombre]);
     }
 
     /** Función para mostrar los programas según el id de la facultad */
@@ -147,8 +147,8 @@ class facultadController extends Controller
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
         // Consulta para obtener los programas según id de facultad
-        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa')
-            ->where('id_facultad', '=', $id)->get();
+        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa','tabla')
+            ->where('idFacultad', '=', $id)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

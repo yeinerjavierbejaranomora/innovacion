@@ -116,12 +116,11 @@
 <?php 
 dd($facultades);
 
-$ruta = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
 ?>
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
-    var url = "$ruta";
+    var url = "{{ route('facultad.mostrarprogramas', ['id '=> encrypt($facultades->id)]) }}";
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {

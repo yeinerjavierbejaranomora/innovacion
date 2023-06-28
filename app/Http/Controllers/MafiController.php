@@ -167,8 +167,18 @@ class MafiController extends Controller
         $dataLongitud = count($data);*/
     }
 
+
     public function getDataMafiReplica()
     {
+        $data = DB::table('datosMafiReplica')
+                ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
+                ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')
+                ->where([['programas.activo','=',1],['periodo.periodoActivo','=',1]])
+                ->orderBy('datosMafiReplica.id')
+                ->get()
+                ->chunk(200);
+
+        dd($data);
     }
 
 

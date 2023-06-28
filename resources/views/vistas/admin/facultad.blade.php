@@ -131,7 +131,7 @@
                 "data": data.data,
                 'pageLength': 25,
                 "columns": [{
-                        data: 'codprograma',
+                        data: 'codprograma', "visible": false,
                         title: 'Codigo de programa'
                     },
                     {

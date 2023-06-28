@@ -137,7 +137,8 @@ class facultadController extends Controller
 
     public function facultad(Request $request)
     {
-        return view('vistas.admin.facultad',['id'=>$request->id]);
+        $nombre = DB::table('facultad')->select('nombre')->where('idFacultad', '=', $request->id);
+        return view('vistas.admin.facultad',['id'=>$request->id],['nombre'=>$nombre]);
     }
 
     /** Función para mostrar los programas según el id de la facultad */

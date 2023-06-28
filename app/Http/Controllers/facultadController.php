@@ -138,6 +138,7 @@ class facultadController extends Controller
     public function facultad(Request $request)
     {
         $nombre = DB::table('facultad')->select('nombre')->where('id', '=', decrypt($request->id))->get();
+        dd($nombre);
         return view('vistas.admin.facultad',['id'=>$request->id],['nombre'=>$nombre]);
     }
 

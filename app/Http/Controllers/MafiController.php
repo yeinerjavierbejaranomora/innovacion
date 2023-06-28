@@ -241,7 +241,7 @@ class MafiController extends Controller
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
 
             if((int)$ciclo1[1]=== (int)$mes[1]|| (int)$ciclo2[1]=== (int)$mes[1]){
-                dd($ciclo1[1],$mes,$mes[1]);
+                dd((int)$ciclo1[1],$mes,$mes[1]);
             }
 
 

@@ -80,7 +80,12 @@ class MafiController extends Controller
                 foreach ($estudiantes as $key => $value) :
                     //dd($value->sello);
                     if($value->sello === 'TIENE RETENCION'):
-                        return "Tiene retencion, verificar activo plataforma";
+                        $consultaActivoPlataforma = DB::table('datosMafi')->where([['id','=',$value->id],['sello','=',$value->sello]])->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA', 'ACTIVO EN PLATAFORMA ICETEX'])->first();
+                        if($consultaActivoPlataforma):
+                            return "va";
+                        else:
+                            return "No va";
+                        endif;
                     else:
                         return "Tiene sello financiero, va como esta ";
                     endif;

@@ -50,20 +50,20 @@ class MafiController extends Controller
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */
             $data = DB::table('datosMafi')
-                ->where('estado', '<>', 'Inactivo')
+                ->where('estado', '=', 'Activo')
                 ->whereIn('sello', ['TIENE RETENCION', 'TIENE SELLO FINANCIERO'])
-                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-                ->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
+                //->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                //->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
                 ->orderBy('id')
                 ->get()
                 ->chunk(200);
 
         else :
             $data = DB::table('datosMafi')
-                ->where('estado', '<>', 'Inactivo')
+                ->where('estado', '=', 'Activo')
                 ->whereIn('sello', ['TIENE RETENCION', 'TIENE SELLO FINANCIERO'])
-                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-                ->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
+                //->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                //->whereIn('periodo', [$pregradoCuatrimestral, $pregradoSemestral, $especializacion, $maestria])
                 ->where('id', '>', $log->idFin)
                 ->orderBy('id')
                 ->get()
@@ -72,6 +72,7 @@ class MafiController extends Controller
         endif;
 
         if (!empty($data[0])) :
+            $numeroRegistros = 0;
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -95,6 +96,7 @@ class MafiController extends Controller
 
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
+                    $numeroRegistros++;
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
@@ -116,7 +118,7 @@ class MafiController extends Controller
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
             if($insertLog && $insertIndiceCambio):
-                return "primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+                return "Numero de registros: '.$numeroRegistros.'=> primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
             endif;
         else:
             return "No hay registros para replicar";

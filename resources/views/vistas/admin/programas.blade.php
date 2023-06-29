@@ -129,81 +129,45 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                var table = $('#example').DataTable({
-                    "data": data.data,
-                    "columns": [{
-                            data: 'codprograma',
-                            title: 'Codigo de programa'
-                        },
-                        {
-                            data: 'programa',
-                            title: 'Programa'
-                        },
-                        {
-                            data: 'nombre',
-                            title: 'Facultad'
-                        },
-                        {
-                            defaultContent: " <input class='form - check - input' type='checkbox' value='' id='flexCheckChecked' checked> <label class ='form-check-label' for = 'flexCheckChecked' >Checked checkbox </label>",
-                            title: 'Activo',
-                            className: "text-center"
-                        },
-                        {
-                            defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                            title: 'Editar',
-                            className: "text-center"
-                        },
-                        {
-                            defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                            title: 'Eliminar',
-                            className: "text-center"
-                        },
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var table = $('#example').DataTable({
+                "data": data.data,
+                "columns": [{
+                        data: 'codprograma',
+                        title: 'Codigo de programa'
                     },
-                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                });
+                    {
+                        data: 'programa',
+                        title: 'Programa'
+                    },
+                    {
+                        data: 'nombre',
+                        title: 'Facultad'
+                    },
+                    {
+                        defaultContent: " <input class='form - check - input' type='checkbox' value='' id='flexCheckChecked' checked> <label class ='form-check-label' for = 'flexCheckChecked' >Checked checkbox </label>",
+                        title: 'Activo',
+                        className: "text-center"
+                    },
+                    {
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar',
+                        className: "text-center"
+                    },
+                    {
+                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
+                        title: 'Eliminar',
+                        className: "text-center"
+                    },
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
 
-                function obtener_data_inactivar(tbody, table) {
-                    $(tbody).on("click", "button.eliminar", function() {
-                                var data = table.row($(this).parents("tr")).data();
-                                Swal.fire({
-                                    title: "Desea inactivar el programa " + data.nombre,
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    showCloseButton: true,
-                                    cancelButtonColor: '#DC3545',
-                                    cancelButtonText: "No, Cancelar",
-                                    confirmButtonText: "Si"
-                                }).then(result => {
-                                        if (result.value) {
-                                            $.post('{{ route('
-                                                user.inactivar ') }}', {
-                                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                                    id: encodeURIComponent(window.btoa(data.id)),
-                                                },
-                                                function(result) {
-                                                    if (result == "true") {
-                                                        Swal.fire({
-                                                            title: "Programa inactivado",
-                                                            html: "El programa <strong>" + data.nombre +
-                                                                "</strong> a sido inactivado",
-                                                            icon: 'info',
-                                                            showCancelButton: true,
-                                                            confirmButtonText: "Aceptar",
-                                                            cancelButtonText: "Deshacer",
-                                                            cancelButtonColor: '#DC3545',
-                                                        })
-                                                    }
-                                                })
-                                        }
-                                    }
-
-                                }
-
-                            }
+        }
+    }
 </script>
 @include('layout.footer')

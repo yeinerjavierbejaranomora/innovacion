@@ -146,18 +146,13 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
-                        title: 'Activo',
+                        defaultContent: "<button type='button' class='inactivar btn btn-info'><i class='fa-solid fa-lock'></i></button>",
+                        title: 'Inactivar',
                         className: "text-center"
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
-                        className: "text-center"
-                    },
-                    {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
                         className: "text-center"
                     },
                 ],
@@ -167,34 +162,21 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-            obtener_inactivar("#example tbody", table);    
-            table.on("init", function() {
-                for (var i; i < table.rows().count(); i++) {
-                    var row = table.row(i);
-                    var estado = row.data().activo;
-                    alert(estado);
-                    if (estado == '1') {
-                        $(row).css("background-color", "#f00");
-                    }
-                }
-            });
+            obtener_inactivar("#example tbody", table);   
 
-
-            function obtener_inactivar(tbody, table) {
-                $(tbody).ready(function() {
-                    $('#inactivar').click(function(event){
-                        if($(this).is(":checked")) {
-                        console.log('entra');
-                        alert('entra');
-                        }
-                        else{
-                            console.log('entra');
-                            alert('entra');
-                        }
+            f$(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    Swal.fire({
+                        itle: "Desea inactivar el programa " + data.nombre,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
                     })
 
-                });
-            }
+            });
         }
     }
 </script>

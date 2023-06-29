@@ -184,6 +184,8 @@ class UserController extends Controller
             $id = decrypt($id_llegada);
         }
         var_dump($id);
+        var_dump($codFacultad);
+        var_dump($nombre);
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
         'nombre' => $nombre])

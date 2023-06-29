@@ -285,9 +285,9 @@ class MafiController extends Controller
                             'marca_ingreso' => $value->periodo,
                         ]);*/
 
-                        if($insertEstudinate):
+                        /*if($insertEstudinate):
                             $numeroRegistros++;
-                        endif;
+                        endif;*/
                         /*$orden = 1;
                         foreach ($baseAcademica as $key => $valueBaseAcademica) :
                             if (!in_array($valueBaseAcademica, $historialArray)) :

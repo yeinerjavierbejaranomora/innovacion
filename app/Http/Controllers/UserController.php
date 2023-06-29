@@ -177,15 +177,17 @@ class UserController extends Controller
     public function updatefacultad()
     {
         $id_llegada = $_POST['id'];
+        $codFacultad = $_POST['codFacultad'];
+        $nombre = $_POST['nombre'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-        $codFacultad = $_POST['codFacultad'];
-        dd($codFacultad);
-        $nombre = $_POST['nombre'];
+        dd($id_llegada);
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad],['nombre' => $nombre])->where('id', '=', $id);
+        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
+        'nombre' => $nombre])
+        ->where('id', '=', $id);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

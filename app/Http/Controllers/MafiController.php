@@ -225,6 +225,7 @@ class MafiController extends Controller
                                     ->orderBy('orden','desc')
                                     ->orderBy('ciclo','desc')
                                     ->get();
+                                    
                     dd($baseAcademica);
 
                     foreach($baseAcademica as $key => $valueBaseAcademica):

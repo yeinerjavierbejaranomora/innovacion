@@ -147,17 +147,12 @@
                     },
                     {
                         defaultContent: "<button type='button' class='inactivar btn btn-info'><i class='fa-solid fa-lock'></i></button>",
-                        title: 'Activo',
+                        title: 'Inactivar',
                         className: "text-center"
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
-                        className: "text-center"
-                    },
-                    {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
                         className: "text-center"
                     },
                 ],

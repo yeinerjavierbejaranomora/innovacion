@@ -281,8 +281,8 @@ class MafiController extends Controller
          $periodo=DB::table('periodo')
         ->where(['periodoActivo'=>1])
         ->get();
-         dd($periodo);
-        return true;
+         
+        return  $periodo;
 
     }
 
@@ -292,13 +292,10 @@ class MafiController extends Controller
 
         
         /// para activar el perodo activo en la base de datos
-        $this->periodo();
-
+        $periodo=$this->periodo();
+        dd($periodo);
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
-        $periodo=DB::table()
-        ->where()
-        ->get();
-
+     
 
         $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
 

@@ -165,8 +165,7 @@
                                 return "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";
                             }
                         } 
-                    },
-                    
+                    },   
                 ],
 
                 "language": {

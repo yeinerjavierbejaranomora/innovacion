@@ -6,15 +6,14 @@
 <!--  creamos el contenido principal body -->
 
 <style>
+    button.activo {
+        background-color: 'green',
+    }
 
-button.activo{
-    background-color: 'green',
-}
-
-button.inactivo{
-    background-color;: 'red',
-}
-
+    button.inactivo {
+        background-color;
+        : 'red',
+    }
 </style>
 
 <!-- Content Wrapper -->
@@ -163,71 +162,108 @@ button.inactivo{
                     },
                     {
                         defaultContent: " ",
-                        title: "Estado", 
-                        className: "text-center",   
+                        title: "Estado",
+                        className: "text-center",
                     },
                     {
                         defaultContent: "<button type='button' id='boton'></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                     },
-                    
+
                 ],
-                rowCallback: function(row, data)
-                {
-                    if(data.activo == 1){
-                        $("td:eq(5) button",row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
-                        $("td:eq(4)",row).append("Activo");
-                    }
-                    else{                    
-                        $("td:eq(5) button",row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");
-                        $("td:eq(4)",row).append("Inactivo");
+                rowCallback: function(row, data) {
+                    if (data.activo == 1) {
+                        $("td:eq(5) button", row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
+                        $("td:eq(4)", row).append("Activo");
+                    } else {
+                        $("td:eq(5) button", row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");
+                        $("td:eq(4)", row).append("Inactivo");
                     }
                 },
-                
+
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                
+
             });
-    
+
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
-                    Swal.fire({
-                        title: "¿Desea inactivar el programa " + data.programa + "?",
-                        text: "No podrá deshacer este cambio",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        cancelButtonColor: '#DC3545',
-                        cancelButtonText: "No, Cancelar",
-                        confirmButtonText: "Si"
-                    }).then(result => {
-                        if (result.value) {
-                            $.post('{{ route('programa.inactivar')}}', {
-                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                codigo: data.codprograma,
-                            }, function(result) {
-                                console.log(result);
-                                if (result == "deshabilitado") {
-                                    Swal.fire({   
-                                        title: "Programa deshabilitado",
-                                        html: "El programa <strong>" + data.programa +
-                                        "</strong> ha sido inactivado",
-                                        icon: 'info',
-                                        showCancelButton: true,
-                                        confirmButtonText: "Aceptar",
-                                    }).then(result => {
-                                        if (result.value) {
-                                            location.reload();
-                                        };
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el programa " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post('{{ route('programa.inactivar ')}}', {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Programa deshabilitado",
+                                                html: "El programa <strong>" + data.programa +
+                                                    "</strong> ha sido inhabilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
                                     })
-                                }
-                            })
-                        }
-                    });
+                            }
+                        });
+
+                    }
+                    else
+                    {
+                        Swal.fire({
+                            title: "¿Desea activar el programa " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post('{{ route('programa.activar ')}}', {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Programa habilitado",
+                                                html: "El programa <strong>" + data.programa +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        }); 
+                    }
                 });
             }
 

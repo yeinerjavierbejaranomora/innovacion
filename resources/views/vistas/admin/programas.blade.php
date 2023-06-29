@@ -161,18 +161,14 @@
                         className: "text-center"
                     },
                     {
-
-                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         rowCallback: function(row, data) {
                             if (data.activo == '1') {
-                                // $("td:eq(3)",row).html("Activo"),
-                                consulta = $("td:eq(4)", row).add("btn-success");
+                                return "<button type='button' id='boton' class='inactivar btn btn-success'><i class='fa-solid fa-lock'></i></button>",
                             } else {
                                 // $("td:eq(3)",row).html("Inactivo"),
-                                $("td:eq(4)", row).addClass("btn-danger");
-                                5
+                                return "<button type='button' id='boton' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
                             }
                         },
                     },

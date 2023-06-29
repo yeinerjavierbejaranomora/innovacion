@@ -221,7 +221,7 @@ class MafiController extends Controller
                                     ->select('codigoCurso','semestre','ciclo','orden')
                                     ->where('codprograma',$value->programa)
                                     ->orderBy('semestre','asc')
-                                    ->orderBy('ciclo','asc')
+                                    //->orderBy('ciclo','asc')
                                     ->get();
 
                     dd($baseAcademica);

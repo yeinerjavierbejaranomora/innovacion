@@ -221,11 +221,9 @@ class MafiController extends Controller
                     $baseAcademica = DB::table('mallaCurricular')
                                     ->select('codigoCurso')
                                     ->where('codprograma',$value->programa)
-                                    ->orderBy('semestre','desc')
-                                    ->orderBy('orden','desc')
-                                    ->orderBy('ciclo','desc')
+                                    ->orderByRaw('semestre - ciclo - orden DESC')
                                     ->get();
-                                    
+
                     dd($baseAcademica);
 
                     foreach($baseAcademica as $key => $valueBaseAcademica):

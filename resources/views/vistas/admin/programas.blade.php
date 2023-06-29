@@ -155,7 +155,7 @@
                     },
                     {
                         defaultContent: "<button type='button' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
-                        title: 'Inactivar',
+                        title: 'Inactivar / Activar',
                         className: "text-center"
                     },
                     

@@ -192,6 +192,7 @@ class MafiController extends Controller
             $concultaTrasferente = DB::table('datosMafiReplica')
             ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
             ->where('datosMafiReplica.idbanner','=',$data[23][4675]->idbanner)->get();
+            dd($concultaTrasferente);
             if($concultaTrasferente->count() == 0):
                 return "No tiene historial";
             else:

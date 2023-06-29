@@ -178,12 +178,9 @@
                     },
                 ],
 
-
-
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-
             });
 
             function obtener_data_inactivar(tbody, table) {
@@ -200,8 +197,7 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('
-                                programa.inactivar ')}}', {
+                            $.post('{{ route('programa.inactivar')}}', {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     codigo: data.codprograma,
                                 },

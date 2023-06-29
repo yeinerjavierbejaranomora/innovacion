@@ -182,6 +182,7 @@ class UserController extends Controller
             $id = decrypt($id_llegada);
         }
         $codFacultad = $_POST['codFacultad'];
+        dd($codFacultad);
         $nombre = $_POST['nombre'];
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad],['nombre' => $nombre])->where('id', '=', $id);

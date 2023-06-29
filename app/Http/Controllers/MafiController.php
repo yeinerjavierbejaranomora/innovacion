@@ -216,7 +216,6 @@ class MafiController extends Controller
                     ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
                     ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
                     $historialArray = $historial->toArray();
-                    //dd($historialArray);
 
                     $baseAcademica = DB::table('mallaCurricular')
                                     ->select('codigoCurso')

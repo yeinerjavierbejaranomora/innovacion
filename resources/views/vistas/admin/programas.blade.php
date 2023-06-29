@@ -7,6 +7,14 @@
 
 <style>
 
+button.activo{
+    background-color: 'green',
+}
+
+button.inactivo{
+    background-color;: 'red',
+}
+
 </style>
 
 <!-- Content Wrapper -->
@@ -165,13 +173,15 @@
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4)",row).addClass("btn-success")
+                        consulta = $("td:eq(4)",row).add("btn-sucess");
+                        alert(consulta);
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4)",row).addClass("btn-danger")
+                        $("td:eq(4)",row).addClass("btn-danger");5
                     }
                 },
+                
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

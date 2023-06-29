@@ -174,12 +174,12 @@ button.inactivo{
                     if(data.activo == 1){
                        // $("td:eq(3)",row).html("Activo"),
                         $("td:eq(4) button",row).addClass("inactivar btn btn-success");
-                        $("td:eq(4) button",row).append("<i class='fa-solid fa-lock'></i>");
+                        $("td:eq(4) button",row).append("<i class='fa-solid fa-unlock'></i>");
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
                         $("td:eq(4) button",row).addClass("inactivar btn btn-danger");
-                        $("td:eq(4) button",row).append("<i class='fa-solid fa-unlock'></i>");
+                        $("td:eq(4) button",row).append("<i class='fa-solid fa-lock'></i>");
                     }
                 },
                 

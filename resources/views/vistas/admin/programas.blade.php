@@ -5,6 +5,9 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
+<style>
+
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -151,12 +154,22 @@
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button' class=''><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center"
                     },
                     
                 ],
+
+                rowCallback: function(row, data, index)
+                {
+                    if(data.activo == 1){
+                        $("td:eq(3)",row).addClass("inactivar btn btn-sucess")
+                    }
+                    else{
+                        $("td:eq(3)",row).addClass("inactivar btn btn-danger")
+                    }
+                },
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
@@ -193,7 +206,6 @@
                                         confirmButtonText: "Aceptar",
                                     }).then(result => {
                                         if (result.value) {
-                                            alert('entra');
                                             location.reload();
                                         };
                                     })

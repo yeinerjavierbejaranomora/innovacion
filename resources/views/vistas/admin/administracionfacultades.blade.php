@@ -158,7 +158,7 @@
                             <form>
                             <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
                             <br> 
-                            <input type="text" id="nombre" name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre">                      
+                            <input type="text" id="name" name="name" value="${data.nombre}" class="form-control" placeholder="nombre">                      
                             </form>
                         `,
                         icon: 'info',
@@ -173,7 +173,7 @@
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
                                 codFacultad: $(document).find('#codigo').val(),
-                                nombre: $(document).find('#nombre').val()
+                                nombre: $(document).find('#name').val()
                             }, 
                             function(result) {    
                                 console.log(result);                               

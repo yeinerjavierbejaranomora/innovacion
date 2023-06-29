@@ -178,7 +178,8 @@ class UserController extends Controller
     {
         $id_llegada = $_POST['id'];
         $codFacultad = $_POST['codFacultad'];
-        $nombre = $_POST['nombre'];
+        $nombre = $_POST['name'];
+        var_dump($_POST);
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);

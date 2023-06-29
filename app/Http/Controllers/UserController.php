@@ -184,11 +184,12 @@ class UserController extends Controller
             $id = decrypt($id_llegada);
         }
         var_dump($id);
-        die();
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
         'nombre' => $nombre])
         ->where('id', '=', $id);
+        var_dump($facultad);
+        die();
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

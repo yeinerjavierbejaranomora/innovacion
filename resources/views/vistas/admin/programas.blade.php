@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' id='inactivar' name='inactivar' checked>",
+                        defaultContent: "<button type='button' class='inactivar btn btn-info'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Activo',
                         className: "text-center"
                     },

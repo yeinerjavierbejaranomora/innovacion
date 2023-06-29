@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
-            dd($data[25]);
+            dd($data[23]);
         if(str_contains($data[0][3]->tipoestudiante,'TRANSFERENTE EXTERNO')):
             $concultaTrasferente = DB::table('datosMafiReplica')
             ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')

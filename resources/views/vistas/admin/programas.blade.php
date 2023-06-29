@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='form - check - input' type='checkbox' value='' id='flexCheckChecked' checked> <label class ='form-check-label' for = 'flexCheckChecked' >Activo </label>",
+                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
                     },
@@ -167,6 +167,20 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+            function obtener_inactivar(tbody, table) {
+                $(tbody).on("click", "#inactivar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    Swal.fire({
+                        itle: "Desea eliminar el usuario " + data.nombre,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
+                    })
+                });
+            }
         }
     }
 </script>

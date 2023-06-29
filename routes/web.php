@@ -53,8 +53,7 @@ Route::controller(UserController::class)->group(function(){
     /** para salvar las facultades */
     Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
     /** para actualizar las facultades */
-   // Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
-    Route::get('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     //** Ruta para cargar vista con los roles */
     Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */

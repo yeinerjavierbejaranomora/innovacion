@@ -134,11 +134,13 @@
                     },
                     {
                         defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        title: 'Editar',
+                        className: "text-center"
                     },
                     {
                         defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        title: 'Eliminar',
+                        className: "text-center"
                     },
                 ],
                 "language": {
@@ -168,17 +170,17 @@
                     }).then(result => {
                         if (result.value) {
                             $.post('{{ route('admin.updatefacultad') }}', {                             
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    id: encodeURIComponent(window.btoa(data.id)),
-                                    codFacultad: $('#codigo').val(),
-                                    nombre: $('#nombre').val(),
-                                },
-                                function(result) {
-                                    if (result == "true") {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                                codFacultad: $('#codigo').val(),
+                                nombre: $('#nombre').val(),
+                            }, 
+                            function(result) {
+                                    if (result == "actualizado") {
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
-                                        })
+                                        });
                                     }
                                 }
                             )

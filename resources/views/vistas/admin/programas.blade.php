@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='form - check - input' type='checkbox' value='' id='flexCheckChecked' checked> <label class ='form-check-label' for = 'flexCheckChecked' >Checked checkbox </label>",
+                        defaultContent: " <input class='form - check - input' type='checkbox' value='' id='flexCheckChecked' checked> <label class ='form-check-label' for = 'flexCheckChecked' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
                     },

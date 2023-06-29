@@ -168,7 +168,7 @@
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
-                        title: "¿Desea inactivar el programa " + data.nombre +"?",
+                        title: "¿Desea inactivar el programa " + data.nombre + "?",
                         text: "No podrá deshacer este cambio",
                         icon: 'warning',
                         showCancelButton: true,
@@ -178,19 +178,22 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
+                            alert(data);
                             $.post("{{ route('programa.inactivar')}}"), {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     codigo: data.codprograma,
                                 },
                                 function(result) {
-                                    Swal.fire({
-                                        title: "Programa inhabilitado",
-                                        html: "El programa <strong>" + data.programa +
-                                            "</strong> ha sido inactivado",
-                                        icon: 'info',
-                                        showCancelButton: true,
-                                        confirmButtonText: "Aceptar",
-                                    });
+                                    if (result == "true") {
+                                        Swal.fire({
+                                            title: "Programa inhabilitado",
+                                            html: "El programa <strong>" + data.programa +
+                                                "</strong> ha sido inactivado",
+                                            icon: 'info',
+                                            showCancelButton: true,
+                                            confirmButtonText: "Aceptar",
+                                        });
+                                    }
                                 }
                         }
                     });

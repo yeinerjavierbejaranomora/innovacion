@@ -171,7 +171,7 @@
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4)",row).addClass("btn-danger")
+                        $("td:eq(4)",row)
                         {
                             $('#boton').addclass('inactivar btn btn-danger');
                         }

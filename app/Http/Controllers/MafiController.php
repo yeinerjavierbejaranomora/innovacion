@@ -213,16 +213,20 @@ class MafiController extends Controller
 
                     $historial = DB::table('datosMafiReplica')
                     ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-                    ->where('datosMafiReplica.idbanner','=',$value->idbanner)->count();
-                    if($historial == 0):
-                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
+                    ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
+
+                    $baseAcademica = DB::table('mallaCurricular')
+                                    ->select('codprograma')
+                                    ->where('codprograma',$value->programa)
+                                    ->get();
+                                    dd($baseAcademica);
+
+                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO') && $historial->count() == 0):
                             /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
                             /**Insert tabla alertas_tempranas, transferente sin historial academico */
-                        else:
-                            /**Insert tabla estudiantes */
-                        endif;
                     else:
-                        /**Insert tabla estudiantes  */
+
+                            /**Insert tabla estudiantes */
                     endif;
                 endforeach;
             endforeach;

@@ -240,7 +240,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('programa.activar ') }}', {
+                                $.post('{{ route('programa.activar') }}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     }, function(result) {

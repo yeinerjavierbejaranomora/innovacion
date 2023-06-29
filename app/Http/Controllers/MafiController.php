@@ -261,7 +261,19 @@ class MafiController extends Controller
                         endif;
                     else :
                         /**Insert tabla estudiantes */
-                        $insertEstudinate = Estudiante::create([
+                        try {
+                            DB::beginTransaction();
+                            $historial = DB::table('datosMafiReplica')
+                                ->select('historialAcademico.codMateria')
+                                ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
+                                ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
+                            $historialArray = $historial->toArray();
+                            DB::commit();
+                        } catch (\Exception $e) {
+                            DB::rollback();
+                            return response()->json(['message' => 'Error en la transacción: ' . $e->getMessage()], 500);
+                        }
+                        /*$insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
                             'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
@@ -271,7 +283,7 @@ class MafiController extends Controller
                             'tipo_estudiante' => $value->tipoestudiante,
                             'materias_faltantes' => "OK",
                             'marca_ingreso' => $value->periodo,
-                        ]);
+                        ]);*/
 
                         if($insertEstudinate):
                             $numeroRegistros++;

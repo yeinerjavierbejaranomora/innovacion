@@ -232,7 +232,7 @@ class MafiController extends Controller
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
                         $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
-                            'nombre' => $value->primer_Apellido,
+                            'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
                             'bolsa' => $value->ruta_academica,
                             'operador' => $value->operador,
@@ -261,7 +261,7 @@ class MafiController extends Controller
                         /**Insert tabla estudiantes */
                         $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
-                            'nombre' => $value->primer_Apellido,
+                            'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
                             'bolsa' => $value->ruta_academica,
                             'operador' => $value->operador,

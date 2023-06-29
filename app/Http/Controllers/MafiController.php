@@ -216,12 +216,12 @@ class MafiController extends Controller
                     ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
                     ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
                     $historialArray = $historial->toArray();
-                    //dd($historialArray);
 
                     $baseAcademica = DB::table('mallaCurricular')
-                                    ->select('codigoCurso','semestre','ciclo','orden')
+                                    ->select('codigoCurso')
                                     ->where('codprograma',$value->programa)
-                                    ->orderByRaw('semestre - ciclo - orden DESC')
+                                    ->orderBy('semestre','asc')
+                                    ->orderBy('ciclo','asc')
                                     ->get();
 
                     dd($baseAcademica);

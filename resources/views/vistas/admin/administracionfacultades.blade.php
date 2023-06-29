@@ -173,11 +173,13 @@
                                 console.log(result);                               
                                     if (result == "actualizado") {
 
-                                        table.reload();
+                                      
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
                                         });
+
+                                        location.reload();
                                     }
                                 }
                             )

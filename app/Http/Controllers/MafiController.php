@@ -252,7 +252,7 @@ class MafiController extends Controller
                         $insertAlerta = AlertasTempranas::create([
                             'idbanner' => $value->idbanner,
                             'tipo_estudiante' => $value->tipoestudiante,
-                            'desccripcion' => 'El estudiante con idBanner'.$value->idabanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                            'desccripcion' => 'El estudiante con idBanner'.$value->idbanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
                         ]);
 
                         if($insertAlerta):
@@ -292,8 +292,32 @@ class MafiController extends Controller
                             endif;
                         endforeach;
                     endif;
+                    $ultimoRegistroId = $value->id;
+                    $idBannerUltimoRegistro = $value->idbanner;
                 endforeach;
             endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert',
+                'tabla_afectada' => 'estudiantes',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            if ($insertLog && $insertIndiceCambio) :
+                return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
+                "<br> Numero de registrosen alertas: ".$numeroRegistrosAlertas.
+                "inicio:".$fechaInicio." Fin:".$fechaFin;
+            endif;
         else :
             return "No hay registros para replicar";
         endif;

@@ -172,4 +172,17 @@ class facultadController extends Controller
          echo json_encode(array('data' => $malla));
     }
  
+
+    /* Método para inactivar programa */
+
+    public function inactivar_programa(){
+            $cod_llegada = $_POST['codigo'];
+            dd($cod_llegada);
+            $inactivarPrograma = DB::table('programas')->where('codprograma', $cod_llegada)->update(['activo' => 0]);
+            if ($inactivarPrograma) :
+                return  "true";
+            else :
+                return "false";
+            endif;
+    }
 }

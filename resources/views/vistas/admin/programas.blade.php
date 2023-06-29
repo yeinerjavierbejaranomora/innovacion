@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn btn-info'><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center"
                     },
@@ -162,9 +162,10 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-            obtener_inactivar("#example tbody", table);   
+            obtener_data_inactivar("#example tbody", table);
 
-            f$(tbody).on("click", "button.inactivar", function(event) {
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
                         itle: "Desea inactivar el programa " + data.nombre,
@@ -174,9 +175,26 @@
                         cancelButtonColor: '#DC3545',
                         cancelButtonText: "No, Cancelar",
                         confirmButtonText: "Si"
-                    })
-
-            });
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{ route('programa.inactivar')}}'), {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    codigo: data.codprograma,
+                                },
+                                function(result) {
+                                    Swal.fire({
+                                        title: "Programa inhabilitado",
+                                        html: "El programa <strong>" + data.programa +
+                                            "</strong> ha sido inactivado",
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonText: "Aceptar",
+                                    });
+                                }
+                        }
+                    });
+                });
+            }
         }
     }
 </script>

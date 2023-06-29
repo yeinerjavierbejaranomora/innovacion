@@ -59,7 +59,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */
     Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
-
+   
 });
 
 Route::controller(MafiController::class)->group(function(){
@@ -154,6 +154,9 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/malla/{codigo}', 'malla')->middleware('auth')->name('facultad.malla');
     /** Ruta para visualizar la malla curricular */
     Route::get('/home/getmalla/{codigo}', 'mostrarmallacurricular')->middleware('auth')->name('facultad.getmalla');
+
+     //** Ruta para inactivar programa */
+     Route::post('/home/inactivarprograma', 'inactivar_programa')->middleware('auth')->name('programa.inactivar');
 });
 
 

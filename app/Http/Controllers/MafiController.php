@@ -212,7 +212,7 @@ class MafiController extends Controller
                 foreach ($estudiantes as $key => $value) :
 
                     $historial = DB::table('datosMafiReplica')
-                    ->select('datosMafiReplica.codMateria')
+                    ->select('historialAcademico.codMateria')
                     ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
                     ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
 

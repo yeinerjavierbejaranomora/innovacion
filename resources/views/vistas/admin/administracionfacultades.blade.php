@@ -139,7 +139,8 @@
                     },
                     {
                         defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        title: 'Eliminar',
+                        className: "text-center"
                     },
                 ],
                 "language": {

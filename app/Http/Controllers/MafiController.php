@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(100);
+                ->chunk(300);
         else :
         endif;
         //dd($data[23][4675]);

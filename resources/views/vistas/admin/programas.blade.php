@@ -177,8 +177,7 @@
                 },
                 
             });
-
-            
+    
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();

@@ -172,8 +172,8 @@
                             $.post('{{ route('admin.updatefacultad') }}', {                             
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
-                                codFacultad: $('#codigo').val(),
-                                nombre: $('#nombre').val()
+                                codFacultad: $(document).find('#codigo').val(),
+                                nombre: $(document).find('#nombre').val()
                             }, 
                             function(result) {    
                                 console.log(result);                               

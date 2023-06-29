@@ -177,15 +177,12 @@ class UserController extends Controller
     public function updatefacultad()
     {
         $id_llegada = $_POST['id'];
-        dd($id_llegada);
         $id = base64_decode(urldecode($id_llegada));
-
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
         $codFacultad = $_POST['codFacultad'];
         $nombre = $_POST['nombre'];
-        var_dump('llega');
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id', '=', $id);
         if ($facultad) :

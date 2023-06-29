@@ -6,14 +6,15 @@
 <!--  creamos el contenido principal body -->
 
 <style>
-    button.activo {
-        background-color: 'green',
-    }
 
-    button.inactivo {
-        background-color;
-        : 'red',
-    }
+button.activo{
+    background-color: 'green',
+}
+
+button.inactivo{
+    background-color;: 'red',
+}
+
 </style>
 
 <!-- Content Wrapper -->
@@ -161,25 +162,32 @@
                         className: "text-center"
                     },
                     {
-                        
+
+                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                     },
+                    
                 ],
-                rowCallback: function(row, data) {
-                    if (data.activo == '1') {
-                        return "<button type='button' id='boton' class='inactivar btn btn-success'><i class='fa-solid fa-lock'></i></button>";
-                    } else {
-                        // $("td:eq(3)",row).html("Inactivo"),
-                        return "<button type='button' id='boton' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";
+                rowCallback: function(row, data)
+                {
+                    if(data.activo == '1'){
+                       // $("td:eq(3)",row).html("Activo"),
+                        consulta = $("td:eq(4)",row).add("btn-success");
+                    }
+                    else{
+                       // $("td:eq(3)",row).html("Inactivo"),
+                        $("td:eq(4)",row).addClass("btn-danger");5
                     }
                 },
+                
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
+                
             });
-
+    
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
@@ -195,26 +203,25 @@
                     }).then(result => {
                         if (result.value) {
                             $.post('{{ route('programa.inactivar')}}', {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    codigo: data.codprograma,
-                                },
-                                function(result) {
-                                    console.log(result);
-                                    if (result == "deshabilitado") {
-                                        Swal.fire({
-                                            title: "Programa deshabilitado",
-                                            html: "El programa <strong>" + data.programa +
-                                                "</strong> ha sido inactivado",
-                                            icon: 'info',
-                                            showCancelButton: true,
-                                            confirmButtonText: "Aceptar",
-                                        }).then(result => {
-                                            if (result.value) {
-                                                location.reload();
-                                            };
-                                        })
-                                    }
-                                })
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                codigo: data.codprograma,
+                            }, function(result) {
+                                console.log(result);
+                                if (result == "deshabilitado") {
+                                    Swal.fire({   
+                                        title: "Programa deshabilitado",
+                                        html: "El programa <strong>" + data.programa +
+                                        "</strong> ha sido inactivado",
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonText: "Aceptar",
+                                    }).then(result => {
+                                        if (result.value) {
+                                            location.reload();
+                                        };
+                                    })
+                                }
+                            })
                         }
                     });
                 });

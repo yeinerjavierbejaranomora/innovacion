@@ -170,7 +170,6 @@
                                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                                 id: encodeURIComponent(window.btoa(data.id)),
                                             }, function(result) {
-                                                console.log(result);
                                                 if (result == 'true') {
                                                     location.reload();
                                                 }

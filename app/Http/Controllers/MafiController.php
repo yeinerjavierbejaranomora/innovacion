@@ -294,8 +294,8 @@ class MafiController extends Controller
                     endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
-                    sleep(5);
                 endforeach;
+                sleep(5);
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

@@ -72,6 +72,7 @@ class UserController extends Controller
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
+        
         /** traemos las facultades del sistema  */
         if (!empty($user->id_facultad)) {
 

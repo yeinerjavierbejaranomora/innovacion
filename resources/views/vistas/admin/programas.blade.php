@@ -146,8 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        data: 'activo',
-                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
+                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
                     },
@@ -181,17 +180,18 @@
 
 
             function obtener_inactivar(tbody, table) {
-                $(tbody).on("submit", "#inactivar", function() {
-                    var data = table.row($(this).parents("tr")).data();
-                    Swal.fire({
-                        itle: "Desea eliminar la facultad " + data.nombre,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        cancelButtonColor: '#DC3545',
-                        cancelButtonText: "No, Cancelar",
-                        confirmButtonText: "Si"
+                $(tbody).ready(function() {
+                    $('#inactivar').click(function(event){
+                        if($(this).is(":checked")) {
+                        console.log('entra');
+                        alert('entra');
+                        }
+                        else{
+                            console.log('entra');
+                            alert('entra');
+                        }
                     })
+
                 });
             }
         }

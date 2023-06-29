@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlertasTempranas;
+use App\Models\Estudiante;
 use App\Models\IndiceCambiosMafi;
 use App\Models\LogAplicacion;
 use App\Models\Mafi;
 use App\Models\MafiReplica;
+use App\Models\MateriasPorVer;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +50,7 @@ class MafiController extends Controller
             endif;
         endforeach;
 
-        $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','datosMafiReplica']])->orderBy('id', 'desc')->first();
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'datosMafiReplica']])->orderBy('id', 'desc')->first();
         //return $log->idFin;
         if (empty($log)) :
             /** Consulta de los datos tabla datMafi */
@@ -81,9 +84,9 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     //dd($value->sello);
-                    if($value->sello === 'TIENE RETENCION'):
-                        $consultaActivoPlataforma = DB::table('datosMafi')->where([['id','=',$value->id],['sello','=',$value->sello]])->whereIn('autorizado_asistir',['ACTIVO EN PLATAFORMA', 'ACTIVO EN PLATAFORMA ICETEX'])->first();
-                        if($consultaActivoPlataforma):
+                    if ($value->sello === 'TIENE RETENCION') :
+                        $consultaActivoPlataforma = DB::table('datosMafi')->where([['id', '=', $value->id], ['sello', '=', $value->sello]])->whereIn('autorizado_asistir', ['ACTIVO EN PLATAFORMA', 'ACTIVO EN PLATAFORMA ICETEX'])->first();
+                        if ($consultaActivoPlataforma) :
                             $insertar = MafiReplica::create([
                                 'idbanner' => $value->idbanner,
                                 'primer_apellido' => $value->primer_apellido,
@@ -100,7 +103,7 @@ class MafiController extends Controller
                             ]);
                             $numeroRegistros++;
                         endif;
-                    else:
+                    else :
                         $insertar = MafiReplica::create([
                             'idbanner' => $value->idbanner,
                             'primer_apellido' => $value->primer_apellido,
@@ -132,19 +135,19 @@ class MafiController extends Controller
                 'fechaFin' => $fechaFin,
                 'accion' => 'Insert',
                 'tabla_afectada' => 'datosMafiReplica',
-                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId .',insertando '.$numeroRegistros .' registros',
+                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
             ]);
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
                 'accion' => 'Insert',
-                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId .',insertando '.$numeroRegistros .' registros',
+                'descripcion' => 'Se realizo la insercion en la tabla datosMafiRelica desde la tabla datosMafi, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
-            if($insertLog && $insertIndiceCambio):
-                return "Numero de registros: '.$numeroRegistros.'=> primer id registrado: " .$primerId. ', Ultimo id registrado '. $ultimoRegistroId;
+            if ($insertLog && $insertIndiceCambio) :
+                return "Numero de registros: '.$numeroRegistros.'=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId;
             endif;
-        else:
+        else :
             return "No hay registros para replicar";
         endif;
 
@@ -174,18 +177,18 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
         $this->periodo();
-        $log = DB::table('logAplicacion')->where([['accion','=','Insert'],['tabla_afectada','=','estudiantes']])->orderBy('id', 'desc')->first();
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
         if (empty($log)) :
             $data = DB::table('datosMafiReplica')
-                ->join('programas','datosMafiReplica.programa','=','programas.codprograma')
-                ->join('periodo','datosMafiReplica.periodo','=','periodo.periodos')
+                ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
+                ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
                 ->select('datosMafiReplica.*')
-                ->where([['programas.activo','=',1],['periodo.periodoActivo','=',1]])
+                ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
                 ->chunk(200);
-        else:
+        else :
         endif;
         //dd($data[23][4675]);
         /*if(str_contains($data[0][29]->tipoestudiante,'TRANSFERENTE EXTERNO')):
@@ -205,6 +208,7 @@ class MafiController extends Controller
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
+            $numeroRegistrosAlertas = 0;
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
@@ -212,99 +216,137 @@ class MafiController extends Controller
                 foreach ($estudiantes as $key => $value) :
 
                     $historial = DB::table('datosMafiReplica')
-                    ->select('historialAcademico.codMateria')
-                    ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-                    ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
+                        ->select('historialAcademico.codMateria')
+                        ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
+                        ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
                     $historialArray = $historial->toArray();
 
                     $baseAcademica = DB::table('mallaCurricular')
-                                    ->select('codigoCurso','semestre','ciclo','orden')
-                                    ->where('codprograma',$value->programa)
-                                    ->orderBy('semestre','asc')
-                                    ->orderBy('orden','asc')
-                                    ->get();
+                        ->select('codigoCurso', 'semestre', 'ciclo', 'orden')
+                        ->where('codprograma', $value->programa)
+                        ->orderBy('semestre', 'asc')
+                        ->orderBy('orden', 'asc')
+                        ->get();
 
-                    dd($baseAcademica);
+                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
+                        /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
+                        $insertEstudinate = Estudiante::create([
+                            'homologante' => $value->idbanner,
+                            'nombre' => $value->primer_Apellido,
+                            'programa' => $value->programa,
+                            'bolsa' => $value->ruta_academica,
+                            'operador' => $value->operador,
+                            'tipo_estudiante' => $value->tipoestudiante,
+                            'materias_faltantes' => "OK",
+                            'tiene_historial' => 'SIN HISTORIAL',
+                            'marca_ingreso' => $value->periodo,
+                        ]);
 
-                    foreach($baseAcademica as $key => $valueBaseAcademica):
-
-                        if(!in_array($valueBaseAcademica,$historialArray)):
-                            /** insertar en la tabla materias por ver,  */
+                        if($insertEstudinate):
+                            $numeroRegistros++;
                         endif;
-                    endforeach;
 
-                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO') && $historial->count() == 0):
-                            /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
-                            /**Insert tabla alertas_tempranas, transferente sin historial academico */
-                    else:
+                        /**Insert tabla alertas_tempranas, transferente sin historial academico */
 
-                            /**Insert tabla estudiantes */
+                        $insertAlerta = AlertasTempranas::create([
+                            'idbanner' => $value->idbanner,
+                            'tipo_estudiante' => $value->tipoestudiante,
+                            'desccripcion' => 'El estudiante con idBanner'.$value->idabanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                        ]);
+
+                        if($insertAlerta):
+                            $numeroRegistrosAlertas++;
+                        endif;
+                    else :
+                        /**Insert tabla estudiantes */
+                        $insertEstudinate = Estudiante::create([
+                            'homologante' => $value->idbanner,
+                            'nombre' => $value->primer_Apellido,
+                            'programa' => $value->programa,
+                            'bolsa' => $value->ruta_academica,
+                            'operador' => $value->operador,
+                            'tipo_estudiante' => $value->tipoestudiante,
+                            'materias_faltantes' => "OK",
+                            'marca_ingreso' => $value->periodo,
+                        ]);
+
+                        if($insertEstudinate):
+                            $numeroRegistros++;
+                        endif;
+                        $orden = 1;
+                        foreach ($baseAcademica as $key => $valueBaseAcademica) :
+                            if (!in_array($valueBaseAcademica, $historialArray)) :
+                                /** insertar en la tabla materias por ver,  */
+                                $insertMateriaPorVer = MateriasPorVer::create([
+                                    'codBanner' => $value->idbanner,
+                                    'codMateria' => $valueBaseAcademica->codigoCurso,
+                                    'orden' => $orden,
+                                    'codprograma' => $value->programa,
+
+                                ]);
+                                if ($insertMateriaPorVer) :
+                                    $orden++;
+                                endif;
+                            endif;
+                        endforeach;
                     endif;
                 endforeach;
             endforeach;
-        else:
+        else :
             return "No hay registros para replicar";
         endif;
     }
 
-//*** funcion para activar los periodos automaticamente */
-    public function periodo(){
+    //*** funcion para activar los periodos automaticamente */
+    public function periodo()
+    {
 
-         /** traemos la fecha actual para poder comparar con el periodo */
-         $fechaActual = date('Y-m-d');
-         $mes =explode('-',$fechaActual) ;
-         $periodo = DB::table('periodo')->get();
+        /** traemos la fecha actual para poder comparar con el periodo */
+        $fechaActual = date('Y-m-d');
+        $mes = explode('-', $fechaActual);
+        $periodo = DB::table('periodo')->get();
 
-         foreach ($periodo as $key => $value) {
+        foreach ($periodo as $key => $value) {
 
-            $ciclo1=explode('-',$value->fechaInicioCiclo1);
-            $ciclo2=explode('-',$value->fechaInicioCiclo2);
+            $ciclo1 = explode('-', $value->fechaInicioCiclo1);
+            $ciclo2 = explode('-', $value->fechaInicioCiclo2);
 
-            if (in_array((int)$mes[1], $ciclo1)||in_array((int)$mes[1], $ciclo2)) {
+            if (in_array((int)$mes[1], $ciclo1) || in_array((int)$mes[1], $ciclo2)) {
                 DB::table('periodo')
-                ->where('id', $value->id)
-                ->update(['periodoActivo' => 1]);
+                    ->where('id', $value->id)
+                    ->update(['periodoActivo' => 1]);
 
                 if (in_array((int)$mes[1], $ciclo1)) {
                     DB::table('periodo')
-                    ->where('id', $value->id)
-                    ->update(['activoCiclo1'=>1]);
-                }
-                else{
-                   DB::table('periodo')
-                    ->where('id', $value->id)
-                    ->update(['activoCiclo1'=>0]);
-
+                        ->where('id', $value->id)
+                        ->update(['activoCiclo1' => 1]);
+                } else {
+                    DB::table('periodo')
+                        ->where('id', $value->id)
+                        ->update(['activoCiclo1' => 0]);
                 }
 
                 if (in_array((int)$mes[1], $ciclo2)) {
                     DB::table('periodo')
-                    ->where('id', $value->id)
-                    ->update(['activoCiclo2'=>1]);
+                        ->where('id', $value->id)
+                        ->update(['activoCiclo2' => 1]);
+                } else {
+                    DB::table('periodo')
+                        ->where('id', $value->id)
+                        ->update(['activoCiclo2' => 0]);
                 }
-                else{
-                   DB::table('periodo')
-                    ->where('id', $value->id)
-                    ->update(['activoCiclo2'=>0]);
-
-                }
-
-            }
-            else{
+            } else {
                 DB::table('periodo')
-                ->where('id', $value->id)
-                ->update(['periodoActivo' => 0]);
-
+                    ->where('id', $value->id)
+                    ->update(['periodoActivo' => 0]);
             }
+        }
 
-         }
-
-         $periodo=DB::table('periodo')
-        ->where(['periodoActivo'=>1])
-        ->get();
+        $periodo = DB::table('periodo')
+            ->where(['periodoActivo' => 1])
+            ->get();
 
         return  $periodo;
-
     }
 
     /** para generar materias faltantes de los estudiantes  */
@@ -313,7 +355,7 @@ class MafiController extends Controller
 
 
         /// para activar el perodo activo en la base de datos
-        $periodo=$this->periodo();
+        $periodo = $this->periodo();
         dd($periodo);
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 

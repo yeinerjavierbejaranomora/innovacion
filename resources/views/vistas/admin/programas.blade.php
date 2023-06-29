@@ -173,7 +173,7 @@ button.inactivo{
                 {
                     if(data.activo == 1){
                        // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4) button",row).add("inactivar btn btn-success");
+                        $("td:eq(4) button",row).addClass("inactivar btn btn-success");
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),

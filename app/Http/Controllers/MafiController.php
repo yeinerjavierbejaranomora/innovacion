@@ -252,7 +252,7 @@ class MafiController extends Controller
                         $insertAlerta = AlertasTempranas::create([
                             'idbanner' => $value->idbanner,
                             'tipo_estudiante' => $value->tipoestudiante,
-                            'desccripcion' => 'El estudiante con idBanner'.$value->idabanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                            'desccripcion' => 'El estudiante con idBanner'.$value->idbanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
                         ]);
 
                         if($insertAlerta):

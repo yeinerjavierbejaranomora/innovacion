@@ -154,7 +154,7 @@
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class=''><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center"
                     },

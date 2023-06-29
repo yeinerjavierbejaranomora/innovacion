@@ -161,6 +161,7 @@
                         className: "text-center"
                     },
                     {
+                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         rowCallback: function(row, data) {

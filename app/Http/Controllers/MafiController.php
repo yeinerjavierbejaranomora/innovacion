@@ -223,9 +223,9 @@ class MafiController extends Controller
                                     ->where('codprograma',$value->programa)
                                     ->get();
                     foreach($baseAcademica as $key => $valueBaseAcademica):
-                        if(!in_array($valueBaseAcademica,$historial)):
+                        /*if(!in_array($valueBaseAcademica,$historial)):
                         else:
-                        endif;
+                        endif;*/
                     endforeach;
 
                     if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO') && $historial->count() == 0):

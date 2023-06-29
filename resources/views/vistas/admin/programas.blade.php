@@ -149,12 +149,16 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Estado',
+                        className: "text-center"
+                    },
+                    {
+                        defaultContent: "<button type='button' class='editar btn' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button'><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center"
                     },
@@ -163,10 +167,12 @@
                 rowCallback: function(row, data)
                 {
                     if(data.activo == '1'){
-                        $("td:eq(3)",row).html("Activo")
+                        $("td:eq(3)",row).html("Activo"),
+                        $("td:eq(5)",row).addClass("btn-danger")
                     }
                     else{
-                        $("td:eq(3)",row).html("Inactivo")
+                        $("td:eq(3)",row).html("Inactivo"),
+                        $("td:eq(5)",row).addClass("btn-sucess")
                     }
                 },
 

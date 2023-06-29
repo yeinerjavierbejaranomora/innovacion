@@ -218,7 +218,7 @@ class MafiController extends Controller
                     $historialArray = $historial->toArray();
 
                     $baseAcademica = DB::table('mallaCurricular')
-                                    ->select('codigoCurso')
+                                    ->select('codigoCurso','semestre','ciclo','orden')
                                     ->where('codprograma',$value->programa)
                                     ->orderBy('semestre','asc')
                                     ->orderBy('ciclo','asc')

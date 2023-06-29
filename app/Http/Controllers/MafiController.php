@@ -220,8 +220,8 @@ class MafiController extends Controller
                     $baseAcademica = DB::table('mallaCurricular')
                                     ->select('codigoCurso','semestre','ciclo','orden')
                                     ->where('codprograma',$value->programa)
-                                    ->orderBy(['semestre','orden'],'asc')
-                                    //->orderBy('ciclo','asc')
+                                    ->orderBy('semestre','asc')
+                                    ->orderBy('orden','asc')
                                     ->get();
 
                     dd($baseAcademica);

@@ -256,7 +256,7 @@ class MafiController extends Controller
                                 'operador' => $value->operador,
                                 'nodo'=>'nodo',
                                 'tipo_estudiante' => $value->tipoestudiante,
-                                'tiene_historial' => 'SIN HISTORIAL',
+                                'materias_faltantes' => "OK",
                                 'marca_ingreso' => $value->periodo,
                             ]);
 

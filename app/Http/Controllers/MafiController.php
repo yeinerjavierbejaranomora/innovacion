@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(500);
+                ->chunk(100);
         else :
         endif;
         //dd($data[23][4675]);
@@ -294,7 +294,7 @@ class MafiController extends Controller
                     endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
-                    sleep(10);
+                    sleep(5);
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

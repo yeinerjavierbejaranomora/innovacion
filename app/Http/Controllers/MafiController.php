@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else:
         endif;
-        dd($data);
+            dd($data[]);
         if(str_contains($data[0][3]->tipoestudiante,'TRANSFERENTE EXTERNO')):
             $concultaTrasferente = DB::table('datosMafiReplica')
             ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
@@ -233,7 +233,7 @@ class MafiController extends Controller
          $fechaActual = date('Y-m-d');
          $mes =explode('-',$fechaActual) ;
          $periodo = DB::table('periodo')->get();
-     
+
          foreach ($periodo as $key => $value) {
 
             $ciclo1=explode('-',$value->fechaInicioCiclo1);
@@ -253,9 +253,9 @@ class MafiController extends Controller
                    DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo1'=>0]);
-    
+
                 }
-    
+
                 if (in_array((int)$mes[1], $ciclo2)) {
                     DB::table('periodo')
                     ->where('id', $value->id)
@@ -265,7 +265,7 @@ class MafiController extends Controller
                    DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo2'=>0]);
-    
+
                 }
 
             }
@@ -281,7 +281,7 @@ class MafiController extends Controller
          $periodo=DB::table('periodo')
         ->where(['periodoActivo'=>1])
         ->get();
-         
+
         return  $periodo;
 
     }
@@ -290,12 +290,12 @@ class MafiController extends Controller
     public function Generar_faltantes()
     {
 
-        
+
         /// para activar el perodo activo en la base de datos
         $periodo=$this->periodo();
         dd($periodo);
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
-     
+
 
         $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';
 

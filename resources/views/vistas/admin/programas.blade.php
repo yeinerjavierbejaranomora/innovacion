@@ -162,7 +162,7 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-            obtener_inactivar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
 
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {

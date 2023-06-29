@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(2000);
+                ->chunk(100);
         else :
         endif;
         //dd($data[23][4675]);
@@ -215,23 +215,22 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
 
-                    /*$historial = DB::table('datosMafiReplica')
+                    $historial = DB::table('datosMafiReplica')
                         ->select('historialAcademico.codMateria')
                         ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
                         ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
-                    $historialArray = $historial->toArray();
+                    /*$historialArray = $historial->toArray();
 
                     $baseAcademica = DB::table('mallaCurricular')
                         ->select('codigoCurso', 'semestre', 'ciclo', 'orden')
                         ->where('codprograma', $value->programa)
                         ->orderBy('semestre', 'asc')
                         ->orderBy('orden', 'asc')
-                        ->get();
+                        ->get();*/
 
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
-
-                        /*$insertEstudinate = Estudiante::create([
+                        $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
                             'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
@@ -250,7 +249,7 @@ class MafiController extends Controller
 
                         /**Insert tabla alertas_tempranas, transferente sin historial academico */
 
-                        /*$insertAlerta = AlertasTempranas::create([
+                        $insertAlerta = AlertasTempranas::create([
                             'idbanner' => $value->idbanner,
                             'tipo_estudiante' => $value->tipoestudiante,
                             'desccripcion' => 'El estudiante con idBanner'.$value->idbanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
@@ -261,19 +260,7 @@ class MafiController extends Controller
                         endif;
                     else :
                         /**Insert tabla estudiantes */
-                        try {
-                            DB::beginTransaction();
-                            $historial = DB::table('datosMafiReplica')
-                                ->select('historialAcademico.codMateria')
-                                ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
-                                ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
-                            $historialArray = $historial->toArray();
-                            DB::commit();
-                        } catch (\Exception $e) {
-                            DB::rollback();
-                            return response()->json(['message' => 'Error en la transacción: ' . $e->getMessage()], 500);
-                        }
-                        /*$insertEstudinate = Estudiante::create([
+                        $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
                             'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
@@ -283,11 +270,11 @@ class MafiController extends Controller
                             'tipo_estudiante' => $value->tipoestudiante,
                             'materias_faltantes' => "OK",
                             'marca_ingreso' => $value->periodo,
-                        ]);*/
+                        ]);
 
-                        /*if($insertEstudinate):
+                        if($insertEstudinate):
                             $numeroRegistros++;
-                        endif;*/
+                        endif;
                         /*$orden = 1;
                         foreach ($baseAcademica as $key => $valueBaseAcademica) :
                             if (!in_array($valueBaseAcademica, $historialArray)) :
@@ -303,12 +290,12 @@ class MafiController extends Controller
                                     $orden++;
                                 endif;
                             endif;
-                        endforeach;
-                    endif;*/
+                        endforeach;*/
+                    endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
                 endforeach;
-                //sleep(5);
+                sleep(5);
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

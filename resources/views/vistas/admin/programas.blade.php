@@ -129,80 +129,79 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                var table = $('#example').DataTable({
-                    "data": data.data,
-                    "columns": [{
-                            data: 'codprograma',
-                            title: 'Codigo de programa'
-                        },
-                        {
-                            data: 'programa',
-                            title: 'Programa'
-                        },
-                        {
-                            data: 'nombre',
-                            title: 'Facultad'
-                        },
-                        {
-                            defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
-                            title: 'Inactivar',
-                            className: "text-center"
-                        },
-                        {
-                            defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                            title: 'Editar',
-                            className: "text-center"
-                        },
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var table = $('#example').DataTable({
+                "data": data.data,
+                "columns": [{
+                        data: 'codprograma',
+                        title: 'Codigo de programa'
                     },
-                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    {
+                        data: 'programa',
+                        title: 'Programa'
+                    },
+                    {
+                        data: 'nombre',
+                        title: 'Facultad'
+                    },
+                    {
+                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
+                        title: 'Inactivar',
+                        className: "text-center"
+                    },
+                    {
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar',
+                        className: "text-center"
+                    },
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            });
+
+            obtener_data_inactivar("#example tbody", table);
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    Swal.fire({
+                        title: "¿Desea inactivar el programa " + data.programa + "?",
+                        text: "No podrá deshacer este cambio",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
+                    }).then(result => {
+                        if (result.value) {
+                            $.post("{{ route("programa.inactivar")}}", {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                codigo: data.codprograma,
+                            }, function(result) {
+                                if (result == "true") {
+                                    Swal.fire({
+                                        title: "Programa inhabilitado",
+                                        html: "El programa <strong>" + data.programa +
+                                            "</strong> ha sido inactivado",
+                                        icon: 'info',
+                                        showCancelButton: true,
+                                        confirmButtonText: "Aceptar",
+                                    }).then(result => {
+                                        if (result.value) {
+                                            location.reload();
+                                        };
+                                    })
+                                }
+                            })
+                        }
+                    });
                 });
-
-                obtener_data_inactivar("#example tbody", table);
-
-                function obtener_data_inactivar(tbody, table) {
-                    $(tbody).on("click", "button.inactivar", function(event) {
-                            var data = table.row($(this).parents("tr")).data();
-                            Swal.fire({
-                                title: "¿Desea inactivar el programa " + data.programa + "?",
-                                text: "No podrá deshacer este cambio",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                showCloseButton: true,
-                                cancelButtonColor: '#DC3545',
-                                cancelButtonText: "No, Cancelar",
-                                confirmButtonText: "Si"
-                            }).then(result => {
-                                    if (result.value) {
-                                        $.post("{{ route('programa.inactivar')}}", {
-                                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                                codigo: data.codprograma,
-                                            }, function(result) {
-                                                if (result == "true") {
-                                                    Swal.fire({
-                                                        title: "Programa inhabilitado",
-                                                        html: "El programa <strong>" + data.programa +
-                                                            "</strong> ha sido inactivado",
-                                                        icon: 'info',
-                                                        showCancelButton: true,
-                                                        confirmButtonText: "Aceptar",
-                                                    }).then(result => {
-                                                            if (result.value) {
-                                                                location.reload();
-                                                            };
-                                                        })
-                                                    }
-                                                }
-                                            )
-                                        }
-                                    });
-                            });
-                    }
-                }
             }
+        }
+    }
 </script>
 @include('layout.footer')

@@ -184,7 +184,7 @@ class UserController extends Controller
         $codFacultad = $_POST['codFacultad'];
         $nombre = $_POST['nombre'];
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id', '=', $id);
+        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad],['nombre' => $nombre])->where('id', '=', $id);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

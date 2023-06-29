@@ -175,7 +175,6 @@
                                 codFacultad: $('#codigo').val(),
                                 nombre: $('#nombre').val(),
                             }, function(result) {
-                                alert('entra');
                                     
                                     if (result == "actualizado") {
                                         Swal.fire({

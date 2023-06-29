@@ -231,7 +231,6 @@ class MafiController extends Controller
 
          /** traemos la fecha actual para poder comparar con el periodo */
          $fechaActual = date('Y-m-d');
-         
          $mes =explode('-',$fechaActual) ;
          $periodo = DB::table('periodo')->get();
      
@@ -241,29 +240,29 @@ class MafiController extends Controller
             $ciclo2=explode('-',$value->fechaInicioCiclo2);
 
             if (in_array((int)$mes[1], $ciclo1)||in_array((int)$mes[1], $ciclo2)) {
-                $affected = DB::table('periodo')
+                DB::table('periodo')
                 ->where('id', $value->id)
                 ->update(['periodoActivo' => 1]);
 
                 if (in_array((int)$mes[1], $ciclo1)) {
-                    $affected = DB::table('periodo')
+                    DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo1'=>1]);
                 }
                 else{
-                    $affected = DB::table('periodo')
+                   DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo1'=>0]);
     
                 }
     
                 if (in_array((int)$mes[1], $ciclo2)) {
-                    $affected = DB::table('periodo')
+                    DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo2'=>1]);
                 }
                 else{
-                    $affected = DB::table('periodo')
+                   DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['activoCiclo2'=>0]);
     
@@ -271,7 +270,7 @@ class MafiController extends Controller
 
             }
             else{
-                $affected = DB::table('periodo')
+                DB::table('periodo')
                 ->where('id', $value->id)
                 ->update(['periodoActivo' => 0]);
 
@@ -279,15 +278,26 @@ class MafiController extends Controller
 
          }
 
+         $periodo=DB::table('periodo')
+        ->where(['periodoActivo'=>1])
+        ->get();
+         dd($periodo);
         return true;
 
     }
 
+    /** para generar materias faltantes de los estudiantes  */
     public function Generar_faltantes()
     {
 
-        /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
+        
+        /// para activar el perodo activo en la base de datos
+        $this->periodo();
 
+        /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
+        $periodo=DB::table()
+        ->where()
+        ->get();
 
 
         $consulta_estudiantes = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000';

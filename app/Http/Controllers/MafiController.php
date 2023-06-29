@@ -228,23 +228,41 @@ class MafiController extends Controller
                         ->orderBy('orden', 'asc')
                         ->get();*/
 
-                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
+                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO')) :
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
-                        $insertEstudinate = Estudiante::create([
-                            'homologante' => $value->idbanner,
-                            'nombre' => $value->primer_apellido,
-                            'programa' => $value->programa,
-                            'bolsa' => $value->ruta_academica,
-                            'operador' => $value->operador,
-                            'nodo'=>'nodo',
-                            'tipo_estudiante' => $value->tipoestudiante,
-                            'materias_faltantes' => "OK",
-                            'tiene_historial' => 'SIN HISTORIAL',
-                            'marca_ingreso' => $value->periodo,
-                        ]);
+                        if($historial->count() == 0):
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo'=>'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'materias_faltantes' => "OK",
+                                'tiene_historial' => 'SIN HISTORIAL',
+                                'marca_ingreso' => $value->periodo,
+                            ]);
 
-                        if($insertEstudinate):
-                            $numeroRegistros++;
+                            if($insertEstudinate):
+                                $numeroRegistros++;
+                            endif;
+                        else:
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo'=>'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'materias_faltantes' => "OK",
+                                'marca_ingreso' => $value->periodo,
+                            ]);
+
+                            if($insertEstudinate):
+                                $numeroRegistros++;
+                            endif;
                         endif;
 
                         /**Insert tabla alertas_tempranas, transferente sin historial academico */

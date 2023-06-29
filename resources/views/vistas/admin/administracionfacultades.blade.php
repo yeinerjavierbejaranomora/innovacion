@@ -173,7 +173,7 @@
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
                                 codFacultad: $('#codigo').val(),
-                                nombre: $('#nombre').val(),
+                                nombre: $('#nombre').val()
                             }, 
                             function(result) {    
                                 console.log(result);                               

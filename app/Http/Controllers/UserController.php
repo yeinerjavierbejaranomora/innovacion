@@ -189,7 +189,7 @@ class UserController extends Controller
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
         'nombre' => $nombre])
-        ->where('id', '=', $id);
+        ->where('id', $id);
         var_dump($facultad);
         die();
         if ($facultad) :

@@ -183,13 +183,12 @@ class UserController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $id=(int)$id;
         var_dump($id);
         var_dump($codFacultad);
         var_dump($nombre);
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
-        'nombre' => $nombre])
-        ->where('id', $id);
+        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id','=', $id);
         var_dump($facultad);
         die();
         if ($facultad) :

@@ -154,20 +154,29 @@
                         className: "text-center"
                     },
                     {
-                        data:'activo',
+                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar / Activar',
-                        className: "text-center",
-                    },   
+                        className: "text-center"
+                    },
+                    
                 ],
-
-                "rowCallback": function (data, type, row){
-                    if(data.activo == 1){
-                        return "<button type='button' class='inactivar btn btn-success'><i class='fa-solid fa-unlock'></i></button>";
+                rowCallback: function(row, data)
+                {
+                    if(data.activo == '1'){
+                       // $("td:eq(3)",row).html("Activo"),
+                        $("td:eq(4)",row)
+                        {
+                            $('#boton').addclass('btn btn-success');
+                        }
                     }
                     else{
-                        return "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";
+                       // $("td:eq(3)",row).html("Inactivo"),
+                        $("td:eq(4)",row).addClass("btn-danger")
+                        {
+                            $('#boton').addclass('btn btn-danger');
+                        }
                     }
-                }, 
+                },
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

@@ -179,7 +179,7 @@
                         if (result.value) {
                             $.post("{{ route("programa.inactivar")}}", {
                                 '_token': $('meta[name=csrf-token]').attr('content'),
-                                codigo: data.codprograma,
+                                codigo: 'data.codprograma',
                             }, function(result) {
                                 if (result == "true") {
                                     Swal.fire({

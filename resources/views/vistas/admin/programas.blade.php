@@ -160,16 +160,16 @@
                     },
                     
                 ],
-
                 rowCallback: function(row, data, index)
                 {
-                    if(data.activo == 1){
+                    if(data.activo == '1'){
                         $("td:eq(3)",row).addClass("inactivar btn btn-sucess")
                     }
                     else{
                         $("td:eq(3)",row).addClass("inactivar btn btn-danger")
                     }
                 },
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },

@@ -146,12 +146,19 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        data: 'activo',
+                        title: 'Activo',
+                        className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar',
+                        className: "text-center"
+                    },
+                    {
+                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
+                        title: 'Eliminar',
+                        className: "text-center"
                     },
                 ],
                 "language": {

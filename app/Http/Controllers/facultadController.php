@@ -149,7 +149,8 @@ class facultadController extends Controller
         $id = decrypt($id_llegada);
         // Consulta para obtener los programas según id de facultad
         $facultad = DB::table('programas')->select('id', 'codprograma', 'programa','tabla')
-            ->where('idFacultad', '=', $id)->get();
+            ->where('idFacultad', '=', $id)
+            ->where('activo','=',1)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

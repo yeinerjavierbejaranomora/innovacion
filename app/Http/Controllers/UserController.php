@@ -188,7 +188,7 @@ class UserController extends Controller
         var_dump($codFacultad);
         var_dump($nombre);
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id','=', $id);
+        $facultad = DB::table('facultad')->where('id','=', $id)->update(['codFacultad' => $codFacultad,'nombre' => $nombre]);
         var_dump($facultad);
         die();
         if ($facultad) :

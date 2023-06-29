@@ -146,20 +146,21 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
-                        title: 'Inactivar',
-                        className: "text-center"
-                    },
-                    {
                         defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },
+                    {
+                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
+                        title: 'Inactivar',
+                        className: "text-center"
+                    },
+                    
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                
             });
 
             
@@ -177,10 +178,11 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
-                            $.post("{{ route("programa.inactivar")}}", {
-                                
+                            $.post('{{ route('programa.inactivar')}}', {
+                                '_token': $('meta[name=csrf-token]').attr('content'),
                                 codigo: data.codprograma,
                             }, function(result) {
+                                console.log(result);
                                 if (result == "true") {
                                     Swal.fire({
                                         title: "Programa inhabilitado",

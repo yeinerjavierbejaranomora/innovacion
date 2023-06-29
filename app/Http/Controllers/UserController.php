@@ -188,13 +188,13 @@ class UserController extends Controller
 
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,'nombre' => $nombre])->where('id', '=', $id);
-
-        if ($request) :
+        dd($facultad);
+        if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('admin.facultades')->with('success', 'Actualización exitosa');
+            return "actualizado";
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('admin.facultades')->withErrors(['errors' => 'No fue posible actualizar']);
+            return "false";
         endif;
     }
 

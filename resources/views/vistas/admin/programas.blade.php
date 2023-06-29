@@ -172,6 +172,9 @@
                     },
 
                 ],
+                /** Función que cambia el botón del programa, dependiendo de si este
+                 * se ecuentra activo o no
+                 */
                 rowCallback: function(row, data) {
                     if (data.activo == 1) {
                         $("td:eq(5) button", row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
@@ -182,13 +185,13 @@
                     }
                 },
 
-
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
 
             });
-
+            /** Función que genera una sweet alert para activar o desactivar
+             * el programa */            
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();

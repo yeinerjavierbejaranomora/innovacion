@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
+                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
                     },
@@ -167,18 +167,32 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+            obtener_inactivar("#example tbody", table);    
+            table.on("init", function() {
+                for (var i; i < table.rows().count(); i++) {
+                    var row = table.row(i);
+                    var estado = row.data().activo;
+                    alert(estado);
+                    if (estado == '1') {
+                        $(row).css("background-color", "#f00");
+                    }
+                }
+            });
+
+
             function obtener_inactivar(tbody, table) {
-                $(tbody).on("submit", "#inactivar", function() {
-                    var data = table.row($(this).parents("tr")).data();
-                    Swal.fire({
-                        itle: "Desea eliminar el usuario " + data.nombre,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        cancelButtonColor: '#DC3545',
-                        cancelButtonText: "No, Cancelar",
-                        confirmButtonText: "Si"
+                $(tbody).ready(function() {
+                    $('#inactivar').click(function(event){
+                        if($(this).is(":checked")) {
+                        console.log('entra');
+                        alert('entra');
+                        }
+                        else{
+                            console.log('entra');
+                            alert('entra');
+                        }
                     })
+
                 });
             }
         }

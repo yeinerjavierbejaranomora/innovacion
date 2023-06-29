@@ -162,7 +162,10 @@ button.inactivo{
                         className: "text-center"
                     },
                     {
-
+                        defaultContent: " ",
+                        tittle: "Estado"    
+                    },
+                    {
                         defaultContent: "<button type='button' id='boton'></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
@@ -172,12 +175,19 @@ button.inactivo{
                 rowCallback: function(row, data)
                 {
                     if(data.activo == 1){
-                       // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4) button",row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
+                        $("td:eq(4)",row).html("Activo");
                     }
-                    else{
-                       // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4) button",row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");
+                    else{                    
+                        $("td:eq(4)",row).html("Inactivo");
+                    }
+                },
+                rowCallback: function(row, data)
+                {
+                    if(data.activo == 1){
+                        $("td:eq(5) button",row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
+                    }
+                    else{                    
+                        $("td:eq(5) button",row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");
                     }
                 },
                 

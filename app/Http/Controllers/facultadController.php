@@ -177,7 +177,7 @@ class facultadController extends Controller
 
     public function inactivar_programa(){
             $cod_llegada = $_POST['codigo'];
-            var_dump($cod_llegada);
+            var_dump('entro');
             die();
             $inactivarPrograma = DB::table('programas')->where('codprograma', $cod_llegada)->update(['activo' => 0]);
             if ($inactivarPrograma) :

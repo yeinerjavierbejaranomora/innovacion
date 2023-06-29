@@ -164,16 +164,16 @@
                         
                         title: 'Inactivar / Activar',
                         className: "text-center",
-                        rowCallback: function(row, data) {
-                            if (data.activo == '1') {
-                                return "<button type='button' id='boton' class='inactivar btn btn-success'><i class='fa-solid fa-lock'></i></button>";
-                            } else {
-                                // $("td:eq(3)",row).html("Inactivo"),
-                                return "<button type='button' id='boton' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";
-                            }
-                        },
                     },
                 ],
+                rowCallback: function(row, data) {
+                    if (data.activo == '1') {
+                        return "<button type='button' id='boton' class='inactivar btn btn-success'><i class='fa-solid fa-lock'></i></button>";
+                    } else {
+                        // $("td:eq(3)",row).html("Inactivo"),
+                        return "<button type='button' id='boton' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";
+                    }
+                },
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

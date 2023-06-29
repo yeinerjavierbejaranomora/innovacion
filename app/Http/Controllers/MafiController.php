@@ -191,8 +191,8 @@ class MafiController extends Controller
         if(str_contains($data[0][29]->tipoestudiante,'TRANSFERENTE EXTERNO')):
             $concultaTrasferente = DB::table('datosMafiReplica')
             ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-            ->where('datosMafiReplica.idbanner','=',$data[0][29]->idbanner)->count();
-            if($concultaTrasferente == 0):
+            ->where('datosMafiReplica.idbanner','=',$data[0][29]->idbanner)->get();
+            if($concultaTrasferente->count() == 0):
                 return "No tiene historial";
             else:
                 return "Tiene historial";
@@ -209,15 +209,19 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
+
+                    $historial = DB::table('datosMafiReplica')
+                    ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
+                    ->where('datosMafiReplica.idbanner','=',$value->idbanner)->count();
+                    if($concultaTrasferente == 0):
                     if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
-                        $concultaTrasferente = DB::table('datosMafiReplica')
-                        ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-                        ->where('datosMafiReplica.idbanner','=',$value->idbanner)->first();
-                        if($concultaTrasferente):
+                            /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
+                            /**Insert tabla alertas_tempranas, transferente sin historial academico */
                         else:
+                            /**Insert tabla estudiantes */
                         endif;
                     else:
-                        return "No";
+                        /**Insert tabla estudiantes  */
                     endif;
                 endforeach;
             endforeach;

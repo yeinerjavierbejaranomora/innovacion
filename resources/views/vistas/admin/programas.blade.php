@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn btn-info'><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center"
                     },
@@ -175,22 +175,23 @@
                         cancelButtonColor: '#DC3545',
                         cancelButtonText: "No, Cancelar",
                         confirmButtonText: "Si"
-                    }).then(result=>{
-                        if(result.value)
-                        {
-                           $.post('{{ route('programa.inactivar') }}'),{
-                           '_token': $('meta[name=csrf-token]').attr('content'),
-                                codigo: data.codprograma,
-                            }, function (result){
-                                Swal.fire({
-                                    title: "Programa inhabilitado",
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{ route('
+                                    programa.inactivar ') }}'), {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    codigo: data.codprograma,
+                                },
+                                function(result) {
+                                    Swal.fire({
+                                        title: "Programa inhabilitado",
                                         html: "El programa <strong>" + data.programa +
                                             "</strong> ha sido inactivado",
                                         icon: 'info',
                                         showCancelButton: true,
                                         confirmButtonText: "Aceptar",
-                                });
-                            }
+                                    });
+                                }
                         }
                     });
                 });

@@ -167,11 +167,21 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+            table.on("init", function(){
+                for(var i; i<table.rows().count(); i++)
+                {
+                    var row = table.row(i);
+                    var genero = row.data().activo;
+                    console.log(row);
+                }
+            });
+
+
             function obtener_inactivar(tbody, table) {
                 $(tbody).on("submit", "#inactivar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
-                        itle: "Desea eliminar el usuario " + data.nombre,
+                        itle: "Desea eliminar la facultad " + data.nombre,
                         icon: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,

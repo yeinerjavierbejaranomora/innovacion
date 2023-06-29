@@ -146,7 +146,7 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
+                        defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
                     },
@@ -168,7 +168,7 @@
             });
 
             function obtener_inactivar(tbody, table) {
-                $(tbody).on("click", "#inactivar", function() {
+                $(tbody).on("submit", "#inactivar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
                         itle: "Desea eliminar el usuario " + data.nombre,

@@ -200,8 +200,7 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('
-                                programa.inactivar ')}}', {
+                            $.post('{{ route('programa.inactivar ')}}', {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     codigo: data.codprograma,
                                 },

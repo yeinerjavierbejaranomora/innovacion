@@ -203,7 +203,8 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('programa.inactivar ')}}', {
+                                $.post('{{ route('
+programa.inactivar ')}}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     },
@@ -213,7 +214,7 @@
                                             Swal.fire({
                                                 title: "Programa deshabilitado",
                                                 html: "El programa <strong>" + data.programa +
-                                                    "</strong> ha sido inhabilitado",
+                                                    "</strong> ha sido inactivado",
                                                 icon: 'info',
                                                 showCancelButton: true,
                                                 confirmButtonText: "Aceptar",
@@ -240,7 +241,8 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('programa.activar ')}}', {
+                                $.post('{{ route('
+                                    programa.activar ')}}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     },
@@ -248,9 +250,9 @@
                                         console.log(result);
                                         if (result == "deshabilitado") {
                                             Swal.fire({
-                                                title: "Programa habilitado",
+                                                title: "Programa deshabilitado",
                                                 html: "El programa <strong>" + data.programa +
-                                                    "</strong> ha sido habilitado",
+                                                    "</strong> ha sido inactivado",
                                                 icon: 'info',
                                                 showCancelButton: true,
                                                 confirmButtonText: "Aceptar",

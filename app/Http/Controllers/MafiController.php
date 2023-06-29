@@ -294,6 +294,7 @@ class MafiController extends Controller
                     endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
+                    sleep(10);
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

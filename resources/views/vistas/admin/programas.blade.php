@@ -5,6 +5,9 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
+<style>
+
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -151,19 +154,30 @@
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>",
-                        title: 'Inactivar',
+                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
+                        title: 'Inactivar / Activar',
                         className: "text-center"
                     },
                     
                 ],
+                rowCallback: function(row, data)
+                {
+                    if(data.activo == '1'){
+                       // $("td:eq(3)",row).html("Activo"),
+                        $("td:eq(4)",row).addClass("btn-sucess")
+                    }
+                    else{
+                       // $("td:eq(3)",row).html("Inactivo"),
+                        $("td:eq(4)",row).addClass("btn-danger")
+                    }
+                },
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 
             });
-
-            
+    
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
@@ -193,7 +207,6 @@
                                         confirmButtonText: "Aceptar",
                                     }).then(result => {
                                         if (result.value) {
-                                            alert('entra');
                                             location.reload();
                                         };
                                     })

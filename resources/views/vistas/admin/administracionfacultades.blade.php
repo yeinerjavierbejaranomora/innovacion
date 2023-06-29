@@ -158,7 +158,7 @@
                             <form>
                             <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
                             <br> 
-                            <input type="text" id="nombre name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre">                      
+                            <input type="text" id="nombre" name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre">                      
                             </form>
                         `,
                         icon: 'info',

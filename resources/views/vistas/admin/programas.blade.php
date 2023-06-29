@@ -167,7 +167,7 @@
             f$(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
-                        itle: "Desea eliminar la facultad " + data.nombre,
+                        itle: "Desea inactivar el programa " + data.nombre,
                         icon: 'warning',
                         showCancelButton: true,
                         showCloseButton: true,

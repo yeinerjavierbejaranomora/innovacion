@@ -204,7 +204,7 @@ class MafiController extends Controller
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
-            $primerId = $data[][0]->id;
+            $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :

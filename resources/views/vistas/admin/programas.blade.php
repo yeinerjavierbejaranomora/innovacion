@@ -149,10 +149,6 @@
                         title: 'Facultad'
                     },
                     {
-                        title: 'Estado',
-                        className: "text-center"
-                    },
-                    {
                         defaultContent: "<button type='button' class='editar btn' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
@@ -167,11 +163,11 @@
                 rowCallback: function(row, data)
                 {
                     if(data.activo == '1'){
-                        $("td:eq(3)",row).html("Activo"),
+                       // $("td:eq(3)",row).html("Activo"),
                         $("td:eq(5)",row,button).addClass("btn-danger")
                     }
                     else{
-                        $("td:eq(3)",row).html("Inactivo"),
+                       // $("td:eq(3)",row).html("Inactivo"),
                         $("td:eq(5)",row,button).addClass("btn-success")
                     }
                 },

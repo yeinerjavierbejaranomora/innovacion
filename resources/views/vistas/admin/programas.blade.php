@@ -149,12 +149,12 @@
                         title: 'Facultad'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
+                        defaultContent: "<button type='button' id='boton' class='inactivar btn'><i class='fa-solid fa-lock'></i></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center"
                     },
@@ -164,11 +164,11 @@
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4)",row).addClass("btn-danger")
+                        $("td:eq(4):#boton",row).addClass("btn-sucess")
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4)",row).addClass("btn-success")
+                        $("td:eq(4):#boton",row).addClass("btn-danger")
                     }
                 },
 

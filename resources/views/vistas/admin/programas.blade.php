@@ -163,7 +163,8 @@ button.inactivo{
                     },
                     {
                         defaultContent: " ",
-                        tittle: "Estado"    
+                        title: "Estado", 
+                        className: "text-center",   
                     },
                     {
                         defaultContent: "<button type='button' id='boton'></button>",

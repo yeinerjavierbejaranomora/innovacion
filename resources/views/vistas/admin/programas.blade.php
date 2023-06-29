@@ -7,6 +7,14 @@
 
 <style>
 
+button.activo{
+    background-color: 'green',
+}
+
+button.inactivo{
+    background-color;: 'red',
+}
+
 </style>
 
 <!-- Content Wrapper -->
@@ -165,11 +173,11 @@
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4)",row).addClass("btn-success")
+                        $("td:eq(4)",row).add("activo")
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4)",row).addClass("btn-danger")
+                        $("td:eq(4)",row).addClass("inactivo")
                     }
                 },
 

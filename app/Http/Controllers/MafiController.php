@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(100);
+                ->chunk(200);
         else :
         endif;
         //dd($data[23][4675]);
@@ -215,7 +215,7 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
 
-                    /*$historial = DB::table('datosMafiReplica')
+                    $historial = DB::table('datosMafiReplica')
                         ->select('historialAcademico.codMateria')
                         ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
                         ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
@@ -230,7 +230,7 @@ class MafiController extends Controller
 
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
-                        /*$insertEstudinate = Estudiante::create([
+                        $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
                             'nombre' => $value->primer_apellido,
                             'programa' => $value->programa,
@@ -249,7 +249,7 @@ class MafiController extends Controller
 
                         /**Insert tabla alertas_tempranas, transferente sin historial academico */
 
-                        /*$insertAlerta = AlertasTempranas::create([
+                        $insertAlerta = AlertasTempranas::create([
                             'idbanner' => $value->idbanner,
                             'tipo_estudiante' => $value->tipoestudiante,
                             'desccripcion' => 'El estudiante con idBanner'.$value->idbanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
@@ -275,11 +275,11 @@ class MafiController extends Controller
                         if($insertEstudinate):
                             $numeroRegistros++;
                         endif;
-                        /*$orden = 1;
+                        $orden = 1;
                         foreach ($baseAcademica as $key => $valueBaseAcademica) :
                             if (!in_array($valueBaseAcademica, $historialArray)) :
                                 /** insertar en la tabla materias por ver,  */
-                                /*$insertMateriaPorVer = MateriasPorVer::create([
+                                $insertMateriaPorVer = MateriasPorVer::create([
                                     'codBanner' => $value->idbanner,
                                     'codMateria' => $valueBaseAcademica->codigoCurso,
                                     'orden' => $orden,
@@ -291,7 +291,7 @@ class MafiController extends Controller
                                 endif;
                             endif;
                         endforeach;
-                    endif;*/
+                    endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
                     //sleep(5);

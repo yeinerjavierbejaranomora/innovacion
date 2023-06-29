@@ -164,20 +164,19 @@
 
             obtener_inactivar("#example tbody", table);   
 
-            function obtener_inactivar(tbody, table) {
-                $(tbody).ready(function() {
+            f$(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
-                    $('#inactivar').click(function(event){
-                        if($(this).is(":checked")) {
-                        
-                        }
-                        else{
-                           
-                        }
+                    Swal.fire({
+                        itle: "Desea eliminar la facultad " + data.nombre,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        cancelButtonColor: '#DC3545',
+                        cancelButtonText: "No, Cancelar",
+                        confirmButtonText: "Si"
                     })
 
-                });
-            }
+            });
         }
     }
 </script>

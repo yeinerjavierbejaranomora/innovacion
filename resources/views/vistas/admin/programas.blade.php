@@ -183,9 +183,9 @@
                                 codigo: data.codprograma,
                             }, function(result) {
                                 console.log(result);
-                                if (result == "true") {
-                                    Swal.fire({
-                                        title: "Programa inhabilitado",
+                                if (result == "deshabilitado") {
+                                    Swal.fire({   
+                                        title: "Programa deshabilitado",
                                         html: "El programa <strong>" + data.programa +
                                         "</strong> ha sido inactivado",
                                         icon: 'info',
@@ -193,6 +193,7 @@
                                         confirmButtonText: "Aceptar",
                                     }).then(result => {
                                         if (result.value) {
+                                            alert('entra');
                                             location.reload();
                                         };
                                     })

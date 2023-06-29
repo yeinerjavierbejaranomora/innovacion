@@ -168,16 +168,16 @@
                         rowCallback: function(row, data) {
                             if (data.activo == '1') {
                                 // $("td:eq(3)",row).html("Activo"),
-                                $("td:eq(4)", row).add("btn-success");
+                                consulta = $("td:eq(4)", row).add("btn-success");
                             } else {
                                 // $("td:eq(3)",row).html("Inactivo"),
                                 $("td:eq(4)", row).addClass("btn-danger");
-                                
+                                5
                             }
-                        }
+                        },
                     },
-
                 ],
+
 
 
                 "language": {
@@ -200,7 +200,8 @@
                         confirmButtonText: "Si"
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('programa.inactivar ')}}', {
+                            $.post('{{ route('
+                                programa.inactivar ')}}', {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     codigo: data.codprograma,
                                 },

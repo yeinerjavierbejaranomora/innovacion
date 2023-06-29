@@ -182,6 +182,7 @@
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 codigo: data.codprograma,
                             }, function(result) {
+                                console.log(result);
                                 if (result == "true") {
                                     Swal.fire({
                                         title: "Programa inhabilitado",

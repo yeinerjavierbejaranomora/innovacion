@@ -177,9 +177,11 @@
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
+                                        }).then(result => {
+                                            location.reload();
                                         });
 
-                                        location.reload();
+                                       
                                     }
                                 }
                             )

@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(300);
+                ->chunk(200);
         else :
         endif;
         //dd($data[23][4675]);
@@ -219,50 +219,32 @@ class MafiController extends Controller
                         ->select('historialAcademico.codMateria')
                         ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
                         ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->get();
-                    /*$historialArray = $historial->toArray();
+                    $historialArray = $historial->toArray();
 
                     $baseAcademica = DB::table('mallaCurricular')
                         ->select('codigoCurso', 'semestre', 'ciclo', 'orden')
-                        ->where('codprograma', $value->programa)
+                        ->where('codprograma', 'PPSV')
                         ->orderBy('semestre', 'asc')
                         ->orderBy('orden', 'asc')
-                        ->get();*/
+                        ->get();
 
-                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO')) :
+                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
-                        if($historial->count() == 0):
-                            $insertEstudinate = Estudiante::create([
-                                'homologante' => $value->idbanner,
-                                'nombre' => $value->primer_apellido,
-                                'programa' => $value->programa,
-                                'bolsa' => $value->ruta_academica,
-                                'operador' => $value->operador,
-                                'nodo'=>'nodo',
-                                'tipo_estudiante' => $value->tipoestudiante,
-                                'materias_faltantes' => "OK",
-                                'tiene_historial' => 'SIN HISTORIAL',
-                                'marca_ingreso' => $value->periodo,
-                            ]);
+                        $insertEstudinate = Estudiante::create([
+                            'homologante' => $value->idbanner,
+                            'nombre' => $value->primer_apellido,
+                            'programa' => $value->programa,
+                            'bolsa' => $value->ruta_academica,
+                            'operador' => $value->operador,
+                            'nodo'=>'nodo',
+                            'tipo_estudiante' => $value->tipoestudiante,
+                            'materias_faltantes' => "OK",
+                            'tiene_historial' => 'SIN HISTORIAL',
+                            'marca_ingreso' => $value->periodo,
+                        ]);
 
-                            if($insertEstudinate):
-                                $numeroRegistros++;
-                            endif;
-                        else:
-                            $insertEstudinate = Estudiante::create([
-                                'homologante' => $value->idbanner,
-                                'nombre' => $value->primer_apellido,
-                                'programa' => $value->programa,
-                                'bolsa' => $value->ruta_academica,
-                                'operador' => $value->operador,
-                                'nodo'=>'nodo',
-                                'tipo_estudiante' => $value->tipoestudiante,
-                                'materias_faltantes' => "OK",
-                                'marca_ingreso' => $value->periodo,
-                            ]);
-
-                            if($insertEstudinate):
-                                $numeroRegistros++;
-                            endif;
+                        if($insertEstudinate):
+                            $numeroRegistros++;
                         endif;
 
                         /**Insert tabla alertas_tempranas, transferente sin historial academico */
@@ -293,11 +275,11 @@ class MafiController extends Controller
                         if($insertEstudinate):
                             $numeroRegistros++;
                         endif;
-                        /*$orden = 1;
+                        $orden = 1;
                         foreach ($baseAcademica as $key => $valueBaseAcademica) :
                             if (!in_array($valueBaseAcademica, $historialArray)) :
                                 /** insertar en la tabla materias por ver,  */
-                                /*$insertMateriaPorVer = MateriasPorVer::create([
+                                $insertMateriaPorVer = MateriasPorVer::create([
                                     'codBanner' => $value->idbanner,
                                     'codMateria' => $valueBaseAcademica->codigoCurso,
                                     'orden' => $orden,
@@ -308,12 +290,12 @@ class MafiController extends Controller
                                     $orden++;
                                 endif;
                             endif;
-                        endforeach;*/
+                        endforeach;
                     endif;
                     $ultimoRegistroId = $value->id;
                     $idBannerUltimoRegistro = $value->idbanner;
+                    sleep(5);
                 endforeach;
-                sleep(5);
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

@@ -126,7 +126,7 @@
                 "data": data.data,
                 "columns": [{
                         data: 'codFacultad',
-                        title: 'Codigo de facultad', "visible": false,
+                        title: 'Codigo de facultad', 
                     },
                     {
                         data: 'nombre',

@@ -162,8 +162,7 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-            obtener_data_inactivar("#example tbody", table);
-
+            
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
@@ -186,7 +185,7 @@
                                     Swal.fire({
                                         title: "Programa inhabilitado",
                                         html: "El programa <strong>" + data.programa +
-                                            "</strong> ha sido inactivado",
+                                        "</strong> ha sido inactivado",
                                         icon: 'info',
                                         showCancelButton: true,
                                         confirmButtonText: "Aceptar",
@@ -201,6 +200,9 @@
                     });
                 });
             }
+
+            /** Llamado a la función */
+            obtener_data_inactivar("#example tbody", table);
         }
     }
 </script>

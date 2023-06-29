@@ -155,9 +155,12 @@ Route::controller(facultadController::class)->group(function(){
     /** Ruta para visualizar la malla curricular */
     Route::get('/home/getmalla/{codigo}', 'mostrarmallacurricular')->middleware('auth')->name('facultad.getmalla');
 
-     //** Ruta para inactivar programa */
-     Route::post('/home/inactivarprograma', 'inactivar_programa')->middleware('auth')->name('programa.inactivar');
-});
+    //** Ruta para inactivar programa */
+    Route::post('/home/inactivarprograma', 'inactivar_programa')->middleware('auth')->name('programa.inactivar');
+    //** Ruta para activar programa */
+    Route::post('/home/activarprograma', 'activar_programa')->middleware('auth')->name('programa.activar');
+
+    });
 
 
 

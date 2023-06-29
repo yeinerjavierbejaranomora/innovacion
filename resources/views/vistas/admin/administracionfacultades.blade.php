@@ -173,7 +173,7 @@
                                 console.log(result);                               
                                     if (result == "actualizado") {
 
-                                        table.ajax.reload();
+                                        table.reload();
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'

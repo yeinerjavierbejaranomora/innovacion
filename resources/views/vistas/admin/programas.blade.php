@@ -146,6 +146,7 @@
                         title: 'Facultad'
                     },
                     {
+                        data: 'activo',
                         defaultContent: " <input class='inactivar form - check - input' type='checkbox' value='' id='inactivar' name='inactivar' checked> <label class ='form-check-label' for = 'inactivar' >Activo </label>",
                         title: 'Activo',
                         className: "text-center"
@@ -171,8 +172,11 @@
                 for(var i; i<table.rows().count(); i++)
                 {
                     var row = table.row(i);
-                    var genero = row.data().activo;
-                    console.log(row);
+                    var estado = row.data().activo;
+                    if(estado == 1)
+                    {
+                        $(row).css("background-color", "#f00");
+                    }
                 }
             });
 

@@ -216,16 +216,21 @@ class MafiController extends Controller
                     ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
                     ->where('datosMafiReplica.idbanner','=',$value->idbanner)->get();
                     $historialArray = $historial->toArray();
-                    dd($historialArray);
+                    //dd($historialArray);
 
                     $baseAcademica = DB::table('mallaCurricular')
                                     ->select('codigoCurso')
                                     ->where('codprograma',$value->programa)
+                                    ->orderByRaw('semestre - ciclo - orden DESC')
                                     ->get();
+
+                    dd($baseAcademica);
+
                     foreach($baseAcademica as $key => $valueBaseAcademica):
-                        /*if(!in_array($valueBaseAcademica,$historial)):
-                        else:
-                        endif;*/
+
+                        if(!in_array($valueBaseAcademica,$historialArray)):
+                            /** insertar en la tabla materias por ver,  */
+                        endif;
                     endforeach;
 
                     if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO') && $historial->count() == 0):

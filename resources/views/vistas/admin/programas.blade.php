@@ -164,11 +164,11 @@
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(4):#boton",row).addClass("btn-sucess")
+                        $("td:eq(4)",button).addClass("btn-sucess")
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4):#boton",row).addClass("btn-danger")
+                        $("td:eq(4)",button).addClass("btn-danger")
                     }
                 },
 

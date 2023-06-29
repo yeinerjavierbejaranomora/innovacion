@@ -149,6 +149,7 @@
                         title: 'Facultad'
                     },
                     {
+                        data: 'activo',
                         title: 'Estado',
                         className: "text-center"
                     },

@@ -181,8 +181,7 @@
                             $.post("{{ route('programa.inactivar')}}"), {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     codigo: data.codprograma,
-                                }
-                                alert('entra'),
+                                },
                                 function(result) {
                                     Swal.fire({
                                         title: "Programa inhabilitado",

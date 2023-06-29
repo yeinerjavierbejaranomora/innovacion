@@ -164,6 +164,7 @@
                                         cancelButtonColor: '#DC3545',
                                     }).then(result => {
                                         if (result.value) {
+                                            alert(data);
                                             location.reload();
                                         } else {
                                             $.post('{{ route('user.deshacerinactivar') }}', {

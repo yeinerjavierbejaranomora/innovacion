@@ -173,11 +173,11 @@ button.inactivo{
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        consulta = $("td:eq(4)",row).add("btn-success");
+                        $("td:eq(4) button",row).add("btn-success");
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(4)",row).addClass("btn-danger");5
+                        $("td:eq(4) button",row).addClass("btn-danger");5
                     }
                 },
                 

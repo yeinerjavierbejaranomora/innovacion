@@ -158,8 +158,8 @@
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         function (data, type, row){
-                            if(data.activo == '1'){
-                                return "<button type='button' class='inactivar btn btn-success'><i class='fa-solid fa-lock'></i></button>";
+                            if(row.activo == '1'){
+                                return "<button type='button' class='inactivar btn btn-success'><i class='fa-solid fa-unlock'></i></button>";
                             }
                             else{
                                 return "<button type='button' class='inactivar btn btn-danger'><i class='fa-solid fa-lock'></i></button>";

@@ -172,7 +172,7 @@
                             } else {
                                 // $("td:eq(3)",row).html("Inactivo"),
                                 $("td:eq(4)", row).addClass("btn-danger");
-                                5
+                                
                             }
                         }
                     },

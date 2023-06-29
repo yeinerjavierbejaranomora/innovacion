@@ -160,13 +160,13 @@
                     },
                     
                 ],
-                rowCallback: function(row, data, index)
+                rowCallback: function(row, data)
                 {
                     if(data.activo == '1'){
-                        $("td:eq(3)",row).addClass("inactivar btn btn-sucess")
+                        $("td:eq(3)",row).html("Activo")
                     }
                     else{
-                        $("td:eq(3)",row).addClass("inactivar btn btn-danger")
+                        $("td:eq(3)",row).html("Inactivo")
                     }
                 },
 

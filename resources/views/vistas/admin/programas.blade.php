@@ -168,11 +168,11 @@
                 {
                     if(data.activo == '1'){
                         $("td:eq(3)",row).html("Activo"),
-                        $("td:eq(5)",row).addClass("btn-danger")
+                        $("td:eq(5)",row,button).addClass("btn-danger")
                     }
                     else{
                         $("td:eq(3)",row).html("Inactivo"),
-                        $("td:eq(5)",row).addClass("btn-sucess")
+                        $("td:eq(5)",row,button).addClass("btn-success")
                     }
                 },
 

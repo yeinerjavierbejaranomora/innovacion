@@ -173,8 +173,8 @@ button.inactivo{
                 {
                     if(data.activo == '1'){
                        // $("td:eq(3)",row).html("Activo"),
-                        consulta = $("td:eq(4)",row).add("btn-sucess");
-                        alert(consulta);
+                        consulta = $("td:eq(4)",row).add("btn-success");
+                        alert(row);
                     }
                     else{
                        // $("td:eq(3)",row).html("Inactivo"),

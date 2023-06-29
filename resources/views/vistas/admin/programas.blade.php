@@ -168,13 +168,12 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
-            table.on("init", function(){
-                for(var i; i<table.rows().count(); i++)
-                {
+            table.on("init", function() {
+                for (var i; i < table.rows().count(); i++) {
                     var row = table.row(i);
                     var estado = row.data().activo;
-                    if(estado == 1)
-                    {
+                    alert(estado);
+                    if (estado == '1') {
                         $(row).css("background-color", "#f00");
                     }
                 }

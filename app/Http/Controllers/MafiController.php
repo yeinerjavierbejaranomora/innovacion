@@ -187,7 +187,7 @@ class MafiController extends Controller
                 ->where([['programas.activo', '=', 1], ['periodo.periodoActivo', '=', 1]])
                 ->orderBy('datosMafiReplica.id')
                 ->get()
-                ->chunk(100);
+                ->chunk(1000);
         else :
         endif;
         //dd($data[23][4675]);
@@ -230,6 +230,7 @@ class MafiController extends Controller
 
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') && $historial->count() == 0) :
                         /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
+
                         $insertEstudinate = Estudiante::create([
                             'homologante' => $value->idbanner,
                             'nombre' => $value->primer_apellido,

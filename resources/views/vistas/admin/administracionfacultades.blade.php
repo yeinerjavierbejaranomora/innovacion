@@ -154,13 +154,7 @@
                     var data = table.row($(this).parents("tr")).data();
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: `
-                            <form>
-                            <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
-                            <br> 
-                            <input type="text" id="name" name="name" value="${data.nombre}" class="form-control" placeholder="nombre">                      
-                            </form>
-                        `,
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

@@ -188,10 +188,10 @@ class MafiController extends Controller
         else:
         endif;
         //dd($data[23][4675]);
-        if(str_contains($data[0][29]->tipoestudiante,'TRANSFERENTE EXTERNO')):
+        if(str_contains($data[23][4675]->tipoestudiante,'TRANSFERENTE EXTERNO')):
             $concultaTrasferente = DB::table('datosMafiReplica')
             ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-            ->where('datosMafiReplica.idbanner','=',$data[0][29]->idbanner)->get();
+            ->where('datosMafiReplica.idbanner','=',$data[23][4675]->idbanner)->get();
             if($concultaTrasferente->count() == 0):
                 return "No tiene historial";
             else:
@@ -204,7 +204,7 @@ class MafiController extends Controller
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
-            $primerId = $data[0][0]->id;
+            $primerId = $data[][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :

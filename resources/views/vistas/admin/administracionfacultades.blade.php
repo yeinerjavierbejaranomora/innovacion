@@ -174,7 +174,9 @@
                                 id: encodeURIComponent(window.btoa(data.id)),
                                 codFacultad: $('#codigo').val(),
                                 nombre: $('#nombre').val(),
-                            }, function(result) {                                   
+                            }, 
+                            function(result) {    
+                                console.log(result);                               
                                     if (result == "actualizado") {
                                         Swal.fire({
                                             title: "Información actualizada",

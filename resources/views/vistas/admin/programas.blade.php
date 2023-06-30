@@ -270,7 +270,7 @@
                 });
             }
 
-             //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+            var ddd ;     //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
         $.ajax({
             headers: {
@@ -279,7 +279,8 @@
             url: "{{ route('programa.nombresfac') }}",
             method: 'post',
               success: function(data) {
-                return data;                
+                ddd = data;     
+    console.log(data);           
             }
         });
         

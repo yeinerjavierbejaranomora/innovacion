@@ -277,13 +277,16 @@
                             },
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
-                            } 
+                            success: function(data) {
+                                data.forEach(facultad => {
+                                    console.log(facultad.id);
+                                });
+                            }
+                         } 
                         );
-                        var data = JSON.parse(facultades.responseText);
-                        
                         console.log(data);
+                        console.log(facultades);
                         console.log('1');
-                        console.log(facultades.responseText);
 
             
 

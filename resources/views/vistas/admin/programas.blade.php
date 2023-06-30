@@ -272,10 +272,12 @@
 
 
                 var facultades = $.ajax({
-                            request.ContentType = "application/json; charset=utf-8";
                             headers: {
+                                
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
+                            
+                            request.ContentType = "application/json; charset=utf-8";
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
                             } 

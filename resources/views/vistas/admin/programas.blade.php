@@ -169,16 +169,9 @@
                         defaultContent: "<button type='button' id='boton'></button>",
                         title: 'Inactivar / Activar',
                         className: "text-center",
-                    },
-                    {
-                        
                     }
-
                 ],
-                /** Función que cambia el botón del programa, dependiendo de si este
-                 * se ecuentra activo o no
-                 */
-               
+                
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

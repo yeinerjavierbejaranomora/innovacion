@@ -279,7 +279,7 @@
                             method: 'post',
                             } 
                         );
-                        console.log(facultades);
+                        console.log(facultades.responseText);
 
             
 

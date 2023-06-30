@@ -174,7 +174,7 @@
                     },
                     {
                         defaultContent: " ",
-                        title: 'Inactivar / Activar',
+                        title: 'Inactivara / Activar',
                         className: "text-center",
                         render: function(data, type, row) {
                             if(data == '1') {

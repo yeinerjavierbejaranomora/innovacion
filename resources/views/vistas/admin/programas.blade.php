@@ -285,7 +285,7 @@
         
     }
 
-    console.log('s');
+    console.log('p');
     var ddd =  facultades();
     console.log(ddd);
 

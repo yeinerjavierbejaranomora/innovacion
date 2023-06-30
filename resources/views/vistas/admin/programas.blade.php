@@ -269,7 +269,7 @@
                     }
                 });
             }
-
+            
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
@@ -280,7 +280,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',
-                        inputOptions: inputOptionsPromise,
+                        
                         inputPlaceholder: data.nombre,
 
                         icon: 'info',
@@ -317,31 +317,8 @@
                 });
             }
 
-            var inputOptionsPromise = new Promise(function(resolve) {       
-                    //place options here
-                    console.log("options promise");
-                    var facultades = $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "{{ route('registro.facultades') }}",
-                        method: 'post',
-
-                    });
-                    console.log(facultades);
-                    $.getJSON(facultades, function(data) {
-                        console.log(data);
-                        resolve(data)
-                    });
-            })
-
-
-
-
-
+           
             obtener_data_editar("#example tbody", table);
-
-
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);
         }

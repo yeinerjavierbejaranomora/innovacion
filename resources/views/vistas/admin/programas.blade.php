@@ -37,7 +37,7 @@
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>
                 <div>
-                    <input type="text" id="facultadEditar" value='' name="facultadEditar">
+                    <input type="text" id="facultadEditar" value='' name="facultadEditar" hidden>
                 </div>
             </div>
 

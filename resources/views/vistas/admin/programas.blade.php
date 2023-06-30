@@ -273,7 +273,6 @@
                 });
             }
 
-
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
@@ -283,7 +282,7 @@
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">'+
-                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="">Seleccione la facultad</option> </select>',
+                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+ data.nombre +'">Seleccione la facultad</option> </select>',
                         input: 'select',
                         inputOptions: inputOptionsPromise,
                         inputPlaceholder: data.nombre,
@@ -322,23 +321,23 @@
                         }
                     })
                 });
+
+                function facultades() {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{ route('registro.facultades') }}",
+                        method: 'post',
+                        success: function(data) {
+                            data.forEach(facultad => {
+                                $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                            });
+                        }
+                    });
+
+                    facultades();
             }
-             //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
-             
-    facultades();
-    function facultades() {
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.facultades') }}",
-            method: 'post',
-            success: function(data) {
-                data.forEach(facultad => {
-                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-                });
-            }
-        });
         
     }
 

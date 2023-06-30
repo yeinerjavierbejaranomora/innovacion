@@ -203,8 +203,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data->count());
-
+        dd($data);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;

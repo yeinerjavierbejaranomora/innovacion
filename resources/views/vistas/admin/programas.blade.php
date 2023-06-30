@@ -274,7 +274,7 @@
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form> <input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br> <input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa"> <br> <input type="text" id="facultad" name="facultad" value="'+data.nombre+'" class="form-control" placeholder="nombre"></form>',
+                        html: '<form> <div id="id" value='+ data.id +' hidden> </div> <input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br> <input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa"> <br> <input type="text" id="facultad" name="facultad" value="'+data.nombre+'" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -283,11 +283,12 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('admin.updatefacultad') }}', {                             
+                            $.post('{{ route('facultad.updateprograma') }}', {                             
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
-                                codFacultad: $(document).find('#codigo').val(),
-                                nombre: $(document).find('#name').val()
+                                codigo: $(document).find('#codprograma').val(),
+                                programa: $(document).find('#programa').val(),
+                                facultad: $(document).find('#facultad').val()
                             }, 
                             function(result) {    
                                 console.log(result);                               

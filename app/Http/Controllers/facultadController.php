@@ -68,7 +68,7 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa','programas.activo', 'facultad.nombre')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'facultad.nombre')
             ->where('programas.tabla', '=', 'pregrado')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
@@ -139,7 +139,7 @@ class facultadController extends Controller
     public function facultad(Request $request)
     {
         $nombre = DB::table('facultad')->select('nombre')->where('id', '=', decrypt($request->id))->get();
-        return view('vistas.admin.facultad',['id'=>$request->id],['nombre'=>$nombre[0]->nombre]);
+        return view('vistas.admin.facultad', ['id' => $request->id], ['nombre' => $nombre[0]->nombre]);
     }
 
     /** Función para mostrar los programas según el id de la facultad */
@@ -148,51 +148,70 @@ class facultadController extends Controller
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
         // Consulta para obtener los programas según id de facultad
-        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa','tabla')
+        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa', 'tabla')
             ->where('idFacultad', '=', $id)
-            ->where('activo','=',1)->get();
+            ->where('activo', '=', 1)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $facultad));
     }
 
-    public function malla($codigo){
+    public function malla($codigo)
+    {
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();
-       
-        return view('vistas.admin.malla',['codigo'=>$codigo],['nombre'=>$nombre[0]->programa]);
+
+        return view('vistas.admin.malla', ['codigo' => $codigo], ['nombre' => $nombre[0]->programa]);
     }
 
     public function mostrarmallacurricular($codigo)
     {
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
-         /**mostrar los datos en formato JSON */
-         header("Content-Type: application/json");
-         /**Se pasa a formato JSON el arreglo de users */
-         echo json_encode(array('data' => $malla));
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $malla));
     }
- 
+
 
     /* Método para inactivar programa */
 
-    public function inactivar_programa(){
-            $cod_llegada = $_POST['codigo'];
-            $inactivarPrograma = DB::table('programas')->where('codprograma','=', $cod_llegada)->update(['activo' => 0]);
-            if ($inactivarPrograma) :
-                return  "deshabilitado";
-            else :
-                return "false";
-            endif;
+    public function inactivar_programa()
+    {
+        $cod_llegada = $_POST['codigo'];
+        $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 0]);
+        if ($inactivarPrograma) :
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
     }
 
-    public function activar_programa(){
+    public function activar_programa()
+    {
         $cod_llegada = $_POST['codigo'];
-        $inactivarPrograma = DB::table('programas')->where('codprograma','=', $cod_llegada)->update(['activo' => 1]);
+        $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
         if ($inactivarPrograma) :
             return  "habilitado";
         else :
             return "false";
         endif;
-}
+    }
+
+    public function update_programa()
+    {
+        $codigo = $_POST['codprograma'];
+        $programa_ = $_POST['programa'];
+        $facultad_ = $_POST['facultad'];
+        $facultad = DB::table('facultad')->where('codprograma', '=', $id)->update(['codFacultad' => $codFacultad, 'nombre' => $nombre]);
+
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
 }

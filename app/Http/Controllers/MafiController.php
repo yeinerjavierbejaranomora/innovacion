@@ -358,9 +358,27 @@ class MafiController extends Controller
                             $numeroRegistros++;
                         endif;
                     endif;
+                    $ultimoRegistroId = $value->id;
+                    $idBannerUltimoRegistro = $value->idbanner;
                 endforeach;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert',
+                'tabla_afectada' => 'estudiantes',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
             return "Numero de registros: " . $numeroRegistros . "=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
             "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
             "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;

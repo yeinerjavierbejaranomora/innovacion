@@ -161,7 +161,7 @@
                         className: "text-center"
                     },
                     {   data: 'activo', 
-                        defaultContent: " ",
+                        defaultContent: "",
                         title: "Estado",
                         className: "text-center",
                         render: function(data, type, row) {
@@ -174,7 +174,7 @@
                     },
                     {
                         data: 'activo',
-                        defaultContent: " ",
+                        defaultContent: "",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         render: function(data, type, row) {
@@ -287,7 +287,7 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route("programa.update", ["id" => encrypt('+ data.id +')])}}', {                             
+                            $.post('{{ route("programa.update", ["id" => encrypt('+ data.id +')]) }}', {                             
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
                                 codigo: $(document).find('#codprograma').val(),

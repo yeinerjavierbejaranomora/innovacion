@@ -277,7 +277,7 @@
                         method: 'post',
 
                     });
-            
+            console.log(facultades);
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {

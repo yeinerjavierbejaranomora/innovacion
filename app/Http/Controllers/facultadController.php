@@ -202,7 +202,7 @@ class facultadController extends Controller
     public function update_programa()
     {
         $id_llegada = $_POST['id'];
-        $codigo = $_POST['codprograma'];
+        $codigo = $_POST['codigo'];
         $nombre = $_POST['programa'];
 
         var_dump($codigo);

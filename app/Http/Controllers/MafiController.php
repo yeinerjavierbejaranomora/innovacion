@@ -177,7 +177,8 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        return $this->falatntesPrimerIngreso();
+        $primerIngreso =  $this->falatntesPrimerIngreso();
+        return $primerIngreso;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

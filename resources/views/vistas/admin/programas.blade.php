@@ -271,7 +271,7 @@
             }
 
 
-        function obtener_data_editar(tbody, table) {
+            function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log(data.nombre);
@@ -280,8 +280,8 @@
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
-                        input: 'select',   
-                        inputOptions: inputOptionsPromise,       
+                        input: 'select',
+                        inputOptions: inputOptionsPromise,
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
@@ -314,26 +314,21 @@
                             )
                         }
                     })
+                    var excepcion = data.nombre
+                    var inputOptionsPromise = new Promise(function(resolve) {
+                        // get your data and pass it to resolve()
+                        setTimeout(function() {
+                            $.getJSON("{{ route('programa.nombresfac') }}", function(nombres) {
+                                var facultades = [];
+                                for (i = 0; i < nombres.data.length; i++) {
+                                    facultades.push(nombres.data[i].nombre);
+                                }
+                                resolve(facultades)
+                            });
+                        }, 2000)
+                    })
                 });
             }
-
-            var inputOptionsPromise = new Promise(function(resolve) {
-            // get your data and pass it to resolve()
-            setTimeout(function() {
-            $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
-            var facultades = [];
-            for (i = 0; i <  data.data.length; i++) {
-            facultades.push(data.data[i].nombre); 
-            }        
-            resolve(facultades)
-        });
-
-  }, 2000)
-})
-
-
-
-           
             obtener_data_editar("#example tbody", table);
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);

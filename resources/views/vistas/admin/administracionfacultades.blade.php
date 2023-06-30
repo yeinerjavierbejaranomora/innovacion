@@ -126,7 +126,7 @@
                 "data": data.data,
                 "columns": [{
                         data: 'codFacultad',
-                        title: 'Codigo de facultad', "visible": false,
+                        title: 'Codigo de facultad', 
                     },
                     {
                         data: 'nombre',
@@ -155,13 +155,7 @@
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: `
-                            <form>
-                            <input type="text" id="codigo" name="codigo" value="${data.codFacultad}" class="form-control" placeholder="codFacultad">
-                            <br> 
-                            <input type="text" id="nombre" name="nombre" value="${data.nombre}" class="form-control" placeholder="nombre">                      
-                            </form>
-                        `,
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="'+data.codFacultad+'" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="'+data.nombre0+'" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -173,16 +167,22 @@
                             $.post('{{ route('admin.updatefacultad') }}', {                             
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
-                                codFacultad: $('#codigo').val(),
-                                nombre: $('#nombre').val()
+                                codFacultad: $(document).find('#codigo').val(),
+                                nombre: $(document).find('#name').val()
                             }, 
                             function(result) {    
                                 console.log(result);                               
                                     if (result == "actualizado") {
+
+                                      
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
+                                        }).then(result => {
+                                            location.reload();
                                         });
+
+                                       
                                     }
                                 }
                             )

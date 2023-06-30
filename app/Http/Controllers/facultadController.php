@@ -211,14 +211,14 @@ class facultadController extends Controller
         $id_llegada = $_POST['id'];
         $codigo = $_POST['codigo'];
         $nombre = $_POST['programa'];
-        $facultad = $_POST['idBaseDatos'];
+        $idfacultad = $_POST['idBaseDatos'];
 
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
 
-        $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre]);
+        $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre , 'idFacultad' =>$idfacultad]);
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

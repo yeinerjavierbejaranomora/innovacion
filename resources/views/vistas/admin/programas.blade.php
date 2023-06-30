@@ -302,7 +302,7 @@
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),
                                     programa: $(document).find('#programa').val(),                                    
-                                    facultad: result.value,
+                                    facultad:  $(document).find('#facultad'+result.value).val(),
                                 },
                                 function(result) {
                                     console.log(result);

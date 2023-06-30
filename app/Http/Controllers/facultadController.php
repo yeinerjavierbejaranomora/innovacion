@@ -25,9 +25,8 @@ class facultadController extends Controller
     {
         $data = DB::table('facultad')->select('nombre')->get();
         $nombres=$data[0]->nombre;
-        return $nombres;
         /**Se retorna la vista de los programas de pregado */
-        return view('vistas.admin.programas');
+        return view('vistas.admin.programas',['nombres'=>$nombres]);
     }
 
     /** Función para cargar la vista de las especializaciones */

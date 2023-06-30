@@ -277,8 +277,8 @@
                             },
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
-                            success: function(facultades) {
-                                data.forEach(facultad => {
+                            success: function(facultadesList) {
+                                facultadesList.forEach(facultad => {
                                     console.log('23');
                                     console.log(facultad.id);
                                 });

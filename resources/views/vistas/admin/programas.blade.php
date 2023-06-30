@@ -298,7 +298,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',
-                        inputOptions: facultades,
+                        
                         inputPlaceholder: data.nombre,
 
                         icon: 'info',

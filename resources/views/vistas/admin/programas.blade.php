@@ -286,7 +286,7 @@
 
             }
 
-            console.log(facultades);
+            traernombre();
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {

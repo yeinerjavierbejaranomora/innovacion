@@ -279,6 +279,9 @@
                             method: 'post',
                             } 
                         );
+                        var data = JSON.parse(facultades.responseText);
+                        
+                        console.log(data);
                         console.log('1');
                         console.log(facultades.responseText);
 

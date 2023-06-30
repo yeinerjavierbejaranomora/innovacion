@@ -270,13 +270,7 @@
                 });
             }
 
-
-            console.log('inicia');
-                var facultadesVar = facultades();
-                        console.log(facultadesVar);
-                        console.log('1');
-
-    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+             //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
     function facultades() {
         $.ajax({
             headers: {
@@ -294,6 +288,14 @@
         });
         
     }
+
+
+            console.log('inicia');
+                var facultadesVar = facultades();
+                        console.log(facultadesVar);
+                        console.log('1');
+
+   
             
 
             function obtener_data_editar(tbody, table) {

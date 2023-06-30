@@ -201,7 +201,7 @@ class facultadController extends Controller
 
     // Función que trae los nombres de Facultades
     public function nombresFacultades(){
-        $data = DB::table('facultad')->select('nombre')->get();
+        $data = DB::table('facultad')->select('nombre','id')->get();
         return $data;
     }
 

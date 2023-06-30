@@ -335,6 +335,8 @@
             var inputOptionsPromise = new Promise(function(resolve) {
   // get your data and pass it to resolve()
   setTimeout(function() {
+    console.log('1');
+    console.log(facultades());
     resolve(facultades());    
 
   }, 2000)

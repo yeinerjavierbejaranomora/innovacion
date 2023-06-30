@@ -201,12 +201,22 @@ class facultadController extends Controller
 
     public function update_programa()
     {
+        $id_llegada = $_POST['id'];
         $codigo = $_POST['codprograma'];
-        $programa_ = $_POST['programa'];
+        $nombre = $_POST['programa'];
         $facultad_ = $_POST['facultad'];
-        $facultad = DB::table('facultad')->where('codprograma', '=', $id)->update(['codFacultad' => $codFacultad, 'nombre' => $nombre]);
 
-        if ($facultad) :
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        var_dump($id);
+        die(); 
+        
+        $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre]);
+
+        if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

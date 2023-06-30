@@ -202,9 +202,8 @@ class facultadController extends Controller
     public function update_programa()
     {
         $id_llegada = $_POST['id'];
-        $codigo = $_POST['codprograma'];
+        $codigo = $_POST['codigo'];
         $nombre = $_POST['programa'];
-        $facultad_ = $_POST['facultad'];
 
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -212,8 +211,6 @@ class facultadController extends Controller
         }
 
         var_dump($id);
-        die(); 
-        
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre]);
 
         if ($update) :

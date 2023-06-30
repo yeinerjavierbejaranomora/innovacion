@@ -190,7 +190,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data[0]);
+        //dd($data[0]);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -253,18 +253,34 @@ class MafiController extends Controller
                             endif;
                         endif;
                     else:
+                        if($value->programaActivo > 0):
                         /**Insert tabla estudiantes */
-                        $insertEstudinate = Estudiante::create([
-                            'homologante' => $value->idbanner,
-                            'nombre' => $value->primer_apellido,
-                            'programa' => $value->programa,
-                            'bolsa' => $value->ruta_academica,
-                            'operador' => $value->operador,
-                            'nodo'=>'nodo',
-                            'tipo_estudiante' => $value->tipoestudiante,
-                            'materias_faltantes' => "OK",
-                            'marca_ingreso' => $value->periodo,
-                        ]);
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo' => 'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'materias_faltantes' => "OK",
+                                'marca_ingreso' => $value->periodo,
+                            ]);
+                        else :
+                            /**Insert tabla estudiantes */
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo' => 'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'programaActivo' => 'NO SE ABRIO PROGRAMA',
+                                'materias_faltantes' => "OK",
+                                'marca_ingreso' => $value->periodo,
+                            ]);
+                        endif;
 
                         if($insertEstudinate):
                             $numeroRegistros++;

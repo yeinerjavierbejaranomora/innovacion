@@ -22,6 +22,7 @@ class Estudiante extends Model
         'programado_ciclo2',
         'programado_extra',
         'tiene_historial',
+        'programaActivo',
         'observacion',
         'marca_ingreso',
     ];

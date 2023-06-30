@@ -282,7 +282,7 @@
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
-                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+ data.nombre +'">Seleccione la facultad</option> </select>',
+                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+data.idfacultad+'" selected>'+ data.nombre +'</option> </select>',
                         input: 'select',
                         inputOptions: inputOptionsPromise,
                         inputPlaceholder: data.nombre,

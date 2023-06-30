@@ -277,8 +277,7 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-
-                    $('#facultadEditar')=data.nombre;
+                    $('#facultadEditar').val(data.nombre);
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
@@ -322,8 +321,8 @@
             }
 
             var inputOptionsPromise = new Promise(function(resolve) {
-                console.log('14');
-                console.log($('#facultadEditar'));
+                console.log('15');
+                console.log($('#facultadEditar').val());
                 // get your data and pass it to resolve()
                 setTimeout(function() {
                     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {

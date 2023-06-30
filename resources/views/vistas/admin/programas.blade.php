@@ -270,25 +270,6 @@
                 });
             }
 
-            var ddd ;     //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
-    function facultades() {
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('programa.nombresfac') }}",
-            method: 'post',
-              success: function(data) {
-                ddd = data;              
-            }
-        });
-        
-    }
-
-    console.log('p');
-    var ddd =  facultades();
-    console.log(ddd);
-
 
         function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -340,8 +321,9 @@
   // get your data and pass it to resolve()
   setTimeout(function() {
     console.log('1');
-    console.log(facultades());
-    resolve(facultades());    
+    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
+      resolve(data)
+    });
 
   }, 2000)
 })

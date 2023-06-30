@@ -298,7 +298,8 @@
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),
-                                    programa: $(document).find('#programa').val(),
+                                    programa: $(document).find('#programa').val(),                                    
+                                    facultad: data.nombre,
                                 },
 
                                 function(result) {

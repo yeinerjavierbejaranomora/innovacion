@@ -279,6 +279,7 @@
                             method: 'post',
                             } 
                         );
+                        console.log('1');
                         console.log(facultades.responseText);
 
             

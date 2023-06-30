@@ -302,7 +302,7 @@
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),
                                     programa: $(document).find('#programa').val(),                                    
-                                    facultad: facultad.Promise,
+                                    facultad: result.value,
                                 },
                                 function(result) {
                                     console.log(result);
@@ -330,6 +330,7 @@
                         for (i = 0; i < data.data.length; i++) {
                             if($('#facultadEditar').val() != data.data[i].nombre){
                                 facultades.push(data.data[i].nombre);
+                                $('#facultades').append(`<option  value="${i}">${data.data[i].nombre}</option>`);
                             }
                         }
                         resolve(facultades)

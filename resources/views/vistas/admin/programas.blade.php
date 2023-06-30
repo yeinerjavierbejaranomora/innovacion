@@ -284,12 +284,12 @@
             },
             url: "{{ route('programa.nombresfac') }}",
             method: 'post',
-            success: function(data) {
-                                data.forEach(facultad => {
-                                    console.log('23');
+              success: function(data) {
+                data.forEach(facultad => {
+                    console.log('23');
                                     console.log(facultad.id);
-                                });
-                            }
+                });
+            }
         });
         
     }

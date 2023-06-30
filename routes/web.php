@@ -160,7 +160,7 @@ Route::controller(facultadController::class)->group(function(){
     Route::post('/home/activarprograma', 'activar_programa')->middleware('auth')->name('programa.activar');
 
     /** Ruta para actualizar programa */
-    Route::post('/home/updateprograma/{id}', 'update_programa')->middleware('auth')->name('programa.update');
+    Route::post('/home/updateprograma', 'update_programa')->middleware('auth')->name('programa.update');
     });
 
 

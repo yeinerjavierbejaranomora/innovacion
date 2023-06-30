@@ -203,10 +203,12 @@ class facultadController extends Controller
     public function nombresFacultades(){
         $data = DB::table('facultad')->select('nombre')->get();
         $nombres=$data[0]->nombre;
+        return $nombres;
+        
         /**mostrar los datos en formato JSON */
-        header("Content-Type: application/json");
+        // header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
-        echo json_encode(array('data' => $nombres));
+        //echo json_encode(array('data' => $nombres));
     }
 
 

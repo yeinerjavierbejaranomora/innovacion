@@ -408,8 +408,7 @@ class MafiController extends Controller
                             ->where('programas.activo','=',1)
                             ->orderBy('mallaCurricular.semestre', 'asc')
                             ->orderBy('mallaCurricular.orden', 'asc')
-                            ->get()
-                            ->chunk(200);
+                            ->get();
 
         return $mallaCurricular;
     }

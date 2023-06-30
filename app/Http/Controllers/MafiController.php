@@ -202,10 +202,14 @@ class MafiController extends Controller
             $fechaFin = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                var_dump($value."<br>");
+                    $historial = DB::table('datosMafiReplica')
+                        ->select('historialAcademico.codMateria')
+                        ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
+                        ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->count();
+
+                    dd($historial);
                 endforeach;
             endforeach;
-            die();
             return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
                 "<br> Numero de registrosen alertas: ".$numeroRegistrosAlertas.
                 "<br> inicio:".$fechaInicio."-- Fin:".$fechaFin;

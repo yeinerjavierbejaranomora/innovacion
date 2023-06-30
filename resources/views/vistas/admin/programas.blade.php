@@ -324,6 +324,8 @@
                 });
             }
              //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+             
+    facultades();
     function facultades() {
         $.ajax({
             headers: {

@@ -321,14 +321,13 @@
             }
 
             var inputOptionsPromise = new Promise(function(resolve) {
-                console.log('17');
-                console.log($('#facultadEditar').val());
-                // get your data and pass it to resolve()
                 setTimeout(function() {
                     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
                         var facultades = [];
                         for (i = 0; i < data.data.length; i++) {
-                            facultades.push(data.data[i].nombre);
+                            if($('#facultadEditar').val() != data.data[i].nombre){
+                                facultades.push(data.data[i].nombre);
+                            }
                         }
                         resolve(facultades)
                     });

@@ -173,7 +173,7 @@
                         }
                     },
                     {
-                        defaultContent: "<button type='button' id='boton'></button>",
+                        defaultContent: " ",
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         render: function(data, type, row) {

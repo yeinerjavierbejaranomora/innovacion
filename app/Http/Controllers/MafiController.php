@@ -178,7 +178,8 @@ class MafiController extends Controller
     {
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
-        return $primerIngreso;
+        $mallaCurricular = $this->BaseAcademica();
+        return $mallaCurricular;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -399,6 +400,14 @@ class MafiController extends Controller
                                     ->chunk(200);
 
         return $estudiantesPrimerIngreso;
+    }
+
+    public function BaseAcademica(){
+        $mallaCurricular = DB::table('mallaCurricular')
+                            ->join('programas','mallaCurricular.codprograma','=','programas.codprograma')
+                            ->where('programas.activo','=',0);
+
+        return $mallaCurricular;
     }
 
     //*** funcion para activar los periodos automaticamente */

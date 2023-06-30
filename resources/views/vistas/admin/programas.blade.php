@@ -209,8 +209,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('
-                                    programa.inactivar ') }}', {
+                                $.post('{{ route('programa.inactivar') }}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     },
@@ -300,7 +299,7 @@
                     }).then(result => {
                         if (result.value) {
                             $.post('{{ route('
-                                programa.update ') }}', {
+                                programa.update') }}', {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),

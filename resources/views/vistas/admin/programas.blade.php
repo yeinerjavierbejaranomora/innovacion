@@ -269,14 +269,21 @@
                     }
                 });
             }
-            var facultades = $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "{{ route('registro.facultades') }}",
-                        method: 'post',
+            function{
+                var facultades = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('registro.facultades') }}",
+                            method: 'post',
+                            sucess:function(data){
+                                        console.log(data);
+                                        console.log(data.id);
+                            } 
+                        });
 
-                    });
+            }
+
             console.log(facultades);
 
             function obtener_data_editar(tbody, table) {

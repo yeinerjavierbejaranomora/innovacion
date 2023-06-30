@@ -274,7 +274,7 @@
         function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data);
+                    console.log(data.nombre);
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +

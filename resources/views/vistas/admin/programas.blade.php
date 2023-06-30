@@ -326,7 +326,7 @@
         for (i = 0; i <  data.data.length; i++) {
             facultades.push(data.data[i]); 
         }        
-        resolve(facultades)
+        resolve(data.data)
     });
 
   }, 2000)

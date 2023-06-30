@@ -276,7 +276,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             url: "{{ route('programa.nombresfac') }}",
-                            method: 'post',
+                            method: 'get',
                             } 
                         );
                         console.log(facultades);

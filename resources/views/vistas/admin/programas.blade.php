@@ -278,7 +278,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     $('#facultadEditar').val(data.nombre);
-                    Swal.fire({
+                    const { value: facultad } = await Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +

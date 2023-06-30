@@ -176,6 +176,13 @@
                         defaultContent: "<button type='button' id='boton'></button>",
                         title: 'Inactivarrrr / Activar',
                         className: "text-center",
+                        render: function(data, type, row) {
+                            if(data == '1') {
+                                $("td:eq(5) button", row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
+                            }else if (data == '0') {
+                                $("td:eq(5) button", row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");       
+                            }
+                        }
                     }
                 ],
                 

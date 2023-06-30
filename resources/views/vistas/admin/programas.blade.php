@@ -279,7 +279,6 @@
             url: "{{ route('programa.nombresfac') }}",
             method: 'post',
               success: function(data) {
-                console.log(data);
                 return data;                
             }
         });
@@ -287,15 +286,7 @@
     }
 
 
-            console.log('inicia');
-                var facultadesVar = facultades();
-                        console.log(facultadesVar);
-                        console.log('1');
-
-   
-            
-
-            function obtener_data_editar(tbody, table) {
+        function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log[data];
@@ -305,7 +296,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',   
-                        inputOptions: facultades,       
+                        inputOptions: facultades(),       
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,

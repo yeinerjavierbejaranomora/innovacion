@@ -93,6 +93,9 @@
                                     <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
+                                    <input type="number" id="facultadEditar" name="facultadEditar" hidden>
+                                </div>
+                                <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
                                 </div>
@@ -274,7 +277,8 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log(data.nombre);
+
+                    $('#facultadEditar')=data.nombre;
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
@@ -316,8 +320,10 @@
                     })
                 });
             }
-            
+
             var inputOptionsPromise = new Promise(function(resolve) {
+                console.log('14');
+                console.log($('#facultadEditar'));
                 // get your data and pass it to resolve()
                 setTimeout(function() {
                     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {

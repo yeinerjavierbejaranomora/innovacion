@@ -282,7 +282,8 @@
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
-                            '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
+                            '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">'+
+                            ' <select class="input100" name="id_facultad" id="facultades"> <option value="">Seleccione la facultad</option> </select>',
                         input: 'select',
                         inputOptions: inputOptionsPromise,
                         inputPlaceholder: data.nombre,

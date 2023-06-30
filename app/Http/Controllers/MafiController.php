@@ -404,11 +404,12 @@ class MafiController extends Controller
 
     public function BaseAcademica(){
         $mallaCurricular = DB::table('mallaCurricular')
-                            ->join('programas','mallaCurricular.codprograma','=','programas.codprograma')
-                            ->where('programas.activo','=',1)
-                            ->orderBy('mallaCurricular.semestre', 'asc')
-                            ->orderBy('mallaCurricular.orden', 'asc')
+                            ->select('codigoCurso', 'semestre', 'ciclo', 'orden')
+                            ->where('codprograma', 'PPSV')
+                            ->orderBy('semestre', 'asc')
+                            ->orderBy('orden', 'asc')
                             ->get();
+
 
         return $mallaCurricular;
     }

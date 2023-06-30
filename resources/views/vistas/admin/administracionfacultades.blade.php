@@ -152,9 +152,10 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
+                    console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form> <input type="text" id="codigo" name="codigo" value="'+data.codFacultad+'" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="'+data.nombre0+'" class="form-control" placeholder="nombre"></form>',
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="'+data.codFacultad+'" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="'+data.nombre+'" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -171,9 +172,7 @@
                             }, 
                             function(result) {    
                                 console.log(result);                               
-                                    if (result == "actualizado") {
-
-                                      
+                                    if (result == "actualizado") {        
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'

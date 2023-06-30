@@ -269,6 +269,15 @@
                     }
                 });
             }
+            var facultades = $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{ route('registro.facultades') }}",
+                        method: 'post',
+
+                    });
+            
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -317,15 +326,7 @@
                 });
             }
 
-            var facultades = $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "{{ route('registro.facultades') }}",
-                        method: 'post',
-
-                    });
-            
+           
             obtener_data_editar("#example tbody", table);
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);

@@ -280,11 +280,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',
-                        inputOptions: {
-    'SRB': 'Serbia',
-    'UKR': 'Ukraine',
-    'HRV': 'Croatia'
-  },
+                        inputOptions: facultades,
                         inputPlaceholder: data.nombre,
 
                         icon: 'info',
@@ -320,6 +316,15 @@
                     })
                 });
             }
+
+            var facultades = $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{ route('registro.facultades') }}",
+                        method: 'post',
+
+                    });
             
             obtener_data_editar("#example tbody", table);
             /** Llamado a la función */

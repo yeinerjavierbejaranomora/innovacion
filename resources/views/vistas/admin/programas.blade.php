@@ -174,7 +174,7 @@
                     },
                     {
                         defaultContent: "<button type='button' id='boton'></button>",
-                        title: 'Inactivarrrr / Activar',
+                        title: 'Inactivar / Activar',
                         className: "text-center",
                         render: function(data, type, row) {
                             if(data == '1') {

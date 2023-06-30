@@ -288,7 +288,8 @@
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
                         confirmButtonText: 'Editar'
-                    }).then(result => {
+                    }
+                    ).then(result => {
                         if (result.value) {
                             $.post('{{ route('programa.update') }}', {                                                         
                                 '_token': $('meta[name=csrf-token]').attr('content'),
@@ -312,7 +313,7 @@
                                 }
                             )
                         }
-                    });               
+                    })
                 });
             }
 

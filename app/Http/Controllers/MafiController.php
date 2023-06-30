@@ -190,26 +190,95 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        //dd($data[22][4538]);
+        //dd($data[0][0]);
 
 
-        //dd($data[0][10]);
+        if (!empty($data[0])) :
+            $numeroRegistros = 0;
+            $numeroRegistrosAlertas = 0;
+            $primerId = $data[0][0]->id;
+            $ultimoRegistroId = 0;
+            $fechaInicio = date('Y-m-d H:i:s');
+            $fechaFin = date('Y-m-d H:i:s');
+            foreach ($data as $keys => $estudiantes) :
+                foreach ($estudiantes as $key => $value) :
+                    if(str_contains($value->tipoestudiante,'TRANSFERENTE EXTERNO')):
+                        $historial = DB::table('datosMafiReplica')
+                        ->select('historialAcademico.codMateria')
+                        ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
+                        ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->count();
+                        if($historial == 0):
+                            /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo'=>'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'materias_faltantes' => "OK",
+                                'tiene_historial' => 'SIN HISTORIAL',
+                                'marca_ingreso' => $value->periodo,
+                            ]);
 
-        if(str_contains($data[0][10]->tipoestudiante,'TRANSFERENTE EXTERNO')):
-            $concultaTrasferente = DB::table('datosMafiReplica')
-            ->join('historialAcademico','datosMafiReplica.idbanner','=','historialAcademico.codBanner')
-            ->where('datosMafiReplica.idbanner','=',$data[0][10]->idbanner)->get();
-            //dd($concultaTrasferente);
-            if($concultaTrasferente->count() == 0):
-                return "No tiene historial";
-            else:
-                return "Tiene historial";
-            endif;
-        else:
-            return "No";
+                            if($insertEstudinate):
+                                $numeroRegistros++;
+                            endif;
+                            /**Insert tabla alertas_tempranas, transferente sin historial academico */
+                            $insertAlerta = AlertasTempranas::create([
+                                'idbanner' => $value->idbanner,
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'desccripcion' => 'El estudiante con idBanner'.$value->idbanner.' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                            ]);
+
+                            if($insertAlerta):
+                                $numeroRegistrosAlertas++;
+                            endif;
+                        else:
+                            /**Insert tabla estudiantes */
+                            $insertEstudinate = Estudiante::create([
+                                'homologante' => $value->idbanner,
+                                'nombre' => $value->primer_apellido,
+                                'programa' => $value->programa,
+                                'bolsa' => $value->ruta_academica,
+                                'operador' => $value->operador,
+                                'nodo'=>'nodo',
+                                'tipo_estudiante' => $value->tipoestudiante,
+                                'materias_faltantes' => "OK",
+                                'marca_ingreso' => $value->periodo,
+                            ]);
+
+                            if($insertEstudinate):
+                                $numeroRegistros++;
+                            endif;
+                        endif;
+                    else:
+                        /**Insert tabla estudiantes */
+                        $insertEstudinate = Estudiante::create([
+                            'homologante' => $value->idbanner,
+                            'nombre' => $value->primer_apellido,
+                            'programa' => $value->programa,
+                            'bolsa' => $value->ruta_academica,
+                            'operador' => $value->operador,
+                            'nodo'=>'nodo',
+                            'tipo_estudiante' => $value->tipoestudiante,
+                            'materias_faltantes' => "OK",
+                            'marca_ingreso' => $value->periodo,
+                        ]);
+
+                        if($insertEstudinate):
+                            $numeroRegistros++;
+                        endif;
+                    endif;
+                endforeach;
+            endforeach;
+            return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
+                "<br> Numero de registrosen alertas: ".$numeroRegistrosAlertas.
+                "<br> inicio:".$fechaInicio."-- Fin:".$fechaFin;
+        else :
+            return "No hay registros para replicar";
         endif;
-
-
     }
 
     //*** funcion para activar los periodos automaticamente */

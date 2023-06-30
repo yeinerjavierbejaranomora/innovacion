@@ -296,7 +296,8 @@
                             
                             function(result) {    
                                 console.log(result);                               
-                                    if (result == "actualizado") {        
+                                    if (result == "actualizado") {    
+                                        console.log('enmtro');                   
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'

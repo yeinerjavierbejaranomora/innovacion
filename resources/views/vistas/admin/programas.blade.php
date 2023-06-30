@@ -280,16 +280,22 @@
                         '<input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br>' + 
                         '<input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa">', 
                         input: 'select',
-                        inputOptions: inputoOptionsPromise,
+                        inputOptions: {
+                            'Facultades':{
+                              educacion: 'Educacion',
+                              ingenieria: 'ingenieria',
+                              ciencias: 'ciencias'  
+                            }
+                        } ,
                         inputPlaceholder: data.nombre,
+                        
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
                         confirmButtonText: 'Editar'
-                    }
-                    ).then(result => {
+                    }).then(result => {
                         if (result.value) {
                             $.post('{{ route('programa.update') }}', {                                                         
                                 '_token': $('meta[name=csrf-token]').attr('content'),

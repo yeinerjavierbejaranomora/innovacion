@@ -199,9 +199,8 @@ class facultadController extends Controller
         endif;
     }
 
-    public function update_programa()
+    public function update_programa($id_llegada)
     {
-        $id_llegada = $_POST['id'];
         $codigo = $_POST['codprograma'];
         $nombre = $_POST['programa'];
         $facultad_ = $_POST['facultad'];

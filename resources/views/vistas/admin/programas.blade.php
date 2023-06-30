@@ -296,7 +296,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',   
-                        inputOptions: facultades(),       
+                        inputOptions: inputOptionsPromise,       
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
@@ -331,6 +331,16 @@
                     })
                 });
             }
+
+            var inputOptionsPromise = new Promise(function(resolve) {
+  // get your data and pass it to resolve()
+  setTimeout(function() {
+    resolve(facultades());    
+
+  }, 2000)
+})
+
+
 
            
             obtener_data_editar("#example tbody", table);

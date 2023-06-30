@@ -190,9 +190,15 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        
+        dd($data[0][0]);
 
 
+        if (!empty($data[0])) :
+            $numeroRegistros = 0;
+            $numeroRegistrosAlertas = 0;
+        else :
+            return "No hay registros para replicar";
+        endif;
     }
 
     //*** funcion para activar los periodos automaticamente */

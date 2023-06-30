@@ -173,6 +173,7 @@
                         }
                     },
                     {
+                        data: 'activo',
                         defaultContent: " ",
                         title: 'Inactivara / Activar',
                         className: "text-center",

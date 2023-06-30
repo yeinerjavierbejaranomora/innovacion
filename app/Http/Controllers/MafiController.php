@@ -357,11 +357,11 @@ class MafiController extends Controller
                                 if ($insertAlerta) :
                                     $numeroRegistrosAlertas++;
                                 endif;
+                                if ($insertEstudinate) :
+                                    $numeroRegistros++;
+                                endif;
                         endif;
 
-                        if ($insertEstudinate) :
-                            $numeroRegistros++;
-                        endif;
                     endif;
                 endforeach;
             endforeach;

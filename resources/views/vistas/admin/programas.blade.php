@@ -269,7 +269,16 @@
                     }
                 });
             }
-            
+            var facultades = $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{ route('registro.facultades') }}",
+                        method: 'post',
+
+                    });
+            console.log(facultades);
+
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
@@ -280,7 +289,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',
-                        
+                        inputOptions: facultades,
                         inputPlaceholder: data.nombre,
 
                         icon: 'info',

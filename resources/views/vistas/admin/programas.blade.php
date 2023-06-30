@@ -267,6 +267,49 @@
                     }
                 });
             }
+            
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    console.log[data];
+                    Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form> <input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br> <input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa"> <br> <input type="text" id="facultad" name="facultad" value="'+data.nombre+'" class="form-control" placeholder="nombre"></form>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        if (result.value) {
+                            $.post('{{ route('admin.updatefacultad') }}', {                             
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                                codFacultad: $(document).find('#codigo').val(),
+                                nombre: $(document).find('#name').val()
+                            }, 
+                            function(result) {    
+                                console.log(result);                               
+                                    if (result == "actualizado") {        
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'sucess'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                       
+                                    }
+                                }
+                            )
+                        }
+                    })
+                });
+            }
+
+            obtener_data_editar("#example tbody", table);
+
 
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);

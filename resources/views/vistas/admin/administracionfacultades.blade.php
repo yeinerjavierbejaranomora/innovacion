@@ -172,9 +172,7 @@
                             }, 
                             function(result) {    
                                 console.log(result);                               
-                                    if (result == "actualizado") {
-
-                                      
+                                    if (result == "actualizado") {        
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'

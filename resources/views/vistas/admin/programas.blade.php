@@ -280,13 +280,7 @@
                         '<input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br>' + 
                         '<input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa">', 
                         input: 'select',
-                        inputOptions: {
-                            'Facultades':{
-                              educacion: 'Educacion',
-                              ingenieria: 'ingenieria',
-                              ciencias: 'ciencias'  
-                            }
-                        } ,
+                        inputOptions: inputoOptionsPromise,
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
@@ -300,7 +294,7 @@
                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                 id: encodeURIComponent(window.btoa(data.id)),
                                 codigo: $(document).find('#codprograma').val(),
-                                programa: $(document).find('#programa').val(),
+                                programa: $(document).find('#programa').val(),                                
                             }, 
                             
                             function(result) {    
@@ -319,6 +313,16 @@
                             )
                         }
                     })
+
+                    var inputOptionsPromise = new Promise(function (resolve) {
+                        setTimeout (function(){
+                            console.log("options promise");
+                            $.getJSON ("{{ route('admin.getfacultades') }}",function(data){
+                                console.log(data);
+                                resolve(data)
+                            });
+                        });
+
                 });
             }
 

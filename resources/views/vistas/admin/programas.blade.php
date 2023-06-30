@@ -170,12 +170,8 @@
                         title: 'Inactivar / Activar',
                         className: "text-center",
                     },
-
-                ],
-                /** Función que cambia el botón del programa, dependiendo de si este
-                 * se ecuentra activo o no
-                 */
-                rowCallback: function(row, data) {
+                    {
+                        rowCallback: function(row, data) {
                     if (data.activo == 1) {
                         $("td:eq(5) button", row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
                         $("td:eq(4)", row).append("Activo");
@@ -184,6 +180,13 @@
                         $("td:eq(4)", row).append("Inactivo");
                     }
                 },
+                    }
+
+                ],
+                /** Función que cambia el botón del programa, dependiendo de si este
+                 * se ecuentra activo o no
+                 */
+               
 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

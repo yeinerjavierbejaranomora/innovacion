@@ -201,7 +201,9 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             $fechaFin = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
-                var_dump($estudiantes."<br>");
+                foreach ($estudiantes as $key => $value) :
+                var_dump($value."<br>");
+                endforeach;
             endforeach;
             die();
             return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .

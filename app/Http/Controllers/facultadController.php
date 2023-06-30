@@ -27,7 +27,7 @@ class facultadController extends Controller
         $nombres=$data[0]->nombre;
         return $nombres;
         /**Se retorna la vista de los programas de pregado */
-        return view('vistas.admin.programas',['nombres'=>$nombres]);
+        return view('vistas.admin.programas');
     }
 
     /** Función para cargar la vista de las especializaciones */

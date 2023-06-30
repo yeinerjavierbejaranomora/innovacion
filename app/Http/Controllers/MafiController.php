@@ -257,14 +257,13 @@ class MafiController extends Controller
                                     'desccripcion' => 'NO SE ABRIO PROGRAMA'. $value->programa,
                                 ]);
 
-                                endif;
-                                if ($insertAlerta) :
-                                    $numeroRegistrosAlertas++;
-                                endif;
+                            endif;
+                            if ($insertAlerta) :
+                                $numeroRegistrosAlertas++;
+                            endif;
 
-                                if ($insertEstudinate) :
-                                    $numeroRegistros++;
-                                endif;
+                            if ($insertEstudinate) :
+                                $numeroRegistros++;
                             endif;
                         else :
                             if ($value->programaActivo > 0) :
@@ -301,15 +300,15 @@ class MafiController extends Controller
                                     'desccripcion' => 'NO SE ABRIO PROGRAMA'. $value->programa,
                                 ]);
 
-                                endif;
-                                if ($insertAlerta) :
-                                    $numeroRegistrosAlertas++;
-                                endif;
-
-                                if ($insertEstudinate) :
-                                    $numeroRegistros++;
-                                endif;
                             endif;
+                            if ($insertAlerta) :
+                                $numeroRegistrosAlertas++;
+                            endif;
+
+                            if ($insertEstudinate) :
+                                $numeroRegistros++;
+                            endif;
+                        endif;
                     else :
                         if ($value->programaActivo > 0) :
                             /**Insert tabla estudiantes */

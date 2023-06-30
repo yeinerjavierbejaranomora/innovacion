@@ -278,7 +278,7 @@
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
                             } 
-                        )};
+                        );
                         console.log(facultades);
 
             

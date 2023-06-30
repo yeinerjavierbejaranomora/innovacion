@@ -202,6 +202,7 @@ class facultadController extends Controller
     // Función que trae los nombres de Facultades
     public function nombresFacultades(){
         $data = DB::table('facultad')->select('nombre')->get();
+        dd($data);
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

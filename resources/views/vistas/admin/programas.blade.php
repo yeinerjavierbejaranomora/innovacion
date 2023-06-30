@@ -332,8 +332,8 @@
                         method: 'post',
 
                         });
+                        console.log(facultades);
                     }
-                    console.log(facultades);
             obtener_data_editar("#example tbody", table);
 
 

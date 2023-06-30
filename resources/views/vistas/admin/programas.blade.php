@@ -320,6 +320,7 @@
                         setTimeout(function() {
                             $.getJSON("{{ route('programa.nombresfac') }}", function(nombres) {
                                 var facultades = [];
+                                console.log('1');
                                 for (i = 0; i < nombres.data.length; i++) {
                                     facultades.push(nombres.data[i].nombre);
                                 }

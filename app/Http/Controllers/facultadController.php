@@ -211,7 +211,7 @@ class facultadController extends Controller
         $id_llegada = $_POST['id'];
         $codigo = $_POST['codigo'];
         $nombre = $_POST['programa'];
-        $idfacultad = $_POST['idBaseDatos'];
+        $idfacultad = $_POST['idfacultad'];
 
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {

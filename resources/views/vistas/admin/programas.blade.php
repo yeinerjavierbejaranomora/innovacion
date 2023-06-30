@@ -271,31 +271,7 @@
             }
 
 
-            console.log('inicia');
-                var facultadesVar = facultades();
-                        console.log(facultadesVar);
-                        console.log('1');
-
-    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
-    function facultades() {
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('programa.nombresfac') }}",
-            method: 'post',
-              success: function(data) {
-                data.forEach(facultad => {
-                    console.log('23');
-                                    console.log(facultad.id);
-                });
-            }
-        });
-        
-    }
-            
-
-            function obtener_data_editar(tbody, table) {
+        function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log[data];
@@ -305,7 +281,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',   
-                        inputOptions: facultades,       
+                        inputOptions: inputOptionsPromise,       
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
@@ -340,6 +316,19 @@
                     })
                 });
             }
+
+            var inputOptionsPromise = new Promise(function(resolve) {
+  // get your data and pass it to resolve()
+  setTimeout(function() {
+    console.log('1');
+    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
+      resolve(data)
+    });
+
+  }, 2000)
+})
+
+
 
            
             obtener_data_editar("#example tbody", table);

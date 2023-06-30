@@ -274,7 +274,7 @@
         function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log[data];
+                    console.log(data);
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
@@ -282,7 +282,7 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',   
                         inputOptions: inputOptionsPromise,       
-                        inputPlaceholder: 'seleccione',
+                        inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -320,13 +320,13 @@
             var inputOptionsPromise = new Promise(function(resolve) {
             // get your data and pass it to resolve()
             setTimeout(function() {
-    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
-        var facultades = [];
-        for (i = 0; i <  data.data.length; i++) {
+            $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
+            var facultades = [];
+            for (i = 0; i <  data.data.length; i++) {
             facultades.push(data.data[i].nombre); 
-        }        
-        resolve(facultades)
-    });
+            }        
+            resolve(facultades)
+        });
 
   }, 2000)
 })

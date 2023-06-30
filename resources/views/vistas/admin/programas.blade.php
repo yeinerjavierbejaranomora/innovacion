@@ -164,6 +164,13 @@
                         defaultContent: " ",
                         title: "Estado",
                         className: "text-center",
+                        render: function(data, type, row) {
+                            if(data == '1') {
+                                return 'Activo';       
+                            }else if (data == '0') {
+                                return 'Inactivo';         
+                            }
+                        }
                     },
                     {
                         defaultContent: "<button type='button' id='boton'></button>",

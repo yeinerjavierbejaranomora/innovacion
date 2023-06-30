@@ -331,7 +331,7 @@
                     console.log(facultades);
                     $.getJSON(facultades, function(data) {
                         console.log(data);
-                        esolve(data)
+                        resolve(data)
                     });
             })
 

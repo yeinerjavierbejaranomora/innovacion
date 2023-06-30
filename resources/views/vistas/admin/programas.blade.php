@@ -279,6 +279,15 @@
                         html: '<form>' + 
                         '<input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br>' + 
                         '<input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa"> <br>', 
+                        input: 'select',
+                        inputOptions: {
+                            'Facultades':{
+                              educacion: 'Educacion',
+                              ingenieria: 'ingenieria',
+                              ciencias: 'ciencias'  
+                            }
+                        } ,
+                        inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

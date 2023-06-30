@@ -322,7 +322,8 @@
   setTimeout(function() {
     console.log('2');
     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
-      resolve(data)
+        console.log(data)
+      resolve(data.nombre)
     });
 
   }, 2000)

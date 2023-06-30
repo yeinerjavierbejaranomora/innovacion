@@ -328,7 +328,7 @@
                     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
                         var facultades = [];
                         for (i = 0; i < data.data.length; i++) {
-                            $('#example').append(`<input id='facultad${i}' value="${data.data[i].nombre}"></input>`);
+                            $('#example').append(`<input id='facultad${i}' value="${data.data[i].id}"></input>`);
                             if($('#facultadEditar').val() != data.data[i].nombre){
                                 facultades.push(data.data[i].nombre);
                             }

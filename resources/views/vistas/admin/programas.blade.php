@@ -322,7 +322,10 @@
                     })
                 });
 
+                facultades();
                 function facultades() {
+                    
+                    console.log('1')
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -337,7 +340,6 @@
                         }
                     });
 
-                    facultades();
             }
         
     }

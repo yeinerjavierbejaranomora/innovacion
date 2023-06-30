@@ -273,7 +273,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: "{{ route('registro.facultades') }}",
+                        url: "{{ route('programa.nombresfac') }}",
                         method: 'post',
 
                     });

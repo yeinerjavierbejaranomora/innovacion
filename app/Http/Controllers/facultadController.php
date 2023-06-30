@@ -199,6 +199,16 @@ class facultadController extends Controller
         endif;
     }
 
+    // Función que trae los nombres de Facultades
+    public function nombresFacultades(){
+        $data = DB::table('facultad')->select('nombre')->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $data));
+    }
+
+
     public function update_programa()
     {
         $id_llegada = $_POST['id'];

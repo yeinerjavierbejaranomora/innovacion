@@ -317,7 +317,7 @@
                 });
             }
 
-            var inputOptionsPromise = new Promise(function(resolve) {       
+            var inputOptionsPromise2 = new Promise(function(resolve) {       
                     //place options here
                     console.log("options promise");
                     var facultades = $.ajax({
@@ -333,6 +333,16 @@
                         console.log(data);
                         resolve(data)
                     });
+            })
+
+            var inputOptionsPromise = new Promise(function (resolve) {
+                setTimeout(function () {
+                    console.log("options promise");
+                    $.getJSON("/resources/tags.json", function(data) {
+                        console.log(data);
+                        resolve(data)
+                    });
+                }, 2000)
             })
 
 

@@ -322,7 +322,7 @@
             }
 
             var inputOptionsPromise = new Promise(function(resolve) {
-                console.log('15');
+                console.log('16');
                 console.log($('#facultadEditar').val());
                 // get your data and pass it to resolve()
                 setTimeout(function() {

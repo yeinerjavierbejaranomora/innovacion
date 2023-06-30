@@ -320,10 +320,10 @@
             var inputOptionsPromise = new Promise(function(resolve) {
   // get your data and pass it to resolve()
   setTimeout(function() {
-    console.log('5');
+    console.log('6');
     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
         console.log(data.data);
-      resolve(data)
+      resolve(data.data)
     });
 
   }, 2000)

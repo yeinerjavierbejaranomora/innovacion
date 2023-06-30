@@ -379,12 +379,16 @@ class MafiController extends Controller
                 'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
-            return "Numero de registros: " . $numeroRegistros . "=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
+            echo  "Numero de registros: " . $numeroRegistros . "=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
             "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
             "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
             else :
                 return "No hay registros para replicar";
             endif;
+    }
+
+    public function falatntesPrimerIngreso(){
+
     }
 
     //*** funcion para activar los periodos automaticamente */

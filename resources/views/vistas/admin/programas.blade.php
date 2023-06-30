@@ -171,15 +171,7 @@
                         className: "text-center",
                     },
                     {
-                        rowCallback: function(row, data) {
-                    if (data.activo == 1) {
-                        $("td:eq(5) button", row).addClass("inactivar btn btn-success").append("<i class='fa-solid fa-unlock'></i>");
-                        $("td:eq(4)", row).append("Activo");
-                    } else {
-                        $("td:eq(5) button", row).addClass("inactivar btn btn-danger").append("<i class='fa-solid fa-lock'></i>");
-                        $("td:eq(4)", row).append("Inactivo");
-                    }
-                },
+                        
                     }
 
                 ],

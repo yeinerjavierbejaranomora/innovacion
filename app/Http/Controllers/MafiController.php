@@ -176,6 +176,8 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+
+        return $this->falatntesPrimerIngreso();
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -388,7 +390,14 @@ class MafiController extends Controller
     }
 
     public function falatntesPrimerIngreso(){
+        $estudiantesPrimerIngreso = DB::table('estudiantes')
+                                    ->where('tipo_estudiante','LIKE','PRIMER%')
+                                    ->whereNull('programaActivo')
+                                    ->orderBy('id')
+                                    ->get()
+                                    ->chunk(200);
 
+        return $estudiantesPrimerIngreso;
     }
 
     //*** funcion para activar los periodos automaticamente */

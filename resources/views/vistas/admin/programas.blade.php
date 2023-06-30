@@ -295,7 +295,7 @@
                             }, 
                             
                             function(result) {    
-                                console.log(result);                               
+                                console.log('a');                               
                                     if (result == "actualizado") {    
                                         console.log('enmtro');                   
                                         Swal.fire({

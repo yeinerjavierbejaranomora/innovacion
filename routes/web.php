@@ -162,7 +162,7 @@ Route::controller(facultadController::class)->group(function(){
     /** Ruta para actualizar programa */
     Route::post('/home/updateprograma', 'update_programa')->middleware('auth')->name('programa.update');
     /** Ruta para nombres de facultades */
-    Route::post('/home/nombresfacultades', 'nombresFacultades')->middleware('auth')->name('programa.nombresfac');
+    Route::get('/home/nombresfacultades', 'nombresFacultades')->middleware('auth')->name('programa.nombresfac');
     });
 
 

@@ -279,8 +279,7 @@
             url: "{{ route('programa.nombresfac') }}",
             method: 'post',
               success: function(data) {
-                ddd = data;     
-    console.log(data);           
+                ddd = data;              
             }
         });
         

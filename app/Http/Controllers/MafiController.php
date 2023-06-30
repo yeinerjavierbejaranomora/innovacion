@@ -200,9 +200,13 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
             $fechaFin = date('Y-m-d H:i:s');
+            foreach ($data as $keys => $estudiantes) :
+                var_dump($estudiantes);
+            endforeach;
+            die();
             return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
                 "<br> Numero de registrosen alertas: ".$numeroRegistrosAlertas.
-                "<br> inicio:".$fechaInicio." Fin:".$fechaFin;
+                "<br> inicio:".$fechaInicio."-- Fin:".$fechaFin;
         else :
             return "No hay registros para replicar";
         endif;

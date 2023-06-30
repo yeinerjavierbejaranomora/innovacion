@@ -190,12 +190,19 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data[0][0]);
+        //dd($data[0][0]);
 
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
             $numeroRegistrosAlertas = 0;
+            $primerId = $data[0][0]->id;
+            $ultimoRegistroId = 0;
+            $fechaInicio = date('Y-m-d H:i:s');
+            $fechaFin = date('Y-m-d H:i:s');
+            return "Numero de registros: ".$numeroRegistros."=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
+                "<br> Numero de registrosen alertas: ".$numeroRegistrosAlertas.
+                "inicio:".$fechaInicio." Fin:".$fechaFin;
         else :
             return "No hay registros para replicar";
         endif;

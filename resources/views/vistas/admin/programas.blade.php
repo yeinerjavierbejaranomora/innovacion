@@ -174,7 +174,7 @@
                     },
                     {
                         defaultContent: "<button type='button' id='boton'></button>",
-                        title: 'Inactivar / Activar',
+                        title: 'Inactivarrrr / Activar',
                         className: "text-center",
                     }
                 ],

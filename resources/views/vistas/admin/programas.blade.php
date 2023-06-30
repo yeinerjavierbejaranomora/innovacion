@@ -271,17 +271,17 @@
             }
 
 
-        function obtener_data_editar(tbody, table) {
+            function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    console.log[data];
+                    console.log(data.nombre);
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
-                        input: 'select',   
-                        inputOptions: inputOptionsPromise,       
+                        input: 'select',
+                        inputOptions: inputOptionsPromise,
                         inputPlaceholder: data.nombre,
                         icon: 'info',
                         showCancelButton: true,
@@ -314,29 +314,22 @@
                             )
                         }
                     })
+                    var excepcion = data.nombre
+                    var inputOptionsPromise = new Promise(function(resolve) {
+                        // get your data and pass it to resolve()
+                        setTimeout(function() {
+                            $.getJSON("{{ route('programa.nombresfac') }}", function(nombres) {
+                                var facultades = [];
+                                console.log('1');
+                                for (i = 0; i < nombres.data.length; i++) {
+                                    facultades.push(nombres.data[i].nombre);
+                                }
+                                resolve(facultades)
+                            });
+                        }, 2000)
+                    })
                 });
             }
-
-            var inputOptionsPromise = new Promise(function(resolve) {
-  // get your data and pass it to resolve()
-  setTimeout(function() {
-    console.log('9');
-    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
-        data.data.forEach(element => console.log(element));
-
-                var kvArray = [{clave:1, valor:10},
-               {clave:2, valor:20},
-               {clave:3, valor: 30}];
-        console.log(data.data);
-      resolve(kvArray)
-    });
-
-  }, 2000)
-})
-
-
-
-           
             obtener_data_editar("#example tbody", table);
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);

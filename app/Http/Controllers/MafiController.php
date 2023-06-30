@@ -406,7 +406,8 @@ class MafiController extends Controller
         $mallaCurricular = DB::table('mallaCurricular')
                             ->join('programas','mallaCurricular.codprograma','=','programas.codprograma')
                             ->where('programas.activo','=',0)
-                            ->orderBy('id')
+                            ->orderBy('mallaCurricular.semestre', 'asc')
+                            ->orderBy('mallaCurricular.orden', 'asc')
                             ->get()
                             ->chunk(200);
 

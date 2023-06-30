@@ -314,22 +314,25 @@
                             )
                         }
                     })
-                    var excepcion = data.nombre
-                    var inputOptionsPromise = new Promise(function(resolve) {
-                        // get your data and pass it to resolve()
-                        setTimeout(function() {
-                            $.getJSON("{{ route('programa.nombresfac') }}", function(nombres) {
-                                var facultades = [];
-                                console.log('1');
-                                for (i = 0; i < nombres.data.length; i++) {
-                                    facultades.push(nombres.data[i].nombre);
-                                }
-                                resolve(facultades)
-                            });
-                        }, 2000)
-                    })
                 });
             }
+            
+            var inputOptionsPromise = new Promise(function(resolve) {
+                // get your data and pass it to resolve()
+                setTimeout(function() {
+                    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
+                        var facultades = [];
+                        for (i = 0; i < data.data.length; i++) {
+                            facultades.push(data.data[i].nombre);
+                        }
+                        resolve(facultades)
+                    });
+                }, 2000)
+            })
+
+
+
+
             obtener_data_editar("#example tbody", table);
             /** Llamado a la función */
             obtener_data_inactivar("#example tbody", table);

@@ -93,7 +93,7 @@
                                     <input type="number" id="id" name="id" hidden>
                                 </div>
                                 <div>
-                                    <input type="number" id="facultadEditar" name="facultadEditar" hidden>
+                                    <input type="number" id="facultadEditar" value='' name="facultadEditar">
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>

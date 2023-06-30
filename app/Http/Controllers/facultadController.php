@@ -198,12 +198,11 @@ class facultadController extends Controller
             return "false";
         endif;
     }
-    
+
     // Función que trae los nombres de Facultades
     public function nombresFacultades(){
         $data = DB::table('facultad')->select('nombre')->get();
-        echo json_encode(array('data' => $data));
-        
+        return $data;
     }
 
 

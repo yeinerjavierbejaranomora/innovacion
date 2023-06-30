@@ -210,7 +210,6 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
-        var_dump($id);
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre]);
 
         if ($update) :

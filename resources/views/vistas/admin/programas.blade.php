@@ -314,14 +314,7 @@
                         }
                     })
 
-                    var inputOptionsPromise = new Promise(function (resolve) {
-                        setTimeout (function(){
-                            console.log("options promise");
-                            $.getJSON ("{{ route('admin.getfacultades') }}",function(data){
-                                console.log(data);
-                                resolve(data)
-                            });
-                        });
+                    
 
                 });
             }

@@ -294,8 +294,6 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         console.log(1);
-                        
-                        console.log(value);
                         console.log(result);
                         if (result.value) {
                                 console.log(facultad);

@@ -335,7 +335,7 @@
                {clave:2, valor:20},
                {clave:3, valor: 30}];
         console.log(data.data);
-      resolve(kvArray)
+      resolve(facultades)
     });
 
   }, 2000)

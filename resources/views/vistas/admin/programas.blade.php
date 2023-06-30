@@ -270,8 +270,7 @@
                 });
             }
 
-            function traernombres()
-            {
+
                 var facultades = $.ajax({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -284,9 +283,7 @@
                             } 
                         });
 
-            }
-
-            traernombres();
+            
 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {

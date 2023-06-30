@@ -271,23 +271,28 @@
             }
 
 
-                var facultades = $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            url: "{{ route('programa.nombresfac') }}",
-                            method: 'post',
-                            success: function(facultadesList) {
-                                facultadesList.forEach(facultad => {
-                                    console.log('23');
-                                    console.log(facultad.id);
-                                });
-                            }
-                         } 
-                        );
-                        console.log(facultades);
+            console.log('inicia');
+                var facultadesVar = facultades();
+                        console.log(facultadesVar);
                         console.log('1');
 
+    //* Funcion para trear los datos de la tabla facultades y cargar los opciones del select/
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('programa.nombresfac') }}",
+            method: 'post',
+              success: function(data) {
+                data.forEach(facultad => {
+                    console.log('23');
+                                    console.log(facultad.id);
+                });
+            }
+        });
+        
+    }
             
 
             function obtener_data_editar(tbody, table) {

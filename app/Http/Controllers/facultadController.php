@@ -203,6 +203,7 @@ class facultadController extends Controller
     public function nombresFacultades(){
         $data = DB::table('facultad')->select('nombre')->get();
         echo json_encode(array('data' => $data));
+        
     }
 
 

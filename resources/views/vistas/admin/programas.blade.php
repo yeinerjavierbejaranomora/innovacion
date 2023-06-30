@@ -330,7 +330,7 @@
                         for (i = 0; i < data.data.length; i++) {
                             if($('#facultadEditar').val() != data.data[i].nombre){
                                 facultades.push(data.data[i].nombre);
-                                $('#facultades').append(`<option  value="${i}">${data.data[i].nombre}</option>`);
+                                $('#example').append(`<input id='facultad"${i}"' value="${data.data[i].nombre}"></input>`);
                             }
                         }
                         resolve(facultades)

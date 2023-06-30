@@ -23,8 +23,11 @@ class facultadController extends Controller
     /** Función para cargar la vista de los programas */
     public function view_programas()
     {
+        $data = DB::table('facultad')->select('nombre')->get();
+        $nombres=$data[0]->nombre;
+        return $nombres;
         /**Se retorna la vista de los programas de pregado */
-        return view('vistas.admin.programas');
+        return view('vistas.admin.programas',['nombres'=>$nombres]);
     }
 
     /** Función para cargar la vista de las especializaciones */
@@ -201,9 +204,7 @@ class facultadController extends Controller
 
     // Función que trae los nombres de Facultades
     public function nombresFacultades(){
-        $data = DB::table('facultad')->select('nombre')->get();
-        $nombres=$data[0]->nombre;
-        return $nombres;
+        
         
         /**mostrar los datos en formato JSON */
         // header("Content-Type: application/json");

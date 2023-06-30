@@ -320,8 +320,13 @@
             var inputOptionsPromise = new Promise(function(resolve) {
   // get your data and pass it to resolve()
   setTimeout(function() {
-    console.log('10');
+    console.log('11');
     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
+        var facultades = [];
+        for (i = 0; i <  data.data.length; i++) {
+            console.log(data.data[i]);
+            elements.push(data.data[i].nombre); 
+        } 
         data.data.forEach(element => console.log(element.nombre));
 
                 var kvArray = [{clave:1, valor:10},

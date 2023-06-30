@@ -198,18 +198,18 @@ class MafiController extends Controller
             $primerId = $data[0][0]->id;
             $ultimoRegistroId = 0;
             $fechaInicio = date('Y-m-d H:i:s');
-            $fechaFin = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO')) :
                         $historial = DB::table('datosMafiReplica')
-                            ->select('historialAcademico.codMateria')
-                            ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
-                            ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->count();
+                        ->select('historialAcademico.codMateria')
+                        ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
+                        ->where('datosMafiReplica.idbanner', '=', $value->idbanner)->count();
                         if ($historial == 0) :
                             /**Insert tabla estudiantes en campo  tiene_historial "Sin Historial" */
                             if ($value->programaActivo > 0) :
-                                $insertEstudinate = Estudiante::create([
+
+                                /*$insertEstudinate = Estudiante::create([
                                     'homologante' => $value->idbanner,
                                     'nombre' => $value->primer_apellido,
                                     'programa' => $value->programa,
@@ -219,14 +219,9 @@ class MafiController extends Controller
                                     'tipo_estudiante' => $value->tipoestudiante,
                                     'materias_faltantes' => "OK",
                                     'tiene_historial' => 'SIN HISTORIAL',
-                                    'programaActivo' => 'NO SE ABRIO PROGRAMA',
                                     'marca_ingreso' => $value->periodo,
                                 ]);
 
-                                if ($insertEstudinate) :
-                                    $numeroRegistros++;
-                                endif;
-                                /**Insert tabla alertas_tempranas, transferente sin historial academico */
                                 $insertAlerta = AlertasTempranas::create([
                                     'idbanner' => $value->idbanner,
                                     'tipo_estudiante' => $value->tipoestudiante,
@@ -235,7 +230,11 @@ class MafiController extends Controller
 
                                 if ($insertAlerta) :
                                     $numeroRegistrosAlertas++;
-                                endif;
+                                endif;*/
+
+
+
+
                             else:
                                 /**Insert tabla estudiantes */
                                 $insertEstudinate = Estudiante::create([
@@ -248,13 +247,24 @@ class MafiController extends Controller
                                     'tipo_estudiante' => $value->tipoestudiante,
                                     'materias_faltantes' => "OK",
                                     'tiene_historial' => 'SIN HISTORIAL',
+                                    'programaActivo' => 'NO SE ABRIO PROGRAMA',
                                     'marca_ingreso' => $value->periodo,
                                 ]);
+                                /**Insert tabla alertas_tempranas, transferente sin historial academico */
+                                $insertAlerta = AlertasTempranas::create([
+                                    'idbanner' => $value->idbanner,
+                                    'tipo_estudiante' => $value->tipoestudiante,
+                                    'desccripcion' => 'El estudiante con idBanner' . $value->idbanner . ' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                                ]);
+
+                                if ($insertAlerta) :
+                                    $numeroRegistrosAlertas++;
+                                endif;
 
                                 $insertAlerta = AlertasTempranas::create([
                                     'idbanner' => $value->idbanner,
                                     'tipo_estudiante' => $value->tipoestudiante,
-                                    'desccripcion' => 'NO SE ABRIO PROGRAMA'. $value->programa,
+                                    'desccripcion' => 'NO SE ABRIO PROGRAMA '. $value->programa,
                                 ]);
 
                             endif;
@@ -266,20 +276,20 @@ class MafiController extends Controller
                                 $numeroRegistros++;
                             endif;
                         else :
-                            if ($value->programaActivo > 0) :
-                            /**Insert tabla estudiantes */
-                                $insertEstudinate = Estudiante::create([
-                                    'homologante' => $value->idbanner,
-                                    'nombre' => $value->primer_apellido,
-                                    'programa' => $value->programa,
-                                    'bolsa' => $value->ruta_academica,
-                                    'operador' => $value->operador,
-                                    'nodo' => 'nodo',
-                                    'tipo_estudiante' => $value->tipoestudiante,
-                                    'materias_faltantes' => "OK",
-                                    'marca_ingreso' => $value->periodo,
-                                ]);
-                            else:
+                                if ($value->programaActivo > 0) :
+                                    /**Insert tabla estudiantes */
+                                    /*$insertEstudinate = Estudiante::create([
+                                        'homologante' => $value->idbanner,
+                                        'nombre' => $value->primer_apellido,
+                                        'programa' => $value->programa,
+                                        'bolsa' => $value->ruta_academica,
+                                        'operador' => $value->operador,
+                                        'nodo' => 'nodo',
+                                        'tipo_estudiante' => $value->tipoestudiante,
+                                        'materias_faltantes' => "OK",
+                                        'marca_ingreso' => $value->periodo,
+                                    ]);*/
+                                else:
                             /**Insert tabla estudiantes */
                                 $insertEstudinate = Estudiante::create([
                                     'homologante' => $value->idbanner,
@@ -297,7 +307,7 @@ class MafiController extends Controller
                                 $insertAlerta = AlertasTempranas::create([
                                     'idbanner' => $value->idbanner,
                                     'tipo_estudiante' => $value->tipoestudiante,
-                                    'desccripcion' => 'NO SE ABRIO PROGRAMA'. $value->programa,
+                                    'desccripcion' => 'NO SE ABRIO PROGRAMA '. $value->programa,
                                 ]);
 
                             endif;
@@ -309,58 +319,59 @@ class MafiController extends Controller
                                 $numeroRegistros++;
                             endif;
                         endif;
-                    else :
-                        if ($value->programaActivo > 0) :
-                            /**Insert tabla estudiantes */
-                            $insertEstudinate = Estudiante::create([
-                                'homologante' => $value->idbanner,
-                                'nombre' => $value->primer_apellido,
-                                'programa' => $value->programa,
-                                'bolsa' => $value->ruta_academica,
-                                'operador' => $value->operador,
-                                'nodo' => 'nodo',
-                                'tipo_estudiante' => $value->tipoestudiante,
-                                'materias_faltantes' => "OK",
-                                'marca_ingreso' => $value->periodo,
-                            ]);
                         else :
-                            /**Insert tabla estudiantes */
-                            $insertEstudinate = Estudiante::create([
-                                'homologante' => $value->idbanner,
-                                'nombre' => $value->primer_apellido,
-                                'programa' => $value->programa,
-                                'bolsa' => $value->ruta_academica,
-                                'operador' => $value->operador,
-                                'nodo' => 'nodo',
-                                'tipo_estudiante' => $value->tipoestudiante,
-                                'programaActivo' => 'NO SE ABRIO PROGRAMA',
-                                'materias_faltantes' => "OK",
-                                'marca_ingreso' => $value->periodo,
-                            ]);
+                            if ($value->programaActivo > 0) :
+                                /**Insert tabla estudiantes */
+                                /*$insertEstudinate = Estudiante::create([
+                                    'homologante' => $value->idbanner,
+                                    'nombre' => $value->primer_apellido,
+                                    'programa' => $value->programa,
+                                    'bolsa' => $value->ruta_academica,
+                                    'operador' => $value->operador,
+                                    'nodo' => 'nodo',
+                                    'tipo_estudiante' => $value->tipoestudiante,
+                                    'materias_faltantes' => "OK",
+                                    'marca_ingreso' => $value->periodo,
+                                ]);*/
+                                else :
+                                    /**Insert tabla estudiantes */
+                                $insertEstudinate = Estudiante::create([
+                                    'homologante' => $value->idbanner,
+                                    'nombre' => $value->primer_apellido,
+                                    'programa' => $value->programa,
+                                    'bolsa' => $value->ruta_academica,
+                                    'operador' => $value->operador,
+                                    'nodo' => 'nodo',
+                                    'tipo_estudiante' => $value->tipoestudiante,
+                                    'programaActivo' => 'NO SE ABRIO PROGRAMA',
+                                    'materias_faltantes' => "OK",
+                                    'marca_ingreso' => $value->periodo,
+                                ]);
 
-                            $insertAlerta = AlertasTempranas::create([
-                                'idbanner' => $value->idbanner,
-                                'tipo_estudiante' => $value->tipoestudiante,
-                                'desccripcion' => 'NO SE ABRIO PROGRAMA'. $value->programa,
-                            ]);
+                                $insertAlerta = AlertasTempranas::create([
+                                    'idbanner' => $value->idbanner,
+                                    'tipo_estudiante' => $value->tipoestudiante,
+                                    'desccripcion' => 'NO SE ABRIO PROGRAMA '. $value->programa,
+                                ]);
 
-                            if ($insertAlerta) :
-                                $numeroRegistrosAlertas++;
+                                if ($insertAlerta) :
+                                    $numeroRegistrosAlertas++;
                                 endif;
                         endif;
 
-                            if ($insertEstudinate) :
-                                $numeroRegistros++;
-                            endif;
+                        if ($insertEstudinate) :
+                            $numeroRegistros++;
+                        endif;
                     endif;
                 endforeach;
             endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
             return "Numero de registros: " . $numeroRegistros . "=> primer id registrado: " . $primerId . ', Ultimo id registrado ' . $ultimoRegistroId .
-                "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
-                "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
-        else :
-            return "No hay registros para replicar";
-        endif;
+            "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
+            "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
+            else :
+                return "No hay registros para replicar";
+            endif;
     }
 
     //*** funcion para activar los periodos automaticamente */

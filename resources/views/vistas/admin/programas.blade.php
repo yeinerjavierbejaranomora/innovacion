@@ -36,6 +36,9 @@
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>
+                <div>
+                    <input type="number" id="facultadEditar" value='' name="facultadEditar">
+                </div>
             </div>
 
 
@@ -91,10 +94,7 @@
                                 @csrf
                                 <div>
                                     <input type="number" id="id" name="id" hidden>
-                                </div>
-                                <div>
-                                    <input type="number" id="facultadEditar" value='' name="facultadEditar">
-                                </div>
+                                </div>                            
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">

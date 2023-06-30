@@ -282,7 +282,7 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',   
                         inputOptions: inputOptionsPromise,       
-                        inputPlaceholder: data.nombre,
+                        inputPlaceholder: 'seleccione',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -320,14 +320,12 @@
             var inputOptionsPromise = new Promise(function(resolve) {
             // get your data and pass it to resolve()
             setTimeout(function() {
-    console.log('13');
-    
     $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
         var facultades = [];
         for (i = 0; i <  data.data.length; i++) {
-            facultades.push(data.data[i]); 
+            facultades.push(data.data[i].nombre); 
         }        
-        resolve(data.data)
+        resolve(facultades)
     });
 
   }, 2000)

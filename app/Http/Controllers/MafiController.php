@@ -190,7 +190,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data[23]);
+        dd($data[23][4000]);
 
 
         //dd($data[23][4675]);

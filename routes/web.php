@@ -159,6 +159,8 @@ Route::controller(facultadController::class)->group(function(){
     //** Ruta para activar programa */
     Route::post('/home/activarprograma', 'activar_programa')->middleware('auth')->name('programa.activar');
 
+    /** Ruta para actualizar programa */
+    Route::post('/home/updateprograma', 'update_programa')->middleware('auth')->name('programa.update');
     });
 
 

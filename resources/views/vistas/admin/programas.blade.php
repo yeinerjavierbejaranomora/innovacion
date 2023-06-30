@@ -277,9 +277,16 @@
                             },
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
-                            } 
+                            success: function(facultadesList) {
+                                facultadesList.forEach(facultad => {
+                                    console.log('23');
+                                    console.log(facultad.id);
+                                });
+                            }
+                         } 
                         );
                         console.log(facultades);
+                        console.log('1');
 
             
 

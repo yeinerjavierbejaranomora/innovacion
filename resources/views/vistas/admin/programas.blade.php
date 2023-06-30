@@ -160,15 +160,16 @@
                         title: 'Editar',
                         className: "text-center"
                     },
-                    {   data: 'activo', 
+                    {
+                        data: 'activo',
                         defaultContent: "",
                         title: "Estado",
                         className: "text-center",
                         render: function(data, type, row) {
-                            if(data == '1') {
-                                return 'Activo';       
-                            }else if (data == '0') {
-                                return 'Inactivo';         
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
                             }
                         }
                     },
@@ -178,22 +179,22 @@
                         title: 'Inactivar / Activar',
                         className: "text-center",
                         render: function(data, type, row) {
-                            if(data == '1') {
+                            if (data == '1') {
                                 return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                            }else if (data == '0') {
+                            } else if (data == '0') {
                                 return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
                             }
                         }
                     }
                 ],
-                
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
 
             });
             /** Función que genera una sweet alert para activar o desactivar
-             * el programa */            
+             * el programa */
             function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
@@ -208,7 +209,8 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('programa.inactivar') }}', {
+                                $.post('{{ route('
+                                    programa.inactivar ') }}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     },
@@ -232,9 +234,7 @@
                             }
                         });
 
-                    }
-                    else
-                    {
+                    } else {
                         Swal.fire({
                             title: "¿Desea activar el programa " + data.programa + "?",
                             icon: 'warning',
@@ -245,10 +245,12 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post('{{ route('programa.activar') }}', {
+                                $.post('{{ route('
+                                    programa.activar ') }}', {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
-                                    }, function(result) {
+                                    },
+                                    function(result) {
                                         if (result == "habilitado") {
                                             Swal.fire({
                                                 title: "Programa deshabilitado",
@@ -265,30 +267,30 @@
                                         }
                                     })
                             }
-                        }); 
+                        });
                     }
                 });
             }
-            
+
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form>' + 
-                        '<input type="text" id="codprograma" name="codprograma" value="'+data.codprograma+'" class="form-control" placeholder="codprograma"> <br>' + 
-                        '<input type="text" id="programa" name="programa" value="'+data.programa+'" class="form-control" placeholder="programa">', 
+                        html: '<form>' +
+                            '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
+                            '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa">',
                         input: 'select',
                         inputOptions: {
-                            'Facultades':{
-                              educacion: 'Educacion',
-                              ingenieria: 'ingenieria',
-                              ciencias: 'ciencias'  
+                            'Facultades': {
+                                educacion: 'Educacion',
+                                ingenieria: 'ingenieria',
+                                ciencias: 'ciencias'
                             }
-                        } ,
+                        },
                         inputPlaceholder: data.nombre,
-                        
+
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -297,24 +299,25 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('programa.update') }}', {                                                         
-                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                id: encodeURIComponent(window.btoa(data.id)),
-                                codigo: $(document).find('#codprograma').val(),
-                                programa: $(document).find('#programa').val(),                                
-                            }, 
-                            
-                            function(result) {    
-                                console.log(result);                               
-                                    if (result == "actualizado") {    
-                                        console.log('enmtro');                   
+                            $.post('{{ route('
+                                programa.update ') }}', {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codigo: $(document).find('#codprograma').val(),
+                                    programa: $(document).find('#programa').val(),
+                                },
+
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        console.log('enmtro');
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
                                         }).then(result => {
                                             location.reload();
                                         });
-       
+
                                     }
                                 }
                             )
@@ -322,18 +325,20 @@
                     })
                 });
             }
-            function facultades() {
-                    console.log('entra');
-                    var facultades= $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "{{ route('registro.facultades') }}",
-                        method: 'post',
 
-                        });
-                        console.log(facultades);
-                    }
+            function facultades() {
+                console.log('entra');
+                var facultades = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('registro.facultades') }}",
+                    method: 'post',
+
+                });
+                console.log(facultades);
+            }
+            facultades();
             obtener_data_editar("#example tbody", table);
 
 

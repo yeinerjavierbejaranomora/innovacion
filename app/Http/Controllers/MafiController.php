@@ -205,7 +205,6 @@ class MafiController extends Controller
         endif;
         dd($data);
 
-
         if (!empty($data[0])) :
             $numeroRegistros = 0;
             $numeroRegistrosAlertas = 0;

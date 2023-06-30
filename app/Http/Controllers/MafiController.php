@@ -192,6 +192,19 @@ class MafiController extends Controller
         endif;
         //dd($data[0][0]);
 
+        if (empty($log)) :
+            $data = DB::table('datosMafiReplica')
+                ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
+                ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
+                ->select('datosMafiReplica.*')
+                ->where([['programas.activo', '=', 0], ['periodo.periodoActivo', '=', 1]])
+                ->orderBy('datosMafiReplica.id')
+                ->get()
+                ->chunk(200);
+        else :
+        endif;
+        dd($data->count());
+
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;

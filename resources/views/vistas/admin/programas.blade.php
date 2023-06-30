@@ -277,11 +277,9 @@
                             },
                             url: "{{ route('programa.nombresfac') }}",
                             method: 'post',
-                            sucess:function(data){
-                                        console.log(data);
-                                        console.log(data.id);
                             } 
-                        });
+                        )};
+                        console.log(facultades);
 
             
 

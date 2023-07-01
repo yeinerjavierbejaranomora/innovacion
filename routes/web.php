@@ -158,7 +158,8 @@ Route::controller(facultadController::class)->group(function(){
     Route::post('/home/inactivarprograma', 'inactivar_programa')->middleware('auth')->name('programa.inactivar');
     //** Ruta para activar programa */
     Route::post('/home/activarprograma', 'activar_programa')->middleware('auth')->name('programa.activar');
-
+    /** Ruta para crear programa */
+    Route::post('/home/crearprograma', 'crear_programa')->middleware('auth')->name('programa.crear');
     /** Ruta para actualizar programa */
     Route::post('/home/updateprograma', 'update_programa')->middleware('auth')->name('programa.update');
     /** Ruta para nombres de facultades */

@@ -89,7 +89,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="get" action="{{ route('programa.crear') }}">
                                 @csrf
                                 <div>
                                     <input type="number" id="id" name="id" hidden>

@@ -284,6 +284,9 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
                         icon: 'info',
+                        inputAttributes: {
+                            id: "modalEdicion",
+                        },
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',

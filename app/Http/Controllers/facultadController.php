@@ -199,12 +199,26 @@ class facultadController extends Controller
         endif;
     }
 
-    // Función que trae los nombres de Facultades
-    public function nombresFacultades(){
-        $data = DB::table('facultad')->select('nombre','id')->get();
-        echo json_encode(array('data' => $data));
-    }
+    public function crear_programa()
+    {
+        $codigo = $_POST['codPrograma'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['crearFacultad'];
 
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+        ]);
+
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.programas')->with('success', 'Programa creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.programas')->withErrors(['errors' => 'El programa no ha podido ser creado']);
+        endif;
+    }
 
     public function update_programa()
     {

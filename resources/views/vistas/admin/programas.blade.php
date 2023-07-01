@@ -96,16 +96,15 @@
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <input type="text" class="form-control" id="codPrograma" name="codPrograma">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
                                     <select class="form-control" name="crearFacultad" id="crearFacultad">
-
                                     </select>
                                 </div>
                         </div>

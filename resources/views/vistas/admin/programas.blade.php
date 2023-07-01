@@ -317,8 +317,6 @@
                             )
                         }
                     })
-                });
-
                 facultades();
                 function facultades() {
                     $('#facultades').append(`<option value="100">Ruben</option>`);
@@ -337,6 +335,9 @@
                     });
 
             }
+                });
+
+              
     }
 
 

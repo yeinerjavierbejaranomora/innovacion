@@ -330,10 +330,13 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: "{{ route('programa.nombresfac') }}",
+                        url: "{{ route('registro.facultades') }}",
                         method: 'get',
                         success: function(data) {
-                            console.log(data)                          
+                            console.log(data)        
+                            data.forEach(facultad => {
+                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                });                  
                             for (i = 0; i < data.length; i++) {  
                                 
                                 console.log(data[i].id)                                   

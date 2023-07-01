@@ -334,8 +334,8 @@
                         method: 'get',
                         success: function(data) {
                             console.log(data)                          
-                            for (i = 0; i < data.data.length; i++) {                               
-                                $('#facultades').append(`<option value="${data.data[i].id}">${data.data[i].nombre}</option>`);
+                            for (i = 0; i < data.length; i++) {                               
+                                $('#facultades').append(`<option value="${data[i].id}">${data[i].nombre}</option>`);
                             }                           
                         }
                     });

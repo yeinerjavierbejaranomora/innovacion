@@ -104,6 +104,15 @@
                                     <select class="form-control" name="codFacultad" id="codFacultad">
                                     </select>
                                 </div>
+                                <div>
+                                <label for="message-text" class="col-form-label">'¿Que tipo de curso es?'</label>
+                                    <select class="form-control" name="tabla" id="tabla">
+                                        <option value="pregrado">pregrado</option>
+                                        <option value="especializacion">especializacion</option>
+                                        <option value="EDUCACION CONTINUA">EDUCACION CONTINUA</option>
+                                        <option value="maestria">maestria</option>
+                                    </select>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-primary">Crear</button>

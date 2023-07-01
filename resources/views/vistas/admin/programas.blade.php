@@ -334,7 +334,9 @@
                         method: 'get',
                         success: function(data) {
                             console.log(data)                          
-                            for (i = 0; i < data.length; i++) {                               
+                            for (i = 0; i < data.length; i++) {  
+                                
+                                console.log(data[i].id)                                   
                                 $('#facultades').append(`<option value="${data[i].id}">${data[i].nombre}</option>`);
                             }                           
                         }

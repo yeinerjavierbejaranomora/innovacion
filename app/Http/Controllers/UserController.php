@@ -167,7 +167,6 @@ class UserController extends Controller
         ]);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
@@ -180,16 +179,19 @@ class UserController extends Controller
         $id_llegada = $_POST['id'];
         $codFacultad = $_POST['codFacultad'];
         $nombre = $_POST['nombre'];
-      
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-      
-      
+        var_dump($id);
+        var_dump($codFacultad);
+        var_dump($nombre);
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->where('id','=', $id)->update(['codFacultad' => $codFacultad,'nombre' => $nombre]);
-    
+        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
+        'nombre' => $nombre])
+        ->where('id', $id);
+        var_dump($facultad);
+        die();
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

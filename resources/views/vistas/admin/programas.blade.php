@@ -272,7 +272,7 @@
                     }
                 });
             }
-
+            /** Función para editar  */ 
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
@@ -284,7 +284,7 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
                         icon: 'info',
-                        showCancelButton: true,
+                        showCancelButton: true,|
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
@@ -294,7 +294,7 @@
                         console.log(result);
                         if (result.value) {
                                 console.log(facultad);
-                            $.post('{{ route('programa.update') }}', {
+                            $.post("{{ route('programa.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),
@@ -336,17 +336,11 @@
                     });
 
             }
-                });
-
-              
+        }   
     }
-
-
-
-            obtener_data_editar("#example tbody", table);
-            /** Llamado a la función */
-            obtener_data_inactivar("#example tbody", table);
-        }
-    }
+    obtener_data_editar("#example tbody", table);
+    obtener_data_inactivar("#example tbody", table);
+}
+    
 </script>
 @include('layout.footer')

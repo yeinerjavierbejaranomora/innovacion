@@ -4,7 +4,9 @@
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
-
+@if (!empty($success))
+    <h1>{{$success}}</h1>
+@endif
 <style>
     button.activo {
         background-color: 'green',

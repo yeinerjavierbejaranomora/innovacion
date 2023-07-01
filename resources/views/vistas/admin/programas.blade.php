@@ -307,7 +307,7 @@
                                         console.log('enmtro');
                                         Swal.fire({
                                             title: "Información actualizada",
-                                            icon: 'sucess'
+                                            icon: 'success'
                                         }).then(result => {
                                             location.reload();
                                         });
@@ -319,7 +319,6 @@
                     })
                 facultades();
                 function facultades() {
-                    $('#facultades').append(`<option value="100">Ruben</option>`);
                     console.log('6')
                     $.ajax({
                         headers: {
@@ -330,7 +329,6 @@
                         success: function(data) {    
                             data.forEach(facultad => {
                                 $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-                                $('#swal2-html-container select').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                             });                   
                         }
                     });

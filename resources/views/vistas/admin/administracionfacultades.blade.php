@@ -126,7 +126,7 @@
                 "data": data.data,
                 "columns": [{
                         data: 'codFacultad',
-                        title: 'Codigo de facultad', 
+                        title: 'Codigo de facultad',
                     },
                     {
                         data: 'nombre',
@@ -155,7 +155,7 @@
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form> <input type="text" id="codigo" name="codigo" value="'+data.codFacultad+'" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="'+data.nombre+'" class="form-control" placeholder="nombre"></form>',
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -164,15 +164,15 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post('{{ route('admin.updatefacultad') }}', {                             
-                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                id: encodeURIComponent(window.btoa(data.id)),
-                                codFacultad: $(document).find('#codigo').val(),
-                                nombre: $(document).find('#name').val()
-                            }, 
-                            function(result) {    
-                                console.log(result);                               
-                                    if (result == "actualizado") {        
+                            $.post("{{ route('admin.updatefacultad') }}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codFacultad: $(document).find('#codigo').val(),
+                                    nombre: $(document).find('#name').val()
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'sucess'
@@ -180,7 +180,7 @@
                                             location.reload();
                                         });
 
-                                       
+
                                     }
                                 }
                             )

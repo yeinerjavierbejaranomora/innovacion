@@ -104,7 +104,9 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <select name="crearFacultad" id="crearFacultad">
+
+                                    </select>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -135,6 +137,24 @@
 </a>
 
 <script>
+    
+    facultades();
+    function facultades() {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('registro.facultades') }}",
+                            method: 'post',
+                            success: function(data) {
+                                data.forEach(facultad => {                                   
+                                        $('#crearfacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                                    
+                                })
+                            }
+                        })
+                    }
+
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getprogramas') }}";
@@ -321,7 +341,6 @@
                     facultades();
 
                     function facultades() {
-                        console.log('6')
                         $.ajax({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

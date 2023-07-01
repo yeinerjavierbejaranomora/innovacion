@@ -335,7 +335,7 @@
                         success: function(data) {    
                             data.forEach(facultad => {
                                 console.log(facultad.id);
-                                $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                                $('select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                             });                   
                         }
                     });

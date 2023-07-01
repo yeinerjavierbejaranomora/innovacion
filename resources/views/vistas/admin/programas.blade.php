@@ -104,7 +104,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select name="crearFacultad" id="crearFacultad">
+                                    <select class="form-control" name="crearFacultad" id="crearFacultad">
 
                                     </select>
                                 </div>

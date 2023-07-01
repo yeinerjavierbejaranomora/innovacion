@@ -105,7 +105,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                <label for="message-text" class="col-form-label">'¿Que tipo de curso es?'</label>
+                                <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
                                     <select class="form-control" name="tabla" id="tabla">
                                         <option value="pregrado">pregrado</option>
                                         <option value="especializacion">especializacion</option>

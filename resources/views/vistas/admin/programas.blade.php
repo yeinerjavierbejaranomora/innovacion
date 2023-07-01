@@ -7,6 +7,12 @@
 @if (!empty($success))
     <h1>{{$success}}</h1>
 @endif
+
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
 <style>
     button.activo {
         background-color: 'green',

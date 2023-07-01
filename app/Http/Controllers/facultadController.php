@@ -215,10 +215,10 @@ class facultadController extends Controller
 
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.programas')->with('message', 'IT WORKS!');
+            return redirect()->route('facultad.programas')->with('message','Programa creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('facultad.programas')->withErrors(['errors' => 'El programa no ha podido ser creado']);
+            return redirect()->route('facultad.programas')->with(['errors' => 'El programa no ha podido ser creado']);
         endif;
     }
 

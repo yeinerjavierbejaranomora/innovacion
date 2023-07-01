@@ -40,6 +40,11 @@
                     {{ session()->get('message') }}
                 </div>
                 @endif
+                @if(session()->has('errors'))
+                <div class="alert alert-error">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>

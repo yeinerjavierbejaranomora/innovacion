@@ -322,7 +322,7 @@
                 facultades();
                 function facultades() {
                     $('#facultades').append(`<option value="100">Ruben</option>`);
-                    console.log('4')
+                    console.log('5')
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

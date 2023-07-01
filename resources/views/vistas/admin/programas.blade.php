@@ -284,9 +284,6 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
                         icon: 'info',
-                        inputAttributes: {
-                            id: "modalEdicion",
-                        },
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
@@ -325,7 +322,7 @@
                 facultades();
                 function facultades() {
                     $('#facultades').append(`<option value="100">Ruben</option>`);
-                    console.log('5')
+                    console.log('6')
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -334,7 +331,7 @@
                         method: 'post',
                         success: function(data) {    
                             data.forEach(facultad => {
-                                $('select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                                $('#swal2-html-container select').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                             });                   
                         }
                     });

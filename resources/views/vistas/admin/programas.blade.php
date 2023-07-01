@@ -325,7 +325,7 @@
                 facultades();
                 function facultades() {
                     $('#facultades').append(`<option value="100">Ruben</option>`);
-                    console.log('3')
+                    console.log('4')
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -334,7 +334,6 @@
                         method: 'post',
                         success: function(data) {    
                             data.forEach(facultad => {
-                                console.log(facultad.id);
                                 $('select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                             });                   
                         }

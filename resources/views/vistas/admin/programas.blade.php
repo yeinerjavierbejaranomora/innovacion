@@ -329,6 +329,7 @@
                         method: 'post',
                         success: function(data) {    
                             data.forEach(facultad => {
+                                $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                                 $('#swal2-html-container select').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                             });                   
                         }

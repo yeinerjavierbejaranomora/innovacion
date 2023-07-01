@@ -89,11 +89,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="{{ route('programa.crear') }}">
+                            <form id="miForm" method="post" action="{{ route('programa.crear') }}">
                                 @csrf
-                                <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="codPrograma" name="codPrograma">
@@ -104,15 +101,16 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select class="form-control" name="crearFacultad" id="crearFacultad">
+                                    <select class="form-control" name="codFacultad" id="codFacultad">
                                     </select>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-primary">Crear</button>
+                                </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>

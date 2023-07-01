@@ -324,24 +324,19 @@
 
                 facultades();
                 function facultades() {
-                    
-                    console.log('2')
+                    $('#facultades').append(`<option value="100">Ruben</option>`);
+                    console.log('3')
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: "{{ route('registro.facultades') }}",
                         method: 'post',
-                        success: function(data) {
-                            console.log(data)        
+                        success: function(data) {    
                             data.forEach(facultad => {
-                    $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-                });                  
-                            for (i = 0; i < data.length; i++) {  
-                                
-                                console.log(data[i].id)                                   
-                                $('#facultades').append(`<option value="${data[i].id}">${data[i].nombre}</option>`);
-                            }                           
+                                console.log(facultad.id);
+                                $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                            });                   
                         }
                     });
 

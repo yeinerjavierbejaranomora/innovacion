@@ -331,7 +331,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: "{{ route('programa.nombresfac') }}",
-                        method: 'post',
+                        method: 'get',
                         success: function(data) {
                             for (i = 0; i < data.data.length; i++) {                               
                                 $('#facultades').append(`<option value="${data.data[i].id}">${data.data[i].nombre}</option>`);

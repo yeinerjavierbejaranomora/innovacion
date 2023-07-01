@@ -282,10 +282,7 @@
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
-                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+data.idfacultad+'" selected>'+ data.nombre +'</option> </select>',
-                        input: 'select',
-                        inputOptions: inputOptionsPromise,
-                        inputPlaceholder: data.nombre,
+                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -302,7 +299,7 @@
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     codigo: $(document).find('#codprograma').val(),
                                     programa: $(document).find('#programa').val(),                                    
-                                    idfacultad:  $(document).find('#facultad'+result.value).val(),
+                                    idfacultad:  $(document).find('#facultades').val(),
                                 },
                                 function(result) {
                                     console.log(result);
@@ -340,24 +337,7 @@
                     });
 
             }
-        
     }
-
-            var inputOptionsPromise = new Promise(function(resolve) {
-                setTimeout(function() {
-                    $.getJSON("{{ route('programa.nombresfac') }}", function(data) {
-                        var facultades = [];
-                        for (i = 0; i < data.data.length; i++) {
-                            $('#example').append(`<input id='facultad${i}' value="${data.data[i].id}" hidden></input>`);
-                            if($('#facultadEditar').val() != data.data[i].nombre){
-                                facultades.push(data.data[i].nombre);
-                            }
-                        }
-                        resolve(facultades)
-                    });
-                }, 2000)
-            })
-
 
 
 

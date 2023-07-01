@@ -282,7 +282,7 @@
                         html: '<form>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>'+
-                            ' <select class="form-control" name="id_facultad" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
+                            ' <select class="form-control" name="facultades" id="facultades"> <option value="'+data.idFacultad+'" selected>'+ data.nombre +'</option> </select>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

@@ -5,14 +5,10 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 @if (!empty($success))
-    <h1>{{$success}}</h1>
+<h1>{{$success}}</h1>
 @endif
 
-@if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session()->get('message') }}
-    </div>
-@endif
+
 <style>
     button.activo {
         background-color: 'green',
@@ -39,7 +35,11 @@
 
 
             <div class="input-group">
-
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>
@@ -113,7 +113,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
+                                    <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
                                     <select class="form-control" name="tabla" id="tabla">
                                         <option value="pregrado">pregrado</option>
                                         <option value="especializacion">especializacion</option>
@@ -125,19 +125,19 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-primary">Crear</button>
                                 </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-        <!-- /.container-fluid -->
+
+
 
     </div>
+    <!-- /.container-fluid -->
+
+</div>
 
 </div>
 <!-- End of Content Wrapper -->
@@ -151,23 +151,23 @@
 </a>
 
 <script>
-    
     facultades();
+
     function facultades() {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            url: "{{ route('registro.facultades') }}",
-                            method: 'post',
-                            success: function(data) {
-                                data.forEach(facultad => {                                   
-                                        $('#nuevoprograma select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-                                    
-                                })
-                            }
-                        })
-                    }
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#nuevoprograma select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+
+                })
+            }
+        })
+    }
 
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();

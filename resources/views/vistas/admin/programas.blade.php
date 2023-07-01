@@ -331,7 +331,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         url: "{{ route('registro.facultades') }}",
-                        method: 'get',
+                        method: 'post',
                         success: function(data) {
                             console.log(data)        
                             data.forEach(facultad => {

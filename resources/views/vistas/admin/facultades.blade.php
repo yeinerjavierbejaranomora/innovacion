@@ -55,7 +55,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <label for="mostrar">Estudiantes $4,000</label>
-                                    <input id="mostrar" name="mostrar" type="button" class="btn btn-warning text-dark" onclick="mostrarEstudiantes()">
+                                    <input id="mostrar" name="mostrar" type="button" value="{{$value->id}}" class="btn btn-warning text-dark">
                                     </input>
                                 </div>
 
@@ -88,61 +88,65 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                function mostrarEstudiantes() {
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = "{{ route('facultad.getperiodos') }}";
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    xmlhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            var data = JSON.parse(this.responseText);
-                            var table = $('#example').DataTable({
-                                "data": data.data,
-                                "columns": [{
-                                        data: 'ibbanner',
-                                        title: 'Id Banner'
+                $(document).ready(function() {
+                    $('#mostrar').click(function() {
+                        var id = $('mostrar').val(); 
+                        console.log(id);
+                        var xmlhttp = new XMLHttpRequest();
+                        var url = "{{ route('programa.estudiantes', "+ id + ") }}";
+                        xmlhttp.open("GET", url, true);
+                        xmlhttp.send();
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var data = JSON.parse(this.responseText);
+                                var table = $('#example').DataTable({
+                                    "data": data.data,
+                                    "columns": [{
+                                            data: 'ibbanner',
+                                            title: 'Id Banner'
+                                        },
+                                        {
+                                            data: 'primer_apellido',
+                                            title: 'Primer apellido'
+                                        },
+                                        {
+                                            data: 'programa',
+                                            title: 'Codigo de programa'
+                                        },
+                                        {
+                                            data: 'estado',
+                                            title: 'Estado'
+                                        },
+                                        {
+                                            data: 'tipoestudiante',
+                                            title: 'Tipo estudiante'
+                                        },
+                                        {
+                                            data: 'sello',
+                                            title: 'Sello'
+                                        },
+                                        {
+                                            data: 'autorizado_asistir',
+                                            title: 'Autorizado'
+                                        },
+                                        {
+                                            data: 'created_at',
+                                            title: 'Fecha de creación'
+                                        },
+                                        {
+                                            data: 'updated_at',
+                                            title: 'Última actulización'
+                                        },
+                                    ],
+                                    "language": {
+                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                     },
-                                    {
-                                        data: 'primer_apellido',
-                                        title: 'Primer apellido'
-                                    },
-                                    {
-                                        data: 'programa',
-                                        title: 'Codigo de programa'
-                                    },
-                                    {
-                                        data: 'estado',
-                                        title: 'Estado'
-                                    },
-                                    {
-                                        data: 'tipoestudiante',
-                                        title: 'Tipo estudiante'
-                                    },
-                                    {
-                                        data: 'sello',
-                                        title: 'Sello'
-                                    },
-                                    {
-                                        data: 'autorizado_asistir',
-                                        title: 'Autorizado'
-                                    },
-                                    {
-                                        data: 'created_at',
-                                        title: 'Fecha de creación'
-                                    },
-                                    {
-                                        data: 'updated_at',
-                                        title: 'Última actulización'
-                                    },
-                                ],
-                                "language": {
-                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                                },
-                                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                            });
-                            console.log(table);
+                                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                                });
+                                console.log(table);
+                            }
                         }
-                    }
+                    })
                 })
             </script>
             @include('layout.footer')

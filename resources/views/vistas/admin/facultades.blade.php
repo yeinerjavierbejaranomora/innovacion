@@ -90,7 +90,7 @@
                 $(document).ready(function() {
                     $('#mostrar').click(function() {
 
-                        id_programa = $('#mostrar').val(); 
+                        var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
                         console.log(3);
                         var xmlhttp = new XMLHttpRequest();

@@ -178,8 +178,12 @@ class MafiController extends Controller
     {
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
-        $mallaCurricular = $this->BaseAcademica();
-        return $mallaCurricular;
+        foreach($primerIngreso as $estudiante):
+
+            $mallaCurricular = $this->BaseAcademica($estudiante->codprograma);
+
+            return $mallaCurricular;
+        endforeach;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -402,9 +406,11 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function BaseAcademica(){
+    public function BaseAcademica($programa){
         $mallaCurricular = DB::table('mallaCurricular')
-                            ->select('codigoCurso', 'semestre', 'ciclo', 'orden')
+                            ->join('programas','programas.codprograma','=','mallaCurricular.codprgrama')
+                            ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden')
+                            ->where([['programas.activo','=',1],['mallaCurricular.codprograma','=',$programa]])
                             ->orderBy('semestre', 'asc')
                             ->orderBy('orden', 'asc')
                             ->get();

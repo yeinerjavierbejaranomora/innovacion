@@ -45,11 +45,10 @@
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-                    <div>
-                        {{$datos['programas']}}
-                    </div>
                     <!-- Content Row -->
                     <div class="row" id="facultades">
+
+                    @foreach($datos['programas'] as $key => $value)
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <a href="{{ route('admin.facultades') }}">
@@ -58,7 +57,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    
+                                            <h6> Facultad de {{$value->programa}}</h6></div>
                                             <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $4,000</p></div>
                                         </div>
 

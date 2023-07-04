@@ -688,7 +688,8 @@ class MafiController extends Controller
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
             ->where('programa="PCPV"')
-            ->whereIn('marca_ingreso',$marcaIngreso);
+            ->whereIn('marca_ingreso',,$marcaIngreso)
+            ->get();
           
 
             dd($estudiantes);

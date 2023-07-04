@@ -57,7 +57,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <h6> Facultad de {{$value->programa}}</h6></div>
+                                            <h6> Programa de {{$value->programa}}</h6></div>
                                             <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $4,000</p></div>
                                         </div>
 

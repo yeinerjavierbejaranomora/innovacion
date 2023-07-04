@@ -250,16 +250,18 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {     
-        $id = DB::table('facultad')->where('nombre','=',$nombre)->select('id')->get();    
-        
-        $facultad = DB::table('facultad')->where('id','=',$id)->select('nombre')->get();
-        $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
+        $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();    
+        $id= $consulta[0]->id;
+
+        $programas_tabla = DB::table('programas')->where('idFacultad','=',$id)->get();
+        $programas = $programas_tabla[0]->programa;
+        dd($programas);
         $datos= array(
-            'facultad' => $facultad,
+            'facultad' => $nombre,
             'programas' => $programas,
         );
-        dd($datos);
         
+        dd($datos);
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 

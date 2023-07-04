@@ -453,7 +453,7 @@ class MafiController extends Controller
     public function BaseAcademica($programa){
         //Obtener la base academica del programa seleccionado
         if(!is_array($programa)):
-            $programa []=$programa;
+            $programa[]=$programa;
         endif;
         dd($programa);
         $mallaCurricular = DB::table('mallaCurricular')

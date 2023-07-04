@@ -178,15 +178,16 @@ class MafiController extends Controller
     {
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
-        dd($primerIngreso[0]);
+        //dd($primerIngreso[0]);
         foreach($primerIngreso as $estudiante):
 
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+            dd($mallaCurricular);
             $insertMateriaPorVer = MateriasPorVer::create([
                 "codBanner"      => $estudiante->homologante,
+                "codMateria"      => "",
                 "materia"      => "",
-                "materia"      => "",
-                "materia"      => "",
+                "codprograma"      => $estudiante->programa,
             ]);
 
             return $mallaCurricular;

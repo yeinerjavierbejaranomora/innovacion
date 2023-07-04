@@ -89,7 +89,7 @@
                 // * Datatable para mostrar los estudiantes de cada programa *
                 
                 $('#example').on("click", function(){
-                    $("#example").dataTable().fnDestroy();
+                    $("#example").dataTable().Destroy();
                 });
                 
                 function buscar() {

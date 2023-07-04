@@ -467,10 +467,19 @@ class MafiController extends Controller
     }
 
     public function historialAcademico($idBanner){
+        $contacor_vistas=0;
+        $materias_vista = array();
         $historial = DB::table('historialAcademico')
                     ->select('codMateria')
                     ->where('codBanner','=',$idBanner)
                     ->get();
+        while($historial) {
+            $materias_vistas[$contacor_vistas]= strtoupper($historial->codMateria);
+            $contacor_vistas++;
+        }
+        $materias_vistas = $materias_vistas;
+        dd($materias_vistas);
+
         return $historial;
     }
 

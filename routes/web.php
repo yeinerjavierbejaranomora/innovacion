@@ -168,7 +168,7 @@ Route::controller(facultadController::class)->group(function(){
     /** Ruta para visualizar los programas de la facultad del usuario */
     Route::get('/home/facultades/{nombre}', 'programasUsuario')->middleware('auth')->name('programa.usuario');
     /**Ruta para visaulizar los estudiantes de cada programa */
-    Route::get('/home/facultades/estudiantes/{id}', 'estudiantesFacultad')->middleware('auth')->name('programa.estudiantes');
+    Route::get('/home/facultades/estudiantes', 'estudiantesFacultad')->middleware('auth')->name('programa.estudiantes');
 
 });
 

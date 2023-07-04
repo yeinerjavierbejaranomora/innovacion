@@ -255,13 +255,13 @@ class facultadController extends Controller
         $idFacultad=$consulta[0]->id;
         
         $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
-        dd($programas);
-
+        
         $datos= array(
             'facultad' => $nombre,
             'programas' => $programas,
         );
         
+        dd($datos);
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 

@@ -183,7 +183,7 @@ class MafiController extends Controller
 
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             $insertMateriaPorVer = MateriasPorVer::create([
-                "codBanner"      => $estutudiante->homologante,
+                "codBanner"      => $estudiante->homologante,
                 "materia"      => "",
                 "materia"      => "",
                 "materia"      => "",

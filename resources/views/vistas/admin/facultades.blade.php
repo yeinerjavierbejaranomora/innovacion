@@ -87,25 +87,30 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                
-                $('#example').on("click", function(){
+
+                $('#example').on("click", function() {
                     $("#example").dataTable().Destroy();
                 });
-                
+
                 function buscar() {
 
-                        var id_programa = $('#mostrar').val(); 
-                        console.log(id_programa);
+                    var id_programa = $('#mostrar').val();
+                    console.log(id_programa);
 
-                        var xmlhttp = new XMLHttpRequest();
-                        var url = "/home/facultades/estudiantes/"+id_programa+"";
-                        console.log(url);
-                        xmlhttp.open("GET", url, true);
-                        xmlhttp.send();
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                var data = JSON.parse(this.responseText);
-                                var table = $('#example').DataTable({
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "/home/facultades/estudiantes/" + id_programa + "";
+                    console.log(url);
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var data = JSON.parse(this.responseText);
+                            if(tableObj != null) {
+                                    tableObj.clear();
+                                    tableObj.destroy();
+                                }
+                            var table = $('#example').DataTable(
+                                 {
                                     "data": data.data,
                                     "columns": [{
                                             data: 'idbanner',
@@ -149,10 +154,9 @@
                                     },
                                     //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                                 });
-                                console.log(table);
-                            }
+                            console.log(table);
                         }
                     }
-
+                }
             </script>
             @include('layout.footer')

@@ -253,15 +253,14 @@ class facultadController extends Controller
         $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();    
         $id= $consulta[0]->id;
 
-        $programas_tabla = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
+        $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa','id')->get();
 
         $datos= array(
             'facultad' => $nombre,
-            'programas' => $programas_tabla,
+            'programas' => $programas,
         );
         
-        
-        dd($datos['programas'][0]);
+        dd($datos['programas']->programa);
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 

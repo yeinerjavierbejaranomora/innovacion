@@ -526,7 +526,7 @@ class MafiController extends Controller
 
 
             if (in_array($mes[1],$ciclo1) || in_array($mes[1], $ciclo2)) {
-dd("entro");
+
 
                 DB::table('periodo')
                     ->where('id', $value->id)
@@ -552,6 +552,9 @@ dd("entro");
                         ->update(['activoCiclo2' => 0]);
                 }
             } else {
+
+                
+dd("entro ");
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 0]);

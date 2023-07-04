@@ -94,13 +94,10 @@
                        buscar(id);
                     })
 
-                    function buscar(id) {
-                        console.log(id);
-                        var id_programa = $('.mostrar').val();
-                        console.log(id_programa);
+                    function buscar(id) {       
                         
                     var xmlhttp = new XMLHttpRequest();
-                    var url = "/home/facultades/estudiantes/" + id_programa + "";
+                    var url = "/home/facultades/estudiantes/" + id + "";
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
                     xmlhttp.onreadystatechange = function() {

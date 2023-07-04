@@ -95,7 +95,6 @@
 
                         var xmlhttp = new XMLHttpRequest();
                         var url = "/home/facultades/estudiantes/"+id_programa+"";
-                        alert(url);
                         console.log(url);
                         xmlhttp.open("GET", url, true);
                         xmlhttp.send();

@@ -176,6 +176,8 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+
+        die();
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
@@ -202,7 +204,6 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
@@ -458,6 +459,17 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
+    public function faltantesAntiguos(){
+        $estudiantesAntiguos= DB::table('estudiantes')
+                                ->where('tipo_estudiante','LIKE','ESTUDIANTE ANTIGUO%')
+                                ->whereNull('programaActivo')
+                                ->orderBy('id')
+                                ->get();
+
+        dd($estudiantesAntiguos);
+        return $estudiantesAntiguos;
+    }
+
     public function BaseAcademica($programa){
         //Obtener la base academica del programa seleccionado
         if(!is_array($programa)):
@@ -481,6 +493,7 @@ class MafiController extends Controller
 
     }
 
+
     public function historialAcademico($idBanner){
         $contacor_vistas=0;
         $materias_vista = array();
@@ -499,6 +512,7 @@ class MafiController extends Controller
 
             dd($idBanner);
         }
+
 
 //dd($materias_vistas);
 

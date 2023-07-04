@@ -524,9 +524,9 @@ class MafiController extends Controller
             $ciclo1 = explode('-', $value->fechaInicioCiclo1);
             $ciclo2 = explode('-', $value->fechaInicioCiclo2);
 
-            dd($ciclo1);
+            dd($ciclo1[1]);
 
-            if (in_array((int)$mes[1], $ciclo1) || in_array((int)$mes[1], $ciclo2)) {
+            if (in_array((int)$mes[1], $ciclo1['1']) || in_array((int)$mes[1], $ciclo2)) {
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 1]);

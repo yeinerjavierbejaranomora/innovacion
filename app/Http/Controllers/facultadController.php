@@ -258,11 +258,12 @@ class facultadController extends Controller
         
         foreach ($programas as $key => $value)
         {
-            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$value)->count();
-
+            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$value->programa)->count();
+            $cuenta = array();
+            $cuenta[$value] = $cantidad;
+            
         }
-        dd($cantidad);
-
+        dd($cuenta);
         $datos= array(
             'facultad' => $nombre,
             'programas' => $programas,

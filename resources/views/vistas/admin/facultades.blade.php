@@ -88,7 +88,7 @@
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
                     function buscar() {
-                        if($("#example").DataTable.Rows.Count <= 1)
+                        if($("#example").DataTable.Rows.Count >= 1)
                         {
                             $("#example").dataTable().fnDestroy();
                         }

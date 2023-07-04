@@ -90,7 +90,7 @@
                 function buscar() {
                     
 
-                    var id_programa = $('[id=mostrar]').val();
+                    var id_programa = $('.btn').val();
                     console.log(id_programa);
 
                     var xmlhttp = new XMLHttpRequest();

@@ -88,10 +88,8 @@
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
                 function buscar() {
-                    $('.mostrar').each(function() {
-
-                        var id_programa = $('#')+this.val();
-                    })
+                
+                    var id_programa = $('.mostrar').val();
                     console.log(id_programa);
 
                     var xmlhttp = new XMLHttpRequest();

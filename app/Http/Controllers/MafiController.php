@@ -474,14 +474,13 @@ class MafiController extends Controller
                     ->where('codBanner','=',$idBanner)
                     ->get();
         foreach($historial AS $key => $value):
-            
+
             $materias_vistas[$contacor_vistas]= strtoupper($value->codMateria);
             $contacor_vistas++;
         endforeach;
         $materias_vistas = $materias_vistas;
-        dd($materias_vistas);
 
-        return $historial;
+        return $materias_vistas;
     }
 
     //*** funcion para activar los periodos automaticamente */

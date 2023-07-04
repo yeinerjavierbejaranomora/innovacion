@@ -251,9 +251,9 @@ class facultadController extends Controller
     public function programasUsuario($nombre)
     {     
         $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();
-        $id=$consulta[0]->id;
+        $idFacultad=$consulta[0]->id;
 
-        $programas = DB::table('programas')->where('idFacultad','=',$id)->where('activo','=',1)->select('programa','id')->get();
+        $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
 
         $datos= array(
             'facultad' => $nombre,
@@ -265,9 +265,9 @@ class facultadController extends Controller
 
 
     /**Función para visualizar los estudiantes de cada facultad */
-    public function estudiantesFacultad($id)
+    public function estudiantesFacultad()
     {
-        dd($id);
+        dd($_GET);
         $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
         dd[$codigo];

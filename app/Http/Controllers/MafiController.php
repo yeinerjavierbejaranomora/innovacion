@@ -180,7 +180,7 @@ class MafiController extends Controller
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
-            $historial = $this->historialAcademico($estudiante->homologante)->toArray();
+            $historial = $this->historialAcademico($estudiante->homologante);
             dd($historial[0]);
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :

@@ -88,11 +88,7 @@
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
                 function buscar() {
-                    var table = $('#example').DataTable();
- 
-                        table
-                            .clear()
-                            .draw();
+
                     var id_programa = $('#mostrar').val();
                     console.log(id_programa);
 
@@ -104,55 +100,54 @@
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
-                            if($("#example").DataTable != null) {
-                                
-                                destroy();
-                                }
-                            var table = $('#example').DataTable(
-                                 {
-                                    "data": data.data,
-                                    "columns": [{
-                                            data: 'idbanner',
-                                            title: 'Id Banner'
-                                        },
-                                        {
-                                            data: 'primer_apellido',
-                                            title: 'Primer apellido'
-                                        },
-                                        {
-                                            data: 'programa',
-                                            title: 'Codigo de programa'
-                                        },
-                                        {
-                                            data: 'estado',
-                                            title: 'Estado'
-                                        },
-                                        {
-                                            data: 'tipoestudiante',
-                                            title: 'Tipo estudiante'
-                                        },
-                                        {
-                                            data: 'sello',
-                                            title: 'Sello'
-                                        },
-                                        {
-                                            data: 'autorizado_asistir',
-                                            title: 'Autorizado'
-                                        },
-                                        {
-                                            data: 'created_at',
-                                            title: 'Fecha de creación'
-                                        },
-                                        {
-                                            data: 'updated_at',
-                                            title: 'Última actulización'
-                                        },
-                                    ],
-                                    "language": {
-                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            var table = $('#example').DataTable();
+                            table
+                                .clear()
+                                .draw();
+                            var table = $('#example').DataTable({
+                                "data": data.data,
+                                "columns": [{
+                                        data: 'idbanner',
+                                        title: 'Id Banner'
                                     },
-                                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                                });
+                                    {
+                                        data: 'primer_apellido',
+                                        title: 'Primer apellido'
+                                    },
+                                    {
+                                        data: 'programa',
+                                        title: 'Codigo de programa'
+                                    },
+                                    {
+                                        data: 'estado',
+                                        title: 'Estado'
+                                    },
+                                    {
+                                        data: 'tipoestudiante',
+                                        title: 'Tipo estudiante'
+                                    },
+                                    {
+                                        data: 'sello',
+                                        title: 'Sello'
+                                    },
+                                    {
+                                        data: 'autorizado_asistir',
+                                        title: 'Autorizado'
+                                    },
+                                    {
+                                        data: 'created_at',
+                                        title: 'Fecha de creación'
+                                    },
+                                    {
+                                        data: 'updated_at',
+                                        title: 'Última actulización'
+                                    },
+                                ],
+                                "language": {
+                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                },
+                                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                            });
                             console.log(table);
                         }
                     }

@@ -94,16 +94,13 @@
 
                     var xmlhttp = new XMLHttpRequest();
                     var url = "/home/facultades/estudiantes/" + id_programa + "";
-                    console.log(url);
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
                             var table = $('#example').DataTable();
-                            table
-                                .clear()
-                                .draw();
+                            table.destroy();
                             var table = $('#example').DataTable({
                                 "data": data.data,
                                 "columns": [{

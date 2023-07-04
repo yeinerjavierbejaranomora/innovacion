@@ -637,6 +637,7 @@ class MafiController extends Controller
         }
 
         
+        
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
         // Estudiantes para generar faltantes

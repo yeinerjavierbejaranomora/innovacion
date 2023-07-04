@@ -256,6 +256,7 @@ class facultadController extends Controller
         
         $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
         
+        
         $datos= array(
             'facultad' => $nombre,
             'programas' => $programas,
@@ -271,6 +272,8 @@ class facultadController extends Controller
         $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
+        $cantidad = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->count();
+        dd($cantidad);
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

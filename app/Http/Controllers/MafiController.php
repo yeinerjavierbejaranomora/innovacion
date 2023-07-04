@@ -214,8 +214,9 @@ class MafiController extends Controller
         if (empty($log)) :
             $primerIngreso =  $this->falatntesPrimerIngreso();
         else :
+            return "No hay estudiantes de primer ingreso";
         endif;
-        dd($log);
+        //dd($log);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;

@@ -187,13 +187,13 @@ class MafiController extends Controller
             //dd($mallaCurricular[0][21]);
             foreach ($mallaCurricular as $key => $malla) :
                 foreach ($malla as $key => $value) :
-                    dd($value);
+                    //dd($value);
                     if(!in_array( $value->codigoCurso,$historial['materias'])):
                         $insertMateriaPorVer = MateriasPorVer::create([
                             "codBanner"      => $estudiante->homologante,
                             "codMateria"      => $value->codigoCurso,
                             "orden"      => $value->orden,
-                            "codprograma"      => $value->programa,
+                            "codprograma"      => $value->codprograma,
                         ]);
                     endif;
                     $registroMPV++;
@@ -201,6 +201,7 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);

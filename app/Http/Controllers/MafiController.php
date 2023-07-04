@@ -187,7 +187,7 @@ class MafiController extends Controller
                 "materia"      => "",
                 "materia"      => "",
                 "materia"      => "",
-            ])
+            ]);
 
             return $mallaCurricular;
         endforeach;

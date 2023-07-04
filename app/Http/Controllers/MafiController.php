@@ -225,7 +225,7 @@ class MafiController extends Controller
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
         $this->periodo();*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
-        return $log;
+        //return $log;
         if (empty($log)) :
             $data = DB::table('datosMafiReplica')
                 ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')

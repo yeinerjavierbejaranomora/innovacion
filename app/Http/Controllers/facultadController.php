@@ -256,7 +256,7 @@ class facultadController extends Controller
         
         $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
         
-        for ($i=0; $i<=count($programas); $i++)
+        for ($i=0; $i<count($programas); $i++)
         {
             var_dump("entra");
         }

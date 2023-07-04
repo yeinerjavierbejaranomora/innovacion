@@ -263,6 +263,7 @@ class facultadController extends Controller
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 
+    
     /**Función para visualizar los estudiantes de cada facultad */
     public function estudiantesFacultad($idPrograma)
     {

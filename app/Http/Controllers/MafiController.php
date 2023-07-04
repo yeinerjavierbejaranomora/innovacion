@@ -197,7 +197,7 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-
+        die();
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

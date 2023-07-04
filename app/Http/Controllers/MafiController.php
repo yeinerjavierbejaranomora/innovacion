@@ -677,6 +677,16 @@ class MafiController extends Controller
         $marcaIngreso = array_map('intval', $marcaIngreso);
         
       
+
+          // WHERE materias_faltantes="OK"
+            // AND programado_ciclo1 IS NULL
+            // AND programado_ciclo2   IS NULL
+            // AND programa="PCPV"
+            // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
+            // AND tipo_estudiante!="XXXXX"
+            // ORDER BY id ASC
+            // LIMIT 20000;
+
         // Estudiantes para generar faltantes
         $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -694,40 +704,24 @@ class MafiController extends Controller
         }
 
         foreach ($consulta_homologante as $key => $value) {
-            dd($value->id);
+          
+            $id_homologante=$value->id;
+            $codHomologante=$value->homologante;
+            $programa_homologante=$value->programa;
+
+            
+            // Materias que debe ver el estudiante
+            $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
+            
+            //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";
+            //exit();
+
+
+            dd( $consulta_porver);
         }
 
         while($homologantes =$consulta_homologante) {
-
-
-            dd($homologantes[0]);
-            $id_homologante=$homologantes['id'];
-
-            dd( $id_homologante);
-            $codHomologante=$homologantes['homologante'];
-            $programa_homologante=$homologantes['programa'];
-
-
-
-            // Materias que debe ver el estudiante
-           $estudiantes= DB::table('estudiantes')
-            ->select('id, homologante, programa')
-            ->where('materias_faltantes="OK"')
-            ->whereNull('programado_ciclo1')
-            ->whereNull('programado_ciclo2')
-            ->where('programa="PCPV"')
-            ->whereIn('marca_ingreso',$marcaIngreso);
-
-
-            dd($estudiantes);
-            // WHERE materias_faltantes="OK"
-            // AND programado_ciclo1 IS NULL
-            // AND programado_ciclo2   IS NULL
-            // AND programa="PCPV"
-            // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
-            // AND tipo_estudiante!="XXXXX"
-            // ORDER BY id ASC
-            // LIMIT 20000;
+          
             $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
 
             //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";

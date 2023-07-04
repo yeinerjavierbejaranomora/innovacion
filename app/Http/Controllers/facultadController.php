@@ -259,9 +259,9 @@ class facultadController extends Controller
         foreach ($programas as $key => $value)
         {
             $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$value->programa)->count();
+            dd($cuenta);
             $cuenta[$value] = $cantidad; 
         }
-        dd($cuenta);
 
         $datos= array(
             'facultad' => $nombre,

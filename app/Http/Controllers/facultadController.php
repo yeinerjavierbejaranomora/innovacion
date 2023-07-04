@@ -264,8 +264,13 @@ class facultadController extends Controller
     }
 
     /**Función para visualizar los estudiantes de cada facultad */
-    public function programasFacultad()
+    public function estudiantesFacultad($idPrograma)
     {
-
+        $codigo = DB::table('programas')->where('id','=',$idPrograma)->select('programas.codprograma')->get();
+        $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $estudiantes));
     }
 }

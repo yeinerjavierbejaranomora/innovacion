@@ -447,7 +447,7 @@ class MafiController extends Controller
         return $mallaCurricular;
     }
 
-    public function historialAcademico($idbanner){
+    public function historialAcademico($idBanner){
         $historial = DB::table('historialAcademico')
                     ->where('codBanner','=',$idBanner)
                     ->get();

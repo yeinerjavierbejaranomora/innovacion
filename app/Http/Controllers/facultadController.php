@@ -248,15 +248,11 @@ class facultadController extends Controller
 
     /** Función para visualizar la vista de los programas del usuario */
 
-    public function programasUsuario($id_facultad)
-    {
-        $id = base64_decode(urldecode($id_facultad));
-
-        if (!is_numeric($id)) {
-            $id = decrypt($id_facultad);
-        }
-        
-        dd($id);
+    public function programasUsuario($nombre)
+    {     
+        $nombre_facultad = decrypt($nombre);
+        $id = DB::table('facultad')->where('nombre','=',$nombre_facultad);    
+        dd($nombre);
         $facultad = DB::table('facultad')->where('id','=',$id)->select('nombre')->get();
         $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
         $datos= array(

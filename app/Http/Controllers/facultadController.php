@@ -250,8 +250,9 @@ class facultadController extends Controller
 
     public function programasUsuario($id_facultad)
     {
-        $facultad = DB::table('facultad')->where('id','=',$id_facultad)->select('nombre')->get();
-        $programas = DB::table('programas')->where('idFacultad','=',$id_facultad)->select('programa')->get();
+        $id= decrypt($id_facultad);
+        $facultad = DB::table('facultad')->where('id','=',$id)->select('nombre')->get();
+        $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
        
         $datos= array(
             'facultad' => $facultad,

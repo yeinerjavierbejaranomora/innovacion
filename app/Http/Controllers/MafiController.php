@@ -177,13 +177,13 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $value) :
                 dd($value);
             endforeach;
         endforeach;
-        die();*/
+        die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();

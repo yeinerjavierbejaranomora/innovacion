@@ -670,16 +670,19 @@ class MafiController extends Controller
         }
 
 
-        $marcaIngreso=trim($marcaIngreso,",");
-        
-        $marcaIngreso=trim($marcaIngreso,'"');
-        
-dd($marcaIngreso);
+        $cadena=trim($marcaIngreso,",");
 
+        // Dividir la cadena en elementos individuales
+        $elementos = explode(",", $cadena);
+        
+        // Convertir cada elemento en un número
+        $numeros = array_map('intval', $elementos);
+        
+      
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
         // Estudiantes para generar faltantes
-        $consulta_homologante = 'SELECT id, homologante, programa FROM estudiantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN ('.$marcaIngreso.') AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"
+        $consulta_homologante = 'SELECT id, homologante, programa FROM estudiantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN ('. $numeros.') AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"
         //dd($consulta_homologante);
         // echo $consulta_homologante . "  --- <br />";
         // exit();
@@ -692,7 +695,7 @@ dd($marcaIngreso);
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
             ->where('programa','PCPV')
-            ->whereIn('marca_ingreso',[$marcaIngreso])
+            ->whereIn('marca_ingreso',$numeros)
             ->get();
 
 

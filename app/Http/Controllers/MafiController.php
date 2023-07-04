@@ -480,7 +480,7 @@ class MafiController extends Controller
 
     public function historialAcademico($idBanner){
         $contacor_vistas=0;
-        $materias_vista = array();
+        $materias_vistas = array();
         $programa = array();
         $historial = DB::table('historialAcademico')
                     ->select('codMateria','codprograma')
@@ -491,6 +491,11 @@ class MafiController extends Controller
             $programa[$value->codprograma] = $value->codprograma;
             $contacor_vistas++;
         endforeach;
+
+        if( empty($materias_vistas)){
+
+            dd($idBanner);
+        }
      
 //dd($materias_vistas);
 

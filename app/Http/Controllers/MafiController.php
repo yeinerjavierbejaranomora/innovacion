@@ -492,10 +492,6 @@ class MafiController extends Controller
             $contacor_vistas++;
         endforeach;
 
-        if( empty($materias_vistas)){
-
-            dd($idBanner);
-        }
      
 //dd($materias_vistas);
 

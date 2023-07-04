@@ -596,7 +596,7 @@ class MafiController extends Controller
         $periodo = $this->periodo();
         $marcaIngreso="";
         foreach ($periodo as $key => $value) {
-            $marcaIngreso.=$value['periodos'].",";
+            $marcaIngreso.=$value->periodos.",";
         }
 
         dd($marcaIngreso);

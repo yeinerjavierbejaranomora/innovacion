@@ -237,7 +237,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data);
+        //dd($data);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -521,14 +521,14 @@ class MafiController extends Controller
 
         foreach ($periodo as $key => $value) {
 
-           
+
 
             $ciclo1 = explode('-', $value->fechaInicioCiclo1);
             $ciclo2 = explode('-', $value->fechaInicioCiclo2);
 
 
             if (in_array($mes[1],$ciclo1) || in_array($mes[1], $ciclo2)) {
-                
+
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 1]);
@@ -563,7 +563,7 @@ class MafiController extends Controller
             ->where(['periodoActivo' => 1])
             ->get();
 
-           
+
 
 
         return  $periodo;

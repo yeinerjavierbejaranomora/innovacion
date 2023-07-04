@@ -516,6 +516,8 @@ class MafiController extends Controller
         $mes = explode('-', $fechaActual);
         $periodo = DB::table('periodo')->get();
 
+        $mes[1]=06;
+
 
         foreach ($periodo as $key => $value) {
 
@@ -526,8 +528,7 @@ class MafiController extends Controller
 
 
             if (in_array($mes[1],$ciclo1) || in_array($mes[1], $ciclo2)) {
-
-
+                
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 1]);
@@ -552,9 +553,6 @@ class MafiController extends Controller
                         ->update(['activoCiclo2' => 0]);
                 }
             } else {
-
-                
-dd("entro ");
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 0]);
@@ -566,7 +564,7 @@ dd("entro ");
             ->get();
 
            
-
+dd($periodo);
 
         return  $periodo;
     }

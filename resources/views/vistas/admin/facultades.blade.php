@@ -88,7 +88,7 @@
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
                     function buscar() {
-                        if("#example".dataTable)
+                        if("#example".dataTable =! "")
                         {
                             $("#example").dataTable().fnDestroy();
                         }

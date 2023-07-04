@@ -520,6 +520,8 @@ class MafiController extends Controller
 
         foreach ($periodo as $key => $value) {
 
+            dd($value);
+
             $ciclo1 = explode('-', $value->fechaInicioCiclo1);
             $ciclo2 = explode('-', $value->fechaInicioCiclo2);
 

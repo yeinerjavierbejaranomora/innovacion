@@ -261,7 +261,6 @@ class facultadController extends Controller
             'programas' => $programas,
         );
         
-        dd($datos);
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 

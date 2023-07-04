@@ -181,9 +181,9 @@ class MafiController extends Controller
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
             $historial = $this->historialAcademico($estudiante->homologante);
-            dd($historial['programa'][0]);
+            //dd($historial['programa'][0]);
 
-            $mallaCurricular = $this->BaseAcademica($estudiante->programa,$historial['programa']);
+            $mallaCurricular = $this->BaseAcademica($historial['programa']);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial['materias'])):
                     $insertMateriaPorVer = MateriasPorVer::create([
@@ -451,6 +451,11 @@ class MafiController extends Controller
     }
 
     public function BaseAcademica($programa){
+        //Obtener la base academica del programa seleccionado
+        if(!is_array($programa)):
+            $programa[]=$programa;
+        endif;
+        dd($programa);
         $mallaCurricular = DB::table('mallaCurricular')
                             ->join('programas','programas.codprograma','=','mallaCurricular.codprograma')
                             ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden')

@@ -176,7 +176,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        /*$fechaInicio = date('Y-m-d H:i:s');
+        $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
@@ -196,8 +196,8 @@ class MafiController extends Controller
                 $registroMPV++;
             endforeach;
         endforeach;
-        $fechaFin = date('Y-m-d H:i:s');*/
-        //die();
+        $fechaFin = date('Y-m-d H:i:s');
+        die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
@@ -457,8 +457,10 @@ class MafiController extends Controller
                 '0' => $programa,
             ];
         endif;
-        dd($programa);
-        $mallaCurricular = DB::table('mallaCurricular')
+        //dd($programa);
+        foreach($programa as $value):
+            dd($value);
+            $mallaCurricular[] = DB::table('mallaCurricular')
                             ->join('programas','programas.codprograma','=','mallaCurricular.codprograma')
                             ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden')
                             ->where([['programas.activo','=',1],['mallaCurricular.codprograma','=',$programa]])
@@ -466,8 +468,9 @@ class MafiController extends Controller
                             ->orderBy('orden', 'asc')
                             ->get();
 
-
+        endforeach;
         return $mallaCurricular;
+
     }
 
     public function historialAcademico($idBanner){

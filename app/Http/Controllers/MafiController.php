@@ -184,7 +184,7 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         die();*/
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        /*$log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
         else :
@@ -214,8 +214,8 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
-        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $primerIngreso =  $this->falatntesPrimerIngreso();
         else :
@@ -251,7 +251,7 @@ class MafiController extends Controller
                 'idFin' => $ultimoRegistroId,
                 'fechaInicio' => $fechaInicio,
                 'fechaFin' => $fechaFin,
-                'accion' => 'Insert',
+                'accion' => 'Insert-PrimerIngreso',
                 'tabla_afectada' => 'materiasPorVer',
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
             ]);
@@ -642,11 +642,11 @@ class MafiController extends Controller
         }
 
 
-        
+
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
         // Estudiantes para generar faltantes
-        $consulta_homologante = 'SELECT id, homologante, programa FROM estudiantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN ('.$marcaIngreso.') AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"  
+        $consulta_homologante = 'SELECT id, homologante, programa FROM estudiantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN ('.$marcaIngreso.') AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"
         dd($consulta_homologante);
         // echo $consulta_homologante . "  --- <br />";
         // exit();

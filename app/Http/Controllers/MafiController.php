@@ -194,6 +194,7 @@ class MafiController extends Controller
                 $registroMPV++;
             endforeach;
         endforeach;
+        return $registroMPV;
 
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();

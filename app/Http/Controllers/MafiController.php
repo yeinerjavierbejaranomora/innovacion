@@ -635,12 +635,12 @@ class MafiController extends Controller
             $marcaIngreso .= $value->periodos . ",";
         }
 
-        dd($marcaIngreso);
+        
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
         // Estudiantes para generar faltantes
-        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"  
-
+        $consulta_homologante = 'SELECT id, homologante, programa FROM estudiantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN ('+$marcaIngreso+') AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"  
+        dd($consulta_homologante);
         // echo $consulta_homologante . "  --- <br />";
         // exit();
 

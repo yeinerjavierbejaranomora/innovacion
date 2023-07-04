@@ -185,12 +185,15 @@ class MafiController extends Controller
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial)):
-                    $insertMateriaPorVer = MateriasPorVer::create([
+                    var_dump('No esta');
+                    /*$insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $estudiante->homologante,
                         "codMateria"      => $value->codigoCurso,
                         "orden"      => $value->orden,
                         "codprograma"      => $estudiante->programa,
-                    ]);
+                    ]);*/
+                else:
+                    var_dump("Esta");
                 endif;
                 $registroMPV++;
             endforeach;

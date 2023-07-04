@@ -556,6 +556,9 @@ class MafiController extends Controller
             ->where(['periodoActivo' => 1])
             ->get();
 
+            dd($periodo);
+            
+
         return  $periodo;
     }
 

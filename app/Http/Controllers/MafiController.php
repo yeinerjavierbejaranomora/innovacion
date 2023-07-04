@@ -180,11 +180,18 @@ class MafiController extends Controller
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
-            $historial = $this->historialAcademico($estudiante->homologante);
+            $historial = $this->historialAcademico($estudiante->homologante)->toArray();
+            dd($historial);
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
-                $codCurso = $value->codigoCurso;
-                var_dump($codCurso);
+                if(!in_array( $value->codigoCurso,$historial)):
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $estudiante->homologante,
+                        "codMateria"      => $value->codigoCurso,
+                        "orden"      => $value->orden,
+                        "codprograma"      => $estudiante->programa,
+                    ]);
+                endif;
                 $registroMPV++;
             endforeach;
         endforeach;

@@ -94,11 +94,10 @@
                         console.log(id_programa);
 
                         var xmlhttp = new XMLHttpRequest();
-                        var url = "{{ route('programa.estudiantes') }}";
-                        alert(url);
+                        var url = "/home/facultades/estudiantes/"+id_programa+"";
                         console.log(url);
                         xmlhttp.open("GET", url, true);
-                        xmlhttp.send("id_programa =" +id_programa);
+                        xmlhttp.send();
                         xmlhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 var data = JSON.parse(this.responseText);

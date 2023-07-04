@@ -491,7 +491,9 @@ class MafiController extends Controller
             $programa[$value->codprograma] = $value->codprograma;
             $contacor_vistas++;
         endforeach;
-        $materias_vistas = $materias_vistas;
+     
+dd($materias_vistas);
+
         $data =[
             'materias' => $materias_vistas,
             'programa' => $programa,

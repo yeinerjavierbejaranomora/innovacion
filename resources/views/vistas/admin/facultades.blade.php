@@ -55,10 +55,8 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             <h6> Programa de {{$value->programa}}</h6>
                                         </div>
-                                        <button type="button" class="btn btn-outline-warning">
-                                            <div class=" mb-0 font-weight-bold text-gray-800">
-                                                <p>Estudiantes $4,000</p>
-                                            </div>
+                                        <button class=" mb-0 font-weight-bold text-gray-800" type="button" class="btn btn-outline-warning">                                
+                                                Estudiantes $4,000                      
                                         </button>
                                     </div>
 

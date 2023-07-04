@@ -179,19 +179,23 @@ class MafiController extends Controller
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
+        $registroMPV = 0;
         foreach($primerIngreso as $estudiante):
 
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-            dd($mallaCurricular);
-            $insertMateriaPorVer = MateriasPorVer::create([
-                "codBanner"      => $estudiante->homologante,
-                "codMateria"      => "",
-                "materia"      => "",
-                "codprograma"      => $estudiante->programa,
-            ]);
-
-            return $mallaCurricular;
+            //dd($mallaCurricular);
+            foreach ($mallaCurricular as $key => $value) :
+                $insertMateriaPorVer = MateriasPorVer::create([
+                    "codBanner"      => $estudiante->homologante,
+                    "codMateria"      => $value->codigoCurso,
+                    "orden"      => $value->orden,
+                    "codprograma"      => $estudiante->programa,
+                ]);
+                $registroMPV++;
+            endforeach;
         endforeach;
+        return $registroMPV;
+
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

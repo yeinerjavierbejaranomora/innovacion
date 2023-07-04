@@ -256,11 +256,12 @@ class facultadController extends Controller
         
         $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
         
-        for ($i=0; $i<count($programas); $i++)
+        foreach ($programas as $key => $value)
         {
-            var_dump("entra");
-        }
+            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$value)->count();
 
+        }
+        dd($cantidad);
 
         $datos= array(
             'facultad' => $nombre,

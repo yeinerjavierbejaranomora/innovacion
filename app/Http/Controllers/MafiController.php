@@ -178,7 +178,8 @@ class MafiController extends Controller
     {
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
-            dd($estudiante);
+            $historial = $this->historialAcademico($estudiante->homologante);
+            dd($historial);
         endforeach;
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
@@ -446,7 +447,7 @@ class MafiController extends Controller
         return $mallaCurricular;
     }
 
-    public function historialAcademico($idbanner){
+    public function historialAcademico($idBanner){
         $historial = DB::table('historialAcademico')
                     ->where('codBanner','=',$idBanner)
                     ->get();

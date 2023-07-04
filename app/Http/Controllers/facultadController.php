@@ -253,14 +253,11 @@ class facultadController extends Controller
         $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();    
         $id= $consulta[0]->id;
 
-        $programas_tabla = DB::table('programas')->where('idFacultad','=',$id)->get();
+        $programas_tabla = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
 
-        dd($programas_tabla);
-        
-        dd($programas);
         $datos= array(
             'facultad' => $nombre,
-            'programas' => $programas,
+            'programas' => $programas_tabla,
         );
         
         dd($datos);

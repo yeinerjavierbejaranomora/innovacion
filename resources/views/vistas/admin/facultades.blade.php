@@ -48,8 +48,6 @@
 
                     <!-- Content Row -->
                     <div class="row" id="facultades">
-
-                    <!--@foreach($datos['facultad'] as $key => $value)-->
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <a href="{{ route('admin.facultades') }}">
@@ -70,5 +68,5 @@
                             </div>
                             </a>
                         </div>
-                        <!-- @endforeach -->
+                    
                     </div>

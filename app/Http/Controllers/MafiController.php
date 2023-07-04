@@ -564,7 +564,7 @@ class MafiController extends Controller
             ->get();
 
            
-dd($periodo);
+
 
         return  $periodo;
     }

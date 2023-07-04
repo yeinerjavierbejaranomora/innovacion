@@ -176,7 +176,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        /*$fechaInicio = date('Y-m-d H:i:s');
+        $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
@@ -202,7 +202,7 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        die();*/
+        die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
@@ -213,12 +213,12 @@ class MafiController extends Controller
             //dd($mallaCurricular);
             foreach ($mallaCurricular as $key => $malla) :
                 foreach ($malla as $key => $value) :
-                    dd($value);
+                    //dd($value);
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $estudiante->homologante,
                         "codMateria"      => $value->codigoCurso,
                         "orden"      => $value->orden,
-                        "codprograma"      => $estudiante->programa,
+                        "codprograma"      => $value->codprograma,
                     ]);
                     $registroMPV++;
                 endforeach;

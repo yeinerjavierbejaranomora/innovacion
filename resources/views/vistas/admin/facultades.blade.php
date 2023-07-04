@@ -44,28 +44,27 @@
             </div>
             <!-- Content Row -->
             <div class="row" id="facultades">
-
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">                
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <h6> Programa de {{$value->programa}}</h6>
-                                        </div>
-                                        <button type="button" class="btn btn-warning text-dark">                                
-                                                Estudiantes $4,000                      
-                                        </button>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <h6> Programa de {{$value->programa}}</h6>
                                     </div>
+                                    <input id="mostrar" type="button" class="btn btn-warning text-dark" onclick="mostrarEstudiantes()">
+                                    Estudiantes $4,000
+                                    </input>
+                                </div>
 
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -89,60 +88,61 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                var xmlhttp = new XMLHttpRequest();
-                var url = "{{ route('facultad.getperiodos') }}";
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
-                        var table = $('#example').DataTable({
-                            "data": data.data,
-                            "columns": [{
-                                    data: 'periodos',
-                                    title: 'Periodo'
+                function mostrarEstudiantes() {
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "{{ route('facultad.getperiodos') }}";
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var data = JSON.parse(this.responseText);
+                            var table = $('#example').DataTable({
+                                "data": data.data,
+                                "columns": [{
+                                        data: 'ibbanner',
+                                        title: 'Id Banner'
+                                    },
+                                    {
+                                        data: 'primer_apellido',
+                                        title: 'Primer apellido'
+                                    },
+                                    {
+                                        data: 'programa',
+                                        title: 'Codigo de programa'
+                                    },
+                                    {
+                                        data: 'estado',
+                                        title: 'Estado'
+                                    },
+                                    {
+                                        data: 'tipoestudiante',
+                                        title: 'Tipo estudiante'
+                                    },
+                                    {
+                                        data: 'sello',
+                                        title: 'Sello'
+                                    },
+                                    {
+                                        data: 'autorizado_asistir',
+                                        title: 'Autorizado'
+                                    },
+                                    {
+                                        data: 'created_at',
+                                        title: 'Fecha de creación'
+                                    },
+                                    {
+                                        data: 'updated_at',
+                                        title: 'Última actulización'
+                                    },
+                                ],
+                                "language": {
+                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                 },
-                                {
-                                    data: 'fechaInicioCiclo1',
-                                    title: 'Fecha de inicio ciclo 1'
-                                },
-                                {
-                                    data: 'fechaInicioCiclo2',
-                                    title: 'Fecha de inicio ciclo 2'
-                                },
-                                {
-                                    data: 'fechaInicioTemprano',
-                                    title: 'Fecha inicio temprano'
-                                },
-                                {
-                                    data: 'fechaInicioPeriodo',
-                                    title: 'Fecha inicio periodo'
-                                },
-                                {
-                                    data: 'periodoActivo',
-                                    title: 'Periodo activo'
-                                },
-                                {
-                                    data: 'year',
-                                    title: 'Año'
-                                },
-                                {
-                                    defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                                    title: 'Editar'
-                                },
-                                {
-                                    defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                                    title: 'Eliminar'
-                                },
-                            ],
-                            "language": {
-                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
-                            //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                        });
-                        console.log(table);
+                                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                            });
+                            console.log(table);
+                        }
                     }
-
-                }
+                })
             </script>
             @include('layout.footer')

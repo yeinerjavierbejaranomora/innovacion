@@ -265,9 +265,9 @@ class facultadController extends Controller
 
 
     /**Función para visualizar los estudiantes de cada facultad */
-    public function estudiantesFacultad($id)
+    public function estudiantesFacultad()
     {
-        dd($id);
+        dd($_GET);
         $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
         dd[$codigo];

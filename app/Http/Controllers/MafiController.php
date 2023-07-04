@@ -180,7 +180,7 @@ class MafiController extends Controller
         $primerIngreso =  $this->falatntesPrimerIngreso();
         foreach($primerIngreso as $estudiante):
 
-            $mallaCurricular = $this->BaseAcademica($estudiante->codprograma);
+            $mallaCurricular = $this->BaseAcademica($estudiante->programa);
 
             return $mallaCurricular;
         endforeach;

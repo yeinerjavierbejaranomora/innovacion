@@ -100,9 +100,9 @@
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
-                            if($("#example") != null) {
-                                    $("#example").clear();
-                                    
+                            if($("#example").DataTable != null) {
+                                $("#example").DataTable.clear();
+                                $("#example").DataTable.destroy();
                                 }
                             var table = $('#example').DataTable(
                                  {

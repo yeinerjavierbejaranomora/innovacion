@@ -184,6 +184,7 @@ class MafiController extends Controller
             //dd($historial['programa'][0]);
 
             $mallaCurricular = $this->BaseAcademica($historial['programa']);
+            dd($mallaCurricular[0]);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial['materias'])):
                     $insertMateriaPorVer = MateriasPorVer::create([
@@ -468,7 +469,7 @@ class MafiController extends Controller
                             ->get();
 
             endforeach;
-        dd($mallaCurricular);
+        //dd($mallaCurricular);
         return $mallaCurricular;
 
     }

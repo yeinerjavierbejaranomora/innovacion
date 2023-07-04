@@ -271,7 +271,6 @@ class facultadController extends Controller
         $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
-
         dd($estudiantes);
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");

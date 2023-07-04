@@ -178,7 +178,8 @@ class MafiController extends Controller
     {
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
-            dd($estudiante);
+            $historial = $this->historialAcademico($estudiante->homologante);
+            dd($historial);
         endforeach;
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();

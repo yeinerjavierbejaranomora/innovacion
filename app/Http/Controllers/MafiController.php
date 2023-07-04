@@ -213,7 +213,7 @@ class MafiController extends Controller
             //dd($mallaCurricular);
             foreach ($mallaCurricular as $key => $malla) :
                 foreach ($malla as $key => $value) :
-                    dd($value);
+                    //dd($value);
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $estudiante->homologante,
                         "codMateria"      => $value->codigoCurso,

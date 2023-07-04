@@ -196,6 +196,7 @@ class MafiController extends Controller
                     var_dump("Esta");
                 endif;
                 $registroMPV++;
+                die();
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');

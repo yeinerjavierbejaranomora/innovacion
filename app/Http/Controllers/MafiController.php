@@ -179,6 +179,7 @@ class MafiController extends Controller
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
+        $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         foreach($primerIngreso as $estudiante):
 
@@ -194,8 +195,9 @@ class MafiController extends Controller
                 $registroMPV++;
             endforeach;
         endforeach;
-        return $registroMPV;
-
+        $fechaFin = date('Y-m-d H:i:s');
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
+        die();
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

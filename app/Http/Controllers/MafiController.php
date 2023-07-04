@@ -693,6 +693,10 @@ class MafiController extends Controller
             exit();
         }
 
+        foreach ($consulta_homologante as $key => $value) {
+            dd($value);
+        }
+
         while($homologantes =$consulta_homologante) {
 
 

@@ -494,7 +494,7 @@ class MafiController extends Controller
 
         if( empty($materias_vistas)){
 
-            dd($materias_vistas);
+            dd($idBanner);
         }
      
 //dd($materias_vistas);

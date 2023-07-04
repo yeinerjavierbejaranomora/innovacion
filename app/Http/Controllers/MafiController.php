@@ -401,8 +401,7 @@ class MafiController extends Controller
                                     ->where('tipo_estudiante','LIKE','PRIMER%')
                                     ->whereNull('programaActivo')
                                     ->orderBy('id')
-                                    ->get()
-                                    ->chunk(200);
+                                    ->get();
 
         return $estudiantesPrimerIngreso;
     }

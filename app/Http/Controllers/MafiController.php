@@ -492,7 +492,7 @@ class MafiController extends Controller
             $contacor_vistas++;
         endforeach;
      
-dd($materias_vistas);
+//dd($materias_vistas);
 
         $data =[
             'materias' => $materias_vistas,

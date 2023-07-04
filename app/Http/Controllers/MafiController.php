@@ -211,9 +211,10 @@ class MafiController extends Controller
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
         $primerIngreso =  $this->falatntesPrimerIngreso();
-        dd($primerIngreso[0]);
+        dd($primerIngreso[0]->id);
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
+        $primerId = $primerIngreso[0]->id;
         foreach($primerIngreso as $estudiante):
 
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);

@@ -47,8 +47,7 @@
 
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <a href="{{ route('admin.facultades') }}">
+                <div class="col-xl-3 col-md-6 mb-4">                
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -56,9 +55,11 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             <h6> Programa de {{$value->programa}}</h6>
                                         </div>
-                                        <div class=" mb-0 font-weight-bold text-gray-800">
-                                            <p>Estudiantes $4,000</p>
-                                        </div>
+                                        <button type="button" class="btn btn-outline-warning">
+                                            <div class=" mb-0 font-weight-bold text-gray-800">
+                                                <p>Estudiantes $4,000</p>
+                                            </div>
+                                        </button>
                                     </div>
 
                                     <div class="col-auto">
@@ -67,7 +68,6 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
                 </div>
                 @endforeach
             </div>

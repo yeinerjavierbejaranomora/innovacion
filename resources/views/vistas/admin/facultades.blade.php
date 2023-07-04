@@ -91,7 +91,7 @@
                 $(document).ready(function() {
                     $('#mostrar').click(function() {
                         var id_programa = $(document).find('#mostrar').val(); 
-                        console.log(id);
+                        console.log(id_programa);
                         var xmlhttp = new XMLHttpRequest();
                         var url = "{{ route('programa.estudiantes', "+ id_programa + ") }}";
                         console.log(url);

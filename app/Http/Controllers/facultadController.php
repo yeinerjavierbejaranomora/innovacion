@@ -263,12 +263,12 @@ class facultadController extends Controller
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 
-    
+
     /**Función para visualizar los estudiantes de cada facultad */
-    public function estudiantesFacultad($idPrograma)
+    public function estudiantesFacultad($id)
     {
-        dd($idPrograma);
-        $consulta = DB::table('programas')->where('id','=',$idPrograma)->get();
+        dd($id);
+        $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
         dd[$codigo];
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();

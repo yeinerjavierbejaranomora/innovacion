@@ -713,24 +713,24 @@ class MafiController extends Controller
             // Materias que debe ver el estudiante
             // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
             
-                /*SELECT mpv.codBanner, mpv.codMateria, mpv.orden ,myc.creditos, myc.ciclo 
-                FROM materiasPorVer mpv 
-                INNER JOIN mallaCurricular myc ON mpv.codMateria=myc.codigoCurso 
+                /*SELECT materiasPorVer.codBanner, materiasPorVer.codMateria, materiasPorVer.orden ,mallaCurricular.creditos, mallaCurricular.ciclo 
+                FROM materiasPorVer materiasPorVer 
+                INNER JOIN mallaCurricular mallaCurricular ON materiasPorVer.codMateria=mallaCurricular.codigoCurso 
                 WHERE codBanner=100152879 
-                AND myc.ciclo IN (1, 12) 
-                AND mpv.codprograma = "PPSV" 
-                AND myc.codprograma = "PPSV" 
-                ORDER BY mpv.orden ASC;*/
+                AND mallaCurricular.ciclo IN (1, 12) 
+                AND materiasPorVer.codprograma = "PPSV" 
+                AND mallaCurricular.codprograma = "PPSV" 
+                ORDER BY materiasPorVer.orden ASC;*/
 
 
-            $consulta_porver= DB::table('materiasPorVer mpv')
-            ->join('mallaCurricular myc', 'mpv.codMateria', '=', 'myc.codigoCurso')
-            ->select('mpv.codBanner', 'mpv.codMateria', 'mpv.orden' ,'myc.creditos', 'myc.ciclo ')
+            $consulta_porver= DB::table('materiasPorVer')
+            ->join('mallaCurricular ', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+            ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo ')
             ->where('codBanner','100152879')
-            ->whereIn('myc.ciclo',[1,12])
-            ->where('mpv.codprograma','PPSV')
-            ->where('myc.codprograma','PPSV')
-            ->orderBy('mpv.orden', 'asc')
+            ->whereIn('mallaCurricular.ciclo',[1,12])
+            ->where('materiasPorVer.codprograma','PPSV')
+            ->where('mallaCurricular.codprograma','PPSV')
+            ->orderBy('materiasPorVer.orden', 'asc')
             ->get();
 
 

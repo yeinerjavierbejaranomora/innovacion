@@ -177,6 +177,7 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $this->faltantesAntiguos();
         die();
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;

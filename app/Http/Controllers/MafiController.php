@@ -177,6 +177,8 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $estudiantesAntiguos = $this->faltantesAntiguos();
+        dd($estudiantesAntiguos->chunk(200));
         die();
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
@@ -466,7 +468,7 @@ class MafiController extends Controller
                                 ->orderBy('id')
                                 ->get();
 
-        dd($estudiantesAntiguos);
+
         return $estudiantesAntiguos;
     }
 
@@ -593,7 +595,12 @@ class MafiController extends Controller
 
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
-        dd($periodo);
+        $marcaIngreso="";
+        foreach ($periodo as $key => $value) {
+            $marcaIngreso.=$value->periodos.",";
+        }
+
+        dd($marcaIngreso);
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
 

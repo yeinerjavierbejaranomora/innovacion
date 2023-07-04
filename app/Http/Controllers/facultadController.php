@@ -267,6 +267,7 @@ class facultadController extends Controller
     public function estudiantesFacultad($idPrograma)
     {
         $codigo = DB::table('programas')->where('id','=',$idPrograma)->select('programas.codprograma')->get();
+        dd($codigo);
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");

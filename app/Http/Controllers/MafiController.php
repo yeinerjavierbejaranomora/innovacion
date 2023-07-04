@@ -218,7 +218,7 @@ class MafiController extends Controller
                         "codBanner"      => $estudiante->homologante,
                         "codMateria"      => $value->codigoCurso,
                         "orden"      => $value->orden,
-                        "codprograma"      => $estudiante->programa,
+                        "codprograma"      => $value->codprograma,
                     ]);
                     $registroMPV++;
                 endforeach;

@@ -192,11 +192,11 @@ class MafiController extends Controller
         endif;
 
         //dd($transferente[0]->id);
-        $fechaInicio = date('Y-m-d H:i:s');
-        $registroMPV = 0;
-        $primerId = $transferente[0]->id;
-        $ultimoRegistroId = 0;
-        if (!empty($primerIngreso)) :
+        if (!empty($transferente)) :
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $transferente[0]->id;
+            $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
                 //dd($historial['programa'][0]);

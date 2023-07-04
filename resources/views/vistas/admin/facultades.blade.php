@@ -92,9 +92,9 @@
 
                         var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
-
+                        
                         var xmlhttp = new XMLHttpRequest();
-                        var url = "{{ route('programa.estudiantes', ['id'=>"${id_programa}"]) }}";
+                        var url = "{{ route('programa.estudiantes', ['id'=>"id_programa"]) }}";
                         alert(url);
                         console.log(url);
                         xmlhttp.open("GET", url, true);

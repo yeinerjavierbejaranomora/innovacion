@@ -90,7 +90,7 @@
                 function buscar() {
                     
 
-                    var id_programa = $('.btn').val();
+                    var id_programa = $('.btn btn-warning text-dark').val();
                     console.log(id_programa);
 
                     var xmlhttp = new XMLHttpRequest();

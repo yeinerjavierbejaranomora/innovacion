@@ -215,7 +215,7 @@ class MafiController extends Controller
             $primerIngreso =  $this->falatntesPrimerIngreso();
         else :
         endif;
-        dd($primerIngreso);
+        //dd($primerIngreso);
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $primerId = $primerIngreso[0]->id;

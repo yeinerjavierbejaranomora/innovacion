@@ -94,7 +94,6 @@
                         console.log(id_programa);
                         var xmlhttp = new XMLHttpRequest();
                         var url = "{{ route('programa.estudiantes', ['id'=>"+id_programa+"]) }}";
-
                         console.log(url);
                         xmlhttp.open("GET", url, true);
                         xmlhttp.send();

@@ -250,7 +250,6 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {     
-        dd($nombre);
         $id = DB::table('facultad')->where('nombre','=',$nombre);    
         dd($id);
 

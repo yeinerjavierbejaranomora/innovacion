@@ -184,20 +184,24 @@ class MafiController extends Controller
             //dd($historial['programa'][0]);
 
             $mallaCurricular = $this->BaseAcademica($historial['programa']);
-            dd($mallaCurricular[0][21]);
-            foreach ($mallaCurricular as $key => $value) :
-                if(!in_array( $value->codigoCurso,$historial['materias'])):
-                    $insertMateriaPorVer = MateriasPorVer::create([
-                        "codBanner"      => $estudiante->homologante,
-                        "codMateria"      => $value->codigoCurso,
-                        "orden"      => $value->orden,
-                        "codprograma"      => $estudiante->programa,
-                    ]);
-                endif;
-                $registroMPV++;
+            //dd($mallaCurricular[0][21]);
+            foreach ($mallaCurricular as $key => $malla) :
+                foreach ($malla as $key => $value) :
+                    //dd($value);
+                    if(!in_array( $value->codigoCurso,$historial['materias'])):
+                        $insertMateriaPorVer = MateriasPorVer::create([
+                            "codBanner"      => $estudiante->homologante,
+                            "codMateria"      => $value->codigoCurso,
+                            "orden"      => $value->orden,
+                            "codprograma"      => $value->codprograma,
+                        ]);
+                    endif;
+                    $registroMPV++;
+                endforeach;
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
@@ -462,7 +466,7 @@ class MafiController extends Controller
         foreach($programa as $value):
             $mallaCurricular[] = DB::table('mallaCurricular')
                             ->join('programas','programas.codprograma','=','mallaCurricular.codprograma')
-                            ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden')
+                            ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden','mallaCurricular.codprograma')
                             ->where([['programas.activo','=',1],['mallaCurricular.codprograma','=',$value]])
                             ->orderBy('semestre', 'asc')
                             ->orderBy('orden', 'asc')

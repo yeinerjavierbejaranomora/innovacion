@@ -669,7 +669,10 @@ class MafiController extends Controller
         }
 
 
-        $marcaIngreso=(int)trim($marcaIngreso,",");
+        $marcaIngreso=trim($marcaIngreso,",");
+        
+        $marcaIngreso=trim($marcaIngreso,'"');
+        
 dd($marcaIngreso);
 
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */

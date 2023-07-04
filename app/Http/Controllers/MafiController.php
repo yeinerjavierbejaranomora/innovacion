@@ -694,7 +694,7 @@ class MafiController extends Controller
         }
 
         foreach ($consulta_homologante as $key => $value) {
-            dd($value);
+            dd($value->id);
         }
 
         while($homologantes =$consulta_homologante) {

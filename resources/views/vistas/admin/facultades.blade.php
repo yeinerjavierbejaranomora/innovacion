@@ -54,7 +54,7 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="btn btn-warning text-dark">
+                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="btn btn-warning text-dark" onclick="buscar()">
                                     Estudiantes </input>
                                 </div>
 
@@ -88,7 +88,7 @@
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
                 $(document).ready(function() {
-                    $('#mostrar').click(function() {
+                    function buscar() {
 
                         var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
@@ -148,7 +148,7 @@
                                 console.log(table);
                             }
                         }
-                    })
+                    }
                 })
             </script>
             @include('layout.footer')

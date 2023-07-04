@@ -177,8 +177,12 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos();
-        dd($estudiantesAntiguos->chunk(200));
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        dd($estudiantesAntiguos);
+        foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+            foreach ($estudiantes as $key => $value) :
+            endforeach;
+        endforeach;
         die();
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;

@@ -182,7 +182,7 @@ class MafiController extends Controller
         foreach($transferente as $estudiante):
             $historial = $this->historialAcademico($estudiante->homologante)->toArray();
             dd($historial);
-            $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+            /*$mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial)):
                     $insertMateriaPorVer = MateriasPorVer::create([
@@ -193,7 +193,7 @@ class MafiController extends Controller
                     ]);
                 endif;
                 $registroMPV++;
-            endforeach;
+            endforeach;*/
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         die();

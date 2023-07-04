@@ -176,7 +176,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $fechaInicio = date('Y-m-d H:i:s');
+        /*$fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
@@ -223,7 +223,7 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        $this->periodo();
+        $this->periodo();*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
         if (empty($log)) :

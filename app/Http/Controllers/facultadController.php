@@ -258,7 +258,7 @@ class facultadController extends Controller
         
         for ($i=0; $i<count($programas); $i++)
         {
-            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$programas[i])->count();
+            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$programas[$i])->count();
 
         }
         dd($cantidad);

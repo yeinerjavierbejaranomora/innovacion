@@ -694,7 +694,26 @@ class MafiController extends Controller
             $programa_homologante=$homologantes['programa'];
 
 
+
             // Materias que debe ver el estudiante
+           $estudiantes= DB::table('estudiantes')
+            ->select('id, homologante, programa')
+            ->where('materias_faltantes="OK"')
+            ->whereNull('programado_ciclo1')
+            ->whereNull('programado_ciclo2')
+            ->where('programa="PCPV"')
+            ->whereIn('marca_ingreso',$marcaIngreso);
+          
+
+            dd($estudiantes);
+            // WHERE materias_faltantes="OK"
+            // AND programado_ciclo1 IS NULL
+            // AND programado_ciclo2   IS NULL
+            // AND programa="PCPV" 
+            // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353) 
+            // AND tipo_estudiante!="XXXXX" 
+            // ORDER BY id ASC 
+            // LIMIT 20000;
             $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
 
             //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";

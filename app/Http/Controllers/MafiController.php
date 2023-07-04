@@ -176,11 +176,19 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+        $fechaInicio = date('Y-m-d H:i:s');
+        $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
             $historial = $this->historialAcademico($estudiante->homologante);
-            dd($historial);
+            $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+            foreach ($mallaCurricular as $key => $value) :
+                $codCurso = $value->codMateria;
+                dd($codCurso);
+                $registroMPV++;
+            endforeach;
         endforeach;
+        $fechaFin = date('Y-m-d H:i:s');
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);

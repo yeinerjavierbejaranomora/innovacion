@@ -177,7 +177,9 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
         $transferente = $this->falatntesTranferentes();
-        dd($transferente);
+        foreach($transferente as $estudiante):
+            dd($estudiante);
+        endforeach;
         die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
@@ -442,6 +444,13 @@ class MafiController extends Controller
 
 
         return $mallaCurricular;
+    }
+
+    public function historialAcademico($idbanner){
+        $historial = DB::table('historialAcademico')
+                    ->where('codBanner','=',$idBanner)
+                    ->get();
+        return $historial;
     }
 
     //*** funcion para activar los periodos automaticamente */

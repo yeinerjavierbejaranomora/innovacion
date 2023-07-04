@@ -91,7 +91,7 @@
                 
                     $('.mostrar').each(function() {
 
-                        var id_programa = $('#').this.val();
+                        var id_programa = $(this.val());
                     })
                     console.log(id_programa);
 

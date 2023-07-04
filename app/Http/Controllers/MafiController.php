@@ -179,8 +179,8 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+            dd($estudiantes);
             foreach ($estudiantes as $key => $value) :
-                dd($value);
             endforeach;
         endforeach;
         die();

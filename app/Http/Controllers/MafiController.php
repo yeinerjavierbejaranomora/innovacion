@@ -181,7 +181,7 @@ class MafiController extends Controller
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
             $historial = $this->historialAcademico($estudiante->homologante);
-            //dd($historial[0]);
+            dd($historial);
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial)):
@@ -465,18 +465,23 @@ class MafiController extends Controller
     public function historialAcademico($idBanner){
         $contacor_vistas=0;
         $materias_vista = array();
+        $programa = array();
         $historial = DB::table('historialAcademico')
-                    ->select('codMateria')
+                    ->select('codMateria','programa')
                     ->where('codBanner','=',$idBanner)
                     ->get();
         foreach($historial AS $key => $value):
-
             $materias_vistas[$contacor_vistas]= strtoupper($value->codMateria);
+            $programa[$value->codMateria] = $value->codMateria;
             $contacor_vistas++;
         endforeach;
         $materias_vistas = $materias_vistas;
+        $data =[
+            'materias' => $materias_vistas,
+            'programa' => $programa,
+        ];
 
-        return $materias_vistas;
+        return $data;
     }
 
     //*** funcion para activar los periodos automaticamente */

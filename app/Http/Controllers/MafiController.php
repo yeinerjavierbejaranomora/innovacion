@@ -176,7 +176,10 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        /*$fechaInicio = date('Y-m-d H:i:s');
+
+        $this->faltantesAntiguos();
+        die();
+        $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         $transferente = $this->falatntesTranferentes();
         foreach($transferente as $estudiante):
@@ -202,7 +205,6 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
@@ -211,18 +213,21 @@ class MafiController extends Controller
 
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             //dd($mallaCurricular);
-            foreach ($mallaCurricular as $key => $value) :
-                $insertMateriaPorVer = MateriasPorVer::create([
-                    "codBanner"      => $estudiante->homologante,
-                    "codMateria"      => $value->codigoCurso,
-                    "orden"      => $value->orden,
-                    "codprograma"      => $estudiante->programa,
-                ]);
-                $registroMPV++;
+            foreach ($mallaCurricular as $key => $malla) :
+                foreach ($malla as $key => $value) :
+                    //dd($value);
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $estudiante->homologante,
+                        "codMateria"      => $value->codigoCurso,
+                        "orden"      => $value->orden,
+                        "codprograma"      => $value->codprograma,
+                    ]);
+                    $registroMPV++;
+                endforeach;
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
-        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -237,7 +242,7 @@ class MafiController extends Controller
                 ->chunk(200);
         else :
         endif;
-        dd($data);
+        //dd($data);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -455,6 +460,17 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
+    public function faltantesAntiguos(){
+        $estudiantesAntiguos= DB::table('estudiantes')
+                                ->where('tipo_estudiante','LIKE','ESTUDIANTE ANTIGUO%')
+                                ->whereNull('programaActivo')
+                                ->orderBy('id')
+                                ->get();
+
+        dd($estudiantesAntiguos);
+        return $estudiantesAntiguos;
+    }
+
     public function BaseAcademica($programa){
         //Obtener la base academica del programa seleccionado
         if(!is_array($programa)):
@@ -478,6 +494,7 @@ class MafiController extends Controller
 
     }
 
+
     public function historialAcademico($idBanner){
         $contacor_vistas=0;
         $materias_vista = array();
@@ -496,6 +513,7 @@ class MafiController extends Controller
 
             dd($idBanner);
         }
+
 
 //dd($materias_vistas);
 
@@ -521,14 +539,14 @@ class MafiController extends Controller
 
         foreach ($periodo as $key => $value) {
 
-           
+
 
             $ciclo1 = explode('-', $value->fechaInicioCiclo1);
             $ciclo2 = explode('-', $value->fechaInicioCiclo2);
 
 
             if (in_array($mes[1],$ciclo1) || in_array($mes[1], $ciclo2)) {
-                
+
                 DB::table('periodo')
                     ->where('id', $value->id)
                     ->update(['periodoActivo' => 1]);
@@ -563,7 +581,7 @@ class MafiController extends Controller
             ->where(['periodoActivo' => 1])
             ->get();
 
-           
+
 
 
         return  $periodo;

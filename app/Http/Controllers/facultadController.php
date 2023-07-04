@@ -250,11 +250,12 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {     
+
         $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();
-        $id=$consulta[0]->id;
-
-        $programas = DB::table('programas')->where('idFacultad','=',$id)->where('activo','=',1)->select('programa','id')->get();
-
+        $idFacultad=$consulta[0]->id;
+        
+        $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
+        
         $datos= array(
             'facultad' => $nombre,
             'programas' => $programas,
@@ -267,11 +268,10 @@ class facultadController extends Controller
     /**Función para visualizar los estudiantes de cada facultad */
     public function estudiantesFacultad($id)
     {
-        dd($id);
         $consulta = DB::table('programas')->where('id','=',$id)->get();
         $codigo=$consulta[0]->codprograma;
-        dd[$codigo];
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
+        dd($estudiantes);
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

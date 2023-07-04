@@ -179,7 +179,7 @@ class MafiController extends Controller
 
         $primerIngreso =  $this->falatntesPrimerIngreso();
         $mallaCurricular = $this->BaseAcademica();
-        return $mallaCurricular;
+        return $primerIngreso;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

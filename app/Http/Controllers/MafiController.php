@@ -184,7 +184,7 @@ class MafiController extends Controller
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
                 $codCurso = $value->codigoCurso;
-                dd($codCurso);
+                var_dump($codCurso);
                 $registroMPV++;
             endforeach;
         endforeach;

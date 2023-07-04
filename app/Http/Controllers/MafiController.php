@@ -247,7 +247,7 @@ class MafiController extends Controller
             $fechaInicio = date('Y-m-d H:i:s');
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
-                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO')) :
+                    if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') || str_contains($value->tipoestudiante, 'TRANSFERENTE INTERNO')) :
                         $historial = DB::table('datosMafiReplica')
                         ->select('historialAcademico.codMateria')
                         ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
@@ -272,7 +272,7 @@ class MafiController extends Controller
                                 $insertAlerta = AlertasTempranas::create([
                                     'idbanner' => $value->idbanner,
                                     'tipo_estudiante' => $value->tipoestudiante,
-                                    'desccripcion' => 'El estudiante con idBanner' . $value->idbanner . ' es "TRANSFERENTE EXTERENO" y no tiene historial academico',
+                                    'desccripcion' => 'El estudiante con idBanner' . $value->idbanner . ' es "TRANSFERENTE EXTERENO" O "TRANSFERENTE EXTERENO"  y no tiene historial academico',
                                 ]);
 
                                 if ($insertAlerta) :
@@ -491,7 +491,7 @@ class MafiController extends Controller
             $programa[$value->codprograma] = $value->codprograma;
             $contacor_vistas++;
         endforeach;
-     
+
 dd($materias_vistas);
 
         $data =[

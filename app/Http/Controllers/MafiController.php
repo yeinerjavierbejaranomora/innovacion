@@ -468,7 +468,7 @@ class MafiController extends Controller
         $materias_vista = array();
         $programa = array();
         $historial = DB::table('historialAcademico')
-                    ->select('codMateria','programa')
+                    ->select('codMateria','codprograma')
                     ->where('codBanner','=',$idBanner)
                     ->get();
         foreach($historial AS $key => $value):

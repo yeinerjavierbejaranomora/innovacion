@@ -211,7 +211,7 @@ class MafiController extends Controller
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
         $primerIngreso =  $this->falatntesPrimerIngreso();
-        //dd($primerIngreso[0]);
+        dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         foreach($primerIngreso as $estudiante):
@@ -233,6 +233,22 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
+        /*$insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert',
+                'tabla_afectada' => 'estudiantes',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert',
+                'descripcion' => 'Se realizo la insercion en la tabla estudiantes desde la tabla datosMafiReplica, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $numeroRegistros . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);*/
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

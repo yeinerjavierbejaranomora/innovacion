@@ -87,7 +87,6 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                $(document).ready(function() {
                     function buscar() {
 
                         var id_programa = $('#mostrar').val(); 
@@ -149,6 +148,6 @@
                             }
                         }
                     }
-                })
+
             </script>
             @include('layout.footer')

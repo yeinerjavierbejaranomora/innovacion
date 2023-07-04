@@ -255,6 +255,7 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_facultad);
         }
+        
         dd($id);
         $facultad = DB::table('facultad')->where('id','=',$id)->select('nombre')->get();
         $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();

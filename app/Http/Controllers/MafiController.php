@@ -644,7 +644,7 @@ class MafiController extends Controller
         }
 
 
-        $marcaIngreso=trim(",",$marcaIngreso);
+        $marcaIngreso=trim($marcaIngreso,",");
 
         dd($marcaIngreso);
 

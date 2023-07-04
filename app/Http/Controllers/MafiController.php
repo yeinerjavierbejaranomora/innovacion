@@ -516,7 +516,6 @@ class MafiController extends Controller
         $mes = explode('-', $fechaActual);
         $periodo = DB::table('periodo')->get();
 
-        dd($periodo);
 
         foreach ($periodo as $key => $value) {
 

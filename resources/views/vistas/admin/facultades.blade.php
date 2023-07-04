@@ -89,7 +89,7 @@
                 // * Datatable para mostrar los estudiantes de cada programa *
                 function buscar() {
 
-                    var id_programa = $('#mostrar').val();
+                    var id_programa = $('input.mostrar').val();
                     console.log(id_programa);
 
                     var xmlhttp = new XMLHttpRequest();
@@ -100,7 +100,8 @@
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
                             
-                            var table = $('#example').DataTable({
+                            var table = $('#example').DataTable({ 
+                                /** Recargar dataTable */
                                 "bDestroy": true,
                                 "data": data.data,
                                 "columns": [{

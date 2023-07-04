@@ -54,8 +54,8 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                    Estudiantes </input>
+                                    <button id="mostrar" name="mostrar" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
+                                    Estudiantes </button>
                                 </div>
 
                                 <div class="col-auto">

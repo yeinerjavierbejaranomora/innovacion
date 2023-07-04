@@ -690,7 +690,7 @@ class MafiController extends Controller
 
             // Materias que debe ver el estudiante
             $estudiantes= DB::table('estudiantes')
-            ->select('id, homologante, programa')
+            ->select('id', 'homologante', 'programa')
             ->where('materias_faltantes','OK')
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')

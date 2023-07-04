@@ -54,7 +54,7 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{$value->id}}" class="btn btn-warning text-dark">
+                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="btn btn-warning text-dark">
                                     Estudiantes </input>
                                 </div>
 
@@ -92,7 +92,7 @@
                         var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
                         var xmlhttp = new XMLHttpRequest();
-                        var url = "{{ route('programa.estudiantes', ['id'=>"+ id_programa + "]) }}";
+                        var url = "{{ route('programa.estudiantes', ['id'=>id_programa]) }}";
                         console.log(url);
                         xmlhttp.open("GET", url, true);
                         xmlhttp.send();

@@ -695,6 +695,8 @@ class MafiController extends Controller
 
         while($homologantes =$consulta_homologante) {
 
+
+            dd($homologantes);
             $id_homologante=$homologantes['id'];
 
             dd( $id_homologante);

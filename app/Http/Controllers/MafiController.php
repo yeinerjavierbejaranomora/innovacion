@@ -473,10 +473,10 @@ class MafiController extends Controller
                     ->select('codMateria')
                     ->where('codBanner','=',$idBanner)
                     ->get();
-        while($historial) {
+        foreach($historial AS $key => $value):
             $materias_vistas[$contacor_vistas]= strtoupper($historial->codMateria);
             $contacor_vistas++;
-        }
+        endforeach;
         $materias_vistas = $materias_vistas;
         dd($materias_vistas);
 

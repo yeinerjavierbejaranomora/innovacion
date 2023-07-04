@@ -55,7 +55,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <label for="mostrar">Estudiantes $4,000</label>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{$value->id}}" class="btn btn-warning text-dark">
+                                    <input id="mostrar" name="mostrar" type="button" value="$value->id" class="btn btn-warning text-dark">
                                     </input>
                                 </div>
 
@@ -90,7 +90,7 @@
                 // * Datatable para mostrar los estudiantes de cada programa *
                 $(document).ready(function() {
                     $('#mostrar').click(function() {
-                        var id_programa = $(document).find('#mostrar').val(); 
+                        var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
                         var xmlhttp = new XMLHttpRequest();
                         var url = "{{ route('programa.estudiantes', ['id'=>"+ id_programa + "]) }}";

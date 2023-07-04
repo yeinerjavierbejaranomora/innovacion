@@ -258,9 +258,10 @@ class facultadController extends Controller
         
         for ($i=0; $i<count($programas); $i++)
         {
-            var_dump("entra");
-        }
+            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$programas[i])->count();
 
+        }
+        dd($cantidad);
 
         $datos= array(
             'facultad' => $nombre,

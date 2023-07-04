@@ -184,6 +184,7 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         die();
+        
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();

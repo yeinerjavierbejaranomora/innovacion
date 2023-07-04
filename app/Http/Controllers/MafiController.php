@@ -194,7 +194,6 @@ class MafiController extends Controller
                 endif;
                 $registroMPV++;
             endforeach;
-            die();
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         die();

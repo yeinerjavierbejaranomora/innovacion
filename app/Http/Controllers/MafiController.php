@@ -216,11 +216,11 @@ class MafiController extends Controller
         else :
         endif;
         //dd($primerIngreso);
-        $fechaInicio = date('Y-m-d H:i:s');
-        $registroMPV = 0;
-        $primerId = $primerIngreso[0]->id;
-        $ultimoRegistroId = 0;
         if (!empty($primerIngreso)) :
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $primerIngreso[0]->id;
+            $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
 
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa);

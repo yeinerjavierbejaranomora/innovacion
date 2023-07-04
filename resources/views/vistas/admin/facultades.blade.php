@@ -102,7 +102,7 @@
                             var data = JSON.parse(this.responseText);
                             if($("#example").DataTable != null) {
                                 
-                                table.destroy();
+                                destroy();
                                 }
                             var table = $('#example').DataTable(
                                  {

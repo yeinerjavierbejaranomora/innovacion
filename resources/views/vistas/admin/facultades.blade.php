@@ -94,7 +94,6 @@
                 
                 function buscar() {
 
-                        $('#example').table().destroy();
                         var id_programa = $('#mostrar').val(); 
                         console.log(id_programa);
 

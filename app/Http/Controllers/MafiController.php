@@ -240,7 +240,6 @@ class MafiController extends Controller
                 $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
-            return $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
             $insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,
                 'idFin' => $ultimoRegistroId,
@@ -257,6 +256,7 @@ class MafiController extends Controller
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         else :
             return "No hay registros para replicar";
         endif;

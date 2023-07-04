@@ -54,7 +54,7 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark" onclick="buscar()">
+                                    <input id="mostrar" name="mostrar" type="button" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
                                     Estudiantes </input>
                                 </div>
 
@@ -87,15 +87,17 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                function buscar() {
-                    $('.mostrar').each(function() {
-
-                        var id_programa = $('#')+this.val();
+                $(document).ready(function(){
+                    $(document).on("click", ".mostrar", function(){
+                    
+                       var id = $(this).val();
+                       buscar(id);
                     })
-                    console.log(id_programa);
 
+                    function buscar(id) {       
+                        
                     var xmlhttp = new XMLHttpRequest();
-                    var url = "/home/facultades/estudiantes/" + id_programa + "";
+                    var url = "/home/facultades/estudiantes/" + id + "";
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
                     xmlhttp.onreadystatechange = function() {
@@ -107,17 +109,17 @@
                                 "bDestroy": true,
                                 "data": data.data,
                                 "columns": [{
-                                        data: 'idbanner',
-                                        title: 'Id Banner'
-                                    },
-                                    {
-                                        data: 'primer_apellido',
-                                        title: 'Primer apellido'
-                                    },
-                                    {
-                                        data: 'programa',
-                                        title: 'Codigo de programa'
-                                    },
+                                    data: 'idbanner',
+                                    title: 'Id Banner'
+                                },
+                                {
+                                    data: 'primer_apellido',
+                                    title: 'Primer apellido'
+                                },
+                                {
+                                    data: 'programa',
+                                    title: 'Codigo de programa'
+                                },
                                     {
                                         data: 'estado',
                                         title: 'Estado'
@@ -152,5 +154,6 @@
                         }
                     }
                 }
-            </script>
+            });
+                </script>
             @include('layout.footer')

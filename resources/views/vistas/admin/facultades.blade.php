@@ -101,6 +101,7 @@
                             var data = JSON.parse(this.responseText);
                             
                             var table = $('#example').DataTable({
+                                "bDestroy": true,
                                 "data": data.data,
                                 "columns": [{
                                         data: 'idbanner',

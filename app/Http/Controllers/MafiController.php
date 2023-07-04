@@ -576,7 +576,12 @@ class MafiController extends Controller
 
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
-        dd($periodo);
+        $marcaIngreso="";
+        foreach ($periodo as $key => $value) {
+            $marcaIngreso.=$value['periodos'].",";
+        }
+
+        dd($marcaIngreso);
         /** consultamos el periodo en la base de datos teniendo en cuenta la fecha actual */
 
 

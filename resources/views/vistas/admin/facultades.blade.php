@@ -104,7 +104,7 @@
                                 var table = $('#example').DataTable({
                                     "data": data.data,
                                     "columns": [{
-                                            data: 'ibbanner',
+                                            data: 'idbanner',
                                             title: 'Id Banner'
                                         },
                                         {

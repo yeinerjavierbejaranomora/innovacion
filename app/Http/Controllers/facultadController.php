@@ -222,6 +222,7 @@ class facultadController extends Controller
         endif;
     }
 
+    /** Función que actualiza los datos de programa */
     public function update_programa()
     {
         $id_llegada = $_POST['id'];
@@ -243,5 +244,26 @@ class facultadController extends Controller
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return "false";
         endif;
+    }
+
+    /** Función para visualizar la vista de los programas del usuario */
+
+    public function programasUsuario($id_facultad)
+    {
+        $facultad = DB::table('facultad')->where('id','=',$id_facultad)->select('nombre')->get();
+        $datos= array(
+            'facultad' => $facultad,
+
+        );
+
+        
+
+        return view('vistas.admin.facultades')->with('datos', $datos);
+    }
+
+    /**Función para visualizar los estudiantes de cada facultad */
+    public function programasFacultad()
+    {
+
     }
 }

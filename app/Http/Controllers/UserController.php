@@ -106,6 +106,10 @@ class UserController extends Controller
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
 
+    
+
+
+
     // funcion para traer todos los usuarios a la vista de administracion
 
     public function userView(Request $request)

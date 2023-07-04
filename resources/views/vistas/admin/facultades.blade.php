@@ -90,7 +90,7 @@
                 // * Datatable para mostrar los estudiantes de cada programa *
                 $(document).ready(function() {
                     $('#mostrar').click(function() {
-                        var id = $('mostrar').val(); 
+                        var id = $(document).find('#mostrar').val(); 
                         console.log(id);
                         var xmlhttp = new XMLHttpRequest();
                         var url = "{{ route('programa.estudiantes', "+ id + ") }}";

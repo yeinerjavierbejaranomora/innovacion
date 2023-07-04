@@ -177,7 +177,7 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $value) :
                 dd($value);
@@ -232,7 +232,7 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
-        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;

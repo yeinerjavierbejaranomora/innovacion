@@ -184,12 +184,14 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         die();*/
-        /*$log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
+
+        dd($transferente[0]->id);
         $fechaInicio = date('Y-m-d H:i:s');
         $registroMPV = 0;
         foreach($transferente as $estudiante):
@@ -214,7 +216,7 @@ class MafiController extends Controller
             endforeach;
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
-        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;*/
+        return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $primerIngreso =  $this->falatntesPrimerIngreso();

@@ -459,16 +459,16 @@ class MafiController extends Controller
         endif;
         //dd($programa);
         foreach($programa as $value):
-            dd($value);
             $mallaCurricular[] = DB::table('mallaCurricular')
                             ->join('programas','programas.codprograma','=','mallaCurricular.codprograma')
                             ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden')
-                            ->where([['programas.activo','=',1],['mallaCurricular.codprograma','=',$programa]])
+                            ->where([['programas.activo','=',1],['mallaCurricular.codprograma','=',$value]])
                             ->orderBy('semestre', 'asc')
                             ->orderBy('orden', 'asc')
                             ->get();
 
-        endforeach;
+            endforeach;
+        dd($mallaCurricular);
         return $mallaCurricular;
 
     }

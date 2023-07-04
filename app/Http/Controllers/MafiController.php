@@ -176,7 +176,9 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $transferente = $this->falatntesTranferentes();
+        dd($transferente);
+        die();
         $primerIngreso =  $this->falatntesPrimerIngreso();
         //dd($primerIngreso[0]);
         $fechaInicio = date('Y-m-d H:i:s');
@@ -197,7 +199,6 @@ class MafiController extends Controller
         endforeach;
         $fechaFin = date('Y-m-d H:i:s');
         return $registroMPV . "-Fecha Inicio: ". $fechaInicio ."Fecha Fin: ". $fechaFin;
-        die();
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -413,6 +414,17 @@ class MafiController extends Controller
         $estudiantesPrimerIngreso = DB::table('estudiantes')
                                     ->where('tipo_estudiante','LIKE','PRIMER%')
                                     ->whereNull('programaActivo')
+                                    ->orderBy('id')
+                                    ->get();
+
+        return $estudiantesPrimerIngreso;
+    }
+
+    public function falatntesTranferentes(){
+        $estudiantesPrimerIngreso = DB::table('estudiantes')
+                                    ->where('tipo_estudiante','LIKE','TRANSFERENTE%')
+                                    ->whereNull('programaActivo')
+                                    ->whereNull('tiene_historial')
                                     ->orderBy('id')
                                     ->get();
 

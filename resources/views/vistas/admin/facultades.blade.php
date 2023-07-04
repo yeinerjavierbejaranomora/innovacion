@@ -87,11 +87,6 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-
-                $('#example').on("click", function() {
-                    $("#example").dataTable().Destroy();
-                });
-
                 function buscar() {
 
                     var id_programa = $('#mostrar').val();
@@ -105,9 +100,9 @@
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
-                            if(tableObj != null) {
-                                    tableObj.clear();
-                                    tableObj.destroy();
+                            if($("#example") != null) {
+                                    $("#example").clear();
+                                    
                                 }
                             var table = $('#example').DataTable(
                                  {

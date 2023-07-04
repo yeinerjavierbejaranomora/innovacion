@@ -182,7 +182,7 @@ class MafiController extends Controller
         foreach($transferente as $estudiante):
             $historial = $this->historialAcademico($estudiante->homologante);
             dd($historial);
-            
+
             $mallaCurricular = $this->BaseAcademica($estudiante->programa);
             foreach ($mallaCurricular as $key => $value) :
                 if(!in_array( $value->codigoCurso,$historial)):
@@ -473,7 +473,7 @@ class MafiController extends Controller
                     ->get();
         foreach($historial AS $key => $value):
             $materias_vistas[$contacor_vistas]= strtoupper($value->codMateria);
-            $programa[$value->codMateria] = $value->codMateria;
+            $programa[$value->codprograma] = $value->codprograma;
             $contacor_vistas++;
         endforeach;
         $materias_vistas = $materias_vistas;

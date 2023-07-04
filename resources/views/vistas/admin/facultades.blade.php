@@ -55,7 +55,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <label for="mostrar">Estudiantes $4,000</label>
-                                    <input id="mostrar" name="mostrar" type="button" value="{{$value->id}}" class="btn btn-warning text-dark">
+                                    <input id="mostrar" name="mostrar" type="button" value="$value->id" class="btn btn-warning text-dark">
                                     </input>
                                 </div>
 

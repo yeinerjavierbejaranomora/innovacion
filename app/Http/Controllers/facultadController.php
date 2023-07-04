@@ -253,7 +253,7 @@ class facultadController extends Controller
         $id= decrypt($id_facultad);
         $facultad = DB::table('facultad')->where('id','=',$id)->select('nombre')->get();
         $programas = DB::table('programas')->where('idFacultad','=',$id)->select('programa')->get();
-        dd($facultad);
+        dd($id);
         $datos= array(
             'facultad' => $facultad,
             'programas' => $programas,

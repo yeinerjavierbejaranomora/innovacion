@@ -143,19 +143,40 @@
                         title: 'Tipo de programa'
                     },
                     {
-                        defaultContent: "<button type='button' class='malla btn btn-warning'><i class='fa-solid fa-list'></i></button>",
+                        defaultContent: "<button type='button' class='malla btn btn-info'><i class='fa-solid fa-list'></i></button>",
                         title: 'Malla Curricular', 
                         className: "text-center" 
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
-                        className: "text-center"
+                        data: 'activo',
+                        defaultContent: "",
+                        title: "Estado",
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
+                            }
+                        }
+                    },
+                    {
+                        data: 'activo',
+                        defaultContent: "",
+                        title: 'Inactivar / Activar',
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                            } else if (data == '0') {
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                            }
+                        }
                     },
                 ],
                 "language": {

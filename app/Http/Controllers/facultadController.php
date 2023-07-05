@@ -66,7 +66,7 @@ class facultadController extends Controller
     /** Función para traer todos los programas */
     public function get_programas()
     {
-        /**Realiza la consulta anidada para onbtener el programa con su facultad */
+        /**Realiza la consulta anidada para obtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
             ->where('programas.tabla', '=', 'pregrado')->get();

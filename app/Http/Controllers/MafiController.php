@@ -799,7 +799,10 @@ class MafiController extends Controller
         
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
-            ['id' => 4, 'name' => 'Bob']
+            ['id' => 4, 'name' => 'Bob'],
+            ['id' => 1, 'name' => 'John'],
+            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 3, 'name' => 'Alice']
         ];
         
         $intersection = array_filter($array1, function ($item) use ($array2) {

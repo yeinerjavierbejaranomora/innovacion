@@ -804,7 +804,7 @@ class MafiController extends Controller
             $consulta_porver= DB::table('materiasPorVer')
             ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
-            ->where('materiasPorVer.codBanner','100152879')
+            ->where('materiasPorVer.codBanner','100147341')
             ->whereIn('mallaCurricular.ciclo',[1,12])
             ->where('materiasPorVer.codprograma','=',"PPSV")
             ->where('mallaCurricular.codprograma','=',"PPSV")

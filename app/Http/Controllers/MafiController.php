@@ -179,7 +179,7 @@ class MafiController extends Controller
 
         //$this->faltantesAntiguos();
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(10, function($estudiantes){
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $ultimoRegistroId = 0;
@@ -785,16 +785,16 @@ class MafiController extends Controller
 
 
 
-        $array1 = array(
+        $array1 = [
             ['id' => 1, 'name' => 'John'],
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
-        );
-        
-        $array2 =array (
+        ];
+        dd($array1 );
+        $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']
-        );
+        ];
         
         $result = array_intersect($array1, $array2);
         

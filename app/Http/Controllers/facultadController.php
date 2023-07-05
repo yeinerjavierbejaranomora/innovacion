@@ -258,7 +258,8 @@ class facultadController extends Controller
         $cuenta = array();
         foreach ($programas as $key => $value) {
             $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
-            array_push($cuenta, $cantidad);
+            // array_push($cuenta, $cantidad);
+            $cuenta[$value->codprograma] = $cantidad; 
         }
 
         //dd($cuenta);
@@ -267,7 +268,6 @@ class facultadController extends Controller
             'programas' => $programas,
         );
                     
-
         return view('vistas.admin.facultades',['estudiantes' => $cuenta])->with('datos', $datos);
     }
 

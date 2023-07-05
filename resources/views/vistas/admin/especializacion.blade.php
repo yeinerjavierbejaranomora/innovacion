@@ -67,10 +67,10 @@
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un programa nuevo-->  
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!--Modal para agragar un programa nuevo-->
+            <div class="modal fade" id="nuevaEsp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -87,15 +87,15 @@
                                 </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la especializacion</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <input type="text" class="form-control" id="codEsp" name="codEsp">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre de la especializacion</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="codFacultad" name="codFacultad">
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-         
+
 
         </div>
         <!-- /.container-fluid -->
@@ -126,6 +126,24 @@
 </a>
 
 <script>
+    facultades();
+
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#nuevaEsp select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+
+                })
+            }
+        })
+    }
+
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getespecializacion') }}";
@@ -136,9 +154,9 @@
             var data = JSON.parse(this.responseText);
             var table = $('#example').DataTable({
                 "data": data.data,
-                "columns": [  
-                    {
-                        data: 'codprograma', "visible": false,
+                "columns": [{
+                        data: 'codprograma',
+                        "visible": false,
                         title: 'Codigo de programa'
                     },
                     {
@@ -275,11 +293,11 @@
                     } = Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
-                            '<label for="codprograma"> Codigo de la especialización </label>'+
+                            '<label for="codprograma"> Codigo de la especialización </label>' +
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
-                            '<label for="programa"> Nombre de la especialización </label>'+
+                            '<label for="programa"> Nombre de la especialización </label>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
-                            '<label for="facultades"> Facultad a la que perteneces la especialización </label>'+
+                            '<label for="facultades"> Facultad a la que perteneces la especialización </label>' +
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
                         icon: 'info',
                         showCancelButton: true,
@@ -332,11 +350,11 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
 
             console.log(table);
 
         }
     }
-
 </script>
 @include('layout.footer')

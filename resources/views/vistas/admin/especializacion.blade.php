@@ -189,7 +189,7 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    $('#facultadEditar').val(data.idFacultad);
+                    $('div #facultadEditar').val(data.idFacultad);
                     const {
                         value: facultad
                     } = Swal.fire({
@@ -243,7 +243,7 @@
                             method: 'post',
                             success: function(data) {
                                 data.forEach(facultad => {
-                                    if ($('#facultadEditar').val() != facultad.id) {
+                                    if ($('div #facultadEditar').val() != facultad.id) {
                                         $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                                     };
                                 })

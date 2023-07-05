@@ -776,9 +776,9 @@ class MafiController extends Controller
 
 
         $diff = array_udiff($array1, $array2, function($a, $b) {
-            dd($a);
-            return $a['id'] <=> $b['id'];
+            return $a['name'] <=> $b['name'];
         });
+        dd($diff);
 
         if (count($diff) > 0) {
             // Hay elementos en $array1 que no están en $array2

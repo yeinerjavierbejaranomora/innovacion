@@ -192,7 +192,7 @@ class MafiController extends Controller
                 if ($numeromaterias > 0) :
                     $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 else :
-                    echo $estudiante->homologante ,", id: ".$estudiante->id;
+                    var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
                 foreach ($mallaCurricular as $key => $malla) :
@@ -797,7 +797,7 @@ class MafiController extends Controller
         ];
         
         $result = array_intersect($array1, $array2);
-        
+
         if (count($result) > 0) {
 
             dd( $result);

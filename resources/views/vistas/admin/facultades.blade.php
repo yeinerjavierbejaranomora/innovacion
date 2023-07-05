@@ -116,11 +116,11 @@
                                     "bDestroy": true,
                                     "data": data.data,
                                     "columns": [{
-                                            data: 'idbanner',
-                                            title: 'Id Banner'
+                                            data: 'homologante',
+                                            title: 'ID Banner'
                                         },
                                         {
-                                            data: 'primer_apellido',
+                                            data: 'nombre',
                                             title: 'Primer apellido'
                                         },
                                         {
@@ -128,12 +128,28 @@
                                             title: 'Codigo de programa'
                                         },
                                         {
-                                            data: 'estado',
-                                            title: 'Estado'
+                                            data:'bolsa',
+                                            title:'bolsa'
                                         },
                                         {
-                                            data: 'tipoestudiante',
+                                            data: 'operador',
+                                            title: 'Operador'
+                                        },
+                                        {
+                                            data: 'nodo',
+                                            title:'nodo'
+                                        },
+                                        {
+                                            data: 'tipo_estudiante',
                                             title: 'Tipo estudiante'
+                                        },
+                                        {
+                                            data:'materias_faltantes',
+                                            title: 'materias faltantes'
+                                        },
+                                        {
+                                            data:'programado_ciclo1',
+                                            title:'Programado ciclo 1'
                                         },
                                         {
                                             data: 'sello',

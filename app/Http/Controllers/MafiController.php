@@ -179,7 +179,7 @@ class MafiController extends Controller
 
         //$this->faltantesAntiguos();
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(10, function($estudiantes){
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $ultimoRegistroId = 0;

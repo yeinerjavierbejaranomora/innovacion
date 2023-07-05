@@ -226,33 +226,14 @@ class MafiController extends Controller
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 //dd($historial);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b[0];
+                    return $a['codMateria'] <=> $b['codMateria'];
                 });
-                dd($diff);
+                //dd($diff);
                 // Iniciar la transacción
                 DB::beginTransaction();
 
                 try {
-                    $data = []; // Arreglo para almacenar los datos a insertar
-
-
-                    // Construir los datos a insertar en cada iteración
-                    $data[] = [
-                        'codBanner' => $estudiante->homologante,
-                        'codMateria' => $diff,
-                        // Añade más campos según tus necesidades
-                    ];
-
-                    // Insertar en lotes cada 1000 registros
-                    if (count($data) === 1000) {
-                        DB::table('tabla')->insert($data);
-                        $data = []; // Reiniciar el arreglo para el siguiente lote
-                    }
-
-                    // Insertar los datos restantes en el último lote
-                    if (count($data) > 0) {
-                        DB::table('tabla')->insert($data);
-                    }
+                    DB::table('materiasPorVer')->insert($diff);
 
                     // Confirmar la transacción
                     DB::commit();

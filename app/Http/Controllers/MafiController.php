@@ -192,7 +192,8 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach($estudiantesAntiguos as $key => $estudiante):
                 $historial = $this->historialAcademico($estudiante->homologante);
-                dd($historial);
+                $mallaCurricular = $this->BaseAcademica($historial['programa']);
+                dd($mallaCurricular);
 
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');

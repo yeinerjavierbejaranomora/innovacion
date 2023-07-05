@@ -152,10 +152,6 @@
                                             title:'Programado ciclo 1'
                                         },
                                         {
-                                            data: 'sello',
-                                            title: 'Sello'
-                                        },
-                                        {
                                             data: 'autorizado_asistir',
                                             title: 'Autorizado'
                                         },

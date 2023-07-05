@@ -242,6 +242,51 @@
                     }
                 });
             }
+
+            // Función para editar Rol
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    $('#facultadEditar').val(data.idFacultad);
+                    const {
+                        value: facultad
+                    } = Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<input type="text" id="nombreRol" name="nombreRol" value="' + data.nombreRol + '" class="form-control" placeholder="nombre Rol"> <br>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        console.log(1);
+                        console.log(result);
+                        if (result.value) {
+                            console.log(facultad);
+                            $.post("{{ route('rol.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    nombre: $(document).find('#nombreRol').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+
+
             obtener_data_inactivar("#example tbody", table);
         }
 

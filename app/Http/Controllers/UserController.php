@@ -430,6 +430,29 @@ class UserController extends Controller
             return "false";
         endif;
     }
+
+    public function update_rol()
+    {
+        $id_llegada = $_POST['id'];
+        $nombre = $_POST['nombre'];
+
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
+
+        if ($update) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
+
+
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
 

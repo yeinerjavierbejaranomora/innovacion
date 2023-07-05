@@ -66,6 +66,8 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/home/inactivarRol', 'inactivar_rol')->middleware('auth')->name('rol.inactivar');
     //** Ruta para activar Rol */
     Route::post('/home/activarRol', 'activar_rol')->middleware('auth')->name('rol.activar');
+    //* Ruta ara actualizar rol */
+    Route::post('/home/updateRol', 'update_rol')->middleware('auth')->name('rol.update');
    
 });
 

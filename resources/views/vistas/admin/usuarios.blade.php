@@ -100,7 +100,7 @@
                                     <select class="form-control" name="facultad" id="facultad">
                                     </select>
                                 </div>
-                                
+
                                 <div>
                                     <label for="message-text" class="col-form-label">Rol</label>
                                     <select class="form-control" name="tabla" id="tabla">
@@ -114,8 +114,8 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="crear btn btn-primary">Crear</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-success">Crear</button>
                                 </div>
                             </form>
                         </div>
@@ -156,7 +156,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevusuario select#facultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevousuario select#facultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                 })
             }
         })

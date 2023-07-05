@@ -53,10 +53,6 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/amdministracionfacultades','facultad_view')->middleware('auth','admin')->name('admin.facultades');
     /** cargamos la vista para mostrar todas las facultades */
     Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
-    /** para salvar las facultades */
-    Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
-    /** para actualizar las facultades */
-    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     //** Ruta para cargar vista con los roles */
     Route::get('/home/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */
@@ -183,6 +179,10 @@ Route::controller(facultadController::class)->group(function(){
     /**Ruta para visaulizar los estudiantes de cada programa */
     Route::get('/home/facultades/estudiantes/{id}', 'estudiantesFacultad')->middleware('auth')->name('programa.estudiantes');
 
+     /** para salvar las facultades */
+     Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
+     /** para actualizar las facultades */
+     Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
 });
 
 

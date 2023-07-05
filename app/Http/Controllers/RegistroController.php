@@ -60,10 +60,10 @@ class RegistroController extends Controller
         $usuario = User::create($request->validated());
         /** si la insercion es correcta */
         if($usuario):
-            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            /** Redirecciona a la vista de administración de usuarios con un mensaje de exito */
             return redirect()->route('admin.users')->with('success','Usuario creado correctamente');
         else:
-            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            /** Redirecciona a la vista de administración de usuarios con un mensaje de error */
             return redirect()->route('admin.users')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }

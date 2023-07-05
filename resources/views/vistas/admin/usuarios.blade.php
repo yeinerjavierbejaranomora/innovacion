@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="{{ route('user.crear') }}">
+                            <form id="miForm" method="post" action="{{ route('registro.saveregistro') }}">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">ID Banner</label>

@@ -177,17 +177,54 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        //$this->faltantesAntiguos();
+       /* $estudinates = $this->faltantesAntiguos();
+
+        // Iniciar la transacción
+        DB::beginTransaction();
+
+        try {
+            $data = []; // Arreglo para almacenar los datos a insertar
+
+            foreach ($estudinates as $estudiante) {
+                $historial = $this->historialAcademico($estudiante->homologante)->toArray();
+                $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
+                // Construir los datos a insertar en cada iteración
+                $data[] = [
+                    'campo1' => $dato['valor1'],
+                    'campo2' => $dato['valor2'],
+                    // Añade más campos según tus necesidades
+                ];
+
+                // Insertar en lotes cada 1000 registros
+                if (count($data) === 1000) {
+                    DB::table('tabla')->insert($data);
+                    $data = []; // Reiniciar el arreglo para el siguiente lote
+                }
+            }
+
+            // Insertar los datos restantes en el último lote
+            if (count($data) > 0) {
+                DB::table('tabla')->insert($data);
+            }
+
+            // Confirmar la transacción
+            DB::commit();
+
+            echo "Inserción exitosa de la gran cantidad de datos.";
+        } catch (Exception $e) {
+            // Deshacer la transacción en caso de error
+            DB::rollBack();
+
+            // Manejar el error
+            echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+        }*/
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante)->toArray();
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
                 //dd($historial);
-                
-                $intersection = array_filter($mallaCurricular, function ($item,$historial) {
-                    return in_array($item, $historial);
-                });
+                $intersection = array_diff_assoc($mallaCurricular, $historial);
 
                 dd($intersection);
             endforeach;

@@ -122,11 +122,13 @@ textarea:-ms-input-placeholder { color: #adadad;}
 button {
 	outline: none !important;
 	border: none;
-	background: transparent;
+	background: #d0ab4b;
+  transition-duration: 0.4s;
 }
 
+
 button:hover {
-	cursor: pointer;
+	background: #dfc14e;
 }
 
 iframe {

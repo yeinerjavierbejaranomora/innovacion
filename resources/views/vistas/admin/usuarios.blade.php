@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="{{ route('registro.saveregistro') }}">
+                            <form id="miForm" method="post" action="{{ route('user.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">ID Banner</label>
@@ -110,7 +110,7 @@
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
                                     <select class="form-control" name="id_facultad" id="facultades">
-                                        <option value="0" selected>Ninguna</option>
+                                        <option value="" selected>Seleccione la facultad</option>
                                     </select>
                                 </div>
                                 <div id="programas"> </div>

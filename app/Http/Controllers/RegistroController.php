@@ -54,4 +54,17 @@ class RegistroController extends Controller
             return redirect()->route('registro.index')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }
+
+    public function crearUsuario(UsuarioRegistroRequest $request){
+        /** Inserta los datos validades en la tabla users usando el model Userphp */
+        $usuario = User::create($request->validated());
+        /** si la insercion es correcta */
+        if($usuario):
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('user.crear')->with('success','Usuario creado correctamente');
+        else:
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('user.crear')->withErrors(['errors' => 'Usuario no se ha podido crear']);
+        endif;
+    }
 }

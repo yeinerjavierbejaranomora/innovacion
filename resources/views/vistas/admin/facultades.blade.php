@@ -45,7 +45,6 @@
             <!-- Content Row -->
             <div class="row" id="facultades">
                 <?php // dd($datos['estudiantes']);
-                
                     foreach ($datos['estudiantes'] as $key => $value) {
                         echo $value;
                     }; ?>

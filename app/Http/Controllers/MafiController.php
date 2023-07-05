@@ -723,7 +723,7 @@ class MafiController extends Controller
         ];
 
         $array2 = [
-            ['id' => 2],
+            ['name' => 'Jane'],
 
         ];
 

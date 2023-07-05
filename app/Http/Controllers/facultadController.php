@@ -265,10 +265,10 @@ class facultadController extends Controller
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,
-            'estudiantes' => $cuenta,            
         );
+                    
 
-        return view('vistas.admin.facultades')->with('datos', $datos);
+        return view('vistas.admin.facultades',['estudiantes' => $cuenta])->with('datos', $datos);
     }
 
 

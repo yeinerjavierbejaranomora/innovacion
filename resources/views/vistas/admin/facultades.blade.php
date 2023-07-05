@@ -44,7 +44,7 @@
             </div>
             <!-- Content Row -->
             <div class="row" id="facultades">
-                @foreach($datos['estudiantes'] as $key => $est)
+                
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -56,7 +56,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                    Estudiantes {{$est}}</button>
+                                    Estudiantes </button>
                                 </div>
 
                                 <div class="col-auto">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 @endforeach
-                @endforeach
+                
             </div>
 
             <!-- Datatable-->

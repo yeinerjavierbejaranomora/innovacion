@@ -183,10 +183,6 @@
             });
             console.log(table);
 
-            
-
-
-
         }
     }
 

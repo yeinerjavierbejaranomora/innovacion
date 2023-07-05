@@ -82,11 +82,11 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programa.activo')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo')
             ->where('programas.tabla', '=', 'especializacion')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
+        /**Se pasa a formato JSON el arreglo de programas */
         echo json_encode(array('data' => $programas));
     }
 

@@ -221,7 +221,7 @@
                             if (result.value) {
                                 $.post("{{ route('facultad.activar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
-                                        codigo: data.codprograma,
+                                        id: data.id,
                                     },
                                     function(result) {
                                         if (result == "habilitado") {

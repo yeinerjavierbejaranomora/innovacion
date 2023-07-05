@@ -179,10 +179,14 @@ Route::controller(facultadController::class)->group(function(){
     /**Ruta para visaulizar los estudiantes de cada programa */
     Route::get('/home/facultades/estudiantes/{id}', 'estudiantesFacultad')->middleware('auth')->name('programa.estudiantes');
 
-     /** para salvar las facultades */
-     Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
-     /** para actualizar las facultades */
-     Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    /** para salvar las facultades */
+    Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
+    /** para actualizar las facultades */
+    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    //** Ruta para inactivar facultad*/
+    Route::post('/home/inactivarfacultad', 'inactivar_facultad')->middleware('auth')->name('facultad.inactivar');
+    //** Ruta para activar facultad */
+    Route::post('/home/activarfacultad', 'activar_facultad')->middleware('auth')->name('facultad.activar');
 });
 
 

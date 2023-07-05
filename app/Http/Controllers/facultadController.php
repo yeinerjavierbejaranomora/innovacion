@@ -321,4 +321,27 @@ class facultadController extends Controller
             return "false";
         endif;
     }
+
+    public function inactivar_facultad()
+    {
+        $id = $_POST['id'];
+        $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarFacultad) :
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function activar_facultad()
+    {
+        $id = $_POST['id'];
+        $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($activarPrograma) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
 }

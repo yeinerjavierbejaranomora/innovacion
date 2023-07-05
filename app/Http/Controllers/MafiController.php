@@ -178,10 +178,55 @@ class MafiController extends Controller
     {
 
         //$this->faltantesAntiguos();
+
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            foreach ($estudiantes as $estudiante) {
-                dd($estudiante);
-            }
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $ultimoRegistroId = 0;
+            foreach ($estudiantes as $estudiante) :
+                $primerId = $estudiante->id;
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $numeromaterias = count($historial['materias']);
+
+                if ($numeromaterias > 0) :
+                    $mallaCurricular = $this->BaseAcademica($historial['programa']);
+                else :
+                    $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+                endif;
+                foreach ($mallaCurricular as $key => $malla) :
+                    foreach ($malla as $key => $value) :
+                        if (!in_array($value->codigoCurso, $historial['materias'])) :
+                            $insertMateriaPorVer = MateriasPorVer::create([
+                                "codBanner"      => $estudiante->homologante,
+                                "codMateria"      => $value->codigoCurso,
+                                "orden"      => $value->orden,
+                                "codprograma"      => $value->codprograma,
+                            ]);
+                        endif;
+                        $registroMPV++;
+                    endforeach;
+                endforeach;
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-Antiguo',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-Antiguo',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         });
         die();
         /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :

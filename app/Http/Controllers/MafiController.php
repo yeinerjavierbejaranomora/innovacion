@@ -191,7 +191,9 @@ class MafiController extends Controller
             $primerId = $estudiantesAntiguos[0]->id;
             $ultimoRegistroId = 0;
             foreach($estudiantesAntiguos as $key => $estudiante):
-                dd($estudiante);
+                $historial = $this->historialAcademico($estudiante->homologante);
+                dd($historial);
+
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
         else:

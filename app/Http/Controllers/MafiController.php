@@ -808,7 +808,7 @@ class MafiController extends Controller
             ->whereIn('marca_ingres',$marcaIngreso)
             ->get();
             
-        dd( $consulta_homologante);
+       
             if(!$consulta_homologante) {
                 die("Error: no se pudo realizar la consulta homologantes 1");
                 exit();

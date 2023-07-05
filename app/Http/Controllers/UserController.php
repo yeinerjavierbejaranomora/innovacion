@@ -157,7 +157,6 @@ class UserController extends Controller
         echo json_encode(array('data' => $facultades));
     }
 
-
     public function savefacultad(CrearFacultadRequest $request)
     {
         /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */

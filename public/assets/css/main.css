@@ -119,6 +119,7 @@ textarea::-moz-placeholder { color: #adadad;}
 textarea:-ms-input-placeholder { color: #adadad;}
 
 /*---------------------------------------------*/
+/*Cambio de color en botón*/
 button {
 	outline: none !important;
 	border: none;

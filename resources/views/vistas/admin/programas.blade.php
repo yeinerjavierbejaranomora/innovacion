@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <!--Modal para agragar un programa nuevo-->
+            <!--Modal para agregar un programa nuevo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

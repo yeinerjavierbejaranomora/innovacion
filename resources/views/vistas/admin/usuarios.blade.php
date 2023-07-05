@@ -58,14 +58,67 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="col-4 justify-content-center">
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevousuario" data-whatever="modal">Agregar nuevo usuario</button>
+                        </div>
+                        <br>
                     </div>
                 </div>
             </div>
 
+            <!--Modal para agregar un usuario nuevo-->
+            <div class="modal fade" id="nuevousuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="miForm" method="post" action="{{ route('programa.crear') }}">
+                                @csrf
+                                <div>
+                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
+                                    <input type="text" class="form-control" id="codPrograma" name="codPrograma">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
+                                    <select class="form-control" name="codFacultad" id="codFacultad">
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
+                                    <select class="form-control" name="tabla" id="tabla">
+                                        <option value="pregrado">pregrado</option>
+                                        <option value="especializacion">especializacion</option>
+                                        <option value="EDUCACION CONTINUA">EDUCACION CONTINUA</option>
+                                        <option value="maestria">maestria</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-primary">Crear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.container-fluid -->
+
+
+
 
     </div>
+    <!-- /.container-fluid -->
+
+</div>
 
 
 </div>

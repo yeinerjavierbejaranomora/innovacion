@@ -10,6 +10,7 @@ use App\Models\Mafi;
 use App\Models\MafiReplica;
 use App\Models\MateriasPorVer;
 use App\Models\Periodo;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -177,74 +178,33 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        //$this->faltantesAntiguos();
-
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            $fechaInicio = date('Y-m-d H:i:s');
-            $registroMPV = 0;
-            $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
-                //dd($estudiante);
-                $primerId = $estudiante->id;
                 $historial = $this->historialAcademico($estudiante->homologante);
-                $numeromaterias = count($historial['materias']);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                // Iniciar la transacción
+                DB::beginTransaction();
 
-                if ($numeromaterias > 0) :
-                    $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                else :
-                    var_dump($estudiante->homologante ,", id: ".$estudiante->id);
-                    $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                endif;
-                //dd(count($mallaCurricular[0]));
-                if ($numeromaterias === count($mallaCurricular[0])) :
-                    $insertAlerta = AlertasTempranas::create([
-                        'idbanner' => $estudiante->idbanner,
-                        'tipo_estudiante' => $estudiante->tipoestudiante,
-                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' ya vio todas las materias',
-                    ]);
-                else :
-                    foreach ($mallaCurricular as $key => $malla) :
-                        foreach ($malla as $key => $value) :
-                            if (!in_array($value->codigoCurso, $historial['materias'])) :
-                                $insertMateriaPorVer = MateriasPorVer::create([
-                                    "codBanner"      => $estudiante->homologante,
-                                    "codMateria"      => $value->codigoCurso,
-                                    "orden"      => $value->orden,
-                                    "codprograma"      => $value->codprograma,
-                                ]);
-                            endif;
-                            $registroMPV++;
-                        endforeach;
-                    endforeach;
-                    $ultimoRegistroId = $estudiante->id;
-                    $idBannerUltimoRegistro = $estudiante->homologante;
-                endif;
+                try {
+                    DB::table('materiasPorVer')->insert($diff);
+
+                    // Confirmar la transacción
+                    DB::commit();
+
+                    echo "Inserción exitosa de la gran cantidad de datos.";
+                } catch (Exception $e) {
+                    // Deshacer la transacción en caso de error
+                    DB::rollBack();
+
+                    // Manejar el error
+                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                }
             endforeach;
-            $fechaFin = date('Y-m-d H:i:s');
-            $insertLog = LogAplicacion::create([
-                'idInicio' => $primerId,
-                'idFin' => $ultimoRegistroId,
-                'fechaInicio' => $fechaInicio,
-                'fechaFin' => $fechaFin,
-                'accion' => 'Insert-Antiguo',
-                'tabla_afectada' => 'materiasPorVer',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-            ]);
-
-            $insertIndiceCambio = IndiceCambiosMafi::create([
-                'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert-Antiguo',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'fecha' => date('Y-m-d H:i:s'),
-            ]);
-            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         });
         die();
-        /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-            foreach ($estudiantes as $key => $estudiante) :
-                dd($estudiante);
-            endforeach;
-        endforeach;*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $estudiantesAntiguos = $this->faltantesAntiguos();
@@ -670,57 +630,50 @@ class MafiController extends Controller
         return $estudiantesAntiguos;
     }
 
-    public function BaseAcademica($programa)
+    public function BaseAcademica($idbanner,$programa)
     {
         //Obtener la base academica del programa seleccionado
-        if (!is_array($programa)) :
-            $programa = [
-                '0' => $programa,
-            ];
-        endif;
-        //dd($programa);
-        foreach ($programa as $value) :
-            $mallaCurricular[] = DB::table('mallaCurricular')
-                ->join('programas', 'programas.codprograma', '=', 'mallaCurricular.codprograma')
-                ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden', 'mallaCurricular.codprograma')
-                ->where([['programas.activo', '=', 1], ['mallaCurricular.codprograma', '=', $value]])
-                ->orderBy('semestre', 'asc')
-                ->orderBy('orden', 'asc')
-                ->get();
 
+        $data = [];
+        $mallaCurricular = DB::table('mallaCurricular')
+        ->join('programas', 'programas.codprograma', '=', 'mallaCurricular.codprograma')
+        ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden', 'mallaCurricular.codprograma')
+        ->where([['programas.activo', '=', 1], ['mallaCurricular.codprograma', '=', $programa]])
+            ->orderBy('semestre', 'asc')
+            ->orderBy('orden', 'asc')
+            ->get();
+
+        foreach ($mallaCurricular as $key => $value) :
+            $data[] = [
+                'codBanner' => $idbanner,
+                'codMateria'=>$value->codigoCurso,
+                'orden'=>$value->orden,
+                'codprograma'=>$value->codprograma,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
         endforeach;
-        //dd($mallaCurricular);
-        return $mallaCurricular;
+        //dd($data);
+        //return $mallaCurricular;
+        return $data;
     }
 
 
     public function historialAcademico($idBanner)
     {
-        $contacor_vistas = 0;
-        $materias_vistas = array();
-        $programa = array();
+
+        $data = [];
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
             ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
-            ->get();
-        foreach ($historial as $key => $value) :
-            $materias_vistas[$contacor_vistas] = strtoupper($value->codMateria);
-            $programa[$value->codprograma] = $value->codprograma;
-            $contacor_vistas++;
+            ->get()->toArray();
+
+        foreach($historial as $key => $value):
+            $data[] = [
+                'codMateria'=>$value->codMateria,
+                'codprograma'=>$value->codprograma];
         endforeach;
-
-        /*if (empty($materias_vistas)) {
-
-            dd($idBanner);
-        }*/
-
-
-        //dd($materias_vistas);
-
-        $data = [
-            'materias' => $materias_vistas,
-            'programa' => $programa,
-        ];
+        //dd($data);
 
         return $data;
     }
@@ -793,7 +746,7 @@ class MafiController extends Controller
 
         /**utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0. */
 
-     
+
 
 
         $array1 = [
@@ -804,23 +757,26 @@ class MafiController extends Controller
 
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
-           
+
         ];
 
+<<<<<<< HEAD
        $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);
         });
  
            
+=======
+
+
+
+>>>>>>> 7775b1c34774674dc55b6689319d24f74da50bdc
         $diff = array_udiff($array1, $array2, function($a, $b) {
-            return $a['id'] <=> $b['id'];
+            return $a['name'] <=> $b['name'];
         });
-        
+        dd($diff);
+
         if (count($diff) > 0) {
-
-
-           
-
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
             foreach ($diff as $element) {
@@ -829,22 +785,24 @@ class MafiController extends Controller
 
             dd($intersection, $diff);
         } else {
-            
+
             dd($intersection." ". $diff);
             // Todos los elementos de $array1 están en $array2
             echo "Todos los elementos están presentes en el segundo arreglo.";
         }
-        
+
         if (count($intersection) > 0) {
-            
+
+            dd($intersection." ". $diff);
+
             dd($intersection,$diff);
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
             dd($intersection);
 
         } else {
-            
-            dd($intersection, $diff);
+
+            dd($intersection." ". $diff);
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
             dd($intersection);

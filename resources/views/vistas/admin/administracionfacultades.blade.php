@@ -138,10 +138,31 @@
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
-                        className: "text-center"
+                        data: 'activo',
+                        defaultContent: "",
+                        title: "Estado",
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
+                            }
+                        }
                     },
+                    {
+                        data: 'activo',
+                        defaultContent: "",
+                        title: 'Inactivar / Activar',
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                            } else if (data == '0') {
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                            }
+                        }
+                    }
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -149,13 +170,90 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar la facultad " + data.nombre + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('facultad.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Programa habilitado",
+                                                html: "La facultad <strong>" + data.nombre +
+                                                    "</strong> ha sido inactivada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar la facultad " + data.nombre + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('facultad.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Facultad habilitada",
+                                                html: "La facultad <strong>" + data.nombre +
+                                                    "</strong> ha sido habilitada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Función para editar Facultades
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br>' +
+                        '<input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -175,7 +273,7 @@
                                     if (result == "actualizado") {
                                         Swal.fire({
                                             title: "Información actualizada",
-                                            icon: 'sucess'
+                                            icon: 'success'
                                         }).then(result => {
                                             location.reload();
                                         });
@@ -190,42 +288,9 @@
             }
 
             obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
         }
     }
 
-    /*
-        $("#Form").on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        console.log(formData);
-        $.ajax({
-            url: "{{ route('admin.updatefacultad') }}",
-            type: "POST",
-            data: formData,
-            processData: false, // tell jQuery not to process the data
-            contentType: false // tell jQuery not to set contentType
-        });
-        /*$.ajax({        
-                type: 'post',
-                url: "{{ route('admin.updatefacultad') }}",
-                data: formData,
-                success: function(response) {
-                Swal.fire(
-                'Eliminado!',
-                'Actualizacion exitosa.',
-                'Accion realizada con exito'
-                )
-                table.ajax.reload();
-            },
-            failure: function (response) {
-                swal(
-                "Error",
-                "Nose pudo actualizar.", // had a missing comma
-                "error"
-                )
-            },
-        }); *
-
-        })*/
 </script>
 @include('layout.footer')

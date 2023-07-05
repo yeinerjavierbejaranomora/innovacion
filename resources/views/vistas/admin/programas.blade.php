@@ -114,17 +114,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select class="form-control" name="codFacultad" id="codFacultad">
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
-                                    <select class="form-control" name="tabla" id="tabla">
-                                        <option value="pregrado">pregrado</option>
-                                        <option value="especializacion">especializacion</option>
-                                        <option value="EDUCACION CONTINUA">EDUCACION CONTINUA</option>
-                                        <option value="maestria">maestria</option>
-                                    </select>
+                                    <select class="form-control" name="codFacultad" id="codFacultad"></select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -292,7 +282,7 @@
                                     function(result) {
                                         if (result == "habilitado") {
                                             Swal.fire({
-                                                title: "Programa deshabilitado",
+                                                title: "Programa habilitado",
                                                 html: "El programa <strong>" + data.programa +
                                                     "</strong> ha sido habilitado",
                                                 icon: 'info',
@@ -320,8 +310,11 @@
                     } = Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
+                            '<label for="codprograma"> Codigo del programa </label>'+
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
+                            '<label for="programa"> Nombre del programa </label>'+
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
+                            '<label for="facultades"> Facultad a la que pertenece el programa </label>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
                         icon: 'info',
                         showCancelButton: true,
@@ -330,10 +323,7 @@
                         cancelButtonText: "Cancelar",
                         confirmButtonText: 'Editar'
                     }).then(result => {
-                        console.log(1);
-                        console.log(result);
                         if (result.value) {
-                            console.log(facultad);
                             $.post("{{ route('programa.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
@@ -344,7 +334,6 @@
                                 function(result) {
                                     console.log(result);
                                     if (result == "actualizado") {
-                                        console.log('enmtro');
                                         Swal.fire({
                                             title: "Información actualizada",
                                             icon: 'success'

@@ -150,57 +150,11 @@ class UserController extends Controller
     public function get_facultades()
     {
         /* Consulta para obtener las facultades */
-        $facultades = DB::table('facultad')->select('facultad.id', 'facultad.codFacultad', 'facultad.nombre')->get();
+        $facultades = DB::table('facultad')->select('facultad.id', 'facultad.codFacultad', 'facultad.nombre', 'facultad.activo')->get();
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */
         echo json_encode(array('data' => $facultades));
-    }
-
-
-    public function savefacultad(CrearFacultadRequest $request)
-    {
-        /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
-        $facultad = DB::table('facultad')->insert([
-            'codFacultad' => $request->codFacultad,
-            'nombre' => $request->nombre,
-        ]);
-        if ($facultad) :
-            /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
-        else :
-            /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
-        endif;
-    }
-
-    public function updatefacultad()
-    {
-        $id_llegada = $_POST['id'];
-        $codFacultad = $_POST['codFacultad'];
-        $nombre = $_POST['nombre'];
-        $id = base64_decode(urldecode($id_llegada));
-        if (!is_numeric($id)) {
-            $id = decrypt($id_llegada);
-        }
-        var_dump($id);
-        var_dump($codFacultad);
-        var_dump($nombre);
-        /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update([
-            'codFacultad' => $codFacultad,
-            'nombre' => $nombre
-        ])
-            ->where('id', $id);
-        var_dump($facultad);
-        die();
-        if ($facultad) :
-            /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return "actualizado";
-        else :
-            /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return "false";
-        endif;
     }
 
     // *Método para mostrar todos sus datos al Usuario
@@ -406,6 +360,66 @@ class UserController extends Controller
             return  "habilitado";
         else :
             return "false";
+        endif;
+    }
+
+    public function inactivar_rol()
+    {
+        $id = $_POST['id'];
+        $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarRol) :
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function activar_rol()
+    {
+        $id = $_POST['id'];
+        $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($activarRol) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function update_rol()
+    {
+        $id_llegada = $_POST['id'];
+        $nombre = $_POST['nombre'];
+
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
+
+        if ($update) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
+
+    public function crear_rol()
+    {
+        $nombre = $_POST['nombre'];
+
+        $crear = DB::table('roles')->insert([
+            'nombreRol' => $nombre,
+        ]);
+
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('admin.roles')->with('message', 'Rol creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('admin.roles')->with(['errors' => 'El rol no ha podido ser creado']);
         endif;
     }
 

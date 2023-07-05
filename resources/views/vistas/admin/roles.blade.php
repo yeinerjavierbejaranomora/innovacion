@@ -59,15 +59,15 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo rol</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoRol" data-whatever="modal">Agregar nuevo rol</button>
                         </div>
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un programa nuevo-->  
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!--Modal para agragar un rol nuevo-->
+            <div class="modal fade" id="nuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -77,28 +77,21 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('rol.crear') }}">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
-
-                                <div>
                                     <label for="message-text" class="col-form-label">Nombre del rol</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
-    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-success">Crear</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
-
-         
 
         </div>
         <!-- /.container-fluid -->
@@ -132,13 +125,36 @@
                         title: 'Rol'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar',
+                        className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        data: 'activo',
+                        defaultContent: "",
+                        title: "Estado",
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
+                            }
+                        }
                     },
+                    {
+                        data: 'activo',
+                        defaultContent: "",
+                        title: 'Inactivar / Activar',
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                            } else if (data == '0') {
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                            }
+                        }
+                    }
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -146,9 +162,129 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el rol " + data.nombreRol + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('rol.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Rol deshabilitado",
+                                                html: "El Rol <strong>" + data.nombreRol +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el rol " + data.nombreRol + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('rol.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Rol habilitado",
+                                                html: "El rol <strong>" + data.nombreRol +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Función para editar Rol
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    $('#facultadEditar').val(data.idFacultad);
+                    const {
+                        value: facultad
+                    } = Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<input type="text" id="nombreRol" name="nombreRol" value="' + data.nombreRol + '" class="form-control" placeholder="nombre Rol"> <br>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        console.log(1);
+                        console.log(result);
+                        if (result.value) {
+                            console.log(facultad);
+                            $.post("{{ route('rol.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    nombre: $(document).find('#nombreRol').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+                });
+            }
+            obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
         }
-
     }
-
 </script>
 @include('layout.footer')

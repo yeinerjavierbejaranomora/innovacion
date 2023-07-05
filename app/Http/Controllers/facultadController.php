@@ -66,7 +66,7 @@ class facultadController extends Controller
     /** Función para traer todos los programas */
     public function get_programas()
     {
-        /**Realiza la consulta anidada para onbtener el programa con su facultad */
+        /**Realiza la consulta anidada para obtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
             ->where('programas.tabla', '=', 'pregrado')->get();
@@ -82,11 +82,11 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
             ->where('programas.tabla', '=', 'especializacion')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
+        /**Se pasa a formato JSON el arreglo de programas */
         echo json_encode(array('data' => $programas));
     }
 
@@ -96,7 +96,7 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
             ->where('programas.tabla', '=', 'MAESTRIA')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
@@ -143,19 +143,20 @@ class facultadController extends Controller
     }
 
     /** Función para mostrar los programas según el id de la facultad */
-    public function mostrarfacultad($id_llegada)
+    /*  public function mostrarfacultad($id_llegada)
     {
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
         // Consulta para obtener los programas según id de facultad
-        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa', 'tabla')
+        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa', 'tabla','activo')
             ->where('idFacultad', '=', $id)
             ->where('activo', '=', 1)->get();
-        /**mostrar los datos en formato JSON */
+        mostrar los datos en formato JSON 
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
+        /**Se pasa a formato JSON el arreglo de users 
         echo json_encode(array('data' => $facultad));
     }
+    */
 
     public function malla($codigo)
     {
@@ -201,16 +202,16 @@ class facultadController extends Controller
 
     public function crear_programa()
     {
+        // Recibe los parámetros del formulario por Post
         $codigo = $_POST['codPrograma'];
         $nombre = $_POST['nombre'];
         $codFacultad = $_POST['codFacultad'];
-        $tabla = $_POST['tabla'];
-
+        // Consulta para insertar nuevo programa
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,
             'programa' => $nombre,
             'idFacultad' => $codFacultad,
-            'tabla' => $tabla,
+            'tabla' => 'pregrado',
         ]);
 
         if ($crear) :
@@ -219,6 +220,48 @@ class facultadController extends Controller
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.programas')->with(['errors' => 'El programa no ha podido ser creado']);
+        endif;
+    }
+
+    public function crear_esp()
+    {
+        $codigo = $_POST['codEsp'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['codFacultad'];
+        // Consulta para insertar nueva especialización
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => 'especializacion',
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.especializacion')->with('message', 'Especialización creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.especializacion')->with(['errors' => 'La especialización no ha podido ser creada']);
+        endif;
+    }
+
+    public function crear_maestria()
+    {
+        $codigo = $_POST['codMaestria'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['codFacultad'];
+        // Consulta para insertar nueva especialización
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => 'MAESTRIA',
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.maestria')->with('message', 'Maestria creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.maestria')->with(['errors' => 'La maestria no ha podido ser creada']);
         endif;
     }
 
@@ -250,25 +293,26 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {
-
+        // Se obtiene el id del programa que recibe el metodo
         $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
         $idFacultad = $consulta[0]->id;
-
+        // Se consulta cuales son los programas que se encuentran activos
         $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id', 'codprograma')->get();
         $cuenta = array();
+        // Con este foreach se cuentan los alumnos inscritos en el programa
         foreach ($programas as $key => $value) {
             $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
             // array_push($cuenta, $cantidad);
-            $cuenta[$value->codprograma] = $cantidad; 
+            $cuenta[$value->codprograma] = $cantidad;
         }
+        // Se almacena el nombre de la facultad y los programas que se encuentra activos en la variable datos 
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,
         );
-                    
-        return view('vistas.admin.facultades',['estudiantes' => $cuenta])->with('datos', $datos);
-    }
 
+        return view('vistas.admin.facultades', ['estudiantes' => $cuenta])->with('datos', $datos);
+    }
 
     /**Función para visualizar los estudiantes de cada facultad */
     public function estudiantesFacultad($id)
@@ -276,11 +320,72 @@ class facultadController extends Controller
         $consulta = DB::table('programas')->where('id', '=', $id)->get();
         $codigo = $consulta[0]->codprograma;
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
-
-
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $estudiantes));
+    }
+
+    public function savefacultad(CrearFacultadRequest $request)
+    {
+        /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
+        $facultad = DB::table('facultad')->insert([
+            'codFacultad' => $request->codFacultad,
+            'nombre' => $request->nombre,
+        ]);
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+        endif;
+    }
+
+    public function updatefacultad()
+    {
+        $id_llegada = $_POST['id'];
+        $codFacultad = $_POST['codFacultad'];
+        $nombre = $_POST['nombre'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        /** Consulta para actualizar facultad */
+        $facultad = DB::table('facultad')
+            ->where('id', $id)
+            ->update([
+                'codFacultad' => $codFacultad,
+                'nombre' => $nombre
+            ]);
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
+
+    public function inactivar_facultad()
+    {
+        $id = $_POST['id'];
+        $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarFacultad) :
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function activar_facultad()
+    {
+        $id = $_POST['id'];
+        $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($activarPrograma) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
     }
 }

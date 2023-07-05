@@ -53,15 +53,19 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/home/amdministracionfacultades','facultad_view')->middleware('auth','admin')->name('admin.facultades');
     /** cargamos la vista para mostrar todas las facultades */
     Route::get('/home/facultades','get_facultades')->middleware('auth','admin')->name('admin.getfacultades');
-    /** para salvar las facultades */
-    Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
-    /** para actualizar las facultades */
-    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     //** Ruta para cargar vista con los roles */
-    Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
+    Route::get('/home/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */
-    Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
-   
+    Route::get('/home/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
+
+    //** Ruta para inactivar Rol */
+    Route::post('/home/inactivarRol', 'inactivar_rol')->middleware('auth')->name('rol.inactivar');
+    //** Ruta para activar Rol */
+    Route::post('/home/activarRol', 'activar_rol')->middleware('auth')->name('rol.activar');
+    //* Ruta para actualizar rol */
+    Route::post('/home/updateRol', 'update_rol')->middleware('auth')->name('rol.update');
+    /** Ruta para crear Rol */
+    Route::post('/home/crearRol', 'crear_rol')->middleware('auth')->name('rol.crear');
 });
 
 Route::controller(MafiController::class)->group(function(){
@@ -175,6 +179,19 @@ Route::controller(facultadController::class)->group(function(){
     /**Ruta para visaulizar los estudiantes de cada programa */
     Route::get('/home/facultades/estudiantes/{id}', 'estudiantesFacultad')->middleware('auth')->name('programa.estudiantes');
 
+    /** para salvar las facultades */
+    Route::post('/home/savefacultades','savefacultad')->middleware('auth','admin')->name('admin.guardarfacultad');
+    /** para actualizar las facultades */
+    Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
+    //** Ruta para inactivar facultad*/
+    Route::post('/home/inactivarfacultad', 'inactivar_facultad')->middleware('auth')->name('facultad.inactivar');
+    //** Ruta para activar facultad */
+    Route::post('/home/activarfacultad', 'activar_facultad')->middleware('auth')->name('facultad.activar');
+
+    /**Ruta para crear especializacion */
+    Route::post('/home/crearespecializacion', 'crear_esp')->middleware('auth')->name('especializacion.crear');
+    /** Ruta para crear maestría */
+    Route::post('/home/crearmaestria', 'crear_meastria')->middleware('auth')->name('maestria.crear');
 });
 
 

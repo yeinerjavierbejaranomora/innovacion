@@ -55,7 +55,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                    Estudiantes </button>
+                                    {{$value->estudiantes}} Estudiantes inscritos </button>
                                 </div>
 
                                 <div class="col-auto">

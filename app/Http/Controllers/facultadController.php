@@ -261,11 +261,11 @@ class facultadController extends Controller
             array_push($cuenta, $cantidad);
         }
 
-        var_dump($cuenta);
         //dd($cuenta);
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,
+            'estudiantes' => $cuenta,            
         );
 
         return view('vistas.admin.facultades')->with('datos', $datos);

@@ -287,42 +287,9 @@
             }
 
             obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
         }
     }
 
-    /*
-        $("#Form").on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        console.log(formData);
-        $.ajax({
-            url: "{{ route('admin.updatefacultad') }}",
-            type: "POST",
-            data: formData,
-            processData: false, // tell jQuery not to process the data
-            contentType: false // tell jQuery not to set contentType
-        });
-        /*$.ajax({        
-                type: 'post',
-                url: "{{ route('admin.updatefacultad') }}",
-                data: formData,
-                success: function(response) {
-                Swal.fire(
-                'Eliminado!',
-                'Actualizacion exitosa.',
-                'Accion realizada con exito'
-                )
-                table.ajax.reload();
-            },
-            failure: function (response) {
-                swal(
-                "Error",
-                "Nose pudo actualizar.", // had a missing comma
-                "error"
-                )
-            },
-        }); *
-
-        })*/
 </script>
 @include('layout.footer')

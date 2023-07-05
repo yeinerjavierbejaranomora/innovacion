@@ -221,8 +221,8 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
-                $historial = $this->historialAcademico($estudiante->homologante)->toArray();
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 //dd($historial);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codigoCurso'] <=> $b['codMateria'];

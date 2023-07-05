@@ -199,7 +199,7 @@ class MafiController extends Controller
                 if ($numeromaterias === count($mallaCurricular[0])) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->homologante,
-                        'tipo_estudiante' => $estudiante->tipoe_studiante,
+                        'tipo_estudiante' => $estudiante->tipo_estudiante,
                         'desccripcion' => 'El estudiante con idBanner' . $estudiante->homologante . ' ya vio todas las materias',
                     ]);
                 else :

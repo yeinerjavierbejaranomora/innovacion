@@ -184,6 +184,7 @@ class MafiController extends Controller
             $registroMPV = 0;
             $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
+                //dd($estudiante);
                 $primerId = $estudiante->id;
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $numeromaterias = count($historial['materias']);
@@ -191,6 +192,7 @@ class MafiController extends Controller
                 if ($numeromaterias > 0) :
                     $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 else :
+                    var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
                 foreach ($mallaCurricular as $key => $malla) :
@@ -781,6 +783,31 @@ class MafiController extends Controller
     {
 
 
+
+
+        $array1 = [
+            ['id' => 1, 'name' => 'John'],
+            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 3, 'name' => 'Alice']
+        ];
+        dd($array1 );
+        $array2 = [
+            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 4, 'name' => 'Bob']
+        ];
+        
+        $result = array_intersect($array1, $array2);
+
+        if (count($result) > 0) {
+
+            dd( $result);
+            // Al menos un elemento de $array1 existe en $array2
+            echo "Los elementos existen en ambos arreglos.";
+        } else {
+            dd( $result);
+            // Ningún elemento de $array1 existe en $array2
+            echo "No existen elementos en común en ambos arreglos.";
+        }
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";

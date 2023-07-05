@@ -223,12 +223,12 @@ class MafiController extends Controller
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 //dd($historial);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a[0] <=> $b[0];
+                    return $a['codMateria'] <=> $b[0];
                 });
-                dd($diff[0]);
+                dd($diff);
                 // Iniciar la transacción
                 DB::beginTransaction();
 
@@ -239,7 +239,7 @@ class MafiController extends Controller
                     // Construir los datos a insertar en cada iteración
                     $data[] = [
                         'codBanner' => $estudiante->homologante,
-                        'codMateria' => $diff[0],
+                        'codMateria' => $diff,
                         // Añade más campos según tus necesidades
                     ];
 
@@ -698,7 +698,7 @@ class MafiController extends Controller
         return $estudiantesAntiguos;
     }
 
-    public function BaseAcademica($programa)
+    public function BaseAcademica($idbanner,$programa)
     {
         //Obtener la base academica del programa seleccionado
 
@@ -712,7 +712,11 @@ class MafiController extends Controller
             ->get();
 
         foreach ($mallaCurricular as $key => $value) :
-            $data[] = [$value->codigoCurso, $value->orden, $value->codprograma];
+            $data[] = [
+                'codBanner' => $idbanner,
+                'codMateria'=>$value->codigoCurso,
+                'orden'=>$value->orden,
+                'codprograma'=>$value->codprograma];
         endforeach;
         //dd($data);
         //return $mallaCurricular;
@@ -730,7 +734,9 @@ class MafiController extends Controller
             ->get()->toArray();
 
         foreach($historial as $key => $value):
-            $data[] = [$value->codMateria, $value->codprograma];
+            $data[] = [
+                $value->codMateria,
+                $value->codprograma];
         endforeach;
         //dd($data);
 

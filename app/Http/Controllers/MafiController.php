@@ -807,15 +807,15 @@ class MafiController extends Controller
         });
         
         if (count($intersection) > 0) {
-
-            dd($intersection);
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
-        } else {
-
             dd($intersection);
+            
+        } else {
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
+            dd($intersection);
+           
         }
 
        

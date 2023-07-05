@@ -197,7 +197,7 @@
                                     if (result == "actualizado") {
                                         Swal.fire({
                                             title: "Información actualizada",
-                                            icon: 'sucess'
+                                            icon: 'success'
                                         }).then(result => {
                                             location.reload();
                                         });

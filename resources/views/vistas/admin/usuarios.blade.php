@@ -81,7 +81,7 @@
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">ID Banner</label>
-                                    <input type="number" class="form-control" id="idbanner" name="idbanner">
+                                    <input type="number" class="form-control" id="idbanner" name="id_banner">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Documento de identidad</label>
@@ -93,11 +93,11 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Correo electronico</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="correo" name="email">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Rol</label>
-                                    <select class="form-control" name="idrol" id="idrol">
+                                    <select class="form-control" name="id_rol" id="rol">
                                         <option value="1">Decano</option>
                                         <option value="2">Director</option>
                                         <option value="3">Coordinador</option>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
-                                    <select class="form-control" name="facultad" id="facultad">
+                                    <select class="form-control" name="id_facultad" id="facultades">
                                         <option value="0" selected>Ninguna</option>
                                     </select>
                                 </div>
@@ -156,14 +156,14 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario select#facultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevousuario select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
                 })
             }
         })
     }
 
     //* Comprueba si el select de facultades cambia de valor/
-    $('#nuevousuario select#facultad').change(function() {
+    $('#nuevousuario select#facultades').change(function() {
         console.log('1');
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/

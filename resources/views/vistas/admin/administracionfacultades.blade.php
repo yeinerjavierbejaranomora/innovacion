@@ -193,7 +193,7 @@
                                         if (result == "deshabilitado") {
                                             Swal.fire({
                                                 title: "Programa habilitado",
-                                                html: "La facultad <strong>" + data.programa +
+                                                html: "La facultad <strong>" + data.nombre +
                                                     "</strong> ha sido inactivada",
                                                 icon: 'info',
                                                 showCancelButton: true,

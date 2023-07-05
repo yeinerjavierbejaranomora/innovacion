@@ -642,33 +642,14 @@ class MafiController extends Controller
 
     public function historialAcademico($idBanner)
     {
-        $contacor_vistas = 0;
-        $materias_vistas = array();
-        $programa = array();
+
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
             ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
             ->get();
-        foreach ($historial as $key => $value) :
-            $materias_vistas[$contacor_vistas] = strtoupper($value->codMateria);
-            $programa[$value->codprograma] = $value->codprograma;
-            $contacor_vistas++;
-        endforeach;
-
-        /*if (empty($materias_vistas)) {
-
-            dd($idBanner);
-        }*/
 
 
-        //dd($materias_vistas);
-
-        $data = [
-            'materias' => $materias_vistas,
-            'programa' => $programa,
-        ];
-
-        return $data;
+        return $historial;
     }
 
     //*** funcion para activar los periodos automaticamente */

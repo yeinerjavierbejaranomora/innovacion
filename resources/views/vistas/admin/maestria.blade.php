@@ -80,7 +80,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="route('maestria.crear')">
+                            <form id="miForm" method="post" action="{{ route('maestria.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la maestría</label>
@@ -96,15 +96,13 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="crear btn btn-success">Crear</button>
                         </div>
                         </form>
                     </div>
                 </div>
             </div>
-
-         
 
         </div>
         <!-- /.container-fluid -->
@@ -123,6 +121,7 @@
 </a>
 
 <script>
+    facultades();
 
 function facultades() {
         $.ajax({
@@ -133,7 +132,7 @@ function facultades() {
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevaMaestria select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevaMaestria select#idFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
 
                 })
             }

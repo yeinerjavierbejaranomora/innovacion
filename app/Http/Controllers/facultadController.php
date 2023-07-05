@@ -258,10 +258,10 @@ class facultadController extends Controller
         ]);
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.maestria')->with('message', 'Especialización creada correctamente');
+            return redirect()->route('facultad.maestria')->with('message', 'Maestria creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
-            return redirect()->route('facultad.maestria')->with(['errors' => 'La especialización no ha podido ser creada']);
+            return redirect()->route('facultad.maestria')->with(['errors' => 'La maestria no ha podido ser creada']);
         endif;
     }
 

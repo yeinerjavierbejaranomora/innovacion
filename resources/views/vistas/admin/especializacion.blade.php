@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <!--Modal para agragar un programa nuevo-->
+            <!--Modal para agragar una maestría nueva-->
             <div class="modal fade" id="nuevaEsp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -104,8 +104,6 @@
                 </div>
             </div>
 
-
-
         </div>
         <!-- /.container-fluid -->
 
@@ -134,7 +132,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevaEsp select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevaEsp select#idFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
 
                 })
             }

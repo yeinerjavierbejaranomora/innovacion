@@ -191,7 +191,7 @@ Route::controller(facultadController::class)->group(function(){
     /**Ruta para crear especializacion */
     Route::post('/home/crearespecializacion', 'crear_esp')->middleware('auth')->name('especializacion.crear');
     /** Ruta para crear maestría */
-    Route::post('/home/crearespecializacion', 'crear_meastria')->middleware('auth')->name('maestria.crear');
+    Route::post('/home/crearmaestria', 'crear_meastria')->middleware('auth')->name('maestria.crear');
 });
 
 

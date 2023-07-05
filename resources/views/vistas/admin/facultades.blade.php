@@ -42,10 +42,11 @@
                 <h1 class="h3 mb-0 text-gray-800">Programas facultad de {{$datos['facultad']}}</h1>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
+
             <!-- Content Row -->
             <div class="row" id="facultades">
-                @foreach($datos['estudiantes'] as $key => $est)
                 @foreach($datos['programas'] as $key => $value)
+
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -55,8 +56,12 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
+                                    @foreach($estudiantes as $key => $est)
+                                    @if($value->codprograma == $key)
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                    Estudiantes {{$est}}</button>
+                                        Estudiantes inscitos {{$est}}</button>
+                                    @endif
+                                    @endforeach
                                 </div>
 
                                 <div class="col-auto">
@@ -67,7 +72,7 @@
                     </div>
                 </div>
                 @endforeach
-                @endforeach
+
             </div>
 
             <!-- Datatable-->
@@ -89,73 +94,73 @@
 
             <script>
                 // * Datatable para mostrar los estudiantes de cada programa *
-                $(document).ready(function(){
-                    $(document).on("click", ".mostrar", function(){
-                    
-                       var id = $(this).val();
-                       buscar(id);
+                $(document).ready(function() {
+                    $(document).on("click", ".mostrar", function() {
+
+                        var id = $(this).val();
+                        buscar(id);
                     })
 
-                    function buscar(id) {       
-                        
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = "/home/facultades/estudiantes/" + id + "";
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    xmlhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            var data = JSON.parse(this.responseText);
-                            
-                            var table = $('#example').DataTable({ 
-                                /** Recargar dataTable */
-                                "bDestroy": true,
-                                "data": data.data,
-                                "columns": [{
-                                    data: 'idbanner',
-                                    title: 'Id Banner'
-                                },
-                                {
-                                    data: 'primer_apellido',
-                                    title: 'Primer apellido'
-                                },
-                                {
-                                    data: 'programa',
-                                    title: 'Codigo de programa'
-                                },
-                                    {
-                                        data: 'estado',
-                                        title: 'Estado'
+                    function buscar(id) {
+
+                        var xmlhttp = new XMLHttpRequest();
+                        var url = "/home/facultades/estudiantes/" + id + "";
+                        xmlhttp.open("GET", url, true);
+                        xmlhttp.send();
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var data = JSON.parse(this.responseText);
+
+                                var table = $('#example').DataTable({
+                                    /** Recargar dataTable */
+                                    "bDestroy": true,
+                                    "data": data.data,
+                                    "columns": [{
+                                            data: 'idbanner',
+                                            title: 'Id Banner'
+                                        },
+                                        {
+                                            data: 'primer_apellido',
+                                            title: 'Primer apellido'
+                                        },
+                                        {
+                                            data: 'programa',
+                                            title: 'Codigo de programa'
+                                        },
+                                        {
+                                            data: 'estado',
+                                            title: 'Estado'
+                                        },
+                                        {
+                                            data: 'tipoestudiante',
+                                            title: 'Tipo estudiante'
+                                        },
+                                        {
+                                            data: 'sello',
+                                            title: 'Sello'
+                                        },
+                                        {
+                                            data: 'autorizado_asistir',
+                                            title: 'Autorizado'
+                                        },
+                                        {
+                                            data: 'created_at',
+                                            title: 'Fecha de creación'
+                                        },
+                                        {
+                                            data: 'updated_at',
+                                            title: 'Última actulización'
+                                        },
+                                    ],
+                                    "language": {
+                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                     },
-                                    {
-                                        data: 'tipoestudiante',
-                                        title: 'Tipo estudiante'
-                                    },
-                                    {
-                                        data: 'sello',
-                                        title: 'Sello'
-                                    },
-                                    {
-                                        data: 'autorizado_asistir',
-                                        title: 'Autorizado'
-                                    },
-                                    {
-                                        data: 'created_at',
-                                        title: 'Fecha de creación'
-                                    },
-                                    {
-                                        data: 'updated_at',
-                                        title: 'Última actulización'
-                                    },
-                                ],
-                                "language": {
-                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                                },
-                                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                            });
-                            console.log(table);
+                                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                                });
+                                console.log(table);
+                            }
                         }
                     }
-                }
-            });
-                </script>
+                });
+            </script>
             @include('layout.footer')

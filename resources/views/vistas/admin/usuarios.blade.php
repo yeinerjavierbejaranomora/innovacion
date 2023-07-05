@@ -81,29 +81,36 @@
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">id Banner</label>
-                                    <input type="text" class="form-control" id="idbanner" name="idbanner">
+                                    <input type="number" class="form-control" id="idbanner" name="idbanner">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Documento de identidad</label>
-                                    <input type="text" class="form-control" id="documento" name="documento">
+                                    <input type="number" class="form-control" id="documento" name="documento">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre</label>
-                                    <select class="form-control" name="nombre" id="nombre">
-                                    </select>
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Email</label>
-                                    <select class="form-control" name="email" id="email">
-                                    </select>
+                                    <label for="message-text" class="col-form-label">Correo electronico</label>
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">¿Que tipo de curso es?</label>
+                                    <label for="message-text" class="col-form-label">Facultad</label>
+                                    <select class="form-control" name="facultad" id="facultad">
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="message-text" class="col-form-label">Rol</label>
                                     <select class="form-control" name="tabla" id="tabla">
-                                        <option value="pregrado">pregrado</option>
-                                        <option value="especializacion">especializacion</option>
-                                        <option value="EDUCACION CONTINUA">EDUCACION CONTINUA</option>
-                                        <option value="maestria">maestria</option>
+                                        <option value="1">Decano</option>
+                                        <option value="2">Director</option>
+                                        <option value="3">Coordinador</option>
+                                        <option value="4">Líder</option>
+                                        <option value="5">Docente</option>
+                                        <option value="6">Estudiante</option>
+                                        <option value="9">Admin</option>
                                     </select>
                                 </div>
                                 <div class="modal-footer">
@@ -138,6 +145,23 @@
 </a>
 
 <script>
+    facultades();
+    /** Función que trae todas las faculades */
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#nuevusuario select#facultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                })
+            }
+        })
+    }
+
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('admin.getusers') }}";
     xmlhttp.open("GET", url, true);

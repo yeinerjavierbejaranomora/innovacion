@@ -61,6 +61,11 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */
     Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
+
+    //** Ruta para inactivar Rol */
+    Route::post('/home/inactivarRol', 'inactivar_rol')->middleware('auth')->name('rol.inactivar');
+    //** Ruta para activar Rol */
+    Route::post('/home/activarRol', 'activar_rol')->middleware('auth')->name('rol.activar');
    
 });
 

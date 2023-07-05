@@ -760,17 +760,11 @@ class MafiController extends Controller
 
         ];
 
-<<<<<<< HEAD
        $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);
         });
  
            
-=======
-
-
-
->>>>>>> 7775b1c34774674dc55b6689319d24f74da50bdc
         $diff = array_udiff($array1, $array2, function($a, $b) {
             return $a['name'] <=> $b['name'];
         });

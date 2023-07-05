@@ -183,7 +183,14 @@ class MafiController extends Controller
                 dd($value);
             endforeach;
         endforeach;*/
-        $estudiantesAntiguos = $this->faltantesAntiguos();
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $estudiantesAntiguos = $this->faltantesAntiguos();
+            dd($estudiantesAntiguos);
+            else :
+            return "No hay estudiantes de primer ingreso";
+        endif;
+
         if(!empty($estudiantesAntiguos)):
             //dd($estudiantesAntiguos[0]->id);
             $fechaInicio = date('Y-m-d H:i:s');
@@ -196,15 +203,37 @@ class MafiController extends Controller
                 foreach($mallaCurricular as $key => $malla):
                     foreach($malla as $key => $value):
                         if(!in_array($value->codigoCurso, $historial['materias'])):
-                            var_dump("No Esta <br>");
-                        else:
-                            var_dump("Esta <br>");
+                            $insertMateriaPorVer = MateriasPorVer::create([
+                                "codBanner"      => $estudiante->homologante,
+                                "codMateria"      => $value->codigoCurso,
+                                "orden"      => $value->orden,
+                                "codprograma"      => $value->codprograma,
+                            ]);
                         endif;
+                        $registroMPV++;
                     endforeach;
                 endforeach;
-                die();
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-Antiguo',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-Antiguo',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         else:
             return "No hay estudiantes ANTIGUOS";
         endif;
@@ -259,7 +288,7 @@ class MafiController extends Controller
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert',
+                'accion' => 'Insert-Transferente',
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante transferente, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
@@ -310,7 +339,7 @@ class MafiController extends Controller
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert',
+                'accion' => 'Insert-PrimerIngreso',
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);

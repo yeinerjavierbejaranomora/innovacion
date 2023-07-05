@@ -165,7 +165,7 @@
     }
 
     //* Comprueba si el select de facultades cambia de valor/
-    $('#nuevousuario select#facultad').change(function() {
+    $('#nuevousuario div#facultad').change(function() {
         console.log('1');
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/

@@ -72,7 +72,7 @@ class UserController extends Controller
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
-        
+
         /** traemos las facultades del sistema  */
         if (!empty($user->id_facultad)) {
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
 
-    
+
 
 
 
@@ -137,7 +137,7 @@ class UserController extends Controller
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $roles));
     }
-    
+
     public function facultad_view()
     {
         /**Se retorna la vista del listado de facultades */
@@ -154,7 +154,7 @@ class UserController extends Controller
     public function get_facultades()
     {
         /* Consulta para obtener las facultades */
-        $facultades = DB::table('facultad')->select('facultad.id','facultad.codFacultad', 'facultad.nombre')->get();
+        $facultades = DB::table('facultad')->select('facultad.id', 'facultad.codFacultad', 'facultad.nombre')->get();
         /* Mostrar los datos en formato JSON*/
         header("Content-Type: application/json");
         /* Se pasa a formato JSON el arreglo de facultades */
@@ -191,9 +191,11 @@ class UserController extends Controller
         var_dump($codFacultad);
         var_dump($nombre);
         /** Consulta para actualizar facultad */
-        $facultad = DB::table('facultad')->update(['codFacultad' => $codFacultad,
-        'nombre' => $nombre])
-        ->where('id', $id);
+        $facultad = DB::table('facultad')->update([
+            'codFacultad' => $codFacultad,
+            'nombre' => $nombre
+        ])
+            ->where('id', $id);
         var_dump($facultad);
         die();
         if ($facultad) :
@@ -352,13 +354,13 @@ class UserController extends Controller
         endif;
         //return $Programas;
         //return $activo;
-        if(isset($request->estado)){
+        if (isset($request->estado)) {
             if ($request->estado != 'on') :
                 $activo = 0;
             else :
                 $activo = 1;
             endif;
-        }else{
+        } else {
             $activo = 1;
         }
 
@@ -389,34 +391,24 @@ class UserController extends Controller
         endif;
     }
 
-    public function inactivarUser()
+    /** Funcion para activar o inactivar usuario */
+    public function inactivar_usuario()
     {
-        $id_llegada = $_POST['id'];
-        $id = base64_decode(urldecode($id_llegada));
-
-        if (!is_numeric($id)) {
-            $id = decrypt($id_llegada);
-        }
-
-        $inactivarUser = DB::table('users')->where('id', $id)->update(['activo' => 0]);
-        if ($inactivarUser) :
-            return  "true";
+        $id = $_POST['id'];
+        $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarPrograma) :
+            return  "deshabilitado";
         else :
             return "false";
         endif;
     }
-
-    public function deshacerInactivarUser()
+    /** Funcion para activar o inactivar */
+    public function activar_usuario()
     {
-        $id_llegada = $_POST['id'];
-        $id = base64_decode(urldecode($id_llegada));
-
-        if (!is_numeric($id)) {
-            $id = decrypt($id_llegada);
-        }
-        $inactivarUser = DB::table('users')->where('id', $id)->update(['activo' => 1]);
-        if ($inactivarUser) :
-            return  "true";
+        $id = $_POST['id'];
+        $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($inactivarPrograma) :
+            return  "habilitado";
         else :
             return "false";
         endif;
@@ -425,6 +417,5 @@ class UserController extends Controller
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
 
-      */
-   
+     */
 }

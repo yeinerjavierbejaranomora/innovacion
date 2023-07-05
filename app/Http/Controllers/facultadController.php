@@ -254,11 +254,10 @@ class facultadController extends Controller
         $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
         $idFacultad = $consulta[0]->id;
 
-        $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id')->get();
-
+        $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id', 'codprograma')->get();
         $cuenta = array();
         foreach ($programas as $key => $value) {
-            $cantidad = DB::table('datosMafiReplica')->where('codprograma', '=', $value->programa)->count();
+            $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
             array_push($cuenta, $cantidad);
         }
 

@@ -185,8 +185,8 @@ class MafiController extends Controller
         endforeach;*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
-            //$estudiantesAntiguos = $this->faltantesAntiguos();
-            $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+            $estudiantesAntiguos = $this->faltantesAntiguos();
+            //$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
             else :
             return "No hay estudiantes de primer ingreso";
         endif;
@@ -197,9 +197,9 @@ class MafiController extends Controller
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0][0]->id;
             $ultimoRegistroId = 0;
-            //foreach($estudiantesAntiguos as $key => $estudiante):
-            foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-                foreach ($estudiantes as $key => $estudiante) :
+            foreach($estudiantesAntiguos as $key => $estudiante):
+            //foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+            //    foreach ($estudiantes as $key => $estudiante) :
                     //dd($estudiante);
                     $historial = $this->historialAcademico($estudiante->homologante);
                     $numeromaterias = count($historial['materias']);
@@ -224,9 +224,9 @@ class MafiController extends Controller
                     endforeach;
                     $ultimoRegistroId = $estudiante->id;
                     $idBannerUltimoRegistro = $estudiante->homologante;
-                endforeach;
-            endforeach;
+                //endforeach;
             //endforeach;
+            endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,

@@ -195,6 +195,7 @@ class MafiController extends Controller
                     var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
+                dd($mallaCurricular);
                 if ($numeromaterias === $mallaCurricular->count()) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->idbanner,
@@ -798,7 +799,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-   
+
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']

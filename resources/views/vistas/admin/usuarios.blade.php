@@ -77,19 +77,24 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="{{ route('programa.crear') }}">
+                            <form id="miForm" method="post" action="{{ route('user.crear') }}">
                                 @csrf
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="codPrograma" name="codPrograma">
+                                    <label for="recipient-name" class="col-form-label">id Banner</label>
+                                    <input type="text" class="form-control" id="idbanner" name="idbanner">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <label for="message-text" class="col-form-label">Documento de identidad</label>
+                                    <input type="text" class="form-control" id="documento" name="documento">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select class="form-control" name="codFacultad" id="codFacultad">
+                                    <label for="message-text" class="col-form-label">Nombre</label>
+                                    <select class="form-control" name="nombre" id="nombre">
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Email</label>
+                                    <select class="form-control" name="email" id="email">
                                     </select>
                                 </div>
                                 <div>

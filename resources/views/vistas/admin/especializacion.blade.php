@@ -228,7 +228,7 @@
                                             Swal.fire({
                                                 title: "Especialización inactivada",
                                                 html: "La especialización <strong>" + data.programa +
-                                                    "</strong> ha sido inactivado",
+                                                    "</strong> ha sido inactivada",
                                                 icon: 'info',
                                                 showCancelButton: true,
                                                 confirmButtonText: "Aceptar",
@@ -347,7 +347,6 @@
             }
             obtener_data_editar("#example tbody", table);
             obtener_data_inactivar("#example tbody", table);
-
             console.log(table);
 
         }

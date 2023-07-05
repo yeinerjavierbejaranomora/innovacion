@@ -791,6 +791,11 @@ class MafiController extends Controller
     public function Generar_faltantes()
     {
 
+        /**utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0. */
+
+     
+
+
         $array1 = [
             ['id' => 1, 'name' => 'John'],
             ['id' => 2, 'name' => 'Jane'],
@@ -808,6 +813,22 @@ class MafiController extends Controller
         $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);
         });
+
+           
+        $diff = array_udiff($array1, $array2, function($a, $b) {
+            return $a['id'] <=> $b['id'];
+        });
+        
+        if (count($diff) > 0) {
+            // Hay elementos en $array1 que no están en $array2
+            echo "Los siguientes elementos no están en el segundo arreglo:";
+            foreach ($diff as $element) {
+                echo "ID: " . $element['id'] . ", Nombre: " . $element['name'];
+            }
+        } else {
+            // Todos los elementos de $array1 están en $array2
+            echo "Todos los elementos están presentes en el segundo arreglo.";
+        }
         
         if (count($intersection) > 0) {
             // Al menos un elemento de $array1 existe en $array2
@@ -821,7 +842,7 @@ class MafiController extends Controller
            
         }
 
-       
+       exit;
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";

@@ -192,6 +192,7 @@ class MafiController extends Controller
                 if ($numeromaterias > 0) :
                     $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 else :
+                    echo $estudiante->homologante;
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
                 foreach ($mallaCurricular as $key => $malla) :

@@ -784,8 +784,8 @@ class MafiController extends Controller
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo ')
             ->where('materiasPorVer.codBanner','100152879')
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma','PPSV')
-            ->where('mallaCurricular.codprograma','PPSV')
+            ->where('materiasPorVer.codprograma',"PPSV")
+            ->where('mallaCurricular.codprograma',"PPSV")
             ->orderBy('materiasPorVer.orden', 'ASC')
             ->get();
 

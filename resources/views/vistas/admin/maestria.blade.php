@@ -185,6 +185,83 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             
+             /** Función para activar o desactivar la maestría */
+             function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar la maestría " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Maestría inactivada",
+                                                html: "La maestría <strong>" + data.programa +
+                                                    "</strong> ha sido inactivada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar la maestría " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Maestría habilitada",
+                                                html: "La maestría <strong>" + data.programa +
+                                                    "</strong> ha sido habilitada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
@@ -251,10 +328,8 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-            
-            
+            obtener_data_inactivar("#example tbody", table);
             console.log(table);
-       
        
         }
 

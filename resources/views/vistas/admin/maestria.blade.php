@@ -80,7 +80,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="route('maestria.crear')">
+                            <form id="miForm" method="post" action="{{ route('maestria.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la maestría</label>
@@ -103,8 +103,6 @@
                     </div>
                 </div>
             </div>
-
-         
 
         </div>
         <!-- /.container-fluid -->

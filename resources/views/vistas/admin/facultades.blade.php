@@ -59,7 +59,7 @@
                                     @if($value->programa == $key)
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
                                         Estudiantes inscitos {{$est}}</button>
-                                    endif
+                                    @endif
                                     @endforeach
                                 </div>
 

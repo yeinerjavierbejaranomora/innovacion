@@ -165,7 +165,7 @@
     }
 
     //* Comprueba si el select de facultades cambia de valor/
-    $('#nuevousuario div#facultad').change(function() {
+    $('#nuevousuario select#facultad').change(function() {
         console.log('1');
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
@@ -191,10 +191,10 @@
                 success: function(data) {
                     console.log(data);
                     facultades.prop('disabled', false)
-                    $('#nuevousuario select#programas').empty();
+                    $('#nuevousuario div#programas').empty();
                     data.forEach(programa => {
                         //* Se crea un input tipo checkbox para cada programa recibido/
-                        $('#nuevousuario select#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                        $('#nuevousuario div#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 }
             });

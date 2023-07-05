@@ -59,7 +59,7 @@
                                     @foreach($estudiantes as $key => $est)
                                     @if($value->codprograma == $key)
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                        Estudiantes inscitos {{$est}}</button>
+                                        Estudiantes inscritos {{$est}}</button>
                                     @endif
                                     @endforeach
                                 </div>

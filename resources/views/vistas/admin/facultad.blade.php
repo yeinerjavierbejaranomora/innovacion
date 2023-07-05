@@ -153,13 +153,11 @@
                         className: "text-center"
                     },
                     {
-                        data: 'activo',
                         defaultContent: "Activo",
                         title: "Estado",
                         className: "text-center",
                     },
                     {
-                        data: 'activo',
                         defaultContent: "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>",
                         title: 'Inactivar',
                         className: "text-center",

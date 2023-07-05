@@ -226,7 +226,7 @@ class MafiController extends Controller
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 //dd($historial);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b[0];
+                    return $a['codMateria'] <=> $b['codMateria'];
                 });
                 dd($diff);
                 // Iniciar la transacción

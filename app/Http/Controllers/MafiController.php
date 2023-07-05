@@ -680,13 +680,18 @@ class MafiController extends Controller
     public function historialAcademico($idBanner)
     {
 
+        $data = [];
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
             ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
             ->get()->toArray();
-        $historial = array_values($historial);
-        dd($historial);
 
+        foreach($historial as $key => $value):
+            $data = [
+                [$value->codMateria, $value->codprograma],
+            ];
+        endforeach;
+        dd($data);
 
         return $historial;
     }

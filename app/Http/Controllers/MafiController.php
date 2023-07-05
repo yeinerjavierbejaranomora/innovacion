@@ -785,16 +785,16 @@ class MafiController extends Controller
 
 
 
-        $array1 = [
+        $array1 = array(
             ['id' => 1, 'name' => 'John'],
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
-        ];
+        );
         
-        $array2 = [
+        $array2 =array (
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']
-        ];
+        );
         
         $result = array_intersect($array1, $array2);
         

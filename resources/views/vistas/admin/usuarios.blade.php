@@ -335,8 +335,8 @@
                                     function(result) {
                                         if (result == "habilitado") {
                                             Swal.fire({
-                                                title: "Programa deshabilitado",
-                                                html: "El programa <strong>" + data.programa +
+                                                title: "Usuario habilitado",
+                                                html: "El usuario <strong>" + data.programa +
                                                     "</strong> ha sido habilitado",
                                                 icon: 'info',
                                                 showCancelButton: true,

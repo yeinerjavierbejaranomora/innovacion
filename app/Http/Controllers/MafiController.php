@@ -195,7 +195,7 @@ class MafiController extends Controller
                     var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
-                dd($mallaCurricular);
+                dd(count($mallaCurricular));
                 if ($numeromaterias === count($mallaCurricular)) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->idbanner,
@@ -796,7 +796,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        
+
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob'],
@@ -804,24 +804,24 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        
+
         $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);
         });
-        
+
         if (count($intersection) > 0) {
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
             dd($intersection);
-            
+
         } else {
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
             dd($intersection);
-           
+
         }
 
-       
+
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";

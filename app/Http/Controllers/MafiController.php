@@ -195,7 +195,6 @@ class MafiController extends Controller
             //dd($estudiantesAntiguos[0]->id);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
-            dd($estudiantesAntiguos[0][0]->id);
             $primerId = $estudiantesAntiguos[0][0]->id;
             $ultimoRegistroId = 0;
             //foreach($estudiantesAntiguos as $key => $estudiante):

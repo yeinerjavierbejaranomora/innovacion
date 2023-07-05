@@ -10,6 +10,7 @@ use App\Models\Mafi;
 use App\Models\MafiReplica;
 use App\Models\MateriasPorVer;
 use App\Models\Periodo;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -224,14 +225,46 @@ class MafiController extends Controller
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 //dd($historial);
-                $historial = [];
-                $intersection = array_uintersect($mallaCurricular, $historial, function($a, $b) {
-                    return $a[0] <=> $b[0];
-                });
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a[0] <=> $b[0];
                 });
-                dd($intersection,$diff);
+                dd($diff[0]);
+                // Iniciar la transacción
+                DB::beginTransaction();
+
+                try {
+                    $data = []; // Arreglo para almacenar los datos a insertar
+
+
+                    // Construir los datos a insertar en cada iteración
+                    $data[] = [
+                        'codBanner' => $estudiante->homologante,
+                        'codMateria' => $diff[0],
+                        // Añade más campos según tus necesidades
+                    ];
+
+                    // Insertar en lotes cada 1000 registros
+                    if (count($data) === 1000) {
+                        DB::table('tabla')->insert($data);
+                        $data = []; // Reiniciar el arreglo para el siguiente lote
+                    }
+
+                    // Insertar los datos restantes en el último lote
+                    if (count($data) > 0) {
+                        DB::table('tabla')->insert($data);
+                    }
+
+                    // Confirmar la transacción
+                    DB::commit();
+
+                    echo "Inserción exitosa de la gran cantidad de datos.";
+                } catch (Exception $e) {
+                    // Deshacer la transacción en caso de error
+                    DB::rollBack();
+
+                    // Manejar el error
+                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                }
             endforeach;
         });
         die();

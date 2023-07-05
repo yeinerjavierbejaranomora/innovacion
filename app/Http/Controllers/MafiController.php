@@ -805,7 +805,7 @@ class MafiController extends Controller
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
             ->where('programa', $programa->codprograma)
-            ->whereIn('marca_ingres',$marcaIngreso)
+            ->whereIn('marca_ingreso',$marcaIngreso)
             ->get();
             
        

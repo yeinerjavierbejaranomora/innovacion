@@ -176,16 +176,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $estudiantesAntiSinHistiral=DB::table('datosMafiReplica')
-                                        ->select('datosMafiReplica.idbanner','historialAcademico.codBanner AS historial')
-                                        ->join('historialAcademico','historialAcademico.codBanner','=','datosMafiReplica.idbanner')
-                                        ->where('datosMafiReplica.tipoestudiante','LIKE','ESTUDIANTE ANTIGUO%')
-                                        ->groupBy('historialAcademico.codBanner')
-                                        ->orderBy('id')
-                                        ->get()
-                                        ->chunk(200);
-        dd($estudiantesAntiSinHistiral);
-        die();
+
         /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
@@ -211,7 +202,7 @@ class MafiController extends Controller
                 foreach ($estudiantes as $key => $estudiante) :
                     //dd($estudiante);
                     $historial = $this->historialAcademico($estudiante->homologante);
-                    dd($historial->count());
+                    dd(count($historial['materias']));
                     $mallaCurricular = $this->BaseAcademica($historial['programa']);
                     foreach ($mallaCurricular as $key => $malla) :
                         foreach ($malla as $key => $value) :

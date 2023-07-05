@@ -77,10 +77,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="#">
+                            <form id="miForm" method="post" action="{{ route('registro.saveregistro') }}">
                                 @csrf
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">id Banner</label>
+                                    <label for="recipient-name" class="col-form-label">Id Banner</label>
                                     <input type="number" class="form-control" id="idbanner" name="idbanner">
                                 </div>
                                 <div>

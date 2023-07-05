@@ -196,7 +196,7 @@ class MafiController extends Controller
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
                 dd($mallaCurricular);
-                if ($numeromaterias === $mallaCurricular->count()) :
+                if ($numeromaterias === count($mallaCurricular)) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->idbanner,
                         'tipo_estudiante' => $estudiante->tipoestudiante,

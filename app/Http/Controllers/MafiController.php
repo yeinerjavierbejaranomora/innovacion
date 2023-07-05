@@ -183,7 +183,7 @@ class MafiController extends Controller
                                         ->orderBy('id')
                                         ->get()
                                         ->chunk(200);
-        dd(estudiantesAntiSinHistiral);
+        dd($estudiantesAntiSinHistiral);
         die();
         /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :

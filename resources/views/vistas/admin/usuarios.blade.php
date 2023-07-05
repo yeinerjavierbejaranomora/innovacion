@@ -96,13 +96,6 @@
                                     <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Facultad</label>
-                                    <select class="form-control" name="facultad" id="facultad">
-                                        <option value="0" selected>Ninguna</option>
-                                    </select>
-                                </div>
-                                <div id="programas"> </div>
-                                <div>
                                     <label for="message-text" class="col-form-label">Rol</label>
                                     <select class="form-control" name="tabla" id="tabla">
                                         <option value="1">Decano</option>
@@ -114,6 +107,13 @@
                                         <option value="9">Admin</option>
                                     </select>
                                 </div>
+                                <div>
+                                    <label for="message-text" class="col-form-label">Facultad</label>
+                                    <select class="form-control" name="facultad" id="facultad">
+                                        <option value="0" selected>Ninguna</option>
+                                    </select>
+                                </div>
+                                <div id="programas"> </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-success">Crear</button>

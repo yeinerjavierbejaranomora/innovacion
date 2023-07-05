@@ -58,16 +58,20 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="col-4 justify-content-center">
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevousuario" data-whatever="modal">Agregar nuevo usuario</button>
+                        </div>
+                        <br>
                     </div>
                 </div>
             </div>
 
             <!--Modal para agregar un usuario nuevo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevousuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo usuario</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

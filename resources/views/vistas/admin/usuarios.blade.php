@@ -123,10 +123,8 @@
                     </div>
                 </div>
             </div>
+            <!--Fin Modal-->
         </div>
-
-
-
 
     </div>
     <!-- /.container-fluid -->

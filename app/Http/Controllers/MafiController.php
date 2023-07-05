@@ -770,62 +770,60 @@ class MafiController extends Controller
     //     });
     //     dd($diff);
 
-
+    /// para activar el perodo activo en la base de datos
+    $periodo = $this->periodo();
+    $marcaIngreso = "";
+    foreach ($periodo as $key => $value) {
+        $marcaIngreso .= (int)$value->periodos . ",";
+    }
+    
+    // para procesasr las marcas de ingreso en los periodos
+    $marcaIngreso=trim($marcaIngreso,",");
+    // Dividir la cadena en elementos individuales
+    $marcaIngreso = explode(",", $marcaIngreso);
+    // Convertir cada elemento en un número
+    $marcaIngreso = array_map('intval', $marcaIngreso);
     /* traemos todos los programas activos para la consulta */
-      $programas= $this->get_programas();
+    $programas= $this->get_programas();
 
-      dd($programas);
-        /// para activar el perodo activo en la base de datos
-        $periodo = $this->periodo();
-        $marcaIngreso = "";
-        foreach ($periodo as $key => $value) {
-            $marcaIngreso .= (int)$value->periodos . ",";
-        }
-
-        // para procesasr las marcas de ingreso en los periodos
-        $marcaIngreso=trim($marcaIngreso,",");
-        // Dividir la cadena en elementos individuales
-        $marcaIngreso = explode(",", $marcaIngreso);
-        // Convertir cada elemento en un número
-        $marcaIngreso = array_map('intval', $marcaIngreso);
-
-
-
-          // WHERE materias_faltantes="OK"
-            // AND programado_ciclo1 IS NULL
-            // AND programado_ciclo2   IS NULL
-            // AND programa="PCPV"
-            // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
-            // AND tipo_estudiante!="XXXXX"
-            // ORDER BY id ASC
-            // LIMIT 20000;
-
-        // Estudiantes para generar faltantes
+      /** inicializamos la consulta  con  cada programa */
+    foreach ($programas as $programa) {
+        
+        // WHERE materias_faltantes="OK"
+        // AND programado_ciclo1 IS NULL
+        // AND programado_ciclo2   IS NULL
+        // AND programa="PCPV"
+        // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
+        // AND tipo_estudiante!="XXXXX"
+        // ORDER BY id ASC
+        // LIMIT 20000;
+        
+        // Estudiantes para generar faltantes por programa
         $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
             ->where('materias_faltantes','OK')
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
-            ->where('programa','PCPV')
+            ->where('programa', $programa->codprograma)
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->get();
-
-
-        if(!$consulta_homologante) {
-            die("Error: no se pudo realizar la consulta homologantes 1");
-            exit();
-        }
-
-        foreach ($consulta_homologante as $key => $value) {
-
-            $id_homologante=$value->id;
-            $codHomologante=$value->homologante;
-            $programa_homologante=$value->programa;
-
-
-            // Materias que debe ver el estudiante
-            // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
-
+            
+        dd( $consulta_homologante);
+            if(!$consulta_homologante) {
+                die("Error: no se pudo realizar la consulta homologantes 1");
+                exit();
+            }
+            
+            foreach ($consulta_homologante as $key => $value) {
+                
+                $id_homologante=$value->id;
+                $codHomologante=$value->homologante;
+                $programa_homologante=$value->programa;
+                
+                
+                // Materias que debe ver el estudiante
+                // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
+                
                 /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
                 from
                 `materiasPorVer`
@@ -837,28 +835,29 @@ class MafiController extends Controller
                 and mallaCurricular.codprograma = 'PPSV'
                 order by
                 materiasPorVer.orden ASC;*/
-
-
-            $consulta_porver= DB::table('materiasPorVer')
-            ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
-            ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
-            ->where('materiasPorVer.codBanner',$id_homologante)
-            ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma','=',$programa_homologante)
-            ->where('mallaCurricular.codprograma','=',$programa_homologante)
-            ->orderBy('materiasPorVer.orden', 'ASC')
-            ->get();
-
-
-            dd( $consulta_porver);
+                
+                
+                $consulta_porver= DB::table('materiasPorVer')
+                ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+                ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
+                ->where('materiasPorVer.codBanner',$id_homologante)
+                ->whereIn('mallaCurricular.ciclo',[1,12])
+                ->where('materiasPorVer.codprograma','=',$programa_homologante)
+                ->where('mallaCurricular.codprograma','=',$programa_homologante)
+                ->orderBy('materiasPorVer.orden', 'ASC')
+                ->get();
+                
+                
+                dd( $consulta_porver);
+            }
+            
         }
-
-        while($homologantes =$consulta_homologante) {
-
-            $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
-
-            //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";
-            //exit();
+            while($homologantes =$consulta_homologante) {
+                
+                $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
+                
+                //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";
+                //exit();
 
             // No. de creditos para el homologante
             $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM base_acdemica ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner='. $codHomologante .' group by p.codbanner ';
@@ -871,13 +870,13 @@ class MafiController extends Controller
             $creditos_homologantes = $creditos_homologantes=='' ? "0" : $creditos_homologantes;
             //echo "  creditos planeados después: " . $creditos_homologantes;
             //exit();
-
+            
             // Crécitos ciclo 1
             $consulta_creditos_C1 = 'SELECT SUM(ba.creditos) screditos, COUNT(ba.creditos) ccursos  FROM `planeacion` p INNER JOIN base_acdemica ba ON ba.codigoCurso=p.CodMateria where p.codBanner='. $codHomologante .' AND ba.ciclo IN (1, 12)';
-
+            
             //echo "consulta_creditos_C1 " . $consulta_creditos_C1;
             //exit();
-
+            
             $resultado_creditos_ciclo1 = mysql_query($consulta_creditos_C1, $link);
             //echo "  creditos planeados ciclo 1: " . $consulta_creditos_C1;
             $fila_creditos_ciclo1 = mysql_fetch_assoc($resultado_creditos_ciclo1);

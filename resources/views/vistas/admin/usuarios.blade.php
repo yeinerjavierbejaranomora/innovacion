@@ -80,7 +80,7 @@
                             <form id="miForm" method="post" action="{{ route('registro.saveregistro') }}">
                                 @csrf
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Id Banner</label>
+                                    <label for="recipient-name" class="col-form-label">ID Banner</label>
                                     <input type="number" class="form-control" id="idbanner" name="idbanner">
                                 </div>
                                 <div>
@@ -88,7 +88,7 @@
                                     <input type="number" class="form-control" id="documento" name="documento">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre</label>
+                                    <label for="message-text" class="col-form-label">Nombre completo</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>

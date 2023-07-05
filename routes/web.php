@@ -45,7 +45,6 @@ Route::controller(UserController::class)->group(function(){
     //** Ruta para activar usuario */
     Route::post('/home/activarusuario', 'activar_usuario')->middleware('auth')->name('user.activar');
     
-
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
     /** cargamos ña vista para mostarar todos los usuarios */

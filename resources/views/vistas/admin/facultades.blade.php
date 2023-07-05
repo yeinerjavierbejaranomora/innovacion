@@ -57,8 +57,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     @foreach($estudiantes as $key => $est)
-                                    <?php dd($key)?>
-                                    @if($value->programa == $key)
+                                    @if($value->codprograma == $key)
 
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
                                         Estudiantes inscitos {{$est}}</button>

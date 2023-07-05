@@ -311,8 +311,11 @@
                     } = Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
+                            '<label for="codprograma"> Codigo del programa </label>'+
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
+                            '<label for="programa"> Nombre del programa </label>'+
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
+                            '<label for="facultades"> Facultad a la que perteneces el programa </label>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
                         icon: 'info',
                         showCancelButton: true,

@@ -39,19 +39,17 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Programas facultad de </h1>
+                <h1 class="h3 mb-0 text-gray-800">Programas facultad de {{$datos['facultad']}}</h1>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
             <!-- Content Row -->
             <div class="row" id="facultades">
-
-            
-                <?php // dd($datos['estudiantes']);
-                    foreach ($datos as $key => $value) {
-                        echo $value->estudiantes;
-                        echo " ";
+                <?php dd($datos['estudiantes']);
+                
+                    foreach ($datos['estudiantes'] as $key => $value) {
+                        echo $value;
                     }; ?>
-
+                @foreach($datos['estudiantes'] as $key => $est)
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -63,7 +61,7 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
-                                    Estudiantes </button>
+                                    Estudiantes {{$est}}</button>
                                 </div>
 
                                 <div class="col-auto">
@@ -73,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 @endforeach
             </div>
 

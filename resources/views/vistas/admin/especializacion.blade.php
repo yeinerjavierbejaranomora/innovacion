@@ -156,7 +156,6 @@
                 "data": data.data,
                 "columns": [{
                         data: 'codprograma',
-                        "visible": false,
                         title: 'Codigo de programa'
                     },
                     {
@@ -280,9 +279,6 @@
                 });
             }
 
-
-
-
             /** Función para editar  */
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -297,7 +293,7 @@
                             '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
                             '<label for="programa"> Nombre de la especialización </label>' +
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
-                            '<label for="facultades"> Facultad a la que perteneces la especialización </label>' +
+                            '<label for="facultades"> Facultad a la que pertenece la especialización </label>' +
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
                         icon: 'info',
                         showCancelButton: true,

@@ -195,8 +195,8 @@ class MafiController extends Controller
                     var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
-                dd($mallaCurricular);
-                if ($numeromaterias === $mallaCurricular->count()) :
+                //dd(count($mallaCurricular[0]));
+                if ($numeromaterias === count($mallaCurricular[0])) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->idbanner,
                         'tipo_estudiante' => $estudiante->tipoestudiante,
@@ -801,7 +801,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        
+
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob'],
@@ -809,7 +809,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        
+
         $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);
         });
@@ -834,12 +834,12 @@ class MafiController extends Controller
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
             dd($intersection);
-            
+
         } else {
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
             dd($intersection);
-           
+
         }
 
        exit;

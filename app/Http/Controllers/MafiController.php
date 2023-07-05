@@ -683,9 +683,8 @@ class MafiController extends Controller
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
             ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
-            ->get();
+            ->get()->toArray();
 
-        $historial = $historial->toArray();
 
         return $historial;
     }

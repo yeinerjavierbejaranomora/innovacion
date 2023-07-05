@@ -228,7 +228,7 @@ class MafiController extends Controller
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a[0] <=> $b[0];
                 });
-                dd($diff);
+                dd($diff[0]);
                 // Iniciar la transacción
                 DB::beginTransaction();
 
@@ -239,7 +239,7 @@ class MafiController extends Controller
                     // Construir los datos a insertar en cada iteración
                     $data[] = [
                         'codBanner' => $estudiante->homologante,
-                        //'codMateria' => $dato['valor2'],
+                        'codMateria' => $diff[0],
                         // Añade más campos según tus necesidades
                     ];
 

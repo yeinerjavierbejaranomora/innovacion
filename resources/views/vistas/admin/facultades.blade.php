@@ -44,11 +44,6 @@
             </div>
             <!-- Content Row -->
             <div class="row" id="facultades">
-                <?php dd($datos['estudiantes']);
-                
-                    foreach ($datos['estudiantes'] as $key => $value) {
-                        echo $value;
-                    }; ?>
                 @foreach($datos['estudiantes'] as $key => $est)
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->

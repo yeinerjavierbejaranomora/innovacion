@@ -204,13 +204,13 @@ class facultadController extends Controller
         $codigo = $_POST['codPrograma'];
         $nombre = $_POST['nombre'];
         $codFacultad = $_POST['codFacultad'];
-        $tabla = $_POST['tabla'];
+        
 
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,
             'programa' => $nombre,
             'idFacultad' => $codFacultad,
-            'tabla' => $tabla,
+            'tabla' => 'pregrado',
         ]);
 
         if ($crear) :

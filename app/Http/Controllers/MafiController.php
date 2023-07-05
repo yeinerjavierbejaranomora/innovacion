@@ -177,7 +177,7 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
         $estudiantesAntiSinHistiral=DB::table('datosMafiReplica')
-                                        ->select('datosMafiReplica.homologante','COUNT(historialAcademico.codBanner) AS historial')
+                                        ->select('datosMafiReplica.idbanner','COUNT(historialAcademico.codBanner) AS historial')
                                         ->join('historialAcademico','historialAcademico.codBanner','=','datosMafiReplica.idbanner')
                                         ->where('datosMafiReplica.tipoestudiante','LIKE','ESTUDIANTE ANTIGUO%')
                                         ->orderBy('id')

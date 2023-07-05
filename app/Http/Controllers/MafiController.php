@@ -790,7 +790,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        dd($array1 );
+        dd($array1[0]);
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']

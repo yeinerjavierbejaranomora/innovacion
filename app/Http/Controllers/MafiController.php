@@ -177,11 +177,12 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+        $this->faltantesAntiguos();
+        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) {
                 dd($estudiante);
             }
-        });
+        });*/
         die();
         /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
@@ -603,7 +604,12 @@ class MafiController extends Controller
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             ->orderBy('id')
-            ->get();
+            ->get()
+            ->chunk(200, function($estudiantes){
+                foreach ($estudiantes as $estudiante) {
+                    dd($estudiante);
+                }
+                });
 
 
         return $estudiantesAntiguos;
@@ -798,7 +804,7 @@ class MafiController extends Controller
             $consulta_porver= DB::table('materiasPorVer')
             ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
-            ->where('materiasPorVer.codBanner','100152879')
+            ->where('materiasPorVer.codBanner','100147341')
             ->whereIn('mallaCurricular.ciclo',[1,12])
             ->where('materiasPorVer.codprograma','=',"PPSV")
             ->where('mallaCurricular.codprograma','=',"PPSV")

@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nueva maestría</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevaMaestria" data-whatever="modal">Agregar nueva maestría</button>
                         </div>
                         <br>
                     </div>
@@ -70,7 +70,7 @@
                 </div>
 
                 <!--Modal para agragar un programa nuevo-->  
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevaMaestria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -80,22 +80,19 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="route('maestria.crear')">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
-                                <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la maestría</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <input type="text" class="form-control" id="codMaestria" name="codMaestria">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre de la maestría</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <select class="form-control" name="idFacultad" id="idFacultad"></select>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -126,6 +123,23 @@
 </a>
 
 <script>
+
+function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#nuevaEsp select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+
+                })
+            }
+        })
+    }
+
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getmaestria') }}";

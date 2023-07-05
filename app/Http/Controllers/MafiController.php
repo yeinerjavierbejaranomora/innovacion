@@ -821,7 +821,7 @@ class MafiController extends Controller
                 $programa_homologante=$value->programa;
                 
                 
-                // Materias que debe ver el estudiante
+            // Materias que debe ver el estudiante
                 // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
                 
                 /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
@@ -834,7 +834,7 @@ class MafiController extends Controller
                 and materiasPorVer.codprograma= 'PPSV'
                 and mallaCurricular.codprograma = 'PPSV'
                 order by
-                materiasPorVer.orden ASC;*/
+            materiasPorVer.orden ASC;*/
                 
                 
                 $consulta_porver= DB::table('materiasPorVer')
@@ -848,10 +848,12 @@ class MafiController extends Controller
                 ->get();
                 
                 
-                dd( $consulta_porver);
+                
             }
             
         }
+        dd( $consulta_porver);
+        die();
             while($homologantes =$consulta_homologante) {
                 
                 $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';

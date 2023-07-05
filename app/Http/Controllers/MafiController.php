@@ -177,12 +177,57 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $this->faltantesAntiguos();
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            foreach ($estudiantes as $estudiante) {
-                dd($estudiante);
-            }
-        });*/
+        //$this->faltantesAntiguos();
+
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $ultimoRegistroId = 0;
+            foreach ($estudiantes as $estudiante) :
+                $primerId = $estudiante->id;
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $numeromaterias = count($historial['materias']);
+
+                if ($numeromaterias > 0) :
+                    $mallaCurricular = $this->BaseAcademica($historial['programa']);
+                else :
+                    $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+                endif;
+                foreach ($mallaCurricular as $key => $malla) :
+                    foreach ($malla as $key => $value) :
+                        if (!in_array($value->codigoCurso, $historial['materias'])) :
+                            $insertMateriaPorVer = MateriasPorVer::create([
+                                "codBanner"      => $estudiante->homologante,
+                                "codMateria"      => $value->codigoCurso,
+                                "orden"      => $value->orden,
+                                "codprograma"      => $value->codprograma,
+                            ]);
+                        endif;
+                        $registroMPV++;
+                    endforeach;
+                endforeach;
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-Antiguo',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-Antiguo',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+        });
         die();
         /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
@@ -603,13 +648,12 @@ class MafiController extends Controller
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->orderBy('id')
-            ->get()
-            ->chunk(200, function($estudiantes){
+            ->orderBy('id');
+            /*->chunk(200, function($estudiantes){
                 foreach ($estudiantes as $estudiante) {
                     dd($estudiante);
                 }
-                });
+                });*/
 
 
         return $estudiantesAntiguos;
@@ -804,10 +848,10 @@ class MafiController extends Controller
             $consulta_porver= DB::table('materiasPorVer')
             ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
-            ->where('materiasPorVer.codBanner','100147341')
+            ->where('materiasPorVer.codBanner',$id_homologante)
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma','=',"PPSV")
-            ->where('mallaCurricular.codprograma','=',"PPSV")
+            ->where('materiasPorVer.codprograma','=',$programa_homologante)
+            ->where('mallaCurricular.codprograma','=',$programa_homologante)
             ->orderBy('materiasPorVer.orden', 'ASC')
             ->get();
 

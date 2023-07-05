@@ -233,7 +233,7 @@ class MafiController extends Controller
                 DB::beginTransaction();
 
                 try {
-                    DB::table('tabla')->insert($diff);
+                    DB::table('materiasPorVer')->insert($diff);
 
                     // Confirmar la transacción
                     DB::commit();

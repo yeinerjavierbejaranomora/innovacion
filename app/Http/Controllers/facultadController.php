@@ -261,7 +261,7 @@ class facultadController extends Controller
             $cantidad = DB::table('datosMafiReplica')->where('codprograma', '=', $value->programa)->count();
             $cuenta = [$value->programa=>$cantidad];
         }
-        dd($cantidad);
+        dd($cuenta);
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,

@@ -258,7 +258,7 @@
                                         console.log(result);
                                         if (result == "deshabilitado") {
                                             Swal.fire({
-                                                title: "Programa deshabilitado",
+                                                title: "Programa habilitado",
                                                 html: "El programa <strong>" + data.programa +
                                                     "</strong> ha sido inactivado",
                                                 icon: 'info',

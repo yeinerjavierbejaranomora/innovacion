@@ -64,9 +64,9 @@
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un rol nuevo-->  
+            <!--Modal para agragar un rol nuevo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -87,7 +87,7 @@
                                     <label for="message-text" class="col-form-label">Nombre del rol</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
-    
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -167,9 +167,84 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el rol " + data.nombreRol + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Rol deshabilitado",
+                                                html: "El programa <strong>" + data.nombreRol +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el rol " + data.nombreRol + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Rol habilitado",
+                                                html: "El rol <strong>" + data.nombreRol +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+            obtener_data_inactivar("#example tbody", table);
         }
 
     }
-
 </script>
 @include('layout.footer')

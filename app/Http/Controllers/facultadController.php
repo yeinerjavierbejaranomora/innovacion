@@ -157,7 +157,7 @@ class facultadController extends Controller
         echo json_encode(array('data' => $facultad));
     }
     */
-    
+
     public function malla($codigo)
     {
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();
@@ -251,7 +251,6 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {
-
         $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
         $idFacultad = $consulta[0]->id;
 
@@ -270,18 +269,56 @@ class facultadController extends Controller
         return view('vistas.admin.facultades',['estudiantes' => $cuenta])->with('datos', $datos);
     }
 
-
     /**Función para visualizar los estudiantes de cada facultad */
     public function estudiantesFacultad($id)
     {
         $consulta = DB::table('programas')->where('id', '=', $id)->get();
         $codigo = $consulta[0]->codprograma;
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
-
-
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $estudiantes));
+    }
+
+    public function savefacultad(CrearFacultadRequest $request)
+    {
+        /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
+        $facultad = DB::table('facultad')->insert([
+            'codFacultad' => $request->codFacultad,
+            'nombre' => $request->nombre,
+        ]);
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('admin.facultades')->withErrors(['errors' => 'La facultad no se ha podido crear']);
+        endif;
+    }
+
+    public function updatefacultad()
+    {
+        $id_llegada = $_POST['id'];
+        $codFacultad = $_POST['codFacultad'];
+        $nombre = $_POST['nombre'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        /** Consulta para actualizar facultad */
+        $facultad = DB::table('facultad')
+        ->where('id', $id)
+        ->update([
+            'codFacultad' => $codFacultad,
+            'nombre' => $nombre
+        ]);
+        if ($facultad) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
     }
 }

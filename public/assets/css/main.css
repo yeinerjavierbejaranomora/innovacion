@@ -122,7 +122,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 button {
 	outline: none !important;
 	border: none;
-	background: transparent;
+	background: #d0ab4b;
 }
 
 button:hover {

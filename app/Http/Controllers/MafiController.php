@@ -827,7 +827,7 @@ class MafiController extends Controller
                 echo "ID: " . $element['id'] . ", Nombre: " . $element['name'];
             }
 
-            dd($intersection." ". $diff);
+            dd($intersection, $diff);
         } else {
             
             dd($intersection." ". $diff);
@@ -837,14 +837,14 @@ class MafiController extends Controller
         
         if (count($intersection) > 0) {
             
-            dd($intersection." ". $diff);
+            dd($intersection,$diff);
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
             dd($intersection);
 
         } else {
             
-            dd($intersection." ". $diff);
+            dd($intersection, $diff);
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
             dd($intersection);

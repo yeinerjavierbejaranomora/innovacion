@@ -44,7 +44,7 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/home/inactivarusuario', 'inactivar_usuario')->middleware('auth')->name('user.inactivar');
     //** Ruta para activar usuario */
     Route::post('/home/activarusuario', 'activar_usuario')->middleware('auth')->name('user.activar');
-    Route::post('/home/crearusuario', 'crear_usuario')->middleware('auth')->name('user.crear');
+    
 
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
@@ -87,6 +87,8 @@ Route::controller(RegistroController::class)->group(function(){
     Route::post('/registro/programas','programas')->name('registro.programas');
     /** para salvar todos los registros */
     Route::post('/registro/save','saveRegistro')->name('registro.saveregistro');
+    /** crear usuario */
+    Route::post('/home/crearusuario', 'crearUsuario')->middleware('auth')->name('user.crear');
 });
 
 

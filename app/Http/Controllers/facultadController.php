@@ -143,7 +143,7 @@ class facultadController extends Controller
     }
 
     /** Función para mostrar los programas según el id de la facultad */
-    public function mostrarfacultad($id_llegada)
+   /*  public function mostrarfacultad($id_llegada)
     {
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
@@ -151,12 +151,13 @@ class facultadController extends Controller
         $facultad = DB::table('programas')->select('id', 'codprograma', 'programa', 'tabla','activo')
             ->where('idFacultad', '=', $id)
             ->where('activo', '=', 1)->get();
-        /**mostrar los datos en formato JSON */
+        mostrar los datos en formato JSON 
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
+        /**Se pasa a formato JSON el arreglo de users 
         echo json_encode(array('data' => $facultad));
     }
-
+    */
+    
     public function malla($codigo)
     {
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();

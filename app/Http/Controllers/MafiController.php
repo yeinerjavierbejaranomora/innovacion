@@ -177,15 +177,16 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
                 dd($estudiante);
             endforeach;
-        endforeach;
+        endforeach;*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
-            $estudiantesAntiguos = $this->faltantesAntiguos();
+            //$estudiantesAntiguos = $this->faltantesAntiguos();
+            $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
             else :
             return "No hay estudiantes de primer ingreso";
         endif;
@@ -194,27 +195,33 @@ class MafiController extends Controller
             //dd($estudiantesAntiguos[0]->id);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
-            $primerId = $estudiantesAntiguos[0]->id;
+            $primerId = $estudiantesAntiguos[0][0]->id;
             $ultimoRegistroId = 0;
-            foreach($estudiantesAntiguos as $key => $estudiante):
-                $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                foreach($mallaCurricular as $key => $malla):
-                    foreach($malla as $key => $value):
-                        if(!in_array($value->codigoCurso, $historial['materias'])):
-                            $insertMateriaPorVer = MateriasPorVer::create([
-                                "codBanner"      => $estudiante->homologante,
-                                "codMateria"      => $value->codigoCurso,
-                                "orden"      => $value->orden,
-                                "codprograma"      => $value->codprograma,
-                            ]);
-                        endif;
-                        $registroMPV++;
+            //foreach($estudiantesAntiguos as $key => $estudiante):
+            foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+                foreach ($estudiantes as $key => $estudiante) :
+                    //dd($estudiante);
+
+                    $historial = $this->historialAcademico($estudiante->homologante);
+                    $mallaCurricular = $this->BaseAcademica($historial['programa']);
+                    foreach ($mallaCurricular as $key => $malla) :
+                        foreach ($malla as $key => $value) :
+                            if (!in_array($value->codigoCurso, $historial['materias'])) :
+                                $insertMateriaPorVer = MateriasPorVer::create([
+                                    "codBanner"      => $estudiante->homologante,
+                                    "codMateria"      => $value->codigoCurso,
+                                    "orden"      => $value->orden,
+                                    "codprograma"      => $value->codprograma,
+                                ]);
+                            endif;
+                            $registroMPV++;
+                        endforeach;
                     endforeach;
+                    $ultimoRegistroId = $estudiante->id;
+                    $idBannerUltimoRegistro = $estudiante->homologante;
                 endforeach;
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
+            //endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,

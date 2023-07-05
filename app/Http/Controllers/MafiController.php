@@ -630,7 +630,7 @@ class MafiController extends Controller
         $programa = array();
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
-            ->where('codBanner', '=', $idBanner)
+            ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
             ->get();
         foreach ($historial as $key => $value) :
             $materias_vistas[$contacor_vistas] = strtoupper($value->codMateria);

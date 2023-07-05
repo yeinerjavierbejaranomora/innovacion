@@ -154,29 +154,15 @@
                     },
                     {
                         data: 'activo',
-                        defaultContent: "",
+                        defaultContent: "Activo",
                         title: "Estado",
                         className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return 'Activo';
-                            } else if (data == '0') {
-                                return 'Inactivo';
-                            }
-                        }
                     },
                     {
                         data: 'activo',
-                        defaultContent: "",
-                        title: 'Inactivar / Activar',
+                        defaultContent: "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>",
+                        title: 'Inactivar',
                         className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                            } else if (data == '0') {
-                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
-                            }
-                        }
                     },
                 ],
                 "language": {

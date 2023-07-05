@@ -185,7 +185,7 @@ class MafiController extends Controller
         endforeach;*/
         $estudiantesAntiguos = $this->faltantesAntiguos();
         if(!empty($estudiantesAntiguos)):
-            dd($estudiantesAntiguos);
+            dd($estudiantesAntiguos[0]->id);
         else:
             return "No hay estudiantes ANTIGUOS";
         endif;

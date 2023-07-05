@@ -80,11 +80,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('especializacion.crear') }}">
                                 @csrf
-                                <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo de la especializacion</label>
                                     <input type="text" class="form-control" id="codEsp" name="codEsp">
@@ -95,7 +92,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select class="form-control" name="codFacultad" id="codFacultad"></select>
+                                    <select class="form-control" name="idFacultad" id="idFacultad"></select>
                                 </div>
                         </div>
                         <div class="modal-footer">

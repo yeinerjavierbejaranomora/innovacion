@@ -244,6 +244,27 @@ class facultadController extends Controller
         endif;
     }
 
+    public function crear_maestria()
+    {
+        $codigo = $_POST['codMaestria'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['codFacultad'];
+        // Consulta para insertar nueva especialización
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => 'MAESTRIA',
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.maestria')->with('message', 'Especialización creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.maestria')->with(['errors' => 'La especialización no ha podido ser creada']);
+        endif;
+    }
+
     /** Función que actualiza los datos de programa */
     public function update_programa()
     {

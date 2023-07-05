@@ -187,6 +187,11 @@ Route::controller(facultadController::class)->group(function(){
     Route::post('/home/inactivarfacultad', 'inactivar_facultad')->middleware('auth')->name('facultad.inactivar');
     //** Ruta para activar facultad */
     Route::post('/home/activarfacultad', 'activar_facultad')->middleware('auth')->name('facultad.activar');
+
+    /**Ruta para crear especializacion */
+    Route::post('/home/crearespecializacion', 'crear_esp')->middleware('auth')->name('especializacion.crear');
+    /** Ruta para crear maestría */
+    Route::post('/home/crearespecializacion', 'crear_meastria')->middleware('auth')->name('maestria.crear');
 });
 
 

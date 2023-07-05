@@ -198,7 +198,7 @@ class MafiController extends Controller
                 //dd(count($mallaCurricular[0]));
                 if ($numeromaterias === count($mallaCurricular[0])) :
                     $insertAlerta = AlertasTempranas::create([
-                        'idbanner' => $estudiante->homologante,
+                        'idbanner' => $estudiante->idbanner,
                         'tipo_estudiante' => $estudiante->tipoestudiante,
                         'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' ya vio todas las materias',
                     ]);
@@ -819,27 +819,32 @@ class MafiController extends Controller
         if (count($diff) > 0) {
 
 
-            dd($intersection);
+           
 
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
             foreach ($diff as $element) {
                 echo "ID: " . $element['id'] . ", Nombre: " . $element['name'];
             }
-            dd($intersection);
+
+            dd($intersection, $diff);
         } else {
+            
+            dd($intersection." ". $diff);
             // Todos los elementos de $array1 están en $array2
             echo "Todos los elementos están presentes en el segundo arreglo.";
-
-            dd($intersection);
         }
         
         if (count($intersection) > 0) {
+            
+            dd($intersection,$diff);
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";
             dd($intersection);
 
         } else {
+            
+            dd($intersection, $diff);
             // Ningún elemento de $array1 existe en $array2
             echo "No existen elementos en común en ambos arreglos.";
             dd($intersection);

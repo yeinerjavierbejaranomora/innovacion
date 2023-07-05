@@ -98,6 +98,7 @@
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
                                     <select class="form-control" name="facultad" id="facultad">
+                                        <option value="0" selected>ninguna</option>
                                     </select>
                                 </div>
 

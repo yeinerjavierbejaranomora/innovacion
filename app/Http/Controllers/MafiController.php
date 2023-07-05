@@ -177,13 +177,19 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-            foreach ($estudiantes as $key => $value) :
-                dd($value);
+            foreach ($estudiantes as $key => $estudiante) :
+                dd($estudiante);
             endforeach;
-        endforeach;*/
-        $estudiantesAntiguos = $this->faltantesAntiguos();
+        endforeach;
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $estudiantesAntiguos = $this->faltantesAntiguos();
+            else :
+            return "No hay estudiantes de primer ingreso";
+        endif;
+
         if(!empty($estudiantesAntiguos)):
             //dd($estudiantesAntiguos[0]->id);
             $fechaInicio = date('Y-m-d H:i:s');
@@ -196,15 +202,37 @@ class MafiController extends Controller
                 foreach($mallaCurricular as $key => $malla):
                     foreach($malla as $key => $value):
                         if(!in_array($value->codigoCurso, $historial['materias'])):
-                            var_dump("No Esta <br>");
-                        else:
-                            var_dump("Esta <br>");
+                            $insertMateriaPorVer = MateriasPorVer::create([
+                                "codBanner"      => $estudiante->homologante,
+                                "codMateria"      => $value->codigoCurso,
+                                "orden"      => $value->orden,
+                                "codprograma"      => $value->codprograma,
+                            ]);
                         endif;
+                        $registroMPV++;
                     endforeach;
                 endforeach;
-                die();
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-Antiguo',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-Antiguo',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         else:
             return "No hay estudiantes ANTIGUOS";
         endif;
@@ -259,7 +287,7 @@ class MafiController extends Controller
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert',
+                'accion' => 'Insert-Transferente',
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante transferente, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
@@ -310,7 +338,7 @@ class MafiController extends Controller
 
             $insertIndiceCambio = IndiceCambiosMafi::create([
                 'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert',
+                'accion' => 'Insert-PrimerIngreso',
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
@@ -737,24 +765,27 @@ class MafiController extends Controller
             // Materias que debe ver el estudiante
             // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
 
-                /*SELECT materiasPorVer.codBanner, materiasPorVer.codMateria, materiasPorVer.orden ,mallaCurricular.creditos, mallaCurricular.ciclo
-                FROM materiasPorVer materiasPorVer
-                INNER JOIN mallaCurricular mallaCurricular ON materiasPorVer.codMateria=mallaCurricular.codigoCurso
-                WHERE codBanner=100152879
-                AND mallaCurricular.ciclo IN (1, 12)
-                AND materiasPorVer.codprograma = "PPSV"
-                AND mallaCurricular.codprograma = "PPSV"
-                ORDER BY materiasPorVer.orden ASC;*/
+                /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
+                from
+                `materiasPorVer`
+                inner join `mallaCurricular` on `materiasPorVer`.`codMateria` = `mallaCurricular`.`codigoCurso`
+                where
+                `codBanner` = 100152879
+                and mallaCurricular.ciclo   in (1, 12)
+                and materiasPorVer.codprograma= 'PPSV'
+                and mallaCurricular.codprograma = 'PPSV'
+                order by
+                materiasPorVer.orden ASC;*/
 
 
             $consulta_porver= DB::table('materiasPorVer')
             ->join('mallaCurricular ', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo ')
-            ->where('codBanner','100152879')
+            ->where('materiasPorVer.codBanner','100152879')
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma','PPSV')
-            ->where('mallaCurricular.codprograma','PPSV')
-            ->orderBy('materiasPorVer.orden', 'asc')
+            ->where('materiasPorVer.codprograma',"PPSV")
+            ->where('mallaCurricular.codprograma',"PPSV")
+            ->orderBy('materiasPorVer.orden', 'ASC')
             ->get();
 
 

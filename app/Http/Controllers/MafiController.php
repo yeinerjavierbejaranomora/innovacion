@@ -185,7 +185,15 @@ class MafiController extends Controller
         endforeach;*/
         $estudiantesAntiguos = $this->faltantesAntiguos();
         if(!empty($estudiantesAntiguos)):
-            dd($estudiantesAntiguos[0]->id);
+            //dd($estudiantesAntiguos[0]->id);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantesAntiguos[0]->id;
+            $ultimoRegistroId = 0;
+            foreach($estudiantesAntiguos as $key => $estudiante):
+                dd($estudiante);
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
         else:
             return "No hay estudiantes ANTIGUOS";
         endif;

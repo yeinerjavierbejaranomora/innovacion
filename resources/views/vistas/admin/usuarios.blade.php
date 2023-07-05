@@ -81,23 +81,23 @@
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">ID Banner</label>
-                                    <input type="number" class="form-control" id="idbanner" name="id_banner">
+                                    <input type="number" placeholder="ID Banner" class="form-control" id="idbanner" name="id_banner" required>
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Documento de identidad</label>
-                                    <input type="number" class="form-control" id="documento" name="documento">
+                                    <input type="number" placeholder="Documento de identidad" class="form-control" id="documento" name="documento" required>
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre completo</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" placeholder="Nombre completo" class="form-control" id="nombre" name="nombre" required>
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Correo electronico</label>
-                                    <input type="email" class="form-control" id="correo" name="email">
+                                    <input type="email" placeholder="Correo electronico" class="form-control" id="correo" name="email" required>
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Rol</label>
-                                    <select class="form-control" name="id_rol" id="rol">
+                                    <select class="form-control" name="id_rol" id="rol" required>
                                         <option value="1">Decano</option>
                                         <option value="2">Director</option>
                                         <option value="3">Coordinador</option>

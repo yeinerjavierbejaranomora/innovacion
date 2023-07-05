@@ -170,7 +170,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post("{{ route('programa.inactivar') }}", {
+                                $.post("{{ route('user.inactivar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: data.id,
                                     },
@@ -205,7 +205,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post("{{ route('programa.activar') }}", {
+                                $.post("{{ route('user.activar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: data.id,
                                     },

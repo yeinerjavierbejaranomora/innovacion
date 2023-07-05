@@ -325,7 +325,6 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            console.log(facultad);
                             $.post("{{ route('programa.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),

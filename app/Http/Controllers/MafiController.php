@@ -224,7 +224,9 @@ class MafiController extends Controller
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 //dd($historial);
-                $intersection = array_intersect_assoc($mallaCurricular, $historial);
+                $intersection = array_uintersect($mallaCurricular, $historial, function($a, $b) {
+                    return $a[0] <=> $b[0];
+                });
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a[0] <=> $b[0];
                 });

@@ -195,21 +195,29 @@ class MafiController extends Controller
                     var_dump($estudiante->homologante ,", id: ".$estudiante->id);
                     $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 endif;
-                foreach ($mallaCurricular as $key => $malla) :
-                    foreach ($malla as $key => $value) :
-                        if (!in_array($value->codigoCurso, $historial['materias'])) :
-                            $insertMateriaPorVer = MateriasPorVer::create([
-                                "codBanner"      => $estudiante->homologante,
-                                "codMateria"      => $value->codigoCurso,
-                                "orden"      => $value->orden,
-                                "codprograma"      => $value->codprograma,
-                            ]);
-                        endif;
-                        $registroMPV++;
+                if ($numeromaterias === $mallaCurricular->count()) :
+                    $insertAlerta = AlertasTempranas::create([
+                        'idbanner' => $estudiante->idbanner,
+                        'tipo_estudiante' => $estudiante->tipoestudiante,
+                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' ya vio todas las materias',
+                    ]);
+                else :
+                    foreach ($mallaCurricular as $key => $malla) :
+                        foreach ($malla as $key => $value) :
+                            if (!in_array($value->codigoCurso, $historial['materias'])) :
+                                $insertMateriaPorVer = MateriasPorVer::create([
+                                    "codBanner"      => $estudiante->homologante,
+                                    "codMateria"      => $value->codigoCurso,
+                                    "orden"      => $value->orden,
+                                    "codprograma"      => $value->codprograma,
+                                ]);
+                            endif;
+                            $registroMPV++;
+                        endforeach;
                     endforeach;
-                endforeach;
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
+                    $ultimoRegistroId = $estudiante->id;
+                    $idBannerUltimoRegistro = $estudiante->homologante;
+                endif;
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([
@@ -795,7 +803,7 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']
         ];
-        
+
         $result = array_intersect($array1, $array2);
 
         if (count($result) > 0) {

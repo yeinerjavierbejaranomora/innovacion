@@ -223,7 +223,7 @@ class MafiController extends Controller
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                dd($historial);
+                //dd($historial);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codigoCurso'] <=> $b['codMateria'];
                 });
@@ -665,6 +665,7 @@ class MafiController extends Controller
     {
         //Obtener la base academica del programa seleccionado
 
+        $data = [];
         $mallaCurricular = DB::table('mallaCurricular')
         ->join('programas', 'programas.codprograma', '=', 'mallaCurricular.codprograma')
         ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden', 'mallaCurricular.codprograma')
@@ -672,7 +673,11 @@ class MafiController extends Controller
             ->orderBy('semestre', 'asc')
             ->orderBy('orden', 'asc')
             ->get();
-        //dd($mallaCurricular);
+
+        foreach ($mallaCurricular as $key => $value) :
+            $data[] = [$value->codMateria, $value->codprograma];
+        endforeach;
+        dd($data);
         return $mallaCurricular;
     }
 
@@ -689,9 +694,9 @@ class MafiController extends Controller
         foreach($historial as $key => $value):
             $data[] = [$value->codMateria, $value->codprograma];
         endforeach;
-        dd($data);
+        //dd($data);
 
-        return $historial;
+        return $data;
     }
 
     //*** funcion para activar los periodos automaticamente */

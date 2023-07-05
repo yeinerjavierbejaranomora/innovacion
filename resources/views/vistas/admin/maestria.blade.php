@@ -133,7 +133,7 @@ function facultades() {
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevaMaestria select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevaMaestria select#idFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
 
                 })
             }

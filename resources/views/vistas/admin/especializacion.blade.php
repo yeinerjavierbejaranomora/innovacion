@@ -134,7 +134,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevaEsp select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevaEsp select#idFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
 
                 })
             }

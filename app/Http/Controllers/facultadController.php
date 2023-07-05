@@ -82,11 +82,11 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programa.activo')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo')
             ->where('programas.tabla', '=', 'especializacion')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
+        /**Se pasa a formato JSON el arreglo de programas */
         echo json_encode(array('data' => $programas));
     }
 
@@ -251,16 +251,19 @@ class facultadController extends Controller
 
     public function programasUsuario($nombre)
     {
+        // Se obtiene el id del programa que recibe el metodo
         $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
         $idFacultad = $consulta[0]->id;
-
+        // Se consulta cuales son los programas que se encuentran activos
         $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id', 'codprograma')->get();
         $cuenta = array();
+        // Con este foreach se cuentan los alumnos inscritos en el programa
         foreach ($programas as $key => $value) {
             $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
             // array_push($cuenta, $cantidad);
             $cuenta[$value->codprograma] = $cantidad; 
         }
+        // Se almacena el nombre de la facultad y los programas que se encuentra activos en la variable datos 
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,

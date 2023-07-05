@@ -68,7 +68,7 @@ class facultadController extends Controller
     {
         /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo','programas.idFacultad', 'facultad.nombre')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
             ->where('programas.tabla', '=', 'pregrado')->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
@@ -210,12 +210,12 @@ class facultadController extends Controller
             'codprograma' => $codigo,
             'programa' => $nombre,
             'idFacultad' => $codFacultad,
-            'tabla' =>$tabla,
+            'tabla' => $tabla,
         ]);
 
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.programas')->with('message','Programa creado correctamente');
+            return redirect()->route('facultad.programas')->with('message', 'Programa creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.programas')->with(['errors' => 'El programa no ha podido ser creado']);
@@ -235,7 +235,7 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
-        $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre , 'idFacultad' =>$idfacultad]);
+        $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
@@ -249,27 +249,24 @@ class facultadController extends Controller
     /** Función para visualizar la vista de los programas del usuario */
 
     public function programasUsuario($nombre)
-    {     
+    {
 
-        $consulta = DB::table('facultad')->where('nombre','=',$nombre)->get();
-        $idFacultad=$consulta[0]->id;
-        
-        $programas = DB::table('programas')->where('idFacultad','=',$idFacultad)->where('activo','=',1)->select('programa','id')->get();
-        
-       /**  foreach ($programas as $key => $value)
-        {
-            $cantidad = DB::table('datosMafiReplica')->where('codprograma','=',$value->programa)->count();
-            $cuenta = array();
-            $cuenta[$value] = $cantidad[0];
-            
+        $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
+        $idFacultad = $consulta[0]->id;
+
+        $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id')->get();
+
+        $cuenta = array();
+        foreach ($programas as $key => $value) {
+            $cantidad = DB::table('datosMafiReplica')->where('codprograma', '=', $value->programa)->count();
+            $cuenta = [$value->programa=>$cantidad];
         }
-        dd($cuenta);
-        */
-        $datos= array(
+        dd($cantidad);
+        $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,
         );
-        
+
         return view('vistas.admin.facultades')->with('datos', $datos);
     }
 
@@ -277,15 +274,14 @@ class facultadController extends Controller
     /**Función para visualizar los estudiantes de cada facultad */
     public function estudiantesFacultad($id)
     {
-        $consulta = DB::table('programas')->where('id','=',$id)->get();
-        $codigo=$consulta[0]->codprograma;
+        $consulta = DB::table('programas')->where('id', '=', $id)->get();
+        $codigo = $consulta[0]->codprograma;
         $estudiantes = DB::table('datosMafiReplica')->where('programa', '=', $codigo)->get();
-        
+
 
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $estudiantes));
-
     }
 }

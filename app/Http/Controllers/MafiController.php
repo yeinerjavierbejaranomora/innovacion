@@ -194,9 +194,15 @@ class MafiController extends Controller
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 foreach($mallaCurricular as $key => $malla):
-                    dd($malla);
-                    
+                    foreach($malla as $key => $value):
+                        if(!in_array($value->codigoCurso, $historial['materias'])):
+                            var_dump("No Esta <br>");
+                        else:
+                            var_dump("Esta <br>");
+                        endif;
+                    endforeach;
                 endforeach;
+                die();
             endforeach;
             $fechaFin = date('Y-m-d H:i:s');
         else:

@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo rol</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoRol" data-whatever="modal">Agregar nuevo rol</button>
                         </div>
                         <br>
                     </div>
@@ -182,7 +182,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post("{{ route('programa.inactivar') }}", {
+                                $.post("{{ route('rol.inactivar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: data.id,
                                     },
@@ -191,7 +191,7 @@
                                         if (result == "deshabilitado") {
                                             Swal.fire({
                                                 title: "Rol deshabilitado",
-                                                html: "El programa <strong>" + data.nombreRol +
+                                                html: "El Rol <strong>" + data.nombreRol +
                                                     "</strong> ha sido inactivado",
                                                 icon: 'info',
                                                 showCancelButton: true,
@@ -217,7 +217,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post("{{ route('programa.activar') }}", {
+                                $.post("{{ route('rol.activar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: data.id,
                                     },

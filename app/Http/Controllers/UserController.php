@@ -409,6 +409,27 @@ class UserController extends Controller
         endif;
     }
 
+    public function inactivar_rol()
+    {
+        $id = $_POST['id'];
+        $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarRol) :
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    public function activar_rol()
+    {
+        $id = $_POST['id'];
+        $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($activarRol) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
 

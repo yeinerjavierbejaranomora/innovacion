@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="post" action="{{ route('registro.saveregistro') }}">
+                            <form id="miForm" method="post" action="{{ route('user.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="recipient-name" class="col-form-label">ID Banner</label>
@@ -113,7 +113,7 @@
                                         <option value="0" selected>Ninguna</option>
                                     </select>
                                 </div>
-                                <div id="programas"> </div>
+                                <div class="form-control" id="programas"> </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-success">Crear</button>
@@ -123,10 +123,8 @@
                     </div>
                 </div>
             </div>
+            <!--Fin Modal-->
         </div>
-
-
-
 
     </div>
     <!-- /.container-fluid -->

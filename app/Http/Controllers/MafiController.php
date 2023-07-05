@@ -774,11 +774,11 @@ class MafiController extends Controller
             return in_array($item, $array2);
         });
 
-        dd($intersection);
 
         $diff = array_udiff($array1, $array2, function($a, $b) {
-            return $a['id'] <=> $b['id'];
+            return $a['name'] <=> $b['name'];
         });
+        dd($diff);
 
         if (count($diff) > 0) {
             // Hay elementos en $array1 que no están en $array2

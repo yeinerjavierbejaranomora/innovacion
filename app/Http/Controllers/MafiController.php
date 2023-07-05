@@ -790,14 +790,15 @@ class MafiController extends Controller
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 3, 'name' => 'Alice']
         ];
-        dd($array1[0]);
+   
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
             ['id' => 4, 'name' => 'Bob']
         ];
         
         $result = array_intersect($array1, $array2);
-
+dd(
+    $result);
         if (count($result) > 0) {
 
             dd( $result);

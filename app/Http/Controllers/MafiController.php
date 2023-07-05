@@ -186,7 +186,6 @@ class MafiController extends Controller
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $estudiantesAntiguos = $this->faltantesAntiguos();
-            dd($estudiantesAntiguos);
             else :
             return "No hay estudiantes de primer ingreso";
         endif;

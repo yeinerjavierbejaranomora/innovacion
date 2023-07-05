@@ -184,6 +184,7 @@ class MafiController extends Controller
             $registroMPV = 0;
             $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
+                dd($estudiante);
                 $primerId = $estudiante->id;
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $numeromaterias = count($historial['materias']);

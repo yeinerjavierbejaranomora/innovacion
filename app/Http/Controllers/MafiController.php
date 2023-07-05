@@ -687,9 +687,7 @@ class MafiController extends Controller
             ->get()->toArray();
 
         foreach($historial as $key => $value):
-            $data = [
-                [$value->codMateria, $value->codprograma],
-            ];
+            $data[] = [$value->codMateria, $value->codprograma];
         endforeach;
         dd($data);
 

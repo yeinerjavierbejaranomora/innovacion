@@ -177,8 +177,13 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
-        foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            foreach ($estudiantes as $estudiante) {
+                dd($estudiante);
+            }
+        });
+        die();
+        /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
                 dd($estudiante);
             endforeach;
@@ -631,7 +636,7 @@ class MafiController extends Controller
     public function historialAcademico($idBanner)
     {
         $contacor_vistas = 0;
-        $materias_vista = array();
+        $materias_vistas = array();
         $programa = array();
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')
@@ -791,12 +796,12 @@ class MafiController extends Controller
 
 
             $consulta_porver= DB::table('materiasPorVer')
-            ->join('mallaCurricular ', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
-            ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo ')
+            ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+            ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
             ->where('materiasPorVer.codBanner','100152879')
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma',"PPSV")
-            ->where('mallaCurricular.codprograma',"PPSV")
+            ->where('materiasPorVer.codprograma','=',"PPSV")
+            ->where('mallaCurricular.codprograma','=',"PPSV")
             ->orderBy('materiasPorVer.orden', 'ASC')
             ->get();
 

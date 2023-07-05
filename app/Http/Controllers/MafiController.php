@@ -631,7 +631,7 @@ class MafiController extends Controller
     public function historialAcademico($idBanner)
     {
         $contacor_vistas = 0;
-        $materias_vista = array();
+        $materias_vistas = array();
         $programa = array();
         $historial = DB::table('historialAcademico')
             ->select('codMateria', 'codprograma')

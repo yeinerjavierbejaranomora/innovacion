@@ -685,6 +685,7 @@ class MafiController extends Controller
             ->where([['codBanner', '=', $idBanner],['codMateria','<>','na']])
             ->get()->toArray();
         $historial = array_values($historial);
+        dd($historial);
 
 
         return $historial;

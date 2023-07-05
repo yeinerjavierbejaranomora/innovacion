@@ -770,7 +770,11 @@ class MafiController extends Controller
     //     });
     //     dd($diff);
 
-      $this->get_programas();
+
+    /* traemos todos los programas activos para la consulta */
+      $programas= $this->get_programas();
+
+      dd($programas);
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";

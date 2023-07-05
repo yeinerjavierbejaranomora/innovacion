@@ -177,8 +177,13 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
-        foreach ($estudiantesAntiguos as $keys => $estudiantes) :
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            foreach ($estudiantes as $estudiante) {
+                dd($estudiante);
+            }
+
+        });
+        /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
                 dd($estudiante);
             endforeach;

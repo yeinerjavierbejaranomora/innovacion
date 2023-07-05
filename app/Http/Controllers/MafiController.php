@@ -804,10 +804,7 @@ class MafiController extends Controller
 
         $array2 = [
             ['id' => 2, 'name' => 'Jane'],
-            ['id' => 4, 'name' => 'Bob'],
-            ['id' => 1, 'name' => 'John'],
-            ['id' => 2, 'name' => 'Jane'],
-            ['id' => 3, 'name' => 'Alice']
+           
         ];
 
         $intersection = array_filter($array1, function ($item) use ($array2) {
@@ -820,14 +817,21 @@ class MafiController extends Controller
         });
 
         if (count($diff) > 0) {
+
+
+            dd($intersection);
+
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
             foreach ($diff as $element) {
                 echo "ID: " . $element['id'] . ", Nombre: " . $element['name'];
             }
+            dd($intersection);
         } else {
             // Todos los elementos de $array1 están en $array2
             echo "Todos los elementos están presentes en el segundo arreglo.";
+
+            dd($intersection);
         }
 
         if (count($intersection) > 0) {

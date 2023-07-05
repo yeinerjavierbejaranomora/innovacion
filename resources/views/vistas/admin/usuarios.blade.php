@@ -110,7 +110,7 @@
                         title: 'Rol'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar'
                     },
                     {
@@ -133,9 +133,9 @@
                         className: "text-center",
                         render: function(data, type, row) {
                             if (data == '1') {
-                                return "<button class='eliminar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
                             } else if (data == '0') {
-                                return "<button class='eliminar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
                             }
                         }
                     }
@@ -157,52 +157,77 @@
             }
 
             function obtener_data_inactivar(tbody, table) {
-                $(tbody).on("click", "button.eliminar", function() {
+                $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
-                    Swal.fire({
-                        title: "Desea eliminar el usuario " + data.nombre,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        showCloseButton: true,
-                        cancelButtonColor: '#DC3545',
-                        cancelButtonText: "No, Cancelar",
-                        confirmButtonText: "Si"
-                    }).then(result => {
-                        if (result.value) {
-                            $.post('{{ route('user.inactivar') }}', {
-                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                id: encodeURIComponent(window.btoa(data.id)),
-                            }, function(result) {
-                                if (result == "true") {
-                                    Swal.fire({
-                                        title: "Usuario eleminado",
-                                        html: "El usuario <strong>" + data.nombre +
-                                            " con el documento " + data.documento +
-                                            "</strong> a sido dado de baja",
-                                        icon: 'info',
-                                        showCancelButton: true,
-                                        confirmButtonText: "Aceptar",
-                                        cancelButtonText: "Deshacer",
-                                        cancelButtonColor: '#DC3545',
-                                    }).then(result => {
-                                        if (result.value) {
-                                            location.reload();
-                                        } else {
-                                            $.post('{{ route('user.deshacerinactivar') }}', {
-                                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                                id: encodeURIComponent(window.btoa(data.id)),
-                                            }, function(result) {
-                                                if (result == 'true') {
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el usuario " + data.nombre + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Usuario deshabilitado",
+                                                html: "El programa <strong>" + data.nombre +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
                                                     location.reload();
-                                                }
-                                            });
+                                                };
+                                            })
                                         }
-                                    });
-                                }
-                            })
+                                    })
+                            }
+                        });
 
-                        }
-                    });
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el usuario " + data.nombre + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: data.id,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Programa deshabilitado",
+                                                html: "El programa <strong>" + data.programa +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
                 });
             }
 

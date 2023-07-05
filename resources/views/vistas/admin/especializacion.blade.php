@@ -26,6 +26,9 @@
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>
+                <div>
+                    <input type="text" id="facultadEditar" value='' name="facultadEditar" hidden>
+                </div>
             </div>
 
 
@@ -181,6 +184,76 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
+
+            /** Función para editar  */
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    $('#facultadEditar').val(data.idFacultad);
+                    const {
+                        value: facultad
+                    } = Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<label for="codprograma"> Codigo de la especialización </label>'+
+                            '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
+                            '<label for="programa"> Nombre de la especialización </label>'+
+                            '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
+                            '<label for="facultades"> Facultad a la que perteneces la especialización </label>'+
+                            ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        if (result.value) {
+                            console.log(facultad);
+                            $.post("{{ route('programa.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codigo: $(document).find('#codprograma').val(),
+                                    programa: $(document).find('#programa').val(),
+                                    idfacultad: $(document).find('#facultades').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+                    facultades();
+
+                    function facultades() {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('registro.facultades') }}",
+                            method: 'post',
+                            success: function(data) {
+                                data.forEach(facultad => {
+                                    if ($('#facultadEditar').val() != facultad.id) {
+                                        $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                                    };
+                                })
+                            }
+                        })
+                    }
+                });
+            }
+            obtener_data_editar("#example tbody", table);
+
             console.log(table);
 
         }

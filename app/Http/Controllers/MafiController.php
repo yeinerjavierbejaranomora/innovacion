@@ -774,9 +774,9 @@ class MafiController extends Controller
             return in_array($item, $array2);
         });
 
-        dd($intersection);
 
         $diff = array_udiff($array1, $array2, function($a, $b) {
+            dd($a);
             return $a['id'] <=> $b['id'];
         });
 

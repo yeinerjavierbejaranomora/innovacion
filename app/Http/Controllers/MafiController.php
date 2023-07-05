@@ -182,7 +182,8 @@ class MafiController extends Controller
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                dd($historial);
+                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+                dd($mallaCurricular->count());
             endforeach;
         });
         die();
@@ -619,22 +620,14 @@ class MafiController extends Controller
     public function BaseAcademica($programa)
     {
         //Obtener la base academica del programa seleccionado
-        if (!is_array($programa)) :
-            $programa = [
-                '0' => $programa,
-            ];
-        endif;
-        //dd($programa);
-        foreach ($programa as $value) :
-            $mallaCurricular[] = DB::table('mallaCurricular')
-                ->join('programas', 'programas.codprograma', '=', 'mallaCurricular.codprograma')
-                ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden', 'mallaCurricular.codprograma')
-                ->where([['programas.activo', '=', 1], ['mallaCurricular.codprograma', '=', $value]])
-                ->orderBy('semestre', 'asc')
-                ->orderBy('orden', 'asc')
-                ->get();
 
-        endforeach;
+        $mallaCurricular = DB::table('mallaCurricular')
+        ->join('programas', 'programas.codprograma', '=', 'mallaCurricular.codprograma')
+        ->select('mallaCurricular.codigoCurso', 'mallaCurricular.orden', 'mallaCurricular.codprograma')
+        ->where([['programas.activo', '=', 1], ['mallaCurricular.codprograma', '=', $programa]])
+            ->orderBy('semestre', 'asc')
+            ->orderBy('orden', 'asc')
+            ->get();
         //dd($mallaCurricular);
         return $mallaCurricular;
     }

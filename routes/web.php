@@ -58,17 +58,18 @@ Route::controller(UserController::class)->group(function(){
     /** para actualizar las facultades */
     Route::post('/home/updatefacultades','updatefacultad')->middleware('auth','admin')->name('admin.updatefacultad');
     //** Ruta para cargar vista con los roles */
-    Route::get('/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
+    Route::get('/home/roles','roles_view')->middleware('auth','admin')->name('admin.roles');
     //** Ruta para mostrar todos los roles */
-    Route::get('/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
+    Route::get('/home/getroles','get_roles')->middleware('auth','admin')->name('admin.getroles');
 
     //** Ruta para inactivar Rol */
     Route::post('/home/inactivarRol', 'inactivar_rol')->middleware('auth')->name('rol.inactivar');
     //** Ruta para activar Rol */
     Route::post('/home/activarRol', 'activar_rol')->middleware('auth')->name('rol.activar');
-    //* Ruta ara actualizar rol */
+    //* Ruta para actualizar rol */
     Route::post('/home/updateRol', 'update_rol')->middleware('auth')->name('rol.update');
-   
+    /** Ruta para crear Rol */
+    Route::post('/home/crearRol', 'crear_rol')->middleware('auth')->name('rol.crear');
 });
 
 Route::controller(MafiController::class)->group(function(){

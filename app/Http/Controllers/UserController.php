@@ -452,6 +452,22 @@ class UserController extends Controller
         endif;
     }
 
+    public function crear_rol()
+    {
+        $nombre = $_POST['nombre'];
+
+        $crear = DB::table('roles')->insert([
+            'nombreRol' => $nombre,
+        ]);
+
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('admin.roles')->with('message', 'Rol creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('admin.roles')->with(['errors' => 'El rol no ha podido ser creado']);
+        endif;
+    }
 
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo

@@ -723,7 +723,7 @@ class MafiController extends Controller
         ];
 
         $array2 = [
-            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 2],
 
         ];
 
@@ -737,10 +737,6 @@ class MafiController extends Controller
         });
 
         if (count($diff) > 0) {
-
-
-
-
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
             foreach ($diff as $element) {

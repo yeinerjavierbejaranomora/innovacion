@@ -728,6 +728,7 @@ class MafiController extends Controller
         ];
 
         $intersection = array_filter($array1, function ($item) use ($array2) {
+            dd($item);
             return in_array($item, $array2);
         });
 
@@ -737,10 +738,6 @@ class MafiController extends Controller
         });
 
         if (count($diff) > 0) {
-
-
-
-
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
             foreach ($diff as $element) {

@@ -184,10 +184,10 @@ class MafiController extends Controller
             endforeach;
         endforeach;*/
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
-        dd($log);
         if (empty($log)) :
             $estudiantesAntiguos = $this->faltantesAntiguos();
-        else :
+            dd($estudiantesAntiguos);
+            else :
             return "No hay estudiantes de primer ingreso";
         endif;
 

@@ -182,6 +182,7 @@ class MafiController extends Controller
                 dd($estudiante);
             }
         });
+        die();
         /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :
                 dd($estudiante);
@@ -602,8 +603,12 @@ class MafiController extends Controller
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             ->orderBy('id')
-            ->get();
-
+            ->get()
+            ->chunk(200, function($estudiantes){
+                foreach ($estudiantes as $estudiante) {
+                    dd($estudiante);
+                };
+            )
 
         return $estudiantesAntiguos;
     }

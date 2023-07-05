@@ -176,7 +176,16 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $estudiantesAntiSinHistiral=DB::table('datosMafiReplica')
+                                        ->select('datosMafiReplica.idbanner','historialAcademico.codBanner AS historial')
+                                        ->join('historialAcademico','historialAcademico.codBanner','=','datosMafiReplica.idbanner')
+                                        ->where('datosMafiReplica.tipoestudiante','LIKE','ESTUDIANTE ANTIGUO%')
+                                        ->groupBy('historialAcademico.codBanner')
+                                        ->orderBy('id')
+                                        ->get()
+                                        ->chunk(200);
+        dd($estudiantesAntiSinHistiral);
+        die();
         /*$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :

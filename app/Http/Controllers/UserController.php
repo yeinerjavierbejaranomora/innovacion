@@ -106,7 +106,6 @@ class UserController extends Controller
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
 
-
     // funcion para traer todos los usuarios a la vista de administracion
 
     public function userView(Request $request)
@@ -203,7 +202,6 @@ class UserController extends Controller
             return "false";
         endif;
     }
-
 
     // *Método para mostrar todos sus datos al Usuario
     public function perfil()
@@ -411,6 +409,32 @@ class UserController extends Controller
         endif;
     }
 
+    public function crear_usuario()
+    {
+        $idbanner = $_POST['idbanner'];
+        $documento = $_POST['documento'];
+        $nombre = $_POST['nombre'];
+        $correo = $_POST['email'];
+        $idrol = $_POST['idrol'];
+        $idfacultad = $_POST['facultad'];
+        $programas = $_POST['programas'];
+
+        dd($programas);
+        $crear = DB::table('users')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => $tabla,
+        ]);
+
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.programas')->with('message', 'Usuario creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.programas')->with(['errors' => 'El usuario no ha podido ser creado']);
+        endif;
+    }
     /** fucion para generar  materias faltantes
      * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
 

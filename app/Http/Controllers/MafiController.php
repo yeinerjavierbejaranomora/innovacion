@@ -179,8 +179,8 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
         foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-            foreach ($estudiantes as $key => $value) :
-                dd($value);
+            foreach ($estudiantes as $key => $estudiante) :
+                dd($estudiante);
             endforeach;
         endforeach;
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

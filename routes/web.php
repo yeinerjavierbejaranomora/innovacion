@@ -41,9 +41,9 @@ Route::controller(UserController::class)->group(function(){
     /** actualizar los datos del usuario */
     Route::post('/home/actualizar/{id}', 'actualizar')->middleware('auth')->name('user.actualizar');
     //** Ruta para inactivar usuario */
-    Route::post('/home/inactivarprograma', 'inactivar_usuario')->middleware('auth')->name('user.inactivar');
+    Route::post('/home/inactivarusuario', 'inactivar_usuario')->middleware('auth')->name('user.inactivar');
     //** Ruta para activar usuario */
-    Route::post('/home/activarprograma', 'activar_usuario')->middleware('auth')->name('user.activar');
+    Route::post('/home/activarusuario', 'activar_usuario')->middleware('auth')->name('user.activar');
 
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');

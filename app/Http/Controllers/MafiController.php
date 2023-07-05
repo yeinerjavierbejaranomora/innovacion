@@ -723,15 +723,15 @@ class MafiController extends Controller
         ];
 
         $array2 = [
-            [2],
+            ['id' => 2, 'name' => 'Jane'],
 
         ];
 
         $intersection = array_filter($array1, function ($item) use ($array2) {
-            dd($item);
             return in_array($item, $array2);
         });
 
+        dd($intersection);
 
         $diff = array_udiff($array1, $array2, function($a, $b) {
             return $a['id'] <=> $b['id'];

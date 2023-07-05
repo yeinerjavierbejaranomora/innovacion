@@ -223,10 +223,11 @@ class MafiController extends Controller
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante)->toArray();
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
-                //dd($historial);
-                $intersection = array_diff_assoc($mallaCurricular, $historial);
-
-                dd($intersection);
+                dd($historial);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codigoCurso'] <=> $b['codMateria'];
+                });
+                dd($diff);
             endforeach;
         });
         die();
@@ -770,9 +771,7 @@ class MafiController extends Controller
 
         ];
 
-        $intersection = array_filter($array1, function ($item) use ($array2) {
-            return in_array($item, $array2);
-        });
+
 
 
         $diff = array_udiff($array1, $array2, function($a, $b) {

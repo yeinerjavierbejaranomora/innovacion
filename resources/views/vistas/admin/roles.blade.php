@@ -67,7 +67,7 @@
             </div>
 
             <!--Modal para agragar un rol nuevo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -80,20 +80,16 @@
                             <form id="miForm" method="get" action="#">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
-
-                                <div>
                                     <label for="message-text" class="col-form-label">Nombre del rol</label>
                                     <input type="text" class="form-control" id="editnombre" name="editnombre">
                                 </div>
 
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-primary">Crear</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>

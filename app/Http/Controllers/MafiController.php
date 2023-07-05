@@ -677,8 +677,9 @@ class MafiController extends Controller
         foreach ($mallaCurricular as $key => $value) :
             $data[] = [$value->codigoCurso, $value->orden, $value->codprograma];
         endforeach;
-        dd($data);
-        return $mallaCurricular;
+        //dd($data);
+        //return $mallaCurricular;
+        return $data;
     }
 
 

@@ -261,8 +261,8 @@ class facultadController extends Controller
             // array_push($cuenta, $cantidad);
             $cuenta[$value->codprograma] = $cantidad; 
         }
-
-        //dd($cuenta);
+            
+        dd($cuenta);
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,

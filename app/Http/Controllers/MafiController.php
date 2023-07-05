@@ -199,8 +199,8 @@ class MafiController extends Controller
                 if ($numeromaterias === count($mallaCurricular[0])) :
                     $insertAlerta = AlertasTempranas::create([
                         'idbanner' => $estudiante->homologante,
-                        'tipo_estudiante' => $estudiante->tipoestudiante,
-                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' ya vio todas las materias',
+                        'tipo_estudiante' => $estudiante->tipoes_tudiante,
+                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->homologante . ' ya vio todas las materias',
                     ]);
                 else :
                     foreach ($mallaCurricular as $key => $malla) :
@@ -793,7 +793,7 @@ class MafiController extends Controller
 
         /**utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0. */
 
-     
+
 
 
         $array1 = [
@@ -814,11 +814,11 @@ class MafiController extends Controller
             return in_array($item, $array2);
         });
 
-           
+
         $diff = array_udiff($array1, $array2, function($a, $b) {
             return $a['id'] <=> $b['id'];
         });
-        
+
         if (count($diff) > 0) {
             // Hay elementos en $array1 que no están en $array2
             echo "Los siguientes elementos no están en el segundo arreglo:";
@@ -829,7 +829,7 @@ class MafiController extends Controller
             // Todos los elementos de $array1 están en $array2
             echo "Todos los elementos están presentes en el segundo arreglo.";
         }
-        
+
         if (count($intersection) > 0) {
             // Al menos un elemento de $array1 existe en $array2
             echo "Los elementos existen en ambos arreglos.";

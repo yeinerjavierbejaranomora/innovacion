@@ -97,7 +97,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-warning">Crear</button>
+                            <button type="submit" class="crear btn btn-success">Crear</button>
                         </div>
                         </form>
                     </div>
@@ -121,6 +121,7 @@
 </a>
 
 <script>
+    facultades();
 
 function facultades() {
         $.ajax({

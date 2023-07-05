@@ -114,8 +114,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <select class="form-control" name="codFacultad" id="codFacultad">
-                                    </select>
+                                    <select class="form-control" name="codFacultad" id="codFacultad"></select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

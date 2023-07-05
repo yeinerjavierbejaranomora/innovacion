@@ -95,12 +95,12 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="codFacultad" name="codFacultad">
+                                    <select class="form-control" name="codFacultad" id="codFacultad"></select>
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="crear btn btn-success">Crear</button>
                         </div>
                         </form>
                     </div>

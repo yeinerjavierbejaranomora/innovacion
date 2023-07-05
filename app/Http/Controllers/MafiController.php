@@ -783,6 +783,31 @@ class MafiController extends Controller
     {
 
 
+
+
+        $array1 = [
+            ['id' => 1, 'name' => 'John'],
+            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 3, 'name' => 'Alice']
+        ];
+        
+        $array2 = [
+            ['id' => 2, 'name' => 'Jane'],
+            ['id' => 4, 'name' => 'Bob']
+        ];
+        
+        $result = array_intersect($array1, $array2);
+        
+        if (count($result) > 0) {
+
+            dd( $result);
+            // Al menos un elemento de $array1 existe en $array2
+            echo "Los elementos existen en ambos arreglos.";
+        } else {
+            dd( $result);
+            // Ningún elemento de $array1 existe en $array2
+            echo "No existen elementos en común en ambos arreglos.";
+        }
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";

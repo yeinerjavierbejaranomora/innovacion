@@ -181,9 +181,14 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
-                $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                dd($mallaCurricular->count());
+                $historial = $this->historialAcademico($estudiante->homologante)->toArray();
+                $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
+                dd($historial);
+                $intersection = array_filter($mallaCurricular, function ($item) use ($historial) {
+                    return in_array($item, $historial);
+                });
+
+                dd($intersection);
             endforeach;
         });
         die();

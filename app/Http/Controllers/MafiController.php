@@ -181,7 +181,6 @@ class MafiController extends Controller
             foreach ($estudiantes as $estudiante) {
                 dd($estudiante);
             }
-
         });
         /*foreach ($estudiantesAntiguos as $keys => $estudiantes) :
             foreach ($estudiantes as $key => $estudiante) :

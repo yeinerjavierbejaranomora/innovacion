@@ -184,6 +184,7 @@ class MafiController extends Controller
                 $historial = $this->historialAcademico($estudiante->homologante)->toArray();
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa)->toArray();
                 //dd($historial);
+                
                 $intersection = array_filter($mallaCurricular, function ($item,$historial) {
                     return in_array($item, $historial);
                 });

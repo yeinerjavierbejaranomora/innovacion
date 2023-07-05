@@ -181,7 +181,8 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
-                dd($estudiante);
+                $historial = $this->historialAcademico($estudiante->homologante);
+                dd($historial);
             endforeach;
         });
         die();

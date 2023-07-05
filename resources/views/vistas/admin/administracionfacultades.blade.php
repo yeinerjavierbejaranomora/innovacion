@@ -138,10 +138,31 @@
                         className: "text-center"
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
-                        className: "text-center"
+                        data: 'activo',
+                        defaultContent: "",
+                        title: "Estado",
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
+                            }
+                        }
                     },
+                    {
+                        data: 'activo',
+                        defaultContent: "",
+                        title: 'Inactivar / Activar',
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                            } else if (data == '0') {
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                            }
+                        }
+                    }
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -155,7 +176,8 @@
                     console.log[data];
                     Swal.fire({
                         title: 'Actualizar información',
-                        html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br> <input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
+                        html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br>' +
+                        '<input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

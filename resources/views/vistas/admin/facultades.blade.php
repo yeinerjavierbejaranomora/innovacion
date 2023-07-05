@@ -44,6 +44,7 @@
             </div>
             <!-- Content Row -->
             <div class="row" id="facultades">
+                {{$datos['estudiantes']}}
                 @foreach($datos['programas'] as $key => $value)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">

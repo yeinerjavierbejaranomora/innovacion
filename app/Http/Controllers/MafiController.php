@@ -737,24 +737,27 @@ class MafiController extends Controller
             // Materias que debe ver el estudiante
             // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
 
-                /*SELECT materiasPorVer.codBanner, materiasPorVer.codMateria, materiasPorVer.orden ,mallaCurricular.creditos, mallaCurricular.ciclo
-                FROM materiasPorVer materiasPorVer
-                INNER JOIN mallaCurricular mallaCurricular ON materiasPorVer.codMateria=mallaCurricular.codigoCurso
-                WHERE codBanner=100152879
-                AND mallaCurricular.ciclo IN (1, 12)
-                AND materiasPorVer.codprograma = "PPSV"
-                AND mallaCurricular.codprograma = "PPSV"
-                ORDER BY materiasPorVer.orden ASC;*/
+                /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
+                from
+                `materiasPorVer`
+                inner join `mallaCurricular` on `materiasPorVer`.`codMateria` = `mallaCurricular`.`codigoCurso`
+                where
+                `codBanner` = 100152879
+                and mallaCurricular.ciclo   in (1, 12)
+                and materiasPorVer.codprograma= 'PPSV'
+                and mallaCurricular.codprograma = 'PPSV'
+                order by
+                materiasPorVer.orden ASC;*/
 
 
             $consulta_porver= DB::table('materiasPorVer')
             ->join('mallaCurricular ', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
             ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo ')
-            ->where('codBanner','100152879')
+            ->where('materiasPorVer.codBanner','100152879')
             ->whereIn('mallaCurricular.ciclo',[1,12])
             ->where('materiasPorVer.codprograma','PPSV')
             ->where('mallaCurricular.codprograma','PPSV')
-            ->orderBy('materiasPorVer.orden', 'asc')
+            ->orderBy('materiasPorVer.orden', 'ASC')
             ->get();
 
 

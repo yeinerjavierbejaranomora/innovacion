@@ -143,7 +143,7 @@ class facultadController extends Controller
     }
 
     /** Función para mostrar los programas según el id de la facultad */
-   /*  public function mostrarfacultad($id_llegada)
+    /*  public function mostrarfacultad($id_llegada)
     {
         // Decripta el id que recibe
         $id = decrypt($id_llegada);
@@ -202,11 +202,11 @@ class facultadController extends Controller
 
     public function crear_programa()
     {
+        // Recibe los parámetros del formulario por Post
         $codigo = $_POST['codPrograma'];
         $nombre = $_POST['nombre'];
         $codFacultad = $_POST['codFacultad'];
-        
-
+        // Consulta para insertar nuevo programa
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,
             'programa' => $nombre,
@@ -220,6 +220,27 @@ class facultadController extends Controller
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.programas')->with(['errors' => 'El programa no ha podido ser creado']);
+        endif;
+    }
+
+    public function crear_esp()
+    {
+        $codigo = $_POST['codEsp'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['codFacultad'];
+        // Consulta para insertar nueva especialización
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => 'especializacion',
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.especializacion')->with('message', 'Especialización creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.especializacion')->with(['errors' => 'La especialización no ha podido ser creada']);
         endif;
     }
 
@@ -261,15 +282,15 @@ class facultadController extends Controller
         foreach ($programas as $key => $value) {
             $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
             // array_push($cuenta, $cantidad);
-            $cuenta[$value->codprograma] = $cantidad; 
+            $cuenta[$value->codprograma] = $cantidad;
         }
         // Se almacena el nombre de la facultad y los programas que se encuentra activos en la variable datos 
         $datos = array(
             'facultad' => $nombre,
             'programas' => $programas,
         );
-                    
-        return view('vistas.admin.facultades',['estudiantes' => $cuenta])->with('datos', $datos);
+
+        return view('vistas.admin.facultades', ['estudiantes' => $cuenta])->with('datos', $datos);
     }
 
     /**Función para visualizar los estudiantes de cada facultad */
@@ -311,11 +332,11 @@ class facultadController extends Controller
         }
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')
-        ->where('id', $id)
-        ->update([
-            'codFacultad' => $codFacultad,
-            'nombre' => $nombre
-        ]);
+            ->where('id', $id)
+            ->update([
+                'codFacultad' => $codFacultad,
+                'nombre' => $nombre
+            ]);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
@@ -346,5 +367,4 @@ class facultadController extends Controller
             return "false";
         endif;
     }
-
 }

@@ -607,8 +607,9 @@ class MafiController extends Controller
             ->chunk(200, function($estudiantes){
                 foreach ($estudiantes as $estudiante) {
                     dd($estudiante);
-                };
-            )
+                }
+                });
+
 
         return $estudiantesAntiguos;
     }

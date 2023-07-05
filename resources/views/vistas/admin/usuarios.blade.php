@@ -97,7 +97,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Rol</label>
-                                    <select class="form-control" name="tabla" id="tabla">
+                                    <select class="form-control" name="idrol" id="idrol">
                                         <option value="1">Decano</option>
                                         <option value="2">Director</option>
                                         <option value="3">Coordinador</option>

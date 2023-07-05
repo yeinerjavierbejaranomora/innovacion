@@ -183,7 +183,12 @@ class MafiController extends Controller
                 dd($value);
             endforeach;
         endforeach;*/
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
+        $estudiantesAntiguos = $this->faltantesAntiguos();
+        if(!empty($estudiantesAntiguos)):
+            dd($estudiantesAntiguos);
+        else:
+            return "No hay estudiantes ANTIGUOS";
+        endif;
         die();
 
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
@@ -675,8 +680,8 @@ class MafiController extends Controller
         $marcaIngreso = explode(",", $marcaIngreso);
         // Convertir cada elemento en un número
         $marcaIngreso = array_map('intval', $marcaIngreso);
-        
-      
+
+
 
           // WHERE materias_faltantes="OK"
             // AND programado_ciclo1 IS NULL
@@ -704,22 +709,22 @@ class MafiController extends Controller
         }
 
         foreach ($consulta_homologante as $key => $value) {
-          
+
             $id_homologante=$value->id;
             $codHomologante=$value->homologante;
             $programa_homologante=$value->programa;
 
-            
+
             // Materias que debe ver el estudiante
             // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
-            
-                /*SELECT materiasPorVer.codBanner, materiasPorVer.codMateria, materiasPorVer.orden ,mallaCurricular.creditos, mallaCurricular.ciclo 
-                FROM materiasPorVer materiasPorVer 
-                INNER JOIN mallaCurricular mallaCurricular ON materiasPorVer.codMateria=mallaCurricular.codigoCurso 
-                WHERE codBanner=100152879 
-                AND mallaCurricular.ciclo IN (1, 12) 
-                AND materiasPorVer.codprograma = "PPSV" 
-                AND mallaCurricular.codprograma = "PPSV" 
+
+                /*SELECT materiasPorVer.codBanner, materiasPorVer.codMateria, materiasPorVer.orden ,mallaCurricular.creditos, mallaCurricular.ciclo
+                FROM materiasPorVer materiasPorVer
+                INNER JOIN mallaCurricular mallaCurricular ON materiasPorVer.codMateria=mallaCurricular.codigoCurso
+                WHERE codBanner=100152879
+                AND mallaCurricular.ciclo IN (1, 12)
+                AND materiasPorVer.codprograma = "PPSV"
+                AND mallaCurricular.codprograma = "PPSV"
                 ORDER BY materiasPorVer.orden ASC;*/
 
 
@@ -738,7 +743,7 @@ class MafiController extends Controller
         }
 
         while($homologantes =$consulta_homologante) {
-          
+
             $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
 
             //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";

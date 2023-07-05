@@ -42,10 +42,11 @@
                 <h1 class="h3 mb-0 text-gray-800">Programas facultad de {{$datos['facultad']}}</h1>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
-            
+
             <!-- Content Row -->
             <div class="row" id="facultades">
                 @foreach($datos['programas'] as $key => $value)
+
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -56,7 +57,9 @@
                                         <h6> Programa de {{$value->programa}}</h6>
                                     </div>
                                     @foreach($estudiantes as $key => $est)
+                                    <?php dd($key)?>
                                     @if($value->programa == $key)
+
                                     <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark">
                                         Estudiantes inscitos {{$est}}</button>
                                     @endif

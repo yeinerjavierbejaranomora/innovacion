@@ -191,25 +191,26 @@ class MafiController extends Controller
             $registroMPV = 0;
             $primerId = $transferente[0]->id;
             $ultimoRegistroId = 0;
+            //dd($transferente);
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                dd($historial);
-                $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                //dd($mallaCurricular[0][21]);
-                foreach ($mallaCurricular as $key => $malla) :
-                    foreach ($malla as $key => $value) :
-                        //dd($value);
-                        if (!in_array($value->codigoCurso, $historial['materias'])) :
-                            $insertMateriaPorVer = MateriasPorVer::create([
-                                "codBanner"      => $estudiante->homologante,
-                                "codMateria"      => $value->codigoCurso,
-                                "orden"      => $value->orden,
-                                "codprograma"      => $value->codprograma,
-                            ]);
-                        endif;
-                        $registroMPV++;
-                    endforeach;
-                endforeach;
+                //dd($historial['codprograma']);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                //dd($mallaCurricular);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                foreach ($diff as $key => $value) {
+                    //dd($value);
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $value['codBanner'],
+                        "codMateria"      => $value['codMateria'],
+                        "orden"      => $value['orden'],
+                        "codprograma"      => $value['codprograma'],
+                    ]);
+                    $registroMPV++;
+                }
+
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
@@ -234,7 +235,7 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes TRANSFERENTES";
         endif;
-
+die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
@@ -734,7 +735,7 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
-             
+
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')

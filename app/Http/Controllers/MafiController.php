@@ -190,7 +190,7 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 $cantidadDiff = count($diff);
-                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff;
+                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff ."<br>";
 
                 /*if(count($diff) > 0):
                     DB::beginTransaction();
@@ -220,7 +220,7 @@ class MafiController extends Controller
                 $cont++;
             }
         }
-        echo $cont;
+        echo $cont."<br>";
 
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){

@@ -179,7 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->get();
-        dd($estudiantesAntiguos[0]);
+        dd($estudiantesAntiguos[3463]);
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             /*$fechaInicio = date('Y-m-d H:i:s');

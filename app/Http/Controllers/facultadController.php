@@ -527,7 +527,7 @@ class facultadController extends Controller
             'ruta' => "",
             'ciclo' => $ciclo,
         ]);
-        
+
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.reglas')->with('message', 'Regla creada correctamente');
@@ -535,6 +535,10 @@ class facultadController extends Controller
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.reglas')->with(['errors' => 'La regla no ha podido ser creada']);
         endif;
+    }
+
+    public function edit_regla(){
+        
     }
 
 }

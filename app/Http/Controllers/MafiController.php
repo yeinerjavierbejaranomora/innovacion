@@ -791,7 +791,7 @@ class MafiController extends Controller
 
                     foreach ($estudiantes as $estudiante) :
                       
-
+                        dd($estudiante);
                         $id_homologante=$estudiante->id;
                         $codHomologante=$estudiante->homologante;
                         $programa_homologante=$estudiante->programa;

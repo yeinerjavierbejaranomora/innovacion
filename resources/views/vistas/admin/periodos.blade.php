@@ -227,13 +227,13 @@
                             '<label for="nombre"> Periodo </label>' +
                             '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
                             '<label for="temprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="temprano" name="temprano" value="' + data.fechaInicioTemprano + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="temprano" name="temprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
                             '<label for="periodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
                             '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
                             '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
@@ -250,8 +250,6 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            console.log('entra');
-                            console.log($('#edciclo1'));
                             $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
@@ -273,7 +271,6 @@
                                         }).then(result => {
                                             location.reload();
                                         });
-
                                     }
                                 }
                             )

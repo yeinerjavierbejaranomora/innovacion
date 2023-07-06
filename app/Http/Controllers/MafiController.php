@@ -184,7 +184,13 @@ class MafiController extends Controller
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')*/
             ->count();
-            dd(ceil($estudiantesAntiguos/200));
+        $cont = ceil($estudiantesAntiguos/200);
+        $offset = 1;
+        $ultimoid = 1;
+        for ($i=0; $i < $cont; $i++) {
+            $estudiantesAntiguos = $this->faltantesAntiguos($offset);
+            dd($estudiantesAntiguos);
+        }
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);
@@ -661,7 +667,7 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function faltantesAntiguos()
+    public function faltantesAntiguos($offset)
     {
         /**SELECT * FROM `estudiantes`
             WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
@@ -677,6 +683,8 @@ class MafiController extends Controller
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
+            ->offset($offset)
+            ->limit(200)
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')*/
             ->orderBy('id');

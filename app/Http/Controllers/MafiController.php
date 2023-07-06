@@ -184,7 +184,7 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
-        //dd($log);
+        dd($primerIngreso);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -542,12 +542,14 @@ class MafiController extends Controller
             AND `programaActivo` IS NULL
             GROUP BY `tipo_estudiante` */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
-            ->where([['tipo_estudiante', 'LIKE', 'PRIMER%']])
+            ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
+            ->whereNull('programaActivo')
+            ->where('tipo_estudiante', 'LIKE', 'INGRESO%')
             ->whereNull('programaActivo')
             ->orderBy('id')
             ->get();
 
-        dd($estudiantesPrimerIngreso);
+        //dd($estudiantesPrimerIngreso);
 
         return $estudiantesPrimerIngreso;
     }

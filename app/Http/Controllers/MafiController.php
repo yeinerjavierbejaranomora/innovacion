@@ -767,6 +767,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','ASC')
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :

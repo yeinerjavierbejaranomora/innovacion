@@ -935,7 +935,7 @@ class MafiController extends Controller
                     //exit();
 
                     if (!in_array($codcurso, $materias_vistas)) {
-                        $insert_porver = 'INSERT INTO materias_porver (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
+                        $insert_porver = 'INSERT INTO materiasPorVer (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
                         echo $insert_porver . "<br />";
 
                         $resultado_porver = DB::select($insert_porver);

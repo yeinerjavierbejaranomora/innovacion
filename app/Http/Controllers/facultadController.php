@@ -524,6 +524,7 @@ class facultadController extends Controller
             'creditos' => $creditos,
             'materiasPermitidas' => $materias,
             'tipoEstudiante' => $estudiante,
+            'ruta' => "",
             'ciclo' => $ciclo,
         ]);
         if ($crear) :

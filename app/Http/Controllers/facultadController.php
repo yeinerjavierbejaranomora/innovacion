@@ -524,8 +524,10 @@ class facultadController extends Controller
             'creditos' => $creditos,
             'materiasPermitidas' => $materias,
             'tipoEstudiante' => $estudiante,
+            'ruta' => "",
             'ciclo' => $ciclo,
         ]);
+        
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.reglas')->with('message', 'Regla creada correctamente');

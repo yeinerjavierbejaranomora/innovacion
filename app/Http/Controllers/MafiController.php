@@ -580,7 +580,7 @@ class MafiController extends Controller
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->orderBy('id');
+            ->orderBy('id')->get();
         dd($estudiantesAntiguos);
 
         return $estudiantesAntiguos;

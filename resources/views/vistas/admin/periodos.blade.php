@@ -251,7 +251,7 @@
                     }).then(result => {
                         if (result.value) {
                             console.log('entra');
-                            console.log('#ciclo1');
+                            console.log($('#ciclo1'));
                             $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),

@@ -182,8 +182,8 @@ class MafiController extends Controller
         dd($estudiantesAntiguos[3463]);
         die();*/
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
+            /*$fechaInicio = date('Y-m-d H:i:s');
             $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;*/
             foreach ($estudiantes as $estudiante) :
@@ -228,8 +228,10 @@ class MafiController extends Controller
 
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
-                echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>;
+                $registroMPV++;
+                echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>";
             endforeach;
+            echo $registroMPV;
 
             /*$fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

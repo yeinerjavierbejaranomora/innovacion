@@ -240,10 +240,10 @@
                             '</select>' +
                             '<label for="ciclo" class="col-form-label">Ciclo</label><br>' +
                             '<div class="form-check form-check-inline" id="ciclo">' +
-                            '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1" required>' +
+                            '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1">' +
                             '<label class="form-check-label" for="ciclo1"> Ciclo 1 </label>' +
                             '&nbsp' +
-                            '<input class="form-check-input" type="checkbox" value="2"' + (data.ciclo == 2 ? 'checked' : '') + ' id="edciclo2" name="edciclo2" required>' +
+                            '<input class="form-check-input" type="checkbox" value="2"' + (data.ciclo == 2 ? 'checked' : '') + ' id="edciclo2" name="edciclo2">' +
                             '<label class="form-check-label" for="ciclo1"> Ciclo 2</label>' +
                             '</div>' +
                             '</form>',
@@ -252,31 +252,43 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
-                        confirmButtonText: 'Editar'
+                        confirmButtonText: 'Editar',
+                        preConfirm: () => {
+                            const selectedCiclo = $('input[name="edciclo"]:checked').val();
+                            if (!selectedCiclo) {
+                                Swal.showValidationMessage('Debes seleccionar solo un ciclo');
+                            }
+                            return {
+                                selectedCiclo: selectedCiclo
+                            };
+                        }
                     }).then(result => {
-                        if (result.value) {
-                            $.post("{{ route('periodo.update')}}", {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    id: encodeURIComponent(window.btoa(data.id)),
-                                    nombre: $(document).find('#nombre').val(),
-                                    fecha1: $(document).find('#fecha1').val(),
-                                    fecha2: $(document).find('#fecha2').val(),
-                                    temprano: $(document).find('#edtemprano').val(),
-                                    periodo: $(document).find('#edperiodo').val(),
-                                    año: $(document).find('#year').val(),
-                                },
-                                function(result) {
-                                    console.log(result);
-                                    if (result == "actualizado") {
-                                        Swal.fire({
-                                            title: "Información actualizada",
-                                            icon: 'success'
-                                        }).then(result => {
-                                            location.reload();
-                                        });
+                        if (result.isConfirmed) {
+                            const selectedCiclo = result.value.selectedCiclo;
+                            if (result.value) {
+                                $.post("{{ route('periodo.update')}}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                        nombre: $(document).find('#nombre').val(),
+                                        fecha1: $(document).find('#fecha1').val(),
+                                        fecha2: $(document).find('#fecha2').val(),
+                                        temprano: $(document).find('#edtemprano').val(),
+                                        periodo: $(document).find('#edperiodo').val(),
+                                        año: $(document).find('#year').val(),
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "actualizado") {
+                                            Swal.fire({
+                                                title: "Información actualizada",
+                                                icon: 'success'
+                                            }).then(result => {
+                                                location.reload();
+                                            });
+                                        }
                                     }
-                                }
-                            )
+                                )
+                            }
                         }
                     })
                 });

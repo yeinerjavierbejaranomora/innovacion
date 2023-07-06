@@ -150,7 +150,6 @@
         });
     });
 
-
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getreglas') }}";
@@ -218,8 +217,72 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            console.log(table);
 
+            /** Editar periodos */
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+
+                    Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<label for="editcodigo" class="col-form-label">Codigo del programa</label>' +
+                            '<input type="text" class="form-control" id="editcodigo" name="editcodigo" value="' + data.Programa + '>" placeholder="Código del programa"' +
+                            '<label for="editcreditos" class="col-form-label">Número de créditos</label>' +
+                            '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '>" placeholder="Código del programa">' +
+                            '<label for="editmaterias" class="col-form-label">Materias permitidas</label>' +
+                            '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '>" placeholder="Código del programa">' +
+                            '<label for="estudiante" class="col-form-label">Tipo de estudiante</label>' +
+                            '<select class="form-control" id="editestudiante" name="editestudiante">' +
+                            '<option value="Antiguo">Antiguo</option>' +
+                            '<option value="Transferente">Transferente</option>' +
+                            '<option value="PrimerI">Primer ingreso</option>' +
+                            '</select>' +
+                            '<div class="form-check form-check-inline" id="ciclo">' +
+                            '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1" required>' +
+                            '<label class="form-check-label" for="ciclo1"> Ciclo 1 </label>' +
+                            '&nbsp' +
+                            '<input class="form-check-input" type="checkbox" value="2"' + (data.ciclo == 2 ? 'checked' : '') + ' id="edciclo2" name="edciclo2" required>' +
+                            '<label class="form-check-label" for="ciclo1"> Ciclo 2</label>' +
+                            '</div>' +
+                            '</form>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        if (result.value) {
+                            $.post("{{ route('periodo.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    nombre: $(document).find('#nombre').val(),
+                                    fecha1: $(document).find('#fecha1').val(),
+                                    fecha2: $(document).find('#fecha2').val(),
+                                    temprano: $(document).find('#edtemprano').val(),
+                                    periodo: $(document).find('#edperiodo').val(),
+                                    año: $(document).find('#year').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+                                    }
+                                }
+                            )
+                        }
+                    })
+                });
+            }
+            obtener_data_editar("#example tbody", table);
+
+            console.log(table);
         }
     }
 </script>

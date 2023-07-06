@@ -111,6 +111,7 @@
                                 <div class="form-check" id="ciclo">
                                     <input class="form-check-input" type="checkbox" value="ciclo1" id="ciclo1">
                                     <label class="form-check-label" for="ciclo1">Ciclo 1</label>
+                                    <br>
                                     <input class="form-check-input" type="checkbox" value="ciclo2" id="ciclo2">
                                     <label class="form-check-label" for="ciclo2">Ciclo 2</label>
                                 </div>

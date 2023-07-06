@@ -193,12 +193,12 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                dd($historial);
-                $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                //dd($mallaCurricular[0][21]);
+                //dd($historial);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                //dd($mallaCurricular);
                 foreach ($mallaCurricular as $key => $malla) :
+                    dd($malla);
                     foreach ($malla as $key => $value) :
-                        //dd($value);
                         if (!in_array($value->codigoCurso, $historial['materias'])) :
                             $insertMateriaPorVer = MateriasPorVer::create([
                                 "codBanner"      => $estudiante->homologante,
@@ -734,7 +734,7 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
-             
+
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')

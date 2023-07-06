@@ -200,7 +200,13 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 foreach ($diff as $key => $value) {
-                    dd($value);
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $value->codBanner,
+                        "codMateria"      => $value->codMateria,
+                        "orden"      => $value->orden,
+                        "codprograma"      => $value->codprograma,
+                    ]);
+                    $registroMPV++;
                 }
 
                 $ultimoRegistroId = $estudiante->id;

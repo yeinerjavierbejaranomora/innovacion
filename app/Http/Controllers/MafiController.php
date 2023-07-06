@@ -190,6 +190,8 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 $cantidadDiff = count($diff);
+                $exist = DB::table('materiasPorVer')->where('codBanner','=',$value->homologante)->first();
+                if(!$exist):
 
                 if(count($diff) > 0):
                     DB::beginTransaction();
@@ -216,7 +218,10 @@ class MafiController extends Controller
                     echo "estudinate vio todo". $value->homologante;
 
                 endif;
-                $cont++;
+            else:
+                echo "ya esta";
+                endif;
+                    $cont++;
             }
         }
         echo $cont;

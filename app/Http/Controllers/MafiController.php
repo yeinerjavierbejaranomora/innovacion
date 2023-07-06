@@ -248,7 +248,7 @@ class MafiController extends Controller
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
-                    try {
+                    /*try {
                         DB::table('materiasPorVer')->insert($diff);
 
                         // Confirmar la transacción
@@ -266,7 +266,7 @@ class MafiController extends Controller
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
-                    echo "estudinate vio todo". $estudiante->homologante;
+                    /*echo "estudinate vio todo". $estudiante->homologante;
 
                 endif;*/
 

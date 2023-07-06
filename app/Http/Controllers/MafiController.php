@@ -235,7 +235,7 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes TRANSFERENTES";
         endif;
-die();
+        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
@@ -531,17 +531,35 @@ die();
 
     public function falatntesPrimerIngreso()
     {
+        /** SELECT * FROM `estudiantes`
+         * WHERE `tipo_estudiante` LIKE 'PRIMER%'
+         * AND `programaActivo` IS NULL
+         * ORDER BY `id` ASC */
+        /**SELECT COUNT(`tipo_estudiante`),`tipo_estudiante` FROM `estudiantes`
+            WHERE `tipo_estudiante` LIKE 'PRIMER%'
+            AND `programaActivo` IS NULL
+            OR `tipo_estudiante` LIKE 'INGRESO%'
+            AND `programaActivo` IS NULL
+            GROUP BY `tipo_estudiante` */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
             ->whereNull('programaActivo')
+            ->where('tipo_estudiante', 'LIKE', 'INGRESO%')
+            ->whereNull('programaActivo')
             ->orderBy('id')
             ->get();
+
+        dd($estudiantesPrimerIngreso);
 
         return $estudiantesPrimerIngreso;
     }
 
     public function falatntesTranferentes()
     {
+        /** SELECT * FROM `estudiantes`
+         * WHERE `tipo_estudiante` like 'TRANSFERENTE%'
+         * AND `programaActivo` IS NULL
+         * AND `tiene_historial` IS NULL */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'TRANSFERENTE%')
             ->whereNull('programaActivo')
@@ -554,6 +572,10 @@ die();
 
     public function faltantesAntiguos()
     {
+        /** SELECT * FROM `estudiantes`
+         * WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+         * AND `programaActivo` IS NULL
+         * ORDER BY `id` ASC*/
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')

@@ -185,8 +185,8 @@ class MafiController extends Controller
             ->whereNull('programaActivo')*/
             ->count();
         $cont = ceil($estudiantesAntiguos/200);
-        $offset = 1;
         $ultimoid = 1;
+        $offset = 1;
         for ($i=0; $i < $cont; $i++) {
             $estudiantesAntiguos = $this->faltantesAntiguos($offset);
             dd($estudiantesAntiguos);
@@ -927,7 +927,7 @@ class MafiController extends Controller
                 $fila = $resultado_baseacademica;
 
                 foreach ($fila as $key => $value) {
-                 
+
                     $codcurso= $value->codigoCurso;
 
                     //echo "CodCurs: " . $codcurso . "<br />";

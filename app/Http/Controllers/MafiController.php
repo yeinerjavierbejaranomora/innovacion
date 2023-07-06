@@ -771,7 +771,23 @@ class MafiController extends Controller
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :
-                        dd($estudiante);
+                      
+
+                        $id_homologante=$estudiante->id;
+                        $codHomologante=$estudiante->homologante;
+                        $programa_homologante=$estudiante->programa;
+
+                        $consulta_porver= DB::table('materiasPorVer')
+                        ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+                        ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
+                        ->where('materiasPorVer.codBanner',$id_homologante)
+                        ->whereIn('mallaCurricular.ciclo',[1,12])
+                        ->where('materiasPorVer.codprograma','=',$programa_homologante)
+                        ->where('mallaCurricular.codprograma','=',$programa_homologante)
+                        ->orderBy('materiasPorVer.orden', 'ASC')
+                        ->get();
+
+                        dd($consulta_porver);
                      
                     endforeach;
                 });

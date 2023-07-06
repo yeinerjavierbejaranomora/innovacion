@@ -179,7 +179,14 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
-        dd($estudiantesAntiguos[12][2579]->homologante);
+        //dd($estudiantesAntiguos[12][2579]->homologante);
+        $historial = $this->historialAcademico($estudiantesAntiguos[12][2579]->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiantesAntiguos[12][2579]->homologante,$estudiantesAntiguos[12][2579]->programa);
+
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                dd($diff);
 
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){

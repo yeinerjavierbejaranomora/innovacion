@@ -735,7 +735,11 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
+<<<<<<< HEAD
+                dd($programa->codprograma);
+=======
 
+>>>>>>> 965c80be8c8ca02e0e0aafb5f7da8c7f795d19bd
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')

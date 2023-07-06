@@ -77,13 +77,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('periodo.crear') }}">
                                 <?php
                                 $fechaactual = date('Y-m-d');
                                 $fechalimite = date('Y-m-d', strtotime($fechaactual . ' +1 year'));
                                 $añoactual = date('Y');
                                 $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
+                                <div>
+                                    <label for="name" class="col-form-label">Fecha inicio ciclo 1</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
                                 <div>
                                     <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
                                     <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo1" name="ciclo1">

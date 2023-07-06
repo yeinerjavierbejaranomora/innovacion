@@ -178,6 +178,9 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $estudiantesAntiguos = $this->faltantesAntiguos()->get();
+        dd($estudiantesAntiguos);
+        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -192,7 +195,9 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
 
-                if($diff > 0):
+                $cantidadDiff = count($diff);
+
+                if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */

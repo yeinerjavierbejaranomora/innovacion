@@ -874,9 +874,9 @@ class MafiController extends Controller
 
                 while($fila =  $resultado_visitas) {
               
-                    $codbanner= $fila[$contacor_vistas]['codBanner'];
+                    $codbanner= $fila[$contacor_vistas]->codBanner;
                     $codprograma= $programa_homologante;
-                    $codmateria= $fila[$contacor_vistas]['codMateria'];
+                    $codmateria= $fila[$contacor_vistas]->codMateria;
                     $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                 }

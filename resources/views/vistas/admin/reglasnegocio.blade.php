@@ -91,7 +91,8 @@
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
                                     <input type="text" class="form-control" id="estudiante" name="estudiante">
                                 </div>
-                                <label for="ciclo" class="col-form-label">Tipo de estudiante</label>
+                                <label for="ciclo" class="col-form-label">Ciclo</label>
+                                <br>
                                 <div class="form-check form-check-inline" id="ciclo">
                                     <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
                                     <label class="form-check-label" for="ciclo1"> ciclo 1  </label>

@@ -190,13 +190,13 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 $cantidadDiff = count($diff);
-                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff;
+                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff ."<br>";
 
                 /*if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
-                    try {
+                    /*try {
                         DB::table('materiasPorVer')->insert($diff);
 
                         // Confirmar la transacción
@@ -214,13 +214,13 @@ class MafiController extends Controller
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
-                    echo "estudinate vio todo". $value->homologante;
+                    /*echo "estudinate vio todo". $value->homologante;
 
                 endif;*/
                 $cont++;
             }
         }
-        echo $cont;
+        echo $cont."<br>";
 
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
@@ -889,7 +889,7 @@ class MafiController extends Controller
                     $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                 }
-              
+
                 $materias_vistas = $materias_vistas;
                 //var_dump($materias_vistas);
 

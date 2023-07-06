@@ -234,7 +234,6 @@
                             '<input type="date" min="2023-01-01" max="2024-12-31" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
                             '<label for="edperiodo"> Fecha de inicio periodo </label>' +
                             '<input type="date" min="2023-01-01" max="2024-12-31" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
-                            '<label for="año" class="col-form-label">Año</label>' +
                             '<div>' +
                             '<label for="año" class="col-form-label">Año</label>' +
                             '<?php $cont = date('Y'); ?>' +

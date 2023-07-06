@@ -191,6 +191,7 @@ class MafiController extends Controller
             $primerId = $primerIngreso[0]->id;
             $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
+                dd($estudiante);
 
                 $mallaCurricular = $this->BaseAcademica($estudiante->programa);
                 //dd($mallaCurricular);
@@ -535,12 +536,11 @@ class MafiController extends Controller
          * WHERE `tipo_estudiante` LIKE 'PRIMER%'
          * AND `programaActivo` IS NULL
          * ORDER BY `id` ASC */
-        /**SELECT COUNT(`tipo_estudiante`),`tipo_estudiante` FROM `estudiantes`
+        /**SELECT * FROM `estudiantes`
             WHERE `tipo_estudiante` LIKE 'PRIMER%'
             AND `programaActivo` IS NULL
             OR `tipo_estudiante` LIKE 'INGRESO%'
-            AND `programaActivo` IS NULL
-            GROUP BY `tipo_estudiante` */
+            AND `programaActivo` IS NULL */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
             ->whereNull('programaActivo')

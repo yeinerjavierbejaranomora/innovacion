@@ -236,8 +236,8 @@
                             '<label for="edperiodo"> Fecha de inicio periodo </label>' +
                             '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<div>' +
-                            '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" class="form-control">' +
+                            '<label for="year" class="col-form-label">Año</label>' +
+                            '<select id="year" class="form-control">' +
                             '<option value="' + añoActual + '">' + añoActual + '</option>' +
                             '<option value="' + añoSiguiente + '">' + añoSiguiente + '</option>' +
                             '</select>',

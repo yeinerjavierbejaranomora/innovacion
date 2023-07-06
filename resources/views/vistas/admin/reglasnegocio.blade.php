@@ -232,7 +232,7 @@
                             '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '>" placeholder="Código del programa">' +
                             '<label for="editmaterias" class="col-form-label">Materias permitidas</label>' +
                             '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '>" placeholder="Código del programa">' +
-                            '<label for="estudiante" class="col-form-label">Tipo de estudiante</label>' +
+                            '<label for="editestudiante" class="col-form-label">Tipo de estudiante</label>' +
                             '<select class="form-control" id="editestudiante" name="editestudiante">' +
                             '<option value="Antiguo">Antiguo</option>' +
                             '<option value="Transferente">Transferente</option>' +
@@ -266,15 +266,15 @@
                         if (result.isConfirmed) {
                             const selectedCiclo = result.value.selectedCiclo;
                             if (result.value) {
+                                //** Continuar aquí */
                                 $.post("{{ route('periodo.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
-                                        nombre: $(document).find('#nombre').val(),
-                                        fecha1: $(document).find('#fecha1').val(),
-                                        fecha2: $(document).find('#fecha2').val(),
-                                        temprano: $(document).find('#edtemprano').val(),
-                                        periodo: $(document).find('#edperiodo').val(),
-                                        año: $(document).find('#year').val(),
+                                        programa: $(document).find('#editcodigo').val(),
+                                        creditos: $(document).find('#editcreditos').val(),
+                                        materias: $(document).find('#editmaterias').val(),
+                                        estudiante: $(document).find('#editestudiante').val(),
+                                        ciclo: selectedCiclo,
                                     },
                                     function(result) {
                                         console.log(result);

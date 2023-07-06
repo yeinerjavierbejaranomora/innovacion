@@ -190,7 +190,7 @@ class MafiController extends Controller
         //for ($i=0; $i < $cont; $i++) {
             $estudiantesAntiguos = $this->faltantesAntiguos($offset)->get();
             foreach ($estudiantesAntiguos as $key => $value) {
-                dd($value);
+                //dd($value);
                 $historial = $this->historialAcademico($value->homologante);
                 $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {

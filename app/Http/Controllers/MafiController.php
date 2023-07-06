@@ -179,7 +179,6 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            dd($estudiantes);
             /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantes[0]->id;
@@ -193,7 +192,59 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
 
-                if($diff > 0):
+                $cantidadDiff = count($diff);
+                switch ($cantidadDiff) {
+                    case $cantidadDiff > 0:
+                        DB::beginTransaction();
+
+                        /**insertar materiasPorVer */
+                        try {
+                            DB::table('materiasPorVer')->insert($diff);
+
+                            // Confirmar la transacción
+                            DB::commit();
+
+                            echo "Inserción exitosa de la gran cantidad de datos." . $estudiante->homologante;
+                            //$registroMPV++;
+                        } catch (Exception $e) {
+                            // Deshacer la transacción en caso de error
+                            DB::rollBack();
+
+                            // Manejar el error
+                            dd($estudiante);
+                            echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        }
+                        break;
+                    case $cantidadDiff == count($mallaCurricular):
+                        DB::beginTransaction();
+
+                        /**insertar materiasPorVer */
+                        try {
+                            DB::table('materiasPorVer')->insert($diff);
+
+                            // Confirmar la transacción
+                            DB::commit();
+
+                            echo "Inserción exitosa de la gran cantidad de datos." . $estudiante->homologante;
+                            //$registroMPV++;
+                        } catch (Exception $e) {
+                            // Deshacer la transacción en caso de error
+                            DB::rollBack();
+
+                            // Manejar el error
+                            dd($estudiante);
+                            echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        }
+                        break;
+                    case $cantidadDiff == 0:
+                        echo "estudinate vio todo". $estudiante->homologante;
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                };
+                /*if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
@@ -217,7 +268,7 @@ class MafiController extends Controller
                     /**crear alerta temprana estudinate vio todo */
                     echo "estudinate vio todo". $estudiante->homologante;
 
-                endif;
+                endif;*/
 
                 // Iniciar la transacción
 
@@ -620,7 +671,8 @@ class MafiController extends Controller
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')*/;
+            ->whereNull('programaActivo')*/
+            ->orderBy('id');
 
 
         return $estudiantesAntiguos;

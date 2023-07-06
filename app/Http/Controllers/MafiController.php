@@ -746,8 +746,8 @@ die();
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
 
-                dd( $consulta_homologante->isEmpty());
-                if(!$consulta_homologante) {
+          
+                if($consulta_homologante->isEmpty()) {
                     die("Error: no se pudo realizar la consulta homologantes 1");
                     exit();
                 }

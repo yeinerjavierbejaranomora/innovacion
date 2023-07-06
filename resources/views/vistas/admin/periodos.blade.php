@@ -229,7 +229,7 @@
                             '<label for="periodo"> Fecha de inicio periodo </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" class="col-form-label"> <option  value="'+ data.year +'"selected>' + data.year + '<option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option></select>',
+                            '<select id="año" name="año" class="col-form-label"> <option  value="'+ data.year +'"selected>' + data.year + '<option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option></select>',
                             icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

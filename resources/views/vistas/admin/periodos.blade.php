@@ -258,8 +258,6 @@
                                     temprano: $(document).find('#edtemprano').val(),
                                     periodo: $(document).find('#edperiodo').val(),
                                     año: $(document).find('#year').val(),
-                                    ciclo1: $(document).find('#edciclo1').is(':checked') ? 1 : 0,
-                                    ciclo2: $(document).find('#edciclo2').is(':checked') ? 1 : 0,
                                 },
                                 function(result) {
                                     console.log(result);

@@ -99,9 +99,9 @@
                                 <br>
                                 <div class="form-check form-check-inline" id="ciclo">
                                     <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
-                                    <label class="form-check-label" for="ciclo1"> ciclo 1  </label>
+                                    <label class="form-check-label" for="ciclo1"> Ciclo 1  </label>
                                     <input class="form-check-input" type="checkbox" value="2" id="ciclo1">
-                                    <label class="form-check-label" for="ciclo1"> ciclo 2</label>
+                                    <label class="form-check-label" for="ciclo1"> &nbsp Ciclo 2</label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

@@ -194,7 +194,7 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
-            dd($estudiantesAntiguos[0]->id);
+            //dd($estudiantesAntiguos[0]->id);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0]->id;

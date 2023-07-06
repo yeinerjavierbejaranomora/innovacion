@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo periodo</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoperiodo" data-whatever="modal">Agregar nuevo periodo</button>
                         </div>
                         <br>
                     </div>
@@ -67,7 +67,7 @@
             </div>
 
             <!--Modal para agregar un programa periodo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevoperiodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -77,13 +77,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('periodo.crear') }}">
                                 <?php
                                 $fechaactual = date('Y-m-d');
                                 $fechalimite = date('Y-m-d', strtotime($fechaactual . ' +1 year'));
                                 $añoactual = date('Y');
                                 $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
+                                <div>
+                                    <label for="name" class="col-form-label">Periodo</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
                                 <div>
                                     <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
                                     <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo1" name="ciclo1">
@@ -101,11 +105,8 @@
                                     <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
-                                    <label for="año" class="col-form-label">Año</label>
-                                    <?php
-                                    $cont = date('Y');
-                                    ?>
-                                    <select id="año" class="form-control">
+                                    <label for="fecha" class="col-form-label">Año</label>
+                                    <select id="fecha" name="fecha" class="form-control">
                                         <option value="<?php echo $añoactual; ?>"><?php echo $añoactual; ?></option>
                                         <option value="<?php echo $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>
                                     </select>

@@ -195,7 +195,7 @@ class MafiController extends Controller
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
             foreach($estudiantesAntiguos as $estudiante):
-                var_dump($estudiante);
+                var_dump($estudiante."<br>");
             endforeach;
         }
         dd($numeroEstudiantes);

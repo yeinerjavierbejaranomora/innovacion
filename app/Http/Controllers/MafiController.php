@@ -199,6 +199,7 @@ class MafiController extends Controller
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
+                dd($historial,$mallaCurricular,$diff);
                 dd($diff);
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;

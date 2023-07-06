@@ -183,6 +183,7 @@ class MafiController extends Controller
             $registroMPV = 0;
             $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;
+            $idBannerUltimoRegistro = 0;
             foreach ($estudiantes as $estudiante) :
 
                 $historial = $this->historialAcademico($estudiante->homologante);
@@ -202,7 +203,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
-                    echo "Inserción exitosa de la gran cantidad de datos.";
+                    echo "Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
                     //$registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error

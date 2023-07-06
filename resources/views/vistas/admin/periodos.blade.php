@@ -238,10 +238,12 @@
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
                             '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
+                            '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
                             '<input type="checkbox" id="ciclo1" name="ciclo1"' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
                             '<label class="form-check-label" for="ciclo1">Ciclo 1</label>' +
                             '<input type="checkbox" id="ciclo2" name="ciclo2"' + (data.activoCiclo2 == 1 ? 'checked' : '') + '>' +
-                            '<label class="form-check-label" for="ciclo2">Ciclo 2</label>',
+                            '<label class="form-check-label" for="ciclo2">Ciclo 2</label>' +
+                            '</div>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

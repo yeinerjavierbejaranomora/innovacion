@@ -544,8 +544,6 @@ class MafiController extends Controller
         $estudiantesPrimerIngreso = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
             ->whereNull('programaActivo')
-            ->where('tipo_estudiante', 'LIKE', 'INGRESO%')
-            ->whereNull('programaActivo')
             ->orderBy('id')
             ->get();
 

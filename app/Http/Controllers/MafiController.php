@@ -204,11 +204,11 @@ class MafiController extends Controller
                         //$registroMPV++;
                     } catch (Exception $e) {
                         // Deshacer la transacción en caso de error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($value);
                         DB::rollBack();
 
                         // Manejar el error
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                        dd($value);
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
@@ -663,6 +663,7 @@ class MafiController extends Controller
             AND `programaActivo` IS NULL
             ORDER BY `id` ASC */
         $estudiantesAntiguos = DB::table('estudiantes')
+            ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')

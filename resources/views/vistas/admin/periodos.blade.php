@@ -106,7 +106,7 @@
                                 </div>
                                 <div>
                                     <label for="fecha" class="col-form-label">Año</label>
-                                    <select id="fecha" class="form-control">
+                                    <select id="fecha" name="fecha" class="form-control">
                                         <option value="<?php $añoactual; ?>"><?php echo $añoactual; ?></option>
                                         <option value="<?php $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>
                                     </select>

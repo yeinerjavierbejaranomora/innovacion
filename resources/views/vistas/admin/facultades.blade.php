@@ -128,7 +128,7 @@
                                             title: 'Codigo de programa'
                                         },
                                         {
-                                            data:'bolsa',
+                                            data:'bolsa', "visible": false,
                                             title:'bolsa'
                                         },
                                         {
@@ -136,7 +136,7 @@
                                             title: 'Operador'
                                         },
                                         {
-                                            data: 'nodo',
+                                            data: 'nodo', "visible": false,
                                             title:'nodo'
                                         },
                                         {
@@ -144,16 +144,36 @@
                                             title: 'Tipo estudiante'
                                         },
                                         {
-                                            data:'materias_faltantes',
+                                            data:'materias_faltantes', "visible": false,
                                             title: 'materias faltantes'
                                         },
                                         {
-                                            data:'programado_ciclo1',
+                                            data:'programado_ciclo1', "visible": false,
                                             title:'Programado ciclo 1'
                                         },
                                         {
-                                            data: 'autorizado_asistir',
-                                            title: 'Autorizado'
+                                            data:'programado_ciclo2', "visible": false,
+                                            title:'Programado ciclo 2'
+                                        },
+                                        {
+                                            data:'programado_extra', "visible": false,
+                                            title:'Programado extra'
+                                        },
+                                        {
+                                            data:'tiene_historial', "visible": false,
+                                            title:'Tiene historial'
+                                        },
+                                        {
+                                            data:'programaActivo', "visible": false,
+                                            title:'Programa activo'
+                                        },
+                                        {
+                                            data: 'observacion', "visible": false,
+                                            title: 'Observación'
+                                        },
+                                        {
+                                            data: 'marca_ingreso', "visible": false,
+                                            title: 'Marca ingreso'
                                         },
                                         {
                                             data: 'created_at',

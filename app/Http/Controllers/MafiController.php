@@ -195,6 +195,7 @@ class MafiController extends Controller
             $limit = 200;
             $cont = 0;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
+            dd($estudiantesAntiguos[0]->id);
             foreach($estudiantesAntiguos as $estudiante):
                 echo $estudiante->homologante."<br>";
                 $cont++;

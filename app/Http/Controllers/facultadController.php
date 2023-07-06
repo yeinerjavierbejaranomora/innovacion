@@ -527,6 +527,7 @@ class facultadController extends Controller
             'ruta' => "",
             'ciclo' => $ciclo,
         ]);
+        
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.reglas')->with('message', 'Regla creada correctamente');

@@ -946,7 +946,7 @@ class MafiController extends Controller
                 echo "<br />Insertadas las materias por ver de: " . $codbanner;
 
 
-                $update_homologante = 'UPDATE homologantes SET materias_faltantes="OK" WHERE homologantes.id='.$id_homologante.';';
+                $update_homologante = 'UPDATE estudiantes SET materias_faltantes="OK" WHERE estudiantes.id='.$id_homologante.';';
                 $resultado_updatehomologante =DB::select($update_homologante);
 
 

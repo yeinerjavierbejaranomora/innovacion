@@ -195,16 +195,14 @@ class MafiController extends Controller
 
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 foreach ($mallaCurricular as $key => $malla) :
-                    dd($malla);
-                    foreach ($malla as $key => $value) :
-                        $insertMateriaPorVer = MateriasPorVer::create([
-                            "codBanner"      => $estudiante->homologante,
-                            "codMateria"      => $value->codigoCurso,
-                            "orden"      => $value->orden,
-                            "codprograma"      => $value->codprograma,
-                        ]);
-                        $registroMPV++;
-                    endforeach;
+                    dd($malla['codBanner']);
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $malla->codBanner,
+                        "codMateria"      => $malla->codigoCurso,
+                        "orden"      => $malla->orden,
+                        "codprograma"      => $malla->codprograma,
+                    ]);
+                    $registroMPV++;
                 endforeach;
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;

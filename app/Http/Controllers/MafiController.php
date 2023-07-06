@@ -184,7 +184,7 @@ class MafiController extends Controller
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')*/
             ->count();
-            dd($estudiantesAntiguos);
+            dd(ceil($estudiantesAntiguos/200));
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);
@@ -916,8 +916,11 @@ class MafiController extends Controller
 
 
                 $orden=1;
-                while($fila = $resultado_baseacademica) {
-                    $codcurso= $fila['codigoCurso'];
+                $fila = $resultado_baseacademica;
+
+                foreach ($fila as $key => $value) {
+                 
+                    $codcurso= $value->codigoCurso;
 
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);

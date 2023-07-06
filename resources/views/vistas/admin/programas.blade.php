@@ -126,9 +126,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
     <!-- /.container-fluid -->
 
@@ -147,7 +144,6 @@
 
 <script>
     facultades();
-
     function facultades() {
         $.ajax({
             headers: {

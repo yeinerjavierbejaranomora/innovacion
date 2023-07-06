@@ -79,9 +79,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('continua.crear') }}">
                                 @csrf
-
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="codigo" name="codigo">

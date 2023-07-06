@@ -178,6 +178,58 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $primerIngreso =  $this->falatntesPrimerIngreso();
+        else :
+            return "No hay estudiantes de primer ingreso";
+        endif;
+        //dd($log);
+        if (!empty($primerIngreso)) :
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $primerIngreso[0]->id;
+            $ultimoRegistroId = 0;
+            foreach ($primerIngreso as $estudiante) :
+
+                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
+                //dd($mallaCurricular);
+                foreach ($mallaCurricular as $key => $malla) :
+                    foreach ($malla as $key => $value) :
+                        $insertMateriaPorVer = MateriasPorVer::create([
+                            "codBanner"      => $estudiante->homologante,
+                            "codMateria"      => $value->codigoCurso,
+                            "orden"      => $value->orden,
+                            "codprograma"      => $value->codprograma,
+                        ]);
+                        $registroMPV++;
+                    endforeach;
+                endforeach;
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-PrimerIngreso',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-PrimerIngreso',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+        else :
+            return "No hay estudiantes de primer ingreso";
+        endif;
+        die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
@@ -266,58 +318,6 @@ class MafiController extends Controller
         die();
 
 
-
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
-        if (empty($log)) :
-            $primerIngreso =  $this->falatntesPrimerIngreso();
-        else :
-            return "No hay estudiantes de primer ingreso";
-        endif;
-        //dd($log);
-        if (!empty($primerIngreso)) :
-            $fechaInicio = date('Y-m-d H:i:s');
-            $registroMPV = 0;
-            $primerId = $primerIngreso[0]->id;
-            $ultimoRegistroId = 0;
-            foreach ($primerIngreso as $estudiante) :
-
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                //dd($mallaCurricular);
-                foreach ($mallaCurricular as $key => $malla) :
-                    foreach ($malla as $key => $value) :
-                        $insertMateriaPorVer = MateriasPorVer::create([
-                            "codBanner"      => $estudiante->homologante,
-                            "codMateria"      => $value->codigoCurso,
-                            "orden"      => $value->orden,
-                            "codprograma"      => $value->codprograma,
-                        ]);
-                        $registroMPV++;
-                    endforeach;
-                endforeach;
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
-            endforeach;
-            $fechaFin = date('Y-m-d H:i:s');
-            $insertLog = LogAplicacion::create([
-                'idInicio' => $primerId,
-                'idFin' => $ultimoRegistroId,
-                'fechaInicio' => $fechaInicio,
-                'fechaFin' => $fechaFin,
-                'accion' => 'Insert-PrimerIngreso',
-                'tabla_afectada' => 'materiasPorVer',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-            ]);
-
-            $insertIndiceCambio = IndiceCambiosMafi::create([
-                'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert-PrimerIngreso',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'fecha' => date('Y-m-d H:i:s'),
-            ]);
-            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
-        else :
-            return "No hay estudiantes de primer ingreso";
-        endif;
         $this->periodo();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         //return $log;
@@ -757,7 +757,7 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
-           
+
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')

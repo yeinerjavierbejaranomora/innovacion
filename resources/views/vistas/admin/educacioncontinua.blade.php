@@ -64,9 +64,9 @@
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un programa nuevo-->  
+            <!--Modal para agragar un programa nuevo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -79,7 +79,7 @@
                         <div class="modal-body">
                             <form id="miForm" method="get" action="#">
                                 @csrf
-                                
+
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
                                     <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-         
+
 
         </div>
         <!-- /.container-fluid -->
@@ -132,7 +132,7 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'codprograma', 
+                        data: 'codprograma',
                         title: 'Codigo de programa'
                     },
                     {
@@ -180,9 +180,78 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
+            /** Función para editar  */
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    $('#facultadEditar').val(data.idFacultad);
+                    const {
+                        value: facultad
+                    } = Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<label for="codprograma"> Codigo del programa </label>' +
+                            '<input type="text" id="codprograma" name="codprograma" value="' + data.codprograma + '" class="form-control" placeholder="codprograma"> <br>' +
+                            '<label for="programa"> Nombre del programa </label>' +
+                            '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
+                            '<label for="facultades"> Facultad a la que pertenece el programa </label>' +
+                            ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        if (result.value) {
+                            $.post("{{ route('programa.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codigo: $(document).find('#codprograma').val(),
+                                    programa: $(document).find('#programa').val(),
+                                    idfacultad: $(document).find('#facultades').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+                    facultades();
+
+                    function facultades() {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('registro.facultades') }}",
+                            method: 'post',
+                            success: function(data) {
+                                data.forEach(facultad => {
+                                    if ($('#facultadEditar').val() != facultad.id) {
+                                        $('#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                                    };
+                                })
+                            }
+                        })
+                    }
+                });
+            }
+            obtener_data_editar("#example tbody", table);
+
+
+
         }
-
     }
-
 </script>
 @include('layout.footer')

@@ -96,7 +96,6 @@
                                     <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
-
                                     <label for="año" class="col-form-label">Año</label>
                                     <?php
                                 $cont = date('Y');
@@ -108,6 +107,7 @@
                                     } ?>
                                 </select>
                             </div>
+                            <br>
                             <div>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="crear btn btn-success">Crear</button>

@@ -179,7 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            dd($estudiantes[0]->id);
+            dd($estudiantes[0]);
             foreach ($estudiantes as $estudiante) :
                 $fechaInicio = date('Y-m-d H:i:s');
                 $registroMPV = 0;
@@ -750,11 +750,11 @@ class MafiController extends Controller
         /** inicializamos la consulta  con  cada programa */
         foreach ($programas as $programa) {
 
-                /* select `id`, `homologante`, `programa`
-                    from `estudiantes`
-                    where `materias_faltantes` = 'OK'
-                    and `programado_ciclo1` is null
-                    and `programado_ciclo2` is null
+                /* select `id`, `homologante`, `programa` 
+                    from `estudiantes` 
+                    where `materias_faltantes` = 'OK' 
+                    and `programado_ciclo1` is null 
+                    and `programado_ciclo2` is null 
                     and `programa` = 'PCPV'
                     and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);
                 */
@@ -767,11 +767,12 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','ASC')
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :
                         dd($estudiante);
-
+                     
                     endforeach;
                 });
 
@@ -822,7 +823,7 @@ class MafiController extends Controller
              
         }
 
-
+        
         die();
 
 

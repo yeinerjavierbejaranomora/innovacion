@@ -185,7 +185,6 @@ class MafiController extends Controller
                 # code...
                 $historial = $this->historialAcademico($value->homologante);
                 $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
-
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });

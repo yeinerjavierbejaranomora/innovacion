@@ -749,14 +749,14 @@ class MafiController extends Controller
         /** inicializamos la consulta  con  cada programa */
         foreach ($programas as $programa) {
 
-                // WHERE materias_faltantes="OK"
-                // AND programado_ciclo1 IS NULL
-                // AND programado_ciclo2   IS NULL
-                // AND programa="PCPV"
-                // AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
-                // AND tipo_estudiante!="XXXXX"
-                // ORDER BY id ASC
-                // LIMIT 20000;
+                /* WHERE materias_faltantes="OK"
+                 AND programado_ciclo1 IS NULL
+                 AND programado_ciclo2   IS NULL
+                 AND programa="PCPV"
+                 AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
+                 AND tipo_estudiante!="XXXXX"
+                 ORDER BY id ASC
+                 LIMIT 20000;*/
 
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
@@ -765,7 +765,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
-                ->whereIn('marca_ingreso',$marcaIngreso)
+                ->whereIn('marca_ingres',$marcaIngreso)
                 ->get();
                 if(!$consulta_homologante->isEmpty()) {
                     dd($consulta_homologante);

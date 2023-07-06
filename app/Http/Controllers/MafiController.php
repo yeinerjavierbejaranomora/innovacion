@@ -183,6 +183,7 @@ class MafiController extends Controller
             $registroMPV = 0;
             $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;
+            $idBannerUltimoRegistro = 0;
             foreach ($estudiantes as $estudiante) :
 
                 $historial = $this->historialAcademico($estudiante->homologante);
@@ -202,7 +203,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
-                    echo "Inserción exitosa de la gran cantidad de datos.";
+                    echo $registroMPV. " Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
                     //$registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error
@@ -217,41 +218,7 @@ class MafiController extends Controller
             endforeach;
 
             $fechaFin = date('Y-m-d H:i:s');
-            $dataLog =[
-                'idInicio' => $primerId,
-                'idFin' => $ultimoRegistroId,
-                'fechaInicio' => $fechaInicio,
-                'fechaFin' => $fechaFin,
-                'accion' => 'Insert-EstudinatesAntiguos',
-                'tabla_afectada' => 'materiasPorVer',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-
-            $dataIndice = [
-                'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert-EstudinatesAntiguos',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'fecha' => date('Y-m-d H:i:s'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-
-            DB::beginTransaction();
-            try {
-                DB::table('logAplicacion')->insert($dataLog);
-                DB::table('indece_cambios_mafi')->insert($dataIndice);
-                DB::commit();
-                echo "<br>Inserción exitosa de los logs.<br>";
-            } catch (Exception $e) {
-                // Deshacer la transacción en caso de error
-                DB::rollBack();
-
-                // Manejar el error
-                echo "Error al insertar los logs: " . $e->getMessage();
-                die();
-            }
+            $this->insertLog($primerId,$ultimoRegistroId,$fechaInicio,$fechaFin,$idBannerUltimoRegistro,$registroMPV);
 
             /*$insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,
@@ -588,6 +555,45 @@ class MafiController extends Controller
         else :
             return "No hay registros para replicar";
         endif;
+    }
+
+    public function insertLog($primerId,$ultimoRegistroId,$fechaInicio,$fechaFin,$idBannerUltimoRegistro,$registroMPV){
+        $dataLog =[
+            'idInicio' => $primerId,
+            'idFin' => $ultimoRegistroId,
+            'fechaInicio' => $fechaInicio,
+            'fechaFin' => $fechaFin,
+            'accion' => 'Insert-EstudinatesAntiguos',
+            'tabla_afectada' => 'materiasPorVer',
+            'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        $dataIndice = [
+            'idbanner' => $idBannerUltimoRegistro,
+            'accion' => 'Insert-EstudinatesAntiguos',
+            'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            'fecha' => date('Y-m-d H:i:s'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        DB::beginTransaction();
+        try {
+            DB::table('logAplicacion')->insert($dataLog);
+            DB::table('indece_cambios_mafi')->insert($dataIndice);
+            DB::commit();
+            echo "<br>Inserción exitosa de los logs.<br>";
+        } catch (Exception $e) {
+            // Deshacer la transacción en caso de error
+            DB::rollBack();
+
+            // Manejar el error
+            echo "Error al insertar los logs: " . $e->getMessage();
+            die();
+        }
+        return;
     }
 
     public function falatntesPrimerIngreso()

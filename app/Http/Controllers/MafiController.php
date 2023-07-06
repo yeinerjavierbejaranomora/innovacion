@@ -231,7 +231,7 @@ class MafiController extends Controller
                 $registroMPV++;
                 echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>";
             endforeach;
-            echo $registroMPV;
+            echo "#registros => ".$registroMPV."<br>";
 
             /*$fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

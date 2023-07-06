@@ -183,7 +183,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
-            ->orderBy('id');
+            ->orderBy('id')->count();
         $numeroEstudiantes = ceil($estudiantesAntiguos/200);
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             # code...

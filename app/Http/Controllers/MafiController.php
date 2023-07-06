@@ -177,7 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $fechaInicio = date('Y-m-d H:i:s');
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
@@ -201,7 +201,8 @@ class MafiController extends Controller
             endforeach;
             dd($cont);
         }
-        dd($numeroEstudiantes);
+        $fechaFin = date('Y-m-d H:i:s');
+        echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

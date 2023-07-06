@@ -182,10 +182,10 @@ class MafiController extends Controller
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
         else :
-            return "No hay estudiantes de primer ingreso";
+            return "No hay estudiantes Transferentes";
         endif;
 
-        dd($transferente[0]->id);
+        //dd($transferente[0]->id);
         if (!empty($transferente)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -193,8 +193,7 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                //dd($historial['programa'][0]);
-
+                dd($historial);
                 $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 //dd($mallaCurricular[0][21]);
                 foreach ($mallaCurricular as $key => $malla) :
@@ -735,11 +734,7 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
-<<<<<<< HEAD
-                dd($programa->codprograma);
-=======
-
->>>>>>> 965c80be8c8ca02e0e0aafb5f7da8c7f795d19bd
+             
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')
@@ -750,7 +745,7 @@ class MafiController extends Controller
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
 
-
+                dd( $consulta_homologante);
                 if(!$consulta_homologante) {
                     die("Error: no se pudo realizar la consulta homologantes 1");
                     exit();

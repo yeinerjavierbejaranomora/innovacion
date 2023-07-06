@@ -261,6 +261,8 @@
                                     temprano: $(document).find('#temprano').val(),
                                     periodo: $(document).find('#periodo').val(),
                                     año: $(document).find('#año').val(),
+                                    ciclo1: $(document).find('#ciclo1').val(),
+                                    ciclo2: $(document).find('#ciclo2').val(),
                                 },
                                 function(result) {
                                     console.log(result);
@@ -280,7 +282,6 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
 
         }
     }

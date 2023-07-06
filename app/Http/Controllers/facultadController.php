@@ -420,6 +420,18 @@ class facultadController extends Controller
         $temprano = $_POST['temprano'];
         $periodo = $_POST['periodo'];
         $año = $_POST['año'];
+        $ciclo1 = $_POST['ciclo1'];
+        $ciclo2 = $_POST['ciclo2'];
+
+        if(empty($ciclo1))
+        {
+            $ciclo1 = 0;
+        }
+        if(empty($ciclo2))
+        {
+            $ciclo2 = 0;
+        }
+        
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
@@ -434,6 +446,8 @@ class facultadController extends Controller
                 'fechaInicioTemprano' => $temprano,
                 'fechaInicioPeriodo' => $periodo,
                 'periodoActivo' => 1,
+                'activoCiclo1' => $ciclo1,
+                'activoCiclo2' => $ciclo2,
                 'year' =>$año,
             ]);
         if ($periodo) :

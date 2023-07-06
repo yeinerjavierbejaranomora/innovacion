@@ -199,7 +199,7 @@ class MafiController extends Controller
                 echo $estudiante->homologante."<br>";
                 $cont++;
             endforeach;
-            dd($cont);
+            //dd($cont);
         }
         $fechaFin = date('Y-m-d H:i:s');
         echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;

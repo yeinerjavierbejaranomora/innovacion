@@ -228,7 +228,7 @@ class MafiController extends Controller
 
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
-                echo $idBannerUltimoRegistro . "=" . $cantidadDiff;
+                echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>;
             endforeach;
 
             /*$fechaFin = date('Y-m-d H:i:s');

@@ -85,7 +85,7 @@
                                 $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
                                 <div>
-                                    <label for="name" class="col-form-label">Fecha inicio ciclo 1</label>
+                                    <label for="name" class="col-form-label">Periodo</label>
                                     <input type="text" class="form-control" id="name" name="name">
                                 </div>
                                 <div>

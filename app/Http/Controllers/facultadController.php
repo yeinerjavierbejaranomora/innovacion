@@ -387,6 +387,7 @@ class facultadController extends Controller
         endif;
     }
 
+    /** Metodo para inactivar facultad */
     public function inactivar_facultad()
     {
         $id = $_POST['id'];
@@ -398,6 +399,7 @@ class facultadController extends Controller
         endif;
     }
 
+    /** Metodo para activar facultad */
     public function activar_facultad()
     {
         $id = $_POST['id'];
@@ -409,6 +411,38 @@ class facultadController extends Controller
         endif;
     }
 
-    
+    /** Metodo para actualizar los datos de periodo */
+    public function updateperiodo(){
+        $id_llegada = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $fecha1 = $_POST['fecha1'];
+        $fecha2 = $_POST['fecha2'];
+        $temprano = $_POST['temprano'];
+        $periodo = $_POST['periodo'];
+        $año = $_POST['año'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        /** Consulta para actualizar facultad */
+        $periodo = DB::table('periodo')
+            ->where('id', $id)
+            ->update([
+                'periodos' => $nombre,
+                'fechaInicioCiclo1' => $fecha1,
+                'fechaInicioCiclo2' => $fecha2,
+                'fechaInicioTemprano' => $temprano,
+                'fechaInicioPeriodo' => $periodo,
+                'periodoActivo' => 1,
+                'year' =>$año,
+            ]);
+        if ($periodo) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
 
 }

@@ -194,6 +194,9 @@ Route::controller(facultadController::class)->group(function(){
     Route::post('/home/crearmaestria', 'crear_meastria')->middleware('auth')->name('maestria.crear');
     /** Ruta para crear programa de educacion continua*/
     Route::post('/home/crearcontinua', 'crear_edudacioncont')->middleware('auth')->name('continua.crear');
+
+    /** Ruta para editar periodos */
+    Route::post('/home/updateperiodo', 'updateperiodo')->middleware('auth')->name('periodo.update');
 });
 
 

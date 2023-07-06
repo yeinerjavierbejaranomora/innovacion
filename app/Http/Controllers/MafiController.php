@@ -194,7 +194,9 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
-            dd($estudiantesAntiguos);
+            foreach($estudiantesAntiguos as $estudiante):
+                var_dump($estudiante);
+            endforeach;
         }
         dd($numeroEstudiantes);
         die();
@@ -568,6 +570,16 @@ class MafiController extends Controller
             OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
             AND `programaActivo` IS NULL
             ORDER BY `id` ASC */
+        /**SELECT * FROM `estudiantes`
+            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` = ''
+            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` = ''
+            ORDER BY `id` ASC
+            LIMIT 200
+            OFFSET 1 */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')

@@ -746,7 +746,7 @@ die();
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
                 if(!$consulta_homologante->isEmpty()) {
-
+                    dd($consulta_homologante);
                     foreach ($consulta_homologante as $key => $value) {
 
                         $id_homologante=$value->id;

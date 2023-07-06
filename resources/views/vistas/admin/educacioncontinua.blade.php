@@ -22,9 +22,11 @@
 
 
             <div class="input-group">
-
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
+                </div>
+                <div>
+                    <input type="text" id="facultadEditar" value='' name="facultadEditar" hidden>
                 </div>
             </div>
 
@@ -82,20 +84,20 @@
 
                                 <div>
                                     <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <input type="text" class="form-control" id="codigo" name="codigo">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <select class="form-control" name="codFacultad" id="codFacultad"></select>
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="crear btn btn-success">Crear</button>
                         </div>
                         </form>
                     </div>
@@ -121,6 +123,24 @@
 </a>
 
 <script>
+    facultades();
+
+    function facultades() {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('#nuevoprograma select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+
+                })
+            }
+        })
+    }
+
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getcontinua') }}";
@@ -180,6 +200,81 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el programa " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Programa deshabilitado",
+                                                html: "El programa <strong>" + data.programa +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el programa " + data.programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('programa.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        codigo: data.codprograma,
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Programa habilitado",
+                                                html: "El programa <strong>" + data.programa +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
 
             /** Función para editar  */
             function obtener_data_editar(tbody, table) {
@@ -248,8 +343,7 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
-
+            obtener_data_inactivar("#example tbody", table);
 
         }
     }

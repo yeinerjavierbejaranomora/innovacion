@@ -420,7 +420,7 @@ class facultadController extends Controller
         $fecha2 = $_POST['ciclo2'];
         $temprano = $_POST['temprano'];
         $periodo = $_POST['periodo'];
-        $año = intval($_POST['fecha']);
+        $año = $_POST['fecha'];
 
         $crear = DB::table('periodo')->insert([
             'periodos' => $nombre,

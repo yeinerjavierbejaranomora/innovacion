@@ -177,7 +177,15 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $estudiantesAntiguos = DB::table('estudiantes')
+            ->where('programa','=','PPSV')
+            ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
+            ->whereNull('programaActivo')
+            /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')*/
+            ->count();
+            dd($estudiantesAntiguos);
+        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);
         $cont = 0;

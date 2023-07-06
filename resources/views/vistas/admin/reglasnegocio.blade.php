@@ -238,6 +238,7 @@
                             '<option value="Transferente">Transferente</option>' +
                             '<option value="PrimerI">Primer ingreso</option>' +
                             '</select>' +
+                            '<label for="ciclo" class="col-form-label">Ciclo</label><br>' +
                             '<div class="form-check form-check-inline" id="ciclo">' +
                             '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1" required>' +
                             '<label class="form-check-label" for="ciclo1"> Ciclo 1 </label>' +

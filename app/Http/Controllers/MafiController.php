@@ -188,7 +188,7 @@ class MafiController extends Controller
         $ultimoid = 1;
         $offset = 1;
         //for ($i=0; $i < $cont; $i++) {
-            $estudiantesAntiguos = $this->faltantesAntiguos($offset);
+            $estudiantesAntiguos = $this->faltantesAntiguos($offset)->get();
             foreach ($estudiantesAntiguos as $key => $value) {
                 dd($value);
                 $historial = $this->historialAcademico($value->homologante);

@@ -191,7 +191,7 @@ class MafiController extends Controller
             $primerId = $primerIngreso[0]->id;
             $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
-                dd($estudiante);
+                //dd($estudiante);
 
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 dd($mallaCurricular);

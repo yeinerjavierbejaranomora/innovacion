@@ -219,12 +219,17 @@
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="periodo"> Periodo </label>' +
-                            '<input type="date" id="periodo" name="periodo" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
-                            '<label for="fechain1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" id="fechain1" name="fechain1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
-                            '<label for="fechain2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" id="fechain2" name="fechain2" value="' + data.fechaInicioCiclo2 + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>',
-                        icon: 'info',
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
+                            '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
+                            '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
+                            '<label for="temprano"> Fecha de inicio temprano </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="temprano" name="temprano" value="' + data.fechaInicioTemprano + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
+                            '<label for="periodo"> Fecha de inicio periodo </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>',
+                        
+                            icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',

@@ -80,20 +80,21 @@
                             <form id="miForm" method="get" action="#">
                                 @csrf
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <label for="codigo" class="col-form-label">Codigo del programa</label>
+                                    <input type="text" class="form-control" id="codigo" name="codigo">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Número de créditos</label>
-                                    <input type="number" class="form-control" id="editnombre" name="editnombre">
+                                    <label for="creditos" class="col-form-label">Número de créditos</label>
+                                    <input type="number" class="form-control" id="creditos" name="creditos">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Tipo de estudiante</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
+                                    <input type="text" class="form-control" id="estudiante" name="estudiante">
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <label for="ciclo" class="col-form-label">Tipo de estudiante</label>
+                                <div class="form-check form-check-inline" id="ciclo">
                                     <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
-                                    <label class="form-check-label" for="ciclo1"> ciclo 1</label>
+                                    <label class="form-check-label" for="ciclo1"> ciclo 1  </label>
                                     <input class="form-check-input" type="checkbox" value="2" id="ciclo1">
                                     <label class="form-check-label" for="ciclo1"> ciclo 2</label>
                                 </div>

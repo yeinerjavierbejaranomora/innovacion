@@ -735,7 +735,7 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
-                dd($programa->codprograma);
+             
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')
@@ -746,7 +746,7 @@ class MafiController extends Controller
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
 
-
+                dd( $consulta_homologante);
                 if(!$consulta_homologante) {
                     die("Error: no se pudo realizar la consulta homologantes 1");
                     exit();

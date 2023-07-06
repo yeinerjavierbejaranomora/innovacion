@@ -265,7 +265,9 @@ class facultadController extends Controller
         endif;
     }
 
-    public function crear_edudacioncont(){
+    /** Metodo para crear programa de educacion continua */
+    public function crear_edudacioncont()
+    {
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $codFacultad = $_POST['codFacultad'];
@@ -411,8 +413,38 @@ class facultadController extends Controller
         endif;
     }
 
+    public function crear_periodo()
+    {
+        $nombre = $_POST['name'];
+        $fecha1 = $_POST['ciclo1'];
+        $fecha2 = $_POST['ciclo2'];
+        $temprano = $_POST['temprano'];
+        $periodo = $_POST['periodo'];
+        $año = $_POST['fecha'];
+
+        $crear = DB::table('periodo')->insert([
+            'periodos' => $nombre,
+            'fechaInicioCiclo1' => $fecha1,
+            'fechaInicioCiclo2' => $fecha2,
+            'fechaInicioTemprano' => $temprano,
+            'fechaInicioPeriodo' => $periodo,
+            'activoCiclo1' => 0,
+            'activoCiclo2' => 0,
+            'periodoActivo' => 0,
+            'year' => $año,
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.periodos')->with('message', 'Periodo creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.periodos')->with(['errors' => 'El periodo no ha podido ser creado']);
+        endif;
+    }
+
     /** Metodo para actualizar los datos de periodo */
-    public function updateperiodo(){
+    public function updateperiodo()
+    {
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
         $fecha1 = $_POST['fecha1'];
@@ -420,19 +452,7 @@ class facultadController extends Controller
         $temprano = $_POST['temprano'];
         $periodo = $_POST['periodo'];
         $año = $_POST['año'];
-        $ciclo1 = $_POST['ciclo1'];
-        $ciclo2 = $_POST['ciclo2'];
 
-        dd($_POST);
-        if(empty($ciclo1))
-        {
-            $ciclo1 = 0;
-        }
-        if(empty($ciclo2))
-        {
-            $ciclo2 = 0;
-        }
-        
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
@@ -446,16 +466,43 @@ class facultadController extends Controller
                 'fechaInicioCiclo2' => $fecha2,
                 'fechaInicioTemprano' => $temprano,
                 'fechaInicioPeriodo' => $periodo,
-                'periodoActivo' => 1,
-                'activoCiclo1' => $ciclo1,
-                'activoCiclo2' => $ciclo2,
-                'year' =>$año,
+                'year' => $año,
             ]);
         if ($periodo) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
+    }
+
+    /** Función para activar los periodos */
+    public function activar_periodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 1]);
+        if ($activarPeriodo) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    /** Función para desactivar los periodos */
+    public function inactivar_periodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
+        if ($inactivarPeriodo) :
+            return  "deshabilitado";
+        else :
             return "false";
         endif;
     }

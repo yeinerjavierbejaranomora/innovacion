@@ -66,12 +66,12 @@
                 </div>
             </div>
 
-                <!--Modal para agregar una nueva regla
-                <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
+            <!--Modal para agregar una nueva regla-->
+            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -80,32 +80,36 @@
                             <form id="miForm" method="get" action="#">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id" hidden>
+                                    <label for="codigo" class="col-form-label">Codigo del programa</label>
+                                    <input type="text" class="form-control" id="codigo" name="codigo">
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
+                                    <label for="creditos" class="col-form-label">Número de créditos</label>
+                                    <input type="number" class="form-control" id="creditos" name="creditos">
                                 </div>
                                 <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                    <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
+                                    <input type="text" class="form-control" id="estudiante" name="estudiante">
                                 </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Facultad a la que pertenece</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
+                                <label for="ciclo" class="col-form-label">Ciclo</label>
+                                <br>
+                                <div class="form-check form-check-inline" id="ciclo">
+                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
+                                    <label class="form-check-label" for="ciclo1"> ciclo 1  </label>
+                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo1">
+                                    <label class="form-check-label" for="ciclo1"> ciclo 2</label>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="crear btn btn-primary">Crear</button>
-                            </div>
-                        </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-primary">Crear</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            -->  
             </div>
 
-         
+
 
         </div>
         <!-- /.container-fluid -->
@@ -155,12 +159,35 @@
                         title: 'Ciclo'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
+                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        title: 'Editar',
+                        className: "text-center",
                     },
                     {
-                        defaultContent: "<button type='button' class='eliminar btn btn-secondary'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar'
+                        data: 'activo',
+                        defaultContent: "",
+                        title: "Estado",
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return 'Activo';
+                            } else if (data == '0') {
+                                return 'Inactivo';
+                            }
+                        }
+                    },
+                    {
+                        data: 'activo',
+                        defaultContent: "",
+                        title: 'Inactivar / Activar',
+                        className: "text-center",
+                        render: function(data, type, row) {
+                            if (data == '1') {
+                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                            } else if (data == '0') {
+                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                            }
+                        }
                     },
                 ],
                 "language": {
@@ -169,9 +196,8 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
         }
-
     }
-
 </script>
 @include('layout.footer')

@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo periodo</button>
+                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoperiodo" data-whatever="modal">Agregar nuevo periodo</button>
                         </div>
                         <br>
                     </div>
@@ -67,7 +67,7 @@
             </div>
 
             <!--Modal para agregar un programa periodo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="nuevoperiodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -77,43 +77,39 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('periodo.crear') }}">
+                                <?php
+                                $fechaactual = date('Y-m-d');
+                                $fechalimite = date('Y-m-d', strtotime($fechaactual . ' +1 year'));
+                                $añoactual = date('Y');
+                                $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
                                 <div>
+                                    <label for="name" class="col-form-label">Periodo</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div>
                                     <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
-                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="ciclo1" name="ciclo1">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo1" name="ciclo1">
                                 </div>
                                 <div>
                                     <label for="ciclo2" class="col-form-label">Fecha inicio ciclo 2</label>
-                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="ciclo2" name="ciclo2">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo2" name="ciclo2">
                                 </div>
                                 <div>
                                     <label for="temprano" class="col-form-label">Fecha inicio temprano</label>
-                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="temprano" name="temprano">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="temprano" name="temprano">
                                 </div>
                                 <div>
                                     <label for="periodo" class="col-form-label">Fecha inicio periodo</label>
-                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="periodo" name="periodo">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
-                                    <label for="año" class="col-form-label">Año</label>
-                                    <?php
-                                    $cont = date('Y');
-                                    ?>
-                                    <select id="año" class="form-control">
-                                        <?php while ($cont >= 2020) { ?>
-                                            <option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>
-                                        <?php $cont = ($cont - 1);
-                                        } ?>
+                                    <label for="fecha" class="col-form-label">Año</label>
+                                    <select id="fecha" name="fecha" class="form-control">
+                                        <option value="<?php echo intval($añoactual); ?>"><?php echo $añoactual; ?></option>
+                                        <option value="<?php echo intval($añoactual); ?>"><?php echo $añosiguiente; ?></option>
                                     </select>
-                                </div>
-                                <label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label>
-                                <div class="form-check" id="ciclo">
-                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
-                                    <label class="form-check-label" for="ciclo1">Ciclo 1</label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo2">
-                                    <label class="form-check-label" for="ciclo2">Ciclo 2</label>
                                 </div>
                                 <br>
                                 <div>
@@ -216,32 +212,112 @@
             });
             console.log(table);
 
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.periodoActivo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el periodo " + data.periodos + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('periodo.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Periodo deshabilitado",
+                                                html: "El periodo <strong>" + data.periodos +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el periodo " + data.periodos + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('periodo.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Periodo habilitado",
+                                                html: "El periodo <strong>" + data.periodos +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+
             /** Editar periodos */
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    $('#facultadEditar').val(data.idFacultad);
+                    /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
+                    var fechaActual = new Date();
+                    var añoActual = fechaActual.getFullYear();
+                    fechaActual.setFullYear(fechaActual.getFullYear() + 1);
+                    var fechaLimite = fechaActual.toISOString().split('T')[0];
+                    var añoSiguiente = añoActual + 1;
+
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +
                             '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
-                            '<label for="temprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="temprano" name="temprano" value="' + data.fechaInicioTemprano + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
-                            '<label for="periodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
-                            '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
-                            '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
-                            '<input type="checkbox" id="ciclo1" name="ciclo1"' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
-                            '<label class="form-check-label" for="ciclo1">Ciclo 1</label>' +
-                            '<input type="checkbox" id="ciclo2" name="ciclo2"' + (data.activoCiclo2 == 1 ? 'checked' : '') + '>' +
-                            '<label class="form-check-label" for="ciclo2">Ciclo 2</label>' +
-                            '</div>',
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
+                            '<label for="edtemprano"> Fecha de inicio temprano </label>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
+                            '<label for="edperiodo"> Fecha de inicio periodo </label>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
+                            '<div>' +
+                            '<label for="year" class="col-form-label">Año</label>' +
+                            '<select id="year" class="form-control">' +
+                            '<option value="' + añoActual + '">' + añoActual + '</option>' +
+                            '<option value="' + añoSiguiente + '">' + añoSiguiente + '</option>' +
+                            '</select>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -250,18 +326,15 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            console.log('entra');
                             $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
                                     nombre: $(document).find('#nombre').val(),
                                     fecha1: $(document).find('#fecha1').val(),
                                     fecha2: $(document).find('#fecha2').val(),
-                                    temprano: $(document).find('#temprano').val(),
-                                    periodo: $(document).find('#periodo').val(),
-                                    año: $(document).find('#año').val(),
-                                    ciclo1: $(document).find('#ciclo1').val(),
-                                    ciclo2: $(document).find('#ciclo2').val(),
+                                    temprano: $(document).find('#edtemprano').val(),
+                                    periodo: $(document).find('#edperiodo').val(),
+                                    año: $(document).find('#year').val(),
                                 },
                                 function(result) {
                                     console.log(result);
@@ -272,7 +345,6 @@
                                         }).then(result => {
                                             location.reload();
                                         });
-
                                     }
                                 }
                             )
@@ -281,7 +353,7 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
+            obtener_data_inactivar("#example tbody", table);
         }
     }
 </script>

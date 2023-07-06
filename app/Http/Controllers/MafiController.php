@@ -178,39 +178,100 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
+        //dd($estudiantesAntiguos);
+        foreach ($estudiantesAntiguos as $key => $estudiante) {
+            foreach ($estudiante as $key => $value) {
+                # code...
+                $historial = $this->historialAcademico($value->homologante);
+                $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                $cantidadDiff = count($diff);
+
+                if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    try {
+                        DB::table('materiasPorVer')->insert($diff);
+
+                        // Confirmar la transacción
+                        DB::commit();
+
+                        echo "Inserción exitosa de la gran cantidad de datos.". $value->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+
+                        // Manejar el error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($value);
+                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    echo "estudinate vio todo". $value->homologante;
+
+                endif;
+            }
+        }
+
+
+        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
+            /*$fechaInicio = date('Y-m-d H:i:s');
             $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;*/
             foreach ($estudiantes as $estudiante) :
+
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
 
+                $cantidadDiff = count($diff);
+
+                /*if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    /*try {
+                        DB::table('materiasPorVer')->insert($diff);
+
+                        // Confirmar la transacción
+                        DB::commit();
+
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+
+                        // Manejar el error
+                        dd($estudiante);
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    /*echo "estudinate vio todo". $estudiante->homologante;
+
+                endif;*/
+
                 // Iniciar la transacción
-                DB::beginTransaction();
 
-                try {
-                    DB::table('materiasPorVer')->insert($diff);
 
-                    // Confirmar la transacción
-                    DB::commit();
-
-                    echo "Inserción exitosa de la gran cantidad de datos.";
-                    //$registroMPV++;
-                } catch (Exception $e) {
-                    // Deshacer la transacción en caso de error
-                    DB::rollBack();
-
-                    // Manejar el error
-                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                }
-                /*$ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;*/
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+                $registroMPV++;
+                echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>";
             endforeach;
+            echo "#registros => ".$registroMPV."<br>";
+
             /*$fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,
@@ -608,6 +669,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')*/
             ->orderBy('id');
 
+
         return $estudiantesAntiguos;
     }
 
@@ -877,8 +939,121 @@ class MafiController extends Controller
         //     });
         //     dd($diff);
 
+<<<<<<< HEAD
        
        
+=======
+        /// para activar el perodo activo en la base de datos
+        $periodo = $this->periodo();
+        $marcaIngreso = "";
+        foreach ($periodo as $key => $value) {
+            $marcaIngreso .= (int)$value->periodos . ",";
+        }
+
+        // para procesasr las marcas de ingreso en los periodos
+        $marcaIngreso=trim($marcaIngreso,",");
+        // Dividir la cadena en elementos individuales
+        $marcaIngreso = explode(",", $marcaIngreso);
+        // Convertir cada elemento en un número
+        $marcaIngreso = array_map('intval', $marcaIngreso);
+        /* traemos todos los programas activos para la consulta */
+        $programas= $this->get_programas();
+
+        /** inicializamos la consulta  con  cada programa */
+        foreach ($programas as $programa) {
+
+                /* select `id`, `homologante`, `programa`
+                    from `estudiantes`
+                    where `materias_faltantes` = 'OK'
+                    and `programado_ciclo1` is null
+                    and `programado_ciclo2` is null
+                    and `programa` = 'PCPV'
+                    and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);
+                */
+
+                // Estudiantes para generar faltantes por programa
+                $consulta_homologante= DB::table('estudiantes')
+                ->select('id', 'homologante', 'programa')
+                ->where('materias_faltantes','OK')
+                ->whereNull('programado_ciclo1')
+                ->whereNull('programado_ciclo2')
+                ->where('programa', $programa->codprograma)
+                ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','ASC')
+                ->chunk(200, function($estudiantes){
+
+                    foreach ($estudiantes as $estudiante) :
+
+
+
+                        $idbanner=$estudiante->homologante;
+                        $programa_homologante=$estudiante->programa;
+
+                        $consulta_porver= DB::table('materiasPorVer')
+                        ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+                        ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
+                        ->where('materiasPorVer.codBanner',$idbanner)
+                        ->whereIn('mallaCurricular.ciclo',[1,12])
+                        ->where('materiasPorVer.codprograma','=',$programa_homologante)
+                        ->where('mallaCurricular.codprograma','=',$programa_homologante)
+                        ->orderBy('materiasPorVer.orden', 'ASC')
+                        ->get();
+
+                        $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM historial ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner='. $idbanner .' group by p.codbanner ';
+                        dd( $consulta_sumacreditos);
+                       // dd($consulta_porver);
+
+                    endforeach;
+                });
+
+               /* if(!$consulta_homologante->isEmpty()) {
+
+                    dd($consulta_homologante);
+
+                    foreach ($consulta_homologante as $key => $value) {
+
+                        $id_homologante=$value->id;
+                        $codHomologante=$value->homologante;
+                        $programa_homologante=$value->programa;
+
+
+                        // Materias que debe ver el estudiante
+                            // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
+
+                            /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
+                            from
+                            `materiasPorVer`
+                            inner join `mallaCurricular` on `materiasPorVer`.`codMateria` = `mallaCurricular`.`codigoCurso`
+                            where
+                            `codBanner` = 100152879
+                            and mallaCurricular.ciclo   in (1, 12)
+                            and materiasPorVer.codprograma= 'PPSV'
+                            and mallaCurricular.codprograma = 'PPSV'
+                            order by
+                        materiasPorVer.orden ASC;
+
+
+                        $consulta_porver= DB::table('materiasPorVer')
+                        ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
+                        ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
+                        ->where('materiasPorVer.codBanner',$id_homologante)
+                        ->whereIn('mallaCurricular.ciclo',[1,12])
+                        ->where('materiasPorVer.codprograma','=',$programa_homologante)
+                        ->where('mallaCurricular.codprograma','=',$programa_homologante)
+                        ->orderBy('materiasPorVer.orden', 'ASC')
+                        ->get();
+
+
+
+                    }
+
+                    dd( $consulta_porver);
+                } */
+
+
+        }
+
+>>>>>>> 4762cf1ce4fe5e8166f107583dbaf456d1ef571c
 
         die();
 

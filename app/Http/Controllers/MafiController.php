@@ -184,7 +184,7 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
-        //dd($primerIngreso);
+        dd($primerIngreso);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -765,7 +765,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
-                ->whereIn('marca_ingres',$marcaIngreso)
+                ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
                 if(!$consulta_homologante->isEmpty()) {
                     dd($consulta_homologante);

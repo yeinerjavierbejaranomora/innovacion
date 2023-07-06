@@ -178,9 +178,17 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        /*$estudiantesAntiguos = $this->faltantesAntiguos()->get();
-        dd($estudiantesAntiguos[3463]);
-        die();*/
+        $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
+        //dd($estudiantesAntiguos[12][2579]->homologante);
+        $historial = $this->historialAcademico($estudiantesAntiguos[12][2579]->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiantesAntiguos[12][2579]->homologante,$estudiantesAntiguos[12][2579]->programa);
+
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                dd($diff);
+
+        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             $registroMPV = 0;
             /*$fechaInicio = date('Y-m-d H:i:s');
@@ -231,7 +239,7 @@ class MafiController extends Controller
                 $registroMPV++;
                 echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>";
             endforeach;
-            echo $registroMPV;
+            echo "#registros => ".$registroMPV."<br>";
 
             /*$fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

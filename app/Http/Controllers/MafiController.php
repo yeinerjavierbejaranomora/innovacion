@@ -607,6 +607,7 @@ class MafiController extends Controller
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
             ->orderBy('id');
+            
 
         return $estudiantesAntiguos;
     }
@@ -791,9 +792,9 @@ class MafiController extends Controller
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :
-                      
-                     
-                       
+
+
+
                         $idbanner=$estudiante->homologante;
                         $programa_homologante=$estudiante->programa;
 
@@ -810,7 +811,7 @@ class MafiController extends Controller
                         $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM historial ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner='. $idbanner .' group by p.codbanner ';
                         dd( $consulta_sumacreditos);
                        // dd($consulta_porver);
-                     
+
                     endforeach;
                 });
 

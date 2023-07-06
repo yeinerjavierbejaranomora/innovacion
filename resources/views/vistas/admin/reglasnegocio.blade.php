@@ -89,7 +89,11 @@
                                 </div>
                                 <div>
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
-                                    <input type="text" class="form-control" id="estudiante" name="estudiante">
+                                    <select class="form-control" id="estudiante" name="estudiante">
+                                        <option value="Antiguo">Antiguo</option>
+                                        <option value="Transferente">Transferente</option>
+                                        <option value="PrimerI">Primer ingreso</option>
+                                    </select> 
                                 </div>
                                 <label for="ciclo" class="col-form-label">Ciclo</label>
                                 <br>

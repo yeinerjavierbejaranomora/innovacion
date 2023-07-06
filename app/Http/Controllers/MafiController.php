@@ -179,7 +179,10 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            dd($estudiantes[0]);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantes[0]->id;
+            $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
                 dd($estudiante->homologante);
                 $historial = $this->historialAcademico($estudiante->homologante);

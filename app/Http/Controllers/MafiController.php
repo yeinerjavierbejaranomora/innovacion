@@ -186,7 +186,7 @@ class MafiController extends Controller
             ->orderBy('id')->count();
         $numeroEstudiantes = ceil($estudiantesAntiguos/200);
         for ($i=0; $i < $numeroEstudiantes; $i++) {
-            # code...
+            
         }
         dd($numeroEstudiantes);
         die();

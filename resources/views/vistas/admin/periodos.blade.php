@@ -225,7 +225,7 @@
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
+                            '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +

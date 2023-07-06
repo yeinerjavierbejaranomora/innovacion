@@ -102,10 +102,10 @@
                                 <label for="ciclo" class="col-form-label">Ciclo</label>
                                 <br>
                                 <div class="form-check form-check-inline" id="ciclo">
-                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1" required>
+                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1" name="ciclo1" required>
                                     <label class="form-check-label" for="ciclo1"> Ciclo 1 </label>
                                     &nbsp
-                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo2" required>
+                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo2" name="ciclo2" required>
                                     <label class="form-check-label" for="ciclo1"> Ciclo 2</label>
                                 </div>
                                 <div class="modal-footer">

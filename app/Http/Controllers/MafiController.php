@@ -749,14 +749,14 @@ class MafiController extends Controller
         /** inicializamos la consulta  con  cada programa */
         foreach ($programas as $programa) {
 
-                /* WHERE materias_faltantes="OK"
-                 AND programado_ciclo1 IS NULL
-                 AND programado_ciclo2   IS NULL
-                 AND programa="PCPV"
-                 AND marca_ingreso IN (202305,202312,202332,202342,202352,202306,202313,202333,202343,202353)
-                 AND tipo_estudiante!="XXXXX"
-                 ORDER BY id ASC
-                 LIMIT 20000;*/
+                /* select `id`, `homologante`, `programa` 
+                    from `estudiantes` 
+                    where `materias_faltantes` = 'OK' 
+                    and `programado_ciclo1` is null 
+                    and `programado_ciclo2` is null 
+                    and `programa` = 'PCPV'
+                    and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);
+                */
 
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
@@ -766,9 +766,23 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
-                ->get();
+                ->chunk(200, function($estudiantes){
+
+                    foreach ($estudiantes as $estudiante) :
+                        dd($estudiante);
+                        $historial = $this->historialAcademico($estudiante->homologante);
+                        $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                        $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                            return $a['codMateria'] <=> $b['codMateria'];
+                        });
+                
+                    endforeach;
+                });
+
                 if(!$consulta_homologante->isEmpty()) {
+
                     dd($consulta_homologante);
+
                     foreach ($consulta_homologante as $key => $value) {
 
                         $id_homologante=$value->id;
@@ -805,11 +819,14 @@ class MafiController extends Controller
 
 
                     }
+
+                    dd( $consulta_porver);
                 }
+              
 
         }
 
-        dd( $consulta_porver);
+        
         die();
 
 

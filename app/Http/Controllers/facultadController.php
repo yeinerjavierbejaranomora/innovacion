@@ -500,7 +500,7 @@ class facultadController extends Controller
         }
         $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
         if ($activarPeriodo) :
-            return  "habilitado";
+            return  "deshabilitado";
         else :
             return "false";
         endif;

@@ -199,6 +199,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
+                    echo "Inserción exitosa de la gran cantidad de datos.";
                     //$registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error
@@ -207,8 +208,8 @@ class MafiController extends Controller
                     // Manejar el error
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                 }
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
+                /*$ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;*/
             endforeach;
             /*$fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([

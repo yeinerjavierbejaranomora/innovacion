@@ -265,6 +265,26 @@ class facultadController extends Controller
         endif;
     }
 
+    public function crear_edudacioncont(){
+        $codigo = $_POST['codigo'];
+        $nombre = $_POST['nombre'];
+        $codFacultad = $_POST['codFacultad'];
+        // Consulta para insertar nueva especialización
+        $crear = DB::table('programas')->insert([
+            'codprograma' => $codigo,
+            'programa' => $nombre,
+            'idFacultad' => $codFacultad,
+            'tabla' => 'EDUCACION CONTINUA',
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.continua')->with('message', 'Programa creado correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.continua')->with(['errors' => 'El programa no ha podido ser creado']);
+        endif;
+    }
+
     /** Función que actualiza los datos de programa */
     public function update_programa()
     {

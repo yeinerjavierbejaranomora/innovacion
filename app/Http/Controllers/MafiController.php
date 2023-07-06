@@ -178,33 +178,62 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            foreach ($estudiantes as $estudiante) :
+                dd($estudiante->id);
+                
+                $fechaInicio = date('Y-m-d H:i:s');
+                $registroMPV = 0;
+                $primerId = $estudiante[0]->id;
+                $ultimoRegistroId = 0;
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+
+                // Iniciar la transacción
+                DB::beginTransaction();
+
+                try {
+                    DB::table('materiasPorVer')->insert($diff);
+
+                    // Confirmar la transacción
+                    DB::commit();
+
+                    echo "Inserción exitosa de la gran cantidad de datos.";
+                } catch (Exception $e) {
+                    // Deshacer la transacción en caso de error
+                    DB::rollBack();
+
+                    // Manejar el error
+                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                }
+            endforeach;
+        });
+        die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $primerIngreso =  $this->falatntesPrimerIngreso();
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
-        dd($primerIngreso);
+        //dd($primerIngreso);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $primerIngreso[0]->id;
             $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
-                dd($estudiante);
-
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                //dd($mallaCurricular);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 foreach ($mallaCurricular as $key => $malla) :
-                    foreach ($malla as $key => $value) :
-                        $insertMateriaPorVer = MateriasPorVer::create([
-                            "codBanner"      => $estudiante->homologante,
-                            "codMateria"      => $value->codigoCurso,
-                            "orden"      => $value->orden,
-                            "codprograma"      => $value->codprograma,
-                        ]);
-                        $registroMPV++;
-                    endforeach;
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $malla['codBanner'],
+                        "codMateria"      => $malla['codMateria'],
+                        "orden"      => $malla['orden'],
+                        "codprograma"      => $malla['codprograma'],
+                    ]);
+                    $registroMPV++;
                 endforeach;
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
@@ -230,7 +259,6 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
-        die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
@@ -288,35 +316,7 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes TRANSFERENTES";
         endif;
-        die();
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            foreach ($estudiantes as $estudiante) :
-                $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
-                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b['codMateria'];
-                });
 
-                // Iniciar la transacción
-                DB::beginTransaction();
-
-                try {
-                    DB::table('materiasPorVer')->insert($diff);
-
-                    // Confirmar la transacción
-                    DB::commit();
-
-                    echo "Inserción exitosa de la gran cantidad de datos.";
-                } catch (Exception $e) {
-                    // Deshacer la transacción en caso de error
-                    DB::rollBack();
-
-                    // Manejar el error
-                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                }
-            endforeach;
-        });
-        die();
 
 
         $this->periodo();
@@ -572,20 +572,22 @@ class MafiController extends Controller
 
     public function faltantesAntiguos()
     {
-        /** SELECT * FROM `estudiantes`
-         * WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-         * AND `programaActivo` IS NULL
-         * ORDER BY `id` ASC*/
+        /**SELECT * FROM `estudiantes`
+            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+            AND `programaActivo` IS NULL
+            ORDER BY `id` ASC */
+        /**SELECT * FROM `estudiantes`
+            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+            AND `programaActivo` IS NULL
+            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+            AND `programaActivo` IS NULL
+            ORDER BY `id` ASC */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
+            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')
             ->orderBy('id');
-            /*->chunk(200, function($estudiantes){
-                foreach ($estudiantes as $estudiante) {
-                    dd($estudiante);
-                }
-                });*/
-
 
         return $estudiantesAntiguos;
     }

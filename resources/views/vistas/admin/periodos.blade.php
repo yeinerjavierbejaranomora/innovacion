@@ -98,20 +98,27 @@
                                 <div>
                                     <label for="año" class="col-form-label">Año</label>
                                     <?php
-                                $cont = date('Y');
-                                ?>
-                                <select id="año" class="form-control">
-                                    <?php while ($cont >= 2020) { ?>
-                                        <option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>
+                                    $cont = date('Y');
+                                    ?>
+                                    <select id="año" class="form-control">
+                                        <?php while ($cont >= 2020) { ?>
+                                            <option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>
                                         <?php $cont = ($cont - 1);
-                                    } ?>
-                                </select>
-                            </div>
-                            <br>
-                            <div>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="crear btn btn-success">Crear</button>
-                            </div>  
+                                        } ?>
+                                    </select>
+                                </div>
+                                <label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label>
+                                <div class="form-check" id="ciclo">
+                                    <input class="form-check-input" type="checkbox" value="ciclo1" id="ciclo1">
+                                    <label class="form-check-label" for="ciclo1">Ciclo 1</label>
+                                    <input class="form-check-input" type="checkbox" value="ciclo2" id="ciclo2">
+                                    <label class="form-check-label" for="ciclo2">Ciclo 2</label>
+                                </div>
+                                <br>
+                                <div>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-success">Crear</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -218,8 +225,8 @@
                     } = Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
-                            '<label for="periodo"> Periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
+                            '<label for="nombre"> Periodo </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
@@ -229,8 +236,8 @@
                             '<label for="periodo"> Fecha de inicio periodo </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" name="año" class="form-control"> <option value="'+ data.year +'"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>',
-                            icon: 'info',
+                            '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>',
+                        icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
@@ -238,12 +245,15 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
-                            $.post("{{ route('programa.update')}}", {
+                            $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
-                                    codigo: $(document).find('#codprograma').val(),
-                                    programa: $(document).find('#programa').val(),
-                                    idfacultad: $(document).find('#facultades').val(),
+                                    nombre: $(document).find('#nombre').val(),
+                                    fecha1: $(document).find('#fecha1').val(),
+                                    fecha2: $(document).find('#fecha2').val(),
+                                    temprano: $(document).find('#temprano').val(),
+                                    periodo: $(document).find('#periodo').val(),
+                                    año: $(document).find('#año').val(),
                                 },
                                 function(result) {
                                     console.log(result);

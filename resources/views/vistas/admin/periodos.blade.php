@@ -217,9 +217,9 @@
                     var data = table.row($(this).parents("tr")).data();
                     /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
                     var fechaActual = new Date();
+                    var añoActual = fechaActual.getFullYear();
                     fechaActual.setFullYear(fechaActual.getFullYear() + 1);
                     var fechaLimite = fechaActual.toISOString().split('T')[0];
-                    var añoActual = fechaActual.getFullYear();
                     var añoSiguiente = añoActual + 1;
 
                     Swal.fire({

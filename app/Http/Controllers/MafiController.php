@@ -180,6 +180,7 @@ class MafiController extends Controller
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);
+        $cont = 0;
         foreach ($estudiantesAntiguos as $key => $estudiante) {
             foreach ($estudiante as $key => $value) {
                 # code...
@@ -189,8 +190,9 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 $cantidadDiff = count($diff);
+                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff;
 
-                if(count($diff) > 0):
+                /*if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
@@ -214,10 +216,11 @@ class MafiController extends Controller
                     /**crear alerta temprana estudinate vio todo */
                     echo "estudinate vio todo". $value->homologante;
 
-                endif;
+                endif;*/
+                $cont++;
             }
         }
-
+        echo $cont;
 
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
@@ -809,7 +812,7 @@ class MafiController extends Controller
          foreach ($periodo as $key => $value) {
              $marcaIngreso .= (int)$value->periodos . ",";
          }
- 
+
          // para procesasr las marcas de ingreso en los periodos
          $marcaIngreso=trim($marcaIngreso,",");
          // Dividir la cadena en elementos individuales
@@ -818,11 +821,11 @@ class MafiController extends Controller
          $marcaIngreso = array_map('intval', $marcaIngreso);
          /* traemos todos los programas activos para la consulta */
          $programas= $this->get_programas();
- 
 
-        
+
+
         // Estudiantes para generar faltantes
-        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333)ORDER BY id ASC';  //   AND observacion = "OMG" 
+        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333)ORDER BY id ASC';  //   AND observacion = "OMG"
 
 
 
@@ -853,20 +856,24 @@ class MafiController extends Controller
         ->chunk(200, function($estudiantes){
 
             foreach ($estudiantes as $estudiante) :
-                
+
                 $id_homologante=$estudiante->id;
                 $codHomologante=$estudiante->homologante;
                 $programa_homologante=$estudiante->programa;
-                
+
              // Materias vistas por estudiante
                 $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
                 //echo $consulta_vistas . "<br />";
                 //exit();
 
                 $resultado_visitas = DB::select($consulta_vistas);
-      
 
-                
+
+
+
+
+
+
                 $contacor_vistas=0;
                 $codprograma='';
                 $codbanner='';
@@ -885,49 +892,49 @@ class MafiController extends Controller
               
                 $materias_vistas = $materias_vistas;
                 //var_dump($materias_vistas);
-                
+
                 //echo "Programa:" . $codprograma . "<br />";
                 //echo "Cod Banner: " .  $codbanner . "<br />";
                 //exit();
-                
-         
-                
+
+
+
                 // Materias del programa
                 $consulta_baseacademica = 'SELECT codigoCurso FROM mallaCurricular WHERE codprograma="'.$codprograma.'"  ORDER BY semestre, orden, ciclo DESC;';
                 //echo $consulta_baseacademica . "<br />";
                 //exit();
-                    
+
                 $resultado_baseacademica = DB::select($consulta_baseacademica);
-                
-                
+
+
                 $orden=1;
                 while($fila = $resultado_baseacademica) {
                     $codcurso= $fila['codigoCurso'];
-                    
+
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);
                     //exit();
-                    
+
                     if (!in_array($codcurso, $materias_vistas)) {
                         $insert_porver = 'INSERT INTO materias_porver (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
                         echo $insert_porver . "<br />";
-                        
-                        $resultado_porver = DB::select($insert_porver); 
+
+                        $resultado_porver = DB::select($insert_porver);
                         //echo $insert_porver . "<br />";
                         $orden++;
                     }
                 }
-                echo "<br />Insertadas las materias por ver de: " . $codbanner; 	
-                
-                
+                echo "<br />Insertadas las materias por ver de: " . $codbanner;
+
+
                 $update_homologante = 'UPDATE homologantes SET materias_faltantes="OK" WHERE homologantes.id='.$id_homologante.';';
                 $resultado_updatehomologante =DB::select($update_homologante);
-                
-                
+
+
             endforeach;
         });
 
-    
+
 
 
 
@@ -943,8 +950,8 @@ class MafiController extends Controller
         //     });
         //     dd($diff);
 
-       
-       
+
+
 
         die();
 

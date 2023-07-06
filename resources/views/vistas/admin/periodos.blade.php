@@ -109,10 +109,10 @@
                                 </div>
                                 <label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label>
                                 <div class="form-check" id="ciclo">
-                                    <input class="form-check-input" type="checkbox" value="ciclo1" id="ciclo1">
+                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
                                     <label class="form-check-label" for="ciclo1">Ciclo 1</label>
                                     <br>
-                                    <input class="form-check-input" type="checkbox" value="ciclo2" id="ciclo2">
+                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo2">
                                     <label class="form-check-label" for="ciclo2">Ciclo 2</label>
                                 </div>
                                 <br>
@@ -221,13 +221,11 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     $('#facultadEditar').val(data.idFacultad);
-                    const {
-                        value: facultad
-                    } = Swal.fire({
+                    Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
+                            '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
@@ -237,7 +235,13 @@
                             '<label for="periodo"> Fecha de inicio periodo </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>',
+                            '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
+                            '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
+                            '<input type="checkbox" id="ciclo1" name="ciclo1"' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
+                            '<label class="form-check-label" for="ciclo1">Ciclo 1</label>' +
+                            '<input type="checkbox" id="ciclo2" name="ciclo2"' + (data.activoCiclo2 == 1 ? 'checked' : '') + '>' +
+                            '<label class="form-check-label" for="ciclo2">Ciclo 2</label>' +
+                            '</div>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -246,6 +250,7 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
+                            console.log('entra');
                             $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),
@@ -255,6 +260,8 @@
                                     temprano: $(document).find('#temprano').val(),
                                     periodo: $(document).find('#periodo').val(),
                                     año: $(document).find('#año').val(),
+                                    ciclo1: $(document).find('#ciclo1').val(),
+                                    ciclo2: $(document).find('#ciclo2').val(),
                                 },
                                 function(result) {
                                     console.log(result);
@@ -274,7 +281,6 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
 
         }
     }

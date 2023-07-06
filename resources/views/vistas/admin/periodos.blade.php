@@ -260,8 +260,8 @@
                                     temprano: $(document).find('#temprano').val(),
                                     periodo: $(document).find('#periodo').val(),
                                     año: $(document).find('#año').val(),
-                                    ciclo1: $(document).find('#ciclo1').is(':checked') ? 1 : 0,
-                                    ciclo2: $(document).find('#ciclo2').is(':checked') ? 1 : 0,
+                                    ciclo1: $(document).find('#ciclo1').prop(':checked') ? 1 : 0,
+                                    ciclo2: $(document).find('#ciclo2').prop(':checked') ? 1 : 0,
                                 },
                                 function(result) {
                                     console.log(result);

@@ -230,6 +230,7 @@
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>',
                             
+                            
                             icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

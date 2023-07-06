@@ -184,11 +184,12 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes de primer ingreso";
         endif;
-        dd($primerIngreso);
+        //dd($primerIngreso);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $primerIngreso[0]->id;
+            dd($primerId);
             $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
 

@@ -265,6 +265,7 @@ class facultadController extends Controller
         endif;
     }
 
+    /** Metodo para crear programa de educacion continua */    
     public function crear_edudacioncont(){
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
@@ -410,6 +411,8 @@ class facultadController extends Controller
             return "false";
         endif;
     }
+
+
 
     /** Metodo para actualizar los datos de periodo */
     public function updateperiodo(){

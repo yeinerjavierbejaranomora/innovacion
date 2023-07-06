@@ -202,7 +202,7 @@ class MafiController extends Controller
                         // Confirmar la transacción
                         DB::commit();
 
-                        echo "Inserción exitosa de la gran cantidad de datos.";
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
                         //$registroMPV++;
                     } catch (Exception $e) {
                         // Deshacer la transacción en caso de error
@@ -213,6 +213,7 @@ class MafiController extends Controller
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
+                    echo "estudinate vio todo". $estudiante->homologante;
 
                 endif;
 

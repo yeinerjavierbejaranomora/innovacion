@@ -184,7 +184,7 @@ class MafiController extends Controller
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')*/
             ->count();
-            dd($estudiantesAntiguos);
+            dd(ceil($estudiantesAntiguos/200));
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);

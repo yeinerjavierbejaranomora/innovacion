@@ -193,23 +193,22 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                //dd($historial);
+                //dd($historial['codprograma']);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 //dd($mallaCurricular);
-                foreach ($mallaCurricular as $key => $malla) :
-                    dd($malla);
-                    foreach ($malla as $key => $value) :
-                        if (!in_array($value->codigoCurso, $historial['materias'])) :
-                            $insertMateriaPorVer = MateriasPorVer::create([
-                                "codBanner"      => $estudiante->homologante,
-                                "codMateria"      => $value->codigoCurso,
-                                "orden"      => $value->orden,
-                                "codprograma"      => $value->codprograma,
-                            ]);
-                        endif;
-                        $registroMPV++;
-                    endforeach;
-                endforeach;
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                foreach ($diff as $key => $value) {
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $value->codBanner,
+                        "codMateria"      => $value->codMateria,
+                        "orden"      => $value->orden,
+                        "codprograma"      => $value->codprograma,
+                    ]);
+                    $registroMPV++;
+                }
+
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;

@@ -514,6 +514,7 @@ class facultadController extends Controller
         $estudiante = $_POST['estudiante'];
         $ciclo = $_POST[''];
 
+        $crear = "";
     }
 
 }

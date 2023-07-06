@@ -80,24 +80,25 @@
                             <form id="miForm" method="get" action="#">
                                 <?php 
                                 $fechaactual = date('Y-m-d');
+                                $fechalimite = date('Y-m-d', strtotime($fechaactual . ' +1 year'));
                                 $añoactual = date('Y'); 
                                 $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
                                 <div>
                                     <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
-                                    <input type="date" min="<?php echo $fechaactual; ?>" max="2023-12-31" class="form-control" id="ciclo1" name="ciclo1">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo1" name="ciclo1">
                                 </div>
                                 <div>
                                     <label for="ciclo2" class="col-form-label">Fecha inicio ciclo 2</label>
-                                    <input type="date" min="<?php echo $fechaactual; ?>" max="2023-12-31" class="form-control" id="ciclo2" name="ciclo2">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="ciclo2" name="ciclo2">
                                 </div>
                                 <div>
                                     <label for="temprano" class="col-form-label">Fecha inicio temprano</label>
-                                    <input type="date" min="<?php echo $fechaactual; ?>" max="2023-12-31" class="form-control" id="temprano" name="temprano">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="temprano" name="temprano">
                                 </div>
                                 <div>
                                     <label for="periodo" class="col-form-label">Fecha inicio periodo</label>
-                                    <input type="date" min="<?php echo $fechaactual; ?>" max="2023-12-31" class="form-control" id="periodo" name="periodo">
+                                    <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
                                     <label for="año" class="col-form-label">Año</label>
@@ -106,7 +107,7 @@
                                     ?>
                                     <select id="año" class="form-control">      
                                     <option value="<?php echo $añoactual; ?>"><?php echo $añoactual; ?></option>
-                                    <option value="<?php echo $añosiguiente; ?>"><?php echo $añoactual; ?></option>                        
+                                    <option value="<?php echo $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>                        
                                     </select>
                                 </div>
                                 <br>

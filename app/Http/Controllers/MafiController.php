@@ -178,8 +178,11 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->count();
+        $estudiantesAntiguos = $this->faltantesAntiguos()->get()->count();
         $numeroEstudiantes = ceil($estudiantesAntiguos/200);
+        for ($i=0; $i < $numeroEstudiantes; $i++) {
+            # code...
+        }
         dd($numeroEstudiantes);
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

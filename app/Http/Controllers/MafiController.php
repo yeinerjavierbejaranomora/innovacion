@@ -817,10 +817,10 @@ class MafiController extends Controller
                     }
 
                     dd( $consulta_porver);
-                } 
+                } */
 
              
-        }*/
+        }
 
 
         die();

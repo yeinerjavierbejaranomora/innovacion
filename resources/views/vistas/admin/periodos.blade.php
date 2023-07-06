@@ -221,9 +221,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     $('#facultadEditar').val(data.idFacultad);
-                    const {
-                        value: facultad
-                    } = Swal.fire({
+                    Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +

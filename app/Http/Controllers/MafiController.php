@@ -193,7 +193,7 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                dd($historial);
+                dd($historial['codprograma']);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 //dd($mallaCurricular);
                 foreach ($mallaCurricular as $key => $malla) :

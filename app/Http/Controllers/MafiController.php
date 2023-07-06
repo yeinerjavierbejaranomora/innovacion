@@ -193,8 +193,8 @@ class MafiController extends Controller
             foreach ($primerIngreso as $estudiante) :
                 dd($estudiante);
 
-                $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                //dd($mallaCurricular);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                dd($mallaCurricular);
                 foreach ($mallaCurricular as $key => $malla) :
                     foreach ($malla as $key => $value) :
                         $insertMateriaPorVer = MateriasPorVer::create([

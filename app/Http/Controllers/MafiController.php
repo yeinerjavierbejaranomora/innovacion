@@ -207,8 +207,8 @@ class MafiController extends Controller
                         DB::rollBack();
 
                         // Manejar el error
-                        dd($estudiante);
                         echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($estudiante);
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */

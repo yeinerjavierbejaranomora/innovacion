@@ -179,7 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
-        dd($estudiantesAntiguos);
+        //dd($estudiantesAntiguos);
         foreach ($estudiantesAntiguos as $key => $estudiante) {
             foreach ($estudiante as $key => $value) {
                 # code...

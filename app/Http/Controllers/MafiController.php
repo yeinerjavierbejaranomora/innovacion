@@ -191,7 +191,7 @@ class MafiController extends Controller
             $registroMPV = 0;
             $primerId = $transferente[0]->id;
             $ultimoRegistroId = 0;
-            dd($transferente);
+            //dd($transferente);
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
                 //dd($historial['codprograma']);

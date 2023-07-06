@@ -221,9 +221,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
                     $('#facultadEditar').val(data.idFacultad);
-                    const {
-                        value: facultad
-                    } = Swal.fire({
+                    Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +
@@ -261,6 +259,8 @@
                                     temprano: $(document).find('#temprano').val(),
                                     periodo: $(document).find('#periodo').val(),
                                     año: $(document).find('#año').val(),
+                                    ciclo1: $(document).find('#ciclo1').val(),
+                                    ciclo2: $(document).find('#ciclo2').val(),
                                 },
                                 function(result) {
                                     console.log(result);
@@ -280,7 +280,6 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
 
         }
     }

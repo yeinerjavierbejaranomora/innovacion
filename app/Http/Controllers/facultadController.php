@@ -477,6 +477,7 @@ class facultadController extends Controller
         endif;
     }
 
+    /** Función para activar los periodos */
     public function activar_periodo(){
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
@@ -491,7 +492,7 @@ class facultadController extends Controller
         endif;
     }
 
-
+    /** Función para desactivar los periodos */
     public function inactivar_periodo(){
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));

@@ -203,7 +203,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
-                    echo "Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
+                    echo $registroMPV. " Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
                     //$registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error

@@ -64,9 +64,9 @@
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un programa nuevo-->  
+            <!--Modal para agregar un programa periodo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -80,43 +80,41 @@
                             <form id="miForm" method="get" action="#">
                                 @csrf
                                 <div>
-                                    <input type="number" id="id" name="id" hidden>
+                                    <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
+                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="ciclo1" name="ciclo1">
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Fecha inicio ciclo 1</label>
-                                    <input type="text" class="form-control" id="ciclo1" name="ciclo1">
+                                    <label for="ciclo2" class="col-form-label">Fecha inicio ciclo 2</label>
+                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="ciclo2" name="ciclo2">
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Fecha inicio ciclo 2</label>
-                                    <input type="text" class="form-control" id="ciclo2" name="ciclo2">
+                                    <label for="temprano" class="col-form-label">Fecha inicio temprano</label>
+                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="temprano" name="temprano">
                                 </div>
                                 <div>
-                                    <label for="recipient-name" class="col-form-label">Fecha inicio temprano</label>
-                                    <input type="text" class="form-control" id="temprano" name="temprano">
+                                    <label for="periodo" class="col-form-label">Fecha inicio periodo</label>
+                                    <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="periodo" name="periodo">
                                 </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Fecha inicio periodo</label>
-                                    <input type="text" class="form-control" id="periodo" name="periodo">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Activo</label>
-                                    <input type="text" class="form-control" id="activo" name="activo">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Año</label>
-                                    <input type="text" class="form-control" id="año" name="año">
-                                </div>
+                                <label for="año" class="col-form-label">Año</label>
+                                <?php
+                                $cont = date('Y');
+                                ?>
+                                <select id="año">
+                                    <?php while ($cont >= 2020) { ?>
+                                        <option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>
+                                    <?php $cont = ($cont - 1);
+                                    } ?>
+                                </select>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="crear btn btn-success">Crear</button>
+                                
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
 
-         
+
 
         </div>
         <!-- /.container-fluid -->
@@ -166,10 +164,6 @@
                         title: 'Fecha inicio periodo'
                     },
                     {
-                        data: 'periodoActivo',
-                        title: 'Periodo activo'
-                    },
-                    {
                         data: 'year',
                         title: 'Año'
                     },
@@ -179,7 +173,7 @@
                         className: "text-center"
                     },
                     {
-                        data: 'activo',
+                        data: 'periodoActivo',
                         defaultContent: "",
                         title: "Estado",
                         className: "text-center",
@@ -192,7 +186,7 @@
                         }
                     },
                     {
-                        data: 'activo',
+                        data: 'periodoActivo',
                         defaultContent: "",
                         title: 'Inactivar / Activar',
                         className: "text-center",
@@ -211,9 +205,59 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
             console.log(table);
+
+            /** Editar periodos */
+            function obtener_data_editar(tbody, table) {
+                $(tbody).on("click", "button.editar", function() {
+                    var data = table.row($(this).parents("tr")).data();
+                    $('#facultadEditar').val(data.idFacultad);
+                    const {
+                        value: facultad
+                    } = Swal.fire({
+                        title: 'Actualizar información',
+                        html: '<form>' +
+                            '<label for="periodo"> Periodo </label>' +
+                            '<input type="date" id="periodo" name="periodo" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
+                            '<label for="fechain1"> Fecha de inicio ciclo 1 </label>' +
+                            '<input type="date" id="fechain1" name="fechain1" value="' + data.fechaInicioCiclo1 + '" class="form-control" placeholder="Fecha de inicio ciclo 1"> <br>' +
+                            '<label for="fechain2"> Fecha de inicio ciclo 2 </label>' +
+                            '<input type="date" id="fechain2" name="fechain2" value="' + data.fechaInicioCiclo2 + '" class="form-control" placeholder="Fecha de inicio ciclo 2"> <br>',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: 'Editar'
+                    }).then(result => {
+                        if (result.value) {
+                            $.post("{{ route('programa.update')}}", {
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    id: encodeURIComponent(window.btoa(data.id)),
+                                    codigo: $(document).find('#codprograma').val(),
+                                    programa: $(document).find('#programa').val(),
+                                    idfacultad: $(document).find('#facultades').val(),
+                                },
+                                function(result) {
+                                    console.log(result);
+                                    if (result == "actualizado") {
+                                        Swal.fire({
+                                            title: "Información actualizada",
+                                            icon: 'success'
+                                        }).then(result => {
+                                            location.reload();
+                                        });
+
+                                    }
+                                }
+                            )
+                        }
+                    })
+                });
+            }
+            obtener_data_editar("#example tbody", table);
+
+
         }
-
     }
-
 </script>
 @include('layout.footer')

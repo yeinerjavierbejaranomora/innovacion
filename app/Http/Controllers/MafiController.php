@@ -192,7 +192,9 @@ class MafiController extends Controller
             else:
                 $offset = $log->idFin;
             endif;
-            dd($offset);
+            $limit = 200;
+            $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
+            dd($estudiantesAntiguos);
         }
         dd($numeroEstudiantes);
         die();
@@ -554,7 +556,7 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function faltantesAntiguos()
+    public function faltantesAntiguos($offset,$limit)
     {
         /**SELECT * FROM `estudiantes`
             WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
@@ -570,9 +572,12 @@ class MafiController extends Controller
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')*/
-            ->orderBy('id');
+            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')
+            ->orderBy('id')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
 
 
         return $estudiantesAntiguos;

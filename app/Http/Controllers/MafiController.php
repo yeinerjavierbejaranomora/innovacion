@@ -185,11 +185,36 @@ class MafiController extends Controller
                 # code...
                 $historial = $this->historialAcademico($value->homologante);
                 $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
-
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
-                dd($diff);
+                $cantidadDiff = count($diff);
+
+                if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    try {
+                        DB::table('materiasPorVer')->insert($diff);
+
+                        // Confirmar la transacción
+                        DB::commit();
+
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+
+                        // Manejar el error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($estudiante);
+                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    echo "estudinate vio todo". $estudiante->homologante;
+
+                endif;
             }
         }
 

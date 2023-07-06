@@ -542,7 +542,7 @@ class MafiController extends Controller
             AND `programaActivo` IS NULL
             GROUP BY `tipo_estudiante` */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
-            ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
+            ->where([['tipo_estudiante', 'LIKE', 'PRIMER%'],['tipo_estudiante', 'LIKE', 'INGRESO%']])
             ->whereNull('programaActivo')
             ->orderBy('id')
             ->get();

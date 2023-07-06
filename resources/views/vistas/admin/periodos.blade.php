@@ -227,15 +227,24 @@
                             '<label for="nombre"> Periodo </label>' +
                             '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2024-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2024-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
                             '<label for="edtemprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2024-12-31" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
                             '<label for="edperiodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
+                            '<input type="date" min="2023-01-01" max="2024-12-31" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="year" name="year" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
+                            '<div>' +
+                            '<label for="año" class="col-form-label">Año</label>' +
+                            '<?php $cont = date('Y'); ?>' +
+                            '<select id="año" class="form-control">' +
+                            '<?php while ($cont >= 2020) { ?>' +
+                            '<option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>' +
+                            '<?php $cont = ($cont - 1); ?>' +
+                            '<?php } ?>' +
+                            '</select>' +
+                            '</div>' +
                             '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
                             '<input type="checkbox" id="edciclo1" name="edciclo1" value="1" ' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
                             '<label class="form-check-label" for="edciclo1">Ciclo 1</label>' +

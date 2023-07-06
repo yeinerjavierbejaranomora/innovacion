@@ -510,7 +510,7 @@ class facultadController extends Controller
     public function crear_regla(){
         $programa = $_POST['codigo'];
         $creditos = $_POST['creditos'];
-        $creditos = $_POST['creditos'];
+        $materias = $_POST['materias'];
         $estudiante = $_POST['estudiante'];
         
         if (isset($_POST['ciclo1'])) {
@@ -519,8 +519,20 @@ class facultadController extends Controller
             $ciclo = $_POST['ciclo2'];
         }
 
-        
-        $crear = "";
+        $crear = DB::table('periodo')->insert([
+            'Programa' => $programa,
+            'creditos' => $creditos,
+            'materiasPermitidas' => $materias,
+            'tipoEstudiante' => $estudiante,
+            'ciclo' => $ciclo,
+        ]);
+        if ($crear) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return redirect()->route('facultad.reglas')->with('message', 'Regla creada correctamente');
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return redirect()->route('facultad.reglas')->with(['errors' => 'La regla no ha podido ser creada']);
+        endif;
     }
 
 }

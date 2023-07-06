@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('regla.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="codigo" class="col-form-label">Codigo del programa</label>
@@ -86,6 +86,10 @@
                                 <div>
                                     <label for="creditos" class="col-form-label">Número de créditos</label>
                                     <input type="number" class="form-control" id="creditos" name="creditos">
+                                </div>
+                                <div>
+                                    <label for="materias" class="col-form-label">Materias permitidas</label>
+                                    <input type="number" class="form-control" id="materias" name="materias">
                                 </div>
                                 <div>
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>

@@ -512,8 +512,14 @@ class facultadController extends Controller
         $creditos = $_POST['creditos'];
         $creditos = $_POST['creditos'];
         $estudiante = $_POST['estudiante'];
-        $ciclo = $_POST[''];
+        
+        if (isset($_POST['ciclo1'])) {
+            $ciclo = $_POST['ciclo1'];
+        } else {
+            $ciclo = $_POST['ciclo2'];
+        }
 
+        
         $crear = "";
     }
 

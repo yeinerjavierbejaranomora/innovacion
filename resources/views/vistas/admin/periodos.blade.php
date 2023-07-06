@@ -105,8 +105,8 @@
                                     <input type="date" min="<?php echo $fechaactual; ?>" max="<?php echo $fechalimite; ?>" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
-                                    <label for="año" class="col-form-label">Año</label>
-                                    <select id="año" class="form-control">
+                                    <label for="fecha" class="col-form-label">Año</label>
+                                    <select id="fecha" class="form-control">
                                         <option value="<?php echo $añoactual; ?>"><?php echo $añoactual; ?></option>
                                         <option value="<?php echo $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>
                                     </select>

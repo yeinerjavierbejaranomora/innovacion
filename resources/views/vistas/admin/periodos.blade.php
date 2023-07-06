@@ -230,12 +230,12 @@
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
                             '<input type="date" min="2023-01-01" max="2023-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
-                            '<label for="temprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="temprano" name="temprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
-                            '<label for="periodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="2023-01-01" max="2023-12-31" id="periodo" name="periodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
+                            '<label for="edtemprano"> Fecha de inicio temprano </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
+                            '<label for="edperiodo"> Fecha de inicio periodo </label>' +
+                            '<input type="date" min="2023-01-01" max="2023-12-31" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
+                            '<select id="year" name="year" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
                             '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
                             '<input type="checkbox" id="edciclo1" name="edciclo1" value="1" ' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
                             '<label class="form-check-label" for="edciclo1">Ciclo 1</label>' +
@@ -256,9 +256,9 @@
                                     nombre: $(document).find('#nombre').val(),
                                     fecha1: $(document).find('#fecha1').val(),
                                     fecha2: $(document).find('#fecha2').val(),
-                                    temprano: $(document).find('#temprano').val(),
-                                    periodo: $(document).find('#periodo').val(),
-                                    año: $(document).find('#año').val(),
+                                    temprano: $(document).find('#edtemprano').val(),
+                                    periodo: $(document).find('#edperiodo').val(),
+                                    año: $(document).find('#year').val(),
                                     ciclo1: $(document).find('#edciclo1').is(':checked') ? 1 : 0,
                                     ciclo2: $(document).find('#edciclo2').is(':checked') ? 1 : 0,
                                 },

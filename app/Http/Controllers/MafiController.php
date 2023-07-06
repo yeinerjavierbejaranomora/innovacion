@@ -179,6 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            dd($estudiantes);
             /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantes[0]->id;
@@ -619,8 +620,7 @@ class MafiController extends Controller
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')*/
-            ->orderBy('id');
+            ->whereNull('programaActivo')*/;
 
 
         return $estudiantesAntiguos;

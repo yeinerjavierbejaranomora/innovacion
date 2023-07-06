@@ -204,11 +204,11 @@ class MafiController extends Controller
                         //$registroMPV++;
                     } catch (Exception $e) {
                         // Deshacer la transacción en caso de error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($value);
                         DB::rollBack();
 
                         // Manejar el error
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                        dd($value);
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
@@ -663,6 +663,7 @@ class MafiController extends Controller
             AND `programaActivo` IS NULL
             ORDER BY `id` ASC */
         $estudiantesAntiguos = DB::table('estudiantes')
+            ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
@@ -864,8 +865,7 @@ class MafiController extends Controller
 
                 $resultado_visitas = DB::select($consulta_vistas);
       
-                
-                
+
                 
                 $contacor_vistas=0;
                 $codprograma='';
@@ -873,10 +873,10 @@ class MafiController extends Controller
                 $materias_vistas = array();
 
                 while($fila =  $resultado_visitas) {
-                    dd($fila);
-                    $codbanner= $fila['codBanner'];
+              
+                    $codbanner= $fila[$contacor_vistas]->codBanner;
                     $codprograma= $programa_homologante;
-                    $codmateria= $fila['codMateria'];
+                    $codmateria= $fila[$contacor_vistas]->codMateria;
                     $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                 }

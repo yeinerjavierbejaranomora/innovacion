@@ -178,8 +178,8 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $this->faltantesAntiguos();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            dd($estudiantes);
             foreach ($estudiantes as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
@@ -582,8 +582,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
-            ->orderBy('id')->get();
-        dd($estudiantesAntiguos);
+            ->orderBy('id');
 
         return $estudiantesAntiguos;
     }

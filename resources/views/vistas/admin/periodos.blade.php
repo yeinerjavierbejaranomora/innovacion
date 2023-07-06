@@ -82,19 +82,19 @@
                                 @csrf
                                 <div>
                                     <label for="ciclo1" class="col-form-label">Fecha inicio ciclo 1</label>
-                                    <input type="date" min="<?php $currentDate ?>" max="2023-12-31" class="form-control" id="ciclo1" name="ciclo1">
+                                    <input type="date" min="<?php echo $currentDate; ?>" max="2023-12-31" class="form-control" id="ciclo1" name="ciclo1">
                                 </div>
                                 <div>
                                     <label for="ciclo2" class="col-form-label">Fecha inicio ciclo 2</label>
-                                    <input type="date" min="<?php $currentDate ?>" max="2023-12-31" class="form-control" id="ciclo2" name="ciclo2">
+                                    <input type="date" min="<?php echo $currentDate; ?>" max="2023-12-31" class="form-control" id="ciclo2" name="ciclo2">
                                 </div>
                                 <div>
                                     <label for="temprano" class="col-form-label">Fecha inicio temprano</label>
-                                    <input type="date" min="<?php $currentDate ?>" max="2023-12-31" class="form-control" id="temprano" name="temprano">
+                                    <input type="date" min="<?php echo $currentDate; ?>" max="2023-12-31" class="form-control" id="temprano" name="temprano">
                                 </div>
                                 <div>
                                     <label for="periodo" class="col-form-label">Fecha inicio periodo</label>
-                                    <input type="date" min="<?php $currentDate ?>" max="2023-12-31" class="form-control" id="periodo" name="periodo">
+                                    <input type="date" min="<?php echo $currentDate; ?>" max="2023-12-31" class="form-control" id="periodo" name="periodo">
                                 </div>
                                 <div>
                                     <label for="año" class="col-form-label">Año</label>

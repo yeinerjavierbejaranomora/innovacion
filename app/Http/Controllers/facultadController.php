@@ -519,7 +519,7 @@ class facultadController extends Controller
             $ciclo = $_POST['ciclo2'];
         }
 
-        $crear = DB::table('periodo')->insert([
+        $crear = DB::table('reglasNegocio')->insert([
             'Programa' => $programa,
             'creditos' => $creditos,
             'materiasPermitidas' => $materias,

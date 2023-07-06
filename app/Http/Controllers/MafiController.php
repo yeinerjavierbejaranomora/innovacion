@@ -249,7 +249,8 @@ class MafiController extends Controller
                 DB::rollBack();
 
                 // Manejar el error
-                echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                echo "Error al insertar los logs: " . $e->getMessage();
+                die();
             }
 
             /*$insertLog = LogAplicacion::create([

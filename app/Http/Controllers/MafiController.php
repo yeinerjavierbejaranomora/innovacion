@@ -187,10 +187,10 @@ class MafiController extends Controller
         $cont = ceil($estudiantesAntiguos/200);
         $ultimoid = 1;
         $offset = 1;
-        for ($i=0; $i < $cont; $i++) {
+        //for ($i=0; $i < $cont; $i++) {
             $estudiantesAntiguos = $this->faltantesAntiguos($offset);
             dd($estudiantesAntiguos->get()[199]);
-        }
+        //}
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);

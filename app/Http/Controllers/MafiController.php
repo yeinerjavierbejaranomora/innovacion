@@ -181,10 +181,12 @@ class MafiController extends Controller
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
-            $primerId = $estudiantes[0]->id;
-            $ultimoRegistroId = 0;*/
+            $primerId = $estudiantes[0]->id;*/
+            $ultimoRegistroId = 0;
             $idBannerUltimoRegistro = 0;
             foreach ($estudiantes as $estudiante) :
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
 
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
@@ -213,8 +215,7 @@ class MafiController extends Controller
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                 }
 
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
+
             endforeach;
 
             $fechaFin = date('Y-m-d H:i:s');

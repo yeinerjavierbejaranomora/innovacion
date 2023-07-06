@@ -182,10 +182,10 @@ class MafiController extends Controller
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
         else :
-            return "No hay estudiantes de primer ingreso";
+            return "No hay estudiantes Transferentes";
         endif;
 
-        dd($transferente[0]->id);
+        //dd($transferente[0]->id);
         if (!empty($transferente)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -193,8 +193,7 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
-                //dd($historial['programa'][0]);
-
+                dd($historial);
                 $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 //dd($mallaCurricular[0][21]);
                 foreach ($mallaCurricular as $key => $malla) :

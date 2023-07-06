@@ -250,6 +250,7 @@
                         confirmButtonText: 'Editar'
                     }).then(result => {
                         if (result.value) {
+                            console.log('entra');
                             $.post("{{ route('periodo.update')}}", {
                                     '_token': $('meta[name=csrf-token]').attr('content'),
                                     id: encodeURIComponent(window.btoa(data.id)),

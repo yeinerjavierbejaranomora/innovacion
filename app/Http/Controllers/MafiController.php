@@ -200,7 +200,7 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 foreach ($diff as $key => $value) {
-                    dd($value['codMateria']);
+                    dd($value);
                 }
 
                 $ultimoRegistroId = $estudiante->id;

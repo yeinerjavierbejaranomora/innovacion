@@ -179,10 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            $fechaInicio = date('Y-m-d H:i:s');
-            $registroMPV = 0;
-            $primerId = $estudiantes[0]->id;
-            $ultimoRegistroId = 0;
+            dd($estudiantes[0]);
             foreach ($estudiantes as $estudiante) :
                 dd($estudiante->homologante);
                 $historial = $this->historialAcademico($estudiante->homologante);
@@ -787,6 +784,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','ASC')
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :
@@ -795,7 +793,7 @@ class MafiController extends Controller
                     endforeach;
                 });
 
-                if(!$consulta_homologante->isEmpty()) {
+               /* if(!$consulta_homologante->isEmpty()) {
 
                     dd($consulta_homologante);
 
@@ -819,7 +817,7 @@ class MafiController extends Controller
                             and materiasPorVer.codprograma= 'PPSV'
                             and mallaCurricular.codprograma = 'PPSV'
                             order by
-                        materiasPorVer.orden ASC;*/
+                        materiasPorVer.orden ASC;
 
 
                         $consulta_porver= DB::table('materiasPorVer')
@@ -837,7 +835,7 @@ class MafiController extends Controller
                     }
 
                     dd( $consulta_porver);
-                }
+                } */
 
 
         }

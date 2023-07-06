@@ -189,7 +189,44 @@ class MafiController extends Controller
         $offset = 1;
         //for ($i=0; $i < $cont; $i++) {
             $estudiantesAntiguos = $this->faltantesAntiguos($offset);
-            dd($estudiantesAntiguos->get()[199]);
+            foreach ($estudiantesAntiguos as $key => $value) {
+                # code...
+                $historial = $this->historialAcademico($value->homologante);
+                $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+                $cantidadDiff = count($diff);
+                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff ."<br>";
+
+                /*if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    /*try {
+                        DB::table('materiasPorVer')->insert($diff);
+
+                        // Confirmar la transacción
+                        DB::commit();
+
+                        echo "Inserción exitosa de la gran cantidad de datos.". $value->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                        dd($value);
+                        DB::rollBack();
+
+                        // Manejar el error
+                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    /*echo "estudinate vio todo". $value->homologante;
+
+                endif;*/
+                $cont++;
+            }
+            echo $cont;
         //}
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);

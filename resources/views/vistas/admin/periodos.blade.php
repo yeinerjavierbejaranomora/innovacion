@@ -217,7 +217,8 @@
                     var data = table.row($(this).parents("tr")).data();
                     /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
                     var fechaActual = new Date();
-                    var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
+                    fechaActual.setFullYear(fechaActual.getFullYear() + 1);
+                    var fechaLimite = fechaActual.toISOString().split('T')[0];
                     var añoActual = fechaActual.getFullYear();
                     var añoSiguiente = añoActual + 1;
 
@@ -237,8 +238,8 @@
                             '<div>' +
                             '<label for="año" class="col-form-label">Año</label>' +
                             '<select id="año" class="form-control">' +
-                            '<option value="' + añoActual + '">'+ añoActual +'</option>' +
-                            '<option value="' + añoSiguiente + '">'+ añoSiguiente +'</option>' +
+                            '<option value="' + añoActual + '">' + añoActual + '</option>' +
+                            '<option value="' + añoSiguiente + '">' + añoSiguiente + '</option>' +
                             '</select>',
                         icon: 'info',
                         showCancelButton: true,

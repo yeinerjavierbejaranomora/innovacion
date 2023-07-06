@@ -250,6 +250,7 @@ class MafiController extends Controller
 
                 // Manejar el error
                 echo "Error al insertar los logs: " . $e->getMessage();
+                die();
             }
 
             /*$insertLog = LogAplicacion::create([

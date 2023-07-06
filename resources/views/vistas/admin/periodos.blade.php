@@ -78,10 +78,10 @@
                         </div>
                         <div class="modal-body">
                             <form id="miForm" method="get" action="#">
-                                <?php 
+                                <?php
                                 $fechaactual = date('Y-m-d');
                                 $fechalimite = date('Y-m-d', strtotime($fechaactual . ' +1 year'));
-                                $añoactual = date('Y'); 
+                                $añoactual = date('Y');
                                 $añosiguiente = date('Y', strtotime('+1 year')); ?>
                                 @csrf
                                 <div>
@@ -105,9 +105,9 @@
                                     <?php
                                     $cont = date('Y');
                                     ?>
-                                    <select id="año" class="form-control">      
-                                    <option value="<?php echo $añoactual; ?>"><?php echo $añoactual; ?></option>
-                                    <option value="<?php echo $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>                        
+                                    <select id="año" class="form-control">
+                                        <option value="<?php echo $añoactual; ?>"><?php echo $añoactual; ?></option>
+                                        <option value="<?php echo $añosiguiente; ?>"><?php echo $añosiguiente; ?></option>
                                     </select>
                                 </div>
                                 <br>
@@ -215,29 +215,31 @@
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
-                    /** Lìnea de còdigo que determina la fecha actual */
-                    var currentDate = new Date().toISOString().split('T')[0];
+                    /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
+                    var fechaActual = new Date();
+                    fechaActual.setFullYear(fechaActual.getFullYear() + 1);
+                    var fechaLimite = fechaActual.toISOString().split('T')[0];
+                    var añoActual = fechaActual.getFullYear();
+                    var añoSiguiente = añoActual + 1;
+
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="nombre"> Periodo </label>' +
                             '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" min="' + currentDate + '" max="2024-12-31" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" min="' + currentDate + '" max="2024-12-31" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
                             '<label for="edtemprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="' + currentDate + '" max="2024-12-31" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
                             '<label for="edperiodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="' + currentDate + '" max="2024-12-31" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<div>' +
                             '<label for="año" class="col-form-label">Año</label>' +
-                            '<?php $cont = date('Y'); ?>' +
                             '<select id="año" class="form-control">' +
-                            '<?php while ($cont >= 2020) { ?>' +
-                            '<option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>' +
-                            '<?php $cont = ($cont - 1); ?>' +
-                            '<?php } ?>' +
+                            '<option value="' + añoActual + '">' + añoActual + '</option>' +
+                            '<option value="' + añoSiguiente + '">' + añoSiguiente + '</option>' +
                             '</select>',
                         icon: 'info',
                         showCancelButton: true,

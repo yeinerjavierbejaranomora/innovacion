@@ -203,9 +203,9 @@ class MafiController extends Controller
                     dd($value);
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $value['codBanner'],
-                        "codMateria"      => $value['codBanner'],
-                        "orden"      => $value['codBanner'],
-                        "codprograma"      => $value['codBanner'],
+                        "codMateria"      => $value['codMateria'],
+                        "orden"      => $value['orden'],
+                        "codprograma"      => $value['codprograma'],
                     ]);
                     $registroMPV++;
                 }

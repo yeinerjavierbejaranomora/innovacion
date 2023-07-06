@@ -865,8 +865,7 @@ class MafiController extends Controller
 
                 $resultado_visitas = DB::select($consulta_vistas);
       
-                
-                dd( $resultado_visitas);
+
                 
                 $contacor_vistas=0;
                 $codprograma='';

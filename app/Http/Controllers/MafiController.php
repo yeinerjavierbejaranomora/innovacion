@@ -179,7 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
-        dd($estudiantesAntiguos[12][2570]);
+        dd($estudiantesAntiguos[12][2577]);
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             $registroMPV = 0;

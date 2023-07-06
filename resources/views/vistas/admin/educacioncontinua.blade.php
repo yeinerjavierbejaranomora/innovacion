@@ -22,9 +22,11 @@
 
 
             <div class="input-group">
-
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
+                </div>
+                <div>
+                    <input type="text" id="facultadEditar" value='' name="facultadEditar" hidden>
                 </div>
             </div>
 

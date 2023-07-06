@@ -499,8 +499,8 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-        $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
-        if ($activarPeriodo) :
+        $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
+        if ($inactivarPeriodo) :
             return  "deshabilitado";
         else :
             return "false";

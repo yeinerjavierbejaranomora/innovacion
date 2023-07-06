@@ -184,7 +184,6 @@ class MafiController extends Controller
             $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
-                dd($estudiante->homologante);
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {

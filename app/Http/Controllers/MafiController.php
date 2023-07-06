@@ -178,100 +178,6 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            foreach ($estudiantes as $estudiante) :
-                $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
-                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b['codMateria'];
-                });
-                // Iniciar la transacción
-                DB::beginTransaction();
-
-                try {
-                    DB::table('materiasPorVer')->insert($diff);
-
-                    // Confirmar la transacción
-                    DB::commit();
-
-                    echo "Inserción exitosa de la gran cantidad de datos.";
-                } catch (Exception $e) {
-                    // Deshacer la transacción en caso de error
-                    DB::rollBack();
-
-                    // Manejar el error
-                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                }
-            endforeach;
-        });
-        die();
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
-        if (empty($log)) :
-            $estudiantesAntiguos = $this->faltantesAntiguos();
-            //$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
-            else :
-            return "No hay estudiantes de primer ingreso";
-        endif;
-
-        if(!empty($estudiantesAntiguos)):
-            //dd($estudiantesAntiguos[0]->id);
-            $fechaInicio = date('Y-m-d H:i:s');
-            $registroMPV = 0;
-            $primerId = $estudiantesAntiguos[0]->id;
-            $ultimoRegistroId = 0;
-            foreach($estudiantesAntiguos as $key => $estudiante):
-            //foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-            //    foreach ($estudiantes as $key => $estudiante) :
-                    //dd($estudiante);
-                    $historial = $this->historialAcademico($estudiante->homologante);
-                    $numeromaterias = count($historial['materias']);
-
-                    if($numeromaterias > 0):
-                        $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                    else:
-                        $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                    endif;
-                    foreach ($mallaCurricular as $key => $malla) :
-                        foreach ($malla as $key => $value) :
-                            if (!in_array($value->codigoCurso, $historial['materias'])) :
-                                $insertMateriaPorVer = MateriasPorVer::create([
-                                    "codBanner"      => $estudiante->homologante,
-                                    "codMateria"      => $value->codigoCurso,
-                                    "orden"      => $value->orden,
-                                    "codprograma"      => $value->codprograma,
-                                ]);
-                            endif;
-                            $registroMPV++;
-                        endforeach;
-                    endforeach;
-                    $ultimoRegistroId = $estudiante->id;
-                    $idBannerUltimoRegistro = $estudiante->homologante;
-                //endforeach;
-            //endforeach;
-            endforeach;
-            $fechaFin = date('Y-m-d H:i:s');
-            $insertLog = LogAplicacion::create([
-                'idInicio' => $primerId,
-                'idFin' => $ultimoRegistroId,
-                'fechaInicio' => $fechaInicio,
-                'fechaFin' => $fechaFin,
-                'accion' => 'Insert-Antiguo',
-                'tabla_afectada' => 'materiasPorVer',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-            ]);
-
-            $insertIndiceCambio = IndiceCambiosMafi::create([
-                'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert-Antiguo',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'fecha' => date('Y-m-d H:i:s'),
-            ]);
-            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
-        else:
-            return "No hay estudiantes ANTIGUOS";
-        endif;
-        die();
-
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
@@ -279,7 +185,7 @@ class MafiController extends Controller
             return "No hay estudiantes de primer ingreso";
         endif;
 
-        //dd($transferente[0]->id);
+        dd($transferente[0]->id);
         if (!empty($transferente)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
@@ -329,6 +235,38 @@ class MafiController extends Controller
         else :
             return "No hay estudiantes TRANSFERENTES";
         endif;
+
+        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
+            foreach ($estudiantes as $estudiante) :
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+
+                // Iniciar la transacción
+                DB::beginTransaction();
+
+                try {
+                    DB::table('materiasPorVer')->insert($diff);
+
+                    // Confirmar la transacción
+                    DB::commit();
+
+                    echo "Inserción exitosa de la gran cantidad de datos.";
+                } catch (Exception $e) {
+                    // Deshacer la transacción en caso de error
+                    DB::rollBack();
+
+                    // Manejar el error
+                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                }
+            endforeach;
+        });
+        die();
+
+
+
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
             $primerIngreso =  $this->falatntesPrimerIngreso();
@@ -763,8 +701,8 @@ class MafiController extends Controller
         //    $intersection = array_filter($array1, function ($item) use ($array2) {
         //         return in_array($item, $array2);
         //     });
-    
-            
+
+
         //     $diff = array_udiff($array1, $array2, function($a, $b) {
         //         return $a['name'] <=> $b['name'];
         //     });
@@ -776,7 +714,7 @@ class MafiController extends Controller
         foreach ($periodo as $key => $value) {
             $marcaIngreso .= (int)$value->periodos . ",";
         }
-        
+
         // para procesasr las marcas de ingreso en los periodos
         $marcaIngreso=trim($marcaIngreso,",");
         // Dividir la cadena en elementos individuales
@@ -788,7 +726,7 @@ class MafiController extends Controller
 
         /** inicializamos la consulta  con  cada programa */
         foreach ($programas as $programa) {
-            
+
                 // WHERE materias_faltantes="OK"
                 // AND programado_ciclo1 IS NULL
                 // AND programado_ciclo2   IS NULL
@@ -797,7 +735,11 @@ class MafiController extends Controller
                 // AND tipo_estudiante!="XXXXX"
                 // ORDER BY id ASC
                 // LIMIT 20000;
+<<<<<<< HEAD
                 dd($programa->codprograma);
+=======
+
+>>>>>>> 965c80be8c8ca02e0e0aafb5f7da8c7f795d19bd
                 // Estudiantes para generar faltantes por programa
                 $consulta_homologante= DB::table('estudiantes')
                 ->select('id', 'homologante', 'programa')
@@ -807,23 +749,23 @@ class MafiController extends Controller
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->get();
-                
-        
+
+
                 if(!$consulta_homologante) {
                     die("Error: no se pudo realizar la consulta homologantes 1");
                     exit();
                 }
-                
+
                 foreach ($consulta_homologante as $key => $value) {
-                    
+
                     $id_homologante=$value->id;
                     $codHomologante=$value->homologante;
                     $programa_homologante=$value->programa;
-                    
-                    
+
+
                     // Materias que debe ver el estudiante
                         // $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materiasPorVer mv INNER JOIN mallaCurricular ba ON mv.codMateria=ba.codigoCurso WHERE codBanner='.$codHomologante.' AND ba.ciclo IN (1, 12) AND mv.codprograma = "'.$programa_homologante.'" AND ba.codprograma = "'.$programa_homologante.'" ORDER BY mv.orden ASC';
-                        
+
                         /*select materiasPorVer.codBanner,materiasPorVer.codMateria,materiasPorVer.orden,mallaCurricular.creditos,mallaCurricular.ciclo
                         from
                         `materiasPorVer`
@@ -835,8 +777,8 @@ class MafiController extends Controller
                         and mallaCurricular.codprograma = 'PPSV'
                         order by
                     materiasPorVer.orden ASC;*/
-                    
-                    
+
+
                     $consulta_porver= DB::table('materiasPorVer')
                     ->join('mallaCurricular', 'materiasPorVer.codMateria', '=', 'mallaCurricular.codigoCurso')
                     ->select('materiasPorVer.codBanner', 'materiasPorVer.codMateria', 'materiasPorVer.orden' ,'mallaCurricular.creditos', 'mallaCurricular.ciclo')
@@ -846,18 +788,18 @@ class MafiController extends Controller
                     ->where('mallaCurricular.codprograma','=',$programa_homologante)
                     ->orderBy('materiasPorVer.orden', 'ASC')
                     ->get();
-                    
-                    
-                    
+
+
+
                 }
-                
+
         }
 
         dd( $consulta_porver);
         die();
-            
 
-           
-       
+
+
+
     }
 }

@@ -512,7 +512,7 @@ class facultadController extends Controller
         $creditos = $_POST['creditos'];
         $creditos = $_POST['creditos'];
         $estudiante = $_POST['estudiante'];
-        $ciclo = $_POST['']
+        $ciclo = $_POST[''];
 
     }
 

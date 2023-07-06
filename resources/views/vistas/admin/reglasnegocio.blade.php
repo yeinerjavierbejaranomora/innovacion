@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
+                            <form id="miForm" method="post" action="{{ route('regla.crear') }}">
                                 @csrf
                                 <div>
                                     <label for="codigo" class="col-form-label">Codigo del programa</label>
@@ -86,6 +86,10 @@
                                 <div>
                                     <label for="creditos" class="col-form-label">Número de créditos</label>
                                     <input type="number" class="form-control" id="creditos" name="creditos">
+                                </div>
+                                <div>
+                                    <label for="materias" class="col-form-label">Materias permitidas</label>
+                                    <input type="number" class="form-control" id="materias" name="materias">
                                 </div>
                                 <div>
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
@@ -98,10 +102,11 @@
                                 <label for="ciclo" class="col-form-label">Ciclo</label>
                                 <br>
                                 <div class="form-check form-check-inline" id="ciclo">
-                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
+                                    <input class="form-check-input" type="checkbox" value="1" id="ciclo1" required>
                                     <label class="form-check-label" for="ciclo1"> Ciclo 1 </label>
-                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo2">
-                                    <label class="form-check-label" for="ciclo1"> &nbsp Ciclo 2</label>
+                                    &nbsp
+                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo2" required>
+                                    <label class="form-check-label" for="ciclo1"> Ciclo 2</label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

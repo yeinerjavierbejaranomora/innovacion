@@ -138,7 +138,7 @@ Route::controller(facultadController::class)->group(function(){
     Route::get('/home/educacioncontinua','view_continua')->middleware('auth','admin')->name('facultad.continua');
     /** Ruta cargar la vista de los periodos */
     Route::get('/home/periodos','view_periodos')->middleware('auth','admin')->name('facultad.periodos');
-    /** Ruta para obtener todas las reglas de negocio */
+    /** Ruta para visualizar todas las reglas de negocio */
     Route::get('/home/reglasdenegocio','view_reglas')->middleware('auth','admin')->name('facultad.reglas');
     /** Ruta para obtener todos los programas (pregrados) */
     Route::get('/home/getprogramas','get_programas')->middleware('auth','admin')->name('facultad.getprogramas');
@@ -203,6 +203,9 @@ Route::controller(facultadController::class)->group(function(){
      Route::post('/home/inactivarperiodo', 'inactivar_periodo')->middleware('auth')->name('periodo.inactivar');
      //** Ruta para activar periodo */
      Route::post('/home/activarperiodo', 'activar_periodo')->middleware('auth')->name('periodo.activar');
+
+     /** Ruta apra crear regla */
+     Route::post('/home/createregla', 'crear_regla')->middleware('auth')->name('regla.crear');
 });
 
 

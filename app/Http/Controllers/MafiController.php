@@ -227,7 +227,7 @@ class MafiController extends Controller
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
-            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+            //echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         });
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
@@ -790,9 +790,9 @@ class MafiController extends Controller
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :
-                      
+
                         //dd($estudiante);
-                       
+
                         $idbanner=$estudiante->homologante;
                         $programa_homologante=$estudiante->programa;
 
@@ -807,7 +807,7 @@ class MafiController extends Controller
                         ->get();
 
                         dd($consulta_porver);
-                     
+
                     endforeach;
                 });
 

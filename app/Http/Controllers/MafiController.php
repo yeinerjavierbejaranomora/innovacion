@@ -776,7 +776,7 @@ class MafiController extends Controller
                     endforeach;
                 });
 
-                if(!$consulta_homologante->isEmpty()) {
+               /* if(!$consulta_homologante->isEmpty()) {
 
                     dd($consulta_homologante);
 
@@ -800,7 +800,7 @@ class MafiController extends Controller
                             and materiasPorVer.codprograma= 'PPSV'
                             and mallaCurricular.codprograma = 'PPSV'
                             order by
-                        materiasPorVer.orden ASC;*/
+                        materiasPorVer.orden ASC;
 
 
                         $consulta_porver= DB::table('materiasPorVer')
@@ -818,10 +818,10 @@ class MafiController extends Controller
                     }
 
                     dd( $consulta_porver);
-                }
-              
+                } 
 
-        }
+             
+        }*/
 
         
         die();

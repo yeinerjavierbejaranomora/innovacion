@@ -179,7 +179,7 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            dd($estudiantes);
+            dd($estudiantes[0]->id);
             foreach ($estudiantes as $estudiante) :
                 $fechaInicio = date('Y-m-d H:i:s');
                 $registroMPV = 0;
@@ -767,7 +767,6 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->where('programa', $programa->codprograma)
                 ->whereIn('marca_ingreso',$marcaIngreso)
-                ->orderBy('id','ASC')
                 ->chunk(200, function($estudiantes){
 
                     foreach ($estudiantes as $estudiante) :

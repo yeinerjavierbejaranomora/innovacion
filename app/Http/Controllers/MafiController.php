@@ -218,7 +218,7 @@ class MafiController extends Controller
             endforeach;
 
             $fechaFin = date('Y-m-d H:i:s');
-            $this->insertLog($primerId,$ultimoRegistroId,$fechaInicio,$fechaFin,$idBannerUltimoRegistro,$registroMPV);
+            //$this->insertLog($primerId,$ultimoRegistroId,$fechaInicio,$fechaFin,$idBannerUltimoRegistro,$registroMPV);
 
             /*$insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,

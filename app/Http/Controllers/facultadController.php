@@ -507,4 +507,13 @@ class facultadController extends Controller
         endif;
     }
 
+    public function crear_regla(){
+        $programa = $_POST['codigo'];
+        $creditos = $_POST['creditos'];
+        $creditos = $_POST['creditos'];
+        $estudiante = $_POST['estudiante'];
+        $ciclo = $_POST['']
+
+    }
+
 }

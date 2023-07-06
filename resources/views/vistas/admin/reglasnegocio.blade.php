@@ -93,14 +93,14 @@
                                         <option value="Antiguo">Antiguo</option>
                                         <option value="Transferente">Transferente</option>
                                         <option value="PrimerI">Primer ingreso</option>
-                                    </select> 
+                                    </select>
                                 </div>
                                 <label for="ciclo" class="col-form-label">Ciclo</label>
                                 <br>
                                 <div class="form-check form-check-inline" id="ciclo">
                                     <input class="form-check-input" type="checkbox" value="1" id="ciclo1">
-                                    <label class="form-check-label" for="ciclo1"> Ciclo 1  </label>
-                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo1">
+                                    <label class="form-check-label" for="ciclo1"> Ciclo 1 </label>
+                                    <input class="form-check-input" type="checkbox" value="2" id="ciclo2">
                                     <label class="form-check-label" for="ciclo1"> &nbsp Ciclo 2</label>
                                 </div>
                                 <div class="modal-footer">
@@ -132,6 +132,20 @@
 </a>
 
 <script>
+    /** Script para solo seleccionar 1 checkbox */
+
+    $(document).ready(function() {
+        $('#ciclo input[type="checkbox"]').on('change', function() {
+            var checkboxes = $('#ciclo input[type="checkbox"]');
+            if ($(this).is(':checked')) {
+                checkboxes.not(this).prop('disabled', true);
+            } else {
+                checkboxes.prop('disabled', false);
+            }
+        });
+    });
+
+
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getreglas') }}";

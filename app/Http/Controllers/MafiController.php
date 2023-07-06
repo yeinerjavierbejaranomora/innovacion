@@ -177,58 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $estudiantesAntiguos = DB::table('estudiantes')
-            ->where('programa','=','PPSV')
-            ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
-            ->whereNull('programaActivo')
-            /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')*/
-            ->count();
-        $cont = ceil($estudiantesAntiguos/200);
-        $ultimoid = 1;
-        $offset = 1;
-        //for ($i=0; $i < $cont; $i++) {
-            $estudiantesAntiguos = $this->faltantesAntiguos($offset)->get();
-            foreach ($estudiantesAntiguos as $key => $value) {
-                //dd($value);
-                $historial = $this->historialAcademico($value->homologante);
-                $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
-                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b['codMateria'];
-                });
-                $cantidadDiff = count($diff);
-                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff ."<br>";
 
-                /*if(count($diff) > 0):
-                    DB::beginTransaction();
-
-                    /**insertar materiasPorVer */
-                    /*try {
-                        DB::table('materiasPorVer')->insert($diff);
-
-                        // Confirmar la transacción
-                        DB::commit();
-
-                        echo "Inserción exitosa de la gran cantidad de datos.". $value->homologante;
-                        //$registroMPV++;
-                    } catch (Exception $e) {
-                        // Deshacer la transacción en caso de error
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                        dd($value);
-                        DB::rollBack();
-
-                        // Manejar el error
-                    }
-                else:
-                    /**crear alerta temprana estudinate vio todo */
-                    /*echo "estudinate vio todo". $value->homologante;
-
-                endif;*/
-                $cont++;
-            }
-            echo $cont;
-        //}
-        die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
         //dd($estudiantesAntiguos);
         $cont = 0;
@@ -241,13 +190,12 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 $cantidadDiff = count($diff);
-                echo $value->id . "=>". $value->homologante . " => ". $cantidadDiff ."<br>";
 
-                /*if(count($diff) > 0):
+                if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
-                    /*try {
+                    try {
                         DB::table('materiasPorVer')->insert($diff);
 
                         // Confirmar la transacción
@@ -265,13 +213,13 @@ class MafiController extends Controller
                     }
                 else:
                     /**crear alerta temprana estudinate vio todo */
-                    /*echo "estudinate vio todo". $value->homologante;
+                    echo "estudinate vio todo". $value->homologante;
 
-                endif;*/
+                endif;
                 $cont++;
             }
         }
-        echo $cont."<br>";
+        echo $cont;
 
         die();
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
@@ -704,7 +652,7 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function faltantesAntiguos($offset)
+    public function faltantesAntiguos()
     {
         /**SELECT * FROM `estudiantes`
             WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
@@ -720,8 +668,6 @@ class MafiController extends Controller
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->offset($offset)
-            ->limit(200)
             /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')*/
             ->orderBy('id');
@@ -924,25 +870,19 @@ class MafiController extends Controller
 
 
 
-
-
-
                 $contacor_vistas=0;
                 $codprograma='';
                 $codbanner='';
                 $materias_vistas = array();
 
-                $fila =  $resultado_visitas;
-
-                foreach ( $fila as $key => $value) {
-
-                    $codbanner= $value->codBanner;
+                while($fila =  $resultado_visitas) {
+                    dd($fila);
+                    $codbanner= $fila['codBanner'];
                     $codprograma= $programa_homologante;
-                    $codmateria= $value->codMateria;
+                    $codmateria= $fila['codMateria'];
                     $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                 }
-
                 $materias_vistas = $materias_vistas;
                 //var_dump($materias_vistas);
 
@@ -961,18 +901,15 @@ class MafiController extends Controller
 
 
                 $orden=1;
-                $fila = $resultado_baseacademica;
-
-                foreach ($fila as $key => $value) {
-
-                    $codcurso= $value->codigoCurso;
+                while($fila = $resultado_baseacademica) {
+                    $codcurso= $fila['codigoCurso'];
 
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);
                     //exit();
 
                     if (!in_array($codcurso, $materias_vistas)) {
-                        $insert_porver = 'INSERT INTO materiasPorVer (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
+                        $insert_porver = 'INSERT INTO materias_porver (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
                         echo $insert_porver . "<br />";
 
                         $resultado_porver = DB::select($insert_porver);
@@ -983,7 +920,7 @@ class MafiController extends Controller
                 echo "<br />Insertadas las materias por ver de: " . $codbanner;
 
 
-                $update_homologante = 'UPDATE estudiantes SET materias_faltantes="OK" WHERE estudiantes.id='.$id_homologante.';';
+                $update_homologante = 'UPDATE homologantes SET materias_faltantes="OK" WHERE homologantes.id='.$id_homologante.';';
                 $resultado_updatehomologante =DB::select($update_homologante);
 
 

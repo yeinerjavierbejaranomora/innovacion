@@ -194,7 +194,6 @@ class MafiController extends Controller
             foreach ($transferente as $estudiante) :
                 $historial = $this->historialAcademico($estudiante->homologante);
                 dd($historial);
-
                 $mallaCurricular = $this->BaseAcademica($historial['programa']);
                 //dd($mallaCurricular[0][21]);
                 foreach ($mallaCurricular as $key => $malla) :

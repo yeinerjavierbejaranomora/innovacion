@@ -179,10 +179,10 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            $fechaInicio = date('Y-m-d H:i:s');
+            /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantes[0]->id;
-            $ultimoRegistroId = 0;
+            $ultimoRegistroId = 0;*/
             $idBannerUltimoRegistro = 0;
             foreach ($estudiantes as $estudiante) :
 
@@ -203,7 +203,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
-                    echo $registroMPV. " Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
+                    echo "Inserción exitosa de la gran cantidad de datos. ultimo estudiante " . $idBannerUltimoRegistro." con ID :".$ultimoRegistroId;;
                     //$registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error

@@ -417,7 +417,7 @@ class facultadController extends Controller
     {
         $nombre = $_POST['name'];
         $fecha1 = $_POST['ciclo1'];
-        $fecha2 = $_POST['cicl2'];
+        $fecha2 = $_POST['ciclo2'];
         $temprano = $_POST['temprano'];
         $periodo = $_POST['periodo'];
         $año = $_POST['año'];

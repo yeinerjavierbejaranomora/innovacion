@@ -185,6 +185,7 @@ class MafiController extends Controller
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
+
                 // Iniciar la transacción
                 DB::beginTransaction();
 
@@ -205,72 +206,7 @@ class MafiController extends Controller
             endforeach;
         });
         die();
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Antiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
-        if (empty($log)) :
-            $estudiantesAntiguos = $this->faltantesAntiguos();
-            //$estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200);
-            else :
-            return "No hay estudiantes de primer ingreso";
-        endif;
-
-        if(!empty($estudiantesAntiguos)):
-            //dd($estudiantesAntiguos[0]->id);
-            $fechaInicio = date('Y-m-d H:i:s');
-            $registroMPV = 0;
-            $primerId = $estudiantesAntiguos[0]->id;
-            $ultimoRegistroId = 0;
-            foreach($estudiantesAntiguos as $key => $estudiante):
-            //foreach ($estudiantesAntiguos as $keys => $estudiantes) :
-            //    foreach ($estudiantes as $key => $estudiante) :
-                    //dd($estudiante);
-                    $historial = $this->historialAcademico($estudiante->homologante);
-                    $numeromaterias = count($historial['materias']);
-
-                    if($numeromaterias > 0):
-                        $mallaCurricular = $this->BaseAcademica($historial['programa']);
-                    else:
-                        $mallaCurricular = $this->BaseAcademica($estudiante->programa);
-                    endif;
-                    foreach ($mallaCurricular as $key => $malla) :
-                        foreach ($malla as $key => $value) :
-                            if (!in_array($value->codigoCurso, $historial['materias'])) :
-                                $insertMateriaPorVer = MateriasPorVer::create([
-                                    "codBanner"      => $estudiante->homologante,
-                                    "codMateria"      => $value->codigoCurso,
-                                    "orden"      => $value->orden,
-                                    "codprograma"      => $value->codprograma,
-                                ]);
-                            endif;
-                            $registroMPV++;
-                        endforeach;
-                    endforeach;
-                    $ultimoRegistroId = $estudiante->id;
-                    $idBannerUltimoRegistro = $estudiante->homologante;
-                //endforeach;
-            //endforeach;
-            endforeach;
-            $fechaFin = date('Y-m-d H:i:s');
-            $insertLog = LogAplicacion::create([
-                'idInicio' => $primerId,
-                'idFin' => $ultimoRegistroId,
-                'fechaInicio' => $fechaInicio,
-                'fechaFin' => $fechaFin,
-                'accion' => 'Insert-Antiguo',
-                'tabla_afectada' => 'materiasPorVer',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-            ]);
-
-            $insertIndiceCambio = IndiceCambiosMafi::create([
-                'idbanner' => $idBannerUltimoRegistro,
-                'accion' => 'Insert-Antiguo',
-                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante antiguo, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
-                'fecha' => date('Y-m-d H:i:s'),
-            ]);
-            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
-        else:
-            return "No hay estudiantes ANTIGUOS";
-        endif;
-        die();
+        
 
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

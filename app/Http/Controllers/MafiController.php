@@ -182,7 +182,7 @@ class MafiController extends Controller
         if (empty($log)) :
             $transferente = $this->falatntesTranferentes();
         else :
-            return "No hay estudiantes de primer ingreso";
+            return "No hay estudiantes Transferentes";
         endif;
 
         dd($transferente[0]->id);

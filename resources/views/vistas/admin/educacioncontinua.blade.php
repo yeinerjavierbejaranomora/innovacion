@@ -343,8 +343,7 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
-
+            obtener_data_inactivar("#example tbody", table);
 
         }
     }

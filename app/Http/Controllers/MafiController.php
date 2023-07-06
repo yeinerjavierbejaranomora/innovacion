@@ -924,8 +924,11 @@ class MafiController extends Controller
 
 
                 $orden=1;
-                while($fila = $resultado_baseacademica) {
-                    $codcurso= $fila['codigoCurso'];
+                $fila = $resultado_baseacademica;
+
+                foreach ($fila as $key => $value) {
+                 
+                    $codcurso= $value->codigoCurso;
 
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);

@@ -95,16 +95,19 @@
                                     <label for="periodo" class="col-form-label">Fecha inicio periodo</label>
                                     <input type="date" min="2023-01-01" max="2023-12-31" class="form-control" id="periodo" name="periodo">
                                 </div>
-                                <label for="año" class="col-form-label">Año</label>
-                                <?php
+                                <div>
+
+                                    <label for="año" class="col-form-label">Año</label>
+                                    <?php
                                 $cont = date('Y');
                                 ?>
-                                <select id="año">
+                                <select id="año" class="form-control">
                                     <?php while ($cont >= 2020) { ?>
                                         <option value="<?php echo ($cont); ?>"><?php echo ($cont); ?></option>
-                                    <?php $cont = ($cont - 1);
+                                        <?php $cont = ($cont - 1);
                                     } ?>
                                 </select>
+                            </div>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-success">Crear</button>
                                 

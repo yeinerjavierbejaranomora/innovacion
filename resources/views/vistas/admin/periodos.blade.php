@@ -238,9 +238,9 @@
                             '<select id="año" name="año" class="form-control"> <option value="' + data.year + '"selected>' + data.year + '</option> <option value="2022"> 2022 </option> <option value="2021"> 2021 </option> <option value="2021"> 2020 </option></select>' +
                             '<label for="ciclo" class="col-form-label"> ¿A que ciclo pertenece?</label> <div class="form-check" id="ciclo">' +
                             '<input type="checkbox" id="edciclo1" name="edciclo1" value="1" ' + (data.activoCiclo1 == 1 ? 'checked' : '') + '>' +
-                            '<label class="form-check-label" for="ciclo1">Ciclo 1</label>' +
+                            '<label class="form-check-label" for="edciclo1">Ciclo 1</label>' +
                             '<input type="checkbox" id="edciclo2" name="edciclo2" value="1"' + (data.activoCiclo2 == 1 ? 'checked' : '') + '>' +
-                            '<label class="form-check-label" for="ciclo2">Ciclo 2</label>' +
+                            '<label class="form-check-label" for="edciclo2">Ciclo 2</label>' +
                             '</div>',
                         icon: 'info',
                         showCancelButton: true,
@@ -261,8 +261,8 @@
                                     temprano: $(document).find('#temprano').val(),
                                     periodo: $(document).find('#periodo').val(),
                                     año: $(document).find('#año').val(),
-                                    ciclo1: $(document).find('#edciclo1').prop(':checked') ? 1 : 0,
-                                    ciclo2: $(document).find('#edciclo2').prop(':checked') ? 1 : 0,
+                                    ciclo1: $(document).find('#edciclo1').is(':checked') ? 1 : 0,
+                                    ciclo2: $(document).find('#edciclo2').is(':checked') ? 1 : 0,
                                 },
                                 function(result) {
                                     console.log(result);

@@ -177,7 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $fechaInicio = date('Y-m-d H:i:s');
+        $fechaInicioS = date('Y-m-d H:i:s');
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
@@ -193,15 +193,19 @@ class MafiController extends Controller
                 $offset = $log->idFin;
             endif;
             $limit = 200;
-            $cont = 0;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
             dd($estudiantesAntiguos[0]->id);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantesAntiguos[0]->id;
+            $ultimoRegistroId = 0;
             foreach($estudiantesAntiguos as $estudiante):
-                echo $estudiante->homologante."<br>";
-                $cont++;
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                dd($historial);
             endforeach;
         }
-        $fechaFin = date('Y-m-d H:i:s');
+        $fechaFinS = date('Y-m-d H:i:s');
         echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

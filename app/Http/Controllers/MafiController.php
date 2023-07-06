@@ -181,9 +181,9 @@ class MafiController extends Controller
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
             /*$fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
-            $primerId = $estudiantes[0]->id;*/
+            $primerId = $estudiantes[0]->id;
             $ultimoRegistroId = 0;
-            $idBannerUltimoRegistro = 0;
+            $idBannerUltimoRegistro = 0;*/
             foreach ($estudiantes as $estudiante) :
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
@@ -652,8 +652,8 @@ class MafiController extends Controller
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')
+            /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')*/
             ->orderBy('id');
 
 

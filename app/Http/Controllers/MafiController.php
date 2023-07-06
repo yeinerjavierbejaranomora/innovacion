@@ -193,10 +193,13 @@ class MafiController extends Controller
                 $offset = $log->idFin;
             endif;
             $limit = 200;
+            $cont = 0;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
             foreach($estudiantesAntiguos as $estudiante):
                 echo $estudiante->homologante."<br>";
+                $cont++;
             endforeach;
+            dd($cont);
         }
         dd($numeroEstudiantes);
         die();

@@ -423,6 +423,7 @@ class facultadController extends Controller
         $ciclo1 = $_POST['ciclo1'];
         $ciclo2 = $_POST['ciclo2'];
 
+        dd($_POST);
         if(empty($ciclo1))
         {
             $ciclo1 = 0;

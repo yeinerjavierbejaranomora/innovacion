@@ -192,25 +192,34 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
 
+                if($diff > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    try {
+                        DB::table('materiasPorVer')->insert($diff);
+
+                        // Confirmar la transacción
+                        DB::commit();
+
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+
+                        // Manejar el error
+                        dd($estudiante);
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    echo "estudinate vio todo". $estudiante->homologante;
+
+                endif;
+
                 // Iniciar la transacción
-                DB::beginTransaction();
 
-                /**insertar materiasPorVer */
-                try {
-                    DB::table('materiasPorVer')->insert($diff);
-
-                    // Confirmar la transacción
-                    DB::commit();
-
-                    echo "Inserción exitosa de la gran cantidad de datos.";
-                    //$registroMPV++;
-                } catch (Exception $e) {
-                    // Deshacer la transacción en caso de error
-                    DB::rollBack();
-
-                    // Manejar el error
-                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                }
 
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;

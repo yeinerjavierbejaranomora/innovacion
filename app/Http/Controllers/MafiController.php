@@ -179,12 +179,12 @@ class MafiController extends Controller
     {
 
         $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            dd($estudiantes[0]->id);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantes[0]->id;
+            $ultimoRegistroId = 0;
             foreach ($estudiantes as $estudiante) :
-                $fechaInicio = date('Y-m-d H:i:s');
-                $registroMPV = 0;
-                $primerId = $estudiante[0]->id;
-                $ultimoRegistroId = 0;
+                dd($estudiante->homologante);
                 $historial = $this->historialAcademico($estudiante->homologante);
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
@@ -200,7 +200,7 @@ class MafiController extends Controller
                     // Confirmar la transacción
                     DB::commit();
 
-                    echo "Inserción exitosa de la gran cantidad de datos.";
+                    $registroMPV++;
                 } catch (Exception $e) {
                     // Deshacer la transacción en caso de error
                     DB::rollBack();
@@ -208,7 +208,27 @@ class MafiController extends Controller
                     // Manejar el error
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                 }
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
             endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-PrimerIngreso',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-PrimerIngreso',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         });
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

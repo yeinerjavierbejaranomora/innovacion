@@ -803,7 +803,7 @@ class MafiController extends Controller
                         ->whereIn('mallaCurricular.ciclo',[1,12])
                         ->where('materiasPorVer.codprograma','=',$programa_homologante)
                         ->where('mallaCurricular.codprograma','=',$programa_homologante)
-                        ->orderBy('materiasPorVer.orden', 'ASC')
+                        ->orderBy('materiasPorVer.orde', 'ASC')
                         ->get();
 
                         dd($consulta_porver);

@@ -212,6 +212,82 @@
             });
             console.log(table);
 
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar el periodo " + data.periodos + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('periodo.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Periodo deshabilitado",
+                                                html: "El periodo <strong>" + data.periodos +
+                                                    "</strong> ha sido inactivado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar el periodo " + data.periodos + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('periodo.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Periodo habilitado",
+                                                html: "El periodo <strong>" + data.periodos +
+                                                    "</strong> ha sido habilitado",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+
             /** Editar periodos */
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -277,7 +353,7 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
+            obtener_data_inactivar("#example tbody", table);
         }
     }
 </script>

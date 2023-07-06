@@ -476,4 +476,34 @@ class facultadController extends Controller
             return "false";
         endif;
     }
+
+    public function activar_periodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 1]);
+        if ($activarPeriodo) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+
+    public function inactivar_periodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
+        if ($activarPeriodo) :
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
 }

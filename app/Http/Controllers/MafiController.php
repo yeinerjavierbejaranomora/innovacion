@@ -200,6 +200,7 @@ class MafiController extends Controller
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
                 foreach ($diff as $key => $value) {
+                    dd($value['codBanner']);
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $value->codBanner,
                         "codMateria"      => $value->codMateria,

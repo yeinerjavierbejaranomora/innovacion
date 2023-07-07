@@ -189,7 +189,75 @@ class MafiController extends Controller
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :
-            echo $i ."hora: ". date('h:i:s') . "<br>";
+            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+            if(empty($log)):
+                $offset = 0;
+            else:
+                $offset = $log->idFin;
+            endif;
+            $limit = 200;
+            $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
+            //dd($estudiantesAntiguos[0]);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantesAntiguos[0]->id;
+            $ultimoRegistroId = 0;
+            foreach($estudiantesAntiguos as $estudiante):
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
+                    return $a['codMateria'] <=> $b['codMateria'];
+                });
+
+                $cantidadDiff = count($diff);
+                if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    try {
+                        DB::table('materiasPorVer')->insert($diff);
+                        DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
+                        // Confirmar la transacción
+                        DB::commit();
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+                        // Manejar el error
+                        dd($estudiante);
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    $insertAlerta = AlertasTempranas::create([
+                        'idbanner' => $estudiante->idbanner,
+                        'tipo_estudiante' => $estudiante->tipoestudiante,
+                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' es estudiante antiguo y ya vio todo.',
+                    ]);
+                    echo "estudinate vio todo". $estudiante->homologante;
+                endif;
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+                $registroMPV++;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-EstudinatesAntiguos',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-EstudinatesAntiguos',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
             //if ($i == ceil($numeroEstudiantes/2)) {
                 sleep(5);
             //}

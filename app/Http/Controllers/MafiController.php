@@ -508,7 +508,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orderBy('id')->count();
-        dd($estudiantesAntiguosC);
+        if($estudiantesAntiguosC > 0):
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :
@@ -583,6 +583,9 @@ class MafiController extends Controller
                 endif;
             endforeach;
         endfor;
+        else:
+            echo "No hay estudiantes ANTIGUOS,ni PSEUDO INGRESO O REINGRESO";
+        endif;
 
 
     }

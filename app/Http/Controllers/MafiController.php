@@ -351,8 +351,9 @@ class MafiController extends Controller
                         // Deshacer la transacción en caso de error
                         DB::rollBack();
                         // Manejar el error
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                         dd($estudiante);
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();                    }
+                    }
                 else:
                     /**crear alerta temprana estudinate vio todo */
                     $insertAlerta = AlertasTempranas::create([

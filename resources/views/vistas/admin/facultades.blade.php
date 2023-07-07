@@ -51,7 +51,7 @@
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar">
+                    <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-outline-warning text-dark">
 
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">

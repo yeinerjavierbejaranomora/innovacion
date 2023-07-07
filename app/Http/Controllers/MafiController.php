@@ -184,8 +184,9 @@ class MafiController extends Controller
         else :
             $offset = $log->idFin;
         endif;
-        dd($offset);
-        
+        $estudiantesTransferentes = $this->falatntesTranferentes($offset);
+        dd($estudiantesTransferentes);
+
         /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

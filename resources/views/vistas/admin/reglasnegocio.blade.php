@@ -262,14 +262,14 @@
                                         title: 'Error',
                                         text: 'Debes seleccionar al menos un ciclo',
                                         icon: 'error',
-                                        allowOutsideClick: false
+                                        showConfirmButton: false
                                     });
                                 } else if (selectedCiclo1 && selectedCiclo2) {
                                     Swal.fire({
                                         title: 'Error',
                                         text: 'Solo puedes seleccionar un ciclo',
                                         icon: 'error',
-                                        allowOutsideClick: false
+                                        showConfirmButton: false
                                     });
 
                                 } else {

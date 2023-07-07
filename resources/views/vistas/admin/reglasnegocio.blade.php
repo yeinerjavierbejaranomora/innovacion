@@ -222,6 +222,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
 
+                    var validForm = true;
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
@@ -258,11 +259,11 @@
                                 const selectedCiclo2 = $('#edciclo2').is(':checked');
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
-                                    Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                    reload();
+                                    validForm = false;
+                                    resolve();
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');  
-                                    reload();  
+                                    validForm = false;
+                                    resolve();
                                 } else {
                                     resolve();
                                 }
@@ -273,8 +274,8 @@
                             const selectedCiclo1 = $('#edciclo1').is(':checked');
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
-                            if (result.value) {
-                                //** Continuar aquí */
+
+                            if (validForm) {
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
@@ -295,6 +296,10 @@
                                         }
                                     }
                                 )
+                            }
+                            else{
+                                Swal.showValidationMessage('Selecciona correctamente el ciclo');
+                                return false;
                             }
                         }
                     })

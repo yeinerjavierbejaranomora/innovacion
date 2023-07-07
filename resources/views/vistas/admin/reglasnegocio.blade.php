@@ -260,10 +260,10 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Deaabes seleccionar al menos un ciclo');
-                                    reject();
+                                    $('#submit').prop('disabled', true);
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                  Swal.showValidationMessage('Solaao debes seleccionar un ciclo');      
-                                  reject();
+                                  Swal.showValidationMessage('Solaaaaaao debes seleccionar un ciclo');      
+                                  resolve();
                                 } else {
                                     resolve();
                                 }

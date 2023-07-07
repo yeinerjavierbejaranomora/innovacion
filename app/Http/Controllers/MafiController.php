@@ -335,7 +335,6 @@ class MafiController extends Controller
                             'tabla_afectada' => 'materiasPorVer',
                             'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
                         ]);
-
                         $insertIndiceCambio = IndiceCambiosMafi::create([
                             'idbanner' => $idBannerUltimoRegistro,
                             'accion' => 'Insert-EstudinatesAntiguos',

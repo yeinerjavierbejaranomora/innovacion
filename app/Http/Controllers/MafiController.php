@@ -447,7 +447,8 @@ class MafiController extends Controller
          * AND `programaActivo` IS NULL
          * ORDER BY `id` ASC */
         /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'PRIMER%'
+            WHERE `id` > 0
+            AND `tipo_estudiante` LIKE 'PRIMER%'
             AND `programaActivo` IS NULL
             OR `tipo_estudiante` LIKE 'INGRESO%'
             AND `programaActivo` IS NULL */

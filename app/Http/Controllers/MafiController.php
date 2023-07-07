@@ -181,10 +181,10 @@ class MafiController extends Controller
         $estudiantesAntiguosC = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->where('materias_faltantes','=','')
+            ->whereNull('materias_faltantes')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
-            ->where('materias_faltantes','=','')
+            ->whereNull('materias_faltantes')
             ->orderBy('id')->count();
         dd($estudiantesAntiguosC);
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */

@@ -636,21 +636,27 @@ class MafiController extends Controller
     {
 
         /**SELECT * FROM `estudiantes`
-        WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-        AND `programaActivo` IS NULL
-        AND `materias_faltantes` IS NULL
-        OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-        AND `programaActivo` IS NULL
-        AND `materias_faltantes` IS NULL
-        AND `id` > 1
-        ORDER BY `id` ASC
-        LIMIT 200 */
+            WHERE `id` > 1
+            AND `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            OR `tipo_estudiante` = 'REINGRESO'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            ORDER BY `id` ASC
+            LIMIT 200  */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')
+            ->whereNull('materias_faltantes')
+            ->orWhere('tipo_estudiante', '=', 'REINGRESO')
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orderBy('id')

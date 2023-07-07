@@ -388,7 +388,7 @@ class MafiController extends Controller
                 "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
                 "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
         else :
-            echo "No hay registros para replicar";
+            echo "No hay registros para replicar <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
@@ -437,7 +437,7 @@ class MafiController extends Controller
             ]);
             echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin . "<br>";
         else :
-            echo "No hay estudiantes de primer ingreso";
+            echo "No hay estudiantes de primer ingreso <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */
@@ -496,7 +496,7 @@ class MafiController extends Controller
             ]);
             echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin."<br>";
         else :
-            echo "No hay estudiantes TRANSFERENTES";
+            echo "No hay estudiantes TRANSFERENTES <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes ANTIGUOS  */
@@ -584,7 +584,7 @@ class MafiController extends Controller
             endforeach;
         endfor;
         else:
-            echo "No hay estudiantes ANTIGUOS,ni PSEUDO INGRESO O REINGRESO";
+            echo "No hay estudiantes ANTIGUOS,ni PSEUDO INGRESO O REINGRESO <br>";
         endif;
 
 

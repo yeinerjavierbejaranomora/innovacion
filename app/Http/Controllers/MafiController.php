@@ -258,9 +258,9 @@ class MafiController extends Controller
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
             echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
-            //if ($i == ceil($numeroEstudiantes/2)) {
+            if ($i == ceil($numeroEstudiantes/2)) {
                 sleep(5);
-            //}
+            }
         endfor;
         die();
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */

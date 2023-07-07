@@ -195,7 +195,7 @@ class MafiController extends Controller
         ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
         ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
         ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
-        ->where([['datosMafiReplica.id', '=', $offset], ['periodo.periodoActivo', '=', 1]])
+        ->where([['datosMafiReplica.id', '>', $offset], ['periodo.periodoActivo', '=', 1]])
             ->orderBy('datosMafiReplica.id')
             ->get()
             ->chunk(200);

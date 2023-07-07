@@ -188,7 +188,7 @@ class MafiController extends Controller
             ->orderBy('id')->count();
         //dd($estudiantesAntiguosC);
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
-        $numeroEstudiantes = 1;
+        //$numeroEstudiantes = 1;
 
 
         for ($i=0; $i < $numeroEstudiantes; $i++) {
@@ -200,7 +200,7 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
-            dd($estudiantesAntiguos[0]);
+            //dd($estudiantesAntiguos[0]);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0]->id;

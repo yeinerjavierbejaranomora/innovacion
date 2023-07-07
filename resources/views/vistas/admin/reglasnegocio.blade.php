@@ -233,9 +233,9 @@
                             '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '">' +
                             '<label for="editestudiante" class="col-form-label">Tipo de estudiante</label>' +
                             '<select class="form-control" id="editestudiante" name="editestudiante">' +
-                            '<option value="Antiguo">Antiguo</option>' +
-                            '<option value="Transferente">Transferente</option>' +
-                            '<option value="PrimerI">Primer ingreso</option>' +
+                            '<option value="Antiguo"' + (data.tipoEstudiante === 'Antiguo' ? ' selected' : '') + '>Antiguo</option>' +
+                            '<option value="Transferente"' + (data.tipoEstudiante === 'Transferente' ? ' selected' : '') + '>Transferente</option>' +
+                            '<option value="PrimerI"' + (data.tipoEstudiante === 'PrimerI' ? ' selected' : '') + '>Primer ingreso</option>' +
                             '</select>' +
                             '<label for="ciclo" class="col-form-label">Ciclo</label><br>' +
                             '<div class="form-check form-check-inline" id="ciclo">' +

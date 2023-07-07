@@ -646,10 +646,10 @@ class MafiController extends Controller
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            ->where('materias_faltantes','=','')
+            ->whereNull('materias_faltantes')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
-            ->where('materias_faltantes','=','')
+            ->whereNull('materias_faltantes')
             ->orderBy('id')
             ->limit($limit)
             ->get();

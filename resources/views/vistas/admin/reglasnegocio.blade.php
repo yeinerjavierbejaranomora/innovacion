@@ -259,13 +259,12 @@
                                 const selectedCiclo2 = $('#edciclo2').is(':checked');
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
-                                    validForm = false;
-                                    resolve();
+                                    Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
+                                    return false;
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    validForm = false;
-                                    resolve();
+                                  Swal.showValidationMessage('Solo debes seleccionar un ciclo');                                    
                                 } else {
-                                    resolve();
+                                    return false;
                                 }
                             });
                         }
@@ -274,8 +273,8 @@
                             const selectedCiclo1 = $('#edciclo1').is(':checked');
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
-
-                            if (validForm) {
+                            if (result.value) {
+                                //** Continuar aquí */
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
@@ -296,10 +295,6 @@
                                         }
                                     }
                                 )
-                            }
-                            else{
-                                Swal.showValidationMessage('Selecciona correctamente el ciclo');
-                               
                             }
                         }
                     })

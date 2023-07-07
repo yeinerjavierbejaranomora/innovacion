@@ -186,7 +186,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orderBy('id')->count();
-        dd($estudiantesAntiguosC);
+        dd(ceil($estudiantesAntiguosC/2));
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

@@ -217,6 +217,82 @@
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
 
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar la regla " + data.Programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('regla.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Regla desactivada",
+                                                html: "La regla <strong>" + data.periodos +
+                                                    "</strong> ha sido inactivada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar la regla " + data.periodos + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('periodo.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Regla habilitado",
+                                                html: "La regla <strong>" + data.periodos +
+                                                    "</strong> ha sido habilitada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
+
             /** Editar periodos */
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -251,7 +327,7 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
-                        cancelButtonId :"cancelbtn",
+                        cancelButtonId: "cancelbtn",
                         confirmButtonText: 'Editar',
                         preConfirm: () => {
                             return new Promise((resolve, reject) => {
@@ -261,8 +337,8 @@
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');      
-                                }  
+                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');
+                                }
                                 resolve();
                             });
                         }
@@ -272,7 +348,7 @@
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
                             if (result.value) {
-                                
+
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),

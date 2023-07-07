@@ -204,10 +204,15 @@ Route::controller(facultadController::class)->group(function(){
      //** Ruta para activar periodo */
     Route::post('/home/activarperiodo', 'activar_periodo')->middleware('auth')->name('periodo.activar');
 
-     /** Ruta apra crear regla */
+     /** Ruta para crear regla */
     Route::post('/home/createregla', 'crear_regla')->middleware('auth')->name('regla.crear');
      /** Ruta para actualizar regla */
      Route::post('/home/updateregla', 'updateregla')->middleware('auth')->name('regla.update');
+     /** Ruta para inactivar regla */
+     Route::post('/home/inactivarregla', 'inactivarregla')->middleware('auth')->name('regla.inactivar'); 
+     /** Ruta para activar regla */
+     Route::post('/home/activarregla', 'activarregla')->middleware('auth')->name('regla.activar');
+
 });
 
 

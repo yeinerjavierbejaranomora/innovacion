@@ -177,21 +177,76 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        
-        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
-        //return $log;
+        /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
-            $data = DB::table('datosMafiReplica')
-                ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
-                ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
-                ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
-                ->where([['periodo.periodoActivo', '=', 1]])
-                ->orderBy('datosMafiReplica.id')
-                ->get()
-                ->chunk(200);
+            $offset = 0;
         else :
+            $offset = $log->idFin;
         endif;
-        //dd($data);
+        $primerIngreso = $this->falatntesPrimerIngreso($offset);
+        if (!empty($primerIngreso)) :
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $primerIngreso[0]->id;
+            $ultimoRegistroId = 0;
+            foreach ($primerIngreso as $estudiante) :
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                foreach ($mallaCurricular as $key => $malla) :
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $malla['codBanner'],
+                        "codMateria"      => $malla['codMateria'],
+                        "orden"      => $malla['orden'],
+                        "codprograma"      => $malla['codprograma'],
+                    ]);
+                    $registroMPV++;
+                endforeach;
+                DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-PrimerIngreso',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, modificando el valor del campo materias_faltantes en la tabla estudiantes de NULL a "OK" en cada estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-PrimerIngreso',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, modificando el valor del campo materias_faltantes en la tabla estudiantes de NULL a "OK" en cada estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+        else :
+            echo "No hay estudiantes de primer ingreso";
+        endif;
+        /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $offset = 0;
+        else :
+            $offset = $log->idFin;
+        endif;
+        /**SELECT dmr.*,p.activo AS programaActivo FROM `datosMafiReplica` dmr
+            INNER JOIN programas p ON p.codprograma=dmr.programa
+            INNER JOIN periodo pe ON pe.periodos=dmr.periodo
+            WHERE dmr.id > 0
+            AND pe.periodoActivo = 1
+            ORDER BY dmr.id ASC */
+        $data = DB::table('datosMafiReplica')
+            ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
+            ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
+            ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
+            ->where([['datosMafiReplica.id', '>', $offset], ['periodo.periodoActivo', '=', 1]])
+            ->orderBy('datosMafiReplica.id')
+            ->get()
+            ->chunk(200);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -202,6 +257,9 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') || str_contains($value->tipoestudiante, 'TRANSFERENTE INTERNO')) :
+                        /**SELECT ha.codMateria FROM `datosMafiReplica` dmr
+                        INNER JOIN historialAcademico ha ON ha.codBanner=dmr.idbanner
+                        WHERE dmr.idbanner = [idbanner] */
                         $historial = DB::table('datosMafiReplica')
                             ->select('historialAcademico.codMateria')
                             ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')
@@ -378,23 +436,24 @@ class MafiController extends Controller
                 "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
                 "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
         else :
-            return "No hay registros para replicar";
+            echo "No hay registros para replicar";
         endif;
     }
 
-    public function falatntesPrimerIngreso()
+    public function falatntesPrimerIngreso($offset)
     {
         /** SELECT * FROM `estudiantes`
          * WHERE `tipo_estudiante` LIKE 'PRIMER%'
          * AND `programaActivo` IS NULL
          * ORDER BY `id` ASC */
         /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'PRIMER%'
+            WHERE `id` > 0
+            AND `tipo_estudiante` LIKE 'PRIMER%'
             AND `programaActivo` IS NULL
             OR `tipo_estudiante` LIKE 'INGRESO%'
             AND `programaActivo` IS NULL */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
-            ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
+            ->where([['id','>',$offset],['tipo_estudiante', 'LIKE', 'PRIMER%']])
             ->whereNull('programaActivo')
             ->orWhere('tipo_estudiante', 'LIKE', 'INGRESO%')
             ->whereNull('programaActivo')
@@ -424,26 +483,17 @@ class MafiController extends Controller
 
     public function faltantesAntiguos($offset,$limit)
     {
+
         /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-            AND `programaActivo` IS NULL
-            ORDER BY `id` ASC */
-        /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-            AND `programaActivo` IS NULL
-            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-            AND `programaActivo` IS NULL
-            ORDER BY `id` ASC */
-        /**SELECT * FROM `estudiantes`
-WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-AND `programaActivo` IS NULL
-AND `materias_faltantes` = ''
-OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-AND `programaActivo` IS NULL
-AND `materias_faltantes` = ''
-AND `id` > 1
-ORDER BY `id` ASC
-LIMIT 200 */
+        WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+        AND `programaActivo` IS NULL
+        AND `materias_faltantes` = ''
+        OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+        AND `programaActivo` IS NULL
+        AND `materias_faltantes` = ''
+        AND `id` > 1
+        ORDER BY `id` ASC
+        LIMIT 200 */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')

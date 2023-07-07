@@ -137,7 +137,6 @@
 </a>
 
 <script>
-
     /** Script para que el usuario solo pueda seleccionar 1 checkbox */
     $(document).ready(function() {
         $('#ciclo input[type="checkbox"]').on('change', function() {
@@ -254,17 +253,24 @@
                         cancelButtonText: "Cancelar",
                         confirmButtonText: 'Editar',
                         preConfirm: () => {
-                            const selectedCiclo = $('input[name="edciclo"]:checked').val();
-                            if (!selectedCiclo) {
-                                Swal.showValidationMessage('Debes seleccionar solo un ciclo');
-                            }
-                            return {
-                                selectedCiclo: selectedCiclo
-                            };
+                            return new Promise((resolve, reject) => {
+                                const selectedCiclo1 = $('#edciclo1').is(':checked');
+                                const selectedCiclo2 = $('#edciclo2').is(':checked');
+
+                                if (!selectedCiclo1 && !selectedCiclo2) {
+                                    reject('Debes seleccionar solo un ciclo');
+                                } else if (selectedCiclo1 && selectedCiclo2) {
+                                    reject('Solo puedes seleccionar un ciclo');
+                                } else {
+                                    resolve();
+                                }
+                            });
                         }
                     }).then(result => {
                         if (result.isConfirmed) {
-                            const selectedCiclo = result.value.selectedCiclo;
+                            const selectedCiclo1 = $('#edciclo1').is(':checked');
+                            const selectedCiclo2 = $('#edciclo2').is(':checked');
+                            const selectedCiclo = selectedCiclo1 ? 1 : 2;
                             if (result.value) {
                                 //** Continuar aquí */
                                 $.post("{{ route('regla.update')}}", {

@@ -259,11 +259,11 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage(
-        '<i class="fa fa-info-circle"></i> Your name is required'
-      )
+        '<i class="fa fa-info-circle"></i> Your name is reppquired'
+      ); return true;
                                 } else if (selectedCiclo1 && selectedCiclo2) {  Swal.showValidationMessage(
-        '<i class="fa fa-info-circle"></i> Your name is required'
-      )     
+        '<i class="fa fa-info-circle"></i> Yssour name is required'
+      )    ;  return true;
                                 } else {
                                     resolve();
                                 }

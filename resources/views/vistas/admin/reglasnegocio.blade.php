@@ -296,7 +296,6 @@
                             }
                         }
                         if (!result.value) {
-                            // El formulario no pasa la validación
                             return;
                         }
                     })

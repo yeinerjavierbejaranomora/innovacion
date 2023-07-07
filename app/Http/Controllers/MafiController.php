@@ -177,10 +177,15 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        
+
+        /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
-        //return $log;
         if (empty($log)) :
+            /**SELECT dmr.*,p.activo AS programaActivo FROM `datosMafiReplica` dmr
+            INNER JOIN programas p ON p.codprograma=dmr.programa
+            INNER JOIN periodo pe ON pe.periodos=dmr.periodo
+            WHERE pe.periodoActivo = 1
+            ORDER BY dmr.id ASC */
             $data = DB::table('datosMafiReplica')
                 ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
                 ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
@@ -202,6 +207,9 @@ class MafiController extends Controller
             foreach ($data as $keys => $estudiantes) :
                 foreach ($estudiantes as $key => $value) :
                     if (str_contains($value->tipoestudiante, 'TRANSFERENTE EXTERNO') || str_contains($value->tipoestudiante, 'TRANSFERENTE INTERNO')) :
+                        /**SELECT ha.codMateria FROM `datosMafiReplica` dmr
+                        INNER JOIN historialAcademico ha ON ha.codBanner=dmr.idbanner
+                        WHERE dmr.idbanner = [idbanner] */
                         $historial = DB::table('datosMafiReplica')
                             ->select('historialAcademico.codMateria')
                             ->join('historialAcademico', 'datosMafiReplica.idbanner', '=', 'historialAcademico.codBanner')

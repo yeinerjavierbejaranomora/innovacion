@@ -646,6 +646,7 @@ LIMIT 200 */
             ->where('materias_faltantes','=','')
             ->limit($limit)
             ->toSql();
+            dd($estudiantesAntiguos);
 
 
         return $estudiantesAntiguos;

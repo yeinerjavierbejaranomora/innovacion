@@ -96,8 +96,8 @@ class UserController extends Controller
             ->where('facultad.id', '=', $value->id)
             ->select('estudiantes.id')
             ->count();
+            $estudiantesFacultad[$value->id] = $estudiantes;
             }
-            $estudiantesFacultad[$value->codprograma] = $estudiantes;
         }
 
         dd($estudiantesFacultad);

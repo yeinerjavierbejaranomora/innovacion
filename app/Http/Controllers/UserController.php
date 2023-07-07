@@ -94,6 +94,7 @@ class UserController extends Controller
             ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
             ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
             ->where('facultad.id', '=', $value->id)
+            ->where('programas.activo', '=', 1)
             ->select('estudiantes.id')
             ->count();
             $estudiantesFacultad[$value->id] = $estudiantes;

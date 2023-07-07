@@ -274,7 +274,7 @@
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
                             if (result.value) {
-                                //** Continuar aquí */
+                                
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),

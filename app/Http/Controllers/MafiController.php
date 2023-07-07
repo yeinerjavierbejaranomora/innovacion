@@ -663,7 +663,6 @@ class MafiController extends Controller
             ->limit($limit)
             ->get();
 
-
         return $estudiantesAntiguos;
     }
 
@@ -831,7 +830,7 @@ class MafiController extends Controller
         foreach($programas as $programa ){
 
 
-            
+
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -842,28 +841,28 @@ class MafiController extends Controller
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->orderBy('id','ASC')
             ->chunk(200, function($estudiantes){
-                
+
                 foreach ($estudiantes as $estudiante) :
-                    
+
                     $id_homologante=$estudiante->id;
                     $codHomologante=$estudiante->homologante;
                     $programa_homologante=$estudiante->programa;
-                    
+
                     // Materias vistas por estudiante
                     $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
                     //echo $consulta_vistas . "<br />";
                     //exit();
-                    
-                    $resultado_visitas = DB::select($consulta_vistas);
-                    
-                    
 
-                    
+                    $resultado_visitas = DB::select($consulta_vistas);
+
+
+
+
                     $contacor_vistas=0;
                     $codprograma='';
                     $codbanner='';
                     $materias_vistas = array();
-                    
+
                     while($fila =  $resultado_visitas) {
                         dd($fila);
                         $codbanner= $fila['codBanner'];
@@ -874,72 +873,72 @@ class MafiController extends Controller
                 }
                 $materias_vistas = $materias_vistas;
                 //var_dump($materias_vistas);
-                
+
                 //echo "Programa:" . $codprograma . "<br />";
                 //echo "Cod Banner: " .  $codbanner . "<br />";
                 //exit();
-                
-                
-                
+
+
+
                 // Materias del programa
                 $consulta_baseacademica = 'SELECT codigoCurso FROM mallaCurricular WHERE codprograma="'.$codprograma.'"  ORDER BY semestre, orden, ciclo DESC;';
                 //echo $consulta_baseacademica . "<br />";
                 //exit();
-                
+
                 $resultado_baseacademica = DB::select($consulta_baseacademica);
-                
+
 
                 $orden=1;
                 while($fila = $resultado_baseacademica) {
                     $codcurso= $fila['codigoCurso'];
-                    
+
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);
                     //exit();
-                    
+
                     if (!in_array($codcurso, $materias_vistas)) {
                         $insert_porver = 'INSERT INTO materias_porver (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
                         echo $insert_porver . "<br />";
-                        
+
                         $resultado_porver = DB::select($insert_porver);
                         //echo $insert_porver . "<br />";
                         $orden++;
                     }
                 }
                 echo "<br />Insertadas las materias por ver de: " . $codbanner;
-                
-                
+
+
                 $update_homologante = 'UPDATE homologantes SET materias_faltantes="OK" WHERE homologantes.id='.$id_homologante.';';
                 $resultado_updatehomologante =DB::select($update_homologante);
-                
-                
+
+
             endforeach;
         });
-        
-        
 
-        
+
+
+
 
         /**utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0. */
-        
+
         //    $intersection = array_filter($array1, function ($item) use ($array2) {
             //         return in_array($item, $array2);
         //     });
-        
+
 
         //     $diff = array_udiff($array1, $array2, function($a, $b) {
             //         return $a['name'] <=> $b['name'];
             //     });
             //     dd($diff);
-            
-            
-            
+
+
+
         }
-            
+
             die();
-            
-            
-            
+
+
+
 
     }
 }

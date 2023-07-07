@@ -218,6 +218,7 @@ class MafiController extends Controller
                     /**insertar materiasPorVer */
                     try {
                         DB::table('materiasPorVer')->insert($diff);
+                        DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
                         // Confirmar la transacción
                         DB::commit();
                         echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;

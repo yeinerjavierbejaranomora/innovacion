@@ -184,7 +184,47 @@ class MafiController extends Controller
             $offset = $log->idFin;
         endif;
         $primerIngreso = $this->falatntesPrimerIngreso($offset);
-        dd($primerIngreso);
+        if (!empty($primerIngreso)) :
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $primerIngreso[0]->id;
+            $ultimoRegistroId = 0;
+            foreach ($primerIngreso as $estudiante) :
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
+                foreach ($mallaCurricular as $key => $malla) :
+                    $insertMateriaPorVer = MateriasPorVer::create([
+                        "codBanner"      => $malla['codBanner'],
+                        "codMateria"      => $malla['codMateria'],
+                        "orden"      => $malla['orden'],
+                        "codprograma"      => $malla['codprograma'],
+                    ]);
+                    $registroMPV++;
+                endforeach;
+                DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+            endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-PrimerIngreso',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, modificando el valor del campo materias_faltantes en la tabla estudiantes de NULL a "OK" en cada estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-PrimerIngreso',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, modificando el valor del campo materias_faltantes en la tabla estudiantes de NULL a "OK" en cada estudiante, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+        else :
+            echo "No hay estudiantes de primer ingreso";
+        endif;
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -199,10 +239,10 @@ class MafiController extends Controller
             AND pe.periodoActivo = 1
             ORDER BY dmr.id ASC */
         $data = DB::table('datosMafiReplica')
-        ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
-        ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
-        ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
-        ->where([['datosMafiReplica.id', '>', $offset], ['periodo.periodoActivo', '=', 1]])
+            ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
+            ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
+            ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
+            ->where([['datosMafiReplica.id', '>', $offset], ['periodo.periodoActivo', '=', 1]])
             ->orderBy('datosMafiReplica.id')
             ->get()
             ->chunk(200);

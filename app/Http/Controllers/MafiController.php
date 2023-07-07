@@ -636,6 +636,7 @@ AND `id` > 1
 ORDER BY `id` ASC
 LIMIT 200 */
         $estudiantesAntiguos = DB::table('estudiantes')
+            ->where('id','>',$offset)
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
@@ -643,7 +644,6 @@ LIMIT 200 */
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
-            ->where('id','>',$offset)
             ->orderBy('id')
             ->limit($limit)
             ->get();

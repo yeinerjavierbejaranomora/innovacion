@@ -177,109 +177,68 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+        $fechaInicioS = date('Y-m-d H:i:s');
+        $estudiantesAntiguosC = DB::table('estudiantes')
+            ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
+            ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
+            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
+            ->orderBy('id')->count();
+        //dd($estudiantesAntiguosC);
+        $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
+        //$numeroEstudiantes = 1;
 
-        $estudiantesAntiguos = $this->faltantesAntiguos()->get()->chunk(200);
-        //dd($estudiantesAntiguos);
-        $cont = 0;
-        foreach ($estudiantesAntiguos as $key => $estudiante) {
-            foreach ($estudiante as $key => $value) {
-                # code...
-                $historial = $this->historialAcademico($value->homologante);
-                $mallaCurricular = $this->BaseAcademica($value->homologante,$value->programa);
+
+        for ($i=0; $i < $numeroEstudiantes; $i++) {
+            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+            if(empty($log)):
+                $offset = 0;
+            else:
+                $offset = $log->idFin;
+            endif;
+            $limit = 200;
+            $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
+            //dd($estudiantesAntiguos[0]);
+            $fechaInicio = date('Y-m-d H:i:s');
+            $registroMPV = 0;
+            $primerId = $estudiantesAntiguos[0]->id;
+            $ultimoRegistroId = 0;
+            foreach($estudiantesAntiguos as $estudiante):
+                $historial = $this->historialAcademico($estudiante->homologante);
+                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
-                $cantidadDiff = count($diff);
-                $exist = DB::table('materiasPorVer')->where('codBanner','=',$value->homologante)->first();
-                if(!$exist):
 
+                $cantidadDiff = count($diff);
                 if(count($diff) > 0):
                     DB::beginTransaction();
 
                     /**insertar materiasPorVer */
                     try {
                         DB::table('materiasPorVer')->insert($diff);
-
+                        DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
                         // Confirmar la transacción
                         DB::commit();
-
-                        echo "Inserción exitosa de la gran cantidad de datos.". $value->homologante;
-                        //$registroMPV++;
-                    } catch (Exception $e) {
-                        // Deshacer la transacción en caso de error
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                        dd($value);
-                        DB::rollBack();
-
-                        // Manejar el error
-                    }
-                else:
-                    /**crear alerta temprana estudinate vio todo */
-                    echo "estudinate vio todo". $value->homologante;
-
-                endif;
-            else:
-                echo "ya esta";
-                endif;
-                    $cont++;
-            }
-        }
-        echo $cont;
-
-        die();
-        $estudiantesAntiguos = $this->faltantesAntiguos()->chunk(200, function($estudiantes){
-            $registroMPV = 0;
-            /*$fechaInicio = date('Y-m-d H:i:s');
-            $primerId = $estudiantes[0]->id;
-            $ultimoRegistroId = 0;*/
-            foreach ($estudiantes as $estudiante) :
-
-                $historial = $this->historialAcademico($estudiante->homologante);
-                $mallaCurricular = $this->BaseAcademica($estudiante->homologante,$estudiante->programa);
-
-                $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
-                    return $a['codMateria'] <=> $b['codMateria'];
-                });
-
-                $cantidadDiff = count($diff);
-
-                /*if(count($diff) > 0):
-                    DB::beginTransaction();
-
-                    /**insertar materiasPorVer */
-                    /*try {
-                        DB::table('materiasPorVer')->insert($diff);
-
-                        // Confirmar la transacción
-                        DB::commit();
-
                         echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
                         //$registroMPV++;
                     } catch (Exception $e) {
                         // Deshacer la transacción en caso de error
                         DB::rollBack();
-
                         // Manejar el error
                         dd($estudiante);
-                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
-                    }
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();                    }
                 else:
                     /**crear alerta temprana estudinate vio todo */
-                    /*echo "estudinate vio todo". $estudiante->homologante;
-
-                endif;*/
-
-                // Iniciar la transacción
-
-
+                    echo "estudinate vio todo". $estudiante->homologante;
+                endif;
                 $ultimoRegistroId = $estudiante->id;
                 $idBannerUltimoRegistro = $estudiante->homologante;
                 $registroMPV++;
-                echo $idBannerUltimoRegistro . "=" . $cantidadDiff."<br>";
             endforeach;
-            echo "#registros => ".$registroMPV."<br>";
-
-            /*$fechaFin = date('Y-m-d H:i:s');
+            $fechaFin = date('Y-m-d H:i:s');
             $insertLog = LogAplicacion::create([
                 'idInicio' => $primerId,
                 'idFin' => $ultimoRegistroId,
@@ -296,8 +255,10 @@ class MafiController extends Controller
                 'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
-            //echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;*/
-        });
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+        }
+        $fechaFinS = date('Y-m-d H:i:s');
+        echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         die();
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -657,7 +618,7 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function faltantesAntiguos()
+    public function faltantesAntiguos($offset,$limit)
     {
         /**SELECT * FROM `estudiantes`
             WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
@@ -669,13 +630,27 @@ class MafiController extends Controller
             OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
             AND `programaActivo` IS NULL
             ORDER BY `id` ASC */
+        /**SELECT * FROM `estudiantes`
+WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+AND `programaActivo` IS NULL
+AND `materias_faltantes` = ''
+OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+AND `programaActivo` IS NULL
+AND `materias_faltantes` = ''
+AND `id` > 1
+ORDER BY `id` ASC
+LIMIT 200 */
         $estudiantesAntiguos = DB::table('estudiantes')
-            ->where('programa','=','PPSV')
+            ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
-            /*->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
-            ->whereNull('programaActivo')*/
-            ->orderBy('id');
+            ->where('materias_faltantes','=','')
+            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
+            ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
+            ->orderBy('id')
+            ->limit($limit)
+            ->get();
 
 
         return $estudiantesAntiguos;

@@ -180,23 +180,26 @@ class MafiController extends Controller
 
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
+        dd($log);
         if (empty($log)) :
-            /**SELECT dmr.*,p.activo AS programaActivo FROM `datosMafiReplica` dmr
+            $offset = 0;
+        else :
+            $offset = 0;
+        endif;
+        /**SELECT dmr.*,p.activo AS programaActivo FROM `datosMafiReplica` dmr
             INNER JOIN programas p ON p.codprograma=dmr.programa
             INNER JOIN periodo pe ON pe.periodos=dmr.periodo
-            WHERE pe.periodoActivo = 1
+            WHERE dmr.id > 0
+            AND pe.periodoActivo = 1
             ORDER BY dmr.id ASC */
-            $data = DB::table('datosMafiReplica')
-                ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
-                ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
-                ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
-                ->where([['periodo.periodoActivo', '=', 1]])
-                ->orderBy('datosMafiReplica.id')
-                ->get()
-                ->chunk(200);
-        else :
-        endif;
-        //dd($data);
+        $data = DB::table('datosMafiReplica')
+        ->join('programas', 'datosMafiReplica.programa', '=', 'programas.codprograma')
+        ->join('periodo', 'datosMafiReplica.periodo', '=', 'periodo.periodos')
+        ->select('datosMafiReplica.*', 'programas.activo AS programaActivo')
+        ->where([['datosMafiReplica.id', '=', $offset], ['periodo.periodoActivo', '=', 1]])
+            ->orderBy('datosMafiReplica.id')
+            ->get()
+            ->chunk(200);
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -432,26 +435,17 @@ class MafiController extends Controller
 
     public function faltantesAntiguos($offset,$limit)
     {
+
         /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-            AND `programaActivo` IS NULL
-            ORDER BY `id` ASC */
-        /**SELECT * FROM `estudiantes`
-            WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-            AND `programaActivo` IS NULL
-            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-            AND `programaActivo` IS NULL
-            ORDER BY `id` ASC */
-        /**SELECT * FROM `estudiantes`
-WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-AND `programaActivo` IS NULL
-AND `materias_faltantes` = ''
-OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-AND `programaActivo` IS NULL
-AND `materias_faltantes` = ''
-AND `id` > 1
-ORDER BY `id` ASC
-LIMIT 200 */
+        WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+        AND `programaActivo` IS NULL
+        AND `materias_faltantes` = ''
+        OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+        AND `programaActivo` IS NULL
+        AND `materias_faltantes` = ''
+        AND `id` > 1
+        ORDER BY `id` ASC
+        LIMIT 200 */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')

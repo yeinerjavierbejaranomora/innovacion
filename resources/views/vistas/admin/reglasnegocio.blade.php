@@ -327,7 +327,6 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
-                        cancelButtonId: "cancelbtn",
                         confirmButtonText: 'Editar',
                         preConfirm: () => {
                             return new Promise((resolve, reject) => {

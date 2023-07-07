@@ -178,7 +178,7 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
         $fechaInicioS = date('Y-m-d H:i:s');
-        $estudiantesAntiguos = DB::table('estudiantes')
+        $estudiantesAntiguosC = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
@@ -187,9 +187,9 @@ class MafiController extends Controller
             ->where('materias_faltantes','=','')
             ->orderBy('id')->count();
         //dd($estudiantesAntiguos);
-        $numeroEstudiantes = ceil($estudiantesAntiguos/200);
+        $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         $numeroEstudiantes = 1;
-        
+
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
             if(empty($log)):
@@ -199,6 +199,7 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
+            dd($estudiantesAntiguos);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0]->id;

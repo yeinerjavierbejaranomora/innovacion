@@ -222,6 +222,7 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
 
+                    var validForm = true;
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +
@@ -259,12 +260,11 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                    return;
+                                    return false;
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');
-                                    return;
+                                  Swal.showValidationMessage('Solo debes seleccionar un ciclo');                                    
                                 } else {
-                                    resolve();
+                                    return false;
                                 }
                             });
                         }
@@ -274,7 +274,7 @@
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
                             if (result.value) {
-                                //** Continuar aquí */
+                                
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
@@ -296,9 +296,6 @@
                                     }
                                 )
                             }
-                        }
-                        if (!result.value) {
-                            return;
                         }
                     })
                 });

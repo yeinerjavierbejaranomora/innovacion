@@ -222,7 +222,6 @@
                 $(tbody).on("click", "button.editar", function() {
                     var data = table.row($(this).parents("tr")).data();
 
-                    var validForm = true;
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form>' +

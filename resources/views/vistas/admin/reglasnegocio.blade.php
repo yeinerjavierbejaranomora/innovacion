@@ -81,19 +81,19 @@
                                 @csrf
                                 <div>
                                     <label for="codigo" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="codigo" name="codigo">
+                                    <input type="text" class="form-control" id="codigo" name="codigo" required>
                                 </div>
                                 <div>
                                     <label for="creditos" class="col-form-label">Número de créditos</label>
-                                    <input type="number" class="form-control" id="creditos" name="creditos">
+                                    <input type="number" class="form-control" id="creditos" name="creditos" required>
                                 </div>
                                 <div>
                                     <label for="materias" class="col-form-label">Materias permitidas</label>
-                                    <input type="number" class="form-control" id="materias" name="materias">
+                                    <input type="number" class="form-control" id="materias" name="materias" required>
                                 </div>
                                 <div>
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
-                                    <select class="form-control" id="estudiante" name="estudiante">
+                                    <select class="form-control" id="estudiante" name="estudiante" required>
                                         <option value="Antiguo">Antiguo</option>
                                         <option value="Transferente">Transferente</option>
                                         <option value="PrimerI">Primer ingreso</option>
@@ -226,11 +226,11 @@
                         title: 'Actualizar información',
                         html: '<form>' +
                             '<label for="editcodigo" class="col-form-label">Codigo del programa</label>' +
-                            '<input type="text" class="form-control" id="editcodigo" name="editcodigo" value="' + data.Programa + '>" placeholder="Código del programa"' +
+                            '<input type="text" class="form-control" id="editcodigo" name="editcodigo" value="' + data.Programa + '">' +
                             '<label for="editcreditos" class="col-form-label">Número de créditos</label>' +
-                            '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '>" placeholder="Código del programa">' +
+                            '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '">' +
                             '<label for="editmaterias" class="col-form-label">Materias permitidas</label>' +
-                            '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '>" placeholder="Código del programa">' +
+                            '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '">' +
                             '<label for="editestudiante" class="col-form-label">Tipo de estudiante</label>' +
                             '<select class="form-control" id="editestudiante" name="editestudiante">' +
                             '<option value="Antiguo">Antiguo</option>' +

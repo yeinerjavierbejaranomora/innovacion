@@ -194,7 +194,7 @@ class MafiController extends Controller
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
             if(empty($log)):
-                $offset = 1;
+                $offset = 0;
             else:
                 $offset = $log->idFin;
             endif;

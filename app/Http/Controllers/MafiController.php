@@ -180,11 +180,10 @@ class MafiController extends Controller
 
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
-        dd($log);
         if (empty($log)) :
             $offset = 0;
         else :
-            $offset = 0;
+            $offset = $log->idFin;
         endif;
         /**SELECT dmr.*,p.activo AS programaActivo FROM `datosMafiReplica` dmr
             INNER JOIN programas p ON p.codprograma=dmr.programa

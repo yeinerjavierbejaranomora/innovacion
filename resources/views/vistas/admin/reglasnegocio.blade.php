@@ -299,7 +299,7 @@
                             }
                             else{
                                 Swal.showValidationMessage('Selecciona correctamente el ciclo');
-                                return false;
+                               
                             }
                         }
                     })

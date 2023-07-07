@@ -199,7 +199,7 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
-            dd($estudiantesAntiguos[1]);
+            dd($estudiantesAntiguos[199]);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0]->id;
@@ -640,8 +640,10 @@ ORDER BY `id` ASC
 LIMIT 200 */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('id','>',$offset)
-            ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
+            ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
+            ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
             ->orderBy('id')

@@ -356,9 +356,9 @@ class MafiController extends Controller
                 else:
                     /**crear alerta temprana estudinate vio todo */
                     $insertAlerta = AlertasTempranas::create([
-                        'idbanner' => $estudiante->idbanner,
-                        'tipo_estudiante' => $estudiante->tipoestudiante,
-                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->idbanner . ' es estudiante antiguo y ya vio todo.',
+                        'idbanner' => $estudiante->homologante,
+                        'tipo_estudiante' => $estudiante->tipo_estudiante,
+                        'desccripcion' => 'El estudiante con idBanner' . $estudiante->homologante . ' es estudiante antiguo y ya vio todo.',
                     ]);
                     echo "estudinate vio todo". $estudiante->homologante;
                 endif;

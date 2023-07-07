@@ -100,15 +100,11 @@ class UserController extends Controller
             }
         }
 
-        dd($estudiantesFacultad);
-
-
         // dd($user->nombre_rol);
         /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
          * return ( $facultad);
          *}
          */
-
 
         /** creamos el array con los datos necesarios */
         $datos = array(

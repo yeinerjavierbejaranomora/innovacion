@@ -50,6 +50,8 @@
                     <div class="row" id="facultades">
 
                     @foreach($datos['facultad'] as $key => $value)
+                    @foreach($estudiantes as $key => $est)
+                    @if($value->id == $key)
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <a href="{{ route('programa.usuario', ['nombre' => $value->nombre]) }}">
@@ -59,7 +61,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                               <h6> Facultad de {{$value->nombre}}</h6></div>
-                                            <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes $4,000</p></div>
+                                            <div class=" mb-0 font-weight-bold text-gray-800"><p>Estudiantes inscritos: {{$est}}</p></div>
                                         </div>
 
                                         <div class="col-auto">
@@ -70,6 +72,8 @@
                             </div>
                             </a>
                         </div>
+                        @endif
+                        @endforeach
                         @endforeach
                     </div>
 

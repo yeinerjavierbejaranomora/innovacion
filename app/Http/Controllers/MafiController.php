@@ -635,10 +635,10 @@ class MafiController extends Controller
         /**SELECT * FROM `estudiantes`
         WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
         AND `programaActivo` IS NULL
-        AND `materias_faltantes` = ''
+        AND `materias_faltantes` IS NULL
         OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
         AND `programaActivo` IS NULL
-        AND `materias_faltantes` = ''
+        AND `materias_faltantes` IS NULL
         AND `id` > 1
         ORDER BY `id` ASC
         LIMIT 200 */

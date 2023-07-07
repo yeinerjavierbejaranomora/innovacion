@@ -180,7 +180,7 @@
                         title: 'Ciclo'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' id='editarbtn' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center",
                     },
@@ -216,6 +216,82 @@
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
+
+            function obtener_data_inactivar(tbody, table) {
+                $(tbody).on("click", "button.inactivar", function(event) {
+                    var data = table.row($(this).parents("tr")).data();
+                    if (data.activo == 1) {
+                        Swal.fire({
+                            title: "¿Desea inactivar la regla " + data.Programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('regla.inactivar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        console.log(result);
+                                        if (result == "deshabilitado") {
+                                            Swal.fire({
+                                                title: "Regla desactivada",
+                                                html: "La regla <strong>" + data.Programa +
+                                                    "</strong> ha sido inactivada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "¿Desea activar la regla " + data.Programa + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            cancelButtonColor: '#DC3545',
+                            cancelButtonText: "No, Cancelar",
+                            confirmButtonText: "Si"
+                        }).then(result => {
+                            if (result.value) {
+                                $.post("{{ route('regla.activar') }}", {
+                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                        id: encodeURIComponent(window.btoa(data.id)),
+                                    },
+                                    function(result) {
+                                        if (result == "habilitado") {
+                                            Swal.fire({
+                                                title: "Regla habilitado",
+                                                html: "La regla <strong>" + data.Programa +
+                                                    "</strong> ha sido habilitada",
+                                                icon: 'info',
+                                                showCancelButton: true,
+                                                confirmButtonText: "Aceptar",
+                                            }).then(result => {
+                                                if (result.value) {
+                                                    location.reload();
+                                                };
+                                            })
+                                        }
+                                    })
+                            }
+                        });
+                    }
+                });
+            }
+
 
             /** Editar periodos */
             function obtener_data_editar(tbody, table) {
@@ -259,13 +335,10 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                    swal.enableConfirmButton();
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                  Swal.showValidationMessage('Solo debes seleccionar un ciclo');      
-                                  swal.enableConfirmButton();
-                                } else {
-                                    resolve();
+                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');
                                 }
+                                resolve();
                             });
                         }
                     }).then(result => {
@@ -274,7 +347,7 @@
                             const selectedCiclo2 = $('#edciclo2').is(':checked');
                             const selectedCiclo = selectedCiclo1 ? 1 : 2;
                             if (result.value) {
-                                
+
                                 $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
@@ -300,7 +373,9 @@
                     })
                 });
             }
+            console.log('act');
             obtener_data_editar("#example tbody", table);
+            obtener_data_inactivar("#example tbody", table);
             console.log(table);
         }
     }

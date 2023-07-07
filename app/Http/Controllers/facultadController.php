@@ -542,7 +542,6 @@ class facultadController extends Controller
 
     public function updateregla()
     {
-
         $id_llegada = $_POST['id'];
         $programa = $_POST['programa'];
         $creditos = $_POST['creditos'];
@@ -572,5 +571,33 @@ class facultadController extends Controller
                 /** Redirecciona al formulario registro mostrando un mensaje de error */
                 return "false";
             endif;
+    }
+
+    public function activarregla(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $activarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 1]);
+        if ($activarPeriodo): 
+            return  "habilitado";
+        else: 
+            return "false";
+        endif;
+    }
+
+    public function inactivarregla(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $inactivarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 0]);
+        if ($inactivarPeriodo): 
+            return  "deshabilitado";
+        else: 
+            return "false";
+        endif;
     }
 }

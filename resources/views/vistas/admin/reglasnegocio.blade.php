@@ -81,19 +81,19 @@
                                 @csrf
                                 <div>
                                     <label for="codigo" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="codigo" name="codigo">
+                                    <input type="text" class="form-control" id="codigo" name="codigo" required>
                                 </div>
                                 <div>
                                     <label for="creditos" class="col-form-label">Número de créditos</label>
-                                    <input type="number" class="form-control" id="creditos" name="creditos">
+                                    <input type="number" class="form-control" id="creditos" name="creditos" required>
                                 </div>
                                 <div>
                                     <label for="materias" class="col-form-label">Materias permitidas</label>
-                                    <input type="number" class="form-control" id="materias" name="materias">
+                                    <input type="number" class="form-control" id="materias" name="materias" required>
                                 </div>
                                 <div>
                                     <label for="estudiante" class="col-form-label">Tipo de estudiante</label>
-                                    <select class="form-control" id="estudiante" name="estudiante">
+                                    <select class="form-control" id="estudiante" name="estudiante" required>
                                         <option value="Antiguo">Antiguo</option>
                                         <option value="Transferente">Transferente</option>
                                         <option value="PrimerI">Primer ingreso</option>
@@ -137,7 +137,6 @@
 </a>
 
 <script>
-
     /** Script para que el usuario solo pueda seleccionar 1 checkbox */
     $(document).ready(function() {
         $('#ciclo input[type="checkbox"]').on('change', function() {
@@ -156,145 +155,157 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            var table = $('#example').DataTable({
-                "data": data.data,
-                "columns": [{
-                        data: 'Programa',
-                        title: 'Codigo de programa'
-                    },
-                    {
-                        data: 'creditos',
-                        title: 'Creditos'
-                    },
-                    {
-                        data: 'materiasPermitidas',
-                        title: 'Materias permitidas'
-                    },
-                    {
-                        data: 'tipoEstudiante',
-                        title: 'Tipo de estudiante'
-                    },
-                    {
-                        data: 'ciclo',
-                        title: 'Ciclo'
-                    },
-                    {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar',
-                        className: "text-center",
-                    },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: "Estado",
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return 'Activo';
-                            } else if (data == '0') {
-                                return 'Inactivo';
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                var table = $('#example').DataTable({
+                    "data": data.data,
+                    "columns": [{
+                            data: 'Programa',
+                            title: 'Codigo de programa'
+                        },
+                        {
+                            data: 'creditos',
+                            title: 'Creditos'
+                        },
+                        {
+                            data: 'materiasPermitidas',
+                            title: 'Materias permitidas'
+                        },
+                        {
+                            data: 'tipoEstudiante',
+                            title: 'Tipo de estudiante'
+                        },
+                        {
+                            data: 'ciclo',
+                            title: 'Ciclo'
+                        },
+                        {
+                            defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                            title: 'Editar',
+                            className: "text-center",
+                        },
+                        {
+                            data: 'activo',
+                            defaultContent: "",
+                            title: "Estado",
+                            className: "text-center",
+                            render: function(data, type, row) {
+                                if (data == '1') {
+                                    return 'Activo';
+                                } else if (data == '0') {
+                                    return 'Inactivo';
+                                }
                             }
-                        }
+                        },
+                        {
+                            data: 'activo',
+                            defaultContent: "",
+                            title: 'Inactivar / Activar',
+                            className: "text-center",
+                            render: function(data, type, row) {
+                                if (data == '1') {
+                                    return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                                } else if (data == '0') {
+                                    return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                                }
+                            }
+                        },
+                    ],
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                     },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: 'Inactivar / Activar',
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                            } else if (data == '0') {
-                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
-                            }
-                        }
-                    },
-                ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                },
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });
-
-            /** Editar periodos */
-            function obtener_data_editar(tbody, table) {
-                $(tbody).on("click", "button.editar", function() {
-                    var data = table.row($(this).parents("tr")).data();
-
-                    Swal.fire({
-                        title: 'Actualizar información',
-                        html: '<form>' +
-                            '<label for="editcodigo" class="col-form-label">Codigo del programa</label>' +
-                            '<input type="text" class="form-control" id="editcodigo" name="editcodigo" value="' + data.Programa + '>" placeholder="Código del programa"' +
-                            '<label for="editcreditos" class="col-form-label">Número de créditos</label>' +
-                            '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '>" placeholder="Código del programa">' +
-                            '<label for="editmaterias" class="col-form-label">Materias permitidas</label>' +
-                            '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '>" placeholder="Código del programa">' +
-                            '<label for="editestudiante" class="col-form-label">Tipo de estudiante</label>' +
-                            '<select class="form-control" id="editestudiante" name="editestudiante">' +
-                            '<option value="Antiguo">Antiguo</option>' +
-                            '<option value="Transferente">Transferente</option>' +
-                            '<option value="PrimerI">Primer ingreso</option>' +
-                            '</select>' +
-                            '<label for="ciclo" class="col-form-label">Ciclo</label><br>' +
-                            '<div class="form-check form-check-inline" id="ciclo">' +
-                            '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1">' +
-                            '<label class="form-check-label" for="ciclo1"> Ciclo 1 </label>' +
-                            '&nbsp' +
-                            '<input class="form-check-input" type="checkbox" value="2"' + (data.ciclo == 2 ? 'checked' : '') + ' id="edciclo2" name="edciclo2">' +
-                            '<label class="form-check-label" for="ciclo1"> Ciclo 2</label>' +
-                            '</div>' +
-                            '</form>',
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: "Cancelar",
-                        confirmButtonText: 'Editar',
-                        preConfirm: () => {
-                            const selectedCiclo = $('input[name="edciclo"]:checked').val();
-                            if (!selectedCiclo) {
-                                Swal.showValidationMessage('Debes seleccionar solo un ciclo');
-                            }
-                            return {
-                                selectedCiclo: selectedCiclo
-                            };
-                        }
-                    }).then(result => {
-                        if (result.isConfirmed) {
-                            const selectedCiclo = result.value.selectedCiclo;
-                            if (result.value) {
-                                //** Continuar aquí */
-                                $.post("{{ route('regla.update')}}", {
-                                        '_token': $('meta[name=csrf-token]').attr('content'),
-                                        id: encodeURIComponent(window.btoa(data.id)),
-                                        programa: $(document).find('#editcodigo').val(),
-                                        creditos: $(document).find('#editcreditos').val(),
-                                        materias: $(document).find('#editmaterias').val(),
-                                        estudiante: $(document).find('#editestudiante').val(),
-                                        ciclo: selectedCiclo,
-                                    },
-                                    function(result) {
-                                        if (result == "actualizado") {
-                                            Swal.fire({
-                                                title: "Información actualizada",
-                                                icon: 'success'
-                                            }).then(result => {
-                                                location.reload();
-                                            });
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    })
+                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 });
+
+                /** Editar periodos */
+                function obtener_data_editar(tbody, table) {
+                    $(tbody).on("click", "button.editar", function() {
+                            var data = table.row($(this).parents("tr")).data();
+
+                            Swal.fire({
+                                title: 'Actualizar información',
+                                html: '<form>' +
+                                    '<label for="editcodigo" class="col-form-label">Codigo del programa</label>' +
+                                    '<input type="text" class="form-control" id="editcodigo" name="editcodigo" value="' + data.Programa + '">' +
+                                    '<label for="editcreditos" class="col-form-label">Número de créditos</label>' +
+                                    '<input type="number" class="form-control" id="editcreditos" name="editcreditos" value="' + data.creditos + '">' +
+                                    '<label for="editmaterias" class="col-form-label">Materias permitidas</label>' +
+                                    '<input type="number" class="form-control" id="editmaterias" name="editmaterias" value="' + data.materiasPermitidas + '">' +
+                                    '<label for="editestudiante" class="col-form-label">Tipo de estudiante</label>' +
+                                    '<select class="form-control" id="editestudiante" name="editestudiante">' +
+                                    '<option value="Antiguo"' + (data.tipoEstudiante === 'Antiguo' ? ' selected' : '') + '>Antiguo</option>' +
+                                    '<option value="Transferente"' + (data.tipoEstudiante === 'Transferente' ? ' selected' : '') + '>Transferente</option>' +
+                                    '<option value="PrimerI"' + (data.tipoEstudiante === 'PrimerI' ? ' selected' : '') + '>Primer ingreso</option>' +
+                                    '</select>' +
+                                    '<label for="ciclo" class="col-form-label">Ciclo</label><br>' +
+                                    '<div class="form-check form-check-inline" id="ciclo">' +
+                                    '<input class="form-check-input" type="checkbox" value="1"' + (data.ciclo == 1 ? 'checked' : '') + ' id="edciclo1" name="edciclo1">' +
+                                    '<label class="form-check-label" for="ciclo1"> Ciclo 1 </label>' +
+                                    '&nbsp' +
+                                    '<input class="form-check-input" type="checkbox" value="2"' + (data.ciclo == 2 ? 'checked' : '') + ' id="edciclo2" name="edciclo2">' +
+                                    '<label class="form-check-label" for="ciclo1"> Ciclo 2</label>' +
+                                    '</div>' +
+                                    '</form>',
+                                icon: 'info',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                cancelButtonText: "Cancelar",
+                                confirmButtonText: 'Editar',
+                                preConfirm: () => {
+                                    return new Promise((resolve, reject) => {
+                                        const selectedCiclo1 = $('#edciclo1').is(':checked');
+                                        const selectedCiclo2 = $('#edciclo2').is(':checked');
+
+                                        if (!selectedCiclo1 && !selectedCiclo2) {
+                                            reject('Debes seleccionar al menos un ciclo');
+                                        } else if (selectedCiclo1 && selectedCiclo2) {
+                                            reject('Solo debes seleccionar un ciclo');
+                                        } else {
+                                            resolve();
+                                        }
+                                    });
+                                }
+                            }).then(result => {
+                                    if (result.isConfirmed) {
+                                        if (result.value) {
+
+                                            const selectedCiclo1 = $('#edciclo1').is(':checked');
+                                            const selectedCiclo2 = $('#edciclo2').is(':checked');
+                                            const selectedCiclo = selectedCiclo1 ? 1 : 2;
+                                            if (result.value) {
+                                                //** Continuar aquí */
+                                                $.post("{{ route('regla.update')}}", {
+                                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                                        id: encodeURIComponent(window.btoa(data.id)),
+                                                        programa: $(document).find('#editcodigo').val(),
+                                                        creditos: $(document).find('#editcreditos').val(),
+                                                        materias: $(document).find('#editmaterias').val(),
+                                                        estudiante: $(document).find('#editestudiante').val(),
+                                                        ciclo: selectedCiclo,
+                                                    },
+                                                    function(result) {
+                                                        if (result == "actualizado") {
+                                                            Swal.fire({
+                                                                title: "Información actualizada",
+                                                                icon: 'success'
+                                                            }).then(result => {
+                                                                location.reload();
+                                                            });
+                                                        }
+                                                    }
+                                                )
+                                            }
+                                        }
+                                    } else if (result.isDenied) {
+                                        Swal.showValidationMessage(result.value);
+                                    }
+                                    })
+                            });
+                    }
+                    obtener_data_editar("#example tbody", table);
+                    console.log(table);
+                }
             }
-            obtener_data_editar("#example tbody", table);
-            console.log(table);
-        }
-    }
 </script>
 @include('layout.footer')

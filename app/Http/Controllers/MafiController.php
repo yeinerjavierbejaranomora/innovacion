@@ -208,7 +208,6 @@ class MafiController extends Controller
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
-
                 $cantidadDiff = count($diff);
                 if(count($diff) > 0):
                     DB::beginTransaction();

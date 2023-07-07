@@ -184,7 +184,6 @@ class MafiController extends Controller
         else :
             $offset = $log->idFin;
         endif;
-        dd($offset);
         $estudiantesTransferentes = $this->falatntesTranferentes($offset);
         if (!empty($estudiantesTransferentes[0])) :
             $fechaInicio = date('Y-m-d H:i:s');

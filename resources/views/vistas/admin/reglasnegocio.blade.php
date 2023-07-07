@@ -180,7 +180,7 @@
                         title: 'Ciclo'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' id='editarbtn' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center",
                     },
@@ -251,6 +251,7 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
+                        cancelButtonId :"cancelbtn",
                         confirmButtonText: 'Editar',
                         preConfirm: () => {
                             return new Promise((resolve, reject) => {
@@ -259,13 +260,10 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                    return false;
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                  Swal.showValidationMessage('Solo debes seleccionar un ciclo');                                    
-                                  return false;
-                                } else {
-                                    resolve();
-                                }
+                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');      
+                                }  
+                                resolve();
                             });
                         }
                     }).then(result => {

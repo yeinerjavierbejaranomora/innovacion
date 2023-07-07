@@ -51,9 +51,9 @@
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
-                        <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-outline-warning text-dark">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                    <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-outline-warning text-dark">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             <h6> Programa de {{$value->programa}}</h6>
@@ -68,9 +68,9 @@
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                     </div>
+                                </button>
                                 </div>
                             </div>
-                        </button>
                     </div>
                 </div>
                 @endif

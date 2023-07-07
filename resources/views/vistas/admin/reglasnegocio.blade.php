@@ -259,10 +259,10 @@
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
                                     Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                    return;
+                                    reload();
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');
-                                    return;
+                                    Swal.showValidationMessage('Solo debes seleccionar un ciclo');  
+                                    reload();  
                                 } else {
                                     resolve();
                                 }
@@ -296,9 +296,6 @@
                                     }
                                 )
                             }
-                        }
-                        if (!result.value) {
-                            return;
                         }
                     })
                 });

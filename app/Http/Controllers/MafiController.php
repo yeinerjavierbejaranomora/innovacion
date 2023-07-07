@@ -183,8 +183,8 @@ class MafiController extends Controller
         else :
             $offset = $log->idFin;
         endif;
-        $estudiantesPrimerIngreso = $this->falatntesPrimerIngreso($offset);
-        dd($estudiantesPrimerIngreso);
+        $primerIngreso = $this->falatntesPrimerIngreso($offset);
+        dd($primerIngreso);
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

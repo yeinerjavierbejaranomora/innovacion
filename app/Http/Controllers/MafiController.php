@@ -177,7 +177,9 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
+        $offset = 0;
+        $estudiantesPrimerIngreso = $this->falatntesPrimerIngreso($offset);
+        dd($estudiantesPrimerIngreso);
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -388,11 +390,11 @@ class MafiController extends Controller
                 "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
                 "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
         else :
-            return "No hay registros para replicar";
+            echo "No hay registros para replicar";
         endif;
     }
 
-    public function falatntesPrimerIngreso()
+    public function falatntesPrimerIngreso($offset)
     {
         /** SELECT * FROM `estudiantes`
          * WHERE `tipo_estudiante` LIKE 'PRIMER%'
@@ -404,7 +406,7 @@ class MafiController extends Controller
             OR `tipo_estudiante` LIKE 'INGRESO%'
             AND `programaActivo` IS NULL */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
-            ->where('tipo_estudiante', 'LIKE', 'PRIMER%')
+            ->where([['id','>',$offset],['tipo_estudiante', 'LIKE', 'PRIMER%']])
             ->whereNull('programaActivo')
             ->orWhere('tipo_estudiante', 'LIKE', 'INGRESO%')
             ->whereNull('programaActivo')

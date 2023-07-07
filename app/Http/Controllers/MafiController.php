@@ -390,7 +390,7 @@ class MafiController extends Controller
                 "<br> Numero de registrosen alertas: " . $numeroRegistrosAlertas .
                 "<br> inicio:" . $fechaInicio . "-- Fin:" . $fechaFin;
         else :
-            echo "No hay registros para replicar";
+            echo "No hay registros para replicar <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
@@ -439,7 +439,7 @@ class MafiController extends Controller
             ]);
             echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin . "<br>";
         else :
-            echo "No hay estudiantes de primer ingreso";
+            echo "No hay estudiantes de primer ingreso <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */
@@ -498,7 +498,7 @@ class MafiController extends Controller
             ]);
             echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin."<br>";
         else :
-            echo "No hay estudiantes TRANSFERENTES";
+            echo "No hay estudiantes TRANSFERENTES <br>";
         endif;
 
         /**Ingresar la materias faltantes por ver de los estudiantes ANTIGUOS  */
@@ -510,6 +510,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orderBy('id')->count();
+        if($estudiantesAntiguosC > 0):
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :
@@ -584,6 +585,9 @@ class MafiController extends Controller
                 endif;
             endforeach;
         endfor;
+        else:
+            echo "No hay estudiantes ANTIGUOS,ni PSEUDO INGRESO O REINGRESO <br>";
+        endif;
 
 
     }
@@ -638,15 +642,18 @@ class MafiController extends Controller
     {
 
         /**SELECT * FROM `estudiantes`
-        WHERE `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
-        AND `programaActivo` IS NULL
-        AND `materias_faltantes` IS NULL
-        OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
-        AND `programaActivo` IS NULL
-        AND `materias_faltantes` IS NULL
-        AND `id` > 1
-        ORDER BY `id` ASC
-        LIMIT 200 */
+            WHERE `id` > 0
+            AND `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            OR `tipo_estudiante` LIKE 'PSEUDO ACTIVOS%'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            OR `tipo_estudiante` = 'REINGRESO'
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` IS NULL
+            ORDER BY `id` ASC
+            LIMIT 200  */
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
@@ -655,10 +662,12 @@ class MafiController extends Controller
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
+            ->orWhere('tipo_estudiante', '=', 'REINGRESO')
+            ->whereNull('programaActivo')
+            ->whereNull('materias_faltantes')
             ->orderBy('id')
             ->limit($limit)
             ->get();
-
 
         return $estudiantesAntiguos;
     }
@@ -827,7 +836,7 @@ class MafiController extends Controller
         foreach($programas as $programa ){
 
 
-            
+
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -838,28 +847,28 @@ class MafiController extends Controller
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->orderBy('id','ASC')
             ->chunk(200, function($estudiantes){
-                
+
                 foreach ($estudiantes as $estudiante) :
-                    
+
                     $id_homologante=$estudiante->id;
                     $codHomologante=$estudiante->homologante;
                     $programa_homologante=$estudiante->programa;
-                    
+
                     // Materias vistas por estudiante
                     $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
                     //echo $consulta_vistas . "<br />";
                     //exit();
-                    
-                    $resultado_visitas = DB::select($consulta_vistas);
-                    
-                    
 
-                    
+                    $resultado_visitas = DB::select($consulta_vistas);
+
+
+
+
                     $contacor_vistas=0;
                     $codprograma='';
                     $codbanner='';
                     $materias_vistas = array();
-                    
+
                     while($fila =  $resultado_visitas) {
                         dd($fila);
                         $codbanner= $fila['codBanner'];
@@ -870,72 +879,72 @@ class MafiController extends Controller
                 }
                 $materias_vistas = $materias_vistas;
                 //var_dump($materias_vistas);
-                
+
                 //echo "Programa:" . $codprograma . "<br />";
                 //echo "Cod Banner: " .  $codbanner . "<br />";
                 //exit();
-                
-                
-                
+
+
+
                 // Materias del programa
                 $consulta_baseacademica = 'SELECT codigoCurso FROM mallaCurricular WHERE codprograma="'.$codprograma.'"  ORDER BY semestre, orden, ciclo DESC;';
                 //echo $consulta_baseacademica . "<br />";
                 //exit();
-                
+
                 $resultado_baseacademica = DB::select($consulta_baseacademica);
-                
+
 
                 $orden=1;
                 while($fila = $resultado_baseacademica) {
                     $codcurso= $fila['codigoCurso'];
-                    
+
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);
                     //exit();
-                    
+
                     if (!in_array($codcurso, $materias_vistas)) {
                         $insert_porver = 'INSERT INTO materias_porver (id, codBanner, codMateria, orden, codprograma) VALUES (NULL, '.$codbanner.', "'.$codcurso.'", '.$orden.', "'.$programa_homologante.'");';
                         echo $insert_porver . "<br />";
-                        
+
                         $resultado_porver = DB::select($insert_porver);
                         //echo $insert_porver . "<br />";
                         $orden++;
                     }
                 }
                 echo "<br />Insertadas las materias por ver de: " . $codbanner;
-                
-                
+
+
                 $update_homologante = 'UPDATE homologantes SET materias_faltantes="OK" WHERE homologantes.id='.$id_homologante.';';
                 $resultado_updatehomologante =DB::select($update_homologante);
-                
-                
+
+
             endforeach;
         });
-        
-        
 
-        
+
+
+
 
         /**utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0. */
-        
+
         //    $intersection = array_filter($array1, function ($item) use ($array2) {
             //         return in_array($item, $array2);
         //     });
-        
+
 
         //     $diff = array_udiff($array1, $array2, function($a, $b) {
             //         return $a['name'] <=> $b['name'];
             //     });
             //     dd($diff);
-            
-            
-            
+
+
+
         }
-            
+
             die();
-            
-            
-            
+
+
+
 
     }
 }

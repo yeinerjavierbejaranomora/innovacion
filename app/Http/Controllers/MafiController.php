@@ -636,7 +636,7 @@ class MafiController extends Controller
     {
 
         /**SELECT * FROM `estudiantes`
-            WHERE `id` > 1
+            WHERE `id` > 0
             AND `tipo_estudiante` LIKE 'ESTUDIANTE ANTIGUO%'
             AND `programaActivo` IS NULL
             AND `materias_faltantes` IS NULL

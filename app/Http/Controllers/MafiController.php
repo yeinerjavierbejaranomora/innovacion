@@ -186,7 +186,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
             ->orderBy('id')->count();
-        dd($estudiantesAntiguos);
+        //dd($estudiantesAntiguos);
         $numeroEstudiantes = ceil($estudiantesAntiguos/200);
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

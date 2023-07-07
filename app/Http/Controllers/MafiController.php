@@ -189,7 +189,7 @@ class MafiController extends Controller
         //dd($estudiantesAntiguos);
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         $numeroEstudiantes = 1;
-        
+
 
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
@@ -200,7 +200,7 @@ class MafiController extends Controller
             endif;
             $limit = 200;
             $estudiantesAntiguos = $this->faltantesAntiguos($offset,$limit);
-            //dd($estudiantesAntiguos[199]);
+            dd($estudiantesAntiguos[0]);
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;
             $primerId = $estudiantesAntiguos[0]->id;

@@ -181,12 +181,15 @@ class MafiController extends Controller
         $estudiantesAntiguos = DB::table('estudiantes')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
             ->orderBy('id')->count();
+        dd($estudiantesAntiguos);
         $numeroEstudiantes = ceil($estudiantesAntiguos/200);
         for ($i=0; $i < $numeroEstudiantes; $i++) {
-            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudianteAntiguo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
             if(empty($log)):
                 $offset = 1;
             else:
@@ -206,8 +209,48 @@ class MafiController extends Controller
                 });
 
                 $cantidadDiff = count($diff);
-                dd($cantidadDiff);
+                if(count($diff) > 0):
+                    DB::beginTransaction();
+
+                    /**insertar materiasPorVer */
+                    try {
+                        DB::table('materiasPorVer')->insert($diff);
+                        // Confirmar la transacción
+                        DB::commit();
+                        echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                        //$registroMPV++;
+                    } catch (Exception $e) {
+                        // Deshacer la transacción en caso de error
+                        DB::rollBack();
+                        // Manejar el error
+                        dd($estudiante);
+                        echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();                    }
+                else:
+                    /**crear alerta temprana estudinate vio todo */
+                    echo "estudinate vio todo". $estudiante->homologante;
+                endif;
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+                $registroMPV++;
             endforeach;
+            $fechaFin = date('Y-m-d H:i:s');
+            $insertLog = LogAplicacion::create([
+                'idInicio' => $primerId,
+                'idFin' => $ultimoRegistroId,
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+                'accion' => 'Insert-EstudinatesAntiguos',
+                'tabla_afectada' => 'materiasPorVer',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+            ]);
+
+            $insertIndiceCambio = IndiceCambiosMafi::create([
+                'idbanner' => $idBannerUltimoRegistro,
+                'accion' => 'Insert-EstudinatesAntiguos',
+                'descripcion' => 'Se realizo la insercion en la tabla materiasPorVer insertando las materias por ver del estudiante de primer ingreso, iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . ',insertando ' . $registroMPV . ' registros',
+                'fecha' => date('Y-m-d H:i:s'),
+            ]);
+            echo $registroMPV . "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
         }
         $fechaFinS = date('Y-m-d H:i:s');
         echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
@@ -596,8 +639,10 @@ class MafiController extends Controller
             ->where('programa','=','PPSV')
             ->where('tipo_estudiante', 'LIKE', 'ESTUDIANTE ANTIGUO%')
             ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
             ->orWhere('tipo_estudiante', 'LIKE', 'PSEUDO ACTIVOS%')
             ->whereNull('programaActivo')
+            ->where('materias_faltantes','=','')
             ->orderBy('id')
             ->offset($offset)
             ->limit($limit)

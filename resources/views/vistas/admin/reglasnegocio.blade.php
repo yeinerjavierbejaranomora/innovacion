@@ -240,7 +240,7 @@
                                         if (result == "deshabilitado") {
                                             Swal.fire({
                                                 title: "Regla desactivada",
-                                                html: "La regla <strong>" + data.periodos +
+                                                html: "La regla <strong>" + data.Programa +
                                                     "</strong> ha sido inactivada",
                                                 icon: 'info',
                                                 showCancelButton: true,
@@ -257,7 +257,7 @@
 
                     } else {
                         Swal.fire({
-                            title: "¿Desea activar la regla " + data.periodos + "?",
+                            title: "¿Desea activar la regla " + data.Programa + "?",
                             icon: 'warning',
                             showCancelButton: true,
                             showCloseButton: true,
@@ -266,7 +266,7 @@
                             confirmButtonText: "Si"
                         }).then(result => {
                             if (result.value) {
-                                $.post("{{ route('periodo.activar') }}", {
+                                $.post("{{ route('regla.activar') }}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
                                     },
@@ -274,7 +274,7 @@
                                         if (result == "habilitado") {
                                             Swal.fire({
                                                 title: "Regla habilitado",
-                                                html: "La regla <strong>" + data.periodos +
+                                                html: "La regla <strong>" + data.Programa +
                                                     "</strong> ha sido habilitada",
                                                 icon: 'info',
                                                 showCancelButton: true,

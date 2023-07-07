@@ -258,9 +258,12 @@
                                 const selectedCiclo2 = $('#edciclo2').is(':checked');
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
-                                    Swal.showValidationMessage('Debes seleccionar al menos un ciclo');
-                                } else if (selectedCiclo1 && selectedCiclo2) {
-                                  Swal.showValidationMessage('Solo debes seleccionar un ciclo');      
+                                    Swal.showValidationMessage(
+        '<i class="fa fa-info-circle"></i> Your name is required'
+      )
+                                } else if (selectedCiclo1 && selectedCiclo2) {  Swal.showValidationMessage(
+        '<i class="fa fa-info-circle"></i> Your name is required'
+      )     
                                 } else {
                                     resolve();
                                 }

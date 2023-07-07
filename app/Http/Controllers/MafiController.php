@@ -177,7 +177,12 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $offset = 0;
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'PrimerIngreso'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $offset = 0;
+        else :
+            $offset = $log->idFin;
+        endif;
         $estudiantesPrimerIngreso = $this->falatntesPrimerIngreso($offset);
         dd($estudiantesPrimerIngreso);
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */

@@ -192,7 +192,7 @@ class MafiController extends Controller
             if ($i == ceil($numeroEstudiantes/2)) {
                 sleep(10);
             }
-            var_dump($i);
+            var_dump($i.date('h:i:s') . "\n");
         endfor;
         die();
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */

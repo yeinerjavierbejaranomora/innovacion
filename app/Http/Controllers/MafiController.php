@@ -185,6 +185,7 @@ class MafiController extends Controller
             $offset = $log->idFin;
         endif;
         $primerIngreso = $this->falatntesPrimerIngreso($offset);
+        dd($primerIngreso);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
             $registroMPV = 0;

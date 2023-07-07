@@ -177,6 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+        
         /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :

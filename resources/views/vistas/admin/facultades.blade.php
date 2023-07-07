@@ -5,6 +5,12 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
+<style>
+    .button:hover {
+      background-color:#002ead;
+      transition: 0.7s;
+  }
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">

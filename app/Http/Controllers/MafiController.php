@@ -508,6 +508,7 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->whereNull('materias_faltantes')
             ->orderBy('id')->count();
+        dd($estudiantesAntiguosC);
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :

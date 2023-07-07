@@ -200,12 +200,14 @@ Route::controller(facultadController::class)->group(function(){
     /** Ruta para editar periodos */
     Route::post('/home/updateperiodo', 'updateperiodo')->middleware('auth')->name('periodo.update');
      //** Ruta para inactivar periodo */
-     Route::post('/home/inactivarperiodo', 'inactivar_periodo')->middleware('auth')->name('periodo.inactivar');
+    Route::post('/home/inactivarperiodo', 'inactivar_periodo')->middleware('auth')->name('periodo.inactivar');
      //** Ruta para activar periodo */
-     Route::post('/home/activarperiodo', 'activar_periodo')->middleware('auth')->name('periodo.activar');
+    Route::post('/home/activarperiodo', 'activar_periodo')->middleware('auth')->name('periodo.activar');
 
      /** Ruta apra crear regla */
-     Route::post('/home/createregla', 'crear_regla')->middleware('auth')->name('regla.crear');
+    Route::post('/home/createregla', 'crear_regla')->middleware('auth')->name('regla.crear');
+     /** Ruta para actualizar regla */
+     Route::post('/home/updateregla', 'updateregla')->middleware('auth')->name('regla.update');
 });
 
 

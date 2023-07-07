@@ -478,7 +478,8 @@ class facultadController extends Controller
     }
 
     /** Función para activar los periodos */
-    public function activar_periodo(){
+    public function activar_periodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -493,7 +494,8 @@ class facultadController extends Controller
     }
 
     /** Función para desactivar los periodos */
-    public function inactivar_periodo(){
+    public function inactivar_periodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -507,12 +509,13 @@ class facultadController extends Controller
         endif;
     }
 
-    public function crear_regla(){
+    public function crear_regla()
+    {
         $programa = $_POST['codigo'];
         $creditos = $_POST['creditos'];
         $materias = $_POST['materias'];
         $estudiante = $_POST['estudiante'];
-        
+
         if (isset($_POST['ciclo1'])) {
             $ciclo = $_POST['ciclo1'];
         } else {
@@ -537,8 +540,37 @@ class facultadController extends Controller
         endif;
     }
 
-    public function edit_regla(){
-        
-    }
+    public function updateregla()
+    {
 
+        $id_llegada = $_POST['id'];
+        $programa = $_POST['programa'];
+        $creditos = $_POST['creditos'];
+        $materias = $_POST['materias'];
+        $estudiante = $_POST['estudiante'];
+        $ciclo = $_POST['ciclo'];
+
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $regla = DB::table('reglasNegocio')
+            ->where('id', $id)
+            ->update([
+                'Programa' => $programa,
+                'creditos' => $creditos,
+                'materiasPermitidas' => $materias,
+                'tipoEstudiante' => $estudiante,
+                'ciclo' => $ciclo,
+            ]);
+
+            if ($regla) :
+                /** Redirecciona al formulario registro mostrando un mensaje de exito */
+                return "actualizado";
+            else :
+                /** Redirecciona al formulario registro mostrando un mensaje de error */
+                return "false";
+            endif;
+    }
 }

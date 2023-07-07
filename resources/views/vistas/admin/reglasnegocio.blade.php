@@ -137,8 +137,8 @@
 </a>
 
 <script>
-    /** Script para solo seleccionar 1 checkbox */
 
+    /** Script para que el usuario solo pueda seleccionar 1 checkbox */
     $(document).ready(function() {
         $('#ciclo input[type="checkbox"]').on('change', function() {
             var checkboxes = $('#ciclo input[type="checkbox"]');
@@ -267,7 +267,7 @@
                             const selectedCiclo = result.value.selectedCiclo;
                             if (result.value) {
                                 //** Continuar aquí */
-                                $.post("{{ route('periodo.update')}}", {
+                                $.post("{{ route('regla.update')}}", {
                                         '_token': $('meta[name=csrf-token]').attr('content'),
                                         id: encodeURIComponent(window.btoa(data.id)),
                                         programa: $(document).find('#editcodigo').val(),
@@ -277,7 +277,6 @@
                                         ciclo: selectedCiclo,
                                     },
                                     function(result) {
-                                        console.log(result);
                                         if (result == "actualizado") {
                                             Swal.fire({
                                                 title: "Información actualizada",
@@ -294,7 +293,6 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-
             console.log(table);
         }
     }

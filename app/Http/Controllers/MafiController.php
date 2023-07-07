@@ -645,7 +645,7 @@ LIMIT 200 */
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
             ->limit($limit)
-            ->get();
+            ->toSql();
 
 
         return $estudiantesAntiguos;

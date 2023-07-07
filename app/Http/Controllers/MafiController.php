@@ -184,7 +184,6 @@ class MafiController extends Controller
         else :
             $offset = $log->idFin;
         endif;
-        dd($offset);
         $primerIngreso = $this->falatntesPrimerIngreso($offset);
         if (!empty($primerIngreso)) :
             $fechaInicio = date('Y-m-d H:i:s');
@@ -451,8 +450,10 @@ class MafiController extends Controller
             WHERE `id` > 0
             AND `tipo_estudiante` LIKE 'PRIMER%'
             AND `programaActivo` IS NULL
+            AND `materias_faltantes` = ''
             OR `tipo_estudiante` LIKE 'INGRESO%'
-            AND `programaActivo` IS NULL */
+            AND `programaActivo` IS NULL
+            AND `materias_faltantes` = '' */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
             ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'PRIMER%')

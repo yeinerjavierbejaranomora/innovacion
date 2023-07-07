@@ -258,9 +258,18 @@
                                 const selectedCiclo2 = $('#edciclo2').is(':checked');
 
                                 if (!selectedCiclo1 && !selectedCiclo2) {
-                                    reject('Debes seleccionar solo un ciclo');
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Debes seleccionar al menos un ciclo',
+                                        icon: 'error'
+                                    });
                                 } else if (selectedCiclo1 && selectedCiclo2) {
-                                    reject('Solo puedes seleccionar un ciclo');
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Solo puedes seleccionar un ciclo',
+                                        icon: 'error'
+                                    });
+
                                 } else {
                                     resolve();
                                 }

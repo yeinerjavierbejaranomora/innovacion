@@ -186,8 +186,9 @@ class MafiController extends Controller
             ->whereNull('programaActivo')
             ->where('materias_faltantes','=','')
             ->orderBy('id')->count();
-        dd($estudiantesAntiguosC);
+        //dd($estudiantesAntiguosC);
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
+        dd($numeroEstudiantes);
         $numeroEstudiantes = 1;
 
 

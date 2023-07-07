@@ -177,6 +177,14 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
+        /**Ingresar la materias faltantes por ver de los estudiantes transferentes */
+        $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-Transferente'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+        if (empty($log)) :
+            $offset = 0;
+        else :
+            $offset = $log->idFin;
+        endif;
+        dd($log);
         /**Ingresar la materias faltantes por ver de los estudiantes de primer ingreso e ingreso singular */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PrimerIngreso'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -442,10 +450,6 @@ class MafiController extends Controller
 
     public function falatntesPrimerIngreso($offset)
     {
-        /** SELECT * FROM `estudiantes`
-         * WHERE `tipo_estudiante` LIKE 'PRIMER%'
-         * AND `programaActivo` IS NULL
-         * ORDER BY `id` ASC */
         /**SELECT * FROM `estudiantes`
             WHERE `id` > 0
             AND `tipo_estudiante` LIKE 'PRIMER%'
@@ -470,16 +474,20 @@ class MafiController extends Controller
         return $estudiantesPrimerIngreso;
     }
 
-    public function falatntesTranferentes()
+    public function falatntesTranferentes($offset)
     {
-        /** SELECT * FROM `estudiantes`
-         * WHERE `tipo_estudiante` like 'TRANSFERENTE%'
-         * AND `programaActivo` IS NULL
-         * AND `tiene_historial` IS NULL */
+        /**SELECT * FROM `estudiantes`
+            WHERE `id` > 0
+            AND `tipo_estudiante` like 'TRANSFERENTE%'
+            AND `programaActivo` IS NULL
+            AND `tiene_historial` IS NULL
+            AND `materias_faltantes` IS NULL */
         $estudiantesPrimerIngreso = DB::table('estudiantes')
+            ->where('id','>',$offset)
             ->where('tipo_estudiante', 'LIKE', 'TRANSFERENTE%')
             ->whereNull('programaActivo')
             ->whereNull('tiene_historial')
+            ->whereNull('materias_faltantes')
             ->orderBy('id')
             ->get();
 

@@ -190,7 +190,7 @@ class MafiController extends Controller
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :
             if ($i == ceil($numeroEstudiantes/2)) {
-                sleep(10);
+                sleep(30);
             }
             var_dump($i.date('h:i:s') . "\n");
         endfor;

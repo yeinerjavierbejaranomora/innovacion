@@ -190,9 +190,9 @@ class MafiController extends Controller
         //dd(ceil($numeroEstudiantes/2));
         for ($i=0; $i < $numeroEstudiantes; $i++) :
             echo $i ."hora: ". date('h:i:s') . "<br>";
-            if ($i == ceil($numeroEstudiantes/2)) {
-                sleep(30);
-            }
+            //if ($i == ceil($numeroEstudiantes/2)) {
+                sleep(5);
+            //}
         endfor;
         die();
         /**Ingresar la materias faltantes por ver de los estudiantes transferentes */

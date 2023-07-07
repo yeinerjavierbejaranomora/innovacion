@@ -188,7 +188,7 @@ class MafiController extends Controller
             ->orderBy('id')->count();
         //dd($estudiantesAntiguos);
         $numeroEstudiantes = ceil($estudiantesAntiguosC/200);
-        //$numeroEstudiantes = 1;
+        $numeroEstudiantes = 1;
 
         for ($i=0; $i < $numeroEstudiantes; $i++) {
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();

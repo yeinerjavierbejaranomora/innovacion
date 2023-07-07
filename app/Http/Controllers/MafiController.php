@@ -200,6 +200,8 @@ class MafiController extends Controller
             ->get()
             ->chunk(200);
 
+            
+
         if (!empty($data[0])) :
             $numeroRegistros = 0;
             $numeroRegistrosAlertas = 0;

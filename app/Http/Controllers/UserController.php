@@ -313,6 +313,7 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
+        $request->id =  $id;
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;
@@ -358,7 +359,7 @@ class UserController extends Controller
             ]);
 
 
-        logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($actualizar));
+        logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request));
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :

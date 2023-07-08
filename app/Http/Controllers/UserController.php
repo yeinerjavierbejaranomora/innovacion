@@ -287,6 +287,17 @@ class UserController extends Controller
         return $roles;
     }
 
+    /**
+     * Metodo para obtener todos los datos de un usuario
+     * @param id Id del usuario a actualizar 
+     * @return usuarioActualizar Objeto con los datos del usuario
+     */
+    public function obtenerUsuario($id)
+    {
+        $usuarioActualizar = DB::table('users')->where('id', '=', $id)->select('*')->get();
+        return $usuarioActualizar;
+    }
+
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
@@ -331,9 +342,9 @@ class UserController extends Controller
         } else {
             $activo = 1;
         }
-        
-        $informacionOriginal =obtenerUsuario($id);
-        
+
+        $informacionOriginal = obtenerUsuario($id);
+
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
                 'id_banner' => $idBanner,
@@ -347,7 +358,7 @@ class UserController extends Controller
             ]);
 
 
-            logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users',json_encode($informacionOriginal), json_encode($actualizar));
+        logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($actualizar));
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
@@ -363,18 +374,6 @@ class UserController extends Controller
             endif;
         endif;
     }
-
-
-    /**
-     * Metodo para obtener todos los datos de un usuario
-     * @param id Id del usuario a actualizar 
-     * @return usuarioActualizar Objeto con los datos del usuario
-     */
-    public function obtenerUsuario($id){
-        $usuarioActualizar = DB::table('users')->where('id','=', $id)->select('*')->get();
-        return $usuarioActualizar;
-    } 
-    
 
     /** Funcion para activar o inactivar usuario */
     public function inactivar_usuario()

@@ -357,8 +357,6 @@ class UserController extends Controller
                 'activo' => $activo,
             ]);
 
-
-
         if ($id === auth()->user()->id) :
             if ($actualizar) :
                 logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->parameters));

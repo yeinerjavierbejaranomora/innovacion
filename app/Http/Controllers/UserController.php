@@ -84,25 +84,25 @@ class UserController extends Controller
             /** trae la facultad asignada */
             $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
             $estudiantes = DB::table('programas')
-            ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
-            ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
-            ->where('facultad.id', '=', $user->id_facultad)
-            ->select('estudiantes.id')
-            ->count();            
-            $estudiantesFacultad = $estudiantes;    
+                ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
+                ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
+                ->where('facultad.id', '=', $user->id_facultad)
+                ->select('estudiantes.id')
+                ->count();
+            $estudiantesFacultad = $estudiantes;
         } else {
             /** si es super admin trae todas las facultades */
             $facultad = DB::table('facultad')->get();
-            $estudiantesFacultad= array();
+            $estudiantesFacultad = array();
             foreach ($facultad as $key => $value) {
-            $estudiantes = DB::table('programas')
-            ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
-            ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
-            ->where('facultad.id', '=', $value->id)
-            ->where('programas.activo', '=', 1)
-            ->select('estudiantes.id')
-            ->count();
-            $estudiantesFacultad[$value->id] = $estudiantes;
+                $estudiantes = DB::table('programas')
+                    ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
+                    ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
+                    ->where('facultad.id', '=', $value->id)
+                    ->where('programas.activo', '=', 1)
+                    ->select('estudiantes.id')
+                    ->count();
+                $estudiantesFacultad[$value->id] = $estudiantes;
             }
         }
 
@@ -343,7 +343,7 @@ class UserController extends Controller
                 'programa' => $Programas,
                 'activo' => $activo,
             ]);
-            
+
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
@@ -358,7 +358,6 @@ class UserController extends Controller
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         endif;
-        
     }
 
     /** Funcion para activar o inactivar usuario */
@@ -366,22 +365,20 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        
-
-        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR ,'Users', NULL, json_encode(['id'=>$id]));
+        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
 
         if ($inactivarPrograma) :
             return  "deshabilitado";
         else :
             return "false";
         endif;
-
     }
     /** Funcion para activar o inactivar */
     public function activar_usuario()
     {
         $id = $_POST['id'];
         $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
+        logUsuariosController::editarBasedeDatos(Constantes::ACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
         if ($inactivarPrograma) :
             return  "habilitado";
         else :

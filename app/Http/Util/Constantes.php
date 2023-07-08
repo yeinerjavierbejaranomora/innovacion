@@ -11,5 +11,7 @@ namespace App\Http\Util;
 class Constantes
 {
     const INACTIVAR = "1";
-
+    const ACTIVAR = "2";
+    const ACTUALIZAR = "3";
+    const CREAR = "4";
  }

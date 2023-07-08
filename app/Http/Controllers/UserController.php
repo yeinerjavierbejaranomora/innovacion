@@ -298,6 +298,19 @@ class UserController extends Controller
         return $usuarioActualizar;
     }
 
+    /**
+     * Metodo para obtener todos los datos de un usuario
+     * @param id Id del usuario a actualizar 
+     * @return usuarioActualizar Objeto con los datos del usuario
+     */
+    public function registrarLog($id,$accion, $informacionOriginal, $request)
+    {
+        $request->merge(['id' => $id]);
+        $parametros = collect($request->all())->except(['_token'])->toArray();
+        $request->replace($parametros);
+        LogUsuariosController::registrarLog($accion, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
+    }
+
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
@@ -311,10 +324,7 @@ class UserController extends Controller
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
         $programa = $request->programa;
-        $activo = $request->estado;
-        $request->merge(['id' => $id]);
-        $parametros = collect($request->all())->except(['_token'])->toArray();
-        $request->replace($parametros);
+        $activo = $request->estado;      
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;
@@ -361,14 +371,14 @@ class UserController extends Controller
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
-                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
+                registrarLog($id,Constantes::ACTUALIZAR, $informacionOriginal, $request);
                 return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         else :
-            if ($actualizar) :
-                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
+            if ($actualizar) :                
+                registrarLog($id,Constantes::ACTUALIZAR, $informacionOriginal, $request);
                 return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
@@ -381,7 +391,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
+        LogUsuariosController::registrarLog(Constantes::INACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
 
         if ($inactivarUsuario) :
             return  "deshabilitado";
@@ -394,7 +404,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
-        logUsuariosController::editarBasedeDatos(Constantes::ACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
+        LogUsuariosController::registrarLog(Constantes::ACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
         if ($activarUsuario) :
             return  "habilitado";
         else :

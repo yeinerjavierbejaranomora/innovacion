@@ -25,7 +25,7 @@ class LogUsuariosController extends Controller
         $this->middleware('auth');
     }
 
-    public static function editarBasedeDatos ($accion, $tablaAfectada, $original, $actualizada){
+    public static function registrarLog ($accion, $tablaAfectada, $original, $actualizada){
         $user = auth()->user();
         $insert = DB::table('logUsuarios')->insert([
             'id_usuarios' => $user->id,

@@ -312,7 +312,8 @@ class UserController extends Controller
         $idFacultad = $request->facultades;
         $programa = $request->programa;
         $activo = $request->estado;
-        $request->id =  $id;
+        $request->merge(['id' => $id]);
+        $request->except(['_token']);
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;

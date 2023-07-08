@@ -10,6 +10,7 @@ use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
+use App\Http\Util\Constantes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -240,7 +241,6 @@ class UserController extends Controller
             'programa' => $nombre_programas,
             'user' => $consulta[0]
         );
-
         return view('vistas.editarperfil', ['datos' => $datos, 'roles' => $roles, 'facultades' => $facultades]);
     }
 
@@ -342,6 +342,7 @@ class UserController extends Controller
                 'programa' => $Programas,
                 'activo' => $activo,
             ]);
+            
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
@@ -356,6 +357,7 @@ class UserController extends Controller
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         endif;
+        
     }
 
     /** Funcion para activar o inactivar usuario */
@@ -363,11 +365,15 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
+    
+        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR ,'Users', NULL, json_encode($id));
+
         if ($inactivarPrograma) :
             return  "deshabilitado";
         else :
             return "false";
         endif;
+
     }
     /** Funcion para activar o inactivar */
     public function activar_usuario()

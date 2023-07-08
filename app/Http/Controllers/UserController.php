@@ -295,7 +295,7 @@ class UserController extends Controller
     public function obtenerUsuario($id)
     {
         $usuarioActualizar = DB::table('users')->where('id', '=', $id)->select('*')->get();
-        return ['actualizar'=>$usuarioActualizar];
+        return $usuarioActualizar;
     }
 
     // *Método que actualiza en la base de datos la edición del usuario
@@ -343,7 +343,7 @@ class UserController extends Controller
             $activo = 1;
         }
 
-        $informacionOriginal = obtenerUsuario($id);
+        $informacionOriginal = $this->obtenerUsuario($id);
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([

@@ -302,7 +302,6 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         //dd($request->all());
-        dd($request);
         $id = decrypt($id);
         $idBanner = $request->id_banner;
         $documento = $request->documento;

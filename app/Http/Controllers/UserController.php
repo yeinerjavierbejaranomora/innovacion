@@ -364,10 +364,10 @@ class UserController extends Controller
     public function inactivar_usuario()
     {
         $id = $_POST['id'];
-        $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
+        $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
         logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
 
-        if ($inactivarPrograma) :
+        if ($inactivarUsuario) :
             return  "deshabilitado";
         else :
             return "false";
@@ -377,9 +377,9 @@ class UserController extends Controller
     public function activar_usuario()
     {
         $id = $_POST['id'];
-        $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
+        $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
         logUsuariosController::editarBasedeDatos(Constantes::ACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
-        if ($inactivarPrograma) :
+        if ($activarUsuario) :
             return  "habilitado";
         else :
             return "false";

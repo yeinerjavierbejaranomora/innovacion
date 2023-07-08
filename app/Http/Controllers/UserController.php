@@ -313,7 +313,8 @@ class UserController extends Controller
         $programa = $request->programa;
         $activo = $request->estado;
         $request->merge(['id' => $id]);
-        $request->except(['_token']);
+        $parametros = collect($request->all())->except(['_token'])->toArray();
+        $request->replace($parametros);
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;

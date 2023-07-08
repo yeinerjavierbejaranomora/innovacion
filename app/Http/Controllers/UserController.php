@@ -359,14 +359,14 @@ class UserController extends Controller
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
-                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->parameters));
+                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
                 return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         else :
             if ($actualizar) :
-                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->parameters));
+                logUsuariosController::editarBasedeDatos(Constantes::ACTUALIZAR, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
                 return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');

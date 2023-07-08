@@ -336,7 +336,7 @@
                                         if (result == "habilitado") {
                                             Swal.fire({
                                                 title: "Usuario habilitado",
-                                                html: "El usuario <strong>" + data.programa +
+                                                html: "El usuario <strong>" + data.nombre +
                                                     "</strong> ha sido habilitado",
                                                 icon: 'info',
                                                 showCancelButton: true,

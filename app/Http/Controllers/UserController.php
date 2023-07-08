@@ -366,8 +366,9 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarPrograma = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-    
-        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR ,'Users', NULL, json_encode($id));
+        
+
+        logUsuariosController::editarBasedeDatos(Constantes::INACTIVAR ,'Users', NULL, json_encode([$id=>'id']));
 
         if ($inactivarPrograma) :
             return  "deshabilitado";

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 // use Yajra\DataTables\DataTables;
+use App\Http\Util\Constantes;
 
 class facultadController extends Controller
 {

@@ -368,6 +368,7 @@ class facultadController extends Controller
         ]);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            $informacionActualizada= $request->except(['_token']);
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
@@ -375,7 +376,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function updatefacultad(Request $request)
+    public function updatefacultad()
     {
         $id_llegada = $_POST['id'];
         $codFacultad = $_POST['codFacultad'];
@@ -392,9 +393,8 @@ class facultadController extends Controller
                 'codFacultad' => $codFacultad,
                 'nombre' => $nombre
             ]);
-        $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
-            $this->updateLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
+            $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -640,8 +640,15 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog(Constantes::INACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
     }
 
-    public function updateLogUsuarios($tabla, $informacionOriginal, $informacionActualizada)
+    /**
+     * Método para registrar en el Log de Usuarios la acción de actualizar algún dao en la base de datos
+     * @author Ruben Charry 
+     */
+    public function actualizarLogUsuarios($tabla, $informacionOriginal, $informacionActualizada, Request $request)
     {
+        $informacionActualizada = $request->except(['_token']);
         LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
+
+    public function
 }

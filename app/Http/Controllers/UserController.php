@@ -481,8 +481,8 @@ class UserController extends Controller
             'nombreRol' => $nombre,
         ]);
 
-        $informacionAcualizada= $request->except(['_token']);
-        LogUsuariosController::registrarLog(Constantes::CREAR, 'Roles', NULL, json_encode($informacionAcualizada));
+        $informacionActualizada= $request->except(['_token']);
+        LogUsuariosController::registrarLog(Constantes::CREAR, 'Roles', NULL, json_encode($informacionActualizada));
 
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

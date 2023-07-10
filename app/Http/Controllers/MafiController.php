@@ -179,6 +179,9 @@ class MafiController extends Controller
     {
 
         $estudiantesPC = $this->programarPrimerCiclo();
+        foreach($estudiantesPC as $estudiante):
+            dd($estudiante);
+        endforeach;
         dd($estudiantesPC[400]);
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */

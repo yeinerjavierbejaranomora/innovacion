@@ -107,77 +107,88 @@
                 </li>
             </ul>
         </nav>
+        <!-- End of Topbar -->
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">{{auth()->user()->nombre}}</h5>
-                        <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
-                        @if($datos['facultad'] != NULL)
-                        <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <form action="{{ route('cambio.cambiosave') }}" method="post" id="miForm">
-                        @csrf
-                        <div class="card-body">
-                            <div>
-                                <h3 class="text-center">
-                                    Cambio de contraseña
-                                </h3>
-                            </div>
-                            <hr>
-                            @if(count($errors)>0)
-                            <h4>{{$errors}}</h4>
-                            @endif
-                            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Contraseña actual</p>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <section style="background-color: #eee;">
+                <div class="container py-5">
+
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <div class="card-body text-center">
+                                    <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <h5 class="my-3">{{auth()->user()->nombre}}</h5>
+                                    <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
+                                    @if($datos['facultad'] != NULL)
+                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                                    @endif
                                 </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Contraseña nueva</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><input class="form-control" type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Confirmar contraseña</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p> <input class="form-control" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
-                                </div>
-                            </div>
-                            <br>
-                            {{-- <button type="submit" class="form-btn" onclick="return validacion()">
-                            Cambiar contraseña
-                        </button> --}}
-                            <div class="d-flex justify-content-center mb-2">
-                                <button type="submit" class="btn btn-secondary">
-                                    Cambiar contraseña
-                                </button>
                             </div>
                         </div>
-                    </form>
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <form action="{{ route('cambio.cambiosave') }}" method="post" id="miForm">
+                                    @csrf
+                                    <div class="card-body">
+                                        <div>
+                                            <h3 class="text-center">
+                                                Cambio de contraseña
+                                            </h3>
+                                        </div>
+                                        <hr>
+                                        @if(count($errors)>0)
+                                        <h4>{{$errors}}</h4>
+                                        @endif
+                                        <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Contraseña actual</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Contraseña nueva</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input class="form-control" type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3 text-dark">
+                                                <p class="mb-0">Confirmar contraseña</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p> <input class="form-control" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{-- <button type="submit" class="form-btn" onclick="return validacion()">
+                            Cambiar contraseña
+                        </button> --}}
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="submit" class="btn btn-secondary">
+                                                Cambiar contraseña
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-</div>
 </div>
 @include('layout.footer')
 </div>

@@ -213,7 +213,6 @@ class MafiController extends Controller
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->where([['programa','=',$programa],['tipoEstudiante','LIKE','%'.$tipoEstudiante.'%'],['ciclo','=',1]])
                                 ->first();
-
             dd($reglaNegocio);
 
         endforeach;

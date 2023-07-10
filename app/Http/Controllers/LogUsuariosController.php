@@ -35,8 +35,6 @@ class LogUsuariosController extends Controller
             'informacion_actualizada' => $actualizada,
         ]);
 
-        var_dump($insert);
-        die();
     }
 
 }

@@ -435,7 +435,9 @@ class UserController extends Controller
         endif;
     }
 
-
+    /** @author Ruben Charry
+     * Método para obtener los datos de la tabla roles del usuario según su id
+     */
     public function obtenerRol($id)
     {
         $rolActualizar = DB::table('roles')->where('id', '=', $id)->select('*')->get();
@@ -491,8 +493,4 @@ class UserController extends Controller
         endif;
     }
 
-    /** fucion para generar  materias faltantes
-     * lo primero es verificar si no se han programado para ninguno de los ciclos  donde tenga materias faltantes y se verifica por el nombre del programa y el periodo activo
-
-     */
 }

@@ -118,30 +118,30 @@
             @endif
             <input type="hidden" name="id" value="{{ auth()->user()->id }}">
             <div class="validate-input m-b-23" data-validate="Contraseña actual es requerida">
-                <span for="password_actual">Contraseña actual</span>
+                <span>Contraseña actual</span>
                 <p><input type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
                 <span class="focus" data-symbol="&#xf183;"></span>
             </div>
 
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">
-                <span class="label-input100">Contraseña nueva</span>
-                <input class="input100" type="password" name="password" placeholder="Contraseña nueva" id="nueva">
+            <div class="validate-input m-b-23" data-validate="Contraseña nueva es requerida">
+                <span>Contraseña nueva</span>
+                <input type="password" name="password" placeholder="Contraseña nueva" id="nueva">
                 <span class="focus-input100" data-symbol="&#xf183;"></span>
             </div>
 
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Confirmar es requerido">
-                <span class="label-input100">Confirmar contraseña</span>
+            <div class="validate-input m-b-23" data-validate="Confirmar es requerido">
+                <span >Confirmar contraseña</span>
                 <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
-                <span class="focus-input100" data-symbol="&#xf183;"></span>
+                <span data-symbol="&#xf183;"></span>
             </div>
 
-            <div class="container-login100-form-btn">
-                <div class="wrap-login100-form-btn">
-                    <div class="login100-form-bgbtn"></div>
-                    {{-- <button type="submit" class="login100-form-btn" onclick="return validacion()">
+            <div class="container-form-btn">
+                <div class="wrap-form-btn">
+                    <div class="form-bgbtn"></div>
+                    {{-- <button type="submit" class="form-btn" onclick="return validacion()">
                             Cambiar contraseña
                         </button> --}}
-                    <button type="submit" class="login100-form-btn">
+                    <button type="submit" class="form-btn">
                         Cambiar contraseña
                     </button>
                 </div>

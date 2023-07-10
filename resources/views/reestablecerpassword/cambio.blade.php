@@ -114,7 +114,9 @@
                     <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     <h5 class="my-3">{{auth()->user()->nombre}}</h5>
                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
+                    @if($datos['facultad'] != [])
                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -178,7 +180,7 @@
 @include('layout.footer')
 </div>
 <script>
-    
+
     // * Función para enviar alerta al usuario *
     function validacion() {
 

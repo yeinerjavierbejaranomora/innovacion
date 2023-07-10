@@ -650,5 +650,8 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
 
-    public function
+    public function crearLogUsuario($tabla, $informacionActualizada, Request $request)
+    {
+
+    }
 }

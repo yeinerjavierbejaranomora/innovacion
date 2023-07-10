@@ -177,6 +177,12 @@ class facultadController extends Controller
         echo json_encode(array('data' => $malla));
     }
 
+    public function getDatosPrograma($codigo)
+    {
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('*')->get();
+        return $datos;
+    }
+
 
     /* Método para inactivar programa */
 
@@ -184,7 +190,7 @@ class facultadController extends Controller
     {
         $cod_llegada = $_POST['codigo'];
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 0]);
-        $datos = DB::table('programas')->where('codprograma', '=', $cod_llegada)->select('programas.tabla','id')->get();
+        $datos = $this->getDatosPrograma($cod_llegada);
         if ($inactivarPrograma) :
             $this->inactivarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "deshabilitado";
@@ -197,7 +203,7 @@ class facultadController extends Controller
     {
         $cod_llegada = $_POST['codigo'];
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
-        $datos = DB::table('programas')->where('codprograma', '=', $cod_llegada)->select('programas.tabla','id')->get();
+        $datos = $this->getDatosPrograma($cod_llegada);
         if ($inactivarPrograma) :
             $this->activarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "habilitado";
@@ -294,7 +300,7 @@ class facultadController extends Controller
     }
 
     /** Función que actualiza los datos de programa */
-    public function update_programa()
+    public function update_programa(Request $request)
     {
         $id_llegada = $_POST['id'];
         $codigo = $_POST['codigo'];
@@ -306,9 +312,15 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
+        $informacionOriginal = $this->getDatosPrograma($codigo);
+
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 
+        $request->merge(['id' => $id]);
+        $informacionActualizada = $request->except(['_token']);
+
         if ($update) :
+            $this->actualizarLogUsuarios($informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

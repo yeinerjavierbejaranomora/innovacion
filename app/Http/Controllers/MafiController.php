@@ -185,6 +185,7 @@ class MafiController extends Controller
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
             $ruta = $estudiante->bolsa;
+            $tipoEstudiante = $estudiante->tipo_estudiante;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -208,7 +209,12 @@ class MafiController extends Controller
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
             $cuentaCreditosCiclo1 = $numeroCreditosC1->screditos;
             $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
-            dd($cuentaCreditosCiclo1);
+
+            $reglaNegocio =DB::table('reglasNegocio')
+                                ->where([['programa','=',$programa],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',1]])
+                                ->first();
+
+            dd($reglaNegocio);
 
         endforeach;
         die();
@@ -1218,7 +1224,7 @@ class MafiController extends Controller
         /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
         $marcaIngreso = [202313,202333];
         $estudiante = DB::table('estudiantes')
-                ->select('id','homologante','programa','bolsa')
+                ->select('id','homologante','programa','bolsa','tipo_estudiante')
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')

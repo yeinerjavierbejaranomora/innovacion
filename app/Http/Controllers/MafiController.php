@@ -211,9 +211,13 @@ class MafiController extends Controller
             $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
 
             $reglaNegocio =DB::table('reglasNegocio')
-                                ->where([['programa','=',$programa],['tipoEstudiante','LIKE',$tipoEstudiante],['ciclo','=',1]])
+                                ->select('creditos','materiasPermitidas')
+                                ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
                                 ->first();
-            dd($reglaNegocio);
+
+            $numeroCreditosPermitidos = $reglaNegocio->creditos;
+            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+            dd($numeroMateriasPermitidos);
 
         endforeach;
         die();
@@ -1021,9 +1025,9 @@ class MafiController extends Controller
 
     foreach ($programas as $key => $value) {
         # code...
-        
-        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
-        
+
+        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //
+
         $consulta_homologante= DB::table('estudiantes')
         ->select('id', 'homologante', 'programa')
         ->where('materias_faltantes','OK')
@@ -1046,7 +1050,7 @@ class MafiController extends Controller
                 //exit();
 
                 $resultado_visitas = DB::select($consulta_vistas);
-            
+
             endforeach;
         });
     }

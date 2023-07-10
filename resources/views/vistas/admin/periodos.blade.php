@@ -28,9 +28,6 @@
                 </div>
             </div>
 
-
-
-
         </nav>
         <!-- End of Topbar -->
 
@@ -137,6 +134,18 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
 
 <script>
     // * Datatable para mostrar todas las Facultades *
@@ -294,10 +303,8 @@
                     var data = table.row($(this).parents("tr")).data();
                     /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
                     var fechaActual = new Date();
-                    var añoActual = fechaActual.getFullYear();
-                    fechaActual.setFullYear(fechaActual.getFullYear() + 1);
-                    var fechaLimite = fechaActual.toISOString().split('T')[0];
-                    var añoSiguiente = añoActual + 1;
+                    var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
+                    var fechaLimiteISO = fechaLimite.toISOString().split('T')[0];
 
                     Swal.fire({
                         title: 'Actualizar información',
@@ -305,13 +312,13 @@
                             '<label for="nombre"> Periodo </label>' +
                             '<input type="text" id="nombre" name="nombre" value="' + data.periodos + '" class="form-control" placeholder="periodo"> <br>' +
                             '<label for="fecha1"> Fecha de inicio ciclo 1 </label>' +
-                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="fecha1" name="fecha1" value="' + data.fechaInicioCiclo1 + '" class="form-control"> <br>' +
                             '<label for="fecha2"> Fecha de inicio ciclo 2 </label>' +
-                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="fecha2" name="fecha2" value="' + data.fechaInicioCiclo2 + '" class="form-control"> <br>' +
                             '<label for="edtemprano"> Fecha de inicio temprano </label>' +
-                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="edtemprano" name="edtemprano" value="' + data.fechaInicioTemprano + '" class="form-control"> <br>' +
                             '<label for="edperiodo"> Fecha de inicio periodo </label>' +
-                            '<input type="date" min="' + fechaActual + '" max="' + fechaLimite + '" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
+                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="edperiodo" name="edperiodo" value="' + data.fechaInicioPeriodo + '" class="form-control"> <br>' +
                             '<div>' +
                             '<label for="year" class="col-form-label">Año</label>' +
                             '<select id="year" class="form-control">' +

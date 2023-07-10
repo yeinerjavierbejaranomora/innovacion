@@ -464,7 +464,7 @@ class facultadController extends Controller
         if ($crear) :
             $this->crearLogUsuarios('periodo',$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.periodos')->with('message', 'Periodo creado correctamente');
+            return redirect()->route('facultad.periodos')->with('success', 'Periodo creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.periodos')->with(['errors' => 'El periodo no ha podido ser creado']);

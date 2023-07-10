@@ -1067,28 +1067,12 @@ class MafiController extends Controller
                     $codbanner='';
                     $materias_vistas = array();
 
-<<<<<<< HEAD
                
               
 
 
                 endforeach;
         
-=======
-                    while($fila =  $resultado_visitas) {
-                        dd($fila);
-                        $codbanner= $fila['codBanner'];
-                        $codprograma= $programa_homologante;
-                        $codmateria= $fila['codMateria'];
-                        $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
-                    $contacor_vistas++;
-                    }
-
-
-
-            endforeach;
-
->>>>>>> 8434f3d6b23668312b446fd4bcc80b6315a7c218
         });
     }
     }

@@ -1030,11 +1030,12 @@ class MafiController extends Controller
 
         // Estudiantes para generar faltantes
 
+        
         foreach ($programas as $key => $value) {
             # code...
-
-            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //
-
+            dd($value);
+            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
+            
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -1067,19 +1068,12 @@ class MafiController extends Controller
                     $codbanner='';
                     $materias_vistas = array();
 
-                    while($fila =  $resultado_visitas) {
-                        dd($fila);
-                        $codbanner= $fila['codBanner'];
-                        $codprograma= $programa_homologante;
-                        $codmateria= $fila['codMateria'];
-                        $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
-                    $contacor_vistas++;
-                    }
+               
+              
 
 
-
-            endforeach;
-
+                endforeach;
+        
         });
     }
     }

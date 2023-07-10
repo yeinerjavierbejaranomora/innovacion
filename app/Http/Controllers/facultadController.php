@@ -179,7 +179,7 @@ class facultadController extends Controller
 
     public function getDatosPrograma($codigo)
     {
-        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('*')->get();
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla, id')->get();
         return $datos;
     }
 
@@ -312,10 +312,12 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
-        $informacionOriginal = $this->getDatosPrograma($codigo);
+        $informacionOriginal = DB::table('programas')->where('id', '=', $id)->get();
 
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 
+        var_dump($update);
+        die();
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
 

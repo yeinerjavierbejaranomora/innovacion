@@ -184,7 +184,7 @@ class MafiController extends Controller
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
-            $ateriasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
             dd($materiasPorVer);
 
         endforeach;

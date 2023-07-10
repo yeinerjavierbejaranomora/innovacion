@@ -71,14 +71,30 @@ class cambioController extends Controller
 
         /** Se decifra el idBanner */
         $idBanner = decrypt($idBanner);
-        /**Se realiaza la consulta para combrar que exita el usuario */
+
+        $user = auth()->user();
+
+        /// traemos los roles de la base de datos para poder cargar la vista
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+
+        /*traempos el nombre del rol para cargar la vista*/
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol = $nombre_rol;
+        $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
+
+        $datos = array(
+            'rol' => $nombre_rol,
+            'facultad' => $facultad
+        );
+
+        /**Se realiza la consulta para comprobrar que exista el usuario */
         $user = User::where('id_banner',$idBanner)->first();
         /** Si es diferente al vacio lleva a la vista  */
         if($user != []):
             return view('reestablecerpassword.cambio');
         /** En caso contrario redirige al inicio */
         else:
-            return redirect()->route('home.index');
+            return redirect()->route('home.index')->with('datos', $datos);
         endif;
     }
 

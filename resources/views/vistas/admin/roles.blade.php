@@ -81,7 +81,7 @@
                                 @csrf
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre del rol</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -125,7 +125,7 @@
                         title: 'Rol'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },

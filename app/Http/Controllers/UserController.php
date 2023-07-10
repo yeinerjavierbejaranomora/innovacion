@@ -448,17 +448,17 @@ class UserController extends Controller
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
 
-        $informacionOriginal = $this->obtenerRol($id);
-
+        
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $informacionOriginal = $this->obtenerRol($id);
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
         LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($_POST[]));
-
+        
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

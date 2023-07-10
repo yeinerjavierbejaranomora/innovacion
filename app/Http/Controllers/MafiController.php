@@ -185,6 +185,7 @@ class MafiController extends Controller
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
@@ -194,14 +195,19 @@ class MafiController extends Controller
 
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
+            /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
             $numeroCreditosC1 = DB::table('mallaCurricular')
-                                    ->select(DB::raw('COUNT(mallaCurricular.creditos) AS CreditosPlaneados'),DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->whereIn('mallaCurricular.ciclo',[1,12])
-                                    ->groupBy('planeacion.codBanner')
-                                    ->dd();
-            dd($numeroCreditosC1);
+                                    ->first();
+
+            $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
+            $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
+            $cuentaCreditosCiclo1 = $numeroCreditosC1->screditos;
+            $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
+            dd($cuentaCreditosCiclo1);
 
         endforeach;
         die();

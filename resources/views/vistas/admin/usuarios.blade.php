@@ -145,18 +145,17 @@
 <!-- Alertas al crear usuario -->
 @if(session('success'))
     <script>
-        swal.fire("Éxito", "{{ session('success') }}", "success");
+        Swal.fire("Éxito", "{{ session('success') }}", "success");
     </script>
 @endif
 
 @if($errors->any())
     <script>
-        swal.fire("Error", "{{ $errors->first() }}", "error");
+        Swal.fire("Error", "{{ $errors->first() }}", "error");
     </script>
 @endif
 
 <script>
-
     facultades();
     /** Función que trae todas las faculades */
     function facultades() {

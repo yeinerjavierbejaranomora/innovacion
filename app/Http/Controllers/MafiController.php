@@ -954,7 +954,7 @@ class MafiController extends Controller
 
         $marcaIngreso = "202313,202333";
         DB::table('estudiantes')
-                ->select('id','hoomologante','programa')
+                ->select('id','homologante','programa')
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')

@@ -190,7 +190,7 @@
         </section>
     </div>
 </div>
-</div>
+
 
 @include('layout.footer')
 </div>

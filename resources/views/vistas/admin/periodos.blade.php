@@ -303,8 +303,10 @@
                     var data = table.row($(this).parents("tr")).data();
                     /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
                     var fechaActual = new Date();
+                    var añoActual = fechaActual.getFullYear();
                     var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
                     var fechaLimiteISO = fechaLimite.toISOString().split('T')[0];
+                    var añoSiguiente = añoActual + 1;
 
                     Swal.fire({
                         title: 'Actualizar información',

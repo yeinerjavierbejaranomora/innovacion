@@ -192,7 +192,7 @@ class MafiController extends Controller
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            var_dump($numeroCreditos);
+            echo $numeroCreditos;
 
         endforeach;
         die();

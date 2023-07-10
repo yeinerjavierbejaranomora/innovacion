@@ -1046,10 +1046,6 @@ class MafiController extends Controller
                 //exit();
 
                 $resultado_visitas = DB::select($consulta_vistas);
-
-
-           
-
             
             endforeach;
         });

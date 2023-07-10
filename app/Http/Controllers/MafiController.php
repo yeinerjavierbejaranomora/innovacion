@@ -202,7 +202,7 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->whereIn('mallaCurricular.ciclo',[1,12])
                                     ->first();
-            dd($numeroCreditosC1);
+            dd($numeroCreditosC1->screditos);
 
         endforeach;
         die();

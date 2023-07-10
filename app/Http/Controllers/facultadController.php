@@ -397,7 +397,7 @@ class facultadController extends Controller
         $id = $_POST['id'];
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
         if ($inactivarFacultad) :
-            $inactivar = $this->inactivarLogUsuarios('facultad',$id);
+            $this->inactivarLogUsuarios('facultad',$id);
             return  "deshabilitado";
         else :
             return "false";
@@ -412,8 +412,7 @@ class facultadController extends Controller
 
         if ($activarPrograma) :
             $this->activarLogUsuarios('facultad',$id);
-            return  "habilitado";
-            
+            return  "habilitado";  
         else :
             return "false";
         endif;

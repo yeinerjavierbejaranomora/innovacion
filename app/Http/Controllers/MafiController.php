@@ -1219,7 +1219,7 @@ class MafiController extends Controller
         /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
         $marcaIngreso = [202313,202333];
         $estudiante = DB::table('estudiantes')
-                ->select('id','homologante','programa','ruta')
+                ->select('id','homologante','programa','bolsa')
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')

@@ -177,6 +177,12 @@ class facultadController extends Controller
         echo json_encode(array('data' => $malla));
     }
 
+    public function getDatosPrograma($codigo)
+    {
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('programas.tabla','id')->get();
+        return $datos;
+    }
+
 
     /* Método para inactivar programa */
 
@@ -184,7 +190,7 @@ class facultadController extends Controller
     {
         $cod_llegada = $_POST['codigo'];
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 0]);
-        $datos = DB::table('programas')->where('codprograma', '=', $cod_llegada)->select('programas.tabla','id')->get();
+        $datos = $this->getDatosPrograma($cod_llegada);
         if ($inactivarPrograma) :
             $this->inactivarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "deshabilitado";
@@ -197,7 +203,7 @@ class facultadController extends Controller
     {
         $cod_llegada = $_POST['codigo'];
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
-        $datos = DB::table('programas')->where('codprograma', '=', $cod_llegada)->select('programas.tabla','id')->get();
+        $datos = $this->getDatosPrograma($cod_llegada);
         if ($inactivarPrograma) :
             $this->activarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "habilitado";
@@ -305,6 +311,8 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+
+
 
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 

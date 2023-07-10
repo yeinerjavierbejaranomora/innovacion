@@ -188,7 +188,7 @@ class facultadController extends Controller
         var_dump($datos[0]->tabla);
         die();
         if ($inactivarPrograma) :
-            $this->inactivarLogUsuarios('facultad', $id);
+            $this->inactivarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "deshabilitado";
         else :
             return "false";

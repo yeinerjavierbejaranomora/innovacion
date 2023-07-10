@@ -221,6 +221,7 @@ class MafiController extends Controller
 
             foreach($materiasPorVer as $materia):
                 $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
+                dd($prerequisitos);
             endforeach;
 
         endforeach;
@@ -1119,6 +1120,7 @@ class MafiController extends Controller
         $prerequisitos = DB::table('mallaCurricular')
                             ->select('prerequisito')
                             ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                            ->dd();
+                            ->get();
+        return $prerequisitos;
     }
 }

@@ -5,7 +5,17 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
+@if(session('success'))
+    <script>
+        swal("Éxito", "{{ session('success') }}", "success");
+    </script>
+@endif
 
+@if($errors->any())
+    <script>
+        swal("Error", "{{ $errors->first() }}", "error");
+    </script>
+@endif
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 

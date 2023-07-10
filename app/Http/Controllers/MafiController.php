@@ -976,7 +976,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->orderBy('id','asc')
-                ->get();
+                ->dd();
 
         return $estudiante;
     }
@@ -994,7 +994,7 @@ class MafiController extends Controller
             ->orderBy('materiasPorVer.orden','ASC')
             ->limit(200)
             ->get();
-            
+
 
         return $materiasPorVer;
 

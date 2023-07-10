@@ -178,11 +178,16 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo();
         foreach($estudiantesPC as $estudiante):
             dd($estudiante);
+            $idEstudiante = $estudiante->id;
+            $codigoBanner = $estudiante->homologante;
+            $programa = $estudiante->programa;
+            $this->materiasPorVer($codigoBanner,$programa);
+
         endforeach;
-        dd($estudiantesPC[400]);
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
@@ -967,5 +972,17 @@ class MafiController extends Controller
                 ->get();
 
         return $estudiante;
+    }
+
+    public function materiasPorVer($codBanner,$programa){
+
+        DB::table("materiasPorVer")
+            ->join('mallaCurricular','mallaCurricular.codMateria','=','materiasPorVer.codigoCurso')
+            ->where('mallaCurricular.codBanner','=',$codBanner)
+            ->whereIn('mallaCurricular.ciclo',[1,12])
+            ->where('materiasPorVer.codprograma ','=',$programa)
+            ->where('mallaCurricular.codprograma ','=',$programa)
+            ->oederBy('materiasPorVer.orden','ASC')
+            ->dd();
     }
 }

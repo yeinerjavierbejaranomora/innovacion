@@ -189,11 +189,10 @@
         </div>
         </section>
     </div>
+    @include('layout.footer')
 </div>
 
 
-@include('layout.footer')
-</div>
 <script>
     // * Función para enviar alerta al usuario *
     function validacion() {

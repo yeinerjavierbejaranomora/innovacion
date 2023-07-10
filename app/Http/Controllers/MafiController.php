@@ -954,13 +954,15 @@ class MafiController extends Controller
     public function programarPrimerCiclo(){
 
         $marcaIngreso = "202313,202333";
-        DB::table('estudiantes')
+        $estudiante = DB::table('estudiantes')
                 ->select('id','homologante','programa')
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')
-                ->whereIn('marca_ingreso',[202313,202333])
+                ->whereIn('marca_ingreso',[$marcaIngreso])
                 ->orderBy('id','asc')
                 ->get();
+
+        return $estudiante;
     }
 }

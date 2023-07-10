@@ -47,7 +47,7 @@ Route::controller(UserController::class)->group(function(){
     
     /** cargamos la vista de administracion de usuarios */
     Route::get('/home/usuarios','userView')->middleware('auth','admin')->name('admin.users');
-    /** cargamos ña vista para mostarar todos los usuarios */
+    /** cargamos la vista para mostarar todos los usuarios */
     Route::get('/home/users','get_users')->middleware('auth','admin')->name('admin.getusers');
     /** cargamos la vista de administracion de facultades */
     Route::get('/home/amdministracionfacultades','facultad_view')->middleware('auth','admin')->name('admin.facultades');

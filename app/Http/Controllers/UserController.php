@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\LogUsuariosController;
+
 // use Yajra\DataTables\DataTables;
 
 
@@ -299,9 +299,8 @@ class UserController extends Controller
     }
 
     /**
-     * Metodo para obtener todos los datos de un usuario
+     * Metodo que actualiza la tabla Log de Usuarios
      * @param id Id del usuario a actualizar 
-     * @return usuarioActualizar Objeto con los datos del usuario
      */
     public function registrarLog($id,$accion, $informacionOriginal, $request)
     {

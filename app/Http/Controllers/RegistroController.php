@@ -6,6 +6,7 @@ use App\Http\Requests\UsuarioRegistroRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\LogUsuariosController;
 
 class RegistroController extends Controller
 {
@@ -58,6 +59,9 @@ class RegistroController extends Controller
     public function crearUsuario(UsuarioRegistroRequest $request){
         /** Inserta los datos validades en la tabla users usando el model Userphp */
         $usuario = User::create($request->validated());
+
+        LogUsuariosController::registrarLog(Constantes::CREAR, 'Users', NULL, json_encode($request->all()));
+
         /** si la insercion es correcta */
         if($usuario):
             /** Redirecciona a la vista de administración de usuarios con un mensaje de exito */

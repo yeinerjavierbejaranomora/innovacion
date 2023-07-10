@@ -5,17 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-@if(session('success'))
-    <script>
-        swal("Éxito", "{{ session('success') }}", "success");
-    </script>
-@endif
-
-@if($errors->any())
-    <script>
-        swal("Error", "{{ $errors->first() }}", "error");
-    </script>
-@endif
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -152,6 +141,19 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+<!-- Alertas al crear usuario -->
+@if(session('success'))
+    <script>
+        swal.fire("Éxito", "{{ session('success') }}", "success");
+    </script>
+@endif
+
+@if($errors->any())
+    <script>
+        swal.fire("Error", "{{ $errors->first() }}", "error");
+    </script>
+@endif
 
 <script>
 

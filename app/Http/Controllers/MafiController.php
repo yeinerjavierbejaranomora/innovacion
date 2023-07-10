@@ -195,7 +195,7 @@ class MafiController extends Controller
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
             $numeroCreditosC1 = DB::table('mallaCurricular')
-                                    ->select(DB::raw('COUNT(mallaCurricular.creditos) AS CreditosPlaneados'),DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->whereIn('mallaCurricular.ciclo',[1,12])

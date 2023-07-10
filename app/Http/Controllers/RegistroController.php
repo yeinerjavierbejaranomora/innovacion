@@ -6,6 +6,7 @@ use App\Http\Requests\UsuarioRegistroRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Util\Constantes;
 use App\Http\Controllers\LogUsuariosController;
 
 class RegistroController extends Controller

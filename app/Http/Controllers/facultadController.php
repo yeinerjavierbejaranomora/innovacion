@@ -366,6 +366,7 @@ class facultadController extends Controller
             'codFacultad' => $_POST['codFacultad'],
             'nombre' => $_POST['nombre'],
         ]);
+        
         $informacionActualizada= $request->except(['_token']);
         if ($facultad) :
             $this->crearLogUsuarios('facultad',$informacionActualizada);
@@ -389,11 +390,12 @@ class facultadController extends Controller
         $informacionOriginal = $this->obtenerFacultad($id);
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')
-            ->where('id', $id)
-            ->update([
-                'codFacultad' => $codFacultad,
-                'nombre' => $nombre
-            ]);
+        ->where('id', $id)
+        ->update([
+            'codFacultad' => $codFacultad,
+            'nombre' => $nombre
+        ]);
+        $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
             $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
@@ -484,19 +486,19 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-
         $informacionOriginal = $this->obtenerPeriodo($id);
         /** Consulta para actualizar facultad */
         $periodo = DB::table('periodo')
-            ->where('id', $id)
-            ->update([
-                'periodos' => $nombre,
-                'fechaInicioCiclo1' => $fecha1,
-                'fechaInicioCiclo2' => $fecha2,
-                'fechaInicioTemprano' => $temprano,
-                'fechaInicioPeriodo' => $periodo,
-                'year' => $año,
-            ]);
+        ->where('id', $id)
+        ->update([
+            'periodos' => $nombre,
+            'fechaInicioCiclo1' => $fecha1,
+            'fechaInicioCiclo2' => $fecha2,
+            'fechaInicioTemprano' => $temprano,
+            'fechaInicioPeriodo' => $periodo,
+            'year' => $año,
+        ]);
+        $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($periodo) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

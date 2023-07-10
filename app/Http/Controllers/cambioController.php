@@ -80,8 +80,15 @@ class cambioController extends Controller
         /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
-        $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
 
+        if($user->id_facultad)
+        {
+            $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
+        }
+        else
+        {
+            $facultad = NULL;
+        }
         $datos = array(
             'rol' => $nombre_rol,
             'facultad' => $facultad

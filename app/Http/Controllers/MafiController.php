@@ -985,5 +985,6 @@ class MafiController extends Controller
             ->orderBy('materiasPorVer.orden','ASC')
             ->dd();
 
+            
     }
 }

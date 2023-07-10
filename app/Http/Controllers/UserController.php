@@ -128,7 +128,7 @@ class UserController extends Controller
 
     // funcion para traer todos los usuarios a la vista de administracion
 
-    public function userView(Request $request)
+    public function userView()
     {
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.usuarios');
@@ -457,7 +457,10 @@ class UserController extends Controller
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
-        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($_POST));
+        Request::merge(['id' => $id]);
+        $informacionAcualizada= Request::except(['_token']);
+
+        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

@@ -958,7 +958,7 @@ class MafiController extends Controller
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')
-                ->where($marcaIngreso)
+                ->whereIn('marca_ingreso',[$marcaIngreso])
                 ->orderBy('id')
                 ->dd();
     }

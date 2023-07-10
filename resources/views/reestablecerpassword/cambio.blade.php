@@ -1,3 +1,11 @@
+
+<!-- incluimos el header para el html -->
+@include('layout.header')
+
+<!-- incluimos el menu -->
+@include('menus.menu_admin')
+<!--  creamos el contenido principal body -->
+
 @extends('layout.plantillaFormularios')
 @section('title', 'Cambio Contraseña')
 @section('content')

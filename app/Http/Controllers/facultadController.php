@@ -179,7 +179,7 @@ class facultadController extends Controller
 
     public function getDatosPrograma($codigo)
     {
-        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('programas.tabla','id')->get();
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla, id')->get();
         return $datos;
     }
 
@@ -300,7 +300,7 @@ class facultadController extends Controller
     }
 
     /** Función que actualiza los datos de programa */
-    public function update_programa()
+    public function update_programa(Request $request)
     {
         $id_llegada = $_POST['id'];
         $codigo = $_POST['codigo'];
@@ -312,11 +312,15 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
-
+        $informacionOriginal = DB::table('programas')->where('id', '=', $id)->get();
 
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 
+        $request->merge(['id' => $id]);
+        $informacionActualizada = $request->except(['_token']);
+
         if ($update) :
+            $this->actualizarLogUsuarios($informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

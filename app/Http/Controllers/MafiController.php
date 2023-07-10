@@ -994,6 +994,7 @@ class MafiController extends Controller
             ->orderBy('materiasPorVer.orden','ASC')
             ->limit(200)
             ->get();
+            
 
         return $materiasPorVer;
 

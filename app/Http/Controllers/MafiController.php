@@ -191,8 +191,8 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
-            $numeroCreditos = $numeroCreditos[0]== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos[0]);
+            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
+            dd($numeroCreditos);
 
         endforeach;
         die();

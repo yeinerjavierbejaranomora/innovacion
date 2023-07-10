@@ -129,10 +129,10 @@
                                 Cambio de contraseña
                             </h3>
                         </div>
+                        <hr>
                         @if(count($errors)>0)
                         <h4>{{$errors}}</h4>
                         @endif
-
                         <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                         <div class="row">
                             <div class="col-sm-3 text-dark">
@@ -148,7 +148,7 @@
                                 <p class="mb-0">Contraseña nueva</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><input type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
+                                <p class="text-muted mb-0"><input class="form-control" type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
                             </div>
                         </div>
                         <hr>
@@ -157,27 +157,26 @@
                                 <p class="mb-0">Confirmar contraseña</p>
                             </div>
                             <div class="col-sm-9">
-                                <p> <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
+                                <p> <input class="form-control" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
                             </div>
                         </div>
-                        <hr>
-                        <div class="container-form-btn">
-                            <div class="wrap-form-btn">
-                                <div class="form-bgbtn"></div>
-                                {{-- <button type="submit" class="form-btn" onclick="return validacion()">
+                        <br>
+                        {{-- <button type="submit" class="form-btn" onclick="return validacion()">
                             Cambiar contraseña
                         </button> --}}
-                                <button type="submit" class="form-btn">
-                                    Cambiar contraseña
-                                </button>
-                            </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="submit" class="form-btn">
+                                Cambiar contraseña
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    @include('layout.footer')
+</div>
+</div>
+@include('layout.footer')
 </div>
 <script>
     // * Función para enviar alerta al usuario *

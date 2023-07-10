@@ -979,8 +979,8 @@ class MafiController extends Controller
             ->join('mallaCurricular','mallaCurricular.codMateria','=','materiasPorVer.codigoCurso')
             ->where('mallaCurricular.codBanner','=',$codBanner)
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma ','=',$programa)
-            ->where('mallaCurricular.codprograma ','=',$programa)
+            ->where('materiasPorVer.codprograma','=',$programa)
+            ->where('mallaCurricular.codprograma','=',$programa)
             ->orderBy('materiasPorVer.orden','ASC')
             ->dd();
 

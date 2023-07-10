@@ -443,7 +443,7 @@ class UserController extends Controller
     }
 
 
-    public function update_rol()
+    public function update_rol(Request $request)
     {
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
@@ -457,8 +457,8 @@ class UserController extends Controller
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
-        Request::merge(['id' => $id]);
-        $informacionAcualizada= Request::except(['_token']);
+        $request->merge(['id' => $id]);
+        $informacionAcualizada= $request->except(['_token']);
 
         LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
 

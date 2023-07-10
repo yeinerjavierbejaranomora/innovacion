@@ -86,7 +86,7 @@ class cambioController extends Controller
             'rol' => $nombre_rol,
             'facultad' => $facultad
         );
-
+        dd($datos);
         /**Se realiza la consulta para comprobrar que exista el usuario */
         $user = User::where('id_banner',$idBanner)->first();
         /** Si es diferente al vacio lleva a la vista  */

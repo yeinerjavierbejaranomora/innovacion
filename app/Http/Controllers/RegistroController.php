@@ -60,7 +60,7 @@ class RegistroController extends Controller
     public function crearUsuario(UsuarioRegistroRequest $request){
         /** Inserta los datos validades en la tabla users usando el model Userphp */
         $usuario = User::create($request->validated());
-
+        dd($request);
         LogUsuariosController::registrarLog(Constantes::CREAR, 'Users', NULL, json_encode($request->all()));
 
         /** si la insercion es correcta */

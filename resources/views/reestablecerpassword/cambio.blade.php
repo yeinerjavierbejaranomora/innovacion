@@ -106,11 +106,12 @@
                     </div>
                 </li>
             </ul>
-
         </nav>
+
+
         <form action="{{ route('cambio.cambiosave') }}" method="post" class="validate-form" id="miForm">
             @csrf
-            <span class="login100-form-title p-b-49">
+            <span class="form-title p-b-49">
                 Cambio de contraseña
             </span>
             @if(count($errors)>0)
@@ -130,7 +131,7 @@
             </div>
 
             <div class="validate-input m-b-23" data-validate="Confirmar es requerido">
-                <span >Confirmar contraseña</span>
+                <span>Confirmar contraseña</span>
                 <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
                 <span data-symbol="&#xf183;"></span>
             </div>
@@ -146,7 +147,6 @@
                     </button>
                 </div>
             </div>
-
         </form>
     </div>
     @include('layout.footer')

@@ -130,22 +130,25 @@
                         <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
                     </div>
                 </div>
-
+                <hr>
                 <div class="row">
                     <div class="col-sm-3 text-dark">
                         <p class="mb-0">Contraseña nueva</p>
                     </div>
-                    <div>
-                       <p class="text-muted mb-0"><input type="password" name="password" placeholder="Contraseña nueva" id="nueva" required> </p>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0"><input type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
                     </div>
                 </div>
-
-                <div class="validate-input m-b-23" data-validate="Confirmar es requerido">
-                    <span>Confirmar contraseña</span>
-                    <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
-                    <span data-symbol="&#xf183;"></span>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3 text-dark">
+                        <p class="mb-0">Confirmar contraseña</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p> <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
+                    </div>
                 </div>
-
+                <hr>
                 <div class="container-form-btn">
                     <div class="wrap-form-btn">
                         <div class="form-bgbtn"></div>

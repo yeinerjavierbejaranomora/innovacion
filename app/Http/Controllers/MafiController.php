@@ -984,5 +984,6 @@ class MafiController extends Controller
             ->where('mallaCurricular.codprograma ','=',$programa)
             ->oederBy('materiasPorVer.orden','ASC')
             ->dd();
+            
     }
 }

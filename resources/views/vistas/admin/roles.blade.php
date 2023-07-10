@@ -81,7 +81,7 @@
                                 @csrf
                                 <div>
                                     <label for="message-text" class="col-form-label">Nombre del rol</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

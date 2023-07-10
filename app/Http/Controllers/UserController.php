@@ -457,7 +457,7 @@ class UserController extends Controller
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
-        dd($update);
+
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";

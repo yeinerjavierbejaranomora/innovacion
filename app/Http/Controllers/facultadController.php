@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 // use Yajra\DataTables\DataTables;
 use App\Http\Util\Constantes;
+use App\Http\Controllers\LogUsuariosController;
 
 class facultadController extends Controller
 {
@@ -349,6 +350,15 @@ class facultadController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
+    /** @author Ruben Charry
+     * Método para obtener los datos de la tabla facultad del usuario según su id
+     */
+    public function obtenerFacultad($id)
+    {
+        $facultadActualizar = DB::table('facultad')->where('id', '=', $id)->select('*')->get();
+        return $facultadActualizar;
+    }
+
     public function savefacultad(Request $request)
     {
         /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
@@ -356,7 +366,9 @@ class facultadController extends Controller
             'codFacultad' => $_POST['codFacultad'],
             'nombre' => $_POST['nombre'],
         ]);
+        $informacionActualizada= $request->except(['_token']);
         if ($facultad) :
+            $this->crearLogUsuarios('facultad',$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
@@ -365,7 +377,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function updatefacultad()
+    public function updatefacultad(Request $request)
     {
         $id_llegada = $_POST['id'];
         $codFacultad = $_POST['codFacultad'];
@@ -374,6 +386,7 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $informacionOriginal = $this->obtenerFacultad($id);
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')
             ->where('id', $id)
@@ -381,7 +394,9 @@ class facultadController extends Controller
                 'codFacultad' => $codFacultad,
                 'nombre' => $nombre
             ]);
+        $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
+            $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -396,9 +411,7 @@ class facultadController extends Controller
         $id = $_POST['id'];
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
         if ($inactivarFacultad) :
-            $inactivar = $this->inactivarLogUsuarios('facultad',$id);
-            dd($inactivar);
-            die();
+            $this->inactivarLogUsuarios('facultad', $id);
             return  "deshabilitado";
         else :
             return "false";
@@ -412,9 +425,8 @@ class facultadController extends Controller
         $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
 
         if ($activarPrograma) :
-            $this->activarLogUsuarios('facultad',$id);
+            $this->activarLogUsuarios('facultad', $id);
             return  "habilitado";
-            
         else :
             return "false";
         endif;
@@ -571,39 +583,41 @@ class facultadController extends Controller
                 'ciclo' => $ciclo,
             ]);
 
-            if ($regla) :
-                /** Redirecciona al formulario registro mostrando un mensaje de exito */
-                return "actualizado";
-            else :
-                /** Redirecciona al formulario registro mostrando un mensaje de error */
-                return "false";
-            endif;
+        if ($regla) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
     }
 
-    public function activarregla(){
+    public function activarregla()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
         $activarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 1]);
-        if ($activarPeriodo): 
+        if ($activarPeriodo) :
             return  "habilitado";
-        else: 
+        else :
             return "false";
         endif;
     }
 
-    public function inactivarregla(){
+    public function inactivarregla()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
         $inactivarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 0]);
-        if ($inactivarPeriodo): 
+        if ($inactivarPeriodo) :
             return  "deshabilitado";
-        else: 
+        else :
             return "false";
         endif;
     }
@@ -613,7 +627,7 @@ class facultadController extends Controller
      * @author Ruben Charry 
      */
 
-    public function activarLogUsuarios ($tabla,$id)
+    public function activarLogUsuarios($tabla, $id)
     {
         LogUsuariosController::registrarLog(Constantes::ACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
     }
@@ -623,8 +637,23 @@ class facultadController extends Controller
      * @author Ruben Charry 
      */
 
-     public function inactivarLogUsuarios ($tabla,$id)
-     {
-         LogUsuariosController::registrarLog(Constantes::INACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
-     }
+    public function inactivarLogUsuarios($tabla, $id)
+    {
+        LogUsuariosController::registrarLog(Constantes::INACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
+    }
+
+    /**
+     * Método para registrar en el Log de Usuarios la acción de actualizar algún dao en la base de datos
+     * @author Ruben Charry 
+     */
+    public function actualizarLogUsuarios($tabla, $informacionOriginal, $informacionActualizada)
+    {  
+        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
+    }
+
+    public function crearLogUsuarios($tabla, $informacionActualizada)
+    {
+        LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, NULL, json_encode($informacionActualizada));
+    }
+    
 }

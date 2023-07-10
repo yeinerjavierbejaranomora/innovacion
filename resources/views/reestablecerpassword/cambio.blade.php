@@ -113,9 +113,9 @@
             @csrf
             <div class="card-body">
                 <div>
-                    <h4 class="text-center">
+                    <h3 class="text-center">
                         Cambio de contraseña
-                    </h4>
+                    </h3>
                 </div>
                 @if(count($errors)>0)
                 <h4>{{$errors}}</h4>
@@ -127,14 +127,17 @@
                         <p class="mb-0">Contraseña actual</p>
                     </div>
                     <div class="col-sm-9">
-                        <p><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
+                        <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
                     </div>
                 </div>
 
-                <div class="validate-input m-b-23" data-validate="Contraseña nueva es requerida">
-                    <span>Contraseña nueva</span>
-                    <input type="password" name="password" placeholder="Contraseña nueva" id="nueva">
-                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                <div class="row">
+                    <div class="col-sm-3 text-dark">
+                        <p class="mb-0">Contraseña nueva</p>
+                    </div>
+                    <div>
+                       <p class="text-muted mb-0"><input type="password" name="password" placeholder="Contraseña nueva" id="nueva" required> </p>
+                    </div>
                 </div>
 
                 <div class="validate-input m-b-23" data-validate="Confirmar es requerido">

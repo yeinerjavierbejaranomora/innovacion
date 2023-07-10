@@ -484,7 +484,7 @@ class UserController extends Controller
 
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('admin.roles')->with('message', 'Rol creado correctamente');
+            return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('admin.roles')->with(['errors' => 'El rol no ha podido ser creado']);

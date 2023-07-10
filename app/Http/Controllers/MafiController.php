@@ -1064,7 +1064,7 @@ class MafiController extends Controller
                 $contacor_vistas++;
             }
 
-marca_ingreso="201931_C1_S"  
+//marca_ingreso="201931_C1_S"  
         
     // echo $consulta_homologante . "  --- <br />";
     // exit();

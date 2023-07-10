@@ -471,13 +471,16 @@ class UserController extends Controller
         endif;
     }
 
-    public function crear_rol()
+    public function crear_rol(Request $request)
     {
         $nombre = $_POST['nombre'];
 
         $crear = DB::table('roles')->insert([
             'nombreRol' => $nombre,
         ]);
+
+        $informacionAcualizada= $request->except(['_token']);
+        LogUsuariosController::registrarLog(Constantes::CREAR, 'Roles', NULL, json_encode($informacionAcualizada));
 
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

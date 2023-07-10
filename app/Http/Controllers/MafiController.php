@@ -976,7 +976,8 @@ class MafiController extends Controller
     public function materiasPorVer($codBanner,$programa){
 
         DB::table("materiasPorVer")
-            ->join('mallaCurricular','mallaCurricular.codMateria','=','materiasPorVer.codigoCurso')
+            ->select('materiasPorVer.codBanner','materiasPorVer.cadMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+            ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
             ->where('mallaCurricular.codBanner','=',$codBanner)
             ->whereIn('mallaCurricular.ciclo',[1,12])
             ->where('materiasPorVer.codprograma','=',$programa)

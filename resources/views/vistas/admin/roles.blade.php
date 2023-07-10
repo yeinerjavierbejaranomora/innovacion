@@ -125,7 +125,7 @@
                         title: 'Rol'
                     },
                     {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                        defaultContent: "<button type='button' class='editar btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
                         title: 'Editar',
                         className: "text-center"
                     },

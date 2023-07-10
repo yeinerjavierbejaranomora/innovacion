@@ -1043,9 +1043,9 @@ class MafiController extends Controller
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->orderBy('id','ASC')
             ->chunk(200, function($estudiantes){
-
+     
                 foreach ($estudiantes as $estudiante) :
-               var_dump( $estudiante);
+            
                     $id_homologante=$estudiante->id;
                     $codHomologante=$estudiante->homologante;
                     $programa_homologante=$estudiante->programa;

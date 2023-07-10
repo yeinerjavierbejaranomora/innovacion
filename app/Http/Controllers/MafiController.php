@@ -1045,7 +1045,7 @@ class MafiController extends Controller
             ->chunk(200, function($estudiantes){
 
                 foreach ($estudiantes as $estudiante) :
-               echo( $estudiante);
+               var_dump( $estudiante);
                     $id_homologante=$estudiante->id;
                     $codHomologante=$estudiante->homologante;
                     $programa_homologante=$estudiante->programa;

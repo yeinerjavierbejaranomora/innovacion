@@ -178,6 +178,8 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $estudinatesPC = $this->programarPrimerCiclo();
+
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -200,7 +202,7 @@ class MafiController extends Controller
             ->get()
             ->chunk(200);
 
-            
+
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -946,5 +948,17 @@ class MafiController extends Controller
 
 
 
+    }
+
+    public function programarPrimerCiclo(){
+
+        $marcaIngreso = "202313,202333";
+        DB::table('estudiantes')
+                ->where('materias_faltantes','=','OK')
+                ->whereNull('programado_ciclo1')
+                ->whereNull('programado_ciclo2')
+                ->where($marcaIngreso)
+                ->orderBy('id')
+                ->dd();
     }
 }

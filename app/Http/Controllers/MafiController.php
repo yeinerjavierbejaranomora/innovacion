@@ -1030,10 +1030,9 @@ class MafiController extends Controller
 
         // Estudiantes para generar faltantes
 
-        
+
         foreach ($programas as $key => $value) {
-            # code...
-            dd($value);
+       
             $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
             
             // Estudiantes para generar faltantes por programa
@@ -1042,7 +1041,7 @@ class MafiController extends Controller
             ->where('materias_faltantes',' ')
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
-            ->where('programa', "PPSV")
+            ->where('programa',$value->codprograma)
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->orderBy('id','ASC')
             ->chunk(200, function($estudiantes){

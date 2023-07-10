@@ -220,7 +220,7 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                dd($materia);
+                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
             endforeach;
 
         endforeach;
@@ -1090,5 +1090,13 @@ class MafiController extends Controller
             ->get();
 
         return $materiasPorVer;
+    }
+
+    public function prerequisitos($codMateria,$codPrograma){
+        /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */
+        $prerequisitos = DB::table('mallaCurricular')
+                            ->select('prerequisito')
+                            ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
+                            ->dd();
     }
 }

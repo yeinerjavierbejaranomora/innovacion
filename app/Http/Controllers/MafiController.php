@@ -987,29 +987,28 @@ class MafiController extends Controller
 
     }*/
 
-    public function Generar_faltantes()
-    {
+    public function Generar_faltantes(){
 
 
-        /// para activar el perodo activo en la base de datos
-        $periodo = $this->periodo();
-        $marcaIngreso = "";
-        foreach ($periodo as $key => $value) {
-            $marcaIngreso .= (int)$value->periodos . ",";
-        }
+            /// para activar el perodo activo en la base de datos
+            $periodo = $this->periodo();
+            $marcaIngreso = "";
+            foreach ($periodo as $key => $value) {
+                $marcaIngreso .= (int)$value->periodos . ",";
+            }
 
-        // para procesasr las marcas de ingreso en los periodos
-        $marcaIngreso = trim($marcaIngreso, ",");
-        // Dividir la cadena en elementos individuales
-        $marcaIngreso = explode(",", $marcaIngreso);
-        // Convertir cada elemento en un número
-        $marcaIngreso = array_map('intval', $marcaIngreso);
-        //traemos todos los programas activos para la consulta
-        $programas = $this->get_programas();
+            // para procesasr las marcas de ingreso en los periodos
+            $marcaIngreso=trim($marcaIngreso,",");
+            // Dividir la cadena en elementos individuales
+            $marcaIngreso = explode(",", $marcaIngreso);
+            // Convertir cada elemento en un número
+            $marcaIngreso = array_map('intval', $marcaIngreso);
+          //traemos todos los programas activos para la consulta
+            $programas= $this->get_programas();
 
 
 
-        /*select `id`, `homologante`, `programa`
+            /*select `id`, `homologante`, `programa`
                        from `estudiantes`
                where `materias_faltantes` = 'OK'
                and `programado_ciclo1` is null
@@ -1018,202 +1017,40 @@ class MafiController extends Controller
                and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);*/
 
 
-        // Estudiantes para generar faltantes
+    // Estudiantes para generar faltantes
 
-        foreach ($programas as $key => $value) {
-            # code...
+    foreach ($programas as $key => $value) {
+        # code...
 
-            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"
+        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //
 
-            // echo $consulta_homologante . "  --- <br />";
-            // exit();
+        $consulta_homologante= DB::table('estudiantes')
+        ->select('id', 'homologante', 'programa')
+        ->where('materias_faltantes','OK')
+        ->whereNull('programado_ciclo1')
+        ->whereNull('programado_ciclo2')
+        ->where('programa', $value)
+        ->whereIn('marca_ingreso',$marcaIngreso)
+        ->orderBy('id','ASC')
+        ->chunk(200, function($estudiantes){
 
-            $resultado_homologante = mysql_query($consulta_homologante, $link);
+            foreach ($estudiantes as $estudiante) :
 
-            if (!$resultado_homologante) {
-                die("Error: no se pudo realizar la consulta homologantes 1");
-                exit();
-            }
+                $id_homologante=$estudiante->id;
+                $codHomologante=$estudiante->homologante;
+                $programa_homologante=$estudiante->programa;
 
-            while ($homologantes = mysql_fetch_assoc($resultado_homologante)) {
-                $id_homologante = $homologantes['id'];
-                $codHomologante = $homologantes['homologante'];
-                $programa_homologante = $homologantes['programa'];
-
-
-                // Materias que debe ver el estudiante
-                $consulta_porver = 'SELECT mv.codBanner, mv.codMateria, mv.orden, ba.creditos, ba.ciclo FROM materias_porver mv INNER JOIN base_acdemica ba ON mv.codMateria=ba.codigoCurso WHERE codBanner=' . $codHomologante . ' AND ba.ciclo IN (1, 12) AND mv.codprograma = "' . $programa_homologante . '" AND ba.codprograma = "' . $programa_homologante . '" ORDER BY mv.orden ASC';
-
-                //echo "Materias por ver de: " . $codHomologante . " -> " . $consulta_porver . "<br />";
+                // Materias vistas por estudiante
+                $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
+                //echo $consulta_vistas . "<br />";
                 //exit();
 
-                // No. de creditos para el homologante
-                $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM base_acdemica ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner=' . $codHomologante . ' group by p.codbanner ';
-                //echo "Consulta creditos aprobados de : " . $codHomologante . " -> " .  $consulta_sumacreditos . "<br />";
-                //exit();
-                $resultado_sumacreditos = mysql_query($consulta_sumacreditos, $link);
-                $filas = mysql_fetch_assoc($resultado_sumacreditos);
-                $creditos_homologantes = $filas['CreditosPlaneados'];
-                //echo "creditos planeados antes:  " . $creditos_homologantes;
-                $creditos_homologantes = $creditos_homologantes == '' ? "0" : $creditos_homologantes;
-                //echo "  creditos planeados después: " . $creditos_homologantes;
-                //exit();
+                $resultado_visitas = DB::select($consulta_vistas);
 
-                // Crécitos ciclo 1
-                $consulta_creditos_C1 = 'SELECT SUM(ba.creditos) screditos, COUNT(ba.creditos) ccursos  FROM `planeacion` p INNER JOIN base_acdemica ba ON ba.codigoCurso=p.CodMateria where p.codBanner=' . $codHomologante . ' AND ba.ciclo IN (1, 12)';
-
-                //echo "consulta_creditos_C1 " . $consulta_creditos_C1;
-                //exit();
-
-                $resultado_creditos_ciclo1 = mysql_query($consulta_creditos_C1, $link);
-                //echo "  creditos planeados ciclo 1: " . $consulta_creditos_C1;
-                $fila_creditos_ciclo1 = mysql_fetch_assoc($resultado_creditos_ciclo1);
-                @$cuenta_cursos_ciclo1 = $cuenta_cursos_cre1['ccursos'];
-                @$suma_creditos_ciclo1 = $suma_creditos_ciclo1['screditos'];
-                @$cuenta_cursos_ciclo1 = $cuenta_cursos_ciclo1 == '' ? "0" : $cuenta_cursos_ciclo1;
-                @$suma_creditos_ciclo1 = $suma_creditos_ciclo1 == '' ? "0" : $suma_creditos_ciclo1;
-
-                //echo "<br />- suma créditos ciclo 1:  " . $suma_creditos_ciclo1 . " - cuenta cursos ciclo 1: " . $cuenta_cursos_ciclo1 . "<br />";
-                //exit();
-
-                //echo $consulta_porver;
-                //exit();
-                $resultado_porver = mysql_query($consulta_porver, $link);
-                if (!$resultado_porver) {
-                    die("Error 69: no se pudo realizar la consulta materias por ver de " . $codHomologante);
-                    exit();
-                }
-                $orden2 = 1;
-
-                /*
-            PEEV	LIC EDUC ESPECIAL VIRTUAL
-            PPIV	LIC. EN PEDAG INFANTIL VIRTUAL
-            PLIV	LIC EN EDUCACION INFANTIL VIR
-            PPSV	PSICOLOGIA VIRTUAL
-            PCPV	CONTADURIA PUBLICA VIRTUAL
-            PNIV	NEGOCIOS INTERNACIONALES VIR
-            PECV	ECONOMIA VIRT
-            PAEV	ADMINISTRACIÓN DE EMPRESAS VIR
-            PII		INGENIERIA INDUSTRIAL VIRT
-            PISV	INGENIERIA DE SOFTWARE VIRT
-            GLV		Tec Logística
-            PSSV	Ing. de sistemas
-            PICD	Inc. Ciencia de datos
-            PLMA	Lic en matemáticas
-            PASV	ADMINISTRACION EN SALUD VIR
-            PDFV 	ADMINISTRACION FINANCIERA VIR
-            */
-
-
-                // PLMA: Todos ven 6 en ciclo 1
-                // PEEV: 5 en ciclo 1
-                // PPIV: 5 en ciclo 1
-                // PLCV: 5 en ciclo 1
-                // PLIV: 5 en ciclo 1
-                if ($programa_homologante == 'PPIV' || $programa_homologante == 'PEEV' ||  $programa_homologante == 'PLIV' ||  $programa_homologante == 'PLMA' ||  $programa_homologante == 'PLCV') {
-                    $num_creditos = 18;
-                    $num_materias = 5;
-
-                    //PMPV: Todos ven 4 materias en ciclo 1
-                    //PPSV
-                    //PNIV: 4 en ciclo 1
-                } elseif ($programa_homologante == 'PCPV' || $programa_homologante == 'PECV' || $programa_homologante == 'PNIV' || $programa_homologante == 'PAEV' || $programa_homologante == 'PPSV'   || $programa_homologante == 'PMPV' || $programa_homologante == 'PDFV') {
-                    $num_creditos = 18;
-                    $num_materias = 4;
-
-                    // PII Ruta SENA 22 Diego Ramirez 20 Dic - Cambia Información OScar Gauldron
-                    // PII Todos ven 5 en ciclo 1
-                    // PICD: Todos ven  4 en ciclo 1
-                    // PSSV: Todos ven 5 en ciclo 1
-                    // PISV2: Todos ven  4 en ciclo 1
-                    // GLV: Primer ingreso 3 en ciclo 1. El resto 4
-                } elseif ($programa_homologante == 'PII2' ||  $programa_homologante == 'PISV'  || $programa_homologante == 'GLV'  || $programa_homologante == 'PSSV'  || $programa_homologante == 'PICD2') {
-                    $num_creditos = 18;
-                    $num_materias = 5;
-
-                    // PASV: Dos ven 4 en ciclo 2 Ivon correo 12 de abril 2023
-                    // PSTV: Dos ven 4 en ciclo 2 Ivon correo 12 de abril 2023
-                    // Todos los homologantes deben ser programados con 19 créditos
-                } elseif ($programa_homologante == 'PASV' || $programa_homologante == 'PSTV') {
-                    $num_creditos = 18;
-                    $num_materias = 4;
-                }
-
-
-                while ($fila = mysql_fetch_assoc($resultado_porver)) {
-                    $codBanner = $fila['codBanner'];
-                    $codMateria = $fila['codMateria'];    //EEV22022=2	EEV22003=0    PIV22012=1 //
-                    $creditoMateria = $fila['creditos'];    //EEV22022=2	EEV22003=0    PIV22012=1 //
-                    $ciclo = $fila['ciclo'];
-
-                    //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
-                    //exit();
-                    $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="' . $codMateria . '" AND codprograma = "' . $programa_homologante . '";';
-                    //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
-                    // exit();
-                    $resultado_prerequisitos = mysql_query($consulta_prerequisitos, $link);
-                    $filas = mysql_fetch_assoc($resultado_prerequisitos);
-                    $prerequisitos = $filas['prerequisito'];
-                    //echo $prerequisitos;
-
-                    /*
-                echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
-                exit();
-                */
-
-                    if ($prerequisitos == '' && $ciclo != 2 && $cuenta_cursos_ciclo1 < $num_materias) {
-                        //echo "vacio";
-                        $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="' . $codMateria . '" AND  	codBanner="' . $codBanner . '";';
-                        //echo $consulta_estaenplaneacion;
-                        $codBanner = $codBanner;
-                        $resultado_planeacion = mysql_query($consulta_estaenplaneacion, $link);
-                        $filas_planeada = mysql_fetch_assoc($resultado_planeacion);
-                        $planeada = $filas_planeada['prerequisito'];
-                        if ($planeada == '' && $creditos_homologantes < $num_creditos) {
-                            $creditos_homologantes = $creditos_homologantes + $creditoMateria;
-                            $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, ' . $codBanner . ', "' . $codMateria . '", ' . $orden2 . ',"1", "", "' . $programa_homologante . '");';
-                            $resultado_planeada = mysql_query($insert_planeada, $link);
-                            $cuenta_cursos_ciclo1++;
-                            //echo "1  " . $insert_planeada . "<br />";
-                            //exit();
-                            //echo "Actualziado Crd Hom:" . $creditos_homologantes . "<br />";
-                        }
-                    } else {
-                        //echo "Con prerequisito <br />";
-                        $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria IN ("' . $prerequisitos . '") AND codBanner="' . $codBanner . '";';
-                        $resultado_estaenplaneacion = mysql_query($consulta_estaenplaneacion, $link);
-                        //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
-                        @$prerequisito_programado = $filas = mysql_fetch_assoc($resultado_estaenplaneacion);
-                        $preprogramado = $filas['codMateria'];
-                        //echo "<br />está programado: " . $preprogramado. "<br />";
-                        //exit ();
-
-                        $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("' . $prerequisitos . '") AND codBanner="' . $codBanner . '" ORDER BY id ASC;';
-                        $resultado_estaporver = mysql_query($consulta_estaporver, $link);
-                        //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
-                        @$prerequisito_estaporver = $filaspv = mysql_fetch_assoc($resultado_estaporver);
-                        $estaporver = $filaspv['codMateria'];
-
-
-                        if ($preprogramado == '' && $estaporver == '' && $ciclo != 2 && $cuenta_cursos_ciclo1 < $num_materias) {
-                            $creditos_homologantes = $creditos_homologantes + $creditoMateria;
-                            $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, ' . $codBanner . ', "' . $codMateria . '", ' . $orden2 . ',"1", "", "' . $programa_homologante . '");';
-                            $resultado_planeada = mysql_query($insert_planeada, $link);
-                            $cuenta_cursos_ciclo1++;
-                            // echo "22  " . $insert_planeada . "<br />";
-                            // exit();
-                            //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";
-                        }
-                    }
-                    $orden2++;
-                    $update_homologante = 'UPDATE homologantes SET programado_ciclo1="OK" WHERE homologantes.id=' . $id_homologante . ';';
-                    $resultado_updatehomologante = mysql_query($update_homologante, $link);
-                    echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
-                }
-            }
-        }
+            endforeach;
+        });
     }
-
+    }
     /**validar si el estudiante tiene creditos planeados */
     public function programarPrimerCiclo(){
 

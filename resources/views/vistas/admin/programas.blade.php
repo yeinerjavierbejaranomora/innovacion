@@ -6,18 +6,7 @@
 <!--  creamos el contenido principal body -->
 @if (!empty($success))
 <h1>{{$success}}</h1>
-@endif
-
-
-<style>
-    button.activo {
-        background-color: 'green',
-    }
-
-    button.inactivo {
-        background-color: 'red',
-    }
-</style>
+@endi
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -35,16 +24,6 @@
 
 
             <div class="input-group">
-                @if(session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session()->get('message') }}
-                </div>
-                @endif
-                @if(session()->has('errors'))
-                <div class="alert alert-error">
-                    {{ session()->get('message') }}
-                </div>
-                @endif
                 <div class="input-group-append">
                     <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
                 </div>

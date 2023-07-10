@@ -108,7 +108,7 @@
             </ul>
 
         </nav>
-        <form action="{{ route('cambio.cambiosave') }}" method="post" class="login100-form validate-form" id="miForm">
+        <form action="{{ route('cambio.cambiosave') }}" method="post" class="validate-form" id="miForm">
             @csrf
             <span class="login100-form-title p-b-49">
                 Cambio de contraseña
@@ -117,10 +117,10 @@
             <h4>{{$errors}}</h4>
             @endif
             <input type="hidden" name="id" value="{{ auth()->user()->id }}">
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña actual es requerida">
-                <label for="password_actual">Contraseña actual</label>
-                <p><input class="input100" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
-                <span class="focus-input100" data-symbol="&#xf183;"></span>
+            <div class="validate-input m-b-23" data-validate="Contraseña actual es requerida">
+                <span for="password_actual">Contraseña actual</span>
+                <p><input type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
+                <span class="focus" data-symbol="&#xf183;"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-23" data-validate="Contraseña nueva es requerida">

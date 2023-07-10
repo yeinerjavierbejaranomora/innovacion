@@ -193,7 +193,15 @@ class MafiController extends Controller
                                     ->first();
 
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos);
+
+            $numeroCreditosC1 = DB::table('mallaCurricular')
+                                    ->select(DB::raw('COUNT(mallaCurricular.creditos) AS CreditosPlaneados'),DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner','=',$codigoBanner)
+                                    ->whereIn('mallaCurricular.ciclo',[1,12])
+                                    ->groupBy('planeacion.codBanner')
+                                    ->first();
+            dd($numeroCreditosC1);
 
         endforeach;
         die();
@@ -967,8 +975,10 @@ class MafiController extends Controller
 
     }
 
+    /**validar si el estudiante tiene creditos planeados */
     public function programarPrimerCiclo(){
 
+        /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
         $marcaIngreso = [202313,202333];
         $estudiante = DB::table('estudiantes')
                 ->select('id','homologante','programa')
@@ -996,6 +1006,5 @@ class MafiController extends Controller
             ->get();
 
         return $materiasPorVer;
-
     }
 }

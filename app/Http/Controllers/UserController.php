@@ -457,7 +457,6 @@ class UserController extends Controller
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
-        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($_POST[]));
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

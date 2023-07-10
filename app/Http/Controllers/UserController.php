@@ -415,6 +415,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
+        LogUsuariosController::registrarLog(Constantes::INACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
         if ($inactivarRol) :
             return  "deshabilitado";
         else :
@@ -426,6 +427,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
+        LogUsuariosController::registrarLog(Constantes::ACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
         if ($activarRol) :
             return  "habilitado";
         else :
@@ -433,10 +435,20 @@ class UserController extends Controller
         endif;
     }
 
+
+    public function obtenerRol($id)
+    {
+        $rolActualizar = DB::table('roles')->where('id', '=', $id)->select('*')->get();
+        return $rolActualizar;
+    }
+
+
     public function update_rol()
     {
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
+
+        $informacionOriginal = $this->obtenerRol($id);
 
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -444,6 +456,8 @@ class UserController extends Controller
         }
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
+
+        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($_POST[]));
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */

@@ -366,9 +366,10 @@ class facultadController extends Controller
             'codFacultad' => $_POST['codFacultad'],
             'nombre' => $_POST['nombre'],
         ]);
+        $informacionActualizada= $request->except(['_token']);
         if ($facultad) :
+            $this->crearLogUsuarios('facultad',$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            $informacionActualizada= $request->except(['_token']);
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
@@ -376,7 +377,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function updatefacultad()
+    public function updatefacultad(Request $request)
     {
         $id_llegada = $_POST['id'];
         $codFacultad = $_POST['codFacultad'];
@@ -393,6 +394,7 @@ class facultadController extends Controller
                 'codFacultad' => $codFacultad,
                 'nombre' => $nombre
             ]);
+        $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
             $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
@@ -644,14 +646,14 @@ class facultadController extends Controller
      * Método para registrar en el Log de Usuarios la acción de actualizar algún dao en la base de datos
      * @author Ruben Charry 
      */
-    public function actualizarLogUsuarios($tabla, $informacionOriginal, $informacionActualizada, Request $request)
-    {
-        $informacionActualizada = $request->except(['_token']);
-        LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
+    public function actualizarLogUsuarios($tabla, $informacionOriginal, $informacionActualizada)
+    {  
+        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
 
-    public function crearLogUsuario($tabla, $informacionActualizada, Request $request)
+    public function crearLogUsuarios($tabla, $informacionActualizada)
     {
-
+        LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, NULL, json_encode($informacionActualizada));
     }
+    
 }

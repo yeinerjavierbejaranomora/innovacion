@@ -185,7 +185,6 @@ class MafiController extends Controller
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
             $ruta = $estudiante->bolsa;
-            dd($ruta);
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')

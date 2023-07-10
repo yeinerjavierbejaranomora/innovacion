@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 // use Yajra\DataTables\DataTables;
+use App\Http\Util\Constantes;
 
 class facultadController extends Controller
 {
@@ -348,12 +349,12 @@ class facultadController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    public function savefacultad(CrearFacultadRequest $request)
+    public function savefacultad(Request $request)
     {
         /** Consulta para insertar los datos obtenidos en el Request a la base de datos de facultad */
         $facultad = DB::table('facultad')->insert([
-            'codFacultad' => $request->codFacultad,
-            'nombre' => $request->nombre,
+            'codFacultad' => $_POST['codFacultad'],
+            'nombre' => $_POST['nombre'],
         ]);
         if ($facultad) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
@@ -395,6 +396,9 @@ class facultadController extends Controller
         $id = $_POST['id'];
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
         if ($inactivarFacultad) :
+            $inactivar = $this->inactivarLogUsuarios('facultad',$id);
+            dd($inactivar);
+            die();
             return  "deshabilitado";
         else :
             return "false";
@@ -406,8 +410,11 @@ class facultadController extends Controller
     {
         $id = $_POST['id'];
         $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
+
         if ($activarPrograma) :
+            $this->activarLogUsuarios('facultad',$id);
             return  "habilitado";
+            
         else :
             return "false";
         endif;
@@ -600,4 +607,24 @@ class facultadController extends Controller
             return "false";
         endif;
     }
+
+    /**
+     * Método para registrar en el Log de Usuarios la acción de activar algún dao en la base de datos
+     * @author Ruben Charry 
+     */
+
+    public function activarLogUsuarios ($tabla,$id)
+    {
+        LogUsuariosController::registrarLog(Constantes::ACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
+    }
+
+    /**
+     * Método para registrar en el Log de Usuarios la acción de inactivar algún dao en la base de datos
+     * @author Ruben Charry 
+     */
+
+     public function inactivarLogUsuarios ($tabla,$id)
+     {
+         LogUsuariosController::registrarLog(Constantes::INACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
+     }
 }

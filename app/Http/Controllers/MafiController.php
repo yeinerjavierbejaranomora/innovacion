@@ -178,6 +178,25 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        /**consulta de estudinates primer ciclo */
+        $estudiantesPC = $this->programarPrimerCiclo();
+        foreach($estudiantesPC as $estudiante):
+            $idEstudiante = $estudiante->id;
+            $codigoBanner = $estudiante->homologante;
+            $programa = $estudiante->programa;
+            $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            $numeroCreditos = DB::table('mallaCurricular')
+                                    ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner','=',$codigoBanner)
+                                    ->groupBy('planeacion.codBanner')
+                                    ->first();
+
+            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
+            dd($numeroCreditos);
+
+        endforeach;
+        die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -200,7 +219,7 @@ class MafiController extends Controller
             ->get()
             ->chunk(200);
 
-            
+
 
         if (!empty($data[0])) :
             $numeroRegistros = 0;
@@ -1176,5 +1195,37 @@ class MafiController extends Controller
         
         }
     
+    }
+
+    public function programarPrimerCiclo(){
+
+        $marcaIngreso = [202313,202333];
+        $estudiante = DB::table('estudiantes')
+                ->select('id','homologante','programa')
+                ->where('materias_faltantes','=','OK')
+                ->whereNull('programado_ciclo1')
+                ->whereNull('programado_ciclo2')
+                ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','asc')
+                ->get();
+
+        return $estudiante;
+    }
+
+    public function materiasPorVer($codBanner,$programa){
+
+        /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
+        $materiasPorVer = DB::table("materiasPorVer")
+            ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+            ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
+            ->where('materiasPorVer.codBanner','=',$codBanner)
+            ->whereIn('mallaCurricular.ciclo',[1,12])
+            ->where('materiasPorVer.codprograma','=',$programa)
+            ->where('mallaCurricular.codprograma','=',$programa)
+            ->orderBy('materiasPorVer.orden','ASC')
+            ->get();
+
+        return $materiasPorVer;
+
     }
 }

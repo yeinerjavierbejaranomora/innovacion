@@ -128,7 +128,7 @@ class UserController extends Controller
 
     // funcion para traer todos los usuarios a la vista de administracion
 
-    public function userView(Request $request)
+    public function userView()
     {
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.usuarios');
@@ -415,6 +415,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
+        LogUsuariosController::registrarLog(Constantes::INACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
         if ($inactivarRol) :
             return  "deshabilitado";
         else :
@@ -426,6 +427,7 @@ class UserController extends Controller
     {
         $id = $_POST['id'];
         $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
+        LogUsuariosController::registrarLog(Constantes::ACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
         if ($activarRol) :
             return  "habilitado";
         else :
@@ -433,17 +435,32 @@ class UserController extends Controller
         endif;
     }
 
-    public function update_rol()
+
+    public function obtenerRol($id)
+    {
+        $rolActualizar = DB::table('roles')->where('id', '=', $id)->select('*')->get();
+        return $rolActualizar;
+    }
+
+
+    public function update_rol(Request $request)
     {
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
 
+        
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $informacionOriginal = $this->obtenerRol($id);
 
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
+
+        $request->merge(['id' => $id]);
+        $informacionAcualizada= $request->except(['_token']);
+
+        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
 
         if ($update) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
@@ -454,7 +471,7 @@ class UserController extends Controller
         endif;
     }
 
-    public function crear_rol()
+    public function crear_rol(Request $request)
     {
         $nombre = $_POST['nombre'];
 
@@ -462,9 +479,12 @@ class UserController extends Controller
             'nombreRol' => $nombre,
         ]);
 
+        $informacionAcualizada= $request->except(['_token']);
+        LogUsuariosController::registrarLog(Constantes::CREAR, 'Roles', NULL, json_encode($informacionAcualizada));
+
         if ($crear) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('admin.roles')->with('message', 'Rol creado correctamente');
+            return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('admin.roles')->with(['errors' => 'El rol no ha podido ser creado']);

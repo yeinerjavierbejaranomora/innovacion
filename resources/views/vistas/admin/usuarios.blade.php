@@ -5,18 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-<!-- Alertas al crear usuario -->
-@if(session('success'))
-    <script>
-        swal("Éxito", "{{ session('success') }}", "success");
-    </script>
-@endif
-
-@if($errors->any())
-    <script>
-        swal("Error", "{{ $errors->first() }}", "error");
-    </script>
-@endif
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -154,8 +142,20 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<script>
+<!-- Alertas al crear usuario -->
+@if(session('success'))
+    <script>
+        Swal.fire("Éxito", "{{ session('success') }}", "success");
+    </script>
+@endif
 
+@if($errors->any())
+    <script>
+        Swal.fire("Error", "{{ $errors->first() }}", "error");
+    </script>
+@endif
+
+<script>
     facultades();
     /** Función que trae todas las faculades */
     function facultades() {

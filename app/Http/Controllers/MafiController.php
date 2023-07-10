@@ -220,7 +220,7 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                $prerequisitos = ;
+                $prerequisitos ='';
             endforeach;
 
         endforeach;
@@ -1057,41 +1057,8 @@ class MafiController extends Controller
 
             endforeach;
         });
-    }
-do_ci
-            ->where('programa', "PPSV")
-            ->whereIn('marca_ingreso',$marcaIngreso)
-            ->orderBy('id','ASC')
-            ->chunk(200, function($estudiantes){
-
-                foreach ($estudiantes as $estudiante) :
-
-                    $id_homologante=$estudiante->id;
-                    $codHomologante=$estudiante->homologante;
-                    $programa_homologante=$estudiante->programa;
-
-                    // Materias vistas por estudiante
-                    $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
-                    //echo $consulta_vistas . "<br />";
-                    //exit();
-
-                    $resultado_visitas = DB::select($consulta_vistas);
-
-
-
-
-                    $contacor_vistas=0;
-                    $codprograma='';
-                    $codbanner='';
-                    $materias_vistas = array();
-
-
-
-
-
-                endforeach;
-            });
         }
+    }
         /**validar si el estudiante tiene creditos planeados */
         public function programarPrimerCiclo(){
 

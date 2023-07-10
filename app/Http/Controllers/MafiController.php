@@ -199,7 +199,6 @@ class MafiController extends Controller
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->whereIn('mallaCurricular.ciclo',[1,12])
-                                    ->groupBy('planeacion.codBanner')
                                     ->dd();
             dd($numeroCreditosC1);
 

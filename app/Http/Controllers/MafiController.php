@@ -981,7 +981,7 @@ class MafiController extends Controller
             ->whereIn('mallaCurricular.ciclo',[1,12])
             ->where('materiasPorVer.codprograma ','=',$programa)
             ->where('mallaCurricular.codprograma ','=',$programa)
-            ->oederBy('materiasPorVer.orden','ASC')
+            ->orderBy('materiasPorVer.orden','ASC')
             ->dd();
 
     }

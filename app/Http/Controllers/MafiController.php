@@ -211,7 +211,7 @@ class MafiController extends Controller
             $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
 
             $reglaNegocio =DB::table('reglasNegocio')
-                                ->where([['programa','=',$programa],['ciclo','=',1]])
+                                ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
                                 ->first();
             dd($reglaNegocio);
 

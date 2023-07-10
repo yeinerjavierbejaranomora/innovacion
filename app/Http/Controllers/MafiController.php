@@ -211,7 +211,7 @@ class MafiController extends Controller
             $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
 
             $reglaNegocio =DB::table('reglasNegocio')
-                                ->where([['programa','=',$programa],['ciclo','=',1]])
+                                ->where([['programa','=',$programa],['tipoEstudiante','LIKE',$tipoEstudiante],['ciclo','=',1]])
                                 ->first();
             dd($reglaNegocio);
 
@@ -1021,51 +1021,9 @@ class MafiController extends Controller
 
     foreach ($programas as $key => $value) {
         # code...
-        
-        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
-        
-        $consulta_homologante= DB::table('estudiantes')
-        ->select('id', 'homologante', 'programa')
-        ->where('materias_faltantes','OK')
-        ->whereNull('programado_ciclo1')
-        ->whereNull('programado_ciclo2')
-        ->where('programa', $value)
-        ->whereIn('marca_ingreso',$marcaIngreso)
-        ->orderBy('id','ASC')
-        ->chunk(200, function($estudiantes){
 
-            foreach ($estudiantes as $estudiante) :
+        $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  marca_ingreso="201931_C1_S"
 
-                $id_homologante=$estudiante->id;
-                $codHomologante=$estudiante->homologante;
-                $programa_homologante=$estudiante->programa;
-
-                // Materias vistas por estudiante
-                $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
-                //echo $consulta_vistas . "<br />";
-                //exit();
-
-                $resultado_visitas = DB::select($consulta_vistas);
-
-
-
-
-                $contacor_vistas=0;
-                $codprograma='';
-                $codbanner='';
-                $materias_vistas = array();
-
-                while($fila =  $resultado_visitas) {
-                    dd($fila);
-                    $codbanner= $fila['codBanner'];
-                    $codprograma= $programa_homologante;
-                    $codmateria= $fila['codMateria'];
-                    $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
-                $contacor_vistas++;
-            }
-
-//marca_ingreso="201931_C1_S"  
-        
     // echo $consulta_homologante . "  --- <br />";
     // exit();
 

@@ -959,7 +959,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')
                 ->whereIn('marca_ingreso',[$marcaIngreso])
-                ->orderBy('id')
+                ->orderBy('id','asc')
                 ->dd();
     }
 }

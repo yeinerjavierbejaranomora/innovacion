@@ -205,6 +205,8 @@ class MafiController extends Controller
 
             $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
+            $cuentaCreditosCiclo1 = $numeroCreditosC1->screditos;
+            $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
             dd($sumaCreditosCiclo1);
 
         endforeach;

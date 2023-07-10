@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 // use Yajra\DataTables\DataTables;
 use App\Http\Util\Constantes;
+use App\Http\Controllers\LogUsuariosController;
 
 class facultadController extends Controller
 {
@@ -397,8 +398,6 @@ class facultadController extends Controller
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
         if ($inactivarFacultad) :
             $inactivar = $this->inactivarLogUsuarios('facultad',$id);
-            dd($inactivar);
-            die();
             return  "deshabilitado";
         else :
             return "false";

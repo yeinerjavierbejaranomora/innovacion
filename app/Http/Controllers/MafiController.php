@@ -184,6 +184,8 @@ class MafiController extends Controller
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
+            $ruta = $estudiante->ruta;
+            dd($ruta);
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -1217,7 +1219,7 @@ class MafiController extends Controller
         /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
         $marcaIngreso = [202313,202333];
         $estudiante = DB::table('estudiantes')
-                ->select('id','homologante','programa')
+                ->select('id','homologante','programa','ruta')
                 ->where('materias_faltantes','=','OK')
                 ->whereNull('programado_ciclo1')
                 ->whereNull('programado_ciclo2')

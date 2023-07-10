@@ -506,6 +506,7 @@ class facultadController extends Controller
         }
         $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 1]);
         if ($activarPeriodo) :
+            $this->activarLogUsuarios('periodo', $id);
             return  "habilitado";
         else :
             return "false";
@@ -522,6 +523,7 @@ class facultadController extends Controller
         }
         $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
         if ($inactivarPeriodo) :
+            $this->inactivarLogUsuarios('periodo', $id);
             return  "deshabilitado";
         else :
             return "false";

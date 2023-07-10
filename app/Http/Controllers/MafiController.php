@@ -216,7 +216,8 @@ class MafiController extends Controller
                                 ->first();
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
-            dd($numeroCreditosPermitidos);
+            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+            dd($numeroMateriasPermitidos);
 
         endforeach;
         die();

@@ -167,7 +167,7 @@
                             Cambiar contraseña
                         </button> --}}
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="submit" class="form-btn">
+                                <button type="submit" class="btn btn-secondary">
                                     Cambiar contraseña
                                 </button>
                             </div>

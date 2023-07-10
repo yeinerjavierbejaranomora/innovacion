@@ -187,6 +187,7 @@ class MafiController extends Controller
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -211,9 +212,16 @@ class MafiController extends Controller
             $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
 
             $reglaNegocio =DB::table('reglasNegocio')
-                                ->where([['programa','=',$programa],['tipoEstudiante','LIKE',$tipoEstudiante],['ciclo','=',1]])
+                                ->select('creditos','materiasPermitidas')
+                                ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
                                 ->first();
-            dd($reglaNegocio);
+
+            $numeroCreditosPermitidos = $reglaNegocio->creditos;
+            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+
+            foreach($materiasPorVer as $materia):
+                dd($materia);
+            endforeach;
 
         endforeach;
         die();

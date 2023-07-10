@@ -91,7 +91,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-primary">Crear</button>
                                 </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -112,6 +112,18 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
 
 <script>
     // * Datatable para mostrar todas las Facultades *
@@ -253,7 +265,7 @@
                     Swal.fire({
                         title: 'Actualizar información',
                         html: '<form> <input type="text" id="codigo" name="codigo" value="' + data.codFacultad + '" class="form-control" placeholder="codFacultad"><br>' +
-                        '<input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
+                            '<input type="text" id="name" name="nombre" value="' + data.nombre + '" class="form-control" placeholder="nombre"></form>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -291,6 +303,5 @@
             obtener_data_inactivar("#example tbody", table);
         }
     }
-
 </script>
 @include('layout.footer')

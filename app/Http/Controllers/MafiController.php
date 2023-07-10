@@ -187,7 +187,7 @@ class MafiController extends Controller
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -220,7 +220,7 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                dd($materia);
+                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
             endforeach;
 
         endforeach;
@@ -998,6 +998,7 @@ class MafiController extends Controller
     public function Generar_faltantes(){
 
 
+
             /// para activar el perodo activo en la base de datos
             $periodo = $this->periodo();
             $marcaIngreso = "";
@@ -1029,9 +1030,9 @@ class MafiController extends Controller
 
         foreach ($programas as $key => $value) {
             # code...
-            
-            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
-            
+
+            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //
+
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -1072,12 +1073,13 @@ class MafiController extends Controller
                         $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                     }
-              
+
 
 
             endforeach;
-        
+
         });
+    }
     }
     /**validar si el estudiante tiene creditos planeados */
     public function programarPrimerCiclo(){
@@ -1110,5 +1112,13 @@ class MafiController extends Controller
             ->get();
 
         return $materiasPorVer;
+    }
+
+    public function prerequisitos($codMateria,$codPrograma){
+        /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */
+        $prerequisitos = DB::table('mallaCurricular')
+                            ->select('prerequisito')
+                            ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
+                            ->dd();
     }
 }

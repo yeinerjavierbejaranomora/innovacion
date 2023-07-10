@@ -187,7 +187,7 @@ class MafiController extends Controller
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -220,7 +220,6 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                dd($materia);
                 $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
                 dd($prerequisitos);
             endforeach;
@@ -1030,12 +1029,11 @@ class MafiController extends Controller
 
         // Estudiantes para generar faltantes
 
-        
         foreach ($programas as $key => $value) {
             # code...
-            dd($value);
-            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //  
-            
+
+            $consulta_homologante = 'SELECT id, homologante, programa FROM homologantes WHERE materias_faltantes="OK" AND programado_ciclo1="" AND programado_ciclo2="" AND programa="PCPV" AND marca_ingreso IN (202313, 202333) AND tipo_estudiante!="XXXXX" ORDER BY id ASC LIMIT 20000'; //
+
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
@@ -1068,35 +1066,53 @@ class MafiController extends Controller
                     $codbanner='';
                     $materias_vistas = array();
 
-               
-              
+                    while($fila =  $resultado_visitas) {
+                        dd($fila);
+                        $codbanner= $fila['codBanner'];
+                        $codprograma= $programa_homologante;
+                        $codmateria= $fila['codMateria'];
+                        $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
+                    $contacor_vistas++;
+                    }
+
+
+
+            endforeach;
+
+ull('programado_ciclo2')
+            ->where('programa', "PPSV")
+            ->whereIn('marca_ingreso',$marcaIngreso)
+            ->orderBy('id','ASC')
+            ->chunk(200, function($estudiantes){
+
+                foreach ($estudiantes as $estudiante) :
+
+                    $id_homologante=$estudiante->id;
+                    $codHomologante=$estudiante->homologante;
+                    $programa_homologante=$estudiante->programa;
+
+                    // Materias vistas por estudiante
+                    $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
+                    //echo $consulta_vistas . "<br />";
+                    //exit();
+
+                    $resultado_visitas = DB::select($consulta_vistas);
+
+
+
+
+                    $contacor_vistas=0;
+                    $codprograma='';
+                    $codbanner='';
+                    $materias_vistas = array();
+
+
+
 
 
                 endforeach;
-        
-        });
-    }
-    }
-    /**validar si el estudiante tiene creditos planeados */
-    public function programarPrimerCiclo(){
 
-        /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
-        $marcaIngreso = [202313,202333];
-        $estudiante = DB::table('estudiantes')
-                ->select('id','homologante','programa','bolsa','tipo_estudiante')
-                ->where('materias_faltantes','=','OK')
-                ->whereNull('programado_ciclo1')
-                ->whereNull('programado_ciclo2')
-                ->whereIn('marca_ingreso',$marcaIngreso)
-                ->orderBy('id','asc')
-                ->get();
-
-        return $estudiante;
-    }
-
-    public function materiasPorVer($codBanner,$programa){
-
-        /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
+llaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
         $materiasPorVer = DB::table("materiasPorVer")
             ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
             ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
@@ -1110,7 +1126,7 @@ class MafiController extends Controller
         return $materiasPorVer;
     }
 
-    public function prerequisitos($codMateria,$codPrograma){
+    public functiget prerequisitos($codMateria,$codPrograma){
         /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */
         $prerequisitos = DB::table('mallaCurricular')
                             ->select('prerequisito')

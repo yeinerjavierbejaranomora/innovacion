@@ -185,7 +185,12 @@ class MafiController extends Controller
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
-            dd($materiasPorVer);
+            $numeroCreditos = DB::table('mallaCurricular')
+                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner','=',$codigoBanner)
+                                    ->groupBy('planeacion.codBanner')
+                                    ->dd();
+            dd($numeroCreditos);
 
         endforeach;
         die();

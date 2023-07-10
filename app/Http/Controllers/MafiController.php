@@ -181,7 +181,6 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo();
         foreach($estudiantesPC as $estudiante):
-            dd($estudiante);
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
@@ -980,10 +979,10 @@ class MafiController extends Controller
             ->join('mallaCurricular','mallaCurricular.codMateria','=','materiasPorVer.codigoCurso')
             ->where('mallaCurricular.codBanner','=',$codBanner)
             ->whereIn('mallaCurricular.ciclo',[1,12])
-            ->where('materiasPorVer.codprograma ','=',$programa)
-            ->where('mallaCurricular.codprograma ','=',$programa)
-            ->oederBy('materiasPorVer.orden','ASC')
+            ->where('materiasPorVer.codprograma','=',$programa)
+            ->where('mallaCurricular.codprograma','=',$programa)
+            ->orderBy('materiasPorVer.orden','ASC')
             ->dd();
-            
+
     }
 }

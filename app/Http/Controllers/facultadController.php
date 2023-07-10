@@ -316,8 +316,6 @@ class facultadController extends Controller
 
         $update = DB::table('programas')->where('id', '=', $id)->update(['codprograma' => $codigo, 'programa' => $nombre, 'idFacultad' => $idfacultad]);
 
-        var_dump($update);
-        die();
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
 

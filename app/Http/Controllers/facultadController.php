@@ -197,7 +197,9 @@ class facultadController extends Controller
     {
         $cod_llegada = $_POST['codigo'];
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
+        $datos = DB::table('programas')->where('codprograma', '=', $cod_llegada)->select('programas.tabla','id')->get();
         if ($inactivarPrograma) :
+            $this->activarLogUsuarios($datos[0]->tabla, $datos[0]->id);
             return  "habilitado";
         else :
             return "false";

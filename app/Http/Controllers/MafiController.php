@@ -186,6 +186,7 @@ class MafiController extends Controller
             $programa = $estudiante->programa;
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
             $numeroCreditos = DB::table('mallaCurricular')
+                                    ->select('planeacion.codBanner','SUM(mallaCurricular.creditos) AS CreditosPlaneados')
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')

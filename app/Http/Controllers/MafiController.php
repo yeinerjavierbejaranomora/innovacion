@@ -190,9 +190,9 @@ class MafiController extends Controller
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
-                                    ->get();
+                                    ->first();
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos);
+            echo $numeroCreditos;
 
         endforeach;
         die();
@@ -976,7 +976,7 @@ class MafiController extends Controller
                 ->whereNull('programado_ciclo2')
                 ->whereIn('marca_ingreso',$marcaIngreso)
                 ->orderBy('id','asc')
-                ->get();
+                ->dd();
 
         return $estudiante;
     }
@@ -992,7 +992,9 @@ class MafiController extends Controller
             ->where('materiasPorVer.codprograma','=',$programa)
             ->where('mallaCurricular.codprograma','=',$programa)
             ->orderBy('materiasPorVer.orden','ASC')
+            ->limit(200)
             ->get();
+
 
         return $materiasPorVer;
 

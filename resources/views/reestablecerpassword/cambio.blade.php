@@ -109,42 +109,50 @@
         </nav>
 
 
-        <form action="{{ route('cambio.cambiosave') }}" method="post" class="validate-form" id="miForm">
+        <form action="{{ route('cambio.cambiosave') }}" method="post" id="miForm">
             @csrf
-            <span class="form-title p-b-49">
-                Cambio de contraseña
-            </span>
-            @if(count($errors)>0)
-            <h4>{{$errors}}</h4>
-            @endif
-            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
-            <div class="validate-input m-b-23" data-validate="Contraseña actual es requerida">
-                <span>Contraseña actual</span>
-                <p><input type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
-                <span class="focus" data-symbol="&#xf183;"></span>
-            </div>
+            <div class="card-body">
+                <div>
+                    <h4 class="text-center">
+                        Cambio de contraseña
+                    </h4>
+                </div>
+                @if(count($errors)>0)
+                <h4>{{$errors}}</h4>
+                @endif
 
-            <div class="validate-input m-b-23" data-validate="Contraseña nueva es requerida">
-                <span>Contraseña nueva</span>
-                <input type="password" name="password" placeholder="Contraseña nueva" id="nueva">
-                <span class="focus-input100" data-symbol="&#xf183;"></span>
-            </div>
+                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                <div class="row">
+                    <div class="col-sm-3 text-dark">
+                        <p class="mb-0">Contraseña actual</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña"></p>
+                    </div>
+                </div>
 
-            <div class="validate-input m-b-23" data-validate="Confirmar es requerido">
-                <span>Confirmar contraseña</span>
-                <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
-                <span data-symbol="&#xf183;"></span>
-            </div>
+                <div class="validate-input m-b-23" data-validate="Contraseña nueva es requerida">
+                    <span>Contraseña nueva</span>
+                    <input type="password" name="password" placeholder="Contraseña nueva" id="nueva">
+                    <span class="focus-input100" data-symbol="&#xf183;"></span>
+                </div>
 
-            <div class="container-form-btn">
-                <div class="wrap-form-btn">
-                    <div class="form-bgbtn"></div>
-                    {{-- <button type="submit" class="form-btn" onclick="return validacion()">
+                <div class="validate-input m-b-23" data-validate="Confirmar es requerido">
+                    <span>Confirmar contraseña</span>
+                    <input class="input100" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar">
+                    <span data-symbol="&#xf183;"></span>
+                </div>
+
+                <div class="container-form-btn">
+                    <div class="wrap-form-btn">
+                        <div class="form-bgbtn"></div>
+                        {{-- <button type="submit" class="form-btn" onclick="return validacion()">
                             Cambiar contraseña
                         </button> --}}
-                    <button type="submit" class="form-btn">
-                        Cambiar contraseña
-                    </button>
+                        <button type="submit" class="form-btn">
+                            Cambiar contraseña
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>

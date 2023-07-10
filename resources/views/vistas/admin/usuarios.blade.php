@@ -145,13 +145,13 @@
 <!-- Alertas al crear usuario -->
 @if(session('success'))
     <script>
-        swal("Éxito", "{{ session('success') }}", "success");
+        swal.fire("Éxito", "{{ session('success') }}", "success");
     </script>
 @endif
 
 @if($errors->any())
     <script>
-        swal("Error", "{{ $errors->first() }}", "error");
+        swal.fire("Error", "{{ $errors->first() }}", "error");
     </script>
 @endif
 

@@ -221,6 +221,8 @@ class MafiController extends Controller
 
             foreach($materiasPorVer as $materia):
                 dd($materia);
+                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
+                dd($prerequisitos);
             endforeach;
 
         endforeach;
@@ -998,6 +1000,7 @@ class MafiController extends Controller
     public function Generar_faltantes(){
 
 
+
             /// para activar el perodo activo en la base de datos
             $periodo = $this->periodo();
             $marcaIngreso = "";
@@ -1064,13 +1067,30 @@ class MafiController extends Controller
                     $codbanner='';
                     $materias_vistas = array();
 
+<<<<<<< HEAD
                
               
 
 
                 endforeach;
         
+=======
+                    while($fila =  $resultado_visitas) {
+                        dd($fila);
+                        $codbanner= $fila['codBanner'];
+                        $codprograma= $programa_homologante;
+                        $codmateria= $fila['codMateria'];
+                        $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
+                    $contacor_vistas++;
+                    }
+
+
+
+            endforeach;
+
+>>>>>>> 8434f3d6b23668312b446fd4bcc80b6315a7c218
         });
+    }
     }
     /**validar si el estudiante tiene creditos planeados */
     public function programarPrimerCiclo(){
@@ -1103,5 +1123,14 @@ class MafiController extends Controller
             ->get();
 
         return $materiasPorVer;
+    }
+
+    public function prerequisitos($codMateria,$codPrograma){
+        /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */
+        $prerequisitos = DB::table('mallaCurricular')
+                            ->select('prerequisito')
+                            ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
+                            ->get();
+        return $prerequisitos;
     }
 }

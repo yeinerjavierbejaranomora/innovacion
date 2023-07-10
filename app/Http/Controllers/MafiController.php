@@ -184,7 +184,8 @@ class MafiController extends Controller
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
-            $this->materiasPorVer($codigoBanner,$programa);
+            $ateriasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            dd($materiasPorVer);
 
         endforeach;
         die();
@@ -975,7 +976,8 @@ class MafiController extends Controller
 
     public function materiasPorVer($codBanner,$programa){
 
-        DB::table("materiasPorVer")
+        /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
+        $materiasPorVer = DB::table("materiasPorVer")
             ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
             ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
             ->where('mallaCurricular.codBanner','=',$codBanner)
@@ -983,8 +985,9 @@ class MafiController extends Controller
             ->where('materiasPorVer.codprograma','=',$programa)
             ->where('mallaCurricular.codprograma','=',$programa)
             ->orderBy('materiasPorVer.orden','ASC')
-            ->dd();
+            ->get();
 
+        return $materiasPorVer;
 
     }
 }

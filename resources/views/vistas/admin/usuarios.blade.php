@@ -5,6 +5,7 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
+<!-- Alertas al crear usuario -->
 @if(session('success'))
     <script>
         swal("Éxito", "{{ session('success') }}", "success");

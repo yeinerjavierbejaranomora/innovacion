@@ -1030,7 +1030,7 @@ class MafiController extends Controller
 
         // Estudiantes para generar faltantes
 
-        
+
         foreach ($programas as $key => $value) {
             # code...
             dd($value);
@@ -1042,7 +1042,7 @@ class MafiController extends Controller
             ->where('materias_faltantes',' ')
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
-            ->where('programa', "PPSV")
+            ->where('programa',$value->codprograma)
             ->whereIn('marca_ingreso',$marcaIngreso)
             ->orderBy('id','ASC')
             ->chunk(200, function($estudiantes){

@@ -1054,7 +1054,7 @@ class MafiController extends Controller
             endforeach;
         });
     }
-
+    }
     /**validar si el estudiante tiene creditos planeados */
     public function programarPrimerCiclo(){
 

@@ -109,6 +109,19 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<!-- Alertas al crear usuario -->
+@if(session('success'))
+    <script>
+        Swal.fire("Éxito", "{{ session('success') }}", "success");
+    </script>
+@endif
+
+@if($errors->any())
+    <script>
+        Swal.fire("Error", "{{ $errors->first() }}", "error");
+    </script>
+@endif
+
 <script>
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();

@@ -90,10 +90,10 @@ class cambioController extends Controller
         $user = User::where('id_banner',$idBanner)->first();
         /** Si es diferente al vacio lleva a la vista  */
         if($user != []):
-            return view('reestablecerpassword.cambio');
+            return view('reestablecerpassword.cambio')->with('datos', $datos);
         /** En caso contrario redirige al inicio */
         else:
-            return redirect()->route('home.index')->with('datos', $datos);
+            return redirect()->route('home.index');
         endif;
     }
 

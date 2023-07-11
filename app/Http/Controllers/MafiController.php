@@ -1178,9 +1178,8 @@ class MafiController extends Controller
         }
 
         // No. de creditos para el homologante
-        public function consulta_sumacreditos($codBanner,$ciclo){
-       
-        /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
+        public function sumar_creditos($codBanner){
+            
 
             $consulta_sumacreditos = DB::table('mallaCurricular')
             ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -1190,42 +1189,131 @@ class MafiController extends Controller
             ->first();
   
             
-            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" : $consulta_sumacreditos->CreditosPlaneados;
-            
-            
+            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
+            return $creditos_homologantes;
+            
+        }
 
-        $numeroCreditosC1 = DB::table('mallaCurricular')
+        public function consulta_creditos($codBanner,$ciclo){
+
+            $numeroCreditosC1 = DB::table('mallaCurricular')
                     ->select(DB::raw('SUM(mallaCurricular.creditos) AS creditos'),DB::raw('COUNT(mallaCurricular.creditos) AS cursos'))
                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                     ->where('planeacion.codBanner','=',$codBanner)
                     ->whereIn('mallaCurricular.ciclo',$ciclo)
                     ->first();
+                    
+            return $numeroCreditosC1;
 
-            $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
-            $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
-            $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
-            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
-            $cicloReglaNegocio = 1;
-$reglaNegocio =DB::table('reglasNegocio')
-        ->select('creditos','materiasPermitidas')
-        ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
-        ->first();
+        }
+
+        public function reglas_negocio($ciclo,$programa,$ruta,$tipoEstudiante){
+
+            $cicloReglaNegocio =$ciclo;
+
+            $reglaNegocio =DB::table('reglasNegocio')
+                            ->select('creditos','materiasPermitidas')
+                            ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                            ->first();
+
+
+            return  $reglaNegocio;
+        }
+
+        public function Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante){
+
+            $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
+
+            $prerequisitos=$this->prerequisitos($codMateria,$codPrograma);
+
+            $creditos_homologantes=$this->sumar_creditos($codBanner);
+
+            $numeroCreditosC1=$this->consulta_creditos($codBanner,$ciclo);
+
+            $sumaCreditosCiclo1 = $numeroCreditosC1->creditos==''?0:$numeroCreditosC1->creditos;
+
+            $cuentaCursosCiclo1 = $numeroCreditosC1->cursos==''?0:$numeroCreditosC1->cursos;
+
+            $reglaNegocio=$this->reglas_negocio($ciclo,$programa,$ruta,$tipoEstudiante);
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
+            foreach ($materiasPorVer as $key => $value) {
+                # code...
+        
+                $codBanner= $fila['codBanner'];
+                $codMateria = $fila['codMateria'];	//EEV22022=2	EEV22003=0    PIV22012=1 // 
+                $creditoMateria = $fila['creditos'];	//EEV22022=2	EEV22003=0    PIV22012=1 //
+                $ciclo= $fila['ciclo'];
+                
+                //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
+                //exit();
+                $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="'.$codMateria.'" AND codprograma = "'.$programa_homologante.'";';
+                //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
+                // exit();
+                $resultado_prerequisitos = mysql_query($consulta_prerequisitos, $link);
+                $filas = mysql_fetch_assoc($resultado_prerequisitos);
+                $prerequisitos = $filas['prerequisito'];
+                //echo $prerequisitos;
+                
+                /*
+                echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
+                exit();
+                */
+                
+                if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
+                    //echo "vacio";
+                    $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'";';
+                    //echo $consulta_estaenplaneacion;
+                    $codBanner=$codBanner;
+                    $resultado_planeacion = mysql_query($consulta_estaenplaneacion, $link); 
+                    $filas_planeada = mysql_fetch_assoc($resultado_planeacion);
+                    $planeada = $filas_planeada['prerequisito'];
+                    if($planeada=='' && $creditos_homologantes<$num_creditos) {
+                        $creditos_homologantes = $creditos_homologantes + $creditoMateria;
+                        $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
+                        $resultado_planeada = mysql_query($insert_planeada, $link); 
+                        $cuenta_cursos_ciclo1++;
+                        //echo "1  " . $insert_planeada . "<br />";
+                        //exit();
+                        //echo "Actualziado Crd Hom:" . $creditos_homologantes . "<br />";
+                    }
+                } else {
+                    //echo "Con prerequisito <br />";
+                    $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'";';
+                    $resultado_estaenplaneacion = mysql_query($consulta_estaenplaneacion, $link);
+                    //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
+                    @ $prerequisito_programado=$filas = mysql_fetch_assoc($resultado_estaenplaneacion);
+                    $preprogramado = $filas['codMateria'];
+                    //echo "<br />está programado: " . $preprogramado. "<br />";
+                    //exit ();
+                    
+                    $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';
+                    $resultado_estaporver = mysql_query($consulta_estaporver, $link);
+                    //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
+                    @ $prerequisito_estaporver=$filaspv = mysql_fetch_assoc($resultado_estaporver);
+                    $estaporver = $filaspv['codMateria'];
+                    
+                    
+                    if($preprogramado=='' && $estaporver=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
+                        $creditos_homologantes = $creditos_homologantes + $creditoMateria;
+                        $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
+                        $resultado_planeada = mysql_query($insert_planeada, $link);
+                        $cuenta_cursos_ciclo1++;				
+                        // echo "22  " . $insert_planeada . "<br />";
+                        // exit();
+                        //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";
+                    }
+                }
+                $orden2++;	
+            $update_homologante = 'UPDATE homologantes SET programado_ciclo1="OK" WHERE homologantes.id='.$id_homologante.';';
+            $resultado_updatehomologante = mysql_query($update_homologante, $link);
+            echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
+                
+            }
 
-            /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
-            $resultado = DB::table('mallaCurricular')
-            ->join('planeacion', 'mallaCurricular.codigoCurso', '=', 'planeacion.codMateria')
-            ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
-            ->where('planeacion.codBanner',$codBanner )
-            ->groupBy('planeacion.codBanner')
-            ->get();
-
-
-            return  $resultado;
         }
 
 

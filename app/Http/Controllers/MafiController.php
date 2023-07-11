@@ -1066,6 +1066,7 @@ class MafiController extends Controller
         });
         }
     }
+}
         /**validar si el estudiante tiene creditos planeados */
         public function programarPrimerCiclo(){
 

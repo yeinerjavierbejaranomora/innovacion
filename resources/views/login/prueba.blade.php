@@ -133,6 +133,19 @@
 
 </div>
 
+<script src="{{asset('public/general/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('public/general/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-@include('layout.footer')
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('public/general/js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Font awesome for Icons-->
+    <script src="https://kit.fontawesome.com/def3229fdd.js" crossorigin="anonymous"></script>
+
+    
+
+</body>
+
+</html>

@@ -264,6 +264,7 @@ class MafiController extends Controller
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$materia->codMateria],['codBanner','=',$estudiante->homologante]])->dd();
+
                     //dd($estaPlaneacion->codMateria);
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);

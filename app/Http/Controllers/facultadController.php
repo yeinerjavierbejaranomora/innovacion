@@ -432,9 +432,11 @@ class facultadController extends Controller
     public function inactivar_facultad()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
+        $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($inactivarFacultad) :
-            $this->inactivarLogUsuarios('facultad', $id);
+            $this->updateLogUsuarios("La facultad". $informacionOriginal[0]->nombre ." fue desactivada",'facultad', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -445,10 +447,11 @@ class facultadController extends Controller
     public function activar_facultad()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
-
+        $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($activarPrograma) :
-            $this->activarLogUsuarios('facultad', $id);
+            $this->updateLogUsuarios("La facultad". $informacionOriginal[0]->nombre ." fue activada",'facultad', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";

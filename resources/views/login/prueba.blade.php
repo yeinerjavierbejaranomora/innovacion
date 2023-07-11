@@ -28,6 +28,12 @@ body {
 					<label for="password" class="form-label"> Contraseña</label>
 					<input type="password" class= "form-control" name="password">
 				</div>
+				<div>
+					<button type="submit" class="btn btn-warning"> Iniciar sesión</button>
+				</div>
+				<div class="my-10">
+					<span><a href="#">Recuperar Contraseña</a></span>
+				</div>
 			</form>
 		
 		

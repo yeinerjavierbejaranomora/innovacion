@@ -187,7 +187,7 @@ class MafiController extends Controller
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
             $materiasPorVer = $this->programacion($codigoBanner,$programa);
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -1073,27 +1073,24 @@ class MafiController extends Controller
             return $estudiante;
         }
 
-        public function programacion($codBanner,$programa){
+        /**Materias por ver de cada estudiante */
+        public function materiasPorVer($codBanner,$ciclo,$programa){
 
-            /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
-
-            $materiasPorVer = DB::table("materiasPorVer")
-                ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
-                ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
-                ->where('materiasPorVer.codBanner','=',$codBanner)
-                ->whereIn('mallaCurricular.ciclo',[1,12])
-                ->where('materiasPorVer.codprograma','=',$programa)
-                ->where('mallaCurricular.codprograma','=',$programa)
-                ->orderBy('materiasPorVer.orden','ASC')
+            // Materias que debe ver el estudiante
+            $materiasPorVer = DB::table("materiasPorVer mp")
+                ->select('mp.codBanner','mp.codMateria','mp.orden','mc.creditos','mc.ciclo')
+                ->join('mallaCurricular mc','mc.codigoCurso','=','mp.codMateria')
+                ->where('mp.codBanner','=',$codBanner)
+                ->whereIn('mc.ciclo',$ciclo)
+                ->where('mp.codprograma','=',$programa)
+                ->where('mc.codprograma','=',$programa)
+                ->orderBy('mp.orden','ASC')
                 ->get();
-            //$sql="select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = 'PPSV' and `mallaCurricular`.`codprograma` ='PPSV' order by `materiasPorVer`.`orden` ASC;";
-
-            //$materiasPorVer= DB::select($sql);
-
-            //dd($materiasPorVer);
 
             return $materiasPorVer;
         }
+
+        
 
         public function prerequisitos($codMateria,$codPrograma){
             /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */

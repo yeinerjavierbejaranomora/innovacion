@@ -10,6 +10,10 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+	.form-control::placeholder {
+  	font-weight: bold;
+	}
 </style>
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
@@ -33,7 +37,6 @@
 					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>
 				<div class="mb-5 col-10">
-					
 					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">

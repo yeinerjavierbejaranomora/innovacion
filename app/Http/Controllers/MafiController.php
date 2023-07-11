@@ -178,15 +178,21 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $programado_ciclo1=NULL;
         /**consulta de estudinates primer ciclo */
-        $estudiantesPC = $this->programarPrimerCiclo();
+        $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
+        dd( $estudiantesPC);
         foreach($estudiantesPC as $estudiante):
+
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
+            
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+            $ciclo=('1,12');
+
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
             //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
@@ -1058,30 +1064,50 @@ class MafiController extends Controller
 
 }
         /**validar si el estudiante tiene creditos planeados */
-        public function programarPrimerCiclo(){
+        public function programarPrimerCiclo($programado_ciclo1){
 
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
-            $marcaIngreso = [202313,202333];
+            /// para activar el perodo activo en la base de datos
+            $periodo = $this->periodo();
+            $marcaIngreso = "";
+            foreach ($periodo as $key => $value) {
+                $marcaIngreso .= (int)$value->periodos . ",";
+            }
+
+            // para procesasr las marcas de ingreso en los periodos
+            $marcaIngreso=trim($marcaIngreso,",");
+            // Dividir la cadena en elementos individuales
+            $marcaIngreso = explode(",", $marcaIngreso);
+            // Convertir cada elemento en un número
+            $marcaIngreso = array_map('intval', $marcaIngreso);
+
+            //$marcaIngreso = [202313,202333];
             $estudiante = DB::table('estudiantes')
                     ->select('id','homologante','programa','bolsa','tipo_estudiante')
                     ->where('materias_faltantes','=','OK')
-                    ->whereNull('programado_ciclo1')
+                    ->where('programado_ciclo1','=',$programado_ciclo1)
                     ->whereNull('programado_ciclo2')
                     ->whereIn('marca_ingreso',$marcaIngreso)
                     ->orderBy('id','asc')
                     ->get();
 
+
+
             return $estudiante;
         }
+
+
+
+
 
         /**Materias por ver de cada estudiante */
         public function materiasPorVer(){
             //$codBanner,$ciclo,$programa
             $periodo=$this->periodo();
-            dd($periodo);
+            //dd($periodo);
 
             // Materias que debe ver el estudiante
-           /* $materiasPorVer = DB::table("materiasPorVer mp")
+          $materiasPorVer = DB::table("materiasPorVer mp")
                 ->select('mp.codBanner','mp.codMateria','mp.orden','mc.creditos','mc.ciclo')
                 ->join('mallaCurricular mc','mc.codigoCurso','=','mp.codMateria')
                 ->where('mp.codBanner','=',$codBanner)
@@ -1089,7 +1115,7 @@ class MafiController extends Controller
                 ->where('mp.codprograma','=',$programa)
                 ->where('mc.codprograma','=',$programa)
                 ->orderBy('mp.orden','ASC')
-                ->get();*/
+                ->get();
 
             return $materiasPorVer;
         }

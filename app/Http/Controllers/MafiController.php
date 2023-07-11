@@ -186,7 +186,7 @@ class MafiController extends Controller
             $programa = $estudiante->programa;
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
-            $materiasPorVer = $this->materiasPorVer($codigoBanner,$programa);
+            $materiasPorVer = $this->programacion($codigoBanner,$programa);
             dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -220,7 +220,8 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                $prerequisitos ='';
+                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
+                //dd($prerequisitos);
             endforeach;
 
         endforeach;
@@ -1097,6 +1098,7 @@ class MafiController extends Controller
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
                                 ->dd();
+
         }
 
 }

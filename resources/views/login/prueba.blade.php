@@ -135,8 +135,7 @@
 
 </div>
 
-
-
 </body>
 
 @endsection
+@include('layout.footer')

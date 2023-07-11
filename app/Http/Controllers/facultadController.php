@@ -483,9 +483,9 @@ class facultadController extends Controller
             'periodoActivo' => 0,
             'year' => $año,
         ]);
-        $informacionActualizada= $request->except(['_token']);
+        $informacionOriginal= $request->except(['_token']);
         if ($crear) :
-            $this->crearLogUsuarios('periodo',$informacionActualizada);
+            $this->createLogUsuarios("Periodo creado",'periodo',$informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.periodos')->with('success', 'Periodo creado correctamente');
         else :
@@ -525,7 +525,7 @@ class facultadController extends Controller
         $informacionActualizada = $request->except(['_token']);
         if ($periodo) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            $this->actualizarLogUsuarios('periodo',$informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios( "El periodo ". $informacionOriginal[0]->periodos . " fue actualizado ",'periodo',$informacionOriginal,$informacionActualizada);
             return "actualizado";
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
@@ -541,9 +541,11 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $informacionOriginal = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 1]);
+        $informacionActualizada = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         if ($activarPeriodo) :
-            $this->activarLogUsuarios('periodo', $id);
+            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue activado ",'periodo', $informacionOriginal,$informacionActualizada);
             return  "habilitado";
         else :
             return "false";
@@ -558,9 +560,11 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
+        $informacionOriginal = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
+        $informacionActualizada = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         if ($inactivarPeriodo) :
-            $this->inactivarLogUsuarios('periodo', $id);
+            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue activdado ",'periodo', $informacionOriginal,$informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -676,7 +680,7 @@ class facultadController extends Controller
 
     public function createLogUsuarios($mensaje,$tabla, $informacionOriginal)
     {
-        LogUsuariosController::registrarLog('CREATE', $mensaje , $tabla, NULL, json_encode($informacionOriginal));
+        LogUsuariosController::registrarLog('CREATE', $mensaje , $tabla, json_encode($informacionOriginal), NULL);
     }
     
 }

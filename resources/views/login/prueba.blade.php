@@ -41,8 +41,9 @@
 				</div>
 				<br>
 				<br>
+				<br>
 				<div class="my-10 text-center">
-					<span> <u><a href="#">Recuperar Contraseña</a></u></span>
+					<span><u><a href="#"><strong>Recuperar Contraseña</strong></a></u></span>
 				</div>
 			</form>
 

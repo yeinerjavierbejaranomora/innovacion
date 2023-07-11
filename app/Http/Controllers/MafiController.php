@@ -182,13 +182,13 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
-        $programa = $estudiantesPC[13]->programa;
+        $programa = $estudiantesPC[10]->programa;
 
-            $ruta = $estudiantesPC[13]->bolsa;
+            $ruta = $estudiantesPC[10]->bolsa;
             if($ruta != ''):
                 $ruta = 1;
             endif;
-        $tipoEstudiante = $estudiantesPC[13]->tipo_estudiante;
+        $tipoEstudiante = $estudiantesPC[10]->tipo_estudiante;
 
             switch ($tipoEstudiante) {
                 case str_contains($tipoEstudiante, 'TRANSFERENTE'):
@@ -221,7 +221,7 @@ class MafiController extends Controller
                                 ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
                                 ->get();
 
-            dd($reglaNegocio);
+            dd($estudiantesPC[10],$reglaNegocio);
             die();
 
         foreach($estudiantesPC as $estudiante):

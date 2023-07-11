@@ -1101,6 +1101,7 @@ class MafiController extends Controller
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
                                 ->dd();
+                                
         }
 
 }

@@ -11,8 +11,13 @@
 		align-items: center;
 	}
 
+	.form-control{
+		font-size: 16px;
+	}
+
 	.form-control::placeholder {
 		font-weight: bold;
+		font-size: 16px;
 	}
 
 	#btn-iniciar-sesion {
@@ -41,7 +46,6 @@
 
 			<form action="#">
 				<div class="mb-5 col-10">
-
 					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>
 				<div class="mb-5 col-10">

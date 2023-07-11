@@ -12,12 +12,12 @@
 	}
 
 	.form-control{
-		font-size: 16px;
+		font-size: 20px;
 	}
 
 	.form-control::placeholder {
 		font-weight: bold;
-		font-size: 16px;
+		font-size: 20px;
 	}
 
 	#btn-iniciar-sesion {
@@ -31,7 +31,7 @@
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
 	<div class="row">
-		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
+		<div class="col text-center mb-4" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
@@ -41,14 +41,14 @@
 				<h6> </strong>©Todos los derechos reservados </strong></h6>
 			</div>
 		</div>
-		<div class="col">
+		<div class="col mb-4">
 			<h2 class="fw-bold text-center mb-5"> Sistema de proyeccion Ibero</h2>
 
 			<form action="#" class="align-content-center">
-				<div class="mb-5 col-10">
+				<div class="mb-5 col-10 mx-auto">
 					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>
-				<div class="mb-5 col-10">
+				<div class="mb-5 col-10 mx-auto">
 					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">
@@ -56,7 +56,7 @@
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">
-					<span><u><a href="#"><strong>Recuperar Contraseña</strong></a></u></span>
+					<span><u><a href="#"><strong>¿Olvidaste tu Contraseña?</strong></a></u></span>
 				</div>
 			</form>
 

@@ -1217,7 +1217,7 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-
+            dd($consulta_sumacreditos);
 
             $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
@@ -1256,7 +1256,7 @@ class MafiController extends Controller
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
 
             $prerequisitos=$this->prerequisitos($codMateria,$codPrograma);
-            dd($prerequisitos);
+           
             $creditos_homologantes=$this->sumar_creditos($codBanner);
 
             $numeroCreditosC1=$this->consulta_creditos($codBanner,$ciclo);
@@ -1399,9 +1399,11 @@ class MafiController extends Controller
               
                 foreach ($materiasPorVer as $value_materiasPorVer) {
               
-                    dd($value_materiasPorVer);
+                   // dd($value_materiasPorVer);
+
+                
                     $codMateria=$value_materiasPorVer->codMateria;
-                    $codPrograma=$value_materiasPorVer->$programa;
+                    $codPrograma=$programa;
 
                
 

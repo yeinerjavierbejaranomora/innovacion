@@ -391,7 +391,7 @@ class UserController extends Controller
         $id = $_POST['id'];
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         if ($inactivarUsuario) :
             LogUsuariosController::registrarLog('INACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
@@ -406,7 +406,7 @@ class UserController extends Controller
         $id = $_POST['id'];
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         if ($activarUsuario) :
             LogUsuariosController::registrarLog('ACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue activado" , 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";

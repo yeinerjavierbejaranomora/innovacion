@@ -197,30 +197,30 @@ class MafiController extends Controller
             $tipoEstudiante = $estudiante->tipo_estudiante;
 
             switch ($tipoEstudiante) {
-                case str_contains($estudiante->tipoestudiante, 'TRANSFERENTE'):
-                    echo $estudiante->tipoestudiante.' Transferente';
+                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                    echo $tipoEstudiante.' Transferente';
                     break;
-                case str_contains($estudiante->tipoestudiante, 'ESTUDIANTE ANTIGUO'):
-                    echo $estudiante->tipoestudiante.' estudiante';
+                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                    echo $tipoEstudiante.' estudiante';
                     break;
-                case str_contains($estudiante->tipoestudiante, 'PRIMER INGRESO'):
-                    echo $estudiante->tipoestudiante.' primer';
+                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                    echo $tipoEstudiante.' primer';
                     break;
-                case str_contains($estudiante->tipoestudiante, 'INGRESO SINGULAR'):
-                    echo $estudiante->tipoestudiante.' primer';
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    echo $tipoEstudiante.' primer';
                     break;
-                case str_contains($estudiante->tipoestudiante, 'PSEUDO ACTIVOS'):
-                    echo $estudiante->tipoestudiante.' estudiante';
+                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                    echo $tipoEstudiante.' estudiante';
                     break;
-                case str_contains($estudiante->tipoestudiante, 'REINGRESO'):
-                    echo $estudiante->tipoestudiante.' estudiante';
+                case str_contains($tipoEstudiante, 'REINGRESO'):
+                    echo $tipoEstudiante.' estudiante';
                     break;
 
                 default:
                     # code...
                     break;
             }
-            
+
             dd($tipoEstudiante);
             $ciclo=[1,12];
 

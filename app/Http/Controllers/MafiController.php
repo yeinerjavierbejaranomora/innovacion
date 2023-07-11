@@ -1157,7 +1157,6 @@ class MafiController extends Controller
             return $prerequisitos;
         }
 
-<<<<<<< HEAD
         // No. de creditos para el homologante	
         public function consulta_sumacreditos($codBanner){
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
@@ -1172,10 +1171,6 @@ class MafiController extends Controller
             ->orderBy('mallaCurricular.orden','ASC')
             ->orderBy('mallaCurricular.semestre','ASC')
             ->get();
-=======
-        // No. de creditos para el homologante
-        public function consulta_sumacreditos(){
->>>>>>> 80b522d71b9b4684c3798241349ac923ef36de8f
 
 
             return  $consulta_sumacreditos;

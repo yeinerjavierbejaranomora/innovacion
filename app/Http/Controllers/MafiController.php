@@ -1197,7 +1197,12 @@ class MafiController extends Controller
 
 
     public function estaEnPlaneacion($materia){
+        $materia = [$materia];
         dd($materia);
+        /**SELECT codMateria FROM planeacion WHERE codMateria in ('AFV22612') AND codBanner="100147341" */
+        $consultaPlaneacion = DB::table('planeacion')
+                                    ->select('codMateria')
+                                    ->whereIn('codMateria',$materia);
     }
 
 

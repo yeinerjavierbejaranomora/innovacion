@@ -50,7 +50,7 @@
             </div>
 
             
-            @if(!$datos['programas'])
+            @if($datos['programas'] == NULL)
             <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>    
             @endif
             

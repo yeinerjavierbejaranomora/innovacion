@@ -31,10 +31,12 @@
 						<label for="password" class="form-label"> Contraseña</label>
 						<input type="password" class="form-control" name="password">
 					</div>
-					<div class="align-content-center">
-						<button type="submit" class="btn btn-warning text-white"> Iniciar sesión</button>
+					<div class="text-center">
+						<button type="submit" class="btn btn-warning fw-bold text-white"> Iniciar sesión</button>
 					</div>
-					<div class="my-10">
+					<br>
+					<br>
+					<div class="my-10 text-center">
 						<span> <u><a href="#">Recuperar Contraseña</a></u></span>
 					</div>
 				</form>

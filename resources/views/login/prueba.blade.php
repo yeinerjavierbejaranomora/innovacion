@@ -1,5 +1,6 @@
-@include('layout.header')
-
+@extends('layout.plantillaFormularios')
+@section('title', 'LoginPrueba')
+@section('content')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
 <style>
@@ -11,15 +12,9 @@
 		align-items: center;
 	}
 
-	.container {
-		margin-right: auto;
-		margin-left: auto;
-		padding-right: 15px;
-		padding-left: 15px;
-		width: 100%;
+	.container{
 		border-radius: 35px;
 	}
-
 
 	.form-control {
 		font-size: 20px;
@@ -88,6 +83,8 @@
 	#colmder {
 		margin-left: 0;
 	}
+
+	
 </style>
 
 <div class="container align-middle shadow-lg rounded" style="background-color:white; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">
@@ -133,19 +130,8 @@
 
 </div>
 
-<script src="{{asset('public/general/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('public/general/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('public/general/js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Font awesome for Icons-->
-    <script src="https://kit.fontawesome.com/def3229fdd.js" crossorigin="anonymous"></script>
-
-    
 
 </body>
 
-</html>
+@endsection

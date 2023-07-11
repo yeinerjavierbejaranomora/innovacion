@@ -182,33 +182,6 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
-
-        $tipoEstudiante = $estudiantesPC[13]->tipo_estudiante;
-
-            switch ($tipoEstudiante) {
-                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
-                    echo $tipoEstudiante.' Transferente';
-                    break;
-                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
-                    echo $tipoEstudiante.' estudiante';
-                    break;
-                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
-                    echo $tipoEstudiante.' primer';
-                    break;
-                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
-                    echo $tipoEstudiante.' primer';
-                    break;
-                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
-                    echo $tipoEstudiante.' estudiante';
-                    break;
-                case str_contains($tipoEstudiante, 'REINGRESO'):
-                    echo $tipoEstudiante.' estudiante';
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;

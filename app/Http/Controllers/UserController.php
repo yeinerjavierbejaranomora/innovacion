@@ -392,7 +392,7 @@ class UserController extends Controller
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
         $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         if ($inactivarUsuario) :
-            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue inctivado",'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue inactivado",'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -417,9 +417,11 @@ class UserController extends Controller
     public function inactivar_rol()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
         $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
-        LogUsuariosController::registrarLog(Constantes::INACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
+        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
         if ($inactivarRol) :
+            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionActualizada[0]->nombreRol . " fue inactivado", 'Roles',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -429,9 +431,11 @@ class UserController extends Controller
     public function activar_rol()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get(); 
         $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
-        LogUsuariosController::registrarLog(Constantes::ACTIVAR, 'Roles', NULL, json_encode(['id' => $id]));
+        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
         if ($activarRol) :
+            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionActualizada[0]->nombreRol . " fue activado", 'Roles',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";
         else :
             return "false";

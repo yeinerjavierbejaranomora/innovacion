@@ -63,7 +63,7 @@ class RegistroController extends Controller
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
 
-        LogUsuariosController::registrarLog(Constantes::CREAR, 'Users', NULL, json_encode($request->all()));
+        LogUsuariosController::registrarLog('CREATE', "Usuario creado" ,'Users', json_encode($request->all()), NULL);
 
         /** si la insercion es correcta */
         if($usuario):

@@ -12,12 +12,9 @@
 		align-items: center;
 	}
 
-
-	.shadow-lg {
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		/* Agrega una sombra alrededor del contenedor */
+	.container{
+		border-radius: 35px;
 	}
-
 
 	.form-control {
 		font-size: 20px;
@@ -86,9 +83,11 @@
 	#colmder {
 		margin-left: 0;
 	}
+
+	
 </style>
 
-<div class="container align-middle shadow-lg rounded" style="background-color:white; border-radius: 35px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+<div class="container align-middle shadow-lg rounded" style="background-color:white; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">
 	<div class="row">
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>
@@ -101,7 +100,7 @@
 				<h6 style="font-weight: 300;">©2023 Todos los derechos reservados</h6>
 			</div>
 		</div>
-		<div class="col" id="colmder">
+		<div class="col" id="colmder" style="border-top-right-radius: 35px 35px; border-bottom-right-radius: 35px 35px;">
 			<br>
 			<div class="rectangle"></div>
 			<br>

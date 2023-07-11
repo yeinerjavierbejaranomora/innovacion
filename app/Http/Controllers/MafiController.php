@@ -1255,9 +1255,8 @@ class MafiController extends Controller
 
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
 
-            dd($materiasPorVer);
             $prerequisitos=$this->prerequisitos($codMateria,$codPrograma);
-
+            dd($prerequisitos);
             $creditos_homologantes=$this->sumar_creditos($codBanner);
 
             $numeroCreditosC1=$this->consulta_creditos($codBanner,$ciclo);

@@ -998,6 +998,8 @@ class MafiController extends Controller
     public function Generar_faltantes(){
 
 
+
+
             /// para activar el perodo activo en la base de datos
             $periodo = $this->periodo();
             $marcaIngreso = "";
@@ -1073,6 +1075,7 @@ class MafiController extends Controller
         public function materiasPorVer($codBanner,$programa){
 
             /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
+
             $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                 ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
@@ -1081,7 +1084,7 @@ class MafiController extends Controller
                 ->where('materiasPorVer.codprograma','=',$programa)
                 ->where('mallaCurricular.codprograma','=',$programa)
                 ->orderBy('materiasPorVer.orden','ASC')
-                ->get();
+                ->dd();
 
             return $materiasPorVer;
         }

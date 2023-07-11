@@ -608,11 +608,11 @@ class facultadController extends Controller
         }
 
         $crear = DB::table('reglasNegocio')->insert([
-            'Programa' => $programa,
+            'programa' => $programa,
             'creditos' => $creditos,
             'materiasPermitidas' => $materias,
             'tipoEstudiante' => $estudiante,
-            'ruta' => "",
+            'ruta' => 0,
             'ciclo' => $ciclo,
         ]);
         $informacionOriginal = $request->except(['_token']);
@@ -644,7 +644,7 @@ class facultadController extends Controller
         $regla = DB::table('reglasNegocio')
             ->where('id', $id)
             ->update([
-                'Programa' => $programa,
+                'programa' => $programa,
                 'creditos' => $creditos,
                 'materiasPermitidas' => $materias,
                 'tipoEstudiante' => $estudiante,

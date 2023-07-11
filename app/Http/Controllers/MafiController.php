@@ -1202,7 +1202,7 @@ class MafiController extends Controller
         /**SELECT codMateria FROM planeacion WHERE codMateria in ('AFV22612') AND codBanner="100147341" */
         $consultaPlaneacion = DB::table('planeacion')
                                     ->select('codMateria')
-                                    ->whereIn($materia);
+                                    ->whereIn('codMateria',$materia);
     }
 
 

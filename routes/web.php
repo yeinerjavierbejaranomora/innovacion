@@ -94,8 +94,6 @@ Route::controller(RegistroController::class)->group(function(){
     /** crear usuario */
     Route::post('/home/crearusuario', 'crearUsuario')->middleware('auth')->name('user.crear');
 
-    /** Prueba */
-    Route::get('/logprueba','indexPrueba')->name('registroPrueba.index');
 });
 
 
@@ -115,6 +113,9 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/logout','logout')->name('logout');
     /// para cambiar el password interno
     Route::post('/login/admin','cambio_Pass')->name('login_interno.cambiopass');
+    
+    /** Prueba */
+    Route::get('/logprueba','indexPrueba')->name('registroPrueba.index');
 });
 
 Route::controller(contrasenaController::class)->group(function(){

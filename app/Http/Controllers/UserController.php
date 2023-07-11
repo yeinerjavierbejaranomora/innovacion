@@ -389,12 +389,12 @@ class UserController extends Controller
     public function inactivar_usuario()
     {
         $id = $_POST['id'];
-        $informacionOriginal = DB::table('users')->where('id', '=', $id)->get();
+        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->get();
-        LogUsuariosController::registrarLog('INACTIVATE',"El usario con id =" . $id . "y nombre =" . $informacionOriginal[0]->nombre . "fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
-
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
+        
         if ($inactivarUsuario) :
+            LogUsuariosController::registrarLog('INACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -404,9 +404,11 @@ class UserController extends Controller
     public function activar_usuario()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
-        LogUsuariosController::registrarLog(Constantes::ACTIVAR, 'Users', NULL, json_encode(['id' => $id]));
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
         if ($activarUsuario) :
+            LogUsuariosController::registrarLog('ACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue activado" , 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";
         else :
             return "false";

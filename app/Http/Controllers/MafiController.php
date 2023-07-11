@@ -1076,15 +1076,15 @@ class MafiController extends Controller
 
             /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
 
-            $materiasPorVer = DB::table("materiasPorVer")
-                ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
-                ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
-                ->where('materiasPorVer.codBanner','=',$codBanner)
-                ->whereIn('mallaCurricular.ciclo',[1,12])
-                ->where('materiasPorVer.codprograma','=',$programa)
-                ->where('mallaCurricular.codprograma','=',$programa)
-                ->orderBy('materiasPorVer.orden','ASC')
-                ->dd();
+            // $materiasPorVer = DB::table("materiasPorVer")
+            //     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+            //     ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
+            //     ->where('materiasPorVer.codBanner','=',$codBanner)
+            //     ->whereIn('mallaCurricular.ciclo',[1,12])
+            //     ->where('materiasPorVer.codprograma','=',$programa)
+            //     ->where('mallaCurricular.codprograma','=',$programa)
+            //     ->orderBy('materiasPorVer.orden','ASC')
+            //     ->dd();
             $sql="select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = 'PPSV' and `mallaCurricular`.`codprograma` ='PPSV' order by `materiasPorVer`.`orden` ASC;";
 
             $materiasPorVer= DB::select($sql);

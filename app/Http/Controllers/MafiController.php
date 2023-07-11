@@ -1075,8 +1075,8 @@ class MafiController extends Controller
         }
 
         /**Materias por ver de cada estudiante */
-        public function materiasPorVer($codBanner,$ciclo,$programa){
-
+        public function materiasPorVer(){
+            //$codBanner,$ciclo,$programa
             $periodo=$this->periodo();
             dd($periodo);
 

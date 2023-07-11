@@ -216,13 +216,15 @@ class MafiController extends Controller
 
             $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
-            $cuentaCreditosCiclo1 = $numeroCreditosC1->screditos;
-            $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
+            $cuentaCursosCiclo1 = $numeroCreditosC1->screditos;
+            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
 
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
                                 ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
                                 ->first();
+
+            dd($reglaNegocio);
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;

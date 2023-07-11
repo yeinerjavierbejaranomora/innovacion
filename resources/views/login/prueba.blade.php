@@ -39,8 +39,8 @@
 			</div>
 			<br>
 			<div class="text-center text-white mb-5">
-				<h6 style="font-weight: 500;">Universidad Iberoamericana</h6>
-				<h6 style="font-weight: 500;">©2023 Todos los derechos reservados</h6>
+				<h6 style="font-weight: 300;">Universidad Iberoamericana</h6>
+				<h6 style="font-weight: 300;">©2023 Todos los derechos reservados</h6>
 			</div>
 		</div>
 		<div class="col">

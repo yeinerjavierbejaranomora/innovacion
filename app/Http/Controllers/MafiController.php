@@ -194,7 +194,7 @@ class MafiController extends Controller
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
             //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -1101,8 +1101,8 @@ class MafiController extends Controller
 
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
-    
-            // Materias que debe ver el estudiante por ciclo 
+
+            // Materias que debe ver el estudiante por ciclo
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                 ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
@@ -1128,7 +1128,7 @@ class MafiController extends Controller
 
         }
 
-        // No. de creditos para el homologante	
+        // No. de creditos para el homologante
         public function consulta_sumacreditos(){
 
 
@@ -1136,7 +1136,7 @@ class MafiController extends Controller
         }
 
 
-        // funcion para probar otras funciones 
+        // funcion para probar otras funciones
         public function probarfunciones(){
 
 

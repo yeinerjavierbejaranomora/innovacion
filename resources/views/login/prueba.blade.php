@@ -66,6 +66,13 @@
 	.custom-input:not(:placeholder-shown)+.input-border {
 		transform: scaleX(1);
 	}
+
+	.rectangle {
+		width: 200px;	
+		height: 100px;
+		background-color: #dfc14e;
+		border-radius: 0 10px 10px 0;
+	}
 </style>
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
@@ -82,7 +89,10 @@
 			</div>
 		</div>
 		<div class="col">
-			<br><br>
+			<br>
+			<div class="rectangle"></div>
+			<br>
+
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>
 
 			<form action="#" class="align-content-center">

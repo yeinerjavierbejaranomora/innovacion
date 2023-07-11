@@ -195,6 +195,7 @@ class MafiController extends Controller
                 $ruta = 1;
             endif;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+
             switch ($tipoEstudiante) {
                 case str_contains($estudiante->tipoestudiante, 'TRANSFERENTE'):
                     echo $estudiante->tipoestudiante.' Transferente';
@@ -219,6 +220,7 @@ class MafiController extends Controller
                     # code...
                     break;
             }
+            
             dd($tipoEstudiante);
             $ciclo=[1,12];
 

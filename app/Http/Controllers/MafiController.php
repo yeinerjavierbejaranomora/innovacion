@@ -1192,7 +1192,7 @@ class MafiController extends Controller
                 ->orderBy('mallaCurricular.orden','ASC')
                 ->orderBy('mallaCurricular.semestre','ASC')
                 ->get();
-                dd($materiasPorVer);
+           
             return $materiasPorVer;
         }
 
@@ -1255,6 +1255,7 @@ class MafiController extends Controller
 
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
 
+            dd($materiasPorVer);
             $prerequisitos=$this->prerequisitos($codMateria,$codPrograma);
 
             $creditos_homologantes=$this->sumar_creditos($codBanner);

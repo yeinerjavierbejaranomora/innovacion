@@ -1231,7 +1231,7 @@ $reglaNegocio =DB::table('reglasNegocio')
 
     public function estaEnPlaneacion($materia,$codBanner){
         $materia = [$materia];
-        //dd($materia);
+        dd($materia);
         /**SELECT codMateria FROM planeacion WHERE codMateria in ('AFV22612') AND codBanner="100147341" */
         $consultaPlaneacion = DB::table('planeacion')
                                     ->select('codMateria')

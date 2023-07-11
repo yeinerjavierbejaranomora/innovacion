@@ -1278,15 +1278,14 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-                echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
-                exit();
+                //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
+                //exit();
                 $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="'.$codMateria.'" AND codprograma = "'.$programa_homologante.'";';
                 //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
                 // exit();
-                $resultado_prerequisitos = mysql_query($consulta_prerequisitos, $link);
-                $filas = mysql_fetch_assoc($resultado_prerequisitos);
-                $prerequisitos = $filas['prerequisito'];
-                //echo $prerequisitos;
+            
+                echo $prerequisitos;
+                exit();
 
                 /*
                 echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;

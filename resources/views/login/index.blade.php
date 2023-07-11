@@ -91,6 +91,8 @@
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
 			<br>
+			<br>
+			<br>
 			<div class="text-center text-white mb-5">
 				<h6 style="font-weight: 300;">Universidad Iberoamericana</h6>
 				<h6 style="font-weight: 300;">©2023 Todos los derechos reservados</h6>

@@ -1153,7 +1153,7 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->get();
+                                ->first();
             return $prerequisitos;
         }
 

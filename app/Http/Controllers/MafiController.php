@@ -1162,7 +1162,8 @@ class MafiController extends Controller
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
 
             $consulta_sumacreditos = DB::table("mallaCurricular")
-            ->select('planeacion.codBanner','SUM(mallaCurricular.creditos) AS CreditosPlaneados','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+            ->select('planeacion.codBanner')
+            ->sum('mallaCurricular.creditos')
             ->join('planeacion','mallaCurricular.codigoCurso','=','planeacion.codMateria')
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codbanner')

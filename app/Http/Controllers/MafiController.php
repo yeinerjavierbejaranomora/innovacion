@@ -270,6 +270,8 @@ class MafiController extends Controller
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
+                        dd($numeroCreditos);
+                        
                         $numeroCreditos = $numeroCreditos + $creditos;
                         $insertPlaneacion = DB::table('planeacion')->insert([
                             'codBanner' => $codBanner,
@@ -1204,7 +1206,7 @@ class MafiController extends Controller
 
         // No. de creditos para el homologante
         public function sumar_creditos($codBanner){
-            
+
 
             $consulta_sumacreditos = DB::table('mallaCurricular')
             ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -1212,12 +1214,12 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-  
-            
+
+
             $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
             return $creditos_homologantes;
-            
+
         }
 
         public function consulta_creditos($codBanner,$ciclo){
@@ -1228,7 +1230,7 @@ class MafiController extends Controller
                     ->where('planeacion.codBanner','=',$codBanner)
                     ->whereIn('mallaCurricular.ciclo',$ciclo)
                     ->first();
-                    
+
             return $numeroCreditosC1;
 
         }
@@ -1267,12 +1269,12 @@ class MafiController extends Controller
 
             foreach ($materiasPorVer as $materias) {
                 # code...
-        
+
                 $codBanner      =  $materias->codBanner;
-                $codMateria     =  $materias->codMateria;	 
+                $codMateria     =  $materias->codMateria;
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
-                
+
                 echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
                 exit();
                 $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="'.$codMateria.'" AND codprograma = "'.$programa_homologante.'";';
@@ -1282,24 +1284,24 @@ class MafiController extends Controller
                 $filas = mysql_fetch_assoc($resultado_prerequisitos);
                 $prerequisitos = $filas['prerequisito'];
                 //echo $prerequisitos;
-                
+
                 /*
                 echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
                 exit();
                 */
-                
+
                 if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
                     //echo "vacio";
                     $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'";';
                     //echo $consulta_estaenplaneacion;
                     $codBanner=$codBanner;
-                    $resultado_planeacion = mysql_query($consulta_estaenplaneacion, $link); 
+                    $resultado_planeacion = mysql_query($consulta_estaenplaneacion, $link);
                     $filas_planeada = mysql_fetch_assoc($resultado_planeacion);
                     $planeada = $filas_planeada['prerequisito'];
                     if($planeada=='' && $creditos_homologantes<$num_creditos) {
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
                         $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
-                        $resultado_planeada = mysql_query($insert_planeada, $link); 
+                        $resultado_planeada = mysql_query($insert_planeada, $link);
                         $cuenta_cursos_ciclo1++;
                         //echo "1  " . $insert_planeada . "<br />";
                         //exit();
@@ -1314,29 +1316,29 @@ class MafiController extends Controller
                     $preprogramado = $filas['codMateria'];
                     //echo "<br />está programado: " . $preprogramado. "<br />";
                     //exit ();
-                    
+
                     $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';
                     $resultado_estaporver = mysql_query($consulta_estaporver, $link);
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
                     @ $prerequisito_estaporver=$filaspv = mysql_fetch_assoc($resultado_estaporver);
                     $estaporver = $filaspv['codMateria'];
-                    
-                    
+
+
                     if($preprogramado=='' && $estaporver=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
                         $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
                         $resultado_planeada = mysql_query($insert_planeada, $link);
-                        $cuenta_cursos_ciclo1++;				
+                        $cuenta_cursos_ciclo1++;
                         // echo "22  " . $insert_planeada . "<br />";
                         // exit();
                         //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";
                     }
                 }
-                $orden2++;	
+                $orden2++;
             $update_homologante = 'UPDATE homologantes SET programado_ciclo1="OK" WHERE homologantes.id='.$id_homologante.';';
             $resultado_updatehomologante = mysql_query($update_homologante, $link);
             echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
-                
+
             }
 
         }
@@ -1346,10 +1348,10 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $codBanner=100147341;
-            $ciclo=1;
+            $ciclo=[1,12];
             $programa='PPSV';
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
-            
+
             $planeacion=$this->Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
 
 

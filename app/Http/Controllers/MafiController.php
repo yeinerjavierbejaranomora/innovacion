@@ -257,8 +257,12 @@ class MafiController extends Controller
 
 
             foreach($materiasPorVer as $materia):
-                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
-                dd($prerequisitos);
+                dd($materia->ciclo);
+                $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
+                $prerequisitos = $prerequisitosConsulta->prerequisito;
+                if($prerequisitos == "" && $ciclo):
+                else:
+                endif;
             endforeach;
 
         endforeach;

@@ -1157,16 +1157,42 @@ class MafiController extends Controller
             return $prerequisitos;
         }
 
+<<<<<<< HEAD
+        // No. de creditos para el homologante	
+        public function consulta_sumacreditos($codBanner){
+            /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
+
+            $consulta_sumacreditos = DB::table("mallaCurricular")
+            ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+            ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
+            ->where('materiasPorVer.codBanner','=',$codBanner)
+            ->whereIn('mallaCurricular.ciclo',$ciclo)
+            ->where('materiasPorVer.codprograma','=',$programa)
+            ->where('mallaCurricular.codprograma','=',$programa)
+            ->orderBy('mallaCurricular.orden','ASC')
+            ->orderBy('mallaCurricular.semestre','ASC')
+            ->get();
+=======
         // No. de creditos para el homologante
         public function consulta_sumacreditos(){
+>>>>>>> 80b522d71b9b4684c3798241349ac923ef36de8f
 
 
-            $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM base_acdemica ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner='. $codHomologante .' group by p.codbanner ';
+            return  $consulta_sumacreditos;
         }
 
 
         // funcion para probar otras funciones
         public function probarfunciones(){
+
+            $codBanner=100147341;
+            $ciclo=1;
+            $programa='PPSV';
+
+            //$materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
+
+            $consulta_sumacreditos=$this->consulta_sumacreditos($codBanner)->dd();
+
 
 
         }

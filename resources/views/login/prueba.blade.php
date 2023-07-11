@@ -12,10 +12,6 @@
 		align-items: center;
 	}
 
-	.container {
-		padding: 0;
-		/* Elimina el espacio adicional dentro del contenedor */
-	}
 
 	.shadow-lg {
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

@@ -160,7 +160,7 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'Programa',
+                        data: 'programa',
                         title: 'Codigo de programa'
                     },
                     {

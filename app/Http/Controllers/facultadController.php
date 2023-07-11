@@ -193,7 +193,7 @@ class facultadController extends Controller
         $informacionActualizada = $this->getDatosPrograma($cod_llegada);
 
         if ($inactivarPrograma) :
-            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado", "programa", $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El programa " . $informacionOriginal[0]->programa . " fue desactivado", "programa", $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -206,11 +206,11 @@ class facultadController extends Controller
         $informacionOriginal = $this->getDatosPrograma($cod_llegada);
         $activarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
         $informacionActualizada = $this->getDatosPrograma($cod_llegada);
-        
+
         $datos = $this->getDatosPrograma($cod_llegada);
         if ($activarPrograma) :
-            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado","programa", $informacionOriginal, $informacionActualizada);
-            
+            $this->updateLogUsuarios("El programa " . $informacionOriginal[0]->programa . " fue activado", "programa", $informacionOriginal, $informacionActualizada);
+
             return  "habilitado";
         else :
             return "false";
@@ -231,9 +231,9 @@ class facultadController extends Controller
             'tabla' => 'pregrado',
         ]);
         $request->merge(['tabla' => 'pregrado']);
-        $informacionOriginal= $request->except(['_token']);
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
-            $this->createLogUsuarios("Programa creado", "programa", $informacionOriginal);
+            $this->insertLogUsuarios("Programa creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.programas')->with('sucess', 'Programa creado correctamente');
         else :
@@ -256,9 +256,9 @@ class facultadController extends Controller
             'tabla' => 'especializacion',
         ]);
         $request->merge(['tabla' => 'especializacion']);
-        $informacionOriginal= $request->except(['_token']);
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
-            $this->createLogUsuarios("Especialización creada", "programa", $informacionOriginal);
+            $this->insertLogUsuarios("Especialización creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.especializacion')->with('sucess', 'Especialización creada correctamente');
         else :
@@ -280,9 +280,9 @@ class facultadController extends Controller
             'tabla' => 'MAESTRIA',
         ]);
         $request->merge(['tabla' => 'maestria']);
-        $informacionOriginal= $request->except(['_token']);
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
-            $this->createLogUsuarios("Maestría creada", "programa", $informacionOriginal);
+            $this->insertLogUsuarios("Maestría creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.maestria')->with('success', 'Maestria creada correctamente');
         else :
@@ -305,9 +305,9 @@ class facultadController extends Controller
             'tabla' => 'EDUCACION CONTINUA',
         ]);
         $request->merge(['tabla' => 'educacion continua']);
-        $informacionOriginal= $request->except(['_token']);
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
-            $this->createLogUsuarios("Programa de educación continua creado", "programa", $informacionOriginal);
+            $this->insertLogUsuarios("Programa de educación continua creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.continua')->with('success', 'Programa creado correctamente');
         else :
@@ -337,7 +337,7 @@ class facultadController extends Controller
         $informacionActualizada = $request->except(['_token']);
 
         if ($update) :
-            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->programa." fue actualizado","programa",$informacionOriginal,$informacionActualizada); 
+            $this->updateLogUsuarios("El programa " . $informacionOriginal[0]->programa . " fue actualizado", "programa", $informacionOriginal, $informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -398,10 +398,10 @@ class facultadController extends Controller
         $facultad = DB::table('facultad')->insert([
             'codFacultad' => $_POST['codFacultad'],
             'nombre' => $_POST['nombre'],
-        ]);       
-        $informacionOriginal= $request->except(['_token']);
+        ]);
+        $informacionOriginal = $request->except(['_token']);
         if ($facultad) :
-            $this->createLogUsuarios("Facultad creada",'facultad',$informacionOriginal);
+            $this->insertLogUsuarios("Facultad creada", 'facultad', $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
@@ -422,15 +422,15 @@ class facultadController extends Controller
         $informacionOriginal = $this->obtenerFacultad($id);
         /** Consulta para actualizar facultad */
         $facultad = DB::table('facultad')
-        ->where('id', $id)
-        ->update([
-            'codFacultad' => $codFacultad,
-            'nombre' => $nombre
-        ]);
+            ->where('id', $id)
+            ->update([
+                'codFacultad' => $codFacultad,
+                'nombre' => $nombre
+            ]);
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
-            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue actualizada",'facultad',$informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("La facultad " . $informacionOriginal[0]->nombre . " fue actualizada", 'facultad', $informacionOriginal, $informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -447,7 +447,7 @@ class facultadController extends Controller
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
         $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($inactivarFacultad) :
-            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue desactivada",'facultad', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("La facultad " . $informacionOriginal[0]->nombre . " fue desactivada", 'facultad', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -462,7 +462,7 @@ class facultadController extends Controller
         $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
         $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($activarPrograma) :
-            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue activada",'facultad', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("La facultad " . $informacionOriginal[0]->nombre . " fue activada", 'facultad', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";
@@ -495,9 +495,9 @@ class facultadController extends Controller
             'periodoActivo' => 0,
             'year' => $año,
         ]);
-        $informacionOriginal= $request->except(['_token']);
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
-            $this->createLogUsuarios("Periodo creado",'periodo',$informacionOriginal);
+            $this->insertLogUsuarios("Periodo creado", 'periodo', $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.periodos')->with('success', 'Periodo creado correctamente');
         else :
@@ -524,20 +524,20 @@ class facultadController extends Controller
         $informacionOriginal = $this->obtenerPeriodo($id);
         /** Consulta para actualizar facultad */
         $periodo = DB::table('periodo')
-        ->where('id', $id)
-        ->update([
-            'periodos' => $nombre,
-            'fechaInicioCiclo1' => $fecha1,
-            'fechaInicioCiclo2' => $fecha2,
-            'fechaInicioTemprano' => $temprano,
-            'fechaInicioPeriodo' => $periodo,
-            'year' => $año,
-        ]);
+            ->where('id', $id)
+            ->update([
+                'periodos' => $nombre,
+                'fechaInicioCiclo1' => $fecha1,
+                'fechaInicioCiclo2' => $fecha2,
+                'fechaInicioTemprano' => $temprano,
+                'fechaInicioPeriodo' => $periodo,
+                'year' => $año,
+            ]);
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($periodo) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            $this->updateLogUsuarios( "El periodo ". $informacionOriginal[0]->periodos . " fue actualizado ",'periodo',$informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodos . " fue actualizado ", 'periodo', $informacionOriginal, $informacionActualizada);
             return "actualizado";
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
@@ -557,7 +557,7 @@ class facultadController extends Controller
         $activarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 1]);
         $informacionActualizada = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         if ($activarPeriodo) :
-            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue activado ",'periodo', $informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodos . " fue activado ", 'periodo', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";
@@ -576,14 +576,25 @@ class facultadController extends Controller
         $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
         $informacionActualizada = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         if ($inactivarPeriodo) :
-            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue inactivado ",'periodo', $informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodos . " fue inactivado ", 'periodo', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
         endif;
     }
 
-    public function crear_regla()
+
+    /** Método para obtener regla de negocio según si id
+     * @author ruben.charry
+     * 
+     */
+    public function obtenerRegla($id)
+    {
+        $reglaActualizar = DB::table('reglasNegocio')->where('id', '=', $id)->select('*')->get();
+        return $reglaActualizar;
+    }
+
+    public function crear_regla(Request $request)
     {
         $programa = $_POST['codigo'];
         $creditos = $_POST['creditos'];
@@ -604,17 +615,18 @@ class facultadController extends Controller
             'ruta' => "",
             'ciclo' => $ciclo,
         ]);
-
+        $informacionOriginal = $request->except(['_token']);
         if ($crear) :
+            $this->insertLogUsuarios("Regla creada", 'ReglasNegocio', $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.reglas')->with('message', 'Regla creada correctamente');
+            return redirect()->route('facultad.reglas')->with('success', 'Regla creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.reglas')->with(['errors' => 'La regla no ha podido ser creada']);
         endif;
     }
 
-    public function updateregla()
+    public function updateregla(Request $request)
     {
         $id_llegada = $_POST['id'];
         $programa = $_POST['programa'];
@@ -628,6 +640,7 @@ class facultadController extends Controller
             $id = decrypt($id_llegada);
         }
 
+        $informacionOriginal = $this->obtenerRegla($id);
         $regla = DB::table('reglasNegocio')
             ->where('id', $id)
             ->update([
@@ -638,7 +651,11 @@ class facultadController extends Controller
                 'ciclo' => $ciclo,
             ]);
 
+        $request->merge(['id' => $id]);
+        $informacionActualizada = $request->except(['_token']);
+
         if ($regla) :
+            $this->updateLogUsuarios("La regla " . $informacionOriginal[0]->programa . " fue actualizada ", 'reglasNegocio', $informacionOriginal, $informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -654,8 +671,11 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-        $activarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 1]);
-        if ($activarPeriodo) :
+        $informacionOriginal = DB::table('reglasNegocio')->where('id', '=', $id)->select('programa', 'id', 'activo')->get();
+        $activarRegla = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 1]);
+        $informacionActualizada = DB::table('reglasNegocio')->where('id', '=', $id)->select('programa', 'id', 'activo')->get();
+        if ($activarRegla) :
+            $this->updateLogUsuarios("La regla " . $informacionOriginal[0]->programa . " fue activada ", 'reglasNegocio', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";
@@ -669,8 +689,11 @@ class facultadController extends Controller
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
-        $inactivarPeriodo = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 0]);
-        if ($inactivarPeriodo) :
+        $informacionOriginal = DB::table('reglasNegocio')->where('id', '=', $id)->select('programa', 'id', 'activo')->get();
+        $inactivarRegla = DB::table('reglasNegocio')->where('id', '=', $id)->update(['activo' => 0]);
+        $informacionActualizada = DB::table('reglasNegocio')->where('id', '=', $id)->select('programa', 'id', 'activo')->get();
+        if ($inactivarRegla) :
+            $this->updateLogUsuarios("La regla " . $informacionOriginal[0]->programa . " fue activada ", 'reglasNegocio', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -678,21 +701,23 @@ class facultadController extends Controller
     }
 
     /**
-     * Método para registrar en el Log de Usuarios la acción de activar algún dao en la base de datos
+     * Método para registrar en el Log de Usuarios la acción de update
      * @author Ruben Charry 
      */
 
-    public function updateLogUsuarios($mensaje,$tabla, $informacionOriginal, $informacionActualizada)
+    public function updateLogUsuarios($mensaje, $tabla, $informacionOriginal, $informacionActualizada)
     {
 
-        LogUsuariosController::registrarLog('UPDATE',$mensaje ,$tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
+        LogUsuariosController::registrarLog('UPDATE', $mensaje, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
 
-  
+    /**
+     * Método para registrar en el Log de Usuarios la acción de insert
+     * @author Ruben Charry 
+     */
 
-    public function createLogUsuarios($mensaje,$tabla, $informacionOriginal)
+    public function insertLogUsuarios($mensaje, $tabla, $informacionOriginal)
     {
-        LogUsuariosController::registrarLog('INSERT', $mensaje , $tabla, json_encode($informacionOriginal), NULL);
+        LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
-    
 }

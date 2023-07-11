@@ -691,7 +691,7 @@ class facultadController extends Controller
 
     public function createLogUsuarios($mensaje,$tabla, $informacionOriginal)
     {
-        LogUsuariosController::registrarLog('CREATE', $mensaje , $tabla, json_encode($informacionOriginal), NULL);
+        LogUsuariosController::registrarLog('INSERT', $mensaje , $tabla, json_encode($informacionOriginal), NULL);
     }
     
 }

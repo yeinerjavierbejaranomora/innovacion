@@ -491,7 +491,7 @@ class UserController extends Controller
         $request->replace($parametros);
         
         if ($crear) :
-            LogUsuariosController::registrarLog('CREATE', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
+            LogUsuariosController::registrarLog('INSERT', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :

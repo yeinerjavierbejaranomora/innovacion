@@ -309,7 +309,7 @@ class MafiController extends Controller
                 DB::table('estudiantes')->where('id','=',$estudiante->id)->update(['programado_ciclo1'=>'OK']);
                 echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
             endforeach;
-
+            die();
         endforeach;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
@@ -1352,7 +1352,7 @@ class MafiController extends Controller
             $programado_ciclo1=NULL;
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
-            
+
             foreach($estudiantesPC as $estudiante):
 
                 $idEstudiante = $estudiante->id;
@@ -1395,7 +1395,7 @@ class MafiController extends Controller
                 $ciclo=[1,12];
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            
+
 
                 $codMateria=$materiasPorVer->codMateria;
                 $codPrograma=$materiasPorVer->$programa;
@@ -1404,7 +1404,7 @@ class MafiController extends Controller
 
                     $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                 }
-            
+
 
             endforeach;
 

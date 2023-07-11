@@ -1203,23 +1203,28 @@ class MafiController extends Controller
         }
 
         // No. de creditos para el homologante
-        public function consulta_sumacreditos($codBanner){
+        public function consulta_sumacreditos($codBanner,$ciclo){
+       
+        /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
 
-            $numeroCreditos = DB::table('mallaCurricular')
+            $consulta_sumacreditos = DB::table('mallaCurricular')
             ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
             ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
+  
+            
+            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" : $consulta_sumacreditos->CreditosPlaneados;
+            
+            
 
-            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
-        /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
         $numeroCreditosC1 = DB::table('mallaCurricular')
-                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
+                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS creditos'),DB::raw('COUNT(mallaCurricular.creditos) AS cursos'))
                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
-                    ->where('planeacion.codBanner','=',$codigoBanner)
-                    ->whereIn('mallaCurricular.ciclo',[1,12])
+                    ->where('planeacion.codBanner','=',$codBanner)
+                    ->whereIn('mallaCurricular.ciclo',$ciclo)
                     ->first();
 
             $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;

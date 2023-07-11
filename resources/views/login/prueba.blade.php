@@ -9,12 +9,19 @@ body {
   font-family: Montserrat;
 }
 
+.bg{
+	background-image: url('public/assets/images/Escudo.png');
+	background-position: center center;
+}
+
 </style>
 
 <div class="container">
-	<div class="row ">
+	<div class="row">
 		<div class="col">
+			<div class="bg">
 
+			</div>
 		</div>
 		<div class="col">
 			<h2 class="fw-light"> Sistema de proyeccion Ibero</h2>

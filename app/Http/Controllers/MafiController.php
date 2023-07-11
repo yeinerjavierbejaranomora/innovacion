@@ -191,6 +191,7 @@ class MafiController extends Controller
 
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+            dd($ruta);
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);

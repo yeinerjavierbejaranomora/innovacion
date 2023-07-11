@@ -16,7 +16,7 @@ body {
 
 </style>
 
-<div class="container">
+<div class="container w-60 mt-5 rounded shadow" style="background-color:white;">
 	<div class="row">
 		<div class="col" style="background:#dfc14e;">
 		<div class="align-content-center">

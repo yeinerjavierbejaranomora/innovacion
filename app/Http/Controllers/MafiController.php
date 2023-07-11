@@ -182,13 +182,13 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
-       
+
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
-            
+
             $ruta = $estudiante->bolsa;
             $tipoEstudiante = $estudiante->tipo_estudiante;
             $ciclo=[1,12];
@@ -1115,12 +1115,12 @@ class MafiController extends Controller
                 ->where('materiasPorVer.codprograma','=',$programa)
                 ->where('mallaCurricular.codprograma','=',$programa)
                 ->orderBy('materiasPorVer.orden','ASC')
-                ->get();
+                ->dd();
 
             return $materiasPorVer;
         }
 
-        
+
 
         public function prerequisitos($codMateria,$codPrograma){
             /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */

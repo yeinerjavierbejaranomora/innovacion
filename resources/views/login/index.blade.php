@@ -73,7 +73,8 @@
 		height: 70px;
 		background-color: #dfc14e;
 		border-radius: 0 50px 50px 0;
-		margin-left: 0;
+		margin-left: -14px !important;
+		margin-bottom: 20px!important;
 	}
 
 	#colmder {
@@ -88,8 +89,10 @@
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>
 			<div class="align-content-center">
-				<img src="public/assets/images/Escudo.png" width="300" alt="">
+				<img src="public/assets/images/Escudo.png" width="350" alt="">
 			</div>
+			<br>
+			<br>
 			<br>
 			<div class="text-center text-white mb-5">
 				<h6 style="font-weight: 300;">Universidad Iberoamericana</h6>
@@ -98,7 +101,7 @@
 		</div>
 		<div class="col" id="colmder" style="border-top-right-radius: 35px 35px; border-bottom-right-radius: 35px 35px;">
 			<br>
-			<div class="rectangle" style="margin-left: 0;"></div>
+			<div class="rectangle"></div>
 			<br>
 
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>

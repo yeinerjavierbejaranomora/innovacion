@@ -1399,6 +1399,7 @@ class MafiController extends Controller
               
                 foreach ($materiasPorVer as $value_materiasPorVer) {
               
+                    dd($value_materiasPorVer);
                     $codMateria=$value_materiasPorVer->codMateria;
                     $codPrograma=$value_materiasPorVer->$programa;
 

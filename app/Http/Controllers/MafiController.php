@@ -1253,11 +1253,11 @@ class MafiController extends Controller
 
         public function esta_en_planeacion($prerequisitos,$codBanner){
 
-            dd($prerequisitos->prerequisito);
+            //dd($prerequisitos->prerequisito);
          
             $query=DB::table('planeacion')
             ->select('codMateria')
-            ->whereIn('codMateria',$prerequisitos)
+            ->whereIn('codMateria',$prerequisitos->prerequisito)
             ->where('codBanner','=',$codBanner)
             ->get()->dd();
 

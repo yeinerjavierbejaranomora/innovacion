@@ -1085,6 +1085,11 @@ class MafiController extends Controller
                 ->where('mallaCurricular.codprograma','=',$programa)
                 ->orderBy('materiasPorVer.orden','ASC')
                 ->dd();
+            $sql="select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = 'PPSV' and `mallaCurricular`.`codprograma` ='PPSV' order by `materiasPorVer`.`orden` ASC;";
+
+            $materiasPorVer= DB::select($sql);
+
+            dd($materiasPorVer);
 
             return $materiasPorVer;
         }

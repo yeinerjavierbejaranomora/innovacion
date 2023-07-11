@@ -56,7 +56,7 @@
 					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">
-					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white" id="btn">Login</button>
+					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white btn-lg" id="btn">Login</button>
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">

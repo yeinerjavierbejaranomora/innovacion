@@ -44,6 +44,7 @@
 		background: transparent;
 		width: 100%;
 		font-size: 16px;
+		color:black;
 	}
 
 	.custom-input:focus {

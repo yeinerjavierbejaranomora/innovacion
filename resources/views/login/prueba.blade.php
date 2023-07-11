@@ -22,15 +22,15 @@
 	}
 
 	#btn {
-		background-color: #d0ab4b;
+		background-color: #dfc14e;
 		border-color: #dfc14e;
 		width: 150px;
 		padding: 10px 30px;
 		border-radius: 10px;
 	}
 
-	#btn :hover {
-		background-color: #dfc14e;
+	#btn ::hover {
+		background-color: #d0ab4b;
 	}
 </style>
 
@@ -63,7 +63,7 @@
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">
-					<span><u><a href="#"><strong>¿Olvidaste tu Contraseña?</strong></a></u></span>
+					<span ><u><a href="#" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
 				</div>
 			</form>
 

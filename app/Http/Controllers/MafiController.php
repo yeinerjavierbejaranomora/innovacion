@@ -1349,10 +1349,9 @@ class MafiController extends Controller
             $codBanner=100147341;
             $ciclo=1;
             $programa='PPSV';
-
-            //$materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
-
-            $consulta_sumacreditos=$this->consulta_sumacreditos($codBanner)->dd();
+            $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
+            
+            $planeacion=$this->Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
 
 
 

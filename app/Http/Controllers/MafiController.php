@@ -1253,6 +1253,7 @@ class MafiController extends Controller
 
         public function esta_en_planeacion($prerequisitos,$codBanner){
 
+            dd($prerequisitos);
          
             $query=DB::table('planeacion')
             ->select('codMateria')
@@ -1290,17 +1291,7 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-                //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
-                //exit();
-               
-                //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
-                // exit();
-            
               
-                /*
-                echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
-                exit();
-                */
 
                 if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
                     //echo "vacio";

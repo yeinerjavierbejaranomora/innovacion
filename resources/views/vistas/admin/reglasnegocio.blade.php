@@ -136,6 +136,18 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
+
 <script>
     /** Script para que el usuario solo pueda seleccionar 1 checkbox */
     $(document).ready(function() {
@@ -222,7 +234,7 @@
                     var data = table.row($(this).parents("tr")).data();
                     if (data.activo == 1) {
                         Swal.fire({
-                            title: "¿Desea inactivar la regla " + data.Programa + "?",
+                            title: "¿Desea inactivar la regla " + data.programa + "?",
                             icon: 'warning',
                             showCancelButton: true,
                             showCloseButton: true,
@@ -240,7 +252,7 @@
                                         if (result == "deshabilitado") {
                                             Swal.fire({
                                                 title: "Regla desactivada",
-                                                html: "La regla <strong>" + data.Programa +
+                                                html: "La regla <strong>" + data.programa +
                                                     "</strong> ha sido inactivada",
                                                 icon: 'info',
                                                 showCancelButton: true,
@@ -257,7 +269,7 @@
 
                     } else {
                         Swal.fire({
-                            title: "¿Desea activar la regla " + data.Programa + "?",
+                            title: "¿Desea activar la regla " + data.programa + "?",
                             icon: 'warning',
                             showCancelButton: true,
                             showCloseButton: true,
@@ -274,7 +286,7 @@
                                         if (result == "habilitado") {
                                             Swal.fire({
                                                 title: "Regla habilitado",
-                                                html: "La regla <strong>" + data.Programa +
+                                                html: "La regla <strong>" + data.programa +
                                                     "</strong> ha sido habilitada",
                                                 icon: 'info',
                                                 showCancelButton: true,

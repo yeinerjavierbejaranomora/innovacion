@@ -400,6 +400,7 @@ class UserController extends Controller
             return "false";
         endif;
     }
+    
     /** Funcion para activar o inactivar */
     public function activar_usuario()
     {

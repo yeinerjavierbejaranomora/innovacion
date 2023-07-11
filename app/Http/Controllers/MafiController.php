@@ -250,9 +250,9 @@ class MafiController extends Controller
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
                                 ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
-                                ->get();
+                                ->first();
 
-
+            dd($reglaNegocio->creditos);
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
@@ -1157,7 +1157,7 @@ class MafiController extends Controller
             return $prerequisitos;
         }
 
-        // No. de creditos para el homologante	
+        // No. de creditos para el homologante
         public function consulta_sumacreditos($codBanner){
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
 

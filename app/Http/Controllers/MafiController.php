@@ -219,7 +219,6 @@ class MafiController extends Controller
                     break;
             }
 
-            dd($tipoEstudiante);
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
@@ -250,7 +249,7 @@ class MafiController extends Controller
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
-                                ->where([['programa','=',$programa],['ruta','=',$ruta],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
                                 ->first();
 
             dd($reglaNegocio);

@@ -265,7 +265,7 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = [$prerequisitosConsulta->prerequisito];
-                dd("ccc1",$cuentaCursosCiclo1);
+                dd("ccc1",$numeroMateriasPermitidos);
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
@@ -1349,14 +1349,64 @@ class MafiController extends Controller
         // funcion para probar otras funciones
         public function probarfunciones(){
 
-            $codBanner=100147341;
-            $ciclo=[1,12];
-            $programa='PPSV';
-            $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
+            $programado_ciclo1=NULL;
+            /**consulta de estudinates primer ciclo */
+            $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
+            
+            foreach($estudiantesPC as $estudiante):
 
-            $planeacion=$this->Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
+                $idEstudiante = $estudiante->id;
+                $codigoBanner = $estudiante->homologante;
+                $programa = $estudiante->programa;
 
+                $ruta = $estudiante->bolsa;
 
+                if($ruta != ''):
+                    $ruta = 1;
+                endif;
+
+                $tipoEstudiante = $estudiante->tipo_estudiante;
+
+                switch ($tipoEstudiante) {
+                    case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                        $tipoEstudiante ='TRANSFERENTE';
+                        break;
+                    case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                        $tipoEstudiante ='ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                        $tipoEstudiante='PRIMER INGRESO';
+                        break;
+                    case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                        $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'REINGRESO'):
+                        $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                        $tipoEstudiante='PRIMER INGRESO';
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+
+                $ciclo=[1,12];
+
+                $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
+            
+
+                $codMateria=$materiasPorVer->codMateria;
+                $codPrograma=$materiasPorVer->$programa;
+
+                foreach ($materiasPorVer as $key => $value) {
+
+                    $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
+                }
+            
+
+            endforeach;
 
         }
 

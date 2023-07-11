@@ -182,7 +182,6 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
-
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
@@ -190,11 +189,40 @@ class MafiController extends Controller
             $programa = $estudiante->programa;
 
             $ruta = $estudiante->bolsa;
+            if($ruta != ''):
+                $ruta = 1;
+            endif;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+
+            switch ($tipoEstudiante) {
+                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                    $tipoEstudiante ='TRANSFERENTE';
+                    break;
+                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'REINGRESO'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
             //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -216,20 +244,21 @@ class MafiController extends Controller
 
             $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
-            $cuentaCreditosCiclo1 = $numeroCreditosC1->screditos;
-            $cuentaCreditosCiclo1 = $cuentaCreditosCiclo1==''?0:$cuentaCreditosCiclo1;
-
+            $cuentaCursosCiclo1 = $numeroCreditosC1->screditos;
+            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
+            $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
-                                ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
-                                ->first();
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                                ->get();
+
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
                 $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
-                //dd($prerequisitos);
+                dd($prerequisitos);
             endforeach;
 
         endforeach;
@@ -1101,8 +1130,8 @@ class MafiController extends Controller
 
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
-    
-            // Materias que debe ver el estudiante por ciclo 
+
+            // Materias que debe ver el estudiante por ciclo
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                 ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
@@ -1124,10 +1153,11 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->dd();
-
+                                ->get();
+            return $prerequisitos;
         }
 
+<<<<<<< HEAD
         // No. de creditos para el homologante	
         public function consulta_sumacreditos($codBanner){
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
@@ -1142,13 +1172,17 @@ class MafiController extends Controller
             ->orderBy('mallaCurricular.orden','ASC')
             ->orderBy('mallaCurricular.semestre','ASC')
             ->get();
+=======
+        // No. de creditos para el homologante
+        public function consulta_sumacreditos(){
+>>>>>>> 80b522d71b9b4684c3798241349ac923ef36de8f
 
 
             return  $consulta_sumacreditos;
         }
 
 
-        // funcion para probar otras funciones 
+        // funcion para probar otras funciones
         public function probarfunciones(){
 
             $codBanner=100147341;

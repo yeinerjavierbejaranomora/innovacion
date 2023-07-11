@@ -486,12 +486,12 @@ class UserController extends Controller
         $crear = DB::table('roles')->insert([
             'nombreRol' => $nombre,
         ]);
-
+        
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
         
         if ($crear) :
-            LogUsuariosController::registrarLog('CREATE', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
+            LogUsuariosController::registrarLog('INSERT', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :

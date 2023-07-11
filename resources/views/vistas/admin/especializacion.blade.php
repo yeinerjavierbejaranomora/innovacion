@@ -120,6 +120,18 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
+
 <script>
     facultades();
 

@@ -1,11 +1,12 @@
 @extends('layout.plantillaFormularios')
 @section('title', 'LoginPrueba')
 @section('content')
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
 <style>
 	body {
 		background-color: #4a4848;
-		font-family: Montserrat;
+		font-family: "Montserrat", sans-serif;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -44,8 +45,7 @@
 		</div>
 		<div class="col">
 			<br><br>
-			<h2 class="fw-bold text-center mb-5"> Sistema de </h2>
-			<h2 class="fw-bold text-center mb-5"> Proyección Ibero </h2>
+			<h2 class="fw-bold text-center mb-5"> Sistema de  Proyección Ibero</h2>
 
 			<form action="#" class="align-content-center">
 				<div class="mb-5 col-10 mx-auto">

@@ -21,11 +21,12 @@
 		font-size: 20px;
 	}
 
-	#btn-iniciar-sesion {
+	#btn {
 		background-color: #d0ab4b;
+		border-color: #dfc14e;
 	}
 
-	#btn-iniciar-sesion:hover {
+	#btn :hover {
 		background-color: #dfc14e;
 	}
 </style>
@@ -55,7 +56,7 @@
 					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">
-					<button type="submit" class="btn btn-warning text-white"><strong>Iniciar sesión</strong></button>
+					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white btn-lg" id="btn">Login</button>
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">

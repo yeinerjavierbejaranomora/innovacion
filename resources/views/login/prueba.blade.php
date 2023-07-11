@@ -81,6 +81,7 @@
 		background-color: #dfc14e;
 		border-radius: 0 30px 30px 0;
 		margin-left: 0;
+		padding: 0px 0px 0px -10px;
 	}
 
 	#colmder {

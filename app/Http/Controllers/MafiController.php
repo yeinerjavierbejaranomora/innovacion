@@ -262,7 +262,7 @@ class MafiController extends Controller
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
 
-                    var_dump($materia->codMateria,$prerequisitos,'<br>');
+                    var_dump("sin",$materia->codMateria,$prerequisitos,'<br>');
                 else:
                     var_dump($materia->codMateria,$prerequisitos,'<br>');
                 endif;

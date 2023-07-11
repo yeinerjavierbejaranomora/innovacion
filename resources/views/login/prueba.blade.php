@@ -12,9 +12,8 @@
 	}
 </style>
 
-<div class="container w-75 align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
-
-	<div class="row">
+<div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
+	<div class="row w-75">
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">

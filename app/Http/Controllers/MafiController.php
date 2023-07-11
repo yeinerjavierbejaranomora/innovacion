@@ -261,15 +261,17 @@ class MafiController extends Controller
                 dd($materia);
                 $codBanner = $materia->codBanner;
                 $codMateria = $materia->codMateria;
+                $creditos = $materia->creditos;
                 $ciclo = $materia->ciclo;
-                $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
+                $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$materia->codMateria],['codBanner','=',$estudiante->homologante]])->first();
+                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
-
+                        $numeroCreditos = $numeroCreditos + $creditos;
+                        echo $numeroCreditos."<br>";
                     endif;
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);

@@ -37,7 +37,7 @@
 					<input type="password" class="form-control" name="password">
 				</div>
 				<div class="text-center">
-					<button type="submit" class="btn btn-warning fw-bold text-white"> Iniciar sesión</button>
+					<button type="submit" class="btn btn-warning fw-bold text-white"><strong>Iniciar sesión</strong></button>
 				</div>
 				<br>
 				<br>

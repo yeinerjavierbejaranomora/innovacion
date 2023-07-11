@@ -69,10 +69,10 @@
 	}
 
 	.rectangle {
-		width: 200px;	
-		height: 100px;
+		width: 380px;	
+		height: 70px;
 		background-color: #dfc14e;
-		border-radius: 0 10px 10px 0;
+		border-radius: 0 30px 30px 0;
 	}
 </style>
 

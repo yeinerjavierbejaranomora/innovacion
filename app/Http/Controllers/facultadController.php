@@ -419,7 +419,7 @@ class facultadController extends Controller
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
-            $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("La facultad". $informacionOriginal[0]->nombre ." fue actualizada",'facultad',$informacionOriginal,$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

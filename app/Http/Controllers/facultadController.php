@@ -612,7 +612,7 @@ class facultadController extends Controller
             'creditos' => $creditos,
             'materiasPermitidas' => $materias,
             'tipoEstudiante' => $estudiante,
-            'ruta' => "",
+            'ruta' => 0,
             'ciclo' => $ciclo,
         ]);
         $informacionOriginal = $request->except(['_token']);

@@ -20,6 +20,11 @@ class LoginController extends Controller
         return view('login.index');
     }
 
+    public function indexPrueba()
+    {
+        return view('login.prueba');
+    }
+
     /** funcion para iniciasr session */
     public function home()
     {

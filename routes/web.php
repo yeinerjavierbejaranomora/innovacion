@@ -23,7 +23,6 @@ use App\Http\Controllers\facultadController;
 
 Route::get('/', function () {
     //return view('welcome');
-
     return view('login/index');
 });
 
@@ -94,6 +93,9 @@ Route::controller(RegistroController::class)->group(function(){
     Route::post('/registro/save','saveRegistro')->name('registro.saveregistro');
     /** crear usuario */
     Route::post('/home/crearusuario', 'crearUsuario')->middleware('auth')->name('user.crear');
+
+    /** Prueba */
+    Route::get('/logprueba','indexPrueba')->name('registroPrueba.index');
 });
 
 

@@ -322,8 +322,7 @@ class UserController extends Controller
         $idBanner = $request->id_banner;
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
-        $programa = $request->programa;
-        $activo = $request->estado;      
+        $programa = $request->programa;     
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;

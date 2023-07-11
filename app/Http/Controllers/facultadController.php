@@ -185,7 +185,6 @@ class facultadController extends Controller
 
 
     /* Método para inactivar programa */
-
     public function inactivar_programa()
     {
         $cod_llegada = $_POST['codigo'];
@@ -326,7 +325,7 @@ class facultadController extends Controller
         $informacionActualizada = $request->except(['_token']);
 
         if ($update) :
-            $this->actualizarLogUsuarios($informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
+            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->nombre." fue actualizado",$informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -671,14 +670,7 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('UPDATE',$mensaje ,$tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
 
-    /**
-     * Método para registrar en el Log de Usuarios la acción de actualizar algún dao en la base de datos
-     * @author Ruben Charry 
-     */
-    public function actualizarLogUsuarios($tabla, $informacionOriginal, $informacionActualizada)
-    {  
-        LogUsuariosController::registrarLog(Constantes::ACTUALIZAR, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
-    }
+  
 
     public function crearLogUsuarios($tabla, $informacionActualizada)
     {

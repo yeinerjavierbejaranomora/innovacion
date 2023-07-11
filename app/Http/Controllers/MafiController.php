@@ -220,7 +220,8 @@ class MafiController extends Controller
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
             foreach($materiasPorVer as $materia):
-                $prerequisitos ='';
+                $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);
+                dd($prerequisitos);
             endforeach;
 
         endforeach;

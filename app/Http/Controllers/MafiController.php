@@ -222,6 +222,7 @@ class MafiController extends Controller
                                 ->dd();
 
             dd($reglaNegocio);
+            die();
 
         foreach($estudiantesPC as $estudiante):
 

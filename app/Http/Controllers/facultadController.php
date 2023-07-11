@@ -386,11 +386,10 @@ class facultadController extends Controller
         $facultad = DB::table('facultad')->insert([
             'codFacultad' => $_POST['codFacultad'],
             'nombre' => $_POST['nombre'],
-        ]);
-        
-        $informacionActualizada= $request->except(['_token']);
+        ]);       
+        $informacionOriginal= $request->except(['_token']);
         if ($facultad) :
-            $this->crearLogUsuarios('facultad',$informacionActualizada);
+            $this->createLogUsuarios("Facultad creada",'facultad',$informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.facultades')->with('success', 'Facultad creada correctamente');
         else :
@@ -419,7 +418,7 @@ class facultadController extends Controller
         $request->merge(['id' => $id]);
         $informacionActualizada = $request->except(['_token']);
         if ($facultad) :
-            $this->actualizarLogUsuarios('facultad',$informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue actualizada",'facultad',$informacionOriginal,$informacionActualizada);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -432,9 +431,11 @@ class facultadController extends Controller
     public function inactivar_facultad()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         $inactivarFacultad = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 0]);
+        $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($inactivarFacultad) :
-            $this->inactivarLogUsuarios('facultad', $id);
+            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue desactivada",'facultad', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -445,10 +446,11 @@ class facultadController extends Controller
     public function activar_facultad()
     {
         $id = $_POST['id'];
+        $informacionOriginal = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         $activarPrograma = DB::table('facultad')->where('id', '=', $id)->update(['activo' => 1]);
-
+        $informacionActualizada = DB::table('facultad')->where('id', '=', $id)->select('nombre', 'id', 'activo')->get();
         if ($activarPrograma) :
-            $this->activarLogUsuarios('facultad', $id);
+            $this->updateLogUsuarios("La facultad ". $informacionOriginal[0]->nombre ." fue activada",'facultad', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";
@@ -672,9 +674,9 @@ class facultadController extends Controller
 
   
 
-    public function crearLogUsuarios($tabla, $informacionActualizada)
+    public function createLogUsuarios($mensaje,$tabla, $informacionOriginal)
     {
-        LogUsuariosController::registrarLog(Constantes::CREAR, $tabla, NULL, json_encode($informacionActualizada));
+        LogUsuariosController::registrarLog('CREATE', $mensaje , $tabla, NULL, json_encode($informacionOriginal));
     }
     
 }

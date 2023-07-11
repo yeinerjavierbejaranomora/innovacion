@@ -24,8 +24,9 @@
 	#btn {
 		background-color: #d0ab4b;
 		border-color: #dfc14e;
-		width: 200px;
-		padding: 10px 20px;
+		width: 150px;
+		padding: 10px 30px;
+		border-radius: 10px;
 	}
 
 	#btn :hover {

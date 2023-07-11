@@ -1217,9 +1217,9 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-            dd($consulta_sumacreditos);
+          
 
-            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
+            $creditos_homologantes = $consulta_sumacreditos==NULL ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
             return $creditos_homologantes;
 

@@ -12,7 +12,15 @@
 	}
 
 	.form-control::placeholder {
-  	font-weight: bold;
+		font-weight: bold;
+	}
+
+	#btn-iniciar-sesion {
+		background-color: #d0ab4b;
+	}
+
+	#btn-iniciar-sesion:hover {
+		background-color: #dfc14e;
 	}
 </style>
 
@@ -22,25 +30,25 @@
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
-		<br>
-		<div class="text-center text-white mb-5">
-			<h6> <strong>Universidad Iberoamericana</strong></h6>	
-			<h6> </strong>©Todos los derechos reservados </strong></h6>
-		</div>
+			<br>
+			<div class="text-center text-white mb-5">
+				<h6> <strong>Universidad Iberoamericana</strong></h6>
+				<h6> </strong>©Todos los derechos reservados </strong></h6>
+			</div>
 		</div>
 		<div class="col">
 			<h2 class="fw-bold text-center mb-5"> Sistema de proyeccion Ibero</h2>
 
 			<form action="#">
 				<div class="mb-5 col-10">
-					
+
 					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>
 				<div class="mb-5 col-10">
 					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">
-					<button type="submit" class="btn btn-warning fw-bold text-white"><strong>Iniciar sesión</strong></button>
+					<button type="submit" class="btn btn-warning text-white"><strong>Iniciar sesión</strong></button>
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">

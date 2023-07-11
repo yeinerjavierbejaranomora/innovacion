@@ -11,7 +11,7 @@
 		align-items: center;
 	}
 
-	.containerr {
+	.container {
 		margin-right: auto;
 		margin-left: auto;
 		padding-right: 15px;

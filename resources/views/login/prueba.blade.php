@@ -29,10 +29,10 @@ body {
 					<input type="password" class= "form-control" name="password">
 				</div>
 				<div>
-					<button type="submit" class="btn btn-warning"> Iniciar sesión</button>
+					<button type="submit" class="btn btn-warning text-white"> Iniciar sesión</button>
 				</div>
 				<div class="my-10">
-					<span><a href="#">Recuperar Contraseña</a></span>
+					<span> <u><a href="#">Recuperar Contraseña</a></u></span>
 				</div>
 			</form>
 		

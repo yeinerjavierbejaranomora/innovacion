@@ -470,7 +470,7 @@ class UserController extends Controller
         $informacionAcualizada= $request->except(['_token']);
         
         if ($update) :
-            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionOriginal[0]->nombreRol ." fue actualizado" , 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

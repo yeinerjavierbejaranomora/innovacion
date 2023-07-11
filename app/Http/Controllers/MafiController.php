@@ -1280,7 +1280,7 @@ class MafiController extends Controller
 
                 //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
                 //exit();
-                $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="'.$codMateria.'" AND codprograma = "'.$programa_homologante.'";';
+               
                 //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
                 // exit();
             

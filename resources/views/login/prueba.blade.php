@@ -73,6 +73,7 @@
 		height: 70px;
 		background-color: #dfc14e;
 		border-radius: 0 30px 30px 0;
+		margin-left: 0;
 	}
 </style>
 

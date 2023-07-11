@@ -1168,6 +1168,38 @@ class MafiController extends Controller
 
         // No. de creditos para el homologante
         public function consulta_sumacreditos($codBanner){
+
+            $numeroCreditos = DB::table('mallaCurricular')
+            ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+            ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+            ->where('planeacion.codBanner','=',$codBanner)
+            ->groupBy('planeacion.codBanner')
+            ->first();
+
+            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
+
+        /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
+        $numeroCreditosC1 = DB::table('mallaCurricular')
+                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
+                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                    ->where('planeacion.codBanner','=',$codigoBanner)
+                    ->whereIn('mallaCurricular.ciclo',[1,12])
+                    ->first();
+
+            $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
+            $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
+            $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
+            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
+            $cicloReglaNegocio = 1;
+$reglaNegocio =DB::table('reglasNegocio')
+        ->select('creditos','materiasPermitidas')
+        ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+        ->first();
+
+            $numeroCreditosPermitidos = $reglaNegocio->creditos;
+            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+
+
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
             $resultado = DB::table('mallaCurricular')
             ->join('planeacion', 'mallaCurricular.codigoCurso', '=', 'planeacion.codMateria')

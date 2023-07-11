@@ -14,12 +14,13 @@
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
 	<div class="row">
+		<br>
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
 		<br>
-		<div class="text-center text-white">
+		<div class="text-center text-white mb-5">
 			<h6> <strong>Universidad Iberoamericana</strong></h6>	
 			<h6> </strong> Todos los derechos reservados </strong></h6>
 		</div>
@@ -39,10 +40,8 @@
 				<div class="text-center">
 					<button type="submit" class="btn btn-warning fw-bold text-white"><strong>Iniciar sesión</strong></button>
 				</div>
-				<br>
-				<br>
-				<br>
-				<div class="my-10 text-center">
+				<br><br><br>
+				<div class="my-10 text-center mb-5">
 					<span><u><a href="#"><strong>Recuperar Contraseña</strong></a></u></span>
 				</div>
 			</form>

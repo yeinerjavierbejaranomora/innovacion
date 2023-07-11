@@ -287,7 +287,7 @@ class MafiController extends Controller
                     //dd($estaPlaneacion->codMateria);
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
                     $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->get();
-
+                    dd($estaPorVer);
                     if($estaPlaneacion == '' && $estaPorVer == '' && $numeroCreditos<$numeroCreditosPermitidos):
                         $numeroCreditos = $numeroCreditos + $creditos;
                         $insertPlaneacion = DB::table('planeacion')->insert([
@@ -1204,7 +1204,7 @@ class MafiController extends Controller
 
         // No. de creditos para el homologante
         public function consulta_sumacreditos($codBanner,$ciclo){
-       
+
         /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
 
             $consulta_sumacreditos = DB::table('mallaCurricular')
@@ -1213,11 +1213,11 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-  
-            
+
+
             $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" : $consulta_sumacreditos->CreditosPlaneados;
-            
-            
+
+
 
 
         $numeroCreditosC1 = DB::table('mallaCurricular')

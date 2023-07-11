@@ -53,7 +53,7 @@
 
             <!-- Content Row -->
             <div class="row" id="facultades">
-                @if(!isset($datos['programas']))
+                @if(empty($datos['programas']))
                 <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>
                 @endif
                 @foreach($datos['programas'] as $key => $value)

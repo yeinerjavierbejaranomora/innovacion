@@ -1296,9 +1296,7 @@ class MafiController extends Controller
                 //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
                 // exit();
             
-                dd($prerequisitos);
-                exit();
-
+              
                 /*
                 echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
                 exit();

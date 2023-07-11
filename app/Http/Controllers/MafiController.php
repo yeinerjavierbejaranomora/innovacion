@@ -183,7 +183,7 @@ class MafiController extends Controller
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
 
-        $tipoEstudiante = $estudiante[13]->tipo_estudiante;
+        $tipoEstudiante = $estudiantesPC[13]->tipo_estudiante;
 
             switch ($tipoEstudiante) {
                 case str_contains($tipoEstudiante, 'TRANSFERENTE'):

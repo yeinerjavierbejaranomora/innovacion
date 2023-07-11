@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    
+
     public function index()
     {
         return view('login.index');
-    }
-
-    public function indexPrueba()
-    {
-        return view('login.prueba');
     }
 
     /** funcion para iniciasr session */

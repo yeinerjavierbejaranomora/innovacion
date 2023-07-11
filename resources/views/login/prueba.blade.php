@@ -1,6 +1,4 @@
 @include('layout.header')
-@section('title', 'LoginPrueba')
-@section('content')
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
@@ -135,7 +133,6 @@
 
 </div>
 
-</body>
 
-@endsection
+
 @include('layout.footer')

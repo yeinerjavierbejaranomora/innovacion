@@ -10,12 +10,11 @@
 
 	.container {
 		margin-top: 200px;
-		height: 400px;
 	}
 	
 </style>
 
-<div class="container align-middle shadow" style="background-color:white; border-radius: 25px;">
+<div class="container w-75 align-middle shadow" style="background-color:white; border-radius: 25px;">
 	
 		<div class="row">
 			<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
@@ -24,7 +23,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<h2 class="fw-light"> Sistema de proyeccion Ibero</h2>
+				<h2 class="fw-light text-center"> Sistema de proyeccion Ibero</h2>
 
 				<form action="#">
 					<div class="mb-4">

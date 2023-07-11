@@ -1049,21 +1049,22 @@ class MafiController extends Controller
                     $codHomologante=$estudiante->homologante;
                     $programa_homologante=$estudiante->programa;
 
-            foreach ($estudiantes as $estudiante) :
+                    foreach ($estudiantes as $estudiante) :
 
-                $id_homologante=$estudiante->id;
-                $codHomologante=$estudiante->homologante;
-                $programa_homologante=$estudiante->programa;
+                        $id_homologante=$estudiante->id;
+                        $codHomologante=$estudiante->homologante;
+                        $programa_homologante=$estudiante->programa;
 
-                // Materias vistas por estudiante
-                $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
-                //echo $consulta_vistas . "<br />";
-                //exit();
+                        // Materias vistas por estudiante
+                        $consulta_vistas = 'SELECT codMateria, codBanner FROM historialAcademico WHERE codBanner='.$codHomologante.';';
+                        //echo $consulta_vistas . "<br />";
+                        //exit();
 
-                $resultado_visitas = DB::select($consulta_vistas);
+                        $resultado_visitas = DB::select($consulta_vistas);
 
-            endforeach;
-        });
+                    endforeach;
+                endforeach;
+            });
         }
     }
 }

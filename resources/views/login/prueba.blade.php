@@ -31,7 +31,7 @@
 						<label for="password" class="form-label"> Contraseña</label>
 						<input type="password" class="form-control" name="password">
 					</div>
-					<div>
+					<div class="align-content-center">
 						<button type="submit" class="btn btn-warning text-white"> Iniciar sesión</button>
 					</div>
 					<div class="my-10">

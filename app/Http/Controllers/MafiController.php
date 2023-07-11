@@ -1257,7 +1257,7 @@ class MafiController extends Controller
          
             $query=DB::table('planeacion')
             ->select('codMateria')
-            ->whereIn('codMateria',$prerequisitos->prerequisito)
+            ->whereIn('codMateria',[$prerequisitos->prerequisito])
             ->where('codBanner','=',$codBanner)
             ->get()->dd();
 

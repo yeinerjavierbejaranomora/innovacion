@@ -230,6 +230,7 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'pregrado',
         ]);
+        $request->merge(['tabla' => 'pregrado']);
         $informacionOriginal= $request->except(['_token']);
         if ($crear) :
             $this->createLogUsuarios("Programa creado", "programa", $informacionOriginal);
@@ -253,6 +254,7 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'especializacion',
         ]);
+        $request->merge(['tabla' => 'especializacion']);
         $informacionOriginal= $request->except(['_token']);
         if ($crear) :
             $this->createLogUsuarios("Especialización creada", "programa", $informacionOriginal);
@@ -276,6 +278,7 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'MAESTRIA',
         ]);
+        $request->merge(['tabla' => 'maestria']);
         $informacionOriginal= $request->except(['_token']);
         if ($crear) :
             $this->createLogUsuarios("Maestría creada", "programa", $informacionOriginal);
@@ -300,6 +303,7 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'EDUCACION CONTINUA',
         ]);
+        $request->merge(['tabla' => 'educacion continua']);
         $informacionOriginal= $request->except(['_token']);
         if ($crear) :
             $this->createLogUsuarios("Programa de educación continua creado", "programa", $informacionOriginal);

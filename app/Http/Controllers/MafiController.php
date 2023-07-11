@@ -196,22 +196,22 @@ class MafiController extends Controller
 
             switch ($tipoEstudiante) {
                 case str_contains($tipoEstudiante, 'TRANSFERENTE'):
-                    echo $tipoEstudiante.' Transferente';
+                    $tipoEstudiante ='TRANSFERENTE';
                     break;
                 case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante ='ESTUDIANTE';
                     break;
                 case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
-                    echo $tipoEstudiante.' primer';
-                    break;
-                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
-                    echo $tipoEstudiante.' primer';
+                    $tipoEstudiante='PRIMER';
                     break;
                 case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante = 'ESTUDIANTE';
                     break;
                 case str_contains($tipoEstudiante, 'REINGRESO'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante = 'ESTUDIANTE';
+                    break;
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    $tipoEstudiante='PRIMER';
                     break;
 
                 default:

@@ -29,8 +29,49 @@
 		border-radius: 10px;
 	}
 
-	#btn ::hover {
+	#btn:hover {
 		background-color: #d0ab4b;
+	}
+
+	.form-group {
+		position: relative;
+	}
+
+	.custom-input {
+		border: none;
+		border-bottom: 2px solid #ddd;
+		padding: 10px 0;
+		background: transparent;
+		width: 100%;
+		font-size: 16px;
+	}
+
+	.custom-input:focus {
+		outline: none;
+	}
+
+	.input-border {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #dfc14e;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s;
+	}
+
+	.custom-input:focus+.input-border,
+	.custom-input:not(:placeholder-shown)+.input-border {
+		transform: scaleX(1);
+	}
+
+	.rectangle {
+		width: 200px;	
+		height: 100px;
+		background-color: #dfc14e;
+		border-radius: 0 10px 10px 0;
 	}
 </style>
 
@@ -48,22 +89,27 @@
 			</div>
 		</div>
 		<div class="col">
-			<br><br>
-			<h2 class="text-center mb-5" style="font-weight: 500;"> Sistema de <br> Proyección Ibero</h2>
+			<br>
+			<div class="rectangle"></div>
+			<br>
+
+			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>
 
 			<form action="#" class="align-content-center">
 				<div class="mb-5 col-10 mx-auto">
-					<input type="email" class="form-control" name="email" placeholder="Usuario">
+					<input type="email" class="form-control custom-input" name="email" placeholder="Usuario" required>
+					<span class="input-border"></span>
 				</div>
-				<div class="mb-5 col-10 mx-auto">
-					<input type="password" class="form-control" name="password" placeholder="Contraseña">
+				<div class="form-group mb-5 col-10 mx-auto ">
+					<input type="password" class="form-control custom-input" name="password" placeholder="Contraseña" required>
+					<span class="input-border"></span>
 				</div>
-				<div class="text-center">
+				<div class="form-group text-center">
 					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white" id="btn">Login</button>
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">
-					<span ><u><a href="#" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
+					<span><u><a href="#" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
 				</div>
 			</form>
 

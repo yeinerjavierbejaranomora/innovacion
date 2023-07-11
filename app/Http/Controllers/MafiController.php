@@ -1025,9 +1025,6 @@ class MafiController extends Controller
                and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);*/
 
 
-    // Estudiantes para generar faltantes
-
-    foreach ($programas as $key => $value) {
         # code...
 
         foreach ($programas as $key => $value) {
@@ -1066,7 +1063,7 @@ class MafiController extends Controller
                 endforeach;
             });
         }
-    }
+   
 }
         /**validar si el estudiante tiene creditos planeados */
         public function programarPrimerCiclo(){

@@ -1238,7 +1238,7 @@ $reglaNegocio =DB::table('reglasNegocio')
                                     ->select('codMateria')
                                     ->whereIn('codMateria',$materia)
                                     ->where('codBanner','=',$codBanner)
-                                    ->get();
+                                    ->dd();
         return $consultaPlaneacion;
     }
 

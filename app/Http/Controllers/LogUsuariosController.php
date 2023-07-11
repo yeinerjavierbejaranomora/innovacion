@@ -27,6 +27,7 @@ class LogUsuariosController extends Controller
 
     public static function registrarLog ($accion,$descripcion, $tablaAfectada, $original, $actualizada){
         $user = auth()->user();
+        
         $insert = DB::table('logUsuarios')->insert([
             'id_usuarios' => $user->id,
             'nombre' => $user->nombre,
@@ -36,6 +37,7 @@ class LogUsuariosController extends Controller
             'tabla_afectada' => $tablaAfectada,
             'informacion_original' => $original,
             'informacion_actualizada' => $actualizada,
+            'fecha' => now(),
         ]);
     }
 }

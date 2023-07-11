@@ -302,12 +302,12 @@ class UserController extends Controller
      * Metodo que actualiza la tabla Log de Usuarios
      * @param id Id del usuario a actualizar 
      */
-    public function registrarLog($id,$accion, $informacionOriginal, $request)
+    public function registrarLog($id, $informacionOriginal, $request)
     {
         $request->merge(['id' => $id]);
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-        LogUsuariosController::registrarLog($accion, 'Users', json_encode($informacionOriginal), json_encode($request->all()));
+        LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Users',  json_encode($informacionOriginal), json_encode($request->all()));
     }
 
     // *Método que actualiza en la base de datos la edición del usuario
@@ -322,8 +322,7 @@ class UserController extends Controller
         $idBanner = $request->id_banner;
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
-        $programa = $request->programa;
-        $activo = $request->estado;      
+        $programa = $request->programa;     
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;
@@ -370,14 +369,14 @@ class UserController extends Controller
 
         if ($id === auth()->user()->id) :
             if ($actualizar) :
-                $this->registrarLog($id,Constantes::ACTUALIZAR, $informacionOriginal, $request);
+                $this->registrarLog($id, $informacionOriginal, $request);
                 return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         else :
             if ($actualizar) :                
-                $this->registrarLog($id,Constantes::ACTUALIZAR, $informacionOriginal, $request);
+                $this->registrarLog($id,$informacionOriginal, $request);
                 return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
@@ -391,9 +390,9 @@ class UserController extends Controller
         $id = $_POST['id'];
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         if ($inactivarUsuario) :
-            LogUsuariosController::registrarLog('INACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue inctivado",'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -406,9 +405,9 @@ class UserController extends Controller
         $id = $_POST['id'];
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
         if ($activarUsuario) :
-            LogUsuariosController::registrarLog('ACTIVATE', "El usario con id = " . $id . " y nombre = " . $informacionOriginal[0]->nombre . " fue activado" , 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue activado", 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";
         else :
             return "false";

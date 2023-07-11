@@ -273,32 +273,6 @@
                                                 <div id="programas" name="programas"></div>
                                             </div>
                                         </div>
-                                        <hr>
-                                        @if (auth()->user()->id_rol == 9 && auth()->user()->id != $datos['user']->id)
-                                            <div class="row">
-                                                <div class="col-sm-3 text-dark">
-                                                    <p class="mb-0">Estado</p>
-                                                </div>
-                                                <!--Validación para verificar si el usuario se encuentra activo o no-->
-                                                @if ($datos['user']->activo == 1)
-                                                    <div class="col-sm-9">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="estado" id="Checkbox" checked>
-                                                        <label class="form-check-label" for="Checkbox">
-                                                            Activo
-                                                        </label>
-                                                    </div>
-                                                @else
-                                                    <div class="col-sm-9">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="estado" id="Checkbox">
-                                                        <label class="form-check-label" for="Checkbox">
-                                                            Activo
-                                                        </label>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @endif
                                         <br>
                                         <div class="d-flex justify-content-center mb-2">
                                             <button type="submit" class="btn btn-outline-primary ms-1">Finalizar

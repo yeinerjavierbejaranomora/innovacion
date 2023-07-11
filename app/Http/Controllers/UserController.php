@@ -392,7 +392,7 @@ class UserController extends Controller
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
         $informacionActualizada = DB::table('users')->where('id', '=', $id)->get();
-        LogUsuariosController::registrarLog('INACTIVATE',"El usario con id = $id y nombre =  $informacionOriginal[0]->nombre fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
+        LogUsuariosController::registrarLog('INACTIVATE',"El usario con id =" . $id . "y nombre =" . $informacionOriginal[0]->nombre . "fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
 
         if ($inactivarUsuario) :
             return  "deshabilitado";

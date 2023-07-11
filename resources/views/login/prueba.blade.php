@@ -14,7 +14,7 @@
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
 	<div class="row">
-		<div class="col text-center mt-5" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
+		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
@@ -25,7 +25,7 @@
 		</div>
 		</div>
 		<div class="col">
-			<h2 class="fw-bold text-center mb-5 mt-5"> Sistema de proyeccion Ibero</h2>
+			<h2 class="fw-bold text-center mb-5"> Sistema de proyeccion Ibero</h2>
 
 			<form action="#">
 				<div class="mb-5 col-10">

@@ -1072,7 +1072,7 @@ class MafiController extends Controller
             return $estudiante;
         }
 
-        public function materiasPorVer($codBanner,$programa){
+        public function programacion($codBanner,$programa){
 
             /**select `materiasPorVer`.`codBanner`, `materiasPorVer`.`codMateria`, `materiasPorVer`.`orden`, `mallaCurricular`.`creditos`, `mallaCurricular`.`ciclo` from `materiasPorVer` inner join `mallaCurricular` on `mallaCurricular`.`codigoCurso` = `materiasPorVer`.`codMateria` where `materiasPorVer`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) and `materiasPorVer`.`codprograma` = "PPSV" and `mallaCurricular`.`codprograma` = "PPSV" order by `materiasPorVer`.`orden` asc; */
 

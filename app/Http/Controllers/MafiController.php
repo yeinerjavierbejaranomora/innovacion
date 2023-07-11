@@ -230,7 +230,7 @@ class MafiController extends Controller
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
-                                    ->first();
+                                    ->dd();
 
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
@@ -264,7 +264,7 @@ class MafiController extends Controller
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$materia->codMateria],['codBanner','=',$estudiante->homologante]])->first();
-                    dd($estaPlaneacion);
+                    if($estaPlaneacion == '' &&     );
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');

@@ -244,7 +244,7 @@ class MafiController extends Controller
 
             $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
-            $cuentaCursosCiclo1 = $numeroCreditosC1->screditos;
+            $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
@@ -257,13 +257,17 @@ class MafiController extends Controller
 
 
             foreach($materiasPorVer as $materia):
-                dd($materia->ciclo);
+                $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
-                if($prerequisitos == "" && $ciclo):
+                if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
+
+                    var_dump($materia->codMateria,$prerequisitos,'<br>');
                 else:
+                    var_dump($materia->codMateria,$prerequisitos,'<br>');
                 endif;
             endforeach;
+            die();
 
         endforeach;
         die();

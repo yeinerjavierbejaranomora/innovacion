@@ -182,6 +182,48 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
+        $programa = $estudiantesPC[13]->programa;
+
+            $ruta = $estudiantesPC[13]->bolsa;
+            if($ruta != ''):
+                $ruta = 1;
+            endif;
+        $tipoEstudiante = $estudiantesPC[13]->tipo_estudiante;
+
+            switch ($tipoEstudiante) {
+                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                    $tipoEstudiante ='TRANSFERENTE';
+                    break;
+                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'REINGRESO'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+            $cicloReglaNegocio = 1;
+            $reglaNegocio =DB::table('reglasNegocio')
+                                ->select('creditos','materiasPermitidas')
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                                ->get();
+
+            dd($reglaNegocio);
+            die();
+
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
@@ -196,22 +238,22 @@ class MafiController extends Controller
 
             switch ($tipoEstudiante) {
                 case str_contains($tipoEstudiante, 'TRANSFERENTE'):
-                    echo $tipoEstudiante.' Transferente';
+                    $tipoEstudiante ='TRANSFERENTE';
                     break;
                 case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
                     break;
                 case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
-                    echo $tipoEstudiante.' primer';
-                    break;
-                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
-                    echo $tipoEstudiante.' primer';
+                    $tipoEstudiante='PRIMER INGRESO';
                     break;
                 case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
                     break;
                 case str_contains($tipoEstudiante, 'REINGRESO'):
-                    echo $tipoEstudiante.' estudiante';
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    $tipoEstudiante='PRIMER INGRESO';
                     break;
 
                 default:
@@ -219,7 +261,6 @@ class MafiController extends Controller
                     break;
             }
 
-            dd($tipoEstudiante);
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
@@ -250,8 +291,8 @@ class MafiController extends Controller
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
-                                ->where([['programa','=',$programa],['ruta','=',$ruta],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
-                                ->first();
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                                ->get();
 
             dd($reglaNegocio);
 

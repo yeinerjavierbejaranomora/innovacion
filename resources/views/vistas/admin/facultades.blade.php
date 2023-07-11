@@ -53,7 +53,6 @@
 
             <!-- Content Row -->
             <div class="row" id="facultades">
-                {{ $datos['programas'] }}
                 @if(!isset($datos['programas']))
                 <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>
                 @endif

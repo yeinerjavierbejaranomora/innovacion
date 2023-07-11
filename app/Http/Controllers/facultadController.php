@@ -179,7 +179,7 @@ class facultadController extends Controller
 
     public function getDatosPrograma($codigo)
     {
-        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla, id, programa, activo')->get();
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla', 'id', 'programa', 'activo')->get();
         return $datos;
     }
 
@@ -194,7 +194,7 @@ class facultadController extends Controller
         $informacionActualizada = $this->getDatosPrograma($cod_llegada);
 
         if ($inactivarPrograma) :
-            $this->inactivarLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -210,7 +210,7 @@ class facultadController extends Controller
         
         $datos = $this->getDatosPrograma($cod_llegada);
         if ($activarPrograma) :
-            $this->inactivarLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
             
             return  "habilitado";
         else :
@@ -665,20 +665,10 @@ class facultadController extends Controller
      * @author Ruben Charry 
      */
 
-    public function activarLogUsuarios($mensaje,$tabla, $informacionOriginal, $informacionActualizada)
+    public function updateLogUsuarios($mensaje,$tabla, $informacionOriginal, $informacionActualizada)
     {
 
         LogUsuariosController::registrarLog('UPDATE',$mensaje ,$tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
-    }
-
-    /**
-     * Método para registrar en el Log de Usuarios la acción de inactivar algún dao en la base de datos
-     * @author Ruben Charry 
-     */
-
-    public function inactivarLogUsuarios($tabla, $id)
-    {
-        LogUsuariosController::registrarLog(Constantes::INACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
     }
 
     /**

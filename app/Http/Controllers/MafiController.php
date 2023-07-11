@@ -231,7 +231,7 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
-            dd($numeroCreditos->CreditosPlaneados);
+            //dd($numeroCreditos->CreditosPlaneados);
 
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
@@ -258,6 +258,9 @@ class MafiController extends Controller
 
 
             foreach($materiasPorVer as $materia):
+                dd($materia);
+                $codBanner = $materia->codBanner;
+                $codMateria = $materia->codMateria;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
@@ -265,7 +268,9 @@ class MafiController extends Controller
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$materia->codMateria],['codBanner','=',$estudiante->homologante]])->first();
-                    //if($estaPlaneacion == '' &&     );
+                    if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
+
+                    endif;
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');

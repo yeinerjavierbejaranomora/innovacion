@@ -179,7 +179,7 @@ class facultadController extends Controller
 
     public function getDatosPrograma($codigo)
     {
-        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla, id')->get();
+        $datos = DB::table('programas')->where('codprograma', '=', $codigo)->select('tabla, id, programa, activo')->get();
         return $datos;
     }
 
@@ -189,10 +189,12 @@ class facultadController extends Controller
     public function inactivar_programa()
     {
         $cod_llegada = $_POST['codigo'];
+        $informacionOriginal = $this->getDatosPrograma($cod_llegada);
         $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 0]);
-        $datos = $this->getDatosPrograma($cod_llegada);
+        $informacionActualizada = $this->getDatosPrograma($cod_llegada);
+
         if ($inactivarPrograma) :
-            $this->inactivarLogUsuarios($datos[0]->tabla, $datos[0]->id);
+            $this->inactivarLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -202,10 +204,14 @@ class facultadController extends Controller
     public function activar_programa()
     {
         $cod_llegada = $_POST['codigo'];
-        $inactivarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
+        $informacionOriginal = $this->getDatosPrograma($cod_llegada);
+        $activarPrograma = DB::table('programas')->where('codprograma', '=', $cod_llegada)->update(['activo' => 1]);
+        $informacionActualizada = $this->getDatosPrograma($cod_llegada);
+        
         $datos = $this->getDatosPrograma($cod_llegada);
-        if ($inactivarPrograma) :
-            $this->activarLogUsuarios($datos[0]->tabla, $datos[0]->id);
+        if ($activarPrograma) :
+            $this->inactivarLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
+            
             return  "habilitado";
         else :
             return "false";
@@ -659,9 +665,10 @@ class facultadController extends Controller
      * @author Ruben Charry 
      */
 
-    public function activarLogUsuarios($tabla, $id)
+    public function activarLogUsuarios($mensaje,$tabla, $informacionOriginal, $informacionActualizada)
     {
-        LogUsuariosController::registrarLog(Constantes::ACTIVAR, $tabla, NULL, json_encode(['id' => $id]));
+
+        LogUsuariosController::registrarLog('UPDATE',$mensaje ,$tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
     }
 
     /**

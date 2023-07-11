@@ -486,7 +486,7 @@ class UserController extends Controller
         $crear = DB::table('roles')->insert([
             'nombreRol' => $nombre,
         ]);
-
+        
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
         

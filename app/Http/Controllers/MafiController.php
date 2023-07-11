@@ -1396,7 +1396,7 @@ class MafiController extends Controller
                 
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-
+                dd($materiasPorVer);
               
                 $codMateria=$materiasPorVer->codMateria;
                 $codPrograma=$materiasPorVer->$programa;

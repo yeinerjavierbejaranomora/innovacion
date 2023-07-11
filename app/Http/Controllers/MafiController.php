@@ -255,6 +255,7 @@ class MafiController extends Controller
             dd($reglaNegocio->creditos);
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+            
 
             foreach($materiasPorVer as $materia):
                 $prerequisitos = $this->prerequisitos($materia->codMateria,$programa);

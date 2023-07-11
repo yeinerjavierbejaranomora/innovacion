@@ -1,4 +1,4 @@
-@extends('layout.plantillaFormularios')
+
 @section('title', 'LoginPrueba')
 @section('content')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">

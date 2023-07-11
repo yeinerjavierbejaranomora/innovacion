@@ -263,7 +263,7 @@ class MafiController extends Controller
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
 
                 else:
-                    dd($prerequisitos);
+                    dd($materia->codMateria,$prerequisitos);
                 endif;
             endforeach;
 

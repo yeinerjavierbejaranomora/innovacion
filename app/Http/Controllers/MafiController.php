@@ -287,8 +287,8 @@ class MafiController extends Controller
                     //dd($estaPlaneacion->codMateria);
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
                     $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->get();
-                    dd($estaPorVer);
                     if($estaPlaneacion == '' && $estaPorVer == '' && $numeroCreditos<$numeroCreditosPermitidos):
+                        dd($numeroCreditos);
                         $numeroCreditos = $numeroCreditos + $creditos;
                         $insertPlaneacion = DB::table('planeacion')->insert([
                             'codBanner' => $codBanner,
@@ -1203,14 +1203,8 @@ class MafiController extends Controller
         }
 
         // No. de creditos para el homologante
-<<<<<<< HEAD
         public function sumar_creditos($codBanner){
             
-=======
-        public function consulta_sumacreditos($codBanner,$ciclo){
-
-        /**select SUM(mallaCurricular.creditos) AS screditos, COUNT(mallaCurricular.creditos) AS ccursos from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100147341 and `mallaCurricular`.`ciclo` in (1, 12) */
->>>>>>> c7943707c451eab338b8353b754dd7e6fa6fc0ab
 
             $consulta_sumacreditos = DB::table('mallaCurricular')
             ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
@@ -1218,17 +1212,9 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-<<<<<<< HEAD
   
             
             $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
-=======
-
-
-            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" : $consulta_sumacreditos->CreditosPlaneados;
-
-
->>>>>>> c7943707c451eab338b8353b754dd7e6fa6fc0ab
 
             return $creditos_homologantes;
             

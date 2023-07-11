@@ -258,7 +258,7 @@ class MafiController extends Controller
 
 
             foreach($materiasPorVer as $materia):
-                dd($materia);
+                //dd($materia);
                 $codBanner = $materia->codBanner;
                 $codMateria = $materia->codMateria;
                 $creditos = $materia->creditos;

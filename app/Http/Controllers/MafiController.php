@@ -256,7 +256,7 @@ class MafiController extends Controller
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
-
+            $orden2 = 1;
             foreach($materiasPorVer as $materia):
                 //dd($materia);
                 $codBanner = $materia->codBanner;
@@ -264,22 +264,47 @@ class MafiController extends Controller
                 $creditos = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
-                $prerequisitos = $prerequisitosConsulta->prerequisito;
+                $prerequisitos = [$prerequisitosConsulta->prerequisito];
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
                         $numeroCreditos = $numeroCreditos + $creditos;
-                        echo $numeroCreditos."<br>";
+                        $insertPlaneacion = DB::table('planeacion')->insert([
+                            'codBanner' => $codBanner,
+                            'codMateria' => $codMateria,
+                            'orden' => $orden2,
+                            'semestre' => '1',
+                            'programada' => '',
+                            'programa' => $programa,
+                        ]);
+                        $cuentaCursosCiclo1++;
                     endif;
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');
                     //dd($estaPlaneacion->codMateria);
+                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
+                    $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->get();
+
+                    if($estaPlaneacion == '' && $estaPorVer == '' && $numeroCreditos<$numeroCreditosPermitidos):
+                        $numeroCreditos = $numeroCreditos + $creditos;
+                        $insertPlaneacion = DB::table('planeacion')->insert([
+                            'codBanner' => $codBanner,
+                            'codMateria' => $codMateria,
+                            'orden' => $orden2,
+                            'semestre' => '1',
+                            'programada' => '',
+                            'programa' => $programa,
+                        ]);
+                        $cuentaCursosCiclo1++;
+                    endif;
                 endif;
+                $orden2++;
+                DB::table('estudiantes')->where('id','=',$estudiante->id)->update(['programado_ciclo1'=>'OK']);
+                echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
             endforeach;
-            die();
 
         endforeach;
         die();

@@ -39,8 +39,8 @@
 			</div>
 			<br>
 			<div class="text-center text-white mb-5">
-				<h6> <strong>Universidad Iberoamericana</strong></h6>
-				<h6> </strong>©Todos los derechos reservados </strong></h6>
+				<h6>Universidad Iberoamericana</h6>
+				<h6> </strong>©2023 Todos los derechos reservados </strong></h6>
 			</div>
 		</div>
 		<div class="col">

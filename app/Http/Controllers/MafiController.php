@@ -231,6 +231,7 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
+            //dd($numeroCreditos->CreditosPlaneados);
 
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
 
@@ -257,14 +258,25 @@ class MafiController extends Controller
 
 
             foreach($materiasPorVer as $materia):
+                //dd($materia);
+                $codBanner = $materia->codBanner;
+                $codMateria = $materia->codMateria;
+                $creditos = $materia->creditos;
                 $ciclo = $materia->ciclo;
-                $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
+                $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
-                    $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
-                    var_dump("sin",$estaPlaneacion,'<br>');
+                    //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
+                    /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
+                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
+                    if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
+                        $numeroCreditos = $numeroCreditos + $creditos;
+                        echo $numeroCreditos."<br>";
+                    endif;
                 else:
-                    var_dump($materia->codMateria,$prerequisitos,'<br>');
+                    //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
+                    //var_dump($estaPlaneacion,'<br>');
+                    //dd($estaPlaneacion->codMateria);
                 endif;
             endforeach;
             die();
@@ -1242,6 +1254,7 @@ $reglaNegocio =DB::table('reglasNegocio')
                                     ->whereIn('codMateria',$materia)
                                     ->where('codBanner','=',$codBanner)
                                     ->dd();
+        return $consultaPlaneacion;
     }
 
 

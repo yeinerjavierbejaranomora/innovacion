@@ -20,8 +20,8 @@
 			</div>
 		<br>
 		<div class="text-center text-white">
-			<h4> Universidad Iberoamericana</h4>	
-			<h4> Todos los derechos reservados </h4>
+			<h6> Universidad Iberoamericana</h6>	
+			<h6> Todos los derechos reservados </h6>
 		</div>
 		</div>
 		<div class="col">

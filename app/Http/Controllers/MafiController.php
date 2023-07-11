@@ -199,19 +199,19 @@ class MafiController extends Controller
                     $tipoEstudiante ='TRANSFERENTE';
                     break;
                 case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
-                    $tipoEstudiante ='ESTUDIANTE';
+                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
                     break;
                 case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
-                    $tipoEstudiante='PRIMER';
+                    $tipoEstudiante='PRIMER INGRESO';
                     break;
                 case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
-                    $tipoEstudiante = 'ESTUDIANTE';
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
                     break;
                 case str_contains($tipoEstudiante, 'REINGRESO'):
-                    $tipoEstudiante = 'ESTUDIANTE';
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
                     break;
                 case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
-                    $tipoEstudiante='PRIMER';
+                    $tipoEstudiante='PRIMER INGRESO';
                     break;
 
                 default:

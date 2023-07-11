@@ -12,6 +12,17 @@
 		align-items: center;
 	}
 
+	.container {
+		padding: 0;
+		/* Elimina el espacio adicional dentro del contenedor */
+	}
+
+	.shadow-lg {
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		/* Agrega una sombra alrededor del contenedor */
+	}
+
+
 	.form-control {
 		font-size: 20px;
 	}
@@ -81,7 +92,7 @@
 	}
 </style>
 
-<div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 35px;">
+<div class="container align-middle shadow-lg rounded" style="background-color:white; border-radius: 35px;">
 	<div class="row">
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>

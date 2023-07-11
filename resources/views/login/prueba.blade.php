@@ -16,9 +16,9 @@ body {
 
 </style>
 
-<div class="container w-60 mt-5 rounded shadow" style="background-color:white;">
+<div class="container w-60 align-middle shadow" style="background-color:white; border-radius: 25px;">
 	<div class="row">
-		<div class="col" style="background:#dfc14e;">
+		<div class="col" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
 		<div class="align-content-center">
 			<img src="public/assets/images/Escudo.png" width="300"alt="">
 		</div>

@@ -183,7 +183,7 @@ class MafiController extends Controller
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
 
-        dd($estudiantesPC[13]);
+        //dd($estudiantesPC[13]);
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
@@ -195,6 +195,30 @@ class MafiController extends Controller
                 $ruta = 1;
             endif;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+            switch ($tipoEstudiante) {
+                case str_contains($estudiante->tipoestudiante, 'TRANSFERENTE'):
+                    echo $estudiante->tipoestudiante.' Transferente';
+                    break;
+                case str_contains($estudiante->tipoestudiante, 'ESTUDIANTE ANTIGUO'):
+                    echo $estudiante->tipoestudiante.' estudiante';
+                    break;
+                case str_contains($estudiante->tipoestudiante, 'PRIMER INGRESO'):
+                    echo $estudiante->tipoestudiante.' primer';
+                    break;
+                case str_contains($estudiante->tipoestudiante, 'INGRESO SINGULAR'):
+                    echo $estudiante->tipoestudiante.' primer';
+                    break;
+                case str_contains($estudiante->tipoestudiante, 'PSEUDO ACTIVOS'):
+                    echo $estudiante->tipoestudiante.' estudiante';
+                    break;
+                case str_contains($estudiante->tipoestudiante, 'REINGRESO'):
+                    echo $estudiante->tipoestudiante.' estudiante';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
             dd($tipoEstudiante);
             $ciclo=[1,12];
 

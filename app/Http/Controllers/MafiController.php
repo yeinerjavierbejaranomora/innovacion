@@ -269,7 +269,7 @@ class MafiController extends Controller
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
+                    /*$estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
                     dd($numeroCreditos);
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
 
@@ -282,13 +282,13 @@ class MafiController extends Controller
                             'programada' => '',
                             'programa' => $programa,
                         ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
+                    endif;*/
+                    $cuentaCursosCiclo1++;
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');
                     //dd($estaPlaneacion->codMateria);
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
+                    /*$estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
                     $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->get();
                     dd($numeroCreditos);
 
@@ -302,14 +302,14 @@ class MafiController extends Controller
                             'programada' => '',
                             'programa' => $programa,
                         ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
+                    endif;*/
+                    $cuentaCursosCiclo1++;
                 endif;
                 $orden2++;
                 DB::table('estudiantes')->where('id','=',$estudiante->id)->update(['programado_ciclo1'=>'OK']);
                 echo "Planeación realizada para : " . $codBanner . " y " . $codMateria . "<br />";
             endforeach;
-
+            die();
         endforeach;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
@@ -1180,6 +1180,7 @@ class MafiController extends Controller
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
 
+            dd($ciclo);
             // Materias que debe ver el estudiante por ciclo
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
@@ -1352,7 +1353,7 @@ class MafiController extends Controller
             $programado_ciclo1=NULL;
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
-            
+
             foreach($estudiantesPC as $estudiante):
 
                 $idEstudiante = $estudiante->id;
@@ -1395,7 +1396,7 @@ class MafiController extends Controller
                 $ciclo=[1,12];
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            
+
 
                 $codMateria=$materiasPorVer->codMateria;
                 $codPrograma=$materiasPorVer->$programa;
@@ -1404,7 +1405,7 @@ class MafiController extends Controller
 
                     $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                 }
-            
+
 
             endforeach;
 

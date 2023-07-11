@@ -18,6 +18,11 @@
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">
 			</div>
+		<br>
+		<div class="text-center text-white">
+			<h4> Universidad Iberoamericana</h4>	
+			<h4> Todos los derechos reservados </h4>
+		</div>
 		</div>
 		<div class="col">
 			<h2 class="fw-light text-center"> Sistema de proyeccion Ibero</h2>

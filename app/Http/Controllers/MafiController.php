@@ -1103,7 +1103,7 @@ class MafiController extends Controller
         public function materiasPorVer($codBanner,$ciclo,$programa){
             //
             $periodo=$this->periodo();
-            dd($periodo);
+            //dd($periodo);
 
             // Materias que debe ver el estudiante
           $materiasPorVer = DB::table("materiasPorVer mp")

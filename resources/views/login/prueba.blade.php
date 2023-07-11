@@ -23,6 +23,7 @@
 
 	#btn {
 		background-color: #d0ab4b;
+		border-color: #dfc14e;
 	}
 
 	#btn :hover {

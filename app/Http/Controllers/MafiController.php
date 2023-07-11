@@ -265,7 +265,7 @@ class MafiController extends Controller
                     dd($estaPlaneacion);
                 else:
                     $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
-                    var_dump($estaPlaneacion,'<br>');
+                    //var_dump($estaPlaneacion,'<br>');
                     dd($estaPlaneacion);
                 endif;
             endforeach;

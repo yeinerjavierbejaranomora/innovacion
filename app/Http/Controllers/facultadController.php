@@ -325,7 +325,7 @@ class facultadController extends Controller
         $informacionActualizada = $request->except(['_token']);
 
         if ($update) :
-            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->nombre." fue actualizado",$informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
+            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->programa." fue actualizado",$informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :

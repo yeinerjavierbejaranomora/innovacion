@@ -193,7 +193,7 @@ class facultadController extends Controller
         $informacionActualizada = $this->getDatosPrograma($cod_llegada);
 
         if ($inactivarPrograma) :
-            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue desactivado", "programa", $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -209,7 +209,7 @@ class facultadController extends Controller
         
         $datos = $this->getDatosPrograma($cod_llegada);
         if ($activarPrograma) :
-            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado",$informacionOriginal[0]->tabla, $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El programa ". $informacionOriginal[0]->programa . " fue activado","programa", $informacionOriginal, $informacionActualizada);
             
             return  "habilitado";
         else :
@@ -217,7 +217,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function crear_programa()
+    public function crear_programa(Request $request)
     {
         // Recibe los parámetros del formulario por Post
         $codigo = $_POST['codPrograma'];
@@ -230,8 +230,9 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'pregrado',
         ]);
-
+        $informacionOriginal= $request->except(['_token']);
         if ($crear) :
+            $this->createLogUsuarios("Programa creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.programas')->with('message', 'Programa creado correctamente');
         else :
@@ -240,7 +241,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function crear_esp()
+    public function crear_esp(Request $request)
     {
         $codigo = $_POST['codEsp'];
         $nombre = $_POST['nombre'];
@@ -252,7 +253,9 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'especializacion',
         ]);
+        $informacionOriginal= $request->except(['_token']);
         if ($crear) :
+            $this->createLogUsuarios("Especialización creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.especializacion')->with('message', 'Especialización creada correctamente');
         else :
@@ -261,7 +264,7 @@ class facultadController extends Controller
         endif;
     }
 
-    public function crear_maestria()
+    public function crear_maestria(Request $request)
     {
         $codigo = $_POST['codMaestria'];
         $nombre = $_POST['nombre'];
@@ -273,7 +276,9 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'MAESTRIA',
         ]);
+        $informacionOriginal= $request->except(['_token']);
         if ($crear) :
+            $this->createLogUsuarios("Maestría creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.maestria')->with('message', 'Maestria creada correctamente');
         else :
@@ -283,7 +288,7 @@ class facultadController extends Controller
     }
 
     /** Metodo para crear programa de educacion continua */
-    public function crear_edudacioncont()
+    public function crear_edudacioncont(Request $request)
     {
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
@@ -295,7 +300,9 @@ class facultadController extends Controller
             'idFacultad' => $codFacultad,
             'tabla' => 'EDUCACION CONTINUA',
         ]);
+        $informacionOriginal= $request->except(['_token']);
         if ($crear) :
+            $this->createLogUsuarios("Programa de educación continua creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('facultad.continua')->with('message', 'Programa creado correctamente');
         else :
@@ -325,7 +332,7 @@ class facultadController extends Controller
         $informacionActualizada = $request->except(['_token']);
 
         if ($update) :
-            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->programa." fue actualizado",$informacionOriginal[0]->tabla,$informacionOriginal,$informacionActualizada); 
+            $this->updateLogUsuarios("El programa ".$informacionOriginal[0]->programa." fue actualizado","programa",$informacionOriginal,$informacionActualizada); 
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -564,7 +571,7 @@ class facultadController extends Controller
         $inactivarPeriodo = DB::table('periodo')->where('id', '=', $id)->update(['periodoActivo' => 0]);
         $informacionActualizada = DB::table('periodo')->where('id', '=', $id)->select('periodos', 'id', 'periodoActivo')->get();
         if ($inactivarPeriodo) :
-            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue activdado ",'periodo', $informacionOriginal,$informacionActualizada);
+            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->periodos . " fue inactivado ",'periodo', $informacionOriginal,$informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";

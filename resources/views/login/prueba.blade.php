@@ -8,13 +8,10 @@
 		font-family: Montserrat;
 	}
 
-	.container {
-		margin-top: 200px;
-	}
 	
 </style>
 
-<div class="container w-75 align-middle shadow" style="background-color:white; border-radius: 25px;">
+<div class="container w-75 align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
 	
 		<div class="row">
 			<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">

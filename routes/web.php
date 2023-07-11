@@ -75,6 +75,8 @@ Route::controller(MafiController::class)->group(function(){
     Route::get('/home/admin/datamafireplica', 'getDataMafiReplica')->middleware('auth','admin')->name('admin.getdatamafireplica');
     Route::get('/home/admin/periodo', 'periodo')->middleware('auth','admin')->name('admin.periodo');
     Route::get('/home/admin/Generar_faltantes', 'materiasPorVer')->middleware('auth','admin')->name('admin.Generar_faltantes');
+    Route::get('/home/admin/probarfunciones', 'probarfunciones')->middleware('auth','admin')->name('admin.probarfunciones');
+ 
 
 });
 

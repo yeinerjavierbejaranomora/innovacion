@@ -269,7 +269,7 @@ class MafiController extends Controller
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
+                    /*$estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
                     dd($numeroCreditos);
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
 
@@ -282,13 +282,13 @@ class MafiController extends Controller
                             'programada' => '',
                             'programa' => $programa,
                         ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
+                    endif;*/
+                    $cuentaCursosCiclo1++;
                 else:
                     //$estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');
                     //dd($estaPlaneacion->codMateria);
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
+                    /*$estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->get();
                     $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->get();
                     dd($numeroCreditos);
 
@@ -302,8 +302,8 @@ class MafiController extends Controller
                             'programada' => '',
                             'programa' => $programa,
                         ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
+                    endif;*/
+                    $cuentaCursosCiclo1++;
                 endif;
                 $orden2++;
                 DB::table('estudiantes')->where('id','=',$estudiante->id)->update(['programado_ciclo1'=>'OK']);

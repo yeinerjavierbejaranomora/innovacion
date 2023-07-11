@@ -75,6 +75,12 @@
 		border-radius: 0 30px 30px 0;
 		margin-left: 0;
 	}
+
+	#colmder {
+		margin-left: 0;
+	}
+
+
 </style>
 
 <div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
@@ -90,7 +96,7 @@
 				<h6 style="font-weight: 300;">©2023 Todos los derechos reservados</h6>
 			</div>
 		</div>
-		<div class="col">
+		<div class="col" id="colmder">
 			<br>
 			<div class="rectangle"></div>
 			<br>

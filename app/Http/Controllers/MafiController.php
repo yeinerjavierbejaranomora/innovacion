@@ -1116,7 +1116,7 @@ class MafiController extends Controller
                 ->where('mallaCurricular.codprograma','=',$programa)
                 ->orderBy('mallaCurricular.orden','ASC')
                 ->orderBy('mallaCurricular.semestre','ASC')
-                ->dd();
+                ->get();
 
             return $materiasPorVer;
         }

@@ -83,7 +83,7 @@
 		</div>
 		<div class="col">
 			<br><br>
-			<h2 class="text-center mb-5" style="font-weight: 500;"> Sistema de <br> Proyección Ibero</h2>
+			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>
 
 			<form action="#" class="align-content-center">
 				<div class="mb-5 col-10 mx-auto">

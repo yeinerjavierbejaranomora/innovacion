@@ -392,7 +392,7 @@ class UserController extends Controller
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
         $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
-        $nombre = $informacionOriginal->nombre;
+        $nombre = $informacionOriginal[0]->nombre;
         if ($inactivarUsuario) :
             LogUsuariosController::registrarLog('INACTIVATE', "El usario con id = " . $id . " y nombre = " . $nombre . " fue desactivado" ,'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
@@ -407,7 +407,7 @@ class UserController extends Controller
         $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
         $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','activo')->get();
-        $nombre = $informacionOriginal->nombre;
+        $nombre = $informacionOriginal[0]->nombre;
         if ($activarUsuario) :
             LogUsuariosController::registrarLog('ACTIVATE', "El usario con id = " . $id . " y nombre = " . $nombre . " fue activado" , 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";

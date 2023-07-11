@@ -1216,10 +1216,10 @@ class MafiController extends Controller
             ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
-            ->first();
-            dd($consulta_sumacreditos);
+            ->get()->dd();
+          
 
-            $creditos_homologantes = $consulta_sumacreditos->CreditosPlaneados=='' ? "0" :$consulta_sumacreditos->CreditosPlaneados;
+            $creditos_homologantes = $consulta_sumacreditos==NULL ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
             return $creditos_homologantes;
 

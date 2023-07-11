@@ -44,7 +44,7 @@
 		<div class="col">
 			<h2 class="fw-bold text-center mb-5"> Sistema de proyeccion Ibero</h2>
 
-			<form action="#">
+			<form action="#" class="align-content-center">
 				<div class="mb-5 col-10">
 					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>

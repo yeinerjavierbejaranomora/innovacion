@@ -1251,6 +1251,18 @@ class MafiController extends Controller
             return  $reglaNegocio;
         }
 
+        public function esta_en_planeacion($prerequisitos,$codBanner){
+
+         
+            $query=DB::table('planeacion')
+            ->select('codMateria')
+            ->whereIn('codMateria',$prerequisitos)
+            ->where('codBanner','=',$codBanner)
+            ->get()->dd();
+
+            return $query;
+        }
+
         public function Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante){
 
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
@@ -1311,8 +1323,8 @@ class MafiController extends Controller
                     }
                 } else {
                     //echo "Con prerequisito <br />";
-                    $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'";';
-                    $resultado_estaenplaneacion = mysql_query($consulta_estaenplaneacion, $link);
+                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
+                    $resultado_estaenplaneacion = $esta_en_planeacion;
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
                     @ $prerequisito_programado=$filas = mysql_fetch_assoc($resultado_estaenplaneacion);
                     $preprogramado = $filas['codMateria'];

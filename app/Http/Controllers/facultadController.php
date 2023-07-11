@@ -246,7 +246,7 @@ class facultadController extends Controller
     {
         $codigo = $_POST['codEsp'];
         $nombre = $_POST['nombre'];
-        $codFacultad = $_POST['codFacultad'];
+        $codFacultad = $_POST['idFacultad'];
         // Consulta para insertar nueva especialización
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,

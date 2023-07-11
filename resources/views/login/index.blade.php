@@ -73,7 +73,8 @@
 		height: 70px;
 		background-color: #dfc14e;
 		border-radius: 0 50px 50px 0;
-		margin-left: -12px !important;
+		margin-left: -14px !important;
+		margin-bottom: 20px!important;
 	}
 
 	#colmder {

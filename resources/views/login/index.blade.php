@@ -88,7 +88,7 @@
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>
 			<div class="align-content-center">
-				<img src="public/assets/images/Escudo.png" width="300" alt="">
+				<img src="public/assets/images/Escudo.png" width="350" alt="">
 			</div>
 			<br>
 			<br>

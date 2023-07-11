@@ -1347,10 +1347,10 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $codBanner=100147341;
-            $ciclo=1;
+            $ciclo=[1,12];
             $programa='PPSV';
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
-            
+
             $planeacion=$this->Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
 
 

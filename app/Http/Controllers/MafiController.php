@@ -183,7 +183,7 @@ class MafiController extends Controller
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
 
-        dd($estudiantesPC[10]);
+        //dd($estudiantesPC[10]);
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
@@ -191,7 +191,11 @@ class MafiController extends Controller
             $programa = $estudiante->programa;
 
             $ruta = $estudiante->bolsa;
+            if($ruta != ''):
+                $ruta = 1;
+            endif;
             $tipoEstudiante = $estudiante->tipo_estudiante;
+            dd($tipoEstudiante);
             $ciclo=[1,12];
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
@@ -219,10 +223,10 @@ class MafiController extends Controller
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
             $cuentaCursosCiclo1 = $numeroCreditosC1->screditos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
-
+            $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
-                                ->where([['programa','=',$programa],['ciclo','=',1],['activo','=',1]])
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
                                 ->first();
 
             dd($reglaNegocio);

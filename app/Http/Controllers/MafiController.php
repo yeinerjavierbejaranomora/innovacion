@@ -1105,7 +1105,7 @@ class MafiController extends Controller
             $periodo=$this->periodo();
             //dd($periodo);
 
-            $ciclo=[2];
+            //$ciclo=[2];
             // Materias que debe ver el estudiante
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')

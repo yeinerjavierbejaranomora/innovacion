@@ -1001,9 +1001,9 @@ class MafiController extends Controller
 
                     while($fila =  $resultado_visitas) {
                         dd($fila);
-                        $codbanner= $fila['codBanner'];
+                        $codbanner=$materias->codBanner'];
                         $codprograma= $programa_homologante;
-                        $codmateria= $fila['codMateria'];
+                        $codmateria=$materias->codMateria'];
                         $materias_vistas[$contacor_vistas]= strtoupper($codmateria);
                     $contacor_vistas++;
                 }
@@ -1026,7 +1026,7 @@ class MafiController extends Controller
 
                 $orden=1;
                 while($fila = $resultado_baseacademica) {
-                    $codcurso= $fila['codigoCurso'];
+                    $codcurso=$materias->codigoCurso'];
 
                     //echo "CodCurs: " . $codcurso . "<br />";
                     //var_dump($materias_vistas);
@@ -1265,16 +1265,16 @@ class MafiController extends Controller
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
 
-            foreach ($materiasPorVer as $key => $value) {
+            foreach ($materiasPorVer as $materias) {
                 # code...
         
-                $codBanner= $fila['codBanner'];
-                $codMateria = $fila['codMateria'];	//EEV22022=2	EEV22003=0    PIV22012=1 // 
-                $creditoMateria = $fila['creditos'];	//EEV22022=2	EEV22003=0    PIV22012=1 //
-                $ciclo= $fila['ciclo'];
+                $codBanner      =  $materias->codBanner;
+                $codMateria     =  $materias->codMateria;	 
+                $creditoMateria =  $materias->creditos;
+                $ciclo          =  $materias->ciclo;
                 
-                //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
-                //exit();
+                echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
+                exit();
                 $consulta_prerequisitos = 'SELECT prerequisito FROM base_acdemica WHERE codigoCurso="'.$codMateria.'" AND codprograma = "'.$programa_homologante.'";';
                 //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
                 // exit();
@@ -1348,10 +1348,9 @@ class MafiController extends Controller
             $codBanner=100147341;
             $ciclo=1;
             $programa='PPSV';
-
-            //$materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
-
-            $consulta_sumacreditos=$this->consulta_sumacreditos($codBanner)->dd();
+            $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa)->dd();
+            
+            $planeacion=$this->Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
 
 
 

@@ -12,9 +12,7 @@
 		align-items: center;
 	}
 
-	.container{
-		border-radius: 35px;
-	}
+
 
 	.form-control {
 		font-size: 20px;

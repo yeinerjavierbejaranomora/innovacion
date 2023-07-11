@@ -221,7 +221,7 @@ class MafiController extends Controller
                                 ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
                                 ->get();
 
-            dd($reglaNegocio);
+            dd($estudiantesPC[13],$reglaNegocio);
             die();
 
         foreach($estudiantesPC as $estudiante):

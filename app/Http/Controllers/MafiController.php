@@ -194,7 +194,7 @@ class MafiController extends Controller
             $ciclo=('1,12');
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            dd( $materiasPorVer);
+            dd($materiasPorVer);
             //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -1004,66 +1004,67 @@ class MafiController extends Controller
 
     }*/
 
-    public function Generar_faltantes(){
+        public function Generar_faltantes(){
 
 
 
 
-            /// para activar el perodo activo en la base de datos
-            $periodo = $this->periodo();
-            $marcaIngreso = "";
-            foreach ($periodo as $key => $value) {
-                $marcaIngreso .= (int)$value->periodos . ",";
+                /// para activar el perodo activo en la base de datos
+                $periodo = $this->periodo();
+                $marcaIngreso = "";
+                foreach ($periodo as $key => $value) {
+                    $marcaIngreso .= (int)$value->periodos . ",";
+                }
+
+                // para procesasr las marcas de ingreso en los periodos
+                $marcaIngreso=trim($marcaIngreso,",");
+                // Dividir la cadena en elementos individuales
+                $marcaIngreso = explode(",", $marcaIngreso);
+                // Convertir cada elemento en un número
+                $marcaIngreso = array_map('intval', $marcaIngreso);
+            //traemos todos los programas activos para la consulta
+                $programas= $this->get_programas();
+
+
+
+                /*select `id`, `homologante`, `programa`
+                        from `estudiantes`
+                where `materias_faltantes` = 'OK'
+                and `programado_ciclo1` is null
+                and `programado_ciclo2` is null
+                and `programa` = 'PCPV'
+                and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);*/
+
+
+            # code...
+
+            foreach ($programas as $key => $value) {
+
+                // Estudiantes para generar faltantes por programa
+                $consulta_homologante= DB::table('estudiantes')
+                ->select('id', 'homologante', 'programa')
+                ->where('materias_faltantes','OK')
+                ->whereNull('programado_ciclo1')
+                ->whereNull('programado_ciclo2')
+                ->where('programa',$value->codprograma)
+                ->whereIn('marca_ingreso',$marcaIngreso)
+                ->orderBy('id','ASC')
+                ->chunk(200, function($estudiantes){
+
+                    foreach ($estudiantes as $estudiante) :
+
+                        $id_homologante=$estudiante->id;
+                        $codHomologante=$estudiante->homologante;
+                        $programa_homologante=$estudiante->programa;
+
+
+
+                    endforeach;
+                });
             }
 
-            // para procesasr las marcas de ingreso en los periodos
-            $marcaIngreso=trim($marcaIngreso,",");
-            // Dividir la cadena en elementos individuales
-            $marcaIngreso = explode(",", $marcaIngreso);
-            // Convertir cada elemento en un número
-            $marcaIngreso = array_map('intval', $marcaIngreso);
-          //traemos todos los programas activos para la consulta
-            $programas= $this->get_programas();
-
-
-
-            /*select `id`, `homologante`, `programa`
-                       from `estudiantes`
-               where `materias_faltantes` = 'OK'
-               and `programado_ciclo1` is null
-               and `programado_ciclo2` is null
-               and `programa` = 'PCPV'
-               and `marca_ingreso` in (202305, 202312, 202332, 202342, 202352, 202306, 202313, 202333, 202343, 202353);*/
-
-
-        # code...
-
-        foreach ($programas as $key => $value) {
-
-            // Estudiantes para generar faltantes por programa
-            $consulta_homologante= DB::table('estudiantes')
-            ->select('id', 'homologante', 'programa')
-            ->where('materias_faltantes','OK')
-            ->whereNull('programado_ciclo1')
-            ->whereNull('programado_ciclo2')
-            ->where('programa',$value->codprograma)
-            ->whereIn('marca_ingreso',$marcaIngreso)
-            ->orderBy('id','ASC')
-            ->chunk(200, function($estudiantes){
-
-                foreach ($estudiantes as $estudiante) :
-
-                    $id_homologante=$estudiante->id;
-                    $codHomologante=$estudiante->homologante;
-                    $programa_homologante=$estudiante->programa;
-
-
-
-                endforeach;
-            });
         }
 
-}
         /**validar si el estudiante tiene creditos planeados */
         public function programarPrimerCiclo($programado_ciclo1){
 
@@ -1098,14 +1099,11 @@ class MafiController extends Controller
         }
 
 
-
-
-
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
             //
             $periodo=$this->periodo();
-            //dd($periodo);
+            dd($periodo);
 
             // Materias que debe ver el estudiante
           $materiasPorVer = DB::table("materiasPorVer mp")

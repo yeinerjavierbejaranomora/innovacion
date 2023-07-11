@@ -1153,24 +1153,22 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->get();
+                                ->first();
             return $prerequisitos;
         }
 
         // No. de creditos para el homologante
         public function consulta_sumacreditos($codBanner){
             /**SELECT planeacion.codBanner, SUM(mallaCurricular.creditos) AS CreditosPlaneados FROM mallaCurricular INNER JOIN planeacion ON mallaCurricular.codigoCurso=planeacion.codMateria WHERE planeacion.codBanner='100147341.' group by planeacion.codbanner; */
-
-            $consulta_sumacreditos = DB::table("mallaCurricular")
-            ->select('planeacion.codBanner')
-            ->sum('mallaCurricular.creditos')
-            ->join('planeacion','mallaCurricular.codigoCurso','=','planeacion.codMateria')
-            ->where('planeacion.codBanner','=',$codBanner)
-            ->groupBy('planeacion.codbanner')
+            $resultado = DB::table('mallaCurricular')
+            ->join('planeacion', 'mallaCurricular.codigoCurso', '=', 'planeacion.codMateria')
+            ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+            ->where('planeacion.codBanner', '100147341.')
+            ->groupBy('planeacion.codBanner')
             ->get();
 
 
-            return  $consulta_sumacreditos;
+            return  $resultado;
         }
 
 

@@ -21,11 +21,11 @@
 		font-size: 20px;
 	}
 
-	#btn-iniciar-sesion {
+	#btn {
 		background-color: #d0ab4b;
 	}
 
-	#btn-iniciar-sesion:hover {
+	#btn :hover {
 		background-color: #dfc14e;
 	}
 </style>

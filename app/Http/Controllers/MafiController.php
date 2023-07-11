@@ -1089,7 +1089,7 @@ class MafiController extends Controller
 
             //$materiasPorVer= DB::select($sql);
 
-            dd($materiasPorVer);
+            //dd($materiasPorVer);
 
             return $materiasPorVer;
         }

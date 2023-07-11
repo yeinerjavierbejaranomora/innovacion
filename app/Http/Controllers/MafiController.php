@@ -250,7 +250,7 @@ class MafiController extends Controller
             $reglaNegocio =DB::table('reglasNegocio')
                                 ->select('creditos','materiasPermitidas')
                                 ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
-                                ->get();
+                                ->first();
 
             dd($reglaNegocio->creditos);
             $numeroCreditosPermitidos = $reglaNegocio->creditos;

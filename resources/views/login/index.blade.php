@@ -117,7 +117,7 @@
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">
-					<span><u><a href="#" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
+					<span><u><a href="{{ route('cambio.index') }}" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
 				</div>
 			</form>
 
@@ -126,6 +126,7 @@
 
 </div>
 
+<div id="dropDownSelect1"></div>
 
 
 </body>

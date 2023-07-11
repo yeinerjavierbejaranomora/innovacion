@@ -114,8 +114,6 @@ Route::controller(LoginController::class)->group(function(){
     /// para cambiar el password interno
     Route::post('/login/admin','cambio_Pass')->name('login_interno.cambiopass');
     
-    /** Prueba */
-    Route::get('/logprueba','indexPrueba')->name('registroPrueba.index');
 });
 
 Route::controller(contrasenaController::class)->group(function(){

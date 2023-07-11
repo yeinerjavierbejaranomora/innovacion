@@ -1396,12 +1396,14 @@ class MafiController extends Controller
                 
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-                dd($materiasPorVer);
               
-                $codMateria=$materiasPorVer->codMateria;
-                $codPrograma=$materiasPorVer->$programa;
+                foreach ($materiasPorVer as $value_materiasPorVer) {
+              
+                    dd($value_materiasPorVer);
+                    $codMateria=$value_materiasPorVer->codMateria;
+                    $codPrograma=$value_materiasPorVer->$programa;
 
-                foreach ($materiasPorVer as $key => $value) {
+               
 
                     $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                 }

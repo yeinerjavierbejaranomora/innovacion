@@ -44,7 +44,7 @@
 		background: transparent;
 		width: 100%;
 		font-size: 16px;
-		color:black;
+		color: black;
 	}
 
 	.custom-input:focus {
@@ -69,7 +69,7 @@
 	}
 
 	.rectangle {
-		width: 380px;	
+		width: 380px;
 		height: 70px;
 		background-color: #dfc14e;
 		border-radius: 0 30px 30px 0;
@@ -79,13 +79,11 @@
 	#colmder {
 		margin-left: 0;
 	}
-
-
 </style>
 
-<div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 25px;">
+<div class="container align-middle shadow align-items-center" style="background-color:white; border-radius: 35px;">
 	<div class="row">
-		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">
+		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>
 			<div class="align-content-center">
 				<img src="public/assets/images/Escudo.png" width="300" alt="">

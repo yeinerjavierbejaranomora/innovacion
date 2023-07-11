@@ -8,14 +8,13 @@
 		font-family: Montserrat;
 	}
 
-	.bg {
-		background-image: url('public/assets/images/Escudo.png');
-		background-position: center center;
+	.container {
+		margin-top: 50px;
 	}
-
+	
 </style>
 
-<div class="container w-60 align-middle shadow" style="background-color:white; border-radius: 25px;">
+<div class="container align-middle shadow" style="background-color:white; border-radius: 25px;">
 	
 		<div class="row">
 			<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 25px 25px; border-bottom-left-radius: 25px 25px; ">

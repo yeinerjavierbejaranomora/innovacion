@@ -468,10 +468,9 @@ class UserController extends Controller
 
         $request->merge(['id' => $id]);
         $informacionAcualizada= $request->except(['_token']);
-
-        LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
-
+        
         if ($update) :
+            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -489,9 +488,9 @@ class UserController extends Controller
         ]);
 
         $informacionActualizada= $request->except(['_token']);
-        LogUsuariosController::registrarLog('CREATE', "Usuario creado" ,'Users', json_encode($request->all()), NULL);
-
+        
         if ($crear) :
+            LogUsuariosController::registrarLog('CREATE', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :

@@ -1106,14 +1106,14 @@ class MafiController extends Controller
             //dd($periodo);
 
             // Materias que debe ver el estudiante
-          $materiasPorVer = DB::table("materiasPorVer mp")
-                ->select('mp.codBanner','mp.codMateria','mp.orden','mc.creditos','mc.ciclo')
-                ->join('mallaCurricular mc','mc.codigoCurso','=','mp.codMateria')
-                ->where('mp.codBanner','=',$codBanner)
-                ->whereIn('mc.ciclo',$ciclo)
-                ->where('mp.codprograma','=',$programa)
-                ->where('mc.codprograma','=',$programa)
-                ->orderBy('mp.orden','ASC')
+          $materiasPorVer = DB::table("materiasPorVer")
+                ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+                ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
+                ->where('materiasPorVer.codBanner','=',$codBanner)
+                ->whereIn('mallaCurricular.ciclo',$ciclo)
+                ->where('materiasPorVer.codprograma','=',$programa)
+                ->where('mallaCurricular.codprograma','=',$programa)
+                ->orderBy('materiasPorVer.orden','ASC')
                 ->get();
 
             return $materiasPorVer;

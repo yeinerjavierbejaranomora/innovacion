@@ -262,11 +262,11 @@ class MafiController extends Controller
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
-                    dd($estaPlaneacion);
+                    dd($estaPlaneacion->codMateria);
                 else:
                     $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     //var_dump($estaPlaneacion,'<br>');
-                    dd($estaPlaneacion);
+                    dd($estaPlaneacion->codMateria);
                 endif;
             endforeach;
             die();

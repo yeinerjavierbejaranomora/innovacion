@@ -1032,7 +1032,7 @@ class MafiController extends Controller
             // Estudiantes para generar faltantes por programa
             $consulta_homologante= DB::table('estudiantes')
             ->select('id', 'homologante', 'programa')
-            ->where('materias_faltantes',' ')
+            ->where('materias_faltantes','OK')
             ->whereNull('programado_ciclo1')
             ->whereNull('programado_ciclo2')
             ->where('programa',$value->codprograma)

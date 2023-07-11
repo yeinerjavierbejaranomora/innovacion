@@ -1353,7 +1353,7 @@ class MafiController extends Controller
             $programado_ciclo1=NULL;
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
-
+            $ciclo=[1,12];
             foreach($estudiantesPC as $estudiante):
 
                 $idEstudiante = $estudiante->id;
@@ -1393,11 +1393,11 @@ class MafiController extends Controller
                         break;
                 }
 
-                $ciclo=[1,12];
+                
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
 
-
+              
                 $codMateria=$materiasPorVer->codMateria;
                 $codPrograma=$materiasPorVer->$programa;
 

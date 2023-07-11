@@ -19,9 +19,7 @@ body {
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<div class="bg">
-
-			</div>
+			<img src="public/assets/images/Escudo.png" width="40"alt="">
 		</div>
 		<div class="col">
 			<h2 class="fw-light"> Sistema de proyeccion Ibero</h2>

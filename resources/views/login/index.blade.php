@@ -69,10 +69,10 @@
 	}
 
 	.rectangle {
-		width: 380px;
+		width: 275px;
 		height: 70px;
 		background-color: #dfc14e;
-		border-radius: 0 30px 30px 0;
+		border-radius: 0 50px 50px 0;
 		margin-left: 0;
 	}
 
@@ -83,8 +83,8 @@
 	
 </style>
 
-<div class="container align-middle shadow-lg rounded" style="background-color:white; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">
-	<div class="row">
+<div class="container align-middle shadow-lg rounded" >
+	<div class="row" style="background-color:white;border-radius: 35px; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">
 		<div class="col text-center" style="background:#dfc14e;border-top-left-radius: 35px 35px; border-bottom-left-radius: 35px 35px; ">
 			<br><br>
 			<div class="align-content-center">
@@ -98,7 +98,7 @@
 		</div>
 		<div class="col" id="colmder" style="border-top-right-radius: 35px 35px; border-bottom-right-radius: 35px 35px;">
 			<br>
-			<div class="rectangle"></div>
+			<div class="rectangle" style="margin-left: 0;"></div>
 			<br>
 
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>
@@ -117,7 +117,7 @@
 				</div>
 				<br><br><br>
 				<div class="my-10 text-center mb-5">
-					<span><u><a href="#" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
+					<span><u><a href="{{ route('cambio.index') }}" style="font-weight: 600;">¿Olvidaste tu Contraseña?</a></u></span>
 				</div>
 			</form>
 
@@ -126,6 +126,7 @@
 
 </div>
 
+<div id="dropDownSelect1"></div>
 
 
 </body>

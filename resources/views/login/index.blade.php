@@ -73,7 +73,7 @@
 		height: 70px;
 		background-color: #dfc14e;
 		border-radius: 0 50px 50px 0;
-		margin-left: 0;
+		margin-left: -10px !important;
 	}
 
 	#colmder {
@@ -100,7 +100,7 @@
 		</div>
 		<div class="col" id="colmder" style="border-top-right-radius: 35px 35px; border-bottom-right-radius: 35px 35px;">
 			<br>
-			<div class="rectangle" style="margin-left: 0;"></div>
+			<div class="rectangle"></div>
 			<br>
 
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>

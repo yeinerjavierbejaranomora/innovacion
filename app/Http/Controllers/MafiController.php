@@ -1101,12 +1101,8 @@ class MafiController extends Controller
 
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
-            //
-            $periodo=$this->periodo();
-            //dd($periodo);
-
-            $ciclo=[2];
-            // Materias que debe ver el estudiante
+    
+            // Materias que debe ver el estudiante por ciclo 
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                 ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
@@ -1130,5 +1126,21 @@ class MafiController extends Controller
                                 ->dd();
 
         }
+
+        // No. de creditos para el homologante	
+        public function consulta_sumacreditos(){
+
+
+            $consulta_sumacreditos = 'SELECT p.codBanner, SUM(ba.creditos) AS CreditosPlaneados FROM base_acdemica ba INNER JOIN planeacion p ON ba.codigoCurso=p.codMateria WHERE p.codBanner='. $codHomologante .' group by p.codbanner ';
+        }
+
+
+        // funcion para probar otras funciones 
+        public function probarfunciones(){
+            
+
+        }
+
+
 
 }

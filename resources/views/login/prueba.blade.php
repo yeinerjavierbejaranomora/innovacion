@@ -20,21 +20,21 @@
 			</div>
 		<br>
 		<div class="text-center text-white">
-			<h6> Universidad Iberoamericana</h6>	
-			<h6> Todos los derechos reservados </h6>
+			<h6> <strong>Universidad Iberoamericana</strong></h6>	
+			<h6> </strong> Todos los derechos reservados </strong></h6>
 		</div>
 		</div>
 		<div class="col">
-			<h2 class="fw-light text-center"> Sistema de proyeccion Ibero</h2>
+			<h2 class="fw-bold text-center mb-5"> Sistema de proyeccion Ibero</h2>
 
 			<form action="#">
-				<div class="mb-4">
-					<label for="email" class="form-label"> Email</label>
-					<input type="email" class="form-control" name="email">
+				<div class="mb-5 col-10">
+					
+					<input type="email" class="form-control" name="email" placeholder="Usuario">
 				</div>
-				<div class="mb-4">
-					<label for="password" class="form-label"> Contraseña</label>
-					<input type="password" class="form-control" name="password">
+				<div class="mb-5 col-10">
+					
+					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="text-center">
 					<button type="submit" class="btn btn-warning fw-bold text-white"><strong>Iniciar sesión</strong></button>

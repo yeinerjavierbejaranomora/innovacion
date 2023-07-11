@@ -7,9 +7,9 @@
 
 <style>
     .button:hover {
-      background-color:#dfc14e;
-      transition: 0.7s;
-  }
+        background-color: #dfc14e;
+        transition: 0.7s;
+    }
 </style>
 
 <!-- Content Wrapper -->
@@ -49,12 +49,13 @@
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
 
-            @if($datos['programas'] == NULL)
-            <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>    
-            @endif
-            
+
+
             <!-- Content Row -->
             <div class="row" id="facultades">
+                @if($datos['programas'] == false)
+                <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>
+                @endif
                 @foreach($datos['programas'] as $key => $value)
                 @foreach($estudiantes as $key => $est)
                 @if($value->codprograma == $key)

@@ -39,13 +39,13 @@
 			</div>
 			<br>
 			<div class="text-center text-white mb-5">
-				<h6>Universidad Iberoamericana</h6>
-				<h6> </strong>©2023 Todos los derechos reservados </strong></h6>
+				<h6 style="font-weight: 500;">Universidad Iberoamericana</h6>
+				<h6 style="font-weight: 500;">©2023 Todos los derechos reservados</h6>
 			</div>
 		</div>
 		<div class="col">
 			<br><br>
-			<h2 class="text-center mb-5" style="font-weight: 600;"> Sistema de <br> Proyección Ibero</h2>
+			<h2 class="text-center mb-5" style="font-weight: 500;"> Sistema de <br> Proyección Ibero</h2>
 
 			<form action="#" class="align-content-center">
 				<div class="mb-5 col-10 mx-auto">

@@ -261,7 +261,7 @@ class MafiController extends Controller
                 $prerequisitosConsulta = $this->prerequisitos($materia->codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 if($prerequisitos == "" && $ciclo != 2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
-                    $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria);
+                    $estaPlaneacion = $this->estaEnPlaneacion($materia->codMateria,$estudiante->homologante);
                     var_dump("sin",$estaPlaneacion,'<br>');
                 else:
                     var_dump($materia->codMateria,$prerequisitos,'<br>');
@@ -1196,13 +1196,15 @@ class MafiController extends Controller
         }
 
 
-    public function estaEnPlaneacion($materia){
+    public function estaEnPlaneacion($materia,$codBanner){
         $materia = [$materia];
         dd($materia);
         /**SELECT codMateria FROM planeacion WHERE codMateria in ('AFV22612') AND codBanner="100147341" */
         $consultaPlaneacion = DB::table('planeacion')
                                     ->select('codMateria')
-                                    ->whereIn('codMateria',$materia);
+                                    ->whereIn('codMateria',$materia)
+                                    ->where('codBanner','=',$codBanner)
+                                    ->dd();
     }
 
 

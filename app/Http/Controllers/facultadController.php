@@ -235,7 +235,7 @@ class facultadController extends Controller
         if ($crear) :
             $this->createLogUsuarios("Programa creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.programas')->with('message', 'Programa creado correctamente');
+            return redirect()->route('facultad.programas')->with('sucess', 'Programa creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.programas')->with(['errors' => 'El programa no ha podido ser creado']);
@@ -246,7 +246,8 @@ class facultadController extends Controller
     {
         $codigo = $_POST['codEsp'];
         $nombre = $_POST['nombre'];
-        $codFacultad = $_POST['codFacultad'];
+        $codFacultad = $_POST['idFacultad'];
+
         // Consulta para insertar nueva especialización
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,
@@ -259,7 +260,7 @@ class facultadController extends Controller
         if ($crear) :
             $this->createLogUsuarios("Especialización creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.especializacion')->with('message', 'Especialización creada correctamente');
+            return redirect()->route('facultad.especializacion')->with('sucess', 'Especialización creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.especializacion')->with(['errors' => 'La especialización no ha podido ser creada']);
@@ -270,7 +271,7 @@ class facultadController extends Controller
     {
         $codigo = $_POST['codMaestria'];
         $nombre = $_POST['nombre'];
-        $codFacultad = $_POST['codFacultad'];
+        $codFacultad = $_POST['idFacultad'];
         // Consulta para insertar nueva especialización
         $crear = DB::table('programas')->insert([
             'codprograma' => $codigo,
@@ -283,7 +284,7 @@ class facultadController extends Controller
         if ($crear) :
             $this->createLogUsuarios("Maestría creada", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.maestria')->with('message', 'Maestria creada correctamente');
+            return redirect()->route('facultad.maestria')->with('sucess', 'Maestria creada correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.maestria')->with(['errors' => 'La maestria no ha podido ser creada']);
@@ -308,7 +309,7 @@ class facultadController extends Controller
         if ($crear) :
             $this->createLogUsuarios("Programa de educación continua creado", "programa", $informacionOriginal);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('facultad.continua')->with('message', 'Programa creado correctamente');
+            return redirect()->route('facultad.continua')->with('success', 'Programa creado correctamente');
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('facultad.continua')->with(['errors' => 'El programa no ha podido ser creado']);

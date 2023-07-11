@@ -307,7 +307,7 @@ class UserController extends Controller
         $request->merge(['id' => $id]);
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-        LogUsuariosController::registrarLog('UPDATE', 'Users', "El usuario ". $informacionOriginal[0]->nombre ." fue actualizado" , json_encode($informacionOriginal), json_encode($request->all()));
+        LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Users',  json_encode($informacionOriginal), json_encode($request->all()));
     }
 
     // *Método que actualiza en la base de datos la edición del usuario

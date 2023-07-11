@@ -182,7 +182,7 @@ class MafiController extends Controller
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
 
-        dd( $estudiantesPC);
+       
         foreach($estudiantesPC as $estudiante):
 
             $idEstudiante = $estudiante->id;
@@ -194,6 +194,7 @@ class MafiController extends Controller
             $ciclo=('1,12');
 
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
+            dd( $materiasPorVer);
             //dd($materiasPorVer);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -1101,8 +1102,8 @@ class MafiController extends Controller
 
 
         /**Materias por ver de cada estudiante */
-        public function materiasPorVer(){
-            //$codBanner,$ciclo,$programa
+        public function materiasPorVer($codBanner,$ciclo,$programa){
+            //
             $periodo=$this->periodo();
             //dd($periodo);
 

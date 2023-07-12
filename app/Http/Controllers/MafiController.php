@@ -177,7 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        $programado_ciclo1=NULL;
+        $programado_ciclo1 = NULL;
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();
         $marcaIngreso = "";
@@ -186,143 +186,146 @@ class MafiController extends Controller
         }
 
         // para procesasr las marcas de ingreso en los periodos
-        $marcaIngreso=trim($marcaIngreso,",");
+        $marcaIngreso = trim($marcaIngreso, ",");
         // Dividir la cadena en elementos individuales
         $marcaIngreso = explode(",", $marcaIngreso);
         // Convertir cada elemento en un número
         $marcaIngreso = array_map('intval', $marcaIngreso);
-        $estudiante = DB::table('estudiantes')
-        ->select('id','homologante','programa','bolsa','tipo_estudiante')
-        ->where('materias_faltantes','=','OK')
-        ->where('programado_ciclo1','=',$programado_ciclo1)
+        $estudiantes = DB::table('estudiantes')
+        ->select('id', 'homologante', 'programa', 'bolsa', 'tipo_estudiante')
+        ->where('materias_faltantes', '=', 'OK')
+        ->where('programado_ciclo1', '=', $programado_ciclo1)
         ->whereNull('programado_ciclo2')
-        ->whereIn('marca_ingreso',$marcaIngreso)
-        ->orderBy('id','asc')
+        ->whereIn('marca_ingreso', $marcaIngreso)
+        ->orderBy('id', 'asc')
         ->count();
-        dd($estudiante);
-        $id = 0;
-        $limit = 200;
-        /**consulta de estudinates primer ciclo */
-        $estudiantesPC = $this->programarPrimerCiclo($id,$limit,$programado_ciclo1);
-        dd($estudiantesPC->count());
-        /**recorrer por cada estudiante  */
-        foreach($estudiantesPC as $estudiante):
-            $idEstudiante = $estudiante->id;
-            $codigoBanner = $estudiante->homologante;
-            $programa = $estudiante->programa;
-            $ruta = $estudiante->bolsa;
-            if($ruta != ''):
-                $ruta = 1;
-            endif;
-            $tipoEstudiante = $estudiante->tipo_estudiante;
-
-            switch ($tipoEstudiante) {
-                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
-                    $tipoEstudiante ='TRANSFERENTE';
-                    break;
-                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
-                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
-                    break;
-                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
-                    $tipoEstudiante='PRIMER INGRESO';
-                    break;
-                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
-                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
-                    break;
-                case str_contains($tipoEstudiante, 'REINGRESO'):
-                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
-                    break;
-                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
-                    $tipoEstudiante='PRIMER INGRESO';
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-            $ciclo=[1,12];
-            /** */
-            $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
-            $numeroCreditos = DB::table('mallaCurricular')
-                                    ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
-                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
-                                    ->where('planeacion.codBanner','=',$codigoBanner)
-                                    ->groupBy('planeacion.codBanner')
-                                    ->first();
-            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            $numeroCreditosC1 = DB::table('mallaCurricular')
-                                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
-                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
-                                    ->where('planeacion.codBanner','=',$codigoBanner)
-                                    ->whereIn('mallaCurricular.ciclo',[1,12])
-                                    ->first();
-
-            $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
-            $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
-            $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
-            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
-
-            //dd($cuentaCursosCiclo1);
-
-            /**reglas del negocio */
-            $cicloReglaNegocio = 1;
-            $reglaNegocio =DB::table('reglasNegocio')
-                                ->select('creditos','materiasPermitidas')
-                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
-                                ->first();
-
-            $numeroCreditosPermitidos = $reglaNegocio->creditos;
-            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
-            $orden = 1;
-            foreach ($materiasPorVer as $materia) :
-                $codBanner = $materia->codBanner;
-                $codMateria = $materia->codMateria;
-                $creditoMateria = $materia->creditos;
-                $ciclo = $materia->ciclo;
-                $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
-                //dd($programa,$codMateria,$prerequisitosConsulta);
-                $prerequisitos = $prerequisitosConsulta->prerequisito;
-                //dd($prerequisitos);
-                if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
-                    /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
-
-                    if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
-                        $numeroCreditos= $numeroCreditos + $creditoMateria;
-                        $insertPlaneacion = DB::table('planeacion')->insert([
-                            'codBanner' => $codBanner,
-                            'codMateria' => $codMateria,
-                            'orden' => $orden,
-                            'semestre' => '1',
-                            'programada' => '',
-                            'codprograma' => $programa,
-                        ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
-                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos."--".$ciclo.'---'.$cuentaCursosCiclo1,'----'.'sin P'.'<br>';
-                else:
-                    $prerequisitos2 =$prerequisitos;
-                    $prerequisitos = [$prerequisitos];
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->first();
-                    $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->first();
-                    if($estaPlaneacion == '' && $estaPorVer = '' && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
-                        $numeroCreditos= $numeroCreditos + $creditoMateria;
-                        $insertPlaneacion = DB::table('planeacion')->insert([
-                            'codBanner' => $codBanner,
-                            'codMateria' => $codMateria,
-                            'orden' => $orden,
-                            'semestre' => '1',
-                            'programada' => '',
-                            'codprograma' => $programa,
-                        ]);
-                        $cuentaCursosCiclo1++;
-                    endif;
-
-                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos2."--".$ciclo.'---'.$cuentaCursosCiclo1.'----'.'con P'.'<br>';
+        $numeroEstudiantes = ceil($estudiantes / 200);
+        //dd(ceil($numeroEstudiantes/2));
+        for ($i = 0; $i < $numeroEstudiantes; $i++) :
+            $id = 0;
+            $limit = 200;
+            /**consulta de estudinates primer ciclo */
+            $estudiantesPC = $this->programarPrimerCiclo($id, $limit, $programado_ciclo1);
+            dd($estudiantesPC->count());
+            /**recorrer por cada estudiante  */
+            foreach ($estudiantesPC as $estudiante) :
+                $idEstudiante = $estudiante->id;
+                $codigoBanner = $estudiante->homologante;
+                $programa = $estudiante->programa;
+                $ruta = $estudiante->bolsa;
+                if ($ruta != '') :
+                    $ruta = 1;
                 endif;
+                $tipoEstudiante = $estudiante->tipo_estudiante;
+
+                switch ($tipoEstudiante) {
+                    case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                        $tipoEstudiante = 'TRANSFERENTE';
+                        break;
+                    case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                        $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                        $tipoEstudiante = 'PRIMER INGRESO';
+                        break;
+                    case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                        $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'REINGRESO'):
+                        $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                        break;
+                    case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                        $tipoEstudiante = 'PRIMER INGRESO';
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+                $ciclo = [1, 12];
+                /** */
+                $materiasPorVer = $this->materiasPorVer($codigoBanner, $ciclo, $programa);
+                /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
+                $numeroCreditos = DB::table('mallaCurricular')
+                ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
+                ->where('planeacion.codBanner', '=', $codigoBanner)
+                    ->groupBy('planeacion.codBanner')
+                    ->first();
+                $numeroCreditos = $numeroCreditos == '' ? 0 : $numeroCreditos;
+                $numeroCreditosC1 = DB::table('mallaCurricular')
+                ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'), DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
+                ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
+                ->where('planeacion.codBanner', '=', $codigoBanner)
+                    ->whereIn('mallaCurricular.ciclo', [1, 12])
+                    ->first();
+
+                $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
+                $sumaCreditosCiclo1 = $sumaCreditosCiclo1 == '' ? 0 : $sumaCreditosCiclo1;
+                $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
+                $cuentaCursosCiclo1 = $cuentaCursosCiclo1 == '' ? 0 : $cuentaCursosCiclo1;
+
+                //dd($cuentaCursosCiclo1);
+
+                /**reglas del negocio */
+                $cicloReglaNegocio = 1;
+                $reglaNegocio = DB::table('reglasNegocio')
+                ->select('creditos', 'materiasPermitidas')
+                ->where([['programa', '=', $programa], ['ruta', '=', $ruta], ['tipoEstudiante', '=', $tipoEstudiante], ['ciclo', '=', $cicloReglaNegocio], ['activo', '=', 1]])
+                    ->first();
+
+                $numeroCreditosPermitidos = $reglaNegocio->creditos;
+                $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+                $orden = 1;
+                foreach ($materiasPorVer as $materia) :
+                    $codBanner = $materia->codBanner;
+                    $codMateria = $materia->codMateria;
+                    $creditoMateria = $materia->creditos;
+                    $ciclo = $materia->ciclo;
+                    $prerequisitosConsulta = $this->prerequisitos($codMateria, $programa);
+                    //dd($programa,$codMateria,$prerequisitosConsulta);
+                    $prerequisitos = $prerequisitosConsulta->prerequisito;
+                    //dd($prerequisitos);
+                    if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
+                        /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
+                        $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
+
+                        if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
+                            $numeroCreditos = $numeroCreditos + $creditoMateria;
+                            $insertPlaneacion = DB::table('planeacion')->insert([
+                                'codBanner' => $codBanner,
+                                'codMateria' => $codMateria,
+                                'orden' => $orden,
+                                'semestre' => '1',
+                                'programada' => '',
+                                'codprograma' => $programa,
+                            ]);
+                            $cuentaCursosCiclo1++;
+                        endif;
+                        echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
+                    else :
+                        $prerequisitos2 = $prerequisitos;
+                        $prerequisitos = [$prerequisitos];
+                        $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
+                        $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
+                        if ($estaPlaneacion == '' && $estaPorVer = '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
+                            $numeroCreditos = $numeroCreditos + $creditoMateria;
+                            $insertPlaneacion = DB::table('planeacion')->insert([
+                                'codBanner' => $codBanner,
+                                'codMateria' => $codMateria,
+                                'orden' => $orden,
+                                'semestre' => '1',
+                                'programada' => '',
+                                'codprograma' => $programa,
+                            ]);
+                            $cuentaCursosCiclo1++;
+                        endif;
+
+                        echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
+                    endif;
+                endforeach;
             endforeach;
-        endforeach;
+        endfor;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();

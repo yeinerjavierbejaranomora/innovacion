@@ -211,7 +211,7 @@ class MafiController extends Controller
             else:
                 $id = $log->idFin;
             endif;
-            dd($id);
+            //dd($id);
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($id, $limit, $programado_ciclo1);
             dd($estudiantesPC->count());

@@ -80,7 +80,7 @@
                         <div class=" card-body >
                             <div class="row text-center">
                                 <div class="col mx-auto">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold">
                                             <h5> Programa de {{$value->programa}}</h5>
                                         </div>
                                         <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->

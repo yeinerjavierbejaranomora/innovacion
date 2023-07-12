@@ -109,7 +109,7 @@
 
             <!--Nav Datos de la Facultad-->
   
-                <nav class="nav nav-pills nav-justified align-content-middle" id="nav" name="nav" style="display: none;">
+                <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none;">
                     <a class="nav-link active" href="#estudiantes"><h4>Estudiantes</h4></a>
                     <a class="nav-link" href="#malla"><h4>Malla Curricular</h4></a>
                     <a class="nav-link" href="#proyecciones"><h4>Proyecciones</h4></a>

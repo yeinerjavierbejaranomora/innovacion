@@ -292,6 +292,7 @@ class MafiController extends Controller
                 try {
 
                     foreach ($materiasPorVer as $materia) :
+                        dd($materia);
 
                         if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
                             break;
@@ -371,8 +372,9 @@ class MafiController extends Controller
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                     dd($estudiante);
                 }
-                dd($cuentaCursosCiclo1);
+                var_dump($cuentaCursosCiclo1);
             endforeach;
+            die();
         endfor;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */

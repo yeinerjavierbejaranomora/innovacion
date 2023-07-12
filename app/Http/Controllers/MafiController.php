@@ -259,7 +259,6 @@ class MafiController extends Controller
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 //dd($programa,$codMateria,$prerequisitosConsulta);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
-
                 //dd($prerequisitos);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */

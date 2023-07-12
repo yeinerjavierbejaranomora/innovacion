@@ -181,6 +181,7 @@ class MafiController extends Controller
         $programado_ciclo1=NULL;
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
+        dd($estudiantesPC);
         /**recorrer por cada estudiante  */
         foreach($estudiantesPC as $estudiante):
             $idEstudiante = $estudiante->id;

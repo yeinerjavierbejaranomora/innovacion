@@ -240,6 +240,7 @@ class MafiController extends Controller
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
 
             dd($cuentaCursosCiclo1);
+            
             /**reglas del negocio */
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')

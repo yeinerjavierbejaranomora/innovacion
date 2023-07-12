@@ -254,7 +254,8 @@ class MafiController extends Controller
                 $creditoMateria = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
-                dd($prerequisitosConsulta);
+                $prerequisitos = [$prerequisitosConsulta->prerequisito];
+                dd($prerequisitos);
             endforeach;
 
 
@@ -1261,10 +1262,10 @@ class MafiController extends Controller
                     }
                 } else {
 
-                   
+
                     $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
-                
-                  
+
+
                     $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';
                     $resultado_estaporver = mysql_query($consulta_estaporver, $link);
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
@@ -1296,7 +1297,7 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
-            
+
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
@@ -1304,10 +1305,10 @@ class MafiController extends Controller
 
             }
 
-            
+
             $programado_ciclo1=NULL;
             /**consulta de estudinates primer ciclo */
-           
+
 
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];

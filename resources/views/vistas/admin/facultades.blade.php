@@ -147,6 +147,9 @@
             $("#nav a[href='#malla']").removeClass("active");
             $("#nav a[href='#estudiantes']").addClass("active");
 
+            if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                }
             /** Obtener id */
             var id = $(this).val();
             /** Llamado a la función para cargar dataTable */

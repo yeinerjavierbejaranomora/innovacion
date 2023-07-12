@@ -238,6 +238,7 @@ class MafiController extends Controller
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
             $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
+            dd($cuentaCursosCiclo1);
             /**reglas del negocio */
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
@@ -255,7 +256,8 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
-                //dd($prerequisitos);
+
+                dd($cuentaCursosCiclo1);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
@@ -1283,7 +1285,7 @@ class MafiController extends Controller
                           $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa.'");';
 
                         $planeadas_insert=DB::insert(  $insert_planeada);
-                        //$cuenta_cursos_ciclo1++;				
+                        //$cuenta_cursos_ciclo1++;
                         // echo "22  " . $insert_planeada . "<br />";
                         // exit();
                         //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";
@@ -1291,23 +1293,7 @@ class MafiController extends Controller
 
 
 
-
-                    $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';
-                    $resultado_estaporver = mysql_query($consulta_estaporver, $link);
-                    //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
-                    @ $prerequisito_estaporver=$filaspv = mysql_fetch_assoc($resultado_estaporver);
-                    $estaporver = $filaspv['codMateria'];
-
-
-                    if($preprogramado=='' && $estaporver=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
-                        $creditos_homologantes = $creditos_homologantes + $creditoMateria;
-                        $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
-                        $resultado_planeada = mysql_query($insert_planeada, $link);
-                        $cuenta_cursos_ciclo1++;
-                        // echo "22  " . $insert_planeada . "<br />";
-                        // exit();
-                        //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";
-                    }
+                    
                 }
                 $orden2++;
            /* $update_homologante = 'UPDATE homologantes SET programado_ciclo1="OK" WHERE homologantes.id='.$id_homologante.';';

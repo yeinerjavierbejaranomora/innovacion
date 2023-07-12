@@ -3161,7 +3161,8 @@ tbody.collapse.show {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
+  line-height: 40px;
 }
 
 .nav-link:focus, .nav-link:hover {

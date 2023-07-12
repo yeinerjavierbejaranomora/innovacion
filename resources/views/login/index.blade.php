@@ -1,7 +1,6 @@
 @extends('layout.plantillaFormularios')
 @section('title', 'LoginPrueba')
 @section('content')
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
 <div class="container align-middle shadow-lg rounded" >
 	<div class="row" style="background-color:white;border-radius: 35px; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">

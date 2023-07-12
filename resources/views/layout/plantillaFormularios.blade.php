@@ -36,6 +36,8 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/main.css')}}">
 <!--===============================================================================================-->
+    <!--Styles plantilla nueva-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/formlogin.css')}}">
 </head>
 

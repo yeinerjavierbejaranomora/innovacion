@@ -24,6 +24,7 @@
         border-radius: 30px !important;
         color: black;
         cursor: pointer;
+        border-color:black;
     }
 
     .inactivo i {

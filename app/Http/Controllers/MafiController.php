@@ -204,13 +204,13 @@ class MafiController extends Controller
         //dd($numeroEstudiantes);
         for ($i = 0; $i < $numeroEstudiantes; $i++) :
             $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PlaneacionPrimerCiclo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
-            dd($log);
 
             if(empty($log)):
                 $id = 0;
             else:
                 $id = $log->idFin;
             endif;
+            dd($id);
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($id, $limit, $programado_ciclo1);
             dd($estudiantesPC->count());

@@ -37,7 +37,7 @@
 				</div>
 
 				<div class="form-group text-center">
-					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white" styles="width: 250px !important;" id="btn">Recuperar contraseña</button>
+					<button type="submit" style="font-weight: 600;" class="btn btn-warning text-white" styles="width: 250px" id="recuperar">Recuperar contraseña</button>
 				</div>
                 @if(\Session::get('Error'))
                 <div class="alert alert-primary text-center" style="color: black;" role="alert">

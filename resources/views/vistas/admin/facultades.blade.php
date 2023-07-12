@@ -86,7 +86,7 @@
             </div>
 
             <!-- Datatable-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : ''?>>
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
@@ -101,118 +101,120 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    @include('layout.footer')
+</div>
+<script>
+    // * Datatable para mostrar los estudiantes de cada programa *
+    $(document).ready(function() {
+        $(document).on("click", ".mostrar", function() {
 
-            <script>
-                // * Datatable para mostrar los estudiantes de cada programa *
-                $(document).ready(function() {
-                    $(document).on("click", ".mostrar", function() {
+            var id = $(this).val();
+            buscar(id);
+        })
 
-                        var id = $(this).val();
-                        buscar(id);
-                    })
+        function buscar(id) {
 
-                    function buscar(id) {
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/home/facultades/estudiantes/" + id + "";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
 
-                        var xmlhttp = new XMLHttpRequest();
-                        var url = "/home/facultades/estudiantes/" + id + "";
-                        xmlhttp.open("GET", url, true);
-                        xmlhttp.send();
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                var data = JSON.parse(this.responseText);
-
-                                var table = $('#example').DataTable({
-                                    /** Recargar dataTable */
-                                    "bDestroy": true,
-                                    "data": data.data,
-                                    "columns": [{
-                                            data: 'homologante',
-                                            title: 'ID Banner'
-                                        },
-                                        {
-                                            data: 'nombre',
-                                            title: 'Primer apellido'
-                                        },
-                                        {
-                                            data: 'programa',
-                                            title: 'Codigo de programa'
-                                        },
-                                        {
-                                            data: 'bolsa',
-                                            "visible": false,
-                                            title: 'bolsa'
-                                        },
-                                        {
-                                            data: 'operador',
-                                            title: 'Operador'
-                                        },
-                                        {
-                                            data: 'nodo',
-                                            "visible": false,
-                                            title: 'nodo'
-                                        },
-                                        {
-                                            data: 'tipo_estudiante',
-                                            title: 'Tipo estudiante'
-                                        },
-                                        {
-                                            data: 'materias_faltantes',
-                                            "visible": false,
-                                            title: 'materias faltantes'
-                                        },
-                                        {
-                                            data: 'programado_ciclo1',
-                                            "visible": false,
-                                            title: 'Programado ciclo 1'
-                                        },
-                                        {
-                                            data: 'programado_ciclo2',
-                                            "visible": false,
-                                            title: 'Programado ciclo 2'
-                                        },
-                                        {
-                                            data: 'programado_extra',
-                                            "visible": false,
-                                            title: 'Programado extra'
-                                        },
-                                        {
-                                            data: 'tiene_historial',
-                                            "visible": false,
-                                            title: 'Tiene historial'
-                                        },
-                                        {
-                                            data: 'programaActivo',
-                                            "visible": false,
-                                            title: 'Programa activo'
-                                        },
-                                        {
-                                            data: 'observacion',
-                                            "visible": false,
-                                            title: 'Observación'
-                                        },
-                                        {
-                                            data: 'marca_ingreso',
-                                            "visible": false,
-                                            title: 'Marca ingreso'
-                                        },
-                                        {
-                                            data: 'created_at',
-                                            title: 'Fecha de creación'
-                                        },
-                                        {
-                                            data: 'updated_at',
-                                            title: 'Última actulización'
-                                        },
-                                    ],
-                                    "language": {
-                                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                                    },
-                                    //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-                                });
-                                console.log(table);
-                            }
-                        }
-                    }
-                });
-            </script>
-            @include('layout.footer')
+                    var table = $('#example').DataTable({
+                        /** Recargar dataTable */
+                        "bDestroy": true,
+                        "data": data.data,
+                        "columns": [{
+                                data: 'homologante',
+                                title: 'ID Banner'
+                            },
+                            {
+                                data: 'nombre',
+                                title: 'Primer apellido'
+                            },
+                            {
+                                data: 'programa',
+                                title: 'Codigo de programa'
+                            },
+                            {
+                                data: 'bolsa',
+                                "visible": false,
+                                title: 'bolsa'
+                            },
+                            {
+                                data: 'operador',
+                                title: 'Operador'
+                            },
+                            {
+                                data: 'nodo',
+                                "visible": false,
+                                title: 'nodo'
+                            },
+                            {
+                                data: 'tipo_estudiante',
+                                title: 'Tipo estudiante'
+                            },
+                            {
+                                data: 'materias_faltantes',
+                                "visible": false,
+                                title: 'materias faltantes'
+                            },
+                            {
+                                data: 'programado_ciclo1',
+                                "visible": false,
+                                title: 'Programado ciclo 1'
+                            },
+                            {
+                                data: 'programado_ciclo2',
+                                "visible": false,
+                                title: 'Programado ciclo 2'
+                            },
+                            {
+                                data: 'programado_extra',
+                                "visible": false,
+                                title: 'Programado extra'
+                            },
+                            {
+                                data: 'tiene_historial',
+                                "visible": false,
+                                title: 'Tiene historial'
+                            },
+                            {
+                                data: 'programaActivo',
+                                "visible": false,
+                                title: 'Programa activo'
+                            },
+                            {
+                                data: 'observacion',
+                                "visible": false,
+                                title: 'Observación'
+                            },
+                            {
+                                data: 'marca_ingreso',
+                                "visible": false,
+                                title: 'Marca ingreso'
+                            },
+                            {
+                                data: 'created_at',
+                                title: 'Fecha de creación'
+                            },
+                            {
+                                data: 'updated_at',
+                                title: 'Última actulización'
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                        //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    });
+                    console.log(table);
+                }
+            }
+        }
+    });
+</script>

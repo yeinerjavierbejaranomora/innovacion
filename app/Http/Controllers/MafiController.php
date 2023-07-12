@@ -181,7 +181,7 @@ class MafiController extends Controller
         $programado_ciclo1=NULL;
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
-        dd($estudinatesPC);
+        dd($estudiantesPC);
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();

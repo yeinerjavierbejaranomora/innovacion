@@ -330,7 +330,6 @@ class MafiController extends Controller
                             ]);
                             $cuentaCursosCiclo1++;
                         endif;
-
                         //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
                     endif;
                 endforeach;

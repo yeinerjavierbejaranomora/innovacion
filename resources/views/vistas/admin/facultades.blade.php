@@ -12,7 +12,10 @@
     }
 
     .activo {
-        background-color: #dfc14e;
+        background-color: #dfc14e !important;
+        border-radius: 30px !important;
+        color: white;
+        cursor: pointer; 
     }
 
     .activo i {
@@ -77,7 +80,7 @@
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4" >
-                    <div class="card shadow h-100 py-2 inactivo mostrar" value="{{ $value->id }}">
+                    <div class="card shadow h-100 py-2 inactivo mostrar" id="cards" value="{{ $value->id }}">
                         <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
@@ -158,6 +161,10 @@
         $(document).ready(function() {
             var id = null;
             $(document).on("click", ".mostrar", function() {
+                $("#cards").removeClass("activo");
+                $(this).removeClass("inactivo");
+                $(this).addClass("activo");
+
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     console.log('entra');
                     $("#mall table").DataTable().destroy();

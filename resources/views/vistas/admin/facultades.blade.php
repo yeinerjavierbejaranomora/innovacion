@@ -210,14 +210,14 @@
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-                        "dom": '<"datatable-title"l><"datatable-table"t>',
-                        //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                        "drawCallback": function() {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                        }
                     });
                     console.log(table);
                 }
-                $('.datatable-title').html('<h4>Estudiantes inscritos</h4>'); // Agregar título personalizado
+
             }
         }
     });
-    
 </script>

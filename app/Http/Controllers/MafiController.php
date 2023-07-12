@@ -1240,7 +1240,7 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-                dd($prerequisitos,$cuentaCursosCiclo1,$numeroMateriasPermitidas);
+              
 
                 if($prerequisitos=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
                     echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";

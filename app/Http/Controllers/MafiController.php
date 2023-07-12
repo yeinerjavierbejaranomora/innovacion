@@ -239,7 +239,7 @@ class MafiController extends Controller
             $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
 
-            dd($cuentaCursosCiclo1);
+            //dd($cuentaCursosCiclo1);
 
             /**reglas del negocio */
             $cicloReglaNegocio = 1;
@@ -276,11 +276,11 @@ class MafiController extends Controller
                         ]);
                         $cuentaCursosCiclo1++;
                     endif;
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
-                /*else:
+                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                else:
                     $prerequisitos = [$prerequisitos];
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->dd();
-                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');*/
+                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
             die();

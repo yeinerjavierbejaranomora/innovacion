@@ -328,7 +328,6 @@
                             ],
                             "columns": [{
                                     data: 'codprograma',
-                                    visible: false,
                                     title: 'Codigo de programa'
                                 },
                                 {

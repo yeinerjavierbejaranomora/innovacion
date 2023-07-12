@@ -292,6 +292,7 @@ class MafiController extends Controller
                 try {
 
                     foreach ($materiasPorVer as $materia) :
+
                         $codBanner = $materia->codBanner;
                         $codMateria = $materia->codMateria;
                         $creditoMateria = $materia->creditos;
@@ -367,6 +368,9 @@ class MafiController extends Controller
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                     dd($estudiante);
                 }
+                if($cuentaCursosCiclo1 < $numeroMateriasPermitidos):
+                    break;
+                endif;
             endforeach;
         endfor;
         die();

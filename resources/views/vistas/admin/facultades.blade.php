@@ -147,9 +147,7 @@
             $("#nav a[href='#malla']").removeClass("active");
             $("#nav a[href='#estudiantes']").addClass("active");
 
-            /** Destruir las DataTable creadas anteriormente al cambiar de programa */
-            $("#mall table").DataTable().destroy();              
-            
+            /** Destruir las DataTable creadas anteriormente al cambiar de programa */        
 
             /** Obtener id */
             var id = $(this).val();
@@ -158,6 +156,7 @@
 
             var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
+                $("#mall table").DataTable().destroy(); 
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");

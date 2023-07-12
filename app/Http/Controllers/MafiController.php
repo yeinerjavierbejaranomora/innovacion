@@ -324,6 +324,7 @@ class MafiController extends Controller
                         else :
                             $prerequisitos2 = $prerequisitos;
                             $prerequisitos = [$prerequisitos];
+                            
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
                             dd($estaPlaneacion);
                             $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();

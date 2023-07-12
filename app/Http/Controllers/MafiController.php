@@ -373,6 +373,7 @@ class MafiController extends Controller
                 }
                 var_dump($cuentaCursosCiclo1);
             endforeach;
+            die();
         endfor;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */

@@ -302,16 +302,6 @@
                             data: 'prerequisito',
                             title: 'Pre-requisitos'
                         },
-                        {
-                            defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                            title: 'Editar',
-                            className: "text-center"
-                        },
-                        {
-                            defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                            title: 'Eliminar',
-                            className: "text-center"
-                        },
                     ],
                     "language": {
                         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

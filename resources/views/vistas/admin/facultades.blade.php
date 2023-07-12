@@ -35,9 +35,14 @@
         border-radius: 30px !important;
         color: white;
         cursor: pointer; 
-    }    
+    }  
+
     .inactivo i {
         color: #dfc14e !important;
+    }
+
+    .inactivo i:hover {
+        color: #4a4a48 !important;
     }
 </style>
 

@@ -312,7 +312,7 @@ class MafiController extends Controller
                             ]);
                             $cuentaCursosCiclo1++;
                         endif;
-                        echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
+                        //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
                     else :
                         $prerequisitos2 = $prerequisitos;
                         $prerequisitos = [$prerequisitos];
@@ -331,7 +331,7 @@ class MafiController extends Controller
                             $cuentaCursosCiclo1++;
                         endif;
 
-                        echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
+                        //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
                     endif;
                 endforeach;
                 DB::table('estudiantes')->where([['homologante', '=', $estudiante->homologante], ['id', '=', $estudiante->id]])->update(['programado_ciclo1' => 'OK']);

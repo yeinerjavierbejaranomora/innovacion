@@ -199,11 +199,11 @@ class MafiController extends Controller
         ->whereIn('marca_ingreso', $marcaIngreso)
         ->orderBy('id', 'asc')
         ->count();
-        $numeroEstudiantes = ceil($estudiantes / 200);
-        //dd(ceil($numeroEstudiantes/2));
+        $limit = 200;
+        $numeroEstudiantes = ceil($estudiantes / $limit);
+        dd($numeroEstudiantes);
         for ($i = 0; $i < $numeroEstudiantes; $i++) :
             $id = 0;
-            $limit = 200;
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($id, $limit, $programado_ciclo1);
             dd($estudiantesPC->count());

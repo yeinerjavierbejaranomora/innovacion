@@ -142,6 +142,7 @@
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                         console.log('entra');
                         $("#mall table").DataTable().destroy();
+                        $("#malla").empty();
                     }
                 /** Mostrar nav y dataTable */
                 $("#nav").show();

@@ -1374,7 +1374,7 @@ class MafiController extends Controller
 
                     $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);
 
-
+dd($cuentaCursosCiclo1);
                     if(empty($esta_en_planeacion)&& $ciclo!=2 && $cuentaCursosCiclo1< $numeroMateriasPermitidas) {
 
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;

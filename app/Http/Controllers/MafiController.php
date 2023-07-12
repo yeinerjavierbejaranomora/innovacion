@@ -1246,8 +1246,10 @@ class MafiController extends Controller
                    // echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
           
 
-                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
-                    dd( $esta_en_planeacion);
+                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);
+
+                    
+                    dd($codBanner);
                     $planeada = $filas_planeada['prerequisito'];
                     if($planeada=='' && $creditos_homologantes<$num_creditos) {
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;

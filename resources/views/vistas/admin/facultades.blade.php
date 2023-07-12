@@ -151,12 +151,12 @@
                 $("#nav a[href='#estudiantes']").removeClass("active");
                 $(this).addClass("active");
 
-                if ($.fn.DataTable.isDataTable("#est table")) {
-                    $("#est table").DataTable().destroy();
-                }
-
                 if (mallaTable !== null) {
                     mallaTable.destroy(); 
+                }
+
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
                 }
 
                 if (!$.fn.DataTable.isDataTable("#mall table")) {

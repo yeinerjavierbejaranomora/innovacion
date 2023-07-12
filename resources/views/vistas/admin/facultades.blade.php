@@ -74,8 +74,8 @@
                 @foreach($estudiantes as $key => $est)
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
-                <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar inactivo btn button">
                 <div class="col-xl-3 col-md-6 mb-4">
+                    <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar inactivo btn button">
                     <div class="card shadow h-100 py-2 text-white">
                         <div class=" card-body">
                             <div class="row text-center">
@@ -97,8 +97,8 @@
                                 </div>
                             </div>
                         </div>
+                    </button>
                     </div>
-                </button>
                     @endif
                 @endforeach
                 @endforeach

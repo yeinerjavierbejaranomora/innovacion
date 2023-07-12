@@ -80,7 +80,7 @@
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4" >
-                    <div class="card shadow h-100 py-2 inactivo mostrar" type="submit" value="{{ $value->id }}">
+                    <div class="card shadow h-100 py-2 inactivo mostrar programas" type="submit" value="{{ $value->id }}">
                         <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
@@ -161,8 +161,8 @@
         $(document).ready(function() {
             var id = null;
             $(document).on("click", ".mostrar", function() {
-                $(".card").removeClass("activo");
-                $(".card").addClass("inactivo");
+                $(".programas").removeClass("activo");
+                $(".programas").addClass("inactivo");
                 $(this).removeClass("inactivo");
                 $(this).addClass("activo");
 

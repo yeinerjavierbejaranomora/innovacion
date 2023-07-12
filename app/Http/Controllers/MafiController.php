@@ -1242,10 +1242,14 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
+            dd(auth()->user()->nombre);
             /**consulta de estudinates primer ciclo */
-            $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
-            dd($baseAcademica);
-
+            if(auth()->user()->nombre){
+                $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
+                dd($baseAcademica);
+    
+            }
+           
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];
             foreach($estudiantesPC as $estudiante):

@@ -86,7 +86,7 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-            <div>
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
                 <nav class="nav nav-pills nav-justified">
                     <a class="nav-link active" href="#">Estudiantes</a>
                     <a class="nav-link" href="#">Malla Curricular</a>
@@ -94,6 +94,7 @@
                 </nav>
             </div>
 
+            <br>
 
             <!-- Datatable-->
             <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>

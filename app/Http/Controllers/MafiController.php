@@ -287,72 +287,86 @@ class MafiController extends Controller
                 $numeroCreditosPermitidos = $reglaNegocio->creditos;
                 $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
                 $orden = 1;
-                foreach ($materiasPorVer as $materia) :
-                    $codBanner = $materia->codBanner;
-                    $codMateria = $materia->codMateria;
-                    $creditoMateria = $materia->creditos;
-                    $ciclo = $materia->ciclo;
-                    $prerequisitosConsulta = $this->prerequisitos($codMateria, $programa);
-                    //dd($programa,$codMateria,$prerequisitosConsulta);
-                    $prerequisitos = $prerequisitosConsulta->prerequisito;
-                    //dd($prerequisitos);
-                    if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
-                        /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
-                        $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
+                DB::beginTransaction();
 
-                        if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
-                            $numeroCreditos = $numeroCreditos + $creditoMateria;
-                            $insertPlaneacion = DB::table('planeacion')->insert([
-                                'codBanner' => $codBanner,
-                                'codMateria' => $codMateria,
-                                'orden' => $orden,
-                                'semestre' => '1',
-                                'programada' => '',
-                                'codprograma' => $programa,
-                            ]);
-                            $cuentaCursosCiclo1++;
-                        endif;
+                try {
+
+                    foreach ($materiasPorVer as $materia) :
+                        $codBanner = $materia->codBanner;
+                        $codMateria = $materia->codMateria;
+                        $creditoMateria = $materia->creditos;
+                        $ciclo = $materia->ciclo;
+                        $prerequisitosConsulta = $this->prerequisitos($codMateria, $programa);
+                        //dd($programa,$codMateria,$prerequisitosConsulta);
+                        $prerequisitos = $prerequisitosConsulta->prerequisito;
+                        //dd($prerequisitos);
+                        if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
+                            /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
+                            $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
+
+                            if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
+                                $numeroCreditos = $numeroCreditos + $creditoMateria;
+                                $insertPlaneacion = DB::table('planeacion')->insert([
+                                    'codBanner' => $codBanner,
+                                    'codMateria' => $codMateria,
+                                    'orden' => $orden,
+                                    'semestre' => '1',
+                                    'programada' => '',
+                                    'codprograma' => $programa,
+                                ]);
+                                $cuentaCursosCiclo1++;
+                            endif;
                         //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
-                    else :
-                        $prerequisitos2 = $prerequisitos;
-                        $prerequisitos = [$prerequisitos];
-                        $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
-                        $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
-                        if ($estaPlaneacion == '' && $estaPorVer = '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
-                            $numeroCreditos = $numeroCreditos + $creditoMateria;
-                            $insertPlaneacion = DB::table('planeacion')->insert([
-                                'codBanner' => $codBanner,
-                                'codMateria' => $codMateria,
-                                'orden' => $orden,
-                                'semestre' => '1',
-                                'programada' => '',
-                                'codprograma' => $programa,
-                            ]);
-                            $cuentaCursosCiclo1++;
-                        endif;
+                        else :
+                            $prerequisitos2 = $prerequisitos;
+                            $prerequisitos = [$prerequisitos];
+                            $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
+                            $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
+                            if ($estaPlaneacion == '' && $estaPorVer = '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
+                                $numeroCreditos = $numeroCreditos + $creditoMateria;
+                                $insertPlaneacion = DB::table('planeacion')->insert([
+                                    'codBanner' => $codBanner,
+                                    'codMateria' => $codMateria,
+                                    'orden' => $orden,
+                                    'semestre' => '1',
+                                    'programada' => '',
+                                    'codprograma' => $programa,
+                                ]);
+                                $cuentaCursosCiclo1++;
+                            endif;
                         //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
-                    endif;
-                endforeach;
-                DB::table('estudiantes')->where([['homologante', '=', $estudiante->homologante], ['id', '=', $estudiante->id]])->update(['programado_ciclo1' => 'OK']);
-                $ultimoRegistroId = $estudiante->id;
-                $idBannerUltimoRegistro = $estudiante->homologante;
-                $fechaFin = date('Y-m-d H:i:s');
-                $insertLog = LogAplicacion::create([
-                    'idInicio' => $primerId,
-                    'idFin' => $ultimoRegistroId,
-                    'fechaInicio' => $fechaInicio,
-                    'fechaFin' => $fechaFin,
-                    'accion' => 'Insert-PlaneacionPrimerCiclo',
-                    'tabla_afectada' => 'planeacion',
-                    'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclo del estudiante '.$codBanner.', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
-                ]);
-                $insertIndiceCambio = IndiceCambiosMafi::create([
-                    'idbanner' => $idBannerUltimoRegistro,
-                    'accion' => 'Insert-PlaneacionPrimerCiclo',
-                    'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclor del estudiante '.$codBanner.', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
-                    'fecha' => date('Y-m-d H:i:s'),
-                ]);
-                echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+                        endif;
+                    endforeach;
+                    DB::table('estudiantes')->where([['homologante', '=', $estudiante->homologante], ['id', '=', $estudiante->id]])->update(['programado_ciclo1' => 'OK']);
+                    $ultimoRegistroId = $estudiante->id;
+                    $idBannerUltimoRegistro = $estudiante->homologante;
+                    $fechaFin = date('Y-m-d H:i:s');
+                    $insertLog = LogAplicacion::create([
+                        'idInicio' => $primerId,
+                        'idFin' => $ultimoRegistroId,
+                        'fechaInicio' => $fechaInicio,
+                        'fechaFin' => $fechaFin,
+                        'accion' => 'Insert-PlaneacionPrimerCiclo',
+                        'tabla_afectada' => 'planeacion',
+                        'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclo del estudiante ' . $codBanner . ', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
+                    ]);
+                    $insertIndiceCambio = IndiceCambiosMafi::create([
+                        'idbanner' => $idBannerUltimoRegistro,
+                        'accion' => 'Insert-PlaneacionPrimerCiclo',
+                        'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclor del estudiante ' . $codBanner . ', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
+                        'fecha' => date('Y-m-d H:i:s'),
+                    ]);
+                    echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
+                    DB::commit();
+                    echo "Inserción exitosa de la gran cantidad de datos.". $estudiante->homologante;
+                    //$registroMPV++;
+                } catch (Exception $e) {
+                    // Deshacer la transacción en caso de error
+                    DB::rollBack();
+                    // Manejar el error
+                    echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
+                    dd($estudiante);
+                }
             endforeach;
         endfor;
         die();

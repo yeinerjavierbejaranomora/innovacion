@@ -156,7 +156,10 @@
 
             var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
-                $("#mall table").DataTable().destroy(); 
+                if (!empty($("#mall table")))
+                {
+                    $("#mall table").DataTable().destroy();
+                } 
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");

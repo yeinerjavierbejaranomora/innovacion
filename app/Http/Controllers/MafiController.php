@@ -322,7 +322,6 @@ class MafiController extends Controller
                             endif;
                         //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
                         else :
-                            $prerequisitos2 = $prerequisitos;
                             $prerequisitos = [$prerequisitos];
 
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();

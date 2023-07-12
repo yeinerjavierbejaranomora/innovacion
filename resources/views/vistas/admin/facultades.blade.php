@@ -152,7 +152,7 @@
                 $("#nav a[href='#malla']").removeClass("active");
                 $("#nav a[href='#estudiantes']").addClass("active");
                 /** Obtener id */
-                var id = $(this).val();
+                id = $(this).val();
                 /** Llamado a la función para cargar dataTable */
                 estudiantes(id);
 

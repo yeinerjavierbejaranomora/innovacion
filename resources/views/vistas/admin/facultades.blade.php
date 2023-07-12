@@ -132,236 +132,243 @@
 
         </div>
     </div>
-</div>
-<script>
-    /** Función para mostrar el Nav solo al dar click en el botón 
-     * Además de cargar la dataTable dependiendo el nav
-     */
-    $(document).ready(function() {
-        $(document).on("click", ".mostrar", function() {
-            /** Mostrar nav y dataTable */
-            $("#nav").show();
-            $("#est").show();
-            /** Eliminar el parametro active de malla en el nav */
-            $("#nav a[href='#malla']").removeClass("active");
-            $("#nav a[href='#estudiantes']").addClass("active");
-            
-            var mallaTable = null;
-            if (mallaTable!== null) {
-                $("#mall table").DataTable().destroy();
-            }
-            /** Obtener id */
-            var id = $(this).val();
-            /** Llamado a la función para cargar dataTable */
-            estudiantes(id);
-            
-            $("#nav a[href='#malla']").click(function() {
-                $("#est").hide();
-                $("#mall").show();
-                $("#nav a[href='#estudiantes']").removeClass("active");
-                $(this).addClass("active");
-                
-                if ($.fn.DataTable.isDataTable("#est table")) {
-                    $("#est table").DataTable().destroy();
-                }
 
-                if (!$.fn.DataTable.isDataTable("#mall table")) {
-                    malla(id);
-                }
-                return false;
-            });
-            
-            $("#nav a[href='#estudiantes']").click(function() {
+    <script>
+        /** Función para mostrar el Nav solo al dar click en el botón 
+         * Además de cargar la dataTable dependiendo el nav
+         */
+        $(document).ready(function() {
+            $(document).on("click", ".mostrar", function() {
+                /** Mostrar nav y dataTable */
+                $("#nav").show();
                 $("#est").show();
-                $("#mall").hide();
+                /** Eliminar el parametro active de malla en el nav */
                 $("#nav a[href='#malla']").removeClass("active");
-                $(this).addClass("active");
-                
-                if ($.fn.DataTable.isDataTable("#mall table")) {
-                    $("#mall table").DataTable().destroy();
+                $("#nav a[href='#estudiantes']").addClass("active");
+
+                var mallaTable = null;
+                if (mallaTable !== null) {
+                    mallaTable.destroy();
+                    mallaTable = null;
                 }
-                
-                if (!$.fn.DataTable.isDataTable("#est table")) {
-                    estudiantes(id);
-                }
-                return false; // Evitar el comportamiento de navegación predeterminado
-            });
-        })
-        
-        /** DataTabla estudiantes */
-        function estudiantes(id) {
-            var titleAdded = false;
-            var xmlhttp = new XMLHttpRequest();
-            var url = "/home/facultades/estudiantes/" + id + "";
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    
-                    var table = $('#example').DataTable({
-                        /** Recargar dataTable */
-                        "bDestroy": true,
-                        "data": data.data,
-                        "columns": [{
-                            data: 'homologante',
-                            title: 'ID Banner'
-                        },
-                        {
-                            data: 'nombre',
-                            title: 'Primer apellido'
-                        },
-                        {
-                            data: 'programa',
-                            title: 'Codigo de programa'
-                        },
-                        {
-                            data: 'bolsa',
-                            visible: false,
-                            title: 'bolsa'
-                        },
-                        {
-                            data: 'operador',
-                            title: 'Operador'
-                        },
-                        {
-                            data: 'nodo',
-                            visible: false,
-                            title: 'nodo'
-                        },
-                        {
-                            data: 'tipo_estudiante',
-                            title: 'Tipo estudiante'
-                        },
-                        {
-                            data: 'materias_faltantes',
-                            visible: false,
-                            title: 'materias faltantes'
-                        },
-                        {
-                                data: 'programado_ciclo1',
-                                visible: false,
-                                title: 'Programado ciclo 1'
+                /** Obtener id */
+                var id = $(this).val();
+                /** Llamado a la función para cargar dataTable */
+                estudiantes(id);
+
+                $("#nav a[href='#malla']").click(function() {
+                    $("#est").hide();
+                    $("#mall").show();
+                    $("#nav a[href='#estudiantes']").removeClass("active");
+                    $(this).addClass("active");
+
+                    if ($.fn.DataTable.isDataTable("#est table")) {
+                        $("#est table").DataTable().destroy();
+                    }
+
+                    if (!$.fn.DataTable.isDataTable("#mall table")) {
+                        malla(id);
+                    }
+                    return false;
+                });
+
+                $("#nav a[href='#estudiantes']").click(function() {
+                    $("#est").show();
+                    $("#mall").hide();
+                    $("#nav a[href='#malla']").removeClass("active");
+                    $(this).addClass("active");
+
+                    if ($.fn.DataTable.isDataTable("#mall table")) {
+                        $("#mall table").DataTable().destroy();
+                    }
+
+                    if (mallaTable !== null) {
+                        mallaTable.destroy();
+                        mallaTable = null; 
+                    }
+
+                    if (!$.fn.DataTable.isDataTable("#est table")) {
+                        estudiantes(id);
+                    }
+                    return false; 
+                });
+            })
+
+            /** DataTabla estudiantes */
+            function estudiantes(id) {
+                var titleAdded = false;
+                var xmlhttp = new XMLHttpRequest();
+                var url = "/home/facultades/estudiantes/" + id + "";
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+
+                        var table = $('#example').DataTable({
+                            /** Recargar dataTable */
+                            "bDestroy": true,
+                            "data": data.data,
+                            "columns": [{
+                                    data: 'homologante',
+                                    title: 'ID Banner'
+                                },
+                                {
+                                    data: 'nombre',
+                                    title: 'Primer apellido'
+                                },
+                                {
+                                    data: 'programa',
+                                    title: 'Codigo de programa'
+                                },
+                                {
+                                    data: 'bolsa',
+                                    visible: false,
+                                    title: 'bolsa'
+                                },
+                                {
+                                    data: 'operador',
+                                    title: 'Operador'
+                                },
+                                {
+                                    data: 'nodo',
+                                    visible: false,
+                                    title: 'nodo'
+                                },
+                                {
+                                    data: 'tipo_estudiante',
+                                    title: 'Tipo estudiante'
+                                },
+                                {
+                                    data: 'materias_faltantes',
+                                    visible: false,
+                                    title: 'materias faltantes'
+                                },
+                                {
+                                    data: 'programado_ciclo1',
+                                    visible: false,
+                                    title: 'Programado ciclo 1'
+                                },
+                                {
+                                    data: 'programado_ciclo2',
+                                    visible: false,
+                                    title: 'Programado ciclo 2'
+                                },
+                                {
+                                    data: 'programado_extra',
+                                    visible: false,
+                                    title: 'Programado extra'
+                                },
+                                {
+                                    data: 'tiene_historial',
+                                    visible: false,
+                                    title: 'Tiene historial'
+                                },
+                                {
+                                    data: 'programaActivo',
+                                    visible: false,
+                                    title: 'Programa activo'
+                                },
+                                {
+                                    data: 'observacion',
+                                    visible: false,
+                                    title: 'Observación'
+                                },
+                                {
+                                    data: 'marca_ingreso',
+                                    visible: false,
+                                    title: 'Marca ingreso'
+                                },
+                                {
+                                    data: 'created_at',
+                                    title: 'Fecha de creación'
+                                },
+                                {
+                                    data: 'updated_at',
+                                    title: 'Última actulización'
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },
-                            {
-                                data: 'programado_ciclo2',
-                                visible: false,
-                                title: 'Programado ciclo 2'
-                            },
-                            {
-                                data: 'programado_extra',
-                                visible: false,
-                                title: 'Programado extra'
-                            },
-                            {
-                                data: 'tiene_historial',
-                                visible: false,
-                                title: 'Tiene historial'
-                            },
-                            {
-                                data: 'programaActivo',
-                                visible: false,
-                                title: 'Programa activo'
-                            },
-                            {
-                                data: 'observacion',
-                                visible: false,
-                                title: 'Observación'
-                            },
-                            {
-                                data: 'marca_ingreso',
-                                visible: false,
-                                title: 'Marca ingreso'
-                            },
-                            {
-                                data: 'created_at',
-                                title: 'Fecha de creación'
-                            },
-                            {
-                                data: 'updated_at',
-                                title: 'Última actulización'
-                            },
-                        ],
-                        "language": {
-                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                        },
-                        "drawCallback": function() {
-                            if (!titleAdded) {
-                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
-                                titleAdded = true;
+                            "drawCallback": function() {
+                                if (!titleAdded) {
+                                    $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                                    titleAdded = true;
+                                }
                             }
-                        }
-                    });
-                    console.log(table);
-                }
-                
-            }
-        }
-        
-        /**dataTable Malla Curricular */
-        function malla(id) {
-            var titleAdded = false;
-            var xmlhttp = new XMLHttpRequest();
-            var url = "/home/getmalla/" + id + "";
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    var mallaTable = $('#malla').DataTable({
-                        "bDestroy": true,
-                        "data": data.data,
-                        "order": [
-                            [1, 'asc'],
-                            [3, 'asc']
-                        ],
-                        "columns": [{
-                                data: 'codprograma',
-                                "visible": false,
-                                title: 'Codigo de programa'
-                            },
-                            {
-                                data: 'semestre',
-                                title: 'Semestre'
-                            },
-                            {
-                                data: 'ciclo',
-                                title: 'Ciclo'
-                            },
-                            {
-                                data: 'orden',
-                                title: 'Orden'
-                            },
-                            {
-                                data: 'curso',
-                                title: 'Curso'
-                            },
-                            {
-                                data: 'codigoCurso',
-                                title: 'Codigo curso'
-                            },
-                            {
-                                data: 'creditos',
-                                title: 'Numero de créditos'
-                            },
-                            {
-                                data: 'prerequisito',
-                                title: 'Pre-requisitos'
-                            },
-                        ],
-                        "language": {
-                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                        },
-                        "drawCallback": function() {
-                            if (!titleAdded) {
-                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
-                                titleAdded = true;
-                            }
-                        }
-                    });
+                        });
+                        console.log(table);
+                    }
+
                 }
             }
-        }
-    });
-</script>
+
+            /**dataTable Malla Curricular */
+            function malla(id) {
+                var titleAdded = false;
+                var xmlhttp = new XMLHttpRequest();
+                var url = "/home/getmalla/" + id + "";
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        mallaTable = $('#malla').DataTable({
+                            "bDestroy": true,
+                            "data": data.data,
+                            "order": [
+                                [1, 'asc'],
+                                [3, 'asc']
+                            ],
+                            "columns": [{
+                                    data: 'codprograma',
+                                    "visible": false,
+                                    title: 'Codigo de programa'
+                                },
+                                {
+                                    data: 'semestre',
+                                    title: 'Semestre'
+                                },
+                                {
+                                    data: 'ciclo',
+                                    title: 'Ciclo'
+                                },
+                                {
+                                    data: 'orden',
+                                    title: 'Orden'
+                                },
+                                {
+                                    data: 'curso',
+                                    title: 'Curso'
+                                },
+                                {
+                                    data: 'codigoCurso',
+                                    title: 'Codigo curso'
+                                },
+                                {
+                                    data: 'creditos',
+                                    title: 'Numero de créditos'
+                                },
+                                {
+                                    data: 'prerequisito',
+                                    title: 'Pre-requisitos'
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                            "drawCallback": function() {
+                                if (!titleAdded) {
+                                    $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                                    titleAdded = true;
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    </script>
     @include('layout.footer')
+</div>

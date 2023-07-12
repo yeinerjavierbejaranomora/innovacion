@@ -187,7 +187,14 @@ class MafiController extends Controller
             $programa = $estudiante->programa;
             $ciclo=[1,12];
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-            dd($materiasPorVer);
+            /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
+            $numeroCreditos = DB::table('mallaCurricular')
+                                    ->select('planeacion.codBanner',DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner','=',$codigoBanner)
+                                    ->groupBy('planeacion.codBanner')
+                                    ->first();
+            dd($numeroCreditos);
 
         endforeach;
         die();
@@ -1073,7 +1080,7 @@ class MafiController extends Controller
                 ->whereIn('mallaCurricular.ciclo',$ciclo)
                 ->where('materiasPorVer.codprograma','=',$programa)
                 ->where('mallaCurricular.codprograma','=',$programa)
-                ->orderBy('mallaCurricular.orden','ASC')
+                ->orderBy('materiasPorVer.orden','ASC')
                 ->get();
 
             return $materiasPorVer;
@@ -1235,9 +1242,13 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
+            dd(auth()->user()->nombre);
             /**consulta de estudinates primer ciclo */
-            $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
-            dd($baseAcademica);
+            if(auth()->user()->nombre){
+                $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
+                dd($baseAcademica);
+
+            }
 
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];

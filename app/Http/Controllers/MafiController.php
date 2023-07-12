@@ -309,7 +309,7 @@ class MafiController extends Controller
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
 
                             if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
-                                $numeroCreditos = $numeroCreditos + (int)$creditoMateria;
+                                $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([
                                     'codBanner' => $codBanner,
                                     'codMateria' => $codMateria,
@@ -327,7 +327,7 @@ class MafiController extends Controller
                             $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
                             //dd($estaPorVer);
                             if ($estaPlaneacion == '' && $estaPorVer == '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
-                                $numeroCreditos = $numeroCreditos + (int)$creditoMateria;
+                                $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([
                                     'codBanner' => $codBanner,
                                     'codMateria' => $codMateria,

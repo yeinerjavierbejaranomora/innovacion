@@ -227,7 +227,6 @@ class MafiController extends Controller
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos);
             $numeroCreditosC1 = DB::table('mallaCurricular')
                                     ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
@@ -257,17 +256,17 @@ class MafiController extends Controller
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
                 //dd($prerequisitos);
-                dd($numeroCreditos);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
+                    dd($numeroCreditos);
 
                     if($estaPlaneacion->codMateria == '' && $numeroCreditos<$numeroCreditosPermitidos):
 
                     endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
-                else:
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                // else:
+                //     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
             die();

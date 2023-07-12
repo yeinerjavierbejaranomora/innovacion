@@ -211,7 +211,7 @@
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
                         "drawCallback": function() {
-                            $('.dataTables_wrapper .dataTables_length').before('<h4>Título del DataTable</h4>');
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
                         }
                     });
                     console.log(table);

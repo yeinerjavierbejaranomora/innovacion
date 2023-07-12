@@ -192,179 +192,180 @@
                 return false;
             });
             /** DataTabla estudiantes */
-            function estudiantes(id) {
-                var titleAdded = false;
-                var xmlhttp = new XMLHttpRequest();
-                var url = "/home/facultades/estudiantes/" + id + "";
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
-
-                        var table = $('#example').DataTable({
-                            /** Recargar dataTable */
-                            "bDestroy": true,
-                            "data": data.data,
-                            "columns": [{
-                                    data: 'homologante',
-                                    title: 'ID Banner'
-                                },
-                                {
-                                    data: 'nombre',
-                                    title: 'Primer apellido'
-                                },
-                                {
-                                    data: 'programa',
-                                    title: 'Codigo de programa'
-                                },
-                                {
-                                    data: 'bolsa',
-                                    visible: false,
-                                    title: 'bolsa'
-                                },
-                                {
-                                    data: 'operador',
-                                    title: 'Operador'
-                                },
-                                {
-                                    data: 'nodo',
-                                    visible: false,
-                                    title: 'nodo'
-                                },
-                                {
-                                    data: 'tipo_estudiante',
-                                    title: 'Tipo estudiante'
-                                },
-                                {
-                                    data: 'materias_faltantes',
-                                    visible: false,
-                                    title: 'materias faltantes'
-                                },
-                                {
-                                    data: 'programado_ciclo1',
-                                    visible: false,
-                                    title: 'Programado ciclo 1'
-                                },
-                                {
-                                    data: 'programado_ciclo2',
-                                    visible: false,
-                                    title: 'Programado ciclo 2'
-                                },
-                                {
-                                    data: 'programado_extra',
-                                    visible: false,
-                                    title: 'Programado extra'
-                                },
-                                {
-                                    data: 'tiene_historial',
-                                    visible: false,
-                                    title: 'Tiene historial'
-                                },
-                                {
-                                    data: 'programaActivo',
-                                    visible: false,
-                                    title: 'Programa activo'
-                                },
-                                {
-                                    data: 'observacion',
-                                    visible: false,
-                                    title: 'Observación'
-                                },
-                                {
-                                    data: 'marca_ingreso',
-                                    visible: false,
-                                    title: 'Marca ingreso'
-                                },
-                                {
-                                    data: 'created_at',
-                                    title: 'Fecha de creación'
-                                },
-                                {
-                                    data: 'updated_at',
-                                    title: 'Última actulización'
-                                },
-                            ],
-                            "language": {
-                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
-                            "drawCallback": function() {
-                                if (!titleAdded) {
-                                    $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
-                                    titleAdded = true;
-                                }
-                            }
-                        });
-                        console.log(table);
-                    }
-
-                }
-            }
-
-            /**dataTable Malla Curricular */
-            function malla(id) {
-                var titleAdded = false;
-                var xmlhttp = new XMLHttpRequest();
-                var url = "/home/getmalla/" + id + "";
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
-                        var mallaTable = $('#malla').DataTable({
-                            "bDestroy": true,
-                            "data": data.data,
-                            "order": [
-                                [1, 'asc'],
-                                [3, 'asc']
-                            ],
-                            "columns": [{
-                                    data: 'codprograma',
-                                    title: 'Codigo de programa'
-                                },
-                                {
-                                    data: 'semestre',
-                                    title: 'Semestre'
-                                },
-                                {
-                                    data: 'ciclo',
-                                    title: 'Ciclo'
-                                },
-                                {
-                                    data: 'orden',
-                                    title: 'Orden'
-                                },
-                                {
-                                    data: 'curso',
-                                    title: 'Curso'
-                                },
-                                {
-                                    data: 'codigoCurso',
-                                    title: 'Codigo curso'
-                                },
-                                {
-                                    data: 'creditos',
-                                    title: 'Numero de créditos'
-                                },
-                                {
-                                    data: 'prerequisito',
-                                    title: 'Pre-requisitos'
-                                },
-                            ],
-                            "language": {
-                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
-                            "drawCallback": function() {
-                                if (!titleAdded) {
-                                    $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
-                                    titleAdded = true;
-                                }
-                            }
-                        });
-                    }
-                }
-            }
         });
-    </script>
+        
+        function estudiantes(id) {
+            var titleAdded = false;
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/home/facultades/estudiantes/" + id + "";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+
+                    var table = $('#example').DataTable({
+                        /** Recargar dataTable */
+                        "bDestroy": true,
+                        "data": data.data,
+                        "columns": [{
+                                data: 'homologante',
+                                title: 'ID Banner'
+                            },
+                            {
+                                data: 'nombre',
+                                title: 'Primer apellido'
+                            },
+                            {
+                                data: 'programa',
+                                title: 'Codigo de programa'
+                            },
+                            {
+                                data: 'bolsa',
+                                visible: false,
+                                title: 'bolsa'
+                            },
+                            {
+                                data: 'operador',
+                                title: 'Operador'
+                            },
+                            {
+                                data: 'nodo',
+                                visible: false,
+                                title: 'nodo'
+                            },
+                            {
+                                data: 'tipo_estudiante',
+                                title: 'Tipo estudiante'
+                            },
+                            {
+                                data: 'materias_faltantes',
+                                visible: false,
+                                title: 'materias faltantes'
+                            },
+                            {
+                                data: 'programado_ciclo1',
+                                visible: false,
+                                title: 'Programado ciclo 1'
+                            },
+                            {
+                                data: 'programado_ciclo2',
+                                visible: false,
+                                title: 'Programado ciclo 2'
+                            },
+                            {
+                                data: 'programado_extra',
+                                visible: false,
+                                title: 'Programado extra'
+                            },
+                            {
+                                data: 'tiene_historial',
+                                visible: false,
+                                title: 'Tiene historial'
+                            },
+                            {
+                                data: 'programaActivo',
+                                visible: false,
+                                title: 'Programa activo'
+                            },
+                            {
+                                data: 'observacion',
+                                visible: false,
+                                title: 'Observación'
+                            },
+                            {
+                                data: 'marca_ingreso',
+                                visible: false,
+                                title: 'Marca ingreso'
+                            },
+                            {
+                                data: 'created_at',
+                                title: 'Fecha de creación'
+                            },
+                            {
+                                data: 'updated_at',
+                                title: 'Última actulización'
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                        "drawCallback": function() {
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                                titleAdded = true;
+                            }
+                        }
+                    });
+                    console.log(table);
+                }
+
+            }
+        }
+
+        /**dataTable Malla Curricular */
+        function malla(id) {
+            var titleAdded = false;
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/home/getmalla/" + id + "";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var mallaTable = $('#malla').DataTable({
+                        "bDestroy": true,
+                        "data": data.data,
+                        "order": [
+                            [1, 'asc'],
+                            [3, 'asc']
+                        ],
+                        "columns": [{
+                                data: 'codprograma',
+                                title: 'Codigo de programa'
+                            },
+                            {
+                                data: 'semestre',
+                                title: 'Semestre'
+                            },
+                            {
+                                data: 'ciclo',
+                                title: 'Ciclo'
+                            },
+                            {
+                                data: 'orden',
+                                title: 'Orden'
+                            },
+                            {
+                                data: 'curso',
+                                title: 'Curso'
+                            },
+                            {
+                                data: 'codigoCurso',
+                                title: 'Codigo curso'
+                            },
+                            {
+                                data: 'creditos',
+                                title: 'Numero de créditos'
+                            },
+                            {
+                                data: 'prerequisito',
+                                title: 'Pre-requisitos'
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                        "drawCallback": function() {
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                                titleAdded = true;
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        </script>
     @include('layout.footer')
 </div>

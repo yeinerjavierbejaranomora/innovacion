@@ -85,6 +85,17 @@
                 @endforeach
             </div>
 
+            <!--Nav Datos de la Facultad-->
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+                <nav class="nav nav-pills nav-justified">
+                    <a class="nav-link active" href="#">Estudiantes</a>
+                    <a class="nav-link" href="#">Malla Curricular</a>
+                    <a class="nav-link" href="#">Proyecciones</a>
+                </nav>
+            </div>
+
+            <br>
+
             <!-- Datatable-->
             <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
 
@@ -210,12 +221,13 @@
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-                        
-                        //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                        "drawCallback": function() {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                        }
                     });
-                    $('.datatable-title').html('<h4>Estudiantes inscritos</h4>'); // Agregar título personalizado
                     console.log(table);
                 }
+
             }
         }
     });

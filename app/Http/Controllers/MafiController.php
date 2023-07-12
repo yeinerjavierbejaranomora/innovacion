@@ -257,7 +257,7 @@ class MafiController extends Controller
                 $creditoMateria = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
-                dd($programa,$codMateria,$prerequisitosConsulta);
+                //dd($programa,$codMateria,$prerequisitosConsulta);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
 
                 //dd($numeroMateriasPermitidos);
@@ -298,10 +298,8 @@ class MafiController extends Controller
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
-            die();
 
         endforeach;
-        die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -1195,7 +1193,7 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->dd();
+                                ->first();
             return $prerequisitos;
         }
 

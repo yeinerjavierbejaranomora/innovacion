@@ -139,7 +139,6 @@
         $(document).ready(function() {
             $(document).on("click", ".mostrar", function() {
                 $("#malla").empty();
-                $("#est").empty();
                 /** Mostrar nav y dataTable */
                 $("#nav").show();
                 $("#est").show();

@@ -86,7 +86,7 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-            <div class="row" id="nav" style="display: none;">
+            <div class="row" id="nav" name="nav" style="display: none;">
                 <nav class="nav nav-pills nav-justified">
                     <a class="nav-link active" href="#">Estudiantes</a>
                     <a class="nav-link" href="#">Malla Curricular</a>
@@ -118,14 +118,11 @@
 </div>
 <script>
     /** Función para mostrar el Nav solo al dar click en el botón */
-    function mostrarDiv() {
-        var div = $("#nav");
-        if (div.style.display === "none") {
-            div.style.display = "block";
-        } else {
-            div.style.display = "none";
-        }
-    }
+    $(document).ready(function() {
+        $(".mostrar").click(function() {
+            $("#nav").toggle();
+        });
+    });
 
     // * Datatable para mostrar los estudiantes de cada programa *
     $(document).ready(function() {

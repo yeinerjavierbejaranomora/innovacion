@@ -1186,6 +1186,7 @@ class MafiController extends Controller
                     //echo "Con prerequisito <br />";
                     $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
                     $resultado_estaenplaneacion = $esta_en_planeacion;
+                    dd($resultado_estaenplaneacion);
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
                     @ $prerequisito_programado=$filas = mysql_fetch_assoc($resultado_estaenplaneacion);
                     $preprogramado = $filas['codMateria'];

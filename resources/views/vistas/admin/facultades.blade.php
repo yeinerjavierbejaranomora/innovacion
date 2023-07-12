@@ -189,7 +189,7 @@
                             },
                             {
                                 data: 'bolsa',
-                                "visible": false,
+                                visible: false,
                                 title: 'bolsa'
                             },
                             {
@@ -198,7 +198,7 @@
                             },
                             {
                                 data: 'nodo',
-                                "visible": false,
+                                visible: false,
                                 title: 'nodo'
                             },
                             {
@@ -207,42 +207,42 @@
                             },
                             {
                                 data: 'materias_faltantes',
-                                "visible": false,
+                                visible: false,
                                 title: 'materias faltantes'
                             },
                             {
                                 data: 'programado_ciclo1',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 1'
                             },
                             {
                                 data: 'programado_ciclo2',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 2'
                             },
                             {
                                 data: 'programado_extra',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado extra'
                             },
                             {
                                 data: 'tiene_historial',
-                                "visible": false,
+                                visible: false,
                                 title: 'Tiene historial'
                             },
                             {
                                 data: 'programaActivo',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programa activo'
                             },
                             {
                                 data: 'observacion',
-                                "visible": false,
+                                visible: false,
                                 title: 'Observación'
                             },
                             {
                                 data: 'marca_ingreso',
-                                "visible": false,
+                                visible: false,
                                 title: 'Marca ingreso'
                             },
                             {

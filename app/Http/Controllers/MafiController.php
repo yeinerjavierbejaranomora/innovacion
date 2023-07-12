@@ -181,11 +181,43 @@ class MafiController extends Controller
         $programado_ciclo1=NULL;
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
+        /**recorrer por cada estudiante  */
         foreach($estudiantesPC as $estudiante):
             $idEstudiante = $estudiante->id;
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
+            $ruta = $estudiante->bolsa;
+            if($ruta != ''):
+                $ruta = 1;
+            endif;
+            $tipoEstudiante = $estudiante->tipo_estudiante;
+
+            switch ($tipoEstudiante) {
+                case str_contains($tipoEstudiante, 'TRANSFERENTE'):
+                    $tipoEstudiante ='TRANSFERENTE';
+                    break;
+                case str_contains($tipoEstudiante, 'ESTUDIANTE ANTIGUO'):
+                    $tipoEstudiante ='ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'PRIMER INGRESO'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+                case str_contains($tipoEstudiante, 'PSEUDO ACTIVOS'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'REINGRESO'):
+                    $tipoEstudiante = 'ESTUDIANTE ANTIGUO';
+                    break;
+                case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
+                    $tipoEstudiante='PRIMER INGRESO';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
             $ciclo=[1,12];
+            /** */
             $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = 100074631 group by `planeacion`.`codBanner` */
             $numeroCreditos = DB::table('mallaCurricular')
@@ -206,7 +238,16 @@ class MafiController extends Controller
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
             $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
-            dd($sumaCreditosCiclo1,$cuentaCursosCiclo1);
+            /**reglas del negocio */
+            $cicloReglaNegocio = 1;
+            $reglaNegocio =DB::table('reglasNegocio')
+                                ->select('creditos','materiasPermitidas')
+                                ->where([['programa','=',$programa],['ruta','=',$ruta],['tipoEstudiante','=',$tipoEstudiante],['ciclo','=',$cicloReglaNegocio],['activo','=',1]])
+                                ->first();
+
+            $numeroCreditosPermitidos = $reglaNegocio->creditos;
+            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+            dd($numeroCreditosPermitidos,$numeroMateriasPermitidos);
 
 
         endforeach;

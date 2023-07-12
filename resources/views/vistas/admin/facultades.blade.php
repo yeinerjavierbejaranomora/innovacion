@@ -132,7 +132,6 @@
 
         </div>
     </div>
-    @include('layout.footer')
 </div>
 <script>
     /** Función para mostrar el Nav solo al dar click en el botón 
@@ -149,19 +148,19 @@
             
             var mallaTable = null;
             if (mallaTable!== null) {
-                    $("#mall table").DataTable().destroy();
-                }
+                $("#mall table").DataTable().destroy();
+            }
             /** Obtener id */
             var id = $(this).val();
             /** Llamado a la función para cargar dataTable */
             estudiantes(id);
-
+            
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");
                 $(this).addClass("active");
-
+                
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
                 }
@@ -171,24 +170,24 @@
                 }
                 return false;
             });
-
+            
             $("#nav a[href='#estudiantes']").click(function() {
                 $("#est").show();
                 $("#mall").hide();
                 $("#nav a[href='#malla']").removeClass("active");
                 $(this).addClass("active");
-
+                
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                 }
-
+                
                 if (!$.fn.DataTable.isDataTable("#est table")) {
                     estudiantes(id);
                 }
                 return false; // Evitar el comportamiento de navegación predeterminado
             });
         })
-
+        
         /** DataTabla estudiantes */
         function estudiantes(id) {
             var titleAdded = false;
@@ -199,47 +198,47 @@
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
-
+                    
                     var table = $('#example').DataTable({
                         /** Recargar dataTable */
                         "bDestroy": true,
                         "data": data.data,
                         "columns": [{
-                                data: 'homologante',
-                                title: 'ID Banner'
-                            },
-                            {
-                                data: 'nombre',
-                                title: 'Primer apellido'
-                            },
-                            {
-                                data: 'programa',
-                                title: 'Codigo de programa'
-                            },
-                            {
-                                data: 'bolsa',
-                                visible: false,
-                                title: 'bolsa'
-                            },
-                            {
-                                data: 'operador',
-                                title: 'Operador'
-                            },
-                            {
-                                data: 'nodo',
-                                visible: false,
-                                title: 'nodo'
-                            },
-                            {
-                                data: 'tipo_estudiante',
-                                title: 'Tipo estudiante'
-                            },
-                            {
-                                data: 'materias_faltantes',
-                                visible: false,
-                                title: 'materias faltantes'
-                            },
-                            {
+                            data: 'homologante',
+                            title: 'ID Banner'
+                        },
+                        {
+                            data: 'nombre',
+                            title: 'Primer apellido'
+                        },
+                        {
+                            data: 'programa',
+                            title: 'Codigo de programa'
+                        },
+                        {
+                            data: 'bolsa',
+                            visible: false,
+                            title: 'bolsa'
+                        },
+                        {
+                            data: 'operador',
+                            title: 'Operador'
+                        },
+                        {
+                            data: 'nodo',
+                            visible: false,
+                            title: 'nodo'
+                        },
+                        {
+                            data: 'tipo_estudiante',
+                            title: 'Tipo estudiante'
+                        },
+                        {
+                            data: 'materias_faltantes',
+                            visible: false,
+                            title: 'materias faltantes'
+                        },
+                        {
                                 data: 'programado_ciclo1',
                                 visible: false,
                                 title: 'Programado ciclo 1'
@@ -295,10 +294,10 @@
                     });
                     console.log(table);
                 }
-
+                
             }
         }
-
+        
         /**dataTable Malla Curricular */
         function malla(id) {
             var titleAdded = false;
@@ -365,3 +364,4 @@
         }
     });
 </script>
+    @include('layout.footer')

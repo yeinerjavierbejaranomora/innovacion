@@ -152,9 +152,23 @@
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
                 }
-                // Inicializar la DataTable de malla curricular si es necesario
+               
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
+                }
+                return false; // Evitar el comportamiento de navegación predeterminado
+            });
+
+            $("#nav a[href='#estudiantes']").click(function() {
+                $("#est").show();
+                $("#mall").hide();
+
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                }
+                
+                if (!$.fn.DataTable.isDataTable("#est table")) {
+                    estudiantes(id);
                 }
                 return false; // Evitar el comportamiento de navegación predeterminado
             });

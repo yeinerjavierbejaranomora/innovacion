@@ -154,7 +154,7 @@
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
                 }
-               
+
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
                 }
@@ -164,13 +164,13 @@
             $("#nav a[href='#estudiantes']").click(function() {
                 $("#est").show();
                 $("#mall").hide();
-                $("#nav a[href='#estudiantes']").removeClass("active");
+                $("#nav a[href='#malla']").removeClass("active");
                 $(this).addClass("active");
-                
+
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                 }
-                
+
                 if (!$.fn.DataTable.isDataTable("#est table")) {
                     estudiantes(id);
                 }
@@ -277,9 +277,9 @@
                         },
                         "drawCallback": function() {
                             if (!titleAdded) {
-                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
-                            titleAdded = true;
-                        }
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                                titleAdded = true;
+                            }
                         }
                     });
                     console.log(table);

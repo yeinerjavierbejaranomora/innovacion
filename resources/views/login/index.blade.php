@@ -107,6 +107,7 @@
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Sistema de <br> Proyección Ibero</h2>
 
 			<form action="{{ route('login.login') }}" method="POST" class="align-content-center">
+			@csrf
 				<div class="mb-5 col-10 mx-auto">
 					<input type="email" class="form-control custom-input" name="email" placeholder="Usuario" required>
 					<span class="input-border"></span>

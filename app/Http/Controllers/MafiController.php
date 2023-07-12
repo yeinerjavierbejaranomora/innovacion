@@ -1251,6 +1251,19 @@ class MafiController extends Controller
             return  $reglaNegocio;
         }
 
+        public function esta_en_planeacion($prerequisitos,$codBanner){
+
+            //dd($prerequisitos->prerequisito);
+         
+            $query=DB::table('planeacion')
+            ->select('codMateria')
+            ->whereIn('codMateria',[$prerequisitos->prerequisito])
+            ->where('codBanner','=',$codBanner)
+            ->get();
+
+            return $query;
+        }
+
         public function Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante){
 
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
@@ -1278,19 +1291,7 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-                //echo "Cod Materia: " . $codMateria . " Credito de la materia: " . $creditoMateria . "<br />";
-                //exit();
-               
-                //echo "Consulta preequisitos de : " . $codMateria . " -> " .  $consulta_prerequisitos . "<br />";
-                // exit();
-            
-                dd($prerequisitos);
-                exit();
-
-                /*
-                echo "prerequisito: " . $prerequisitos . "  ciclo: " . $ciclo . "Cuenta ciclos " . $cuenta_cursos_ciclo1;
-                exit();
-                */
+              
 
                 if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
                     //echo "vacio";
@@ -1311,8 +1312,8 @@ class MafiController extends Controller
                     }
                 } else {
                     //echo "Con prerequisito <br />";
-                    $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'";';
-                    $resultado_estaenplaneacion = mysql_query($consulta_estaenplaneacion, $link);
+                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
+                    $resultado_estaenplaneacion = $esta_en_planeacion;
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
                     @ $prerequisito_programado=$filas = mysql_fetch_assoc($resultado_estaenplaneacion);
                     $preprogramado = $filas['codMateria'];

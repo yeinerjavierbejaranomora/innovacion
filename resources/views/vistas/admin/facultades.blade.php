@@ -140,57 +140,57 @@
             $(document).on("click", ".mostrar", function() {
                 alert('entró');
                 if ($.fn.DataTable.isDataTable("#mall table")) {
-                        console.log('entra');
-                        $("#mall table").DataTable().destroy();
-                        $("#malla").empty();
-                    }
+                    console.log('entra');
+                    $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
+                }
                 /** Mostrar nav y dataTable */
                 $("#nav").show();
                 $("#est").show();
                 /** Eliminar el parametro active de malla en el nav */
                 $("#nav a[href='#malla']").removeClass("active");
-                $("#nav a[href='#estudiantes']").addClass("active");                       
+                $("#nav a[href='#estudiantes']").addClass("active");
                 /** Obtener id */
                 var id = $(this).val();
                 /** Llamado a la función para cargar dataTable */
                 estudiantes(id);
 
-                $("#nav a[href='#malla']").click(function() {
-                    
-                    $("#est").hide();
-                    $("#mall").show();
-                    $("#nav a[href='#estudiantes']").removeClass("active");
-                    $(this).addClass("active");
-
-                    if ($.fn.DataTable.isDataTable("#est table")) {
-                        $("#est table").DataTable().destroy();
-                        $("#estudiantes").empty();
-                    }
-
-                    if (!$.fn.DataTable.isDataTable("#mall table")) {
-                        malla(id);
-                    }
-                    return false;
-                });
-
-                $("#nav a[href='#estudiantes']").click(function() {
-                    $("#est").show();
-                    $("#mall").hide();
-                    $("#nav a[href='#malla']").removeClass("active");
-                    $(this).addClass("active");
-
-                    if ($.fn.DataTable.isDataTable("#mall table")) {
-                        $("#mall table").DataTable().destroy();
-                        $("#malla").empty();
-                    }
-
-                    if (!$.fn.DataTable.isDataTable("#est table")) {
-                        estudiantes(id);
-                    }
-                    return false; 
-                });
             })
 
+            $("#nav a[href='#malla']").click(function() {
+
+                $("#est").hide();
+                $("#mall").show();
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
+
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                    $("#estudiantes").empty();
+                }
+
+                if (!$.fn.DataTable.isDataTable("#mall table")) {
+                    malla(id);
+                }
+                return false;
+            });
+
+            $("#nav a[href='#estudiantes']").click(function() {
+                $("#est").show();
+                $("#mall").hide();
+                $("#nav a[href='#malla']").removeClass("active");
+                $(this).addClass("active");
+
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
+                }
+
+                if (!$.fn.DataTable.isDataTable("#est table")) {
+                    estudiantes(id);
+                }
+                return false;
+            });
             /** DataTabla estudiantes */
             function estudiantes(id) {
                 var titleAdded = false;

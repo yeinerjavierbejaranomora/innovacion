@@ -108,13 +108,12 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-            <div class="row" id="nav" name="nav" style="display: none;">
-                <nav class="nav nav-pills nav-justified">
+  
+                <nav class="nav nav-pills nav-justified" id="nav" name="nav" style="display: none;">
                     <a class="nav-link active" href="#estudiantes">Estudiantes</a>
                     <a class="nav-link" href="#malla">Malla Curricular</a>
                     <a class="nav-link" href="#proyecciones">Proyecciones</a>
                 </nav>
-            </div>
 
             <br>
 
@@ -168,7 +167,6 @@
                 id = $(this).data('valor');
                 console.log(id);
                 if ($.fn.DataTable.isDataTable("#mall table")) {
-                    console.log('entra');
                     $("#mall table").DataTable().destroy();
                     $("#malla").empty();
                 }

@@ -260,9 +260,9 @@ class MafiController extends Controller
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
                     var_dump('pre',$estaPlaneacion->prerequisito);
-                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 else:
-                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
             die();

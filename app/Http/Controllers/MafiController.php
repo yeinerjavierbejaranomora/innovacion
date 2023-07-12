@@ -292,6 +292,7 @@ class MafiController extends Controller
                 try {
 
                     foreach ($materiasPorVer as $materia) :
+                        dd($materia);
 
                         if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
                             break;

@@ -144,7 +144,7 @@
             $("#est").show();
             var id = $(this).val();
             estudiantes(id);
-            
+
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();
@@ -162,7 +162,7 @@
 
         /** DataTabla estudiantes */
         function estudiantes(id) {
-
+            var titleAdded = false;
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/estudiantes/" + id + "";
             xmlhttp.open("GET", url, true);
@@ -258,7 +258,10 @@
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
                         "drawCallback": function() {
+                            if (!titleAdded) {
                             $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                            titleAdded = true;
+                        }
                         }
                     });
                     console.log(table);
@@ -270,6 +273,7 @@
 
     /**dataTable Malla Curricular */
     function malla(id) {
+        var titleAdded = false;
         var xmlhttp = new XMLHttpRequest();
         var url = "/home/getmalla/" + id + "";
         xmlhttp.open("GET", url, true);
@@ -321,7 +325,10 @@
                         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                     },
                     "drawCallback": function() {
-                        $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                        if (!titleAdded) {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                            titleAdded = true;
+                        }
                     }
                 });
             }

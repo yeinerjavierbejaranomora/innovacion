@@ -210,8 +210,10 @@
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
+                        
                         //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                     });
+                    $('.datatable-title').html('<h4>Estudiantes inscritos</h4>'); // Agregar título personalizado
                     console.log(table);
                 }
             }

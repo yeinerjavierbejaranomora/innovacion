@@ -263,7 +263,15 @@ class MafiController extends Controller
 
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
                         $numeroCreditos= $numeroCreditos + $creditoMateria;
-                        dd($numeroCreditos);
+                        $insertPlaneacion = DB::table('planeacion')->insert([
+                            'codBanner' => $codBanner,
+                            'codMateria' => $codMateria,
+                            'orden' => $orden,
+                            'semestre' => '1',
+                            'programada' => '',
+                            'programa' => $programa,
+                        ]);
+                        $cuentaCursosCiclo1++;
                     endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 // else:

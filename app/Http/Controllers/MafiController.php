@@ -269,7 +269,7 @@ class MafiController extends Controller
                             'orden' => $orden,
                             'semestre' => '1',
                             'programada' => '',
-                            'programa' => $programa,
+                            'codprograma' => $programa,
                         ]);
                         $cuentaCursosCiclo1++;
                     endif;

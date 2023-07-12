@@ -184,11 +184,6 @@
                         $("#malla").empty();
                     }
 
-                    if (mallaTable !== null) {
-                        mallaTable.destroy();
-                        mallaTable = null; 
-                    }
-
                     if (!$.fn.DataTable.isDataTable("#est table")) {
                         estudiantes(id);
                     }

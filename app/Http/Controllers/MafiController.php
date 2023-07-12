@@ -291,7 +291,10 @@ class MafiController extends Controller
 
                 try {
 
-                    foreach ($materiasPorVer as $materia) :
+                    foreach ($matseriasPorVer as $materia) :
+                        if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
+                            break;
+                        endif;
                         $codBanner = $materia->codBanner;
                         $codMateria = $materia->codMateria;
                         $creditoMateria = $materia->creditos;

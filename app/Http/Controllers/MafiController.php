@@ -277,7 +277,7 @@ class MafiController extends Controller
                         ]);
                         $cuentaCursosCiclo1++;
                     endif;
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos."--".$ciclo.'---'.$cuentaCursosCiclo1,'----'.'sin P'.'<br>';
                 else:
                     $prerequisitos = [$prerequisitos];
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->first();
@@ -295,7 +295,7 @@ class MafiController extends Controller
                         $cuentaCursosCiclo1++;
                     endif;
 
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos."--".$ciclo.'---'.$cuentaCursosCiclo1.'----'.'con P'.'<br>';
                 endif;
             endforeach;
         endforeach;

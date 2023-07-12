@@ -178,12 +178,13 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+
         $programado_ciclo1=NULL;
         $id = 0;
         $limit = 200;
         /**consulta de estudinates primer ciclo */
         $estudiantesPC = $this->programarPrimerCiclo($id,$limit,$programado_ciclo1);
-        dd($estudiantesPC);
+        dd($estudiantesPC->count());
         /**recorrer por cada estudiante  */
         foreach($estudiantesPC as $estudiante):
             $idEstudiante = $estudiante->id;

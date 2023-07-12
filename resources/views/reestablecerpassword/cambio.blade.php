@@ -5,10 +5,6 @@
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
-@extends('layout.plantillaFormularios')
-@section('title', 'Cambio Contraseña')
-@section('content')
-
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->

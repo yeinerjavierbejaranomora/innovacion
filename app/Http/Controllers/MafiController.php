@@ -1237,7 +1237,7 @@ class MafiController extends Controller
             $programado_ciclo1=NULL;
             dd(auth()->user());
             /**consulta de estudinates primer ciclo */
-            if((auth()->user()->name){
+            if(auth()->user()->name){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
                 dd($baseAcademica);
     

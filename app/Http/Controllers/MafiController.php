@@ -227,7 +227,6 @@ class MafiController extends Controller
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos);
             $numeroCreditosC1 = DB::table('mallaCurricular')
                                     ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                                     ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
@@ -267,7 +266,7 @@ class MafiController extends Controller
                     endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 else:
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
             die();

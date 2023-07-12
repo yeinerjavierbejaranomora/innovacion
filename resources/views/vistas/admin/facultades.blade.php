@@ -158,7 +158,7 @@
                 $(this).addClass("active");
 
                 if (mallaTable !== null) {
-                    mallaTable.destroy(); 
+                    mallaTable.destroy();
                 }
 
                 if ($.fn.DataTable.isDataTable("#est table")) {
@@ -168,7 +168,7 @@
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
                 }
-                return false; 
+                return false;
             });
 
             $("#nav a[href='#estudiantes']").click(function() {
@@ -297,69 +297,69 @@
 
             }
         }
-    });
 
-    /**dataTable Malla Curricular */
-    function malla(id) {
-        var titleAdded = false;
-        var xmlhttp = new XMLHttpRequest();
-        var url = "/home/getmalla/" + id + "";
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                var mallaTable = $('#malla').DataTable({
-                    "data": data.data,
-                    "order": [
-                        [1, 'asc'],
-                        [3, 'asc']
-                    ],
-                    "columns": [{
-                            data: 'codprograma',
-                            "visible": false,
-                            title: 'Codigo de programa'
+        /**dataTable Malla Curricular */
+        function malla(id) {
+            var titleAdded = false;
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/home/getmalla/" + id + "";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var mallaTable = $('#malla').DataTable({
+                        "data": data.data,
+                        "order": [
+                            [1, 'asc'],
+                            [3, 'asc']
+                        ],
+                        "columns": [{
+                                data: 'codprograma',
+                                "visible": false,
+                                title: 'Codigo de programa'
+                            },
+                            {
+                                data: 'semestre',
+                                title: 'Semestre'
+                            },
+                            {
+                                data: 'ciclo',
+                                title: 'Ciclo'
+                            },
+                            {
+                                data: 'orden',
+                                title: 'Orden'
+                            },
+                            {
+                                data: 'curso',
+                                title: 'Curso'
+                            },
+                            {
+                                data: 'codigoCurso',
+                                title: 'Codigo curso'
+                            },
+                            {
+                                data: 'creditos',
+                                title: 'Numero de créditos'
+                            },
+                            {
+                                data: 'prerequisito',
+                                title: 'Pre-requisitos'
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-                        {
-                            data: 'semestre',
-                            title: 'Semestre'
-                        },
-                        {
-                            data: 'ciclo',
-                            title: 'Ciclo'
-                        },
-                        {
-                            data: 'orden',
-                            title: 'Orden'
-                        },
-                        {
-                            data: 'curso',
-                            title: 'Curso'
-                        },
-                        {
-                            data: 'codigoCurso',
-                            title: 'Codigo curso'
-                        },
-                        {
-                            data: 'creditos',
-                            title: 'Numero de créditos'
-                        },
-                        {
-                            data: 'prerequisito',
-                            title: 'Pre-requisitos'
-                        },
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                    },
-                    "drawCallback": function() {
-                        if (!titleAdded) {
-                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
-                            titleAdded = true;
+                        "drawCallback": function() {
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                                titleAdded = true;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
-    }
+    });
 </script>

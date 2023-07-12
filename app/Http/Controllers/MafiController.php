@@ -1243,13 +1243,11 @@ class MafiController extends Controller
               
 
                 if($prerequisitos->prerequisito=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
-                    echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
-                    exit;
-                    $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'";';
-                    //echo $consulta_estaenplaneacion;
-                    $codBanner=$codBanner;
-                    $resultado_planeacion = mysql_query($consulta_estaenplaneacion, $link);
-                    $filas_planeada = mysql_fetch_assoc($resultado_planeacion);
+                   // echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
+          
+
+                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
+                    dd( $esta_en_planeacion);
                     $planeada = $filas_planeada['prerequisito'];
                     if($planeada=='' && $creditos_homologantes<$num_creditos) {
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
@@ -1263,7 +1261,7 @@ class MafiController extends Controller
                 } else {
 
 
-                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
+                   
 
 
                     $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';

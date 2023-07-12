@@ -255,7 +255,11 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = [$prerequisitosConsulta->prerequisito];
-                var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'<br>');
+                if($prerequisitos=="" && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidas):
+                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                else:
+                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                endif;
             endforeach;
             die();
 
@@ -1244,7 +1248,7 @@ class MafiController extends Controller
 
                 if($prerequisitos->prerequisito=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
                    // echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
-          
+
 
                     $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
                     dd( $esta_en_planeacion);
@@ -1261,7 +1265,7 @@ class MafiController extends Controller
                 } else {
 
 
-                   
+
 
 
                     $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';

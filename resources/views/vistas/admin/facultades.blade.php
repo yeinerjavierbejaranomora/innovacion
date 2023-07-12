@@ -41,7 +41,7 @@
         color: #dfc14e !important;
     }
 
-    .inactivo i:hover {
+    .inactivo:hover i {
         color: #4a4a48 !important;
     }
 </style>

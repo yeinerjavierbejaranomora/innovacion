@@ -219,9 +219,9 @@ class MafiController extends Controller
                 $fechaInicio = date('Y-m-d H:i:s');
                 $primerId = $estudiante->id;
                 $ultimoRegistroId = 0;
-                $idEstudiante = $estudiante->id;
-                $codigoBanner = $estudiante->homologante;
-                $programa = $estudiante->programa;
+                $idEstudiante = 1063;
+                $codigoBanner = 100143955;
+                $programa = 'PCPV';
                 $ruta = $estudiante->bolsa;
                 if ($ruta != '') :
                     $ruta = 1;
@@ -266,7 +266,7 @@ class MafiController extends Controller
                 $numeroCreditosC1 = DB::table('mallaCurricular')
                 ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'), DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                 ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
-                ->where('planeacion.codBanner', '=',100143955)
+                ->where('planeacion.codBanner', '=', $codigoBanner)
                     ->whereIn('mallaCurricular.ciclo', [1, 12])
                     ->first();
 
@@ -275,7 +275,7 @@ class MafiController extends Controller
                 $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
                 $cuentaCursosCiclo1 = $cuentaCursosCiclo1 == '' ? 0 : $cuentaCursosCiclo1;
 
-                dd($cuentaCursosCiclo1);
+
 
                 /**reglas del negocio */
                 $cicloReglaNegocio = 1;
@@ -292,6 +292,7 @@ class MafiController extends Controller
                 try {
 
                     foreach ($materiasPorVer as $materia) :
+
                         if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
                             break;
                         endif;
@@ -370,6 +371,7 @@ class MafiController extends Controller
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                     dd($estudiante);
                 }
+                dd($cuentaCursosCiclo1);
             endforeach;
         endfor;
         die();

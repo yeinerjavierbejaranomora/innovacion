@@ -259,8 +259,11 @@ class MafiController extends Controller
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
-                    dd('pre',$estaPlaneacion->codMateria);
+                    dd($numeroCreditos);
 
+                    if($estaPlaneacion->codMateria == '' && $numeroCreditos<$numeroCreditosPermitidos):
+
+                    endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 else:
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');

@@ -34,9 +34,6 @@
                 </div>
             </div>
 
-
-
-
         </nav>
         <!-- End of Topbar -->
 
@@ -51,10 +48,10 @@
 
             @if(count($datos['programas']) === 0)
             <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>
+            @endif
 
             <!-- Content Row -->
             <div class="row" id="facultades">
-                @endif
                 @foreach($datos['programas'] as $key => $value)
                 @foreach($estudiantes as $key => $est)
                 @if($value->codprograma == $key)
@@ -89,7 +86,7 @@
             </div>
 
             <!-- Datatable-->
-            <div class="row">
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : ''?>)>
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">

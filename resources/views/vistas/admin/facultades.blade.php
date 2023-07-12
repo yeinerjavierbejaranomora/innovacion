@@ -148,8 +148,7 @@
             $("#nav a[href='#estudiantes']").addClass("active");
 
             /** Destruir las DataTable creadas anteriormente al cambiar de programa */
-                $("#mall table").DataTable().destroy();        
-                $("#est table").DataTable().destroy();
+                
             
 
             /** Obtener id */

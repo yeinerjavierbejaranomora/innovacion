@@ -86,7 +86,7 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+            <div class="row" id="nav" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
                 <nav class="nav nav-pills nav-justified">
                     <a class="nav-link active" href="#">Estudiantes</a>
                     <a class="nav-link" href="#">Malla Curricular</a>
@@ -117,6 +117,12 @@
     @include('layout.footer')
 </div>
 <script>
+    $(document).ready(function() {
+        $(document).on("click", ".mostrar", function() {
+            $("#nav").removeClass("hidden");
+        });
+    });
+
     // * Datatable para mostrar los estudiantes de cada programa *
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {

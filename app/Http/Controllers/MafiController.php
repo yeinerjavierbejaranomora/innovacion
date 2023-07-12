@@ -700,7 +700,7 @@ class MafiController extends Controller
             ];
             $orden++;
         endforeach;
-        //dd($data);
+        dd($data);
         //return $mallaCurricular;
         return $data;
     }

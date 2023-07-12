@@ -185,40 +185,41 @@
         </div>
         </section>
     </div>
+
+
+
+    <script>
+        // * Función para enviar alerta al usuario *
+        function validacion() {
+
+            // * Validación para verificar que todos los campos contengan información *
+            if ($('#contraseña').val() && $('#nueva').val() && $('#confirmar').val()) {
+                $("#miForm").submit(function(e) {
+                    e.preventDefault();
+                    // * Sweet alert *
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "¡No podrás deshacer este cambio!",
+                        icon: 'warning',
+                        color: 'white',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, cambiar!',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            color: 'white'
+                            Swal.fire(
+                                'Cambio exitoso',
+                                'Tu contraseña fue cambiada.',
+                                'success'
+                            )
+                        }
+                    })
+                });
+            }
+        }
+    </script>
     @include('layout.footer')
 </div>
-
-
-<script>
-    // * Función para enviar alerta al usuario *
-    function validacion() {
-
-        // * Validación para verificar que todos los campos contengan información *
-        if ($('#contraseña').val() && $('#nueva').val() && $('#confirmar').val()) {
-            $("#miForm").submit(function(e) {
-                e.preventDefault();
-                // * Sweet alert *
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "¡No podrás deshacer este cambio!",
-                    icon: 'warning',
-                    color: 'white',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, cambiar!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        color: 'white'
-                        Swal.fire(
-                            'Cambio exitoso',
-                            'Tu contraseña fue cambiada.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        }
-    }
-</script>

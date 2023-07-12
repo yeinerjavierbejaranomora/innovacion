@@ -371,7 +371,7 @@ class MafiController extends Controller
                     echo "Error al insertar la gran cantidad de datos: " . $e->getMessage();
                     dd($estudiante);
                 }
-                dd($cuentaCursosCiclo1);
+                var_dump($cuentaCursosCiclo1);
             endforeach;
         endfor;
         die();

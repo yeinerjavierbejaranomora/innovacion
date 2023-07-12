@@ -542,14 +542,16 @@ class MafiController extends Controller
             $ultimoRegistroId = 0;
             foreach ($primerIngreso as $estudiante) :
                 $mallaCurricular = $this->BaseAcademica($estudiante->homologante, $estudiante->programa);
+                $orden =1;
                 foreach ($mallaCurricular as $key => $malla) :
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $malla['codBanner'],
                         "codMateria"      => $malla['codMateria'],
-                        "orden"      => $malla['orden'],
+                        "orden"      => $orden,
                         "codprograma"      => $malla['codprograma'],
                     ]);
                     $registroMPV++;
+                    $orden++;
                 endforeach;
                 DB::table('estudiantes')->where([['homologante', '=', $estudiante->homologante], ['id', '=', $estudiante->id]])->update(['materias_faltantes' => 'OK']);
                 $ultimoRegistroId = $estudiante->id;
@@ -598,14 +600,16 @@ class MafiController extends Controller
                 $diff = array_udiff($mallaCurricular, $historial, function($a, $b) {
                     return $a['codMateria'] <=> $b['codMateria'];
                 });
+                $orden = 1;
                 foreach ($diff as $key => $value) :
                     //dd($value);
                     $insertMateriaPorVer = MateriasPorVer::create([
                         "codBanner"      => $value['codBanner'],
                         "codMateria"      => $value['codMateria'],
-                        "orden"      => $value['orden'],
+                        "orden"      => $orden,
                         "codprograma"      => $value['codprograma'],
                     ]);
+                    $orden++;
                     $registroMPV++;
                 endforeach;
                 DB::table('estudiantes')->where([['homologante','=',$estudiante->homologante],['id','=',$estudiante->id]])->update(['materias_faltantes'=>'OK']);
@@ -818,16 +822,17 @@ class MafiController extends Controller
             ->orderBy('semestre', 'asc')
             ->orderBy('orden', 'asc')
             ->get();
-
+        $orden =1;
         foreach ($mallaCurricular as $key => $value) :
             $data[] = [
                 'codBanner' => $idbanner,
                 'codMateria'=>$value->codigoCurso,
-                'orden'=>$value->orden,
+                'orden'=>$orden,
                 'codprograma'=>$value->codprograma,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
+            $orden++;
         endforeach;
         //dd($data);
         //return $mallaCurricular;
@@ -1180,7 +1185,7 @@ class MafiController extends Controller
         /**Materias por ver de cada estudiante */
         public function materiasPorVer($codBanner,$ciclo,$programa){
 
-           
+
             // Materias que debe ver el estudiante por ciclo
           $materiasPorVer = DB::table("materiasPorVer")
                 ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
@@ -1192,7 +1197,7 @@ class MafiController extends Controller
                 ->orderBy('mallaCurricular.orden','ASC')
                 ->orderBy('mallaCurricular.semestre','ASC')
                 ->get();
-           
+
             return $materiasPorVer;
         }
 
@@ -1217,7 +1222,7 @@ class MafiController extends Controller
             ->where('planeacion.codBanner','=',$codBanner)
             ->groupBy('planeacion.codBanner')
             ->first();
-          
+
 
             $creditos_homologantes = $consulta_sumacreditos==NULL ? "0" :$consulta_sumacreditos->CreditosPlaneados;
 
@@ -1254,7 +1259,7 @@ class MafiController extends Controller
         public function esta_en_planeacion($prerequisitos,$codBanner){
 
             //dd($prerequisitos->prerequisito);
-         
+
             $query=DB::table('planeacion')
             ->select('codMateria')
             ->whereIn('codMateria',[$prerequisitos->prerequisito])
@@ -1269,7 +1274,7 @@ class MafiController extends Controller
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);
 
             $prerequisitos=$this->prerequisitos($codMateria,$codPrograma);
-           
+
             $creditos_homologantes=$this->sumar_creditos($codBanner);
 
             $numeroCreditosC1=$this->consulta_creditos($codBanner,$ciclo);
@@ -1291,7 +1296,7 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-              
+
 
                 if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
                     //echo "vacio";
@@ -1393,19 +1398,19 @@ class MafiController extends Controller
                         break;
                 }
 
-                
+
 
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-              
+
                 foreach ($materiasPorVer as $value_materiasPorVer) {
-              
+
                    // dd($value_materiasPorVer);
 
-                
+
                     $codMateria=$value_materiasPorVer->codMateria;
                     $codPrograma=$programa;
 
-               
+
 
                     $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                 }

@@ -247,7 +247,10 @@ class MafiController extends Controller
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
             $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
-            dd($numeroCreditosPermitidos,$numeroMateriasPermitidos);
+            $orden = 1;
+            foreach ($materiasPorVer as $materia) :
+                dd($materia);
+            endforeach;
 
 
         endforeach;

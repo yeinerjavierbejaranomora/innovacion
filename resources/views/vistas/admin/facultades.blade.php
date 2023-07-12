@@ -88,15 +88,15 @@
             <!--Nav Datos de la Facultad-->
             <div class="row" id="nav" name="nav" style="display: none;">
                 <nav class="nav nav-pills nav-justified">
-                    <a class="nav-link active" href="#">Estudiantes</a>
-                    <a class="nav-link" href="#">Malla Curricular</a>
-                    <a class="nav-link" href="#">Proyecciones</a>
+                    <a class="nav-link active" href="#estudiantes">Estudiantes</a>
+                    <a class="nav-link" href="#malla">Malla Curricular</a>
+                    <a class="nav-link" href="#proyecciones">Proyecciones</a>
                 </nav>
             </div>
 
             <br>
 
-            <!-- Datatable-->
+            <!-- Datatable Estudiantes-->
             <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
 
                 <!-- Area Chart -->
@@ -112,21 +112,42 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Datatable Malla Curricular-->
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+
+                <!-- Area Chart -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table">
+                                <table id="malla" class="display" style="width:100%">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     @include('layout.footer')
 </div>
 <script>
-    /** Función para mostrar el Nav solo al dar click en el botón */
-    // * Datatable para mostrar los estudiantes de cada programa *
+    /** Función para mostrar el Nav solo al dar click en el botón 
+     * Además de cargar la dataTable dependiendo el nav
+     */
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
             $("#nav").show();
             var id = $(this).val();
-            buscar(id);
+            estudiantes(id);
+            malla(id);
         })
 
-        function buscar(id) {
+        /** DataTabla estudiantes */
+        function estudiantes(id) {
 
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/estudiantes/" + id + "";
@@ -232,4 +253,75 @@
             }
         }
     });
+
+    /**dataTable Malla Curricular */
+    function malla(id) {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "/home/getmalla/" + id + "";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                var table = $('#example').DataTable({
+                    "data": data.data,
+                    "order": [
+                        [1, 'asc'],
+                        [3, 'asc']
+                    ],
+                    "columns": [{
+                            data: 'codprograma',
+                            "visible": false,
+                            title: 'Codigo de programa'
+                        },
+                        {
+                            data: 'semestre',
+                            title: 'Semestre'
+                        },
+                        {
+                            data: 'ciclo',
+                            title: 'Ciclo'
+                        },
+                        {
+                            data: 'orden',
+                            title: 'Orden'
+                        },
+                        {
+                            data: 'curso',
+                            title: 'Curso'
+                        },
+                        {
+                            data: 'codigoCurso',
+                            title: 'Codigo curso'
+                        },
+                        {
+                            data: 'creditos',
+                            title: 'Numero de créditos'
+                        },
+                        {
+                            data: 'prerequisito',
+                            title: 'Pre-requisitos'
+                        },
+                        {
+                            defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                            title: 'Editar',
+                            className: "text-center"
+                        },
+                        {
+                            defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
+                            title: 'Eliminar',
+                            className: "text-center"
+                        },
+                    ],
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    },
+                    "drawCallback": function() {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                });
+            }
+        }
+
+
+    }
 </script>

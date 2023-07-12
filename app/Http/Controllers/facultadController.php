@@ -167,8 +167,9 @@ class facultadController extends Controller
         return view('vistas.admin.malla', ['codigo' => $codigo], ['nombre' => $nombre[0]->programa]);
     }
 
-    public function mostrarmallacurricular($codigo)
+    public function mostrarmallacurricular($id)
     {
+        $codigo = DB::table('programas')->where('id','=',$id)->select('codprograma')->get();
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
         /**mostrar los datos en formato JSON */

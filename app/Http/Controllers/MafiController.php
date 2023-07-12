@@ -255,7 +255,7 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = [$prerequisitosConsulta->prerequisito];
-                var_dump($prerequisitos);
+                var_dump($prerequisitos,'<br>');
             endforeach;
             die();
 
@@ -1240,7 +1240,7 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
-              
+
 
                 if($prerequisitos=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
                     echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";

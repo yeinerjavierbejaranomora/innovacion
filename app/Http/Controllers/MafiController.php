@@ -259,10 +259,14 @@ class MafiController extends Controller
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
-                    dd($estaPlaneacion);
-                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
-                else:
-                    var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                    dd($numeroCreditos);
+
+                    if($estaPlaneacion->codMateria == '' && $numeroCreditos<$numeroCreditosPermitidos):
+
+                    endif;
+                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                // else:
+                //     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
             die();
@@ -1262,9 +1266,9 @@ class MafiController extends Controller
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
 
                         $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa.'");';
-                      
+
                         $planeadas_insert=DB::insert(  $insert_planeada );
-                     
+
 
                     }
                 } else {

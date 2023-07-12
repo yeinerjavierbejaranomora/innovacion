@@ -60,7 +60,7 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
-                                <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn text-dark button" onclick="mostrarDiv()">
+                                <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn text-dark button">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             <h6> Programa de {{$value->programa}}</h6>
@@ -88,16 +88,16 @@
             <!--Nav Datos de la Facultad-->
             <div class="row" id="nav" name="nav" style="display: none;">
                 <nav class="nav nav-pills nav-justified">
-                    <a class="nav-link active" href="#">Estudiantes</a>
-                    <a class="nav-link" href="#">Malla Curricular</a>
-                    <a class="nav-link" href="#">Proyecciones</a>
+                    <a class="nav-link active" href="#estudiantes">Estudiantes</a>
+                    <a class="nav-link" href="#malla">Malla Curricular</a>
+                    <a class="nav-link" href="#proyecciones">Proyecciones</a>
                 </nav>
             </div>
 
             <br>
 
-            <!-- Datatable-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+            <!-- Datatable Estudiantes-->
+            <div class="row" id="est" style="display: none;">
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
@@ -112,22 +112,79 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Datatable Malla Curricular-->
+            <div class="row" id="mall" style="display: none;">
+
+                <!-- Area Chart -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table">
+                                <table id="malla" class="display" style="width:100%">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     @include('layout.footer')
 </div>
 <script>
-    /** Función para mostrar el Nav solo al dar click en el botón */
-    // * Datatable para mostrar los estudiantes de cada programa *
+    /** Función para mostrar el Nav solo al dar click en el botón 
+     * Además de cargar la dataTable dependiendo el nav
+     */
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
             $("#nav").show();
+            $("#est").show();
             var id = $(this).val();
-            buscar(id);
+            estudiantes(id);
+            var mallaTable = null;
+            $("#nav a[href='#malla']").click(function() {
+                $("#est").hide();
+                $("#mall").show();
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
+
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                }
+
+                if (mallaTable !== null) {
+                    mallaTable.destroy(); 
+                }
+
+                if (!$.fn.DataTable.isDataTable("#mall table")) {
+                    malla(id);
+                }
+                return false; 
+            });
+
+            $("#nav a[href='#estudiantes']").click(function() {
+                $("#est").show();
+                $("#mall").hide();
+                $("#nav a[href='#malla']").removeClass("active");
+                $(this).addClass("active");
+
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                }
+
+                if (!$.fn.DataTable.isDataTable("#est table")) {
+                    estudiantes(id);
+                }
+                return false; // Evitar el comportamiento de navegación predeterminado
+            });
         })
 
-        function buscar(id) {
-
+        /** DataTabla estudiantes */
+        function estudiantes(id) {
+            var titleAdded = false;
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/estudiantes/" + id + "";
             xmlhttp.open("GET", url, true);
@@ -154,7 +211,7 @@
                             },
                             {
                                 data: 'bolsa',
-                                "visible": false,
+                                visible: false,
                                 title: 'bolsa'
                             },
                             {
@@ -163,7 +220,7 @@
                             },
                             {
                                 data: 'nodo',
-                                "visible": false,
+                                visible: false,
                                 title: 'nodo'
                             },
                             {
@@ -172,42 +229,42 @@
                             },
                             {
                                 data: 'materias_faltantes',
-                                "visible": false,
+                                visible: false,
                                 title: 'materias faltantes'
                             },
                             {
                                 data: 'programado_ciclo1',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 1'
                             },
                             {
                                 data: 'programado_ciclo2',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 2'
                             },
                             {
                                 data: 'programado_extra',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado extra'
                             },
                             {
                                 data: 'tiene_historial',
-                                "visible": false,
+                                visible: false,
                                 title: 'Tiene historial'
                             },
                             {
                                 data: 'programaActivo',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programa activo'
                             },
                             {
                                 data: 'observacion',
-                                "visible": false,
+                                visible: false,
                                 title: 'Observación'
                             },
                             {
                                 data: 'marca_ingreso',
-                                "visible": false,
+                                visible: false,
                                 title: 'Marca ingreso'
                             },
                             {
@@ -223,7 +280,10 @@
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
                         "drawCallback": function() {
-                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                                titleAdded = true;
+                            }
                         }
                     });
                     console.log(table);
@@ -232,4 +292,68 @@
             }
         }
     });
+
+    /**dataTable Malla Curricular */
+    function malla(id) {
+        var titleAdded = false;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "/home/getmalla/" + id + "";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                var mallaTable = $('#malla').DataTable({
+                    "data": data.data,
+                    "order": [
+                        [1, 'asc'],
+                        [3, 'asc']
+                    ],
+                    "columns": [{
+                            data: 'codprograma',
+                            "visible": false,
+                            title: 'Codigo de programa'
+                        },
+                        {
+                            data: 'semestre',
+                            title: 'Semestre'
+                        },
+                        {
+                            data: 'ciclo',
+                            title: 'Ciclo'
+                        },
+                        {
+                            data: 'orden',
+                            title: 'Orden'
+                        },
+                        {
+                            data: 'curso',
+                            title: 'Curso'
+                        },
+                        {
+                            data: 'codigoCurso',
+                            title: 'Codigo curso'
+                        },
+                        {
+                            data: 'creditos',
+                            title: 'Numero de créditos'
+                        },
+                        {
+                            data: 'prerequisito',
+                            title: 'Pre-requisitos'
+                        },
+                    ],
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    },
+                    "drawCallback": function() {
+                        if (!titleAdded) {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                            titleAdded = true;
+                        }
+                    }
+                });
+            }
+        }
+    }
 </script>

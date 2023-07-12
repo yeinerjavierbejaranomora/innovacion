@@ -85,6 +85,16 @@
                 @endforeach
             </div>
 
+            <!--Nav Datos de la Facultad-->
+            <div>
+                <nav class="nav nav-pills nav-justified">
+                    <a class="nav-link active" href="#">Estudiantes</a>
+                    <a class="nav-link" href="#">Malla Curricular</a>
+                    <a class="nav-link" href="#">Proyecciones</a>
+                </nav>
+            </div>
+
+
             <!-- Datatable-->
             <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
 

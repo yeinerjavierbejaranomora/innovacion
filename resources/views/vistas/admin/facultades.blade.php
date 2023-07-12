@@ -77,11 +77,11 @@
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4" >
                     <div class="card shadow h-100 py-2 inactivo mostrar" value="{{ $value->id }}">
-                        <div class=" card-body >
+                        <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
                                         <div class="text-xs font-weight-bold">
-                                            <h5> Programa de {{$value->programa}}</h5>
+                                            <h5> PROGRAMA DE {{$value->programa}}</h5>
                                         </div>
                                         <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->
                                         <div class=" mb-0 font-weight-bold">

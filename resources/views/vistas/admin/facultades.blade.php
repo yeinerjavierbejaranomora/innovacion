@@ -12,7 +12,10 @@
     }
 
     .activo {
-        background-color: #dfc14e;
+        background-color: #dfc14e !important;
+        border-radius: 30px !important;
+        color: white;
+        cursor: pointer; 
     }
 
     .activo i {
@@ -20,10 +23,11 @@
     }
 
     .inactivo {
-        background-color: #4a4a48;
-        border-radius: 30px;
-        color: white;
+        background-color: #edeff2 !important;
+        border-radius: 30px !important;
+        color: black;
         cursor: pointer;
+        border-color:black;
     }
 
     .inactivo i {
@@ -60,9 +64,9 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="d-sm-flex align-items-center text-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Programas facultad de {{$datos['facultad']}}</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
 
             @if(count($datos['programas']) === 0)
@@ -75,24 +79,22 @@
                 @foreach($estudiantes as $key => $est)
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4 inactivo mostrar" value="{{ $value->id }}">
-                   
-                    <div class="card shadow h-100 py-2 text-white">
-                        <div class=" card-body">
+                <div class="col-xl-3 col-md-6 mb-4" >
+                    <div class="card shadow h-100 py-2 inactivo mostrar" id="cards" type="submit" value="{{ $value->id }}">
+                        <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            <h6> Programa de {{$value->programa}}</h6>
+                                        <div class="text-xs font-weight-bold">
+                                            <h5> PROGRAMA DE {{$value->programa}}</h5>
                                         </div>
                                         <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->
-                                        <div class=" mb-0 font-weight-bold text-gray-800">
+                                        <div class=" mb-0 font-weight-bold">
                                             <p>Estudiantes inscritos {{$est}}</p>
                                         </div>
                                         <!-- </button> -->
 
-
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-calendar fa-2x"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -159,6 +161,10 @@
         $(document).ready(function() {
             var id = null;
             $(document).on("click", ".mostrar", function() {
+                $(".activo").removeClass("activo");
+                $(this).removeClass("inactivo");
+                $(this).addClass("activo");
+
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     console.log('entra');
                     $("#mall table").DataTable().destroy();

@@ -195,7 +195,18 @@ class MafiController extends Controller
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
             $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
-            dd($numeroCreditos);
+            $numeroCreditosC1 = DB::table('mallaCurricular')
+                                    ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'),DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
+                                    ->join('planeacion','planeacion.codMateria','=','mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner','=',$codigoBanner)
+                                    ->whereIn('mallaCurricular.ciclo',[1,12])
+                                    ->first();
+
+            $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
+            $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
+            $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
+            $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
+            dd($sumaCreditosCiclo1,$cuentaCursosCiclo1);
 
 
         endforeach;
@@ -1244,7 +1255,7 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
-            
+
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');

@@ -256,14 +256,22 @@ class MafiController extends Controller
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
 
-                //dd($cuentaCursosCiclo1);
+                //dd($numeroMateriasPermitidos);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
 
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
-                        dd($numeroCreditos);
-
+                        $numeroCreditos= $numeroCreditos + $creditoMateria;
+                        $insertPlaneacion = DB::table('planeacion')->insert([
+                            'codBanner' => $codBanner,
+                            'codMateria' => $codMateria,
+                            'orden' => $orden,
+                            'semestre' => '1',
+                            'programada' => '',
+                            'programa' => $programa,
+                        ]);
+                        $cuentaCursosCiclo1++;
                     endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 // else:

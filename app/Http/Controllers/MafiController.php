@@ -177,8 +177,29 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-
         $programado_ciclo1=NULL;
+        /// para activar el perodo activo en la base de datos
+        $periodo = $this->periodo();
+        $marcaIngreso = "";
+        foreach ($periodo as $key => $value) {
+            $marcaIngreso .= (int)$value->periodos . ",";
+        }
+
+        // para procesasr las marcas de ingreso en los periodos
+        $marcaIngreso=trim($marcaIngreso,",");
+        // Dividir la cadena en elementos individuales
+        $marcaIngreso = explode(",", $marcaIngreso);
+        // Convertir cada elemento en un número
+        $marcaIngreso = array_map('intval', $marcaIngreso);
+        $estudiante = DB::table('estudiantes')
+        ->select('id','homologante','programa','bolsa','tipo_estudiante')
+        ->where('materias_faltantes','=','OK')
+        ->where('programado_ciclo1','=',$programado_ciclo1)
+        ->whereNull('programado_ciclo2')
+        ->whereIn('marca_ingreso',$marcaIngreso)
+        ->orderBy('id','asc')
+        ->count();
+        dd($estudiante);
         $id = 0;
         $limit = 200;
         /**consulta de estudinates primer ciclo */

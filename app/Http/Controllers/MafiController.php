@@ -1242,7 +1242,7 @@ class MafiController extends Controller
 
 
 
-                if($prerequisitos=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
+                if($prerequisitos->prerequisito=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
                     echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
                     exit;
                     $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'";';

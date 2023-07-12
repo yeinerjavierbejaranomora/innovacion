@@ -156,6 +156,7 @@
                 estudiantes(id);
 
                 $("#nav a[href='#malla']").click(function() {
+                    
                     $("#est").hide();
                     $("#mall").show();
                     $("#nav a[href='#estudiantes']").removeClass("active");
@@ -172,6 +173,11 @@
                 });
 
                 $("#nav a[href='#estudiantes']").click(function() {
+                    if ($.fn.DataTable.isDataTable("#mall table")) {
+                        console.log('entra');
+                        $("#mall table").DataTable().destroy();
+                        $("#malla").empty();
+                    }
                     $("#est").show();
                     $("#mall").hide();
                     $("#nav a[href='#malla']").removeClass("active");

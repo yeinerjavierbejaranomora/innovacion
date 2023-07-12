@@ -140,10 +140,16 @@
      */
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
+            /** Mostrar nav y dataTable */
             $("#nav").show();
             $("#est").show();
+            /** Eliminar el parametro active de malla en el nav */
+            $("#nav a[href='#malla']").removeClass("active");
+            /** Obtener id */
             var id = $(this).val();
+            /** Llamado a la función para cargar dataTable */
             estudiantes(id);
+
             var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();

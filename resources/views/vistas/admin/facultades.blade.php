@@ -144,7 +144,7 @@
             $("#est").show();
             var id = $(this).val();
             estudiantes(id);
-
+            var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();
@@ -155,10 +155,14 @@
                     $("#est table").DataTable().destroy();
                 }
 
+                if (mallaTable !== null) {
+                    mallaTable.destroy(); 
+                }
+
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
                 }
-                return false; // Evitar el comportamiento de navegación predeterminado
+                return false; 
             });
 
             $("#nav a[href='#estudiantes']").click(function() {
@@ -299,7 +303,7 @@
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(this.responseText);
-                var table = $('#malla').DataTable({
+                var mallaTable = $('#malla').DataTable({
                     "data": data.data,
                     "order": [
                         [1, 'asc'],

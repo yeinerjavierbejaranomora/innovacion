@@ -257,10 +257,9 @@ class MafiController extends Controller
                 $creditoMateria = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
-                dd($programa,$codMateria,$prerequisitosConsulta);
+                //dd($programa,$codMateria,$prerequisitosConsulta);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
-
-                //dd($numeroMateriasPermitidos);
+                //dd($prerequisitos);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
@@ -277,8 +276,9 @@ class MafiController extends Controller
                         ]);
                         $cuentaCursosCiclo1++;
                     endif;
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
+                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos."--".$ciclo.'---'.$cuentaCursosCiclo1,'----'.'sin P'.'<br>';
                 else:
+                    $prerequisitos2 =$prerequisitos;
                     $prerequisitos = [$prerequisitos];
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->first();
                     $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->orderBy('id','ASC')->first();
@@ -295,11 +295,9 @@ class MafiController extends Controller
                         $cuentaCursosCiclo1++;
                     endif;
 
-                    //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
+                    echo $codBanner.'--'.$codMateria.'--'.$prerequisitos2."--".$ciclo.'---'.$cuentaCursosCiclo1.'----'.'con P'.'<br>';
                 endif;
             endforeach;
-            die();
-
         endforeach;
         die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
@@ -1195,7 +1193,7 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->dd();
+                                ->first();
             return $prerequisitos;
         }
 

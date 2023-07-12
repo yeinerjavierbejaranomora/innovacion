@@ -1224,6 +1224,9 @@ class MafiController extends Controller
 
             $programado_ciclo1=NULL;
             /**consulta de estudinates primer ciclo */
+            $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
+            dd($baseAcademica);
+            
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];
             foreach($estudiantesPC as $estudiante):

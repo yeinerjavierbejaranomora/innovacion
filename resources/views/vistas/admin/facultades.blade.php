@@ -137,6 +137,7 @@
          * Además de cargar la dataTable dependiendo el nav
          */
         $(document).ready(function() {
+            var id = null;
             $(document).on("click", ".mostrar", function() {
                 alert('entró');
                 if ($.fn.DataTable.isDataTable("#mall table")) {
@@ -193,7 +194,7 @@
             });
             /** DataTabla estudiantes */
         });
-        
+
         function estudiantes(id) {
             var titleAdded = false;
             var xmlhttp = new XMLHttpRequest();

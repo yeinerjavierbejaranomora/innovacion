@@ -118,16 +118,10 @@
 </div>
 <script>
     /** Función para mostrar el Nav solo al dar click en el botón */
-    $(document).ready(function() {
-        $(".mostrar").click(function() {
-            $("#nav").toggle();
-        });
-    });
-
     // * Datatable para mostrar los estudiantes de cada programa *
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
-
+            $("#nav").show();
             var id = $(this).val();
             buscar(id);
         })

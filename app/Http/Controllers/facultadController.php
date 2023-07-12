@@ -171,9 +171,7 @@ class facultadController extends Controller
     {
         $codigo = DB::table('programas')->where('id','=',$id)->select('codprograma')->get();
         // Consulta para obtener la malla curricular del programa
-        dd($codigo);
-        die();
-        $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo)->get();
+        $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo[0]->codprograma)->get();
         /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */

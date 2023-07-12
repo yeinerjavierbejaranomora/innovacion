@@ -261,8 +261,8 @@ class MafiController extends Controller
                 ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
                 ->where('planeacion.codBanner', '=', $codigoBanner)
                     ->groupBy('planeacion.codBanner')
-                    ->first();
-                $numeroCreditos = $numeroCreditos == '' ? 0 : $numeroCreditos;
+                    ->get();
+                $numeroCreditos = $numeroCreditos == '' ? 0 : $numeroCreditos->CreditosPlaneados;
                 $numeroCreditosC1 = DB::table('mallaCurricular')
                 ->select(DB::raw('SUM(mallaCurricular.creditos) AS screditos'), DB::raw('COUNT(mallaCurricular.creditos) AS ccursos'))
                 ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
@@ -307,9 +307,9 @@ class MafiController extends Controller
                         if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
                             /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
-
+                            dd($numeroCreditos,$creditoMateria);
                             if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
-                                $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
+                                $numeroCreditos = $numeroCreditos + $creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([
                                     'codBanner' => $codBanner,
                                     'codMateria' => $codMateria,
@@ -320,12 +320,13 @@ class MafiController extends Controller
                                 ]);
                                 $cuentaCursosCiclo1++;
                             endif;
-                        //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
-                        else :
-                            $prerequisitos = [$prerequisitos];
-                            $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
-                            $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
-                            //dd($estaPorVer);
+                            //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
+                            else :
+                                $prerequisitos = [$prerequisitos];
+                                $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
+                                $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
+                                //dd($estaPorVer);
+                                dd($numeroCreditos,$creditoMateria);
                             if ($estaPlaneacion == '' && $estaPorVer == '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
                                 $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([

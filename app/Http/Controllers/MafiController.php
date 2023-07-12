@@ -178,6 +178,11 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
+        $programado_ciclo1=NULL;
+        /**consulta de estudinates primer ciclo */
+        $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
+        dd($estudinatesPC);
+        die();
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -1226,7 +1231,7 @@ class MafiController extends Controller
             /**consulta de estudinates primer ciclo */
             $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
             dd($baseAcademica);
-            
+
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];
             foreach($estudiantesPC as $estudiante):

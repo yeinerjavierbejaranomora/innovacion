@@ -255,9 +255,9 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = [$prerequisitosConsulta->prerequisito];
-                dd($prerequisitos);
+                var_dump($prerequisitos);
             endforeach;
-
+            die();
 
         endforeach;
         die();

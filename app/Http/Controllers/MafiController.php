@@ -1246,7 +1246,7 @@ class MafiController extends Controller
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
-                dd($baseAcademica);
+                dd(auth()->user()->nombre);
 
             }
 

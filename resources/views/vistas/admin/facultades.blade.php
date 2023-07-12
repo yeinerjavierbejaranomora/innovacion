@@ -20,9 +20,9 @@
     }
 
     .inactivo {
-        background-color: #4a4a48 !important;
+        background-color: #edeff2 !important;
         border-radius: 30px !important;
-        color: white;
+        color: black;
         cursor: pointer;
     }
 
@@ -60,9 +60,9 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="d-sm-flex align-items-center text-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Programas facultad de {{$datos['facultad']}}</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
             </div>
 
             @if(count($datos['programas']) === 0)

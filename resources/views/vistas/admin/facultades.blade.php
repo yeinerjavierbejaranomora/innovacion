@@ -165,8 +165,8 @@
                 $(".programas").addClass("inactivo");
                 $(this).removeClass("inactivo");
                 $(this).addClass("activo");
-                id = "{{ $value->id }}";
                 
+                id = $(this).val("{{ $value->id }}");
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     console.log('entra');
                     $("#mall table").DataTable().destroy();

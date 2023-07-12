@@ -142,10 +142,22 @@
         $(document).on("click", ".mostrar", function() {
             $("#nav").show();
             $("#est").show();
-            $("#mall").show();
             var id = $(this).val();
             estudiantes(id);
-            malla(id);
+            
+            $("#nav a[href='#malla']").click(function() {
+                $("#est").hide();
+                $("#mall").show();
+
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                }
+                // Inicializar la DataTable de malla curricular si es necesario
+                if (!$.fn.DataTable.isDataTable("#mall table")) {
+                    malla(id);
+                }
+                return false; // Evitar el comportamiento de navegación predeterminado
+            });
         })
 
         /** DataTabla estudiantes */

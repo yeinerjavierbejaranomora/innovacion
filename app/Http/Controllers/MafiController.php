@@ -275,7 +275,8 @@ class MafiController extends Controller
                     endif;*/
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 else:
-                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',[$prerequisitos])->where('codBanner','=',$codBanner)->dd();
+                    $prerequisitos = [$prerequisitos]
+                    $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria',$prerequisitos)->where('codBanner','=',$codBanner)->dd();
                     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;

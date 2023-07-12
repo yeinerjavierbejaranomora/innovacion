@@ -307,7 +307,7 @@ class MafiController extends Controller
                         if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
                             /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
-                            dd($numeroCreditos,$creditoMateria);
+                            //dd($numeroCreditos,$creditoMateria);
                             if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
                                 $numeroCreditos = $numeroCreditos + $creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([
@@ -326,7 +326,7 @@ class MafiController extends Controller
                                 $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
                                 $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
                                 //dd($estaPorVer);
-                                dd($numeroCreditos,$creditoMateria);
+                                //dd($numeroCreditos,$creditoMateria);
                             if ($estaPlaneacion == '' && $estaPorVer == '' && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
                                 $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([

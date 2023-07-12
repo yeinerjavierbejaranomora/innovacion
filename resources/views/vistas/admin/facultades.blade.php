@@ -139,7 +139,6 @@
         $(document).ready(function() {
             var id = null;
             $(document).on("click", ".mostrar", function() {
-                alert('entró');
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     console.log('entra');
                     $("#mall table").DataTable().destroy();
@@ -159,16 +158,15 @@
             })
 
             $("#nav a[href='#malla']").click(function() {
-                console.log(id);
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                    $("#estudiantes").empty();
+                }
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");
                 $(this).addClass("active");
 
-                if ($.fn.DataTable.isDataTable("#est table")) {
-                    $("#est table").DataTable().destroy();
-                    $("#estudiantes").empty();
-                }
 
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
@@ -177,15 +175,15 @@
             });
 
             $("#nav a[href='#estudiantes']").click(function() {
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
+                }
                 $("#est").show();
                 $("#mall").hide();
                 $("#nav a[href='#malla']").removeClass("active");
                 $(this).addClass("active");
 
-                if ($.fn.DataTable.isDataTable("#mall table")) {
-                    $("#mall table").DataTable().destroy();
-                    $("#malla").empty();
-                }
 
                 if (!$.fn.DataTable.isDataTable("#est table")) {
                     estudiantes(id);
@@ -367,6 +365,6 @@
                 }
             }
         }
-        </script>
+    </script>
     @include('layout.footer')
 </div>

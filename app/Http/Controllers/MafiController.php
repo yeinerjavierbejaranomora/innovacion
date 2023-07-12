@@ -178,7 +178,6 @@ class MafiController extends Controller
     public function getDataMafiReplica()
     {
 
-
         $programado_ciclo1=NULL;
         $id = 0;
         $limit = 200;

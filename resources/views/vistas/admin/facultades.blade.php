@@ -30,6 +30,12 @@
         border-color:black;
     }
 
+    .inactivo:hover {
+        background-color: #dfc14e !important;
+        border-radius: 30px !important;
+        color: white;
+        cursor: pointer; 
+    }    
     .inactivo i {
         color: #dfc14e !important;
     }

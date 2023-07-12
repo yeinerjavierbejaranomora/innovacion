@@ -310,6 +310,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
                     var mallaTable = $('#malla').DataTable({
+                        "bDestroy": true,
                         "data": data.data,
                         "order": [
                             [1, 'asc'],

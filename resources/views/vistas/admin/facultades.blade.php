@@ -145,7 +145,7 @@
             $("#est").show();
             /** Eliminar el parametro active de malla en el nav */
             $("#nav a[href='#malla']").removeClass("active");
-            $("#nav a[href='#est']").addClass("active");
+            $("#nav a[href='#estudiantes']").addClass("active");
 
             /** Destruir las DataTable creadas anteriormente al cambiar de programa */
                 $("#mall table").DataTable().destroy();        

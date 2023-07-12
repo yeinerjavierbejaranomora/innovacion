@@ -1148,8 +1148,6 @@ class MafiController extends Controller
             return $materiasPorVer;
         }
 
-
-
         public function prerequisitos($codMateria,$codPrograma){
             /**SELECT prerequisito FROM mallaCurricular WHERE codigoCurso="?" AND codprograma = "?" */
             $prerequisitos = DB::table('mallaCurricular')
@@ -1205,8 +1203,6 @@ class MafiController extends Controller
 
         public function esta_en_planeacion($prerequisitos,$codBanner){
 
-            //dd($prerequisitos->prerequisito);
-
             $query=DB::table('planeacion')
             ->select('codMateria')
             ->whereIn('codMateria',[$prerequisitos->prerequisito])
@@ -1233,7 +1229,7 @@ class MafiController extends Controller
             $reglaNegocio=$this->reglas_negocio($ciclo,$programa,$ruta,$tipoEstudiante);
 
             $numeroCreditosPermitidos = $reglaNegocio->creditos;
-            $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
+            $numeroMateriasPermitidas = $reglaNegocio->materiasPermitidas;
 
             foreach ($materiasPorVer as $materias) {
                 # code...
@@ -1243,10 +1239,11 @@ class MafiController extends Controller
                 $creditoMateria =  $materias->creditos;
                 $ciclo          =  $materias->ciclo;
 
+                dd($prerequisitos,$cuentaCursosCiclo1,$numeroMateriasPermitidas);
 
-
-                if($prerequisitos=='' && $ciclo!=2 && $cuenta_cursos_ciclo1<$num_materias) {
-                    //echo "vacio";
+                if($prerequisitos=='' && $cuentaCursosCiclo1 < $numeroMateriasPermitidas) {
+                    echo "entro sin prerequicitos materias  menores y creditos menores a los permitidos";
+                    exit;
                     $consulta_estaenplaneacion = 'SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'";';
                     //echo $consulta_estaenplaneacion;
                     $codBanner=$codBanner;
@@ -1263,16 +1260,11 @@ class MafiController extends Controller
                         //echo "Actualziado Crd Hom:" . $creditos_homologantes . "<br />";
                     }
                 } else {
-                    //echo "Con prerequisito <br />";
-                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
-                    $resultado_estaenplaneacion = $esta_en_planeacion;
-                    dd($resultado_estaenplaneacion);
-                    //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaenplaneacion;
-                    @ $prerequisito_programado=$filas = mysql_fetch_assoc($resultado_estaenplaneacion);
-                    $preprogramado = $filas['codMateria'];
-                    //echo "<br />está programado: " . $preprogramado. "<br />";
-                    //exit ();
 
+                   
+                    $esta_en_planeacion =$this-> esta_en_planeacion($prerequisitos,$codBanner);//
+                
+                  
                     $consulta_estaporver = 'SELECT codMateria FROM materias_porver WHERE codMateria IN ("'.$prerequisitos.'") AND codBanner="'.$codBanner.'" ORDER BY id ASC;';
                     $resultado_estaporver = mysql_query($consulta_estaporver, $link);
                     //echo "Consulta de prerequisitos para estudiante y materia específica: " . $consulta_estaporver;
@@ -1304,7 +1296,7 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
-
+            
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
@@ -1312,8 +1304,14 @@ class MafiController extends Controller
 
             }
 
+            
+            $programado_ciclo1=NULL;
+            /**consulta de estudinates primer ciclo */
+           
+
             $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
             $ciclo=[1,12];
+            /*** por cada estudiante  */
             foreach($estudiantesPC as $estudiante):
 
                 $idEstudiante = $estudiante->id;
@@ -1353,8 +1351,7 @@ class MafiController extends Controller
                         break;
                 }
 
-
-
+                /** traemos las materias que le faltan por ver ciclo */
                 $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
 
                 foreach ($materiasPorVer as $value_materiasPorVer) {
@@ -1364,9 +1361,6 @@ class MafiController extends Controller
 
                     $codMateria=$value_materiasPorVer->codMateria;
                     $codPrograma=$programa;
-
-
-
                     $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                 }
 

@@ -60,7 +60,7 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
-                                <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn text-dark button">
+                                <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn text-dark button" onclick="mostrarDiv()">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             <h6> Programa de {{$value->programa}}</h6>
@@ -86,7 +86,7 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-            <div>
+            <div class="row" id="nav" style="display: none;">
                 <nav class="nav nav-pills nav-justified">
                     <a class="nav-link active" href="#">Estudiantes</a>
                     <a class="nav-link" href="#">Malla Curricular</a>
@@ -94,6 +94,7 @@
                 </nav>
             </div>
 
+            <br>
 
             <!-- Datatable-->
             <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
@@ -116,6 +117,16 @@
     @include('layout.footer')
 </div>
 <script>
+    /** Función para mostrar el Nav solo al dar click en el botón */
+    function mostrarDiv() {
+        var div = $("#nav");
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
+
     // * Datatable para mostrar los estudiantes de cada programa *
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {

@@ -146,8 +146,9 @@
             /** Eliminar el parametro active de malla en el nav */
             $("#nav a[href='#malla']").removeClass("active");
             $("#nav a[href='#estudiantes']").addClass("active");
-
-            if ($.fn.DataTable.isDataTable("#mall table")) {
+            
+            var mallaTable = null;
+            if (mallaTable!== null) {
                     $("#mall table").DataTable().destroy();
                 }
             /** Obtener id */
@@ -155,7 +156,6 @@
             /** Llamado a la función para cargar dataTable */
             estudiantes(id);
 
-            var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();

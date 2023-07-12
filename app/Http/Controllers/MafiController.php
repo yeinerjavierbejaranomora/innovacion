@@ -259,7 +259,7 @@ class MafiController extends Controller
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
-                    dd($estaPlaneacion->prerequisito);
+                    var_dump($estaPlaneacion->prerequisito);
                     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 else:
                     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
@@ -1262,9 +1262,9 @@ class MafiController extends Controller
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
 
                         $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa.'");';
-                      
+
                         $planeadas_insert=DB::insert(  $insert_planeada );
-                     
+
 
                     }
                 } else {
@@ -1281,7 +1281,7 @@ class MafiController extends Controller
                         $creditos_homologantes = $creditos_homologantes + $creditoMateria;
                         $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa_homologante.'");';
                         $resultado_planeada = mysql_query($insert_planeada, $link);
-                        $cuenta_cursos_ciclo1++;				
+                        $cuenta_cursos_ciclo1++;
                         // echo "22  " . $insert_planeada . "<br />";
                         // exit();
                         //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";

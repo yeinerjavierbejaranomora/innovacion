@@ -318,7 +318,8 @@
                     },
                     "drawCallback": function() {
                             $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
-                });
+                }
+            });
             }
         }
 

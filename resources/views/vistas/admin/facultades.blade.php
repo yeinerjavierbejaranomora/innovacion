@@ -148,12 +148,9 @@
             $("#nav a[href='#est']").addClass("active");
 
             /** Destruir las DataTable creadas anteriormente al cambiar de programa */
-            if ($.fn.DataTable.isDataTable("#mall table")) {
-                $("#mall table").DataTable().destroy();
-            }
-            if ($.fn.DataTable.isDataTable("#est table")) {
+                $("#mall table").DataTable().destroy();        
                 $("#est table").DataTable().destroy();
-            }
+            
 
             /** Obtener id */
             var id = $(this).val();
@@ -166,10 +163,6 @@
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");
                 $(this).addClass("active");
-
-                if (mallaTable !== null) {
-                    mallaTable.destroy();
-                }
 
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();

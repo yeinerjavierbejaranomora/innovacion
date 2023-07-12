@@ -20,8 +20,8 @@
     }
 
     .inactivo {
-        background-color: #4a4a48;
-        border-radius: 30px;
+        background-color: #4a4a48 !important;
+        border-radius: 30px !important;
         color: white;
         cursor: pointer;
     }

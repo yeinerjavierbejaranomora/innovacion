@@ -148,6 +148,8 @@
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
 
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
@@ -162,7 +164,9 @@
             $("#nav a[href='#estudiantes']").click(function() {
                 $("#est").show();
                 $("#mall").hide();
-
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
+                
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                 }

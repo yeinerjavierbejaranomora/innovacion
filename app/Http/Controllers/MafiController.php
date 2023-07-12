@@ -257,6 +257,7 @@ class MafiController extends Controller
                 $creditoMateria = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
+                dd($programa,$codMateria,$prerequisitosConsulta);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
 
                 //dd($numeroMateriasPermitidos);
@@ -1194,7 +1195,7 @@ class MafiController extends Controller
             $prerequisitos = DB::table('mallaCurricular')
                                 ->select('prerequisito')
                                 ->where([['codigoCurso','=',$codMateria],['codprograma','=',$codPrograma]])
-                                ->first();
+                                ->dd();
             return $prerequisitos;
         }
 

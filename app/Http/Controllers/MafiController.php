@@ -257,6 +257,7 @@ class MafiController extends Controller
                 $creditoMateria = $materia->creditos;
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
+                dd($prerequisitosConsulta);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
 
                 //dd($numeroMateriasPermitidos);

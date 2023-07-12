@@ -179,8 +179,11 @@ class MafiController extends Controller
     {
 
         $programado_ciclo1=NULL;
+        $id = 0;
+        $limit = 200;
         /**consulta de estudinates primer ciclo */
-        $estudiantesPC = $this->programarPrimerCiclo($programado_ciclo1);
+        $estudiantesPC = $this->programarPrimerCiclo($id,$limit,$programado_ciclo1);
+        dd($estudiantesPC);
         /**recorrer por cada estudiante  */
         foreach($estudiantesPC as $estudiante):
             $idEstudiante = $estudiante->id;
@@ -1137,7 +1140,7 @@ class MafiController extends Controller
         }
 
         /**validar si el estudiante tiene creditos planeados */
-        public function programarPrimerCiclo($programado_ciclo1){
+        public function programarPrimerCiclo($id,$limit,$programado_ciclo1){
 
             /**select `planeacion`.`codBanner`, SUM(mallaCurricular.creditos) AS CreditosPlaneados from `mallaCurricular` inner join `planeacion` on `planeacion`.`codMateria` = `mallaCurricular`.`codigoCurso` where `planeacion`.`codBanner` = ? group by `planeacion`.`codBanner` */
             /// para activar el perodo activo en la base de datos
@@ -1157,11 +1160,13 @@ class MafiController extends Controller
             //$marcaIngreso = [202313,202333];
             $estudiante = DB::table('estudiantes')
                     ->select('id','homologante','programa','bolsa','tipo_estudiante')
+                    ->where('id','>',$id)
                     ->where('materias_faltantes','=','OK')
                     ->where('programado_ciclo1','=',$programado_ciclo1)
                     ->whereNull('programado_ciclo2')
                     ->whereIn('marca_ingreso',$marcaIngreso)
                     ->orderBy('id','asc')
+                    ->limit($limit)
                     ->get();
 
 

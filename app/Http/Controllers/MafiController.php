@@ -260,6 +260,7 @@ class MafiController extends Controller
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->dd();
                     var_dump($estaPlaneacion->codMateria,'--',$numeroCreditos);
+                    
                     if($estaPlaneacion->codMateria == '' && $numeroCreditos<$numeroCreditosPermitidos):
 
                     endif;

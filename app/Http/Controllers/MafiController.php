@@ -1242,9 +1242,9 @@ class MafiController extends Controller
         public function probarfunciones(){
 
             $programado_ciclo1=NULL;
-            dd(auth()->user()->nombre);
+            
             /**consulta de estudinates primer ciclo */
-            if(auth()->user()->nombre){
+            if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
                 dd($baseAcademica);
 

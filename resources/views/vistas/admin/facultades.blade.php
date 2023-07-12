@@ -80,7 +80,7 @@
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4" >
-                    <div class="card shadow h-100 py-2 inactivo mostrar programas" value="{{ $value->id }}">
+                    <div class="card shadow h-100 py-2 inactivo mostrar programas" data-valor="{{ $value->id }}">
                         <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
@@ -165,8 +165,8 @@
                 $(".programas").addClass("inactivo");
                 $(this).removeClass("inactivo");
                 $(this).addClass("activo");      
-                id = null;
-                id = "{{$value->id}}";
+                id = $(this).data('valor');
+                console.log(id);
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     console.log('entra');
                     $("#mall table").DataTable().destroy();
@@ -181,7 +181,6 @@
                 /** Obtener id */
                 /** Llamado a la función para cargar dataTable */
                 estudiantes(id);
-
             })
 
             $("#nav a[href='#malla']").click(function() {
@@ -323,7 +322,6 @@
                             }
                         }
                     });
-                    console.log(table);
                 }
 
             }

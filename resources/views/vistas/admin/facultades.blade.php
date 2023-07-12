@@ -145,11 +145,9 @@
                 /** Eliminar el parametro active de malla en el nav */
                 $("#nav a[href='#malla']").removeClass("active");
                 $("#nav a[href='#estudiantes']").addClass("active");
-
-                var mallaTable = null;
-                if (mallaTable !== null) {
-                    mallaTable.destroy();
-                    mallaTable = null;
+       
+                if ($("#mall table") !== null) {
+                    $("#mall table").DataTable().destroy();
                 }
                 /** Obtener id */
                 var id = $(this).val();
@@ -314,7 +312,7 @@
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
-                        mallaTable = $('#malla').DataTable({
+                        var mallaTable = $('#malla').DataTable({
                             "bDestroy": true,
                             "data": data.data,
                             "order": [

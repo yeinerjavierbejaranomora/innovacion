@@ -238,6 +238,7 @@ class MafiController extends Controller
             $sumaCreditosCiclo1 = $sumaCreditosCiclo1==''?0:$sumaCreditosCiclo1;
             $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
             $cuentaCursosCiclo1 = $cuentaCursosCiclo1==''?0:$cuentaCursosCiclo1;
+            dd($cuentaCursosCiclo1);
             /**reglas del negocio */
             $cicloReglaNegocio = 1;
             $reglaNegocio =DB::table('reglasNegocio')
@@ -255,6 +256,7 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = $prerequisitosConsulta->prerequisito;
+
                 dd($cuentaCursosCiclo1);
                 if($prerequisitos=='' && $ciclo!=2 && $cuentaCursosCiclo1<$numeroMateriasPermitidos):
                     /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
@@ -1283,7 +1285,7 @@ class MafiController extends Controller
                           $insert_planeada = 'INSERT INTO planeacion (id, codBanner, codMateria, orden, semestre, programada, codprograma) VALUES (NULL, '.$codBanner.', "'.$codMateria.'", '.$orden2.',"1", "", "'.$programa.'");';
 
                         $planeadas_insert=DB::insert(  $insert_planeada);
-                        //$cuenta_cursos_ciclo1++;				
+                        //$cuenta_cursos_ciclo1++;
                         // echo "22  " . $insert_planeada . "<br />";
                         // exit();
                         //echo "Actualziado Crdeditos Hom:" . $creditos_homologantes . "<br />";

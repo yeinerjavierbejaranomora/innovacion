@@ -292,7 +292,6 @@ class MafiController extends Controller
                 try {
 
                     foreach ($materiasPorVer as $materia) :
-                        dd($materia);
 
                         if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
                             break;
@@ -302,7 +301,7 @@ class MafiController extends Controller
                         $creditoMateria = $materia->creditos;
                         $ciclo = $materia->ciclo;
                         $prerequisitosConsulta = $this->prerequisitos($codMateria, $programa);
-                        //dd($programa,$codMateria,$prerequisitosConsulta);
+                        dd($programa,$codMateria,$prerequisitosConsulta);
                         $prerequisitos = $prerequisitosConsulta->prerequisito;
                         //dd($prerequisitos);
                         if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :

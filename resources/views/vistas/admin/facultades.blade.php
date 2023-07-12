@@ -138,7 +138,7 @@
          */
         $(document).ready(function() {
             $(document).on("click", ".mostrar", function() {
-
+                alert('entró');
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                         console.log('entra');
                         $("#mall table").DataTable().destroy();

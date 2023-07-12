@@ -307,7 +307,7 @@ class MafiController extends Controller
                         if ($prerequisitos == '' && $ciclo != 2 && $cuentaCursosCiclo1 < $numeroMateriasPermitidos) :
                             /**SELECT codMateria FROM planeacion WHERE codMateria="'.$codMateria.'" AND  	codBanner="'.$codBanner.'"; */
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria', '=', $codMateria], ['codBanner', '=', $codBanner]])->first();
-
+                            dd($numeroCreditos,$creditoMateria);
                             if ($estaPlaneacion == '' && $numeroCreditos < $numeroCreditosPermitidos) :
                                 $numeroCreditos = (int)$numeroCreditos + (int)$creditoMateria;
                                 $insertPlaneacion = DB::table('planeacion')->insert([

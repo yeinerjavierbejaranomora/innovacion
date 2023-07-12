@@ -204,7 +204,7 @@ class MafiController extends Controller
         $numeroEstudiantes = ceil($estudiantes / $limit);
         //dd($numeroEstudiantes);
         for ($i = 0; $i < $numeroEstudiantes; $i++) :
-            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PlaneacionPrimerCiclo'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-PlaneacionPrimerCiclo'], ['tabla_afectada', '=', 'planeacion']])->orderBy('id', 'desc')->first();
             dd($log);
             if(empty($log)):
                 $id = 0;

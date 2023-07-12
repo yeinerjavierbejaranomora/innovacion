@@ -86,7 +86,7 @@
             </div>
 
             <!-- Datatable-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : ''?>)>
+            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : ''?>>
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">

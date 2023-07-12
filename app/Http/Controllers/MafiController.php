@@ -1259,7 +1259,7 @@ class MafiController extends Controller
             ->select('codMateria')
             ->whereIn('codMateria',[$prerequisitos->prerequisito])
             ->where('codBanner','=',$codBanner)
-            ->get()->dd();
+            ->get();
 
             return $query;
         }

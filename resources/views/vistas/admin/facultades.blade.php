@@ -145,6 +145,16 @@
             $("#est").show();
             /** Eliminar el parametro active de malla en el nav */
             $("#nav a[href='#malla']").removeClass("active");
+            $("#nav a[href='#est']").addClass("active");
+
+            /** Destruir las DataTable creadas anteriormente al cambiar de programa */
+            if ($.fn.DataTable.isDataTable("#mall table")) {
+                $("#mall table").DataTable().destroy();
+            }
+            if ($.fn.DataTable.isDataTable("#est table")) {
+                $("#est table").DataTable().destroy();
+            }
+
             /** Obtener id */
             var id = $(this).val();
             /** Llamado a la función para cargar dataTable */

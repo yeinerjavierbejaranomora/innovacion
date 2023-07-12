@@ -2,6 +2,15 @@
 @section('title', 'Nueva Contrasena')
 @section('content')
 
+<style>
+	#recuperar {
+    background-color: #dfc14e;
+    border-color: #dfc14e;
+    width: 250px;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+</style>
 
 <div class="container align-middle shadow-lg rounded" >
 	<div class="row" style="background-color:white;border-radius: 35px; box-shadow: 0 0 10px rgba(0, 0, 0, 5);">

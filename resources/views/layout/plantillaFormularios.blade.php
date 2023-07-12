@@ -36,7 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/main.css')}}">
 <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/formlogin.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('resources/css/formlogin.css)'}}">
 </head>
 
 <body>

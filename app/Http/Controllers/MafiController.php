@@ -1154,9 +1154,6 @@ class MafiController extends Controller
 
         public function Generar_faltantes(){
 
-
-
-
                 /// para activar el perodo activo en la base de datos
                 $periodo = $this->periodo();
                 $marcaIngreso = "";

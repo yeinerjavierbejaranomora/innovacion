@@ -164,6 +164,7 @@
 
                     if ($.fn.DataTable.isDataTable("#est table")) {
                         $("#est table").DataTable().destroy();
+                        $("#estudiantes").empty();
                     }
 
                     if (!$.fn.DataTable.isDataTable("#mall table")) {
@@ -173,11 +174,6 @@
                 });
 
                 $("#nav a[href='#estudiantes']").click(function() {
-                    if ($.fn.DataTable.isDataTable("#mall table")) {
-                        console.log('entra');
-                        $("#mall table").DataTable().destroy();
-                        $("#malla").empty();
-                    }
                     $("#est").show();
                     $("#mall").hide();
                     $("#nav a[href='#malla']").removeClass("active");
@@ -185,6 +181,7 @@
 
                     if ($.fn.DataTable.isDataTable("#mall table")) {
                         $("#mall table").DataTable().destroy();
+                        $("#malla").empty();
                     }
 
                     if (mallaTable !== null) {

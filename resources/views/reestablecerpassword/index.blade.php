@@ -28,7 +28,6 @@
 
             <form action="{{Route('cambio.consultar')}}" method="POST" class="align-content-center">
                 @csrf
-                <input type="hidden" name="id" value="{{ $id }}">
                 <div class="mb-5 col-10 mx-auto">
                     <input type="number" class="form-control custom-input" name="idbanner" id="idbanner" placeholder="ID Banner" required>
                     <span class="input-border"></span>

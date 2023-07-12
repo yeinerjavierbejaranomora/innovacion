@@ -262,8 +262,8 @@ class MafiController extends Controller
                     $estaPlaneacion = DB::table('planeacion')->select('codMateria')->where([['codMateria','=',$codMateria],['codBanner','=',$codBanner]])->first();
 
                     if($estaPlaneacion == '' && $numeroCreditos<$numeroCreditosPermitidos):
+                        $numeroCreditos= $numeroCreditos + $creditoMateria;
                         dd($numeroCreditos);
-
                     endif;
                     //var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','sin P','<br>');
                 // else:

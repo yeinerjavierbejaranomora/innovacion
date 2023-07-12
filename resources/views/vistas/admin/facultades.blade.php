@@ -115,7 +115,6 @@
 
             <!-- Datatable Malla Curricular-->
             <div class="row" id="mall" style="display: none;">
-
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
                     <div class="card shadow mb-4">
@@ -139,13 +138,16 @@
          */
         $(document).ready(function() {
             $(document).on("click", ".mostrar", function() {
+
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                        $("#mall table").DataTable().destroy();
+                    }
                 /** Mostrar nav y dataTable */
                 $("#nav").show();
                 $("#est").show();
                 /** Eliminar el parametro active de malla en el nav */
                 $("#nav a[href='#malla']").removeClass("active");
-                $("#nav a[href='#estudiantes']").addClass("active");
-                       
+                $("#nav a[href='#estudiantes']").addClass("active");                       
                 /** Obtener id */
                 var id = $(this).val();
                 /** Llamado a la función para cargar dataTable */
@@ -318,7 +320,7 @@
                             ],
                             "columns": [{
                                     data: 'codprograma',
-                                    "visible": false,
+                                    visible: false,
                                     title: 'Codigo de programa'
                                 },
                                 {

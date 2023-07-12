@@ -161,7 +161,7 @@
         $(document).ready(function() {
             var id = null;
             $(document).on("click", ".mostrar", function() {
-                $("#cards").removeClass("activo");
+                $(".activo").removeClass("activo");
                 $(this).removeClass("inactivo");
                 $(this).addClass("activo");
 

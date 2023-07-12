@@ -12,8 +12,19 @@
     }
 
     .activo {
-        background-color: #;
+        background-color: #dfc14e;
     }
+
+    .activo i{
+        color: #4a4a48!important;
+    }
+
+    .inactivo {
+        background-color: #4a4a48; 
+        border-radius: 30px;
+    }
+
+    
 </style>
 
 <!-- Content Wrapper -->
@@ -61,7 +72,7 @@
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2" style="background-color: #4a4a48; border-radius: 30px">
+                    <div class="card shadow h-100 py-2 text-white" >
                         <div class=" card-body">
                         <div class="row no-gutters align-items-center">
                             <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn text-dark button">

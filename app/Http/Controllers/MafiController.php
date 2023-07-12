@@ -323,7 +323,6 @@ class MafiController extends Controller
                         //echo $codBanner . '--' . $codMateria . '--' . $prerequisitos . "--" . $ciclo . '---' . $cuentaCursosCiclo1, '----' . 'sin P' . '<br>';
                         else :
                             $prerequisitos = [$prerequisitos];
-
                             $estaPlaneacion = DB::table('planeacion')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->first();
                             $estaPorVer = DB::table('materiasPorVer')->select('codMateria')->whereIn('codMateria', $prerequisitos)->where('codBanner', '=', $codBanner)->orderBy('id', 'ASC')->first();
                             //dd($estaPorVer);

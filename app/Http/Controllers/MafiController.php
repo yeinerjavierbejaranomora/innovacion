@@ -255,7 +255,7 @@ class MafiController extends Controller
                 $ciclo = $materia->ciclo;
                 $prerequisitosConsulta = $this->prerequisitos($codMateria,$programa);
                 $prerequisitos = [$prerequisitosConsulta->prerequisito];
-                var_dump($prerequisitos,'<br>');
+                var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'<br>');
             endforeach;
             die();
 

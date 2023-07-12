@@ -201,14 +201,24 @@ class MafiController extends Controller
         ->count();
         $limit = 200;
         $numeroEstudiantes = ceil($estudiantes / $limit);
-        dd($numeroEstudiantes);
+        //dd($numeroEstudiantes);
         for ($i = 0; $i < $numeroEstudiantes; $i++) :
-            $id = 0;
+            $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert-EstudinatesAntiguos'], ['tabla_afectada', '=', 'materiasPorVer']])->orderBy('id', 'desc')->first();
+            dd($log);
+
+            if(empty($log)):
+                $id = 0;
+            else:
+                $id = $log->idFin;
+            endif;
             /**consulta de estudinates primer ciclo */
             $estudiantesPC = $this->programarPrimerCiclo($id, $limit, $programado_ciclo1);
             dd($estudiantesPC->count());
             /**recorrer por cada estudiante  */
             foreach ($estudiantesPC as $estudiante) :
+                $fechaInicio = date('Y-m-d H:i:s');
+                $primerId = $estudiante->id;
+                $ultimoRegistroId = 0;
                 $idEstudiante = $estudiante->id;
                 $codigoBanner = $estudiante->homologante;
                 $programa = $estudiante->programa;
@@ -324,6 +334,26 @@ class MafiController extends Controller
                         echo $codBanner . '--' . $codMateria . '--' . $prerequisitos2 . "--" . $ciclo . '---' . $cuentaCursosCiclo1 . '----' . 'con P' . '<br>';
                     endif;
                 endforeach;
+                DB::table('estudiantes')->where([['homologante', '=', $estudiante->homologante], ['id', '=', $estudiante->id]])->update(['programado_ciclo1' => 'OK']);
+                $ultimoRegistroId = $estudiante->id;
+                $idBannerUltimoRegistro = $estudiante->homologante;
+                $fechaFin = date('Y-m-d H:i:s');
+                $insertLog = LogAplicacion::create([
+                    'idInicio' => $primerId,
+                    'idFin' => $ultimoRegistroId,
+                    'fechaInicio' => $fechaInicio,
+                    'fechaFin' => $fechaFin,
+                    'accion' => 'Insert-PlaneacionPrimerCiclo',
+                    'tabla_afectada' => 'planeacion',
+                    'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclo del estudiante '.$codBanner.', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
+                ]);
+                $insertIndiceCambio = IndiceCambiosMafi::create([
+                    'idbanner' => $idBannerUltimoRegistro,
+                    'accion' => 'Insert-PlaneacionPrimerCiclo',
+                    'descripcion' => 'Se realizo la insercion en la tabla planeacion insertando las materias delprimer ciclor del estudiante '.$codBanner.', iniciando en el id ' . $primerId . ' y terminando en el id ' . $ultimoRegistroId . '.',
+                    'fecha' => date('Y-m-d H:i:s'),
+                ]);
+                echo "-Fecha Inicio: " . $fechaInicio . "Fecha Fin: " . $fechaFin;
             endforeach;
         endfor;
         die();

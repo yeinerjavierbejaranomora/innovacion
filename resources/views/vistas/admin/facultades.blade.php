@@ -97,7 +97,7 @@
             <br>
 
             <!-- Datatable Estudiantes-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+            <div class="row" id="est" style="display: none;">
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
@@ -114,7 +114,7 @@
             </div>
 
             <!-- Datatable Malla Curricular-->
-            <div class="row" <?php echo (count($datos['programas']) === 0) ? ' hidden' : '' ?>>
+            <div class="row" id="mall" style="display: none;">
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
@@ -141,6 +141,8 @@
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
             $("#nav").show();
+            $("#est").show();
+            $("#mall").show();
             var id = $(this).val();
             estudiantes(id);
             malla(id);

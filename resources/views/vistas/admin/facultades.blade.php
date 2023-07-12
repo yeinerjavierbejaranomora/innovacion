@@ -147,8 +147,10 @@
             $("#nav a[href='#malla']").removeClass("active");
             $("#nav a[href='#estudiantes']").addClass("active");
 
-            /** Destruir las DataTable creadas anteriormente al cambiar de programa */        
-
+            /** Destruir las DataTable creadas anteriormente al cambiar de programa */
+            if ($.fn.DataTable.isDataTable("#mall table")) {
+                $("#mall table").DataTable().destroy();
+            }
             /** Obtener id */
             var id = $(this).val();
             /** Llamado a la función para cargar dataTable */
@@ -156,10 +158,6 @@
 
             var mallaTable = null;
             $("#nav a[href='#malla']").click(function() {
-                if (!empty($("#mall table")))
-                {
-                    $("#mall table").DataTable().destroy();
-                } 
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");

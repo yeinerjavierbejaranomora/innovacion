@@ -144,17 +144,35 @@
             $("#est").show();
             var id = $(this).val();
             estudiantes(id);
-            
+
             $("#nav a[href='#malla']").click(function() {
                 $("#est").hide();
                 $("#mall").show();
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
 
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
                 }
-                // Inicializar la DataTable de malla curricular si es necesario
+
                 if (!$.fn.DataTable.isDataTable("#mall table")) {
                     malla(id);
+                }
+                return false; // Evitar el comportamiento de navegación predeterminado
+            });
+
+            $("#nav a[href='#estudiantes']").click(function() {
+                $("#est").show();
+                $("#mall").hide();
+                $("#nav a[href='#malla']").removeClass("active");
+                $(this).addClass("active");
+
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                }
+
+                if (!$.fn.DataTable.isDataTable("#est table")) {
+                    estudiantes(id);
                 }
                 return false; // Evitar el comportamiento de navegación predeterminado
             });
@@ -162,7 +180,7 @@
 
         /** DataTabla estudiantes */
         function estudiantes(id) {
-
+            var titleAdded = false;
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/estudiantes/" + id + "";
             xmlhttp.open("GET", url, true);
@@ -189,7 +207,7 @@
                             },
                             {
                                 data: 'bolsa',
-                                "visible": false,
+                                visible: false,
                                 title: 'bolsa'
                             },
                             {
@@ -198,7 +216,7 @@
                             },
                             {
                                 data: 'nodo',
-                                "visible": false,
+                                visible: false,
                                 title: 'nodo'
                             },
                             {
@@ -207,42 +225,42 @@
                             },
                             {
                                 data: 'materias_faltantes',
-                                "visible": false,
+                                visible: false,
                                 title: 'materias faltantes'
                             },
                             {
                                 data: 'programado_ciclo1',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 1'
                             },
                             {
                                 data: 'programado_ciclo2',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado ciclo 2'
                             },
                             {
                                 data: 'programado_extra',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programado extra'
                             },
                             {
                                 data: 'tiene_historial',
-                                "visible": false,
+                                visible: false,
                                 title: 'Tiene historial'
                             },
                             {
                                 data: 'programaActivo',
-                                "visible": false,
+                                visible: false,
                                 title: 'Programa activo'
                             },
                             {
                                 data: 'observacion',
-                                "visible": false,
+                                visible: false,
                                 title: 'Observación'
                             },
                             {
                                 data: 'marca_ingreso',
-                                "visible": false,
+                                visible: false,
                                 title: 'Marca ingreso'
                             },
                             {
@@ -258,7 +276,10 @@
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
                         "drawCallback": function() {
-                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Estudiantes inscritos</h4>');
+                                titleAdded = true;
+                            }
                         }
                     });
                     console.log(table);
@@ -270,6 +291,7 @@
 
     /**dataTable Malla Curricular */
     function malla(id) {
+        var titleAdded = false;
         var xmlhttp = new XMLHttpRequest();
         var url = "/home/getmalla/" + id + "";
         xmlhttp.open("GET", url, true);
@@ -277,7 +299,7 @@
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(this.responseText);
-                var table = $('#example').DataTable({
+                var table = $('#malla').DataTable({
                     "data": data.data,
                     "order": [
                         [1, 'asc'],
@@ -321,7 +343,10 @@
                         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                     },
                     "drawCallback": function() {
-                        $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                        if (!titleAdded) {
+                            $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Malla Curricular</h4>');
+                            titleAdded = true;
+                        }
                     }
                 });
             }

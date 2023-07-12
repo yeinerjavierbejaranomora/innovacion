@@ -159,7 +159,7 @@
             })
 
             $("#nav a[href='#malla']").click(function() {
-
+                console.log(id);
                 $("#est").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");

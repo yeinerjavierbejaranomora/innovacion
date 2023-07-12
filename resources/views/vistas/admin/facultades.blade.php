@@ -108,7 +108,7 @@
             </div>
 
             <!--Nav Datos de la Facultad-->
-                <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none;">
+                <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
                     <a class="nav-link my-auto" href="#estudiantes"><h4>Estudiantes</h4></a>
                     <a class="nav-link my-auto" href="#malla"><h4>Malla Curricular</h4></a>
                     <a class="nav-link my-auto" href="#proyecciones"><h4>Proyecciones</h4></a>

@@ -194,7 +194,9 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner','=',$codigoBanner)
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
+            $numeroCreditos = $numeroCreditos== '' ? 0 : $numeroCreditos;
             dd($numeroCreditos);
+
 
         endforeach;
         die();
@@ -1246,7 +1248,7 @@ class MafiController extends Controller
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
-                dd($baseAcademica);
+                dd(auth()->user()->nombre);
 
             }
 

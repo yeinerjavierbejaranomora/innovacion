@@ -117,6 +117,7 @@
     @include('layout.footer')
 </div>
 <script>
+    /** Función para mostrar el Nav solo al dar click en el botón */
     $(document).ready(function() {
         $(document).on("click", ".mostrar", function() {
             $("#nav").removeClass("hidden");

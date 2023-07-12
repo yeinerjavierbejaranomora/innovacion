@@ -281,7 +281,7 @@ class MafiController extends Controller
                     var_dump($prerequisitos,"--",$ciclo,'---',$cuentaCursosCiclo1,'----','con P','<br>');
                 endif;
             endforeach;
-            die();
+            //die();
 
         endforeach;
         die();

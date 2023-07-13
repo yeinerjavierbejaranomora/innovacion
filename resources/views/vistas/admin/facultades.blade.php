@@ -15,7 +15,7 @@
         background-color: #dfc14e !important;
         border-radius: 30px !important;
         color: white;
-        cursor: pointer; 
+        cursor: pointer;
     }
 
     .activo i {
@@ -27,15 +27,15 @@
         border-radius: 30px !important;
         color: black;
         cursor: pointer;
-        border-color:black;
+        border-color: black;
     }
 
     .inactivo:hover {
         background-color: #dfc14e !important;
         border-radius: 30px !important;
         color: white;
-        cursor: pointer; 
-    }  
+        cursor: pointer;
+    }
 
     .inactivo i {
         color: #dfc14e !important;
@@ -90,40 +90,46 @@
                 @foreach($estudiantes as $key => $est)
                 @if($value->codprograma == $key)
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4" >
+                <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card shadow h-100 py-2 inactivo mostrar programas" data-valor="{{ $value->id }}">
                         <div class=" card-body ">
                             <div class="row text-center">
                                 <div class="col mx-auto">
-                                        <div class="text-xs font-weight-bold">
-                                            <h5> PROGRAMA DE {{$value->programa}}</h5>
-                                        </div>
-                                        <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->
-                                        <div class=" mb-0 font-weight-bold">
-                                            <p>Estudiantes inscritos {{$est}}</p>
-                                        </div>
-                                        <!-- </button> -->
+                                    <div class="text-xs font-weight-bold">
+                                        <h5> PROGRAMA DE {{$value->programa}}</h5>
+                                    </div>
+                                    <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->
+                                    <div class=" mb-0 font-weight-bold">
+                                        <p>Estudiantes inscritos {{$est}}</p>
+                                    </div>
+                                    <!-- </button> -->
 
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x"></i>
-                                        </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-        
                     </div>
-                    @endif
+
+                </div>
+                @endif
                 @endforeach
                 @endforeach
             </div>
 
             <!--Nav Datos de la Facultad-->
-                <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
-                    <a class="nav-link my-auto" href="#estudiantes"><h4>Estudiantes</h4></a>
-                    <a class="nav-link my-auto" href="#malla"><h4>Malla Curricular</h4></a>
-                    <a class="nav-link my-auto" href="#proyecciones"><h4>Proyecciones</h4></a>
-                </nav>
+            <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
+                <a class="nav-link my-auto" href="#estudiantes">
+                    <h4>Estudiantes</h4>
+                </a>
+                <a class="nav-link my-auto" href="#malla">
+                    <h4>Malla Curricular</h4>
+                </a>
+                <a class="nav-link my-auto" href="#planeacion">
+                    <h4>Planeacion</h4>
+                </a>
+            </nav>
 
             <br>
 
@@ -160,6 +166,21 @@
                 </div>
             </div>
 
+            <!-- DataTable Planeación-->
+            <div class="row" id="plan" style="display: none;">
+                <!-- Area Chart -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table">
+                                <table id="planeacion" class="display" style="width:100%">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -173,7 +194,7 @@
                 $(".programas").removeClass("activo");
                 $(".programas").addClass("inactivo");
                 $(this).removeClass("inactivo");
-                $(this).addClass("activo");      
+                $(this).addClass("activo");
                 id = $(this).data('valor');
                 console.log(id);
                 if ($.fn.DataTable.isDataTable("#mall table")) {
@@ -183,8 +204,9 @@
                 /** Mostrar nav y dataTable */
                 $("#nav").show();
                 $("#est").show();
-                /** Eliminar el parametro active de malla en el nav */
+                /** Eliminar el parametro active de malla y planeacion en el nav */
                 $("#nav a[href='#malla']").removeClass("active");
+                $("#nav a[href='#planeacion']").removeClass("active");
                 $("#nav a[href='#estudiantes']").addClass("active");
                 /** Obtener id */
                 /** Llamado a la función para cargar dataTable */
@@ -192,13 +214,21 @@
             })
 
             $("#nav a[href='#malla']").click(function() {
+               
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
-                    $("#estudiantes").empty();
+                    $("#est").empty();
                 }
+                if ($.fn.DataTable.isDataTable("#plan table")) {
+                    $("#plan table").DataTable().destroy();
+                    $("#plan").empty();
+                }
+
                 $("#est").hide();
+                $("#plan").hide();
                 $("#mall").show();
                 $("#nav a[href='#estudiantes']").removeClass("active");
+                $("#nav a[href='#planeacion']").removeClass("active");
                 $(this).addClass("active");
 
 
@@ -209,13 +239,20 @@
             });
 
             $("#nav a[href='#estudiantes']").click(function() {
+                
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                     $("#malla").empty();
                 }
-                $("#est").show();
+                if ($.fn.DataTable.isDataTable("#plan table")) {
+                    $("#plan table").DataTable().destroy();
+                    $("#plan").empty();
+                }
                 $("#mall").hide();
+                $("#plan").hide();
+                $("#est").show();
                 $("#nav a[href='#malla']").removeClass("active");
+                $("#nav a[href='#planeacion']").removeClass("active");
                 $(this).addClass("active");
 
 
@@ -224,7 +261,31 @@
                 }
                 return false;
             });
-            /** DataTabla estudiantes */
+
+            $("#nav a[href='#planeacion']").click(function() {
+                
+                if ($.fn.DataTable.isDataTable("#mall table")) {
+                    $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
+                }
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                    $("#est").empty();
+                }
+                $("#mall").hide();
+                $("#est").hide();
+                $("#plan").show();
+                $("#nav a[href='#malla']").removeClass("active");
+                $("#nav a[href='#estudiantes']").removeClass("active");
+                $(this).addClass("active");
+
+
+                if (!$.fn.DataTable.isDataTable("#plan table")) {
+                    planeacion(id);
+                }
+                return false;
+            });
+            
         });
 
         function estudiantes(id) {
@@ -397,6 +458,60 @@
                     });
                 }
             }
+        }
+
+        function planeacion($id) {
+            var xmlhttp = new XMLHttpRequest();
+            var url = "/home/facultades/planeacion/" + id + "";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var table = $('#example').DataTable({
+                        "data": data.data,
+                        "order": [
+                            [2, 'asc'],
+                            [3, 'asc']
+                        ],
+                        "columns": [{
+                                data: 'codBanner',
+                                title: 'Codigo Banner'
+                            },
+                            {
+                                data: 'codMateria',
+                                title: 'Codigo Materia'
+                            },
+                            {
+                                data: 'orden',
+                                title: 'Orden'
+                            },
+                            {
+                                data: 'semestre',
+                                title: 'Semestre'
+                            },
+                            {
+                                data: 'programada',
+                                title: 'Programada'
+                            },
+                            {
+                                data: 'codprograma',
+                                title: 'Codigo programa'
+                            },
+                            {
+                                data: 'fecha_registro',
+                                title: 'Fecha de registro'
+                            }
+                        ],
+
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+
+                    });
+                }
+            }
+
         }
     </script>
     @include('layout.footer')

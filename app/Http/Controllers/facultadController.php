@@ -197,7 +197,6 @@ class facultadController extends Controller
         return view('vistas.admin.facultad', ['id' => $request->id], ['nombre' => $nombre[0]->nombre]);
     }
 
-
     public function malla($codigo)
     {
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();
@@ -422,7 +421,18 @@ class facultadController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    /** @author Ruben Charry
+    public function planeacionPrograma($id)
+    {
+        $consulta = DB::table('programas')->where('id', '=', $id)->get();
+        $codigo = $consulta[0]->codprograma;
+        $planeacion = DB::table('planeacion')->where('codprograma', '=', $codigo)->get();
+        /**mostrar los datos en formato JSON */
+        header("Content-Type: application/json");
+        /**Se pasa a formato JSON el arreglo de users */
+        echo json_encode(array('data' => $planeacion));
+    }
+
+    /** 
      * Método para obtener los datos de la tabla facultad del usuario según su id
      */
     public function obtenerFacultad($id)
@@ -624,7 +634,6 @@ class facultadController extends Controller
 
 
     /** Método para obtener regla de negocio según si id
-     * @author ruben.charry
      * 
      */
     public function obtenerRegla($id)

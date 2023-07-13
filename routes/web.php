@@ -215,6 +215,8 @@ Route::controller(facultadController::class)->group(function () {
 
     /** Ruta para cargar la vista de planeación*/
     Route::get('/home/planeacion', 'view_planeacion')->middleware('auth', 'admin')->name('planeacion.view');
-    /** Ruta para visualizar la planeación de cada programa */
+    /** Ruta para visualizar la planeación de todos los programas */
     Route::get('/home/getplaneacion', 'get_planeacion')->middleware('auth')->name('programas.planeacion');
+    /** Ruta para visualizar la planeación de cada programa */
+    Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
 });

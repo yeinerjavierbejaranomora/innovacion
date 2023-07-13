@@ -105,15 +105,8 @@
     </div>
     <!-- /.container-fluid -->
 
-</div>
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
+    
+    <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
@@ -142,12 +135,12 @@
             success: function(data) {
                 data.forEach(facultad => {
                     $('#nuevoprograma select#codFacultad').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
-
+                    
                 })
             }
         })
     }
-
+    
     // * Datatable para mostrar todas las Facultades *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getprogramas') }}";
@@ -159,12 +152,12 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'codprograma',
-                        title: 'Codigo de programa'
-                    },
-                    {
-                        data: 'programa',
-                        title: 'Programa'
+                    data: 'codprograma',
+                    title: 'Codigo de programa'
+                },
+                {
+                    data: 'programa',
+                    title: 'Programa'
                     },
                     {
                         data: 'nombre',
@@ -202,11 +195,11 @@
                         }
                     }
                 ],
-
+                
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-
+                
             });
             /** Función que genera una sweet alert para activar o desactivar
              * el programa */
@@ -225,7 +218,7 @@
                         }).then(result => {
                             if (result.value) {
                                 $.post("{{ route('programa.inactivar') }}", {
-                                        '_token': $('meta[name=csrf-token]').attr('content'),
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
                                         codigo: data.codprograma,
                                     },
                                     function(result) {
@@ -234,7 +227,7 @@
                                             Swal.fire({
                                                 title: "Programa deshabilitado",
                                                 html: "El programa <strong>" + data.programa +
-                                                    "</strong> ha sido inactivado",
+                                                "</strong> ha sido inactivado",
                                                 icon: 'info',
                                                 showCancelButton: true,
                                                 confirmButtonText: "Aceptar",
@@ -245,9 +238,9 @@
                                             })
                                         }
                                     })
-                            }
+                                }
                         });
-
+                        
                     } else {
                         Swal.fire({
                             title: "¿Desea activar el programa " + data.programa + "?",
@@ -260,28 +253,28 @@
                         }).then(result => {
                             if (result.value) {
                                 $.post("{{ route('programa.activar') }}", {
-                                        '_token': $('meta[name=csrf-token]').attr('content'),
-                                        codigo: data.codprograma,
-                                    },
-                                    function(result) {
-                                        if (result == "habilitado") {
-                                            Swal.fire({
-                                                title: "Programa habilitado",
-                                                html: "El programa <strong>" + data.programa +
-                                                    "</strong> ha sido habilitado",
-                                                icon: 'info',
-                                                showCancelButton: true,
-                                                confirmButtonText: "Aceptar",
-                                            }).then(result => {
-                                                if (result.value) {
-                                                    location.reload();
-                                                };
-                                            })
+                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                    codigo: data.codprograma,
+                                },
+                                function(result) {
+                                    if (result == "habilitado") {
+                                        Swal.fire({
+                                            title: "Programa habilitado",
+                                            html: "El programa <strong>" + data.programa +
+                                            "</strong> ha sido habilitado",
+                                            icon: 'info',
+                                            showCancelButton: true,
+                                            confirmButtonText: "Aceptar",
+                                        }).then(result => {
+                                            if (result.value) {
+                                                location.reload();
+                                            };
+                                        })
                                         }
                                     })
-                            }
-                        });
-                    }
+                                }
+                            });
+                        }
                 });
             }
             /** Función para editar  */
@@ -300,8 +293,8 @@
                             '<input type="text" id="programa" name="programa" value="' + data.programa + '" class="form-control" placeholder="programa"> <br>' +
                             '<label for="facultades"> Facultad a la que pertenece el programa </label>'+
                             ' <select class="form-control" name="facultades" id="facultades"> <option value="' + data.idFacultad + '" selected>' + data.nombre + '</option> </select>',
-                        icon: 'info',
-                        showCancelButton: true,
+                            icon: 'info',
+                            showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: "Cancelar",
@@ -309,24 +302,24 @@
                     }).then(result => {
                         if (result.value) {
                             $.post("{{ route('programa.update')}}", {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    id: encodeURIComponent(window.btoa(data.id)),
-                                    codigo: $(document).find('#codprograma').val(),
-                                    programa: $(document).find('#programa').val(),
-                                    idfacultad: $(document).find('#facultades').val(),
-                                },
-                                function(result) {
-                                    console.log(result);
-                                    if (result == "actualizado") {
-                                        Swal.fire({
-                                            title: "Información actualizada",
-                                            icon: 'success'
-                                        }).then(result => {
-                                            location.reload();
-                                        });
-
-                                    }
+                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                id: encodeURIComponent(window.btoa(data.id)),
+                                codigo: $(document).find('#codprograma').val(),
+                                programa: $(document).find('#programa').val(),
+                                idfacultad: $(document).find('#facultades').val(),
+                            },
+                            function(result) {
+                                console.log(result);
+                                if (result == "actualizado") {
+                                    Swal.fire({
+                                        title: "Información actualizada",
+                                        icon: 'success'
+                                    }).then(result => {
+                                        location.reload();
+                                    });
+                                    
                                 }
+                            }
                             )
                         }
                     })
@@ -355,4 +348,6 @@
         }
     }
 </script>
+
 @include('layout.footer');
+</div>

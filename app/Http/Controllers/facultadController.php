@@ -81,13 +81,17 @@ class facultadController extends Controller
         return view('vistas.admin.reglasnegocio');
     }
 
+    public function view_planeacion()
+    {
+        return view('vistas.admin.planeacion');
+    }
 
     /** 
      * Función para obtener todos los programas de pregrado
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de pregrado en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
-    */
+     */
     public function get_programas()
     {
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
@@ -102,7 +106,7 @@ class facultadController extends Controller
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
-    */
+     */
     public function get_especializacion()
     {
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
@@ -112,12 +116,12 @@ class facultadController extends Controller
         echo json_encode(array('data' => $programas));
     }
 
-     /** 
+    /** 
      * Función para obtener todos los programas de maestría
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de maestría en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
-    */
+     */
     public function get_maestria()
     {
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
@@ -127,7 +131,12 @@ class facultadController extends Controller
         echo json_encode(array('data' => $programas));
     }
 
-    
+    /** 
+     * Función para obtener todos los programas de maestría
+     * Esta función hace una consulta a la base de datos para traer los datos de los programas
+     * de maestría en un arreglo y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+     */
     public function get_continua()
     {
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
@@ -137,47 +146,57 @@ class facultadController extends Controller
         echo json_encode(array('data' => $programas));
     }
 
+    /** 
+     * Función para obtener todos los periodos de inscripción
+     * Esta función hace una consulta a la base de datos para traer los datos de los periodos
+     * en un arreglo y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+     */
     public function get_periodos()
     {
-        /** Se obtiene toda la tabla de periodo*/
         $periodos = DB::table('periodo')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $periodos));
     }
 
+    /** 
+     * Función para obtener todas las reglas de negocio
+     * Esta función hace una consulta a la base de datos para traer los datos de las reglas de negocio
+     *  y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+     */
     public function get_reglas()
     {
-        /** Se obtiene toda la tabla de reglas de negocio */
         $reglas = DB::table('reglasNegocio')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $reglas));
     }
 
+    /** 
+     * Función para obtener los datos de la tabla planeación
+     * Esta función hace una consulta a la base de datos para traer los datos de la tabla de planeación
+     * y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+     */
+    public function get_planeacion()
+    {
+        $planeacion = DB::table('planeacion')->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $planeacion));
+    }
+
+    /** 
+     * Función para obtener todas las reglas de negocio
+     * Esta función hace una consulta a la base de datos para traer los datos de las reglas de negocio
+     *  y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+     */
     public function facultad(Request $request)
     {
         $nombre = DB::table('facultad')->select('nombre')->where('id', '=', decrypt($request->id))->get();
         return view('vistas.admin.facultad', ['id' => $request->id], ['nombre' => $nombre[0]->nombre]);
     }
 
-    /** Función para mostrar los programas según el id de la facultad */
-    /*  public function mostrarfacultad($id_llegada)
-    {
-        // Decripta el id que recibe
-        $id = decrypt($id_llegada);
-        // Consulta para obtener los programas según id de facultad
-        $facultad = DB::table('programas')->select('id', 'codprograma', 'programa', 'tabla','activo')
-            ->where('idFacultad', '=', $id)
-            ->where('activo', '=', 1)->get();
-        mostrar los datos en formato JSON 
-        header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users 
-        echo json_encode(array('data' => $facultad));
-    }
-    */
 
     public function malla($codigo)
     {
@@ -188,7 +207,7 @@ class facultadController extends Controller
 
     public function mostrarmallacurricular($id)
     {
-        $codigo = DB::table('programas')->where('id','=',$id)->select('codprograma')->get();
+        $codigo = DB::table('programas')->where('id', '=', $id)->select('codprograma')->get();
         // Consulta para obtener la malla curricular del programa
         $malla = DB::table('mallaCurricular')->where('codprograma', '=', $codigo[0]->codprograma)->get();
         /**mostrar los datos en formato JSON */

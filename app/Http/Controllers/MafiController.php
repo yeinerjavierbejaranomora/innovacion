@@ -211,15 +211,20 @@ class MafiController extends Controller
             $codigoBanner = $estudiante->homologante;
             $programa = $estudiante->programa;
             $ruta = $estudiante->bolsa;
-            $materiasPlaneadas = DB::table('planeacion')
+            $materiasPlaneadasConcuslta = DB::table('planeacion')
                                         ->select('planeacion.codBanner','planeacion.codMateria')
                                         ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
                                         ->where([['planeacion.codBanner','=',$codigoBanner],['planeacion.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
                                         ->get();
 
-            if(!$materiasPlaneadas):
-                echo "Materias planeadas: " . $materiasPlaneadas . "<br />";
+            if(!$materiasPlaneadasConcuslta):
+                echo "Materias planeadas: " . $materiasPlaneadasConcuslta . "<br />";
             endif;
+            $materiasPlaneadas = '';
+            while($materia = $materiasPlaneadasConcuslta){
+                var_dump($materia->codMateria);
+            }
+            die();
         endforeach;
         die();
         /**Programar materia de segundo ciclo */

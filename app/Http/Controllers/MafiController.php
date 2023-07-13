@@ -222,7 +222,7 @@ class MafiController extends Controller
                 $ultimoRegistroId = 0;
                 $idEstudiante = $estudiante->id;
                 $codigoBanner = $estudiante->homologante;
-                $programa = 'PCPV';
+                $programa = $estudiante->programa;
                 $ruta = $estudiante->bolsa;
                 if ($ruta != '') :
                     $ruta = 1;

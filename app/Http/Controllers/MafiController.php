@@ -220,9 +220,10 @@ class MafiController extends Controller
             if(!$materiasPlaneadasConcuslta):
                 echo "Materias planeadas: " . $materiasPlaneadasConcuslta . "<br />";
             endif;
+
             $materiasPlaneadas = '';
             while($materia = $materiasPlaneadasConcuslta){
-                var_dump($materia->codMateria);
+                var_dump($materia);
             }
             die();
         endforeach;

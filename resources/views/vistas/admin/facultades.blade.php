@@ -460,7 +460,7 @@
             }
         }
 
-        function planeacion($id) {
+        function planeacion(id) {
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/planeacion/" + id + "";
             xmlhttp.open("GET", url, true);

@@ -204,8 +204,21 @@ class MafiController extends Controller
         /**Programar materia de segundo ciclo */
         $estudiantesSC = $this->programarSegundoCiclo();
         foreach($estudiantesSC as $estudiante):
+            $fechaInicio = date('Y-m-d H:i:s');
+            $primerId = $estudiante->id;
+            $ultimoRegistroId = 0;
+            $idEstudiante = $estudiante->id;
+            $codigoBanner = $estudiante->homologante;
+            $programa = $estudiante->programa;
+            $ruta = $estudiante->bolsa;
+            $materiasPlaneadas = DB::table('planeacion')
+                                        ->select('planeacion.codBanner','planeacion.codMateria')
+                                        ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
+                                        ->where([['planeacion.codBanner','=',$codigoBanner],['planeacion.codprograma','=',$programa],['codprograma.codprograma','=',$programa]])
+                                        ->dd();
             dd($estudiante);
         endforeach;
+        die();
         /**Programar materia de segundo ciclo */
         die();
         /**para programar materias del primer ciclo */

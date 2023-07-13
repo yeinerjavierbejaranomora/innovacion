@@ -221,12 +221,10 @@
             $("#nav a[href='#malla']").click(function() {
                
                 if ($.fn.DataTable.isDataTable("#est table")) {
-                    $("#est table").DataTable().destroy();
-                    $("#est").empty();
+                    $("#est table").DataTable().destroy();    
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
-                    $("#plan table").DataTable().destroy();
-                    $("#plan").empty();
+                    $("#plan table").DataTable().destroy();      
                 }
 
                 $("#est").hide();
@@ -247,11 +245,9 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#mall").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
                     $("#plan table").DataTable().destroy();
-                    $("#plan").empty();
                 }
                 $("#mall").hide();
                 $("#plan").hide();
@@ -270,11 +266,9 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#mall").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
-                    $("#est").empty();
                 }
                 $("#mall").hide();
                 $("#est").hide();

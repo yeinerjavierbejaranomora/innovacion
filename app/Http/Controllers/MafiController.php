@@ -202,6 +202,7 @@ class MafiController extends Controller
         /**Programar materia de segundo ciclo */
         $this->programarSegundoCiclo();
         /**Programar materia de segundo ciclo */
+        die();
         /**para programar materias del primer ciclo */
         $programado_ciclo1 = NULL;
         /// para activar el perodo activo en la base de datos

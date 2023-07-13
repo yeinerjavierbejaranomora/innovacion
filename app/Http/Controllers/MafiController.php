@@ -1242,7 +1242,7 @@ class MafiController extends Controller
                     ->whereIn('marca_ingreso',$marcaIngreso)
                     ->orderBy('id','asc')
                     ->limit($limit)
-                    ->dd();
+                    ->get();
 
 
 

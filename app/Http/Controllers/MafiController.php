@@ -1415,11 +1415,11 @@ dd($cuentaCursosCiclo1);
 
 
             /**consulta de estudinates primer ciclo */
-            if(auth()->user()->nombre=='Pablo Pérez Cortes'){
+           /* if(auth()->user()->nombre=='Pablo Pérez Cortes'){
                 $baseAcademica = $this->BaseAcademica(100147341,'PPSV');
                 dd(auth()->user()->nombre);
 
-            }
+            }*/
             $programado_ciclo1 = NULL;
             /// para activar el perodo activo en la base de datos
             $periodo = $this->periodo();

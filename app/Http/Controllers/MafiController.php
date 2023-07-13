@@ -222,6 +222,7 @@ class MafiController extends Controller
             endif;
 
             $materiasPlaneadas = '';
+            
             while($materia = $materiasPlaneadasConcuslta){
                 var_dump($materia);
             }

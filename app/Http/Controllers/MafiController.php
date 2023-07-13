@@ -224,9 +224,10 @@ class MafiController extends Controller
             $materiasPlaneadas = '';
 
             foreach($materiasPlaneadasConsulta as $materiaPlaneada):
-                var_dump($materiaPlaneada->codMateria);
+                $codMateria = $materiaPlaneada->codMateria;
+                $materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
             endforeach;
-            die();
+            dd($materiasPlaneadas);
         endforeach;
         die();
         /**Programar materia de segundo ciclo */

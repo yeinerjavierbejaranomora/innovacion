@@ -214,7 +214,7 @@ class MafiController extends Controller
             $materiasPlaneadas = DB::table('planeacion')
                                         ->select('planeacion.codBanner','planeacion.codMateria')
                                         ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
-                                        ->where([['planeacion.codBanner','=',$codigoBanner],['planeacion.codprograma','=',$programa],['codprograma.codprograma','=',$programa]])
+                                        ->where([['planeacion.codBanner','=',$codigoBanner],['planeacion.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
                                         ->get();
             dd($materiasPlaneadas);
         endforeach;

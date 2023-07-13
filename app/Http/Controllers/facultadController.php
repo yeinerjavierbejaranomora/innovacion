@@ -20,101 +20,120 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Util\Constantes;
 use App\Http\Controllers\LogUsuariosController;
 
+/**
+ * Controlador de facultades
+ */
 class facultadController extends Controller
 {
-    /** Función para cargar la vista de los programas */
+    /** 
+     * Función para cargar la vista de los programas 
+     * @return view de los programas de pregrado
+     * */
     public function view_programas()
     {
-        /**Se retorna la vista de los programas de pregado */
         return view('vistas.admin.programas');
     }
 
-    /** Función para cargar la vista de las especializaciones */
+    /** 
+     * Función para cargar la vista de las especializaciones
+     * @return view de los programas de especialización
+     * */
     public function view_especializacion()
     {
-        /**Se retorna la vista de la especialización */
         return view('vistas.admin.especializacion');
     }
 
-    /** Función para cargar la vista de las maestrías */
+    /** 
+     * Función para cargar la vista de las maestrías
+     * @return view de los programas de maestría
+     * */
     public function view_maestria()
     {
-        /**Se retorna la vista de la maestría */
         return view('vistas.admin.maestria');
     }
 
-    /** Función para cargar la vista de educación continua */
+    /** 
+     * Función para cargar la vista de educación continua
+     * @return view de los programas de educación continua
+     * */
     public function view_continua()
     {
-        /**Se retorna la vista de educación continua */
         return view('vistas.admin.educacioncontinua');
     }
 
-    /** Función para cargar la vista de periodos */
+    /** 
+     * Función para cargar la vista de los periodos
+     * @return view de los periodos de inscripción la Universidad
+     * */
     public function view_periodos()
     {
-        /**Se retorna la vista de los periodos */
         return view('vistas.admin.periodos');
     }
 
-    /** Función para cargar la vista de las reglas de negocio */
+    /** 
+     * Función para cargar las reglas de negocio
+     * Estas son las condiciones para inscribir materias en cada uno de los programas
+     * según varios criterios como la cantidad de créditos, cantidad de materias
+     * @return view de las reglas negocio
+     * */
     public function view_reglas()
     {
-        /**Se retorna la vista de las reglas de negocio */
         return view('vistas.admin.reglasnegocio');
     }
 
 
-    /** Función para traer todos los programas */
+    /** 
+     * Función para obtener todos los programas de pregrado
+     * Esta función hace una consulta a la base de datos para traer los datos de los programas
+     * de pregrado en un arreglo y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+    */
     public function get_programas()
     {
-        /**Realiza la consulta anidada para obtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
             ->where('programas.tabla', '=', 'pregrado')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $programas));
     }
 
-    /** Función para traer todas las especializaciones */
-
+    /** 
+     * Función para obtener todos los programas de especialización
+     * Esta función hace una consulta a la base de datos para traer los datos de los programas
+     * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+    */
     public function get_especializacion()
     {
-        /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
             ->where('programas.tabla', '=', 'especializacion')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de programas */
         echo json_encode(array('data' => $programas));
     }
 
-    /** Función para traer todas las maestrías */
-
+     /** 
+     * Función para obtener todos los programas de maestría
+     * Esta función hace una consulta a la base de datos para traer los datos de los programas
+     * de maestría en un arreglo y lo convierte a formato json para mostrarlo en la vista
+     * @return json(array())
+    */
     public function get_maestria()
     {
-        /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
             ->where('programas.tabla', '=', 'MAESTRIA')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $programas));
     }
 
+    
     public function get_continua()
     {
-        /**Realiza la consulta anidada para onbtener el programa con su facultad */
         $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
             ->where('programas.tabla', '=', 'EDUCACION CONTINUA')->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $programas));
     }
 

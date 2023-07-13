@@ -477,7 +477,7 @@
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var data = JSON.parse(this.responseText);
-                    var table = $('#example').DataTable({
+                    var table = $('#planeacion').DataTable({
                         "data": data.data,
                         "order": [
                             [2, 'asc'],
@@ -510,7 +510,7 @@
                             {
                                 data: 'fecha_registro',
                                 title: 'Fecha de registro'
-                            }
+                            },
                         ],
 
                         "language": {
@@ -525,7 +525,6 @@
                     });
                 }
             }
-
         }
     </script>
     @include('layout.footer')

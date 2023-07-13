@@ -205,6 +205,10 @@
                     $("#plan table").DataTable().destroy();
                     $("#planeacion").empty();
                 }
+                if ($.fn.DataTable.isDataTable("#est table")) {
+                    $("#est table").DataTable().destroy();
+                    $("#example").empty();
+                }
 
                 /** Mostrar nav y dataTable */
                 $("#nav").show();

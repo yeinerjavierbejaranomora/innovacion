@@ -199,11 +199,11 @@
                 console.log(id);
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#mall").empty();
+                    $("#malla").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
                     $("#plan table").DataTable().destroy();
-                    $("#plan").empty();
+                    $("#planeacion").empty();
                 }
 
                 /** Mostrar nav y dataTable */
@@ -221,10 +221,12 @@
             $("#nav a[href='#malla']").click(function() {
                
                 if ($.fn.DataTable.isDataTable("#est table")) {
-                    $("#est table").DataTable().destroy();    
+                    $("#est table").DataTable().destroy();
+                    $("#example").empty();    
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
-                    $("#plan table").DataTable().destroy();      
+                    $("#plan table").DataTable().destroy();
+                    $("#planeacion").empty();     
                 }
 
                 $("#est").hide();
@@ -245,9 +247,11 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
                     $("#plan table").DataTable().destroy();
+                    $("#planeacion").empty();
                 }
                 $("#mall").hide();
                 $("#plan").hide();
@@ -266,9 +270,11 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
+                    $("#malla").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
+                    $("#example").empty();
                 }
                 $("#mall").hide();
                 $("#est").hide();

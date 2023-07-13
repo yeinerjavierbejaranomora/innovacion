@@ -177,7 +177,7 @@ class MafiController extends Controller
 
     public function getDataMafiReplica()
     {
-        
+
         /** Replicar los datos en estudiantes desde datosMafiReplica Aplicando los flitros */
         $log = DB::table('logAplicacion')->where([['accion', '=', 'Insert'], ['tabla_afectada', '=', 'estudiantes']])->orderBy('id', 'desc')->first();
         if (empty($log)) :
@@ -700,7 +700,6 @@ class MafiController extends Controller
             ];
             $orden++;
         endforeach;
-        dd($data);
         //return $mallaCurricular;
         return $data;
     }

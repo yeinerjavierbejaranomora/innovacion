@@ -270,7 +270,7 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#malla").empty();
+                    $("#mall").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();

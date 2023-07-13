@@ -216,11 +216,12 @@ class MafiController extends Controller
             //dd($estudiantesPC->count());
             /**recorrer por cada estudiante  */
             foreach ($estudiantesPC as $estudiante) :
+                dd($estudiante);
                 $fechaInicio = date('Y-m-d H:i:s');
                 $primerId = $estudiante->id;
                 $ultimoRegistroId = 0;
-                $idEstudiante = 1063;
-                $codigoBanner = 100143955;
+                $idEstudiante = $estudiante->id;
+                $codigoBanner = $estudiante->homologante;
                 $programa = 'PCPV';
                 $ruta = $estudiante->bolsa;
                 if ($ruta != '') :
@@ -1407,7 +1408,7 @@ dd($cuentaCursosCiclo1);
         // funcion para probar otras funciones
         public function probarfunciones(){
 
-         
+
 
             /**consulta de estudinates primer ciclo */
             if(auth()->user()->nombre=='Pablo Pérez Cortes'){
@@ -1422,7 +1423,7 @@ dd($cuentaCursosCiclo1);
             foreach ($periodo as $key => $value) {
                 $marcaIngreso .= (int)$value->periodos . ",";
             }
-    
+
             // para procesasr las marcas de ingreso en los periodos
             $marcaIngreso = trim($marcaIngreso, ",");
             // Dividir la cadena en elementos individuales
@@ -1459,15 +1460,15 @@ dd($cuentaCursosCiclo1);
                     $idEstudiante = $estudiante->id;
                     $codigoBanner = $estudiante->homologante;
                     $programa = $estudiante->programa;
-    
+
                     $ruta = $estudiante->bolsa;
-    
+
                     if($ruta != ''):
                         $ruta = 1;
                     endif;
-    
+
                     $tipoEstudiante = $estudiante->tipo_estudiante;
-    
+
                     switch ($tipoEstudiante) {
                         case str_contains($tipoEstudiante, 'TRANSFERENTE'):
                             $tipoEstudiante ='TRANSFERENTE';
@@ -1487,28 +1488,28 @@ dd($cuentaCursosCiclo1);
                         case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
                             $tipoEstudiante='PRIMER INGRESO';
                             break;
-    
+
                         default:
                             # code...
                             break;
                     }
-    
+
                     /** traemos las materias que le faltan por ver ciclo */
                     $materiasPorVer = $this->materiasPorVer($codigoBanner,$ciclo,$programa);
-    
+
                     foreach ($materiasPorVer as $value_materiasPorVer) {
-    
+
                        // dd($value_materiasPorVer);
-    
-    
+
+
                         $codMateria=$value_materiasPorVer->codMateria;
                         $codPrograma=$programa;
                         $planeacion=$this->Planeacion($codigoBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante);
                     }
-    
-    
+
+
                 endforeach;
-    
+
 
 
                 //dd($estudiantesPC->count());
@@ -1525,7 +1526,7 @@ dd($cuentaCursosCiclo1);
                         $ruta = 1;
                     endif;
                     $tipoEstudiante = $estudiante->tipo_estudiante;
-    
+
                     switch ($tipoEstudiante) {
                         case str_contains($tipoEstudiante, 'TRANSFERENTE'):
                             $tipoEstudiante = 'TRANSFERENTE';
@@ -1545,7 +1546,7 @@ dd($cuentaCursosCiclo1);
                         case str_contains($tipoEstudiante, 'INGRESO SINGULAR'):
                             $tipoEstudiante = 'PRIMER INGRESO';
                             break;
-    
+
                         default:
                             # code...
                             break;
@@ -1567,30 +1568,30 @@ dd($cuentaCursosCiclo1);
                     ->where('planeacion.codBanner', '=', $codigoBanner)
                         ->whereIn('mallaCurricular.ciclo', [1, 12])
                         ->first();
-    
+
                     $sumaCreditosCiclo1 = $numeroCreditosC1->screditos;
                     $sumaCreditosCiclo1 = $sumaCreditosCiclo1 == '' ? 0 : $sumaCreditosCiclo1;
                     $cuentaCursosCiclo1 = $numeroCreditosC1->ccursos;
                     $cuentaCursosCiclo1 = $cuentaCursosCiclo1 == '' ? 0 : $cuentaCursosCiclo1;
-    
-    
-    
+
+
+
                     /**reglas del negocio */
                     $cicloReglaNegocio = 1;
                     $reglaNegocio = DB::table('reglasNegocio')
                     ->select('creditos', 'materiasPermitidas')
                     ->where([['programa', '=', $programa], ['ruta', '=', $ruta], ['tipoEstudiante', '=', $tipoEstudiante], ['ciclo', '=', $cicloReglaNegocio], ['activo', '=', 1]])
                         ->first();
-    
+
                     $numeroCreditosPermitidos = $reglaNegocio->creditos;
                     $numeroMateriasPermitidos = $reglaNegocio->materiasPermitidas;
                     $orden = 1;
                     DB::beginTransaction();
-    
+
                     try {
-    
+
                         foreach ($materiasPorVer as $materia) :
-    
+
                             if($cuentaCursosCiclo1 >= $numeroMateriasPermitidos):
                                 break;
                             endif;
@@ -1683,7 +1684,7 @@ dd($cuentaCursosCiclo1);
                 $offset = $log->idFin;
             endif;
             /*** por cada estudiante  */
-          
+
         }
 
 

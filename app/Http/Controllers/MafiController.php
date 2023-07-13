@@ -199,8 +199,8 @@ class MafiController extends Controller
         ->whereIn('marca_ingreso', $marcaIngreso)
         ->orderBy('id', 'asc')
         ->count();
-        
-        echo $estudiantes;
+
+        echo $estudiantes.'<br>';
         if ($estudiantes > 0) :
             $limit = 200;
             $numeroEstudiantes = ceil($estudiantes / $limit);

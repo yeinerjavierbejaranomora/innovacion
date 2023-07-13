@@ -203,7 +203,9 @@ class MafiController extends Controller
     {
         /**Programar materia de segundo ciclo */
         $estudiantesSC = $this->programarSegundoCiclo();
-        dd($estudiantesSC);
+        foreach($estudiantesSC as $estudiante):
+            dd($estudiante);
+        endforeach;
         /**Programar materia de segundo ciclo */
         die();
         /**para programar materias del primer ciclo */

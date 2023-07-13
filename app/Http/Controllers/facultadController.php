@@ -427,6 +427,8 @@ class facultadController extends Controller
         $codigo = $consulta[0]->codprograma;
         $planeacion = DB::table('planeacion')->where('codprograma', '=', $codigo)->get();
         /**mostrar los datos en formato JSON */
+        dd($planeacion);
+        die();
         header("Content-Type: application/json");
         /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $planeacion));

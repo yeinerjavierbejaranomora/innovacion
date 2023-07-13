@@ -469,6 +469,7 @@
         }
 
         function planeacion(id) {
+            var titleAdded = false;
             var xmlhttp = new XMLHttpRequest();
             var url = "/home/facultades/planeacion/" + id + "";
             xmlhttp.open("GET", url, true);
@@ -515,7 +516,12 @@
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-
+                        "drawCallback": function() {
+                            if (!titleAdded) {
+                                $('.dataTables_wrapper .dataTables_length').before('<h4 class="text-center">Planeación</h4>');
+                                titleAdded = true;
+                            }
+                        }
                     });
                 }
             }

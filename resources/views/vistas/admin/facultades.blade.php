@@ -510,7 +510,7 @@
                             {
                                 data: 'fecha_registro',
                                 title: 'Fecha de registro'
-                            }
+                            },
                         ],
 
                         "language": {
@@ -525,7 +525,6 @@
                     });
                 }
             }
-
         }
     </script>
     @include('layout.footer')

@@ -216,7 +216,6 @@ class MafiController extends Controller
             //dd($estudiantesPC->count());
             /**recorrer por cada estudiante  */
             foreach ($estudiantesPC as $estudiante) :
-                dd($estudiante);
                 $fechaInicio = date('Y-m-d H:i:s');
                 $primerId = $estudiante->id;
                 $ultimoRegistroId = 0;

@@ -199,8 +199,13 @@
                 console.log(id);
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#malla").empty();
+                    $("#mall").empty();
                 }
+                if ($.fn.DataTable.isDataTable("#plan table")) {
+                    $("#plan table").DataTable().destroy();
+                    $("#plan").empty();
+                }
+
                 /** Mostrar nav y dataTable */
                 $("#nav").show();
                 $("#est").show();
@@ -242,7 +247,7 @@
                 
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
-                    $("#malla").empty();
+                    $("#mall").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
                     $("#plan table").DataTable().destroy();
@@ -254,7 +259,6 @@
                 $("#nav a[href='#malla']").removeClass("active");
                 $("#nav a[href='#planeacion']").removeClass("active");
                 $(this).addClass("active");
-
 
                 if (!$.fn.DataTable.isDataTable("#est table")) {
                     estudiantes(id);

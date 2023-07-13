@@ -190,17 +190,20 @@ class MafiController extends Controller
         $marcaIngreso = array_map('intval', $marcaIngreso);
         $estudiantes = DB::table('estudiantes')
                             ->select('id', 'homologante', 'programa','bolsa','tipo_estudiante')
-                            ->where([['materias_faltantes','=','OK'],['programado_ciclo1','=','OK']])
+                            ->where([['id','>',0],['materias_faltantes','=','OK'],['programado_ciclo1','=','OK']])
                             ->whereNull('programado_ciclo2')
                             ->whereIn('marca_ingreso', $marcaIngreso)
                             ->orderBy('id','ASC')
-                            ->dd();
+                            ->limit(1000)
+                            ->get();
+        return $estudiantes;
     }
 
     public function getDataMafiReplica()
     {
         /**Programar materia de segundo ciclo */
-        $this->programarSegundoCiclo();
+        $estudiantesSC = $this->programarSegundoCiclo();
+        dd($estudiantesSC);
         /**Programar materia de segundo ciclo */
         die();
         /**para programar materias del primer ciclo */

@@ -1,0 +1,7 @@
+<phpdoc>
+    <directories>
+        <directory>app</directory>
+        <directory>views</directory>
+    </directories>
+
+</phpdoc>

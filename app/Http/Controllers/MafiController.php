@@ -239,6 +239,13 @@ class MafiController extends Controller
                                     ->whereNotIn('materiasPorVer.codMateria',$materiasPlaneadas)
                                     ->orderBy('materiasPorVer.orden','ASC')
                                     ->get();
+
+            $creditosPlaneados = DB::table('mallaCurricular')
+                                        ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                        ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
+                                        ->where([['planeacion.codBanner','=',$codigoBanner],['mallaCurricular.codigoCurso','=','planeacion.codMateria']])
+                                        ->groupBy('planeacion.codBanner')
+                                        ->dd();
             dd($codigoBanner,$materiasPorver);
         endforeach;
         die();

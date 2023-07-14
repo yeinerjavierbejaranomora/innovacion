@@ -172,11 +172,11 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'reglasNegocio.programa',
+                        data: 'programa',
                         title: 'Codigo de programa'
                     },
                     {
-                        data:'programas.programa',
+                        data:'programa',
                         title: 'Nombre del programa'
                     },
                     {

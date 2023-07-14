@@ -174,9 +174,90 @@ class MafiController extends Controller
         $dataLongitud = count($data);*/
     }
 
+    public function programarSegundoCiclo(){
+        /// para activar el perodo activo en la base de datos
+        $periodo = $this->periodo();
+        $marcaIngreso = "";
+        foreach ($periodo as $key => $value) {
+            $marcaIngreso .= (int)$value->periodos . ",";
+        }
+
+        // para procesasr las marcas de ingreso en los periodos
+        $marcaIngreso = trim($marcaIngreso, ",");
+        // Dividir la cadena en elementos individuales
+        $marcaIngreso = explode(",", $marcaIngreso);
+        // Convertir cada elemento en un número
+        $marcaIngreso = array_map('intval', $marcaIngreso);
+        $estudiantes = DB::table('estudiantes')
+                            ->select('id', 'homologante', 'programa','bolsa','tipo_estudiante')
+                            ->where([['id','>',0],['materias_faltantes','=','OK'],['programado_ciclo1','=','OK']])
+                            ->whereNull('programado_ciclo2')
+                            ->whereIn('marca_ingreso', $marcaIngreso)
+                            ->orderBy('id','ASC')
+                            ->limit(1000)
+                            ->get();
+        return $estudiantes;
+    }
 
     public function getDataMafiReplica()
     {
+        /**Programar materia de segundo ciclo */
+        $estudiantesSC = $this->programarSegundoCiclo();
+        foreach($estudiantesSC as $estudiante):
+            $fechaInicio = date('Y-m-d H:i:s');
+            $primerId = $estudiante->id;
+            $ultimoRegistroId = 0;
+            $idEstudiante = $estudiante->id;
+            $codigoBanner = $estudiante->homologante;
+            $programa = $estudiante->programa;
+            $ruta = $estudiante->bolsa;
+            $materiasPlaneadasConsulta = DB::table('planeacion')
+                                        ->select('planeacion.codBanner','planeacion.codMateria')
+                                        ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
+                                        ->where([['planeacion.codBanner','=',$codigoBanner],['planeacion.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
+                                        ->get();
+
+            if(!$materiasPlaneadasConsulta):
+                echo "Materias planeadas: " . $materiasPlaneadasConsulta . "<br />";
+            endif;
+
+            $materiasPlaneadas = [];
+
+            foreach($materiasPlaneadasConsulta as $materiaPlaneada):
+                $codMateria = $materiaPlaneada->codMateria;
+                array_push($materiasPlaneadas,$codMateria);
+                //$materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
+            endforeach;
+            //$materiasPlaneadas = substr($materiasPlaneadas,0,-1);
+            //$materiasPlaneadas =$materiasPlaneadas;
+            //dd($materiasPlaneadas);
+
+            $materiasPorverConsulta = DB::table('materiasPorVer')
+                                    ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
+                                    ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
+                                    ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
+                                    ->whereNotIn('materiasPorVer.codMateria',$materiasPlaneadas)
+                                    ->orderBy('materiasPorVer.orden','ASC')
+                                    ->get();
+
+
+            $creditosPlaneadosConsulta = DB::table('mallaCurricular')
+                                    ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner', '=', $codigoBanner)
+                                    ->where([['mallaCurricular.codprograma','=',$programa],['planeacion.codprograma','=',$programa]])
+                                    ->groupBy('planeacion.codBanner')
+                                    ->first();
+
+            $creditosPlaneados =  $creditosPlaneadosConsulta->CreditosPlaneados == '' ? 0 : $creditosPlaneadosConsulta->CreditosPlaneados;
+            $materiasPorVer = '';
+            $numeroMateriasPorVer = $materiasPorverConsulta->count();
+            dd($codigoBanner,$numeroMateriasPorVer);
+        endforeach;
+        die();
+        /**Programar materia de segundo ciclo */
+        die();
+        /**para programar materias del primer ciclo */
         $programado_ciclo1 = NULL;
         /// para activar el perodo activo en la base de datos
         $periodo = $this->periodo();

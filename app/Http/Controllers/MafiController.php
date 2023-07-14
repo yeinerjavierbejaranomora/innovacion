@@ -229,7 +229,7 @@ class MafiController extends Controller
             endforeach;
             $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             $materiasPlaneadas =$materiasPlaneadas;
-            //dd($materiasPlaneadas);
+            dd($materiasPlaneadas);
             $materiasPorver = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                                     ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')

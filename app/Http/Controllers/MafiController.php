@@ -244,6 +244,7 @@ class MafiController extends Controller
                                     ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
                                     ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
                                     ->where('planeacion.codBanner', '=', $codigoBanner)
+                                    ->where('mallaCurricular.codigoCurso','=','planeacion.codMateria')
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
             dd($codigoBanner,$creditosPlaneados);

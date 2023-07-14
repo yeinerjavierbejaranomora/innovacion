@@ -1431,7 +1431,6 @@ class MafiController extends Controller
             return $query;
         }
 
-        
         public function Planeacion($codBanner,$ciclo,$programa,$codMateria,$codPrograma,$ruta,$tipoEstudiante){
 
             $materiasPorVer=$this->materiasPorVer($codBanner,$ciclo,$programa);

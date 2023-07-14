@@ -173,10 +173,7 @@ class facultadController extends Controller
         ->select('programas.codprograma','reglasNegocio.creditos','reglasNegocio.materiasPermitidas',
         'reglasNegocio.tipoEstudiante','reglasNegocio.ciclo','reglasNegocio.activo', 'programas.programa',
         'programas.tabla','facultad.nombre')
-        ->get();
-        dd($reglas);
-        die();
-        
+        ->get();       
         header("Content-Type: application/json");
         echo json_encode(array('data' => $reglas));
     }

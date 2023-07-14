@@ -225,7 +225,7 @@ class MafiController extends Controller
 
             foreach($materiasPlaneadasConsulta as $materiaPlaneada):
                 $codMateria = $materiaPlaneada->codMateria;
-                $materiasPlaneadas = array_push($codMateria);
+                array_push($materiasPlaneadas,$codMateria);
             endforeach;
            // $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             //$materiasPlaneadas =$materiasPlaneadas;

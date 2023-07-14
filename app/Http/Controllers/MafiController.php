@@ -221,14 +221,15 @@ class MafiController extends Controller
                 echo "Materias planeadas: " . $materiasPlaneadasConsulta . "<br />";
             endif;
 
-            $materiasPlaneadas = [];
+            $materiasPlaneadas = '';
 
             foreach($materiasPlaneadasConsulta as $materiaPlaneada):
                 $codMateria = $materiaPlaneada->codMateria;
-                array_push($materiasPlaneadas,$codMateria);
+                $materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
             endforeach;
-           // $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
-            //$materiasPlaneadas =$materiasPlaneadas;
+            $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
+            $materiasPlaneadas =$materiasPlaneadas;
+            //dd($materiasPlaneadas);
 
             $materiasPorver = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
@@ -236,7 +237,7 @@ class MafiController extends Controller
                                     ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
                                     ->whereNotIn('materiasPorVer.codMateria',$materiasPlaneadas)
                                     ->orderBy('materiasPorVer.orden','ASC')
-                                    ->dd();
+                                    ->get();
             dd($codigoBanner,$materiasPorver);
         endforeach;
         die();

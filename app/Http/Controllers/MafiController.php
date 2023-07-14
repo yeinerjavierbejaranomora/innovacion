@@ -252,6 +252,16 @@ class MafiController extends Controller
             $creditosPlaneados =  $creditosPlaneadosConsulta->CreditosPlaneados == '' ? 0 : $creditosPlaneadosConsulta->CreditosPlaneados;
             $materiasPorVer = '';
             $numeroMateriasPorVer = $materiasPorverConsulta->count();
+            if($numeroMateriasPorVer == 0):
+                DB::table('estudiantes')->where([['homologante','=',$codigoBanner],['id','=',$idEstudiante]])->update(['programado_ciclo2'=>'OK']);
+                $insertAlerta = AlertasTempranas::create([
+                    'idbanner' => $codigoBanner,
+                    'tipo_estudiante' => $estudiante->tipoestudiante,
+                    'desccripcion' => 'El estudiante con idBanner' . $codigoBanner . ' no tiene materias por ver',
+                ]);
+                echo "Sin  Materias : " . $codigoBanner . "<br />";
+            else:
+            endif;
             dd($codigoBanner,$numeroMateriasPorVer);
         endforeach;
         die();

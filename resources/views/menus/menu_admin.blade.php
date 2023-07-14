@@ -75,7 +75,7 @@
 
                 <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
                 <a class="collapse-item" href="{{ route('facultad.programas') }}">Programas</a>
-                <a class="collapse-item" href="{{ route('planeacion.view') }}">Programación</a>
+                <a class="collapse-item" href="{{ route('planeacion.view') }}">Planeación</a>
                 <a class="collapse-item" href="{{ route('facultad.especializacion') }}">Especialización</a>
                 <a class="collapse-item" href="{{ route('facultad.maestria') }}">Maestría</a>
                 <a class="collapse-item" href="{{ route('facultad.continua') }}">Educación continua</a>

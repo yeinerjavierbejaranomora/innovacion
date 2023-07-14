@@ -230,7 +230,7 @@ class MafiController extends Controller
             endforeach;
             //$materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             //$materiasPlaneadas =$materiasPlaneadas;
-            //dd($materiasPlaneadas);
+            dd($materiasPlaneadas);
 
             $materiasPorverConsulta = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
@@ -263,6 +263,10 @@ class MafiController extends Controller
             else:
                 echo "con  Materias : " . $codigoBanner . "<br />";
                 foreach($materiasPorverConsulta as $materia):
+                    $codBanner = $materia->codBanner;
+                    $codMateria = $materia->codMateria;
+                    $creditoMateria = $materia->creditos;
+                    $ciclo = $materia->ciclo;
                     dd($materia);
                 endforeach;
             endif;

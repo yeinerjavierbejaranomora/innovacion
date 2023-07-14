@@ -68,12 +68,12 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-graduation-cap"></i>
-            <span>Gestión facultades</span>
+            <span>Configuración</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="{{ route('admin.facultades') }}">Configuración</a>
+                <a class="collapse-item" href="{{ route('admin.facultades') }}">Facultades</a>
                 <a class="collapse-item" href="{{ route('facultad.programas') }}">Programas</a>
                 <a class="collapse-item" href="{{ route('planeacion.view') }}">Planeación</a>
                 <a class="collapse-item" href="{{ route('facultad.especializacion') }}">Especialización</a>

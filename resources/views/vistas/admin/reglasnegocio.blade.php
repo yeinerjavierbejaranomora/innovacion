@@ -172,8 +172,16 @@
             var table = $('#example').DataTable({
                 "data": data.data,
                 "columns": [{
-                        data: 'programa',
+                        data: 'reglasNegocio.programa',
                         title: 'Codigo de programa'
+                    },
+                    {
+                        data:'programas.programa',
+                        title: 'Nombre del programa'
+                    },
+                    {
+                        data:'facultad',
+                        title:'Facultad',
                     },
                     {
                         data: 'creditos',
@@ -182,6 +190,10 @@
                     {
                         data: 'materiasPermitidas',
                         title: 'Materias permitidas'
+                    },
+                    {
+                        data: 'tabla',
+                        title: 'Nivel de formación'
                     },
                     {
                         data: 'tipoEstudiante',

@@ -186,17 +186,27 @@ class facultadController extends Controller
     }
 
     /** 
-     * Función para obtener todas las reglas de negocio
-     * Esta función hace una consulta a la base de datos para traer los datos de las reglas de negocio
-     *  y lo convierte a formato json para mostrarlo en la vista
-     * @return json(array())
-     */
+     * Función para obtener los datos de una facultad según su id y retornar a la vista de
+     * administración de facultades
+     * @param Request $request id de la facultad
+     * @return view(vista.admin) $Vista de administración de facultades
+     * $[request->id] id de facultad 
+     * $[nombre[0]->nombre] nombre de la facultad
+     * */
     public function facultad(Request $request)
     {
         $nombre = DB::table('facultad')->select('nombre')->where('id', '=', decrypt($request->id))->get();
         return view('vistas.admin.facultad', ['id' => $request->id], ['nombre' => $nombre[0]->nombre]);
     }
 
+    /** 
+     * Función para obtener el nombre de un programa a partir de su código y retornar a la vista de malla curricular
+     * de cada programa
+     * @param codigo $codigo del programa
+     * @return view(vista.malla) $Vista de administración de malla curricular 
+     * $[request->id] id de facultad 
+     * $[nombre[0]->nombre] nombre de la facultad
+     * */
     public function malla($codigo)
     {
         $nombre = DB::table('programas')->select('programa')->where('codprograma', '=', $codigo)->get();

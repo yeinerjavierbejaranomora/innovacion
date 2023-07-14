@@ -246,7 +246,7 @@ class MafiController extends Controller
                                     ->where('planeacion.codBanner', '=', $codigoBanner)
                                     ->where('mallaCurricular.codigoCurso','=','planeacion.codMateria')
                                     ->groupBy('planeacion.codBanner')
-                                    ->first();
+                                    ->dd();
             dd($codigoBanner,$creditosPlaneados);
         endforeach;
         die();

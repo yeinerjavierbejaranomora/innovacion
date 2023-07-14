@@ -241,11 +241,11 @@ class MafiController extends Controller
                                     ->get();
 
             $creditosPlaneados = DB::table('mallaCurricular')
-                                        ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
-                                        ->join('mallaCurricular','mallaCurricular.codigoCurso','=','planeacion.codMateria')
-                                        ->where([['planeacion.codBanner','=',$codigoBanner],['mallaCurricular.codigoCurso','=','planeacion.codMateria']])
-                                        ->groupBy('planeacion.codBanner')
-                                        ->first();
+                                    ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
+                                    ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')
+                                    ->where('planeacion.codBanner', '=', $codigoBanner)
+                                    ->groupBy('planeacion.codBanner')
+                                    ->first();
             dd($codigoBanner,$creditosPlaneados);
         endforeach;
         die();

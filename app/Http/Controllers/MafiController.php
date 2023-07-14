@@ -221,14 +221,15 @@ class MafiController extends Controller
                 echo "Materias planeadas: " . $materiasPlaneadasConsulta . "<br />";
             endif;
 
-            $materiasPlaneadas = '';
+            $materiasPlaneadas = [];
 
             foreach($materiasPlaneadasConsulta as $materiaPlaneada):
                 $codMateria = $materiaPlaneada->codMateria;
-                $materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
+                array_push($materiasPlaneadas,$codMateria);
+                //$materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
             endforeach;
-            $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
-            $materiasPlaneadas =$materiasPlaneadas;
+            //$materiasPlaneadas = substr($materiasPlaneadas,0,-1);
+            //$materiasPlaneadas =$materiasPlaneadas;
             //dd($materiasPlaneadas);
 
             $materiasPorver = DB::table('materiasPorVer')

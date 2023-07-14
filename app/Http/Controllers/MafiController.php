@@ -230,7 +230,7 @@ class MafiController extends Controller
             endforeach;
             //$materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             //$materiasPlaneadas =$materiasPlaneadas;
-            //dd($materiasPlaneadas);
+            dd($materiasPlaneadas);
 
             $materiasPorverConsulta = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
@@ -252,6 +252,24 @@ class MafiController extends Controller
             $creditosPlaneados =  $creditosPlaneadosConsulta->CreditosPlaneados == '' ? 0 : $creditosPlaneadosConsulta->CreditosPlaneados;
             $materiasPorVer = '';
             $numeroMateriasPorVer = $materiasPorverConsulta->count();
+            if($numeroMateriasPorVer == 0):
+                DB::table('estudiantes')->where([['homologante','=',$codigoBanner],['id','=',$idEstudiante]])->update(['programado_ciclo2'=>'OK']);
+                $insertAlerta = AlertasTempranas::create([
+                    'idbanner' => $codigoBanner,
+                    'tipo_estudiante' => $estudiante->tipoestudiante,
+                    'desccripcion' => 'El estudiante con idBanner' . $codigoBanner . ' no tiene materias por ver',
+                ]);
+                echo "Sin  Materias : " . $codigoBanner . "<br />";
+            else:
+                echo "con  Materias : " . $codigoBanner . "<br />";
+                foreach($materiasPorverConsulta as $materia):
+                    $codBanner = $materia->codBanner;
+                    $codMateria = $materia->codMateria;
+                    $creditoMateria = $materia->creditos;
+                    $ciclo = $materia->ciclo;
+                    dd($materia);
+                endforeach;
+            endif;
             dd($codigoBanner,$numeroMateriasPorVer);
         endforeach;
         die();

@@ -170,7 +170,7 @@ class facultadController extends Controller
         DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad');
         $reglas = DB::table('reglasNegocio')->join('programas', 'programas.codprograma', '=', 'reglasNegocio.programa')
         ->join('facultad','facultad.id','=','programas.idFacultad')
-        ->select('reglasNegocio.programa','reglasNegocio.creditos','reglasNegocio.materiasPermitidas',
+        ->select('programas.codprograma','reglasNegocio.creditos','reglasNegocio.materiasPermitidas',
         'reglasNegocio.tipoEstudiante','reglasNegocio.ciclo','reglasNegocio.activo', 'programas.programa',
         'programas.tabla','facultad.nombre')
         ->get();

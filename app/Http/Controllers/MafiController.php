@@ -248,7 +248,7 @@ class MafiController extends Controller
                                     ->where([['mallaCurricular.codprograma','=',$programa],['planeacion.codprograma','=',$programa]])
                                     ->groupBy('planeacion.codBanner')
                                     ->first();
-            dd($codigoBanner,$creditosPlaneados);
+            dd($codigoBanner,$creditosPlaneados->CreditosPlaneados);
         endforeach;
         die();
         /**Programar materia de segundo ciclo */

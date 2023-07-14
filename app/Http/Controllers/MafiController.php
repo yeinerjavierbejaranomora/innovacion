@@ -230,12 +230,12 @@ class MafiController extends Controller
             $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             $materiasPlaneadas =[$materiasPlaneadas];
             dd($materiasPlaneadas);
-            
+
             $materiasPorver = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                                     ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
                                     ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
-                                    ->whereNotIn('materiasPorVer.codMateria',$materiasPlaneadas)
+                                    ->whereNotIn('materiasPorVer.codMateria',['AFV22611','PSV21601','PSV21155','PSV21602'])
                                     ->orderBy('materiasPorVer.orden','ASC')
                                     ->get();
             dd($codigoBanner,$materiasPorver);

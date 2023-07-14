@@ -1,7 +1,10 @@
 <phpdoc>
-    <directories>
-        <directory>app</directory>
-        <directory>views</directory>
-    </directories>
+
+    <title>Documentación proyecto innovación</title>
+
+    <files>
+        <directory>app/Http/Controllers</directory>
+        <directory>resources/views</directory>
+    </files>
 
 </phpdoc>

@@ -234,8 +234,8 @@ class MafiController extends Controller
                                     ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
                                     ->whereNotIn('materiasPorVer.codMateria',[$materiasPlaneadas])
                                     ->orderBy('materiasPorVer.orden','ASC')
-                                    ->dd();
-            dd($materiasPlaneadas);
+                                    ->get();
+            dd($materiasPorver);
         endforeach;
         die();
         /**Programar materia de segundo ciclo */

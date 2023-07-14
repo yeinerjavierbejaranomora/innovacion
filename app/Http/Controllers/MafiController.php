@@ -233,6 +233,7 @@ class MafiController extends Controller
                                     ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
                                     ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
                                     ->whereIn([$materiasPlaneadas])
+                                    ->orderBy('materiasPorVer.orden','ASC')
                                     ->dd();
             dd($materiasPlaneadas);
         endforeach;

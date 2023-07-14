@@ -240,6 +240,7 @@ class MafiController extends Controller
                                     ->orderBy('materiasPorVer.orden','ASC')
                                     ->get();
 
+                                    
             $creditosPlaneados = DB::table('mallaCurricular')
                                     ->select('planeacion.codBanner', DB::raw('SUM(mallaCurricular.creditos) AS CreditosPlaneados'))
                                     ->join('planeacion', 'planeacion.codMateria', '=', 'mallaCurricular.codigoCurso')

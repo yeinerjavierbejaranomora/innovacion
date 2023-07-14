@@ -180,7 +180,7 @@
                         title: 'Nombre del programa'
                     },
                     {
-                        data:'facultad',
+                        data:'nombre',
                         title:'Facultad',
                     },
                     {

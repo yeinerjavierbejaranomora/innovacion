@@ -174,6 +174,8 @@ class facultadController extends Controller
         'reglasNegocio.tipoEstudiante','reglasNegocio.ciclo','reglasNegocio.activo', 'programas.programa',
         'programas.tabla','facultad.nombre')
         ->get();
+        dd($reglas);
+        die();
         
         header("Content-Type: application/json");
         echo json_encode(array('data' => $reglas));

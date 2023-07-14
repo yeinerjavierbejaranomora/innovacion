@@ -261,6 +261,7 @@ class MafiController extends Controller
                 ]);
                 echo "Sin  Materias : " . $codigoBanner . "<br />";
             else:
+                echo "con  Materias : " . $codigoBanner . "<br />";
             endif;
             dd($codigoBanner,$numeroMateriasPorVer);
         endforeach;

@@ -232,7 +232,7 @@ class MafiController extends Controller
             //$materiasPlaneadas =$materiasPlaneadas;
             //dd($materiasPlaneadas);
 
-            $materiasPorver = DB::table('materiasPorVer')
+            $materiasPorverConsulta = DB::table('materiasPorVer')
                                     ->select('materiasPorVer.codBanner','materiasPorVer.codMateria','materiasPorVer.orden','mallaCurricular.creditos','mallaCurricular.ciclo')
                                     ->join('mallaCurricular','mallaCurricular.codigoCurso','=','materiasPorVer.codMateria')
                                     ->where([['materiasPorVer.codBanner','=',$codigoBanner],['materiasPorVer.codprograma','=',$programa],['mallaCurricular.codprograma','=',$programa]])
@@ -250,7 +250,9 @@ class MafiController extends Controller
                                     ->first();
 
             $creditosPlaneados =  $creditosPlaneadosConsulta->CreditosPlaneados == '' ? 0 : $creditosPlaneadosConsulta->CreditosPlaneados;
-            dd($codigoBanner,$creditosPlaneados);
+            $materiasPorVer = '';
+            $numeroMateriasPorVer = $materiasPorverConsulta->count();
+            dd($codigoBanner,$numeroMateriasPorVer);
         endforeach;
         die();
         /**Programar materia de segundo ciclo */

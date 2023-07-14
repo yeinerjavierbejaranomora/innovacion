@@ -227,6 +227,7 @@ class MafiController extends Controller
                 $codMateria = $materiaPlaneada->codMateria;
                 $materiasPlaneadas = $materiasPlaneadas."'".$codMateria."',";
             endforeach;
+            $materiasPlaneadas = substr($materiasPlaneadas,0,-1);
             dd($materiasPlaneadas);
         endforeach;
         die();

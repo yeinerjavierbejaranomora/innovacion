@@ -71,7 +71,6 @@
 
         </nav>
         <!-- End of Topbar -->
-        <?php var_dump($idFacultad); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 

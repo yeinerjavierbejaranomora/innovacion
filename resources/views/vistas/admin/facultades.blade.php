@@ -217,8 +217,7 @@
                     console.log(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
-                    });
-                    
+                    });           
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });

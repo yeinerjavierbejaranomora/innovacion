@@ -196,10 +196,12 @@
         $(document).ready(function() {
 
             function grafico() {
+                console.log ('entra');
                 var idFacultad = '<?php echo $idFacultad; ?>';
                 var url = '/home/facultades/datos/' + idFacultad;
-
+                console.log(url);
                 $.getJSON(url, function(data) {
+                    console.log ('entrax2');
                     var ctx = $('#myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',

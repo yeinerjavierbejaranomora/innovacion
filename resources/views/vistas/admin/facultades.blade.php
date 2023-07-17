@@ -71,7 +71,7 @@
 
         </nav>
         <!-- End of Topbar -->
-        <?php var_dump($idFacultad);?>
+        <?php var_dump($idFacultad); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -117,6 +117,11 @@
                 @endif
                 @endforeach
                 @endforeach
+            </div>
+
+
+            <div>
+                <canvas id="myChart"></canvas>
             </div>
 
             <!--Nav Datos de la Facultad-->
@@ -190,6 +195,24 @@
          * Además de cargar la dataTable dependiendo el nav
          */
         $(document).ready(function() {
+
+            function grafico() {
+                var idFacultad = '<?php echo $idFacultad; ?>';
+                var url = '/home/facultades/datos/' + idFacultad;
+
+                $.getJSON(url, function(data) {
+                    var ctx = $('#myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: datos,
+                        options: {
+                            // Opciones de configuración adicionales, si las necesitas
+                        }
+                    });
+                });
+            }
+
+
             var id = null;
             $(document).on("click", ".mostrar", function() {
                 $(".programas").removeClass("activo");
@@ -224,14 +247,14 @@
             })
 
             $("#nav a[href='#malla']").click(function() {
-               
+
                 if ($.fn.DataTable.isDataTable("#est table")) {
                     $("#est table").DataTable().destroy();
-                    $("#example").empty();    
+                    $("#example").empty();
                 }
                 if ($.fn.DataTable.isDataTable("#plan table")) {
                     $("#plan table").DataTable().destroy();
-                    $("#planeacion").empty();     
+                    $("#planeacion").empty();
                 }
 
                 $("#est").hide();
@@ -249,7 +272,7 @@
             });
 
             $("#nav a[href='#estudiantes']").click(function() {
-                
+
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                     $("#malla").empty();
@@ -272,7 +295,7 @@
             });
 
             $("#nav a[href='#planeacion']").click(function() {
-                
+
                 if ($.fn.DataTable.isDataTable("#mall table")) {
                     $("#mall table").DataTable().destroy();
                     $("#malla").empty();
@@ -294,7 +317,7 @@
                 }
                 return false;
             });
-            
+
         });
 
         function estudiantes(id) {

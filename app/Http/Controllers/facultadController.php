@@ -792,7 +792,7 @@ class facultadController extends Controller
     public function getEstudiantesSello($id)
     {
         $sello = DB::table('datosMafiReplica')
-            ->join('programas', 'programas.programa', '=', 'datosMafiReplica.codprograma')
+            ->join('programas', 'programas.codprograma', '=', 'datosMafiReplica.programa')
             ->where('programas.idFacultad', $id)
             ->where('programas.activo', 1)
             ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))

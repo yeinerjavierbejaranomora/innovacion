@@ -789,6 +789,11 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
 
+    /**
+     * Método que genera un JSON con todos los estudiantes activos por facultad
+     * @param id recibe el id de la facultad
+     * @return JSON
+     */
     public function getEstudiantesSello($id)
     {
         $sello = DB::table('datosMafiReplica')
@@ -803,6 +808,11 @@ class facultadController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
+    /**
+     * Método que genera un JSON con todos los estudiantes que tienen retención por cada facultad
+     * @param id recibe el id de la facultad
+     * @return JSON
+     */
     public function getEstudiantesRetencion($id)
     {
         DB::table('datosMafiReplica')

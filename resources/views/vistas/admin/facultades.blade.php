@@ -300,6 +300,14 @@
                         },
                         options: {
                             maintainAspectRatio: false,
+                            plotOptions: {
+                                series: {
+                                    animation: {
+                                        duration: 1000, // Duración de la animación en milisegundos
+                                        easing: 'easeOutBounce' // Tipo de interpolación para la animación (puedes usar otras como 'linear', 'easeInOut', etc.)
+                                    }
+                                }
+                            },
                             plugins: {
                                 legend: {
                                     labels: {

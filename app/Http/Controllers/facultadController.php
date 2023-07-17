@@ -799,7 +799,7 @@ class facultadController extends Controller
             ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))
             ->groupBy('datosMafiReplica.sello')
             ->get();
-        dd($sello);
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }

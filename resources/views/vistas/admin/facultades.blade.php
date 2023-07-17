@@ -242,7 +242,7 @@
                                     labels: {
                                         // This more specific font property overrides the global property
                                         font: {
-                                            size: 20
+                                            size: 18
                                         }
                                     }
                                 }

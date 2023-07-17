@@ -200,7 +200,7 @@
                 var idFacultad = '<?php echo $idFacultad; ?>';
                 var url = '/home/facultades/datos/' + idFacultad;        
                 $.getJSON(url, function(data) {
-                    console.log ('entrax2');
+                    console.log (data);
                     var ctx = $('#myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',

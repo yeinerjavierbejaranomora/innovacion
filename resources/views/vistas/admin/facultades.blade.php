@@ -47,7 +47,7 @@
 </style>
 
 
-<?php dd($_GET);?>
+<?php  var_dump($_GET);?>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">

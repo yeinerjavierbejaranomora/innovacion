@@ -231,9 +231,9 @@
                             }]
                         },
                         options: {
-                            responsive: true, // Hacer que el gráfico sea responsive  
-                            widht: 300,
-                            height: 300,
+                            
+                            widht: 500,
+                            height: 500,
                             legend: {
                                 labels: {
                                     fontSize: 20 // Establecer el tamaño de la fuente para los labels

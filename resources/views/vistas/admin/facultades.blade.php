@@ -233,6 +233,7 @@
 
             graficoActivos();
             graficoRetencion();
+            graficoPrimerIngreso();
 
             function graficoActivos() {
                 var url = '/home/facultades/activos/' + idFacultad;

@@ -815,7 +815,7 @@ class facultadController extends Controller
      */
     public function getEstudiantesPrimerIngreso($id)
     {
-        $sello = DB::table('datosMafiReplica')
+        $primerIngreso = DB::table('datosMafiReplica')
             ->join('programas', 'programas.codprograma', '=', 'datosMafiReplica.programa')
             ->where('programas.idFacultad', $id)
             ->where('programas.activo', 1)
@@ -825,11 +825,8 @@ class facultadController extends Controller
             ->get();
 
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
+        echo json_encode(array('data' => $primerIngreso));
     }
-
-
-
 
 
     /**

@@ -119,8 +119,8 @@
             </div>
 
             <div class="row justify-content-start">
-                <div class="card shadow mb-4">
-                    <div class="col-4 text-center">
+                <div class="col-6 text-center">
+                    <div class="card shadow mb-6">
                         <div class="card-header">
                             <h5>Sello financiero</h5>
                         </div>

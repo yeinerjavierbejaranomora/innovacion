@@ -811,7 +811,7 @@ class facultadController extends Controller
             ->where('programas.activo', 1)
             ->where('datosMafiReplica.sello', 'TIENE RETENCION')
             ->select('datosMafiReplica.autorizado_asistir', DB::raw('COUNT(datosMafiReplica.autorizado_asistir) AS TOTAL'))
-            ->groupBy('datosMafiReplica.sello')
+            ->groupBy('datosMafiReplica.autorizado_asistir')
             ->get();
     }
 }

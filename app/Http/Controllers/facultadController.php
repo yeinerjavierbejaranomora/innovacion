@@ -802,4 +802,16 @@ class facultadController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
+
+    public function getEstudiantesRetencion($id)
+    {
+        DB::table('datosMafiReplica')
+            ->join('programas', 'programas.codprograma', '=', 'datosMafiReplica.programa')
+            ->where('programas.idFacultad', $id)
+            ->where('programas.activo', 1)
+            ->where('datosMafiReplica.sello', 'TIENE RETENCION')
+            ->select('datosMafiReplica.autorizado_asistir', DB::raw('COUNT(datosMafiReplica.autorizado_asistir) AS TOTAL'))
+            ->groupBy('datosMafiReplica.sello')
+            ->get();
+    }
 }

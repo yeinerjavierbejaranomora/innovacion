@@ -220,6 +220,8 @@ Route::controller(facultadController::class)->group(function () {
     /** Ruta para visualizar la planeación de cada programa */
     Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
 
-    /** Ruta para traer datos de gráfico */
-    Route::get('/home/facultades/datos/{id}', 'getEstudiantesSello')->middleware('auth')->name('planeacion.grafico');
+    /** Ruta para traer datos de gráfico activos */
+    Route::get('/home/facultades/activos/{id}', 'getEstudiantesSello')->middleware('auth')->name('facultad.activos');
+    /** Ruta para traer datos de gráfico retencion*/
+    Route::get('/home/facultades/retencion/{id}', 'getEstudiantesRetencion')->middleware('auth')->name('facultad.retencion');
 });

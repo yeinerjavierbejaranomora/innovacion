@@ -45,7 +45,7 @@
         color: #4a4a48 !important;
     }
 
-    #myChart {
+    #activos #retencion{
         width: 350px;
         height: 350px;
     }
@@ -130,11 +130,23 @@
                             <h4><strong>Sello financiero</strong></h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart"></canvas>
+                            <canvas id="activos"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4><strong>Activos con Retención</strong></h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="retencion"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
+
+    
 
             <!--Nav Datos de la Facultad-->
             <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
@@ -207,24 +219,62 @@
          * Además de cargar la dataTable dependiendo el nav
          */
         $(document).ready(function() {
+            var idFacultad = '<?php echo $idFacultad; ?>';
 
-            grafico();
+            graficoActivos();
+            graficoRetencion();
 
-            function grafico() {
-                var idFacultad = '<?php echo $idFacultad; ?>';
-                var url = '/home/facultades/datos/' + idFacultad;
+            function graficoActivos() {
+                var url = '/home/facultades/activos/' + idFacultad;
                 $.getJSON(url, function(data) {
-                    console.log(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
                     });
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
-                    console.log(valores);
-                    console.log(labels);
                     // Crear el gráfico circular
-                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var ctx = document.getElementById('activos').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ' ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        // This more specific font property overrides the global property
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    });
+                });
+            }
+
+            function graficoRetencion() {
+                var url = '/home/facultades/retencion/' + idFacultad;
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('retencion').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
                         data: {

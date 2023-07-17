@@ -12,14 +12,12 @@
 
     <title>@yield('title')</title>
 
-	<!-- ponemos los estilos y complementos necesarios para las paginas -->
+    <!-- ponemos los estilos y complementos necesarios para las paginas -->
     <link rel="stylesheet" href="{{asset('public/css/app.css')}}">
 
-	<!-- Custom fonts for this template-->
-	<link href="{{asset('public/general/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('public/general/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{asset('public/general/css/sb-admin-2.min.css')}}" rel="stylesheet">
@@ -35,8 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- Charts.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.js" integrity="sha512-L6yov5P1r9QnZX2ZRiq+XBLsm1GQ38zfSDJ6gy3pKmPCqkWvK2nz8Ojlju9q36+zOsMmMB+hYgGrJtJWo4Gy/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -47,5 +44,4 @@
 
 
 
-	<!--@yield('content')-->
-
+        <!--@yield('content')-->

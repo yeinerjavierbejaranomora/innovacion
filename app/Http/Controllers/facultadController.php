@@ -169,11 +169,19 @@ class facultadController extends Controller
     {
         DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad');
         $reglas = DB::table('reglasNegocio')->join('programas', 'programas.codprograma', '=', 'reglasNegocio.programa')
-        ->join('facultad','facultad.id','=','programas.idFacultad')
-        ->select('programas.codprograma','reglasNegocio.creditos','reglasNegocio.materiasPermitidas',
-        'reglasNegocio.tipoEstudiante','reglasNegocio.ciclo','reglasNegocio.activo', 'programas.programa',
-        'programas.tabla','facultad.nombre')
-        ->get();       
+            ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->select(
+                'programas.codprograma',
+                'reglasNegocio.creditos',
+                'reglasNegocio.materiasPermitidas',
+                'reglasNegocio.tipoEstudiante',
+                'reglasNegocio.ciclo',
+                'reglasNegocio.activo',
+                'programas.programa',
+                'programas.tabla',
+                'facultad.nombre'
+            )
+            ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $reglas));
     }
@@ -422,7 +430,7 @@ class facultadController extends Controller
             'programas' => $programas,
         );
 
-        return view('vistas.admin.facultades',['estudiantes' => $cuenta,'idFacultad'=>$idFacultad])->with('datos', $datos);
+        return view('vistas.admin.facultades', ['estudiantes' => $cuenta, 'idFacultad' => $idFacultad])->with('datos', $datos);
     }
 
     /**Función para visualizar los estudiantes de cada facultad */
@@ -783,16 +791,16 @@ class facultadController extends Controller
 
     public function getEstudiantesSello($id)
     {
-       $sello = DB::table('datosMafiReplica')->join('programas','programas.programa','=','datosMafiReplica')
-       ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-       ->where('facultad.nombre','=',$id)
-       ->where('programas.activo','=','1')
-       ->select('datosMafiReplica.sello','DB::raw(COUNT(datosMafiReplica.sello) AS TOTAL)')
-       ->groupBy('datosMafiReplica.sello')
-       ->get();
+        $sello = DB::table('datosMafiReplica')
+            ->join('programas', 'programas.programa', '=', 'datosMafiReplica.programa')
+            ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->where('facultad.nombre', $id)
+            ->where('programas.activo', 1)
+            ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))
+            ->groupBy('datosMafiReplica.sello')
+            ->get();
         dd($sello);
-       header("Content-Type: application/json");
-       echo json_encode(array('data' => $sello));
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
     }
-
 }

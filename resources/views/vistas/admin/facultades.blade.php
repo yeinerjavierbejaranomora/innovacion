@@ -226,7 +226,7 @@
                         },
                         options: {
                             responsive: true, // Hacer que el gráfico sea responsive
-                            maintainAspectRatio: false, // No mantener la proporción del aspecto
+                            
                         }
                     });
                 });

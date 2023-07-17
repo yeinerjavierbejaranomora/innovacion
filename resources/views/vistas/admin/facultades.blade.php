@@ -247,7 +247,6 @@
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        plugins: [ChartDataLabels],
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {

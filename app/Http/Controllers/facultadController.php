@@ -90,7 +90,7 @@ class facultadController extends Controller
      * Función para obtener todos los programas de pregrado
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de pregrado en un arreglo y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_programas()
     {
@@ -105,7 +105,7 @@ class facultadController extends Controller
      * Función para obtener todos los programas de especialización
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_especializacion()
     {
@@ -120,7 +120,7 @@ class facultadController extends Controller
      * Función para obtener todos los programas de maestría
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de maestría en un arreglo y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_maestria()
     {
@@ -135,7 +135,7 @@ class facultadController extends Controller
      * Función para obtener todos los programas de maestría
      * Esta función hace una consulta a la base de datos para traer los datos de los programas
      * de maestría en un arreglo y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_continua()
     {
@@ -150,7 +150,7 @@ class facultadController extends Controller
      * Función para obtener todos los periodos de inscripción
      * Esta función hace una consulta a la base de datos para traer los datos de los periodos
      * en un arreglo y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_periodos()
     {
@@ -163,7 +163,7 @@ class facultadController extends Controller
      * Función para obtener todas las reglas de negocio
      * Esta función hace una consulta a la base de datos para traer los datos de las reglas de negocio
      *  y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_reglas()
     {
@@ -182,7 +182,7 @@ class facultadController extends Controller
      * Función para obtener los datos de la tabla planeación
      * Esta función hace una consulta a la base de datos para traer los datos de la tabla de planeación
      * y lo convierte a formato json para mostrarlo en la vista
-     * @return json()
+     * @return json(array())
      */
     public function get_planeacion()
     {

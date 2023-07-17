@@ -263,6 +263,7 @@
                             plugins: {
                                 labels: {
                                     render: 'percenteaje',
+                                    size: '14',
                                     fontStyle: 'bolder',
                                     position: 'outside',
                                     textMargin: 6
@@ -307,6 +308,13 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
                                 legend: {
                                     labels: {
                                         // This more specific font property overrides the global property
@@ -347,6 +355,13 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
                                 legend: {
                                     labels: {
                                         // This more specific font property overrides the global property

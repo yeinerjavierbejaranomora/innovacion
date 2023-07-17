@@ -783,11 +783,11 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
 
-    public function getEstudiantesSello($id)
+    public function getEstudiantesSello($nombreFacultad)
     {
        $sello = DB::table('datosMafiReplica')->join('programas','programas.programa','=','datosMafiReplica')
        ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-       ->where('facultad.id','=',$id)
+       ->where('facultad.nombre','=',$nombreFacultad)
        ->where('programas.activo','=','1')
        ->select('datosMafiReplica.sello')->get();
 

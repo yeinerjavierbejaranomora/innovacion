@@ -268,7 +268,7 @@
                                     },
                                     color: "white",
                                     font: {
-                                        size: 16,
+                                        size: 16
                                     },
                                 },
                                 legend: {

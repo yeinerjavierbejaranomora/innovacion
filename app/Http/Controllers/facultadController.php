@@ -793,14 +793,13 @@ class facultadController extends Controller
     {
         $sello = DB::table('datosMafiReplica')
             ->join('programas', 'programas.programa', '=', 'datosMafiReplica.codprograma')
-            // ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            // ->where('facultad.id', $id)
+            ->where('programas.idFacultad', $id)
             ->where('programas.activo', 1)
             ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))
             ->groupBy('datosMafiReplica.sello')
             ->get();
             dd($sello);
-            
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }

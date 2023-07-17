@@ -197,10 +197,8 @@
 
             grafico();
             function grafico() {
-                console.log ('entra');
                 var idFacultad = '<?php echo $idFacultad; ?>';
-                var url = '/home/facultades/datos/' + idFacultad;
-                console.log(url);
+                var url = '/home/facultades/datos/' + idFacultad;        
                 $.getJSON(url, function(data) {
                     console.log ('entrax2');
                     var ctx = $('#myChart').getContext('2d');

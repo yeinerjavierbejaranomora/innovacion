@@ -205,7 +205,7 @@
                     var ctx = canvas.getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
-                        data: datos,
+                        data: data,
                         options: {
                             // Opciones de configuración adicionales, si las necesitas
                         }

@@ -202,16 +202,15 @@
                 var url = '/home/facultades/datos/' + idFacultad;
                 $.getJSON(url, function(data) {
                     console.log(data);
-                    // Obtener las claves del objeto 'data'
-                    var keys = Object.keys(data);
+                    var data = response.data;
 
                     // Obtener los valores de 'sello' y 'TOTAL' del objeto
-                    var labels = keys.map(function(key) {
-                        return data[key].sello;
+                    var labels = data.map(function(elemento) {
+                        return elemento.sello;
                     });
 
-                    var valores = keys.map(function(key) {
-                        return data[key].TOTAL;
+                    var valores = data.map(function(elemento) {
+                        return elemento.TOTAL;
                     });
 
                     // Crear el gráfico circular

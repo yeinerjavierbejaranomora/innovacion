@@ -119,7 +119,7 @@
             </div>
 
 
-            <div class="row justify-content-start">
+            <div class="row">
                 
                     <h5>Sello financiero</h5>
                     <canvas id="myChart"></canvas>

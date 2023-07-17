@@ -268,9 +268,8 @@
                                     },
                                     color: "white",
                                     font: {
-                                        family: '"Times New Roman", Times, serif',
                                         size: 16,
-                                        weight: "bold",
+                                        weight: bold,
                                     },
                                 },
                                 legend: {

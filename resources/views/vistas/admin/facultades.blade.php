@@ -195,6 +195,7 @@
          */
         $(document).ready(function() {
 
+            grafico();
             function grafico() {
                 console.log ('entra');
                 var idFacultad = '<?php echo $idFacultad; ?>';

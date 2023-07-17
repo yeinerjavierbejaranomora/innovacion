@@ -262,13 +262,11 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 datalabels: {
-                                    /* anchor puede ser "start", "center" o "end" */
                                     anchor: "center",
-                                    /* Podemos modificar el texto a mostrar */
-                                    formatter: valores,
-                                    /* Color del texto */
+                                    formatter: function(value) {
+                                        return value.toString(); // Mostrar el valor numérico como string
+                                    },
                                     color: "white",
-                                    /* Formato de la fuente */
                                     font: {
                                         family: '"Times New Roman", Times, serif',
                                         size: "14",

@@ -269,7 +269,6 @@
                                     color: "white",
                                     font: {
                                         size: 16,
-                                        weight: bold,
                                     },
                                 },
                                 legend: {

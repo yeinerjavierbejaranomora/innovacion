@@ -44,6 +44,11 @@
     .inactivo:hover i {
         color: #4a4a48 !important;
     }
+
+    #myChart{
+        width: 350px;
+        height: 350px;
+    }
 </style>
 
 
@@ -231,8 +236,7 @@
                             }]
                         },
                         options: {
-                            widht: 500,
-                            height: 500,
+                            maintainAspectRatio: false,
                             legend: {
                                 labels: {
                                     font: {
@@ -241,20 +245,6 @@
                                 }
                             }
                         },
-                        plugins: {
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        var label = context.label || '';
-                                        var value = context.formattedValue || '';
-                                        var percentage = context.raw / context.dataset.data.reduce(function(a, b) {
-                                            return a + b
-                                        }) * 100;
-                                        return label + ': ' + value + ' (' + percentage.toFixed(2) + '%)';
-                                    }
-                                }
-                            }
-                        }
                     });
                 });
             }

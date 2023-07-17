@@ -45,7 +45,7 @@
         color: #4a4a48 !important;
     }
 
-    #activos #retencion  #primerIngreso{
+    #activos #retencion #primerIngreso {
         width: 400px;
         height: 400px;
     }
@@ -156,7 +156,7 @@
                 </div>
             </div>
 
-    
+
 
             <!--Nav Datos de la Facultad-->
             <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
@@ -261,7 +261,15 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
+                                callbacks: {
+                                    label: function(context) {
+                                        var label = context.label || '';
+                                        var value = context.formattedValue || '';
+                                        return value;
+                                    }
+                                },
                                 legend: {
+
                                     labels: {
                                         // This more specific font property overrides the global property
                                         font: {

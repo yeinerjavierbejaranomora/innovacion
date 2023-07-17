@@ -45,7 +45,7 @@
         color: #4a4a48 !important;
     }
 
-    #myChart{
+    #myChart {
         width: 350px;
         height: 350px;
     }
@@ -237,14 +237,17 @@
                         },
                         options: {
                             maintainAspectRatio: false,
-                            legend: {
-                                labels: {
-                                    font: {
-                                        size: 20 // Ajusta el tamaño de la fuente para los labels
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        // This more specific font property overrides the global property
+                                        font: {
+                                            size: 20
+                                        }
                                     }
                                 }
-                            }
-                        },
+                            },
+                        }
                     });
                 });
             }

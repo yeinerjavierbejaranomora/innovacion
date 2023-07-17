@@ -201,6 +201,7 @@
                 var idFacultad = '<?php echo $idFacultad; ?>';
                 var url = '/home/facultades/datos/' + idFacultad;
                 $.getJSON(url, function(data) {
+                    console.log(data);
                     // Obtener las claves del objeto 'data'
                     var keys = Object.keys(data);
 

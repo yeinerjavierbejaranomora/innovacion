@@ -46,8 +46,8 @@
     }
 
     #activos #retencion{
-        width: 350px;
-        height: 350px;
+        width: 400px;
+        height: 400px;
     }
 </style>
 

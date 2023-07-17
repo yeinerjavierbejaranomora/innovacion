@@ -231,12 +231,14 @@
                             }]
                         },
                         options: {
-                            
+
                             widht: 500,
                             height: 500,
                             legend: {
                                 labels: {
-                                    fontSize: 20 // Establecer el tamaño de la fuente para los labels
+                                    font: {
+                                        size: 20 // Ajusta el tamaño de la fuente para los labels
+                                    }
                                 }
                             }
                         }

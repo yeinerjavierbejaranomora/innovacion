@@ -119,11 +119,9 @@
             </div>
 
 
-            <div class="row">
-                
+            <div class="row ">     
                     <h5>Sello financiero</h5>
                     <canvas id="myChart"></canvas>
-                
             </div>
 
             <!--Nav Datos de la Facultad-->

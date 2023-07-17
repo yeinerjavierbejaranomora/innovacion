@@ -261,16 +261,22 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
+                                labels: {
+                                    render: 'percenteaje',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
                                 legend: {
                                     labels: {
-                                        // This more specific font property overrides the global property
                                         font: {
                                             size: 14
                                         }
                                     }
                                 }
                             },
-                        }
+                        },
+                        plugin: [ChartDataLabels]
                     });
                 });
             }
@@ -300,14 +306,6 @@
                         },
                         options: {
                             maintainAspectRatio: false,
-                            plotOptions: {
-                                series: {
-                                    animation: {
-                                        duration: 1000, // Duración de la animación en milisegundos
-                                        easing: 'easeOutBounce' // Tipo de interpolación para la animación (puedes usar otras como 'linear', 'easeInOut', etc.)
-                                    }
-                                }
-                            },
                             plugins: {
                                 legend: {
                                     labels: {

@@ -422,7 +422,7 @@ class facultadController extends Controller
             'programas' => $programas,
         );
 
-        return view('vistas.admin.facultades', ['estudiantes' => $cuenta])->with('datos', $datos);
+        return view('vistas.admin.facultades',['estudiantes' => $cuenta,'nombre'=>$nombre])->with('datos', $datos);
     }
 
     /**Función para visualizar los estudiantes de cada facultad */
@@ -431,9 +431,7 @@ class facultadController extends Controller
         $consulta = DB::table('programas')->where('id', '=', $id)->get();
         $codigo = $consulta[0]->codprograma;
         $estudiantes = DB::table('estudiantes')->where('programa', '=', $codigo)->get();
-        /**mostrar los datos en formato JSON */
         header("Content-Type: application/json");
-        /**Se pasa a formato JSON el arreglo de users */
         echo json_encode(array('data' => $estudiantes));
     }
 
@@ -783,20 +781,18 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
 
-    public function getEstudiantesSello($nombreFacultad)
+    public function getEstudiantesSello($id)
     {
        $sello = DB::table('datosMafiReplica')->join('programas','programas.programa','=','datosMafiReplica')
        ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-       ->where('facultad.nombre','=',$nombreFacultad)
+       ->where('facultad.nombre','=',$id)
        ->where('programas.activo','=','1')
-       ->select('datosMafiReplica.sello')->get();
+       ->select('datosMafiReplica.sello')
+       ->groupby('datosMafiReplica.sello')
+       ->DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL');
 
+       header("Content-Type: application/json");
+       echo json_encode(array('data' => $sello));
     }
 
-    /** $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
-            ->where('programas.tabla', '=', 'pregrado')->get();
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
-        */
 }

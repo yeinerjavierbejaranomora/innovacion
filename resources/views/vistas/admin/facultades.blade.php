@@ -47,8 +47,6 @@
 </style>
 
 
-<?php  var_dump($_GET);?>
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -73,7 +71,7 @@
 
         </nav>
         <!-- End of Topbar -->
-
+        <?php var_dump($_GET['url']);?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 

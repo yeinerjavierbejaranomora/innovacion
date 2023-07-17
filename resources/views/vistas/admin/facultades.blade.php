@@ -196,23 +196,38 @@
         $(document).ready(function() {
 
             grafico();
+
             function grafico() {
                 var idFacultad = '<?php echo $idFacultad; ?>';
-                var url = '/home/facultades/datos/' + idFacultad;        
+                var url = '/home/facultades/datos/' + idFacultad;
                 $.getJSON(url, function(data) {
-                    console.log (data);
-                    var canvas = document.getElementById('myChart');
-                    var ctx = canvas.getContext('2d');
+                    // Obtener los valores de 'sello' y 'TOTAL' del objeto
+                    var labels = datos.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+
+                    var valores = datos.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
-                        data: data,
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)']
+                            }]
+                        },
                         options: {
                             // Opciones de configuración adicionales, si las necesitas
                         }
                     });
                 });
             }
-
             var id = null;
             $(document).on("click", ".mostrar", function() {
                 $(".programas").removeClass("activo");

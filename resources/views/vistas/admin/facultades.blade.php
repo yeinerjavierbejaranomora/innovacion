@@ -201,13 +201,16 @@
                 var idFacultad = '<?php echo $idFacultad; ?>';
                 var url = '/home/facultades/datos/' + idFacultad;
                 $.getJSON(url, function(data) {
+                    // Obtener las claves del objeto 'data'
+                    var keys = Object.keys(data);
+
                     // Obtener los valores de 'sello' y 'TOTAL' del objeto
-                    var labels = data.map(function(elemento) {
-                        return elemento.sello;
+                    var labels = keys.map(function(key) {
+                        return data[key].sello;
                     });
 
-                    var valores = data.map(function(elemento) {
-                        return elemento.TOTAL;
+                    var valores = keys.map(function(key) {
+                        return data[key].TOTAL;
                     });
 
                     // Crear el gráfico circular

@@ -324,7 +324,8 @@
                                     }
                                 }
                             },
-                        }
+                        },
+                        plugin: [ChartDataLabels]
                     });
                 });
             }
@@ -371,7 +372,8 @@
                                     }
                                 }
                             },
-                        }
+                        },
+                        plugin: [ChartDataLabels]
                     });
                 });
             }

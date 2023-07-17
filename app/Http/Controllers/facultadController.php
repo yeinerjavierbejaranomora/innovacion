@@ -808,6 +808,30 @@ class facultadController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
+     /**
+     * Método que genera un JSON con todos los estudiantes activos por facultad de primer ingreso
+     * @param id recibe el id de la facultad
+     * @return JSON
+     */
+    public function getEstudiantesPrimerIngreso($id)
+    {
+        $sello = DB::table('datosMafiReplica')
+            ->join('programas', 'programas.codprograma', '=', 'datosMafiReplica.programa')
+            ->where('programas.idFacultad', $id)
+            ->where('programas.activo', 1)
+            ->where('datosMafiReplica', 'PRIMER INGRESO')
+            ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))
+            ->groupBy('datosMafiReplica.sello')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
+    }
+
+
+
+
+
     /**
      * Método que genera un JSON con todos los estudiantes que tienen retención por cada facultad
      * @param id recibe el id de la facultad

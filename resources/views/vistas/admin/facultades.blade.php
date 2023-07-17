@@ -45,7 +45,7 @@
         color: #4a4a48 !important;
     }
 
-    #activos #retencion{
+    #activos #retencion  #primerIngreso{
         width: 400px;
         height: 400px;
     }
@@ -141,6 +141,16 @@
                         </div>
                         <div class="card-body">
                             <canvas id="retencion"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4><strong>Activos Primer Ingreso</strong></h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="primerIngreso"></canvas>
                         </div>
                     </div>
                 </div>
@@ -303,6 +313,47 @@
                     });
                 });
             }
+
+            function graficoPrimerIngreso() {
+                var url = '/home/facultades/primerIngreso/' + idFacultad;
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('primerIngreso').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ' ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        // This more specific font property overrides the global property
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    });
+                });
+            }
+
             var id = null;
             $(document).on("click", ".mostrar", function() {
                 $(".programas").removeClass("activo");

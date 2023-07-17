@@ -222,6 +222,8 @@ Route::controller(facultadController::class)->group(function () {
 
     /** Ruta para traer datos de gráfico activos */
     Route::get('/home/facultades/activos/{id}', 'getEstudiantesSello')->middleware('auth')->name('facultad.activos');
+    /** Ruta para traer datos de gráfico activos de primer ingreso*/
+    Route::get('/home/facultades/primerIngreso/{id}', 'getEstudiantesPrimerIngreso')->middleware('auth')->name('facultad.activos');
     /** Ruta para traer datos de gráfico retencion*/
     Route::get('/home/facultades/retencion/{id}', 'getEstudiantesRetencion')->middleware('auth')->name('facultad.retencion');
 });

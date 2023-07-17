@@ -202,11 +202,11 @@
                 var url = '/home/facultades/datos/' + idFacultad;
                 $.getJSON(url, function(data) {
                     // Obtener los valores de 'sello' y 'TOTAL' del objeto
-                    var labels = datos.data.map(function(elemento) {
+                    var labels = data.map(function(elemento) {
                         return elemento.sello;
                     });
 
-                    var valores = datos.data.map(function(elemento) {
+                    var valores = data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
 

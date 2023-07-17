@@ -119,10 +119,14 @@
             </div>
 
             <div class="row justify-content-start">
-                <div class="card-body">
+                <div class="card shadow mb-4">
                     <div class="col-4 text-center">
-                        <h5>Sello financiero</h5>
-                        <canvas id="myChart"></canvas>
+                        <div class="card-header">
+                            <h5>Sello financiero</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

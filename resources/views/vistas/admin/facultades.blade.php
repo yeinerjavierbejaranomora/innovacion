@@ -247,6 +247,7 @@
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     var myChart = new Chart(ctx, {
+                        plugins: [ChartDataLabels],
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
@@ -261,15 +262,21 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
-                                callbacks: {
-                                    label: function(context) {
-                                        var label = context.label || '';
-                                        var value = context.formattedValue || '';
-                                        return value;
-                                    }
+                                datalabels: {
+                                    /* anchor puede ser "start", "center" o "end" */
+                                    anchor: "center",
+                                    /* Podemos modificar el texto a mostrar */
+                                    formatter: valores,
+                                    /* Color del texto */
+                                    color: "white",
+                                    /* Formato de la fuente */
+                                    font: {
+                                        family: '"Times New Roman", Times, serif',
+                                        size: "14",
+                                        weight: "bold",
+                                    },
                                 },
                                 legend: {
-
                                     labels: {
                                         // This more specific font property overrides the global property
                                         font: {

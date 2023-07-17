@@ -250,7 +250,7 @@
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
-                                return label + ' ' + valores[index];
+                                return label + ': ' + valores[index];
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',
@@ -261,18 +261,6 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
-                                datalabels: {
-                                    anchor: "center",
-                                    formatter: valores,
-                                    /* Color del texto */
-                                    color: "white",
-                                    /* Formato de la fuente */
-                                    font: {
-                                        family: '"Times New Roman", Times, serif',
-                                        size: "14",
-                                        weight: "bold",
-                                    },
-                                },
                                 legend: {
                                     labels: {
                                         // This more specific font property overrides the global property
@@ -302,7 +290,7 @@
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
-                                return label + ' ' + valores[index];
+                                return label + ': ' + valores[index];
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',
@@ -342,7 +330,7 @@
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
-                                return label + ' ' + valores[index];
+                                return label + ': ' + valores[index];
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',

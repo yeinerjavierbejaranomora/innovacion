@@ -119,9 +119,9 @@
             </div>
 
             <div class="row justify-content-start">
-                <div class="col-4 text-center">
+                <div class="col-6 text-center h-100">
                     <h5>Sello financiero</h5>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart" class="h-100"></canvas>
                 </div>
             </div>
 

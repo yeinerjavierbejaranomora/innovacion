@@ -120,9 +120,9 @@
 
             <div class="row justify-content-start">
                 <div class="card-body">
-                    <div class="col-4 text-center h-100">
+                    <div class="col-4 text-center">
                         <h5>Sello financiero</h5>
-                        <canvas id="myChart" class="h-100"></canvas>
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -228,6 +228,11 @@
                         },
                         options: {
                             responsive: true, // Hacer que el gráfico sea responsive  
+                            legend: {
+                                labels: {
+                                    fontSize: 16 // Establecer el tamaño de la fuente para los labels
+                                }
+                            }
                         }
                     });
                 });

@@ -122,7 +122,7 @@
                 <div class="col-6 text-center">
                     <div class="card shadow mb-6">
                         <div class="card-header">
-                            <h5>Sello financiero</h5>
+                            <h4><strong>Sello financiero</strong></h4>
                         </div>
                         <div class="card-body">
                             <canvas id="myChart"></canvas>

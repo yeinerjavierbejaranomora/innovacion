@@ -227,10 +227,6 @@
                         options: {
                             responsive: true, // Hacer que el gráfico sea responsive
                             maintainAspectRatio: false, // No mantener la proporción del aspecto
-
-                            // Personalizar las dimensiones del gráfico
-                            width: 400,
-                            height: 300
                         }
                     });
                 });

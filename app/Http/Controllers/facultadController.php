@@ -765,8 +765,7 @@ class facultadController extends Controller
     }
 
     /**
-     * Método para registrar en el Log de Usuarios la acción de update
-     * @author Ruben Charry 
+     * Método para registrar en el Log de Usuarios la acción de update  
      */
 
     public function updateLogUsuarios($mensaje, $tabla, $informacionOriginal, $informacionActualizada)
@@ -776,12 +775,28 @@ class facultadController extends Controller
     }
 
     /**
-     * Método para registrar en el Log de Usuarios la acción de insert
-     * @author Ruben Charry 
+     * Método para registrar en el Log de Usuarios la acción de insert 
      */
 
     public function insertLogUsuarios($mensaje, $tabla, $informacionOriginal)
     {
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
+
+    public function getEstudiantesSello($id)
+    {
+       $sello = DB::table('datosMafiReplica')->join('programas','programas.programa','=','datosMafiReplica')
+       ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+       ->where('facultad.id','=',$id)
+       ->where('programas.activo','=','1')
+       ->select('datosMafiReplica.sello')->get();
+
+    }
+
+    /** $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
+            ->where('programas.tabla', '=', 'pregrado')->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $programas));
+        */
 }

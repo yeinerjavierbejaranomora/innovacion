@@ -46,6 +46,9 @@
     }
 </style>
 
+
+<?php dd($facultades);?>
+
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 

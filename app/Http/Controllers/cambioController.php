@@ -28,9 +28,9 @@ class cambioController extends Controller
         return view('reestablecerpassword.nueva',['id'=>$id]);
     }
 
-    // * Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos
-    // y así poder llevar a cabo del cambio de contraseña *
-
+    /** Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos
+    *  y así poder llevar a cabo del cambio de contraseña 
+    */ 
     public function consultar(Request $request)
     {
 
@@ -64,7 +64,8 @@ class cambioController extends Controller
         }
     }
 
-    /** Funcicon para mostrar el formulario para cambiar la contraseña
+    /** 
+     * Función para mostrar el formulario para cambiar la contraseña
      * recibe como parametro el idBanner cifrado
       */
     public function consultaCambio($idBanner){
@@ -104,7 +105,8 @@ class cambioController extends Controller
         endif;
     }
 
-    /** Funcion para realizar el update de la contraseña
+    /** 
+     * Función para realizar el update de la contraseña
      * recibiendo los datos del formulario por medio del CambioPassRequest
      * validando que se traigan datos y que las contraseñas nuevas coincidan
      */

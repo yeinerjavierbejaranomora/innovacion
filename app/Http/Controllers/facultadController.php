@@ -791,9 +791,8 @@ class facultadController extends Controller
 
     public function getEstudiantesSello($id)
     {
-        dd($id);
         $sello = DB::table('datosMafiReplica')
-            ->join('programas', 'programas.programa', '=', 'datosMafiReplica.programa')
+            ->join('programas', 'programas.programa', '=', 'datosMafiReplica.codprograma')
             ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
             ->where('facultad.nombre', $id)
             ->where('programas.activo', 1)

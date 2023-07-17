@@ -263,12 +263,14 @@
                             plugins: {
                                 datalabels: {
                                     anchor: "center",
-                                    formatter: function(value) {
-                                        return value.toString(); // Mostrar el valor numérico como string
-                                    },
+                                    formatter: valores,
+                                    /* Color del texto */
                                     color: "white",
+                                    /* Formato de la fuente */
                                     font: {
-                                        size: 16
+                                        family: '"Times New Roman", Times, serif',
+                                        size: "14",
+                                        weight: "bold",
                                     },
                                 },
                                 legend: {

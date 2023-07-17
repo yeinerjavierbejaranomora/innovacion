@@ -217,7 +217,7 @@
                     console.log(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
-                    });           
+                    });
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -228,10 +228,12 @@
                     var myChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: [labels + ' ' + valores],
+                            labels: labels.map(function(label, index) {
+                                return label + ' ' + valores[index];
+                            }),
                             datasets: [{
                                 label: 'Gráfico Circular',
-                                data: valores, 
+                                data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
                             }]
                         },

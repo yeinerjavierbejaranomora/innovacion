@@ -269,7 +269,7 @@
                                     color: "white",
                                     font: {
                                         family: '"Times New Roman", Times, serif',
-                                        size: "14",
+                                        size: 16,
                                         weight: "bold",
                                     },
                                 },

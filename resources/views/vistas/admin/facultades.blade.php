@@ -201,7 +201,8 @@
                 var url = '/home/facultades/datos/' + idFacultad;        
                 $.getJSON(url, function(data) {
                     console.log (data);
-                    var ctx = $('#myChart').getContext('2d');
+                    var canvas = document.getElementById('myChart');
+                    var ctx = canvas.getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
                         data: datos,

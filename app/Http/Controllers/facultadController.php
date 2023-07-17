@@ -819,7 +819,7 @@ class facultadController extends Controller
             ->join('programas', 'programas.codprograma', '=', 'datosMafiReplica.programa')
             ->where('programas.idFacultad', $id)
             ->where('programas.activo', 1)
-            ->where('datosMafiReplica', 'PRIMER INGRESO')
+            ->where('datosMafiReplica.tipoestudiante', 'PRIMER INGRESO')
             ->select('datosMafiReplica.sello', DB::raw('COUNT(datosMafiReplica.sello) AS TOTAL'))
             ->groupBy('datosMafiReplica.sello')
             ->get();

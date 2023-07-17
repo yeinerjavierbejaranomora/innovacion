@@ -213,7 +213,6 @@
                 });
             }
 
-
             var id = null;
             $(document).on("click", ".mostrar", function() {
                 $(".programas").removeClass("activo");

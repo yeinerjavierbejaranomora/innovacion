@@ -229,7 +229,7 @@
                     var myChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels, valores,
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores, 

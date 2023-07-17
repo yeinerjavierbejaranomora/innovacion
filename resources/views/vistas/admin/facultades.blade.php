@@ -238,6 +238,15 @@
                         options: {
                             maintainAspectRatio: false,
                             plugins: {
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            var label = context.label || '';
+                                            var value = context.formattedValue || '';
+                                            return label + ': ' + value;
+                                        }
+                                    }
+                                },
                                 legend: {
                                     labels: {
                                         // This more specific font property overrides the global property

@@ -120,10 +120,10 @@
 
 
             <div class="row justify-content-start">
-                <div class="col-4 text-center">
+                
                     <h5>Sello financiero</h5>
                     <canvas id="myChart"></canvas>
-                </div>
+                
             </div>
 
             <!--Nav Datos de la Facultad-->

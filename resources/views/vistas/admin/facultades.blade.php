@@ -218,11 +218,12 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
                     });
-
+                    
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
-
+                    console.log(valores);
+                    console.log(labels);
                     // Crear el gráfico circular
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
@@ -231,16 +232,11 @@
                             labels: labels,
                             datasets: [{
                                 label: 'Gráfico Circular',
-                                data: valores,
+                                data: valores, 
                                 backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)']
                             }]
                         },
                         options: {
-                            title: {
-                                position: 'top',
-                                display: true,
-                                text: 'SELLO FINANCIERO'
-                            },
                             maintainAspectRatio: false,
                             plugins: {
                                 legend: {

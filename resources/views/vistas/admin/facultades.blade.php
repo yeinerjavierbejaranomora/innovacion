@@ -231,7 +231,6 @@
                             }]
                         },
                         options: {
-
                             widht: 500,
                             height: 500,
                             legend: {

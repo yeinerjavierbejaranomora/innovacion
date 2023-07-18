@@ -89,6 +89,46 @@
             });
 
         }
+
+        $('#facultades').change(function() {
+        facultades = $(this);
+        //* comprueba que el valor de facultados sea diferente a vacio/
+        if ($(this).val() != '') {
+            //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
+            var formData = new FormData();
+            //* Se añade el par clave/valor con el valor del select/
+            formData.append('idfacultad', facultades.val());
+            //* Se envia el id de facultad pormedio de ajax para recibir los programas relacionados al id enviado/
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('registro.programas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    facultades.prop('disabled', true);
+                },
+                success: function(data) {
+                    console.log(data);
+                    facultades.prop('disabled', false)
+                    $('#programas').empty();
+                    data.forEach(programa => {
+                        //* Se crea un input tipo checkbox para cada programa recibido/
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                    });
+                }
+            });
+        } else {
+            $('#programas').empty();
+            facultades.prop('disabled', false)
+        }
+    })
+
+
     </script>
 
 

@@ -4,6 +4,12 @@
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
+<style>
+    #facultades {
+        font-size: 18px;
+    }
+
+</style>
 
 
 <!-- Content Wrapper -->
@@ -44,15 +50,15 @@
             </div>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-around" id="">
+            <div class="row justify-content-center" id="">
                 <div class="col-4">
                     <div class="card shadow mb-4">
                         <div class="card-header text-center">
                             <h4><strong>Facultades</strong></h4>
                         </div>
                         <div class="card-body text-start">
-                            <h6>Seleccionar Facultades</h6>
-                           <div name="facultades" id="facultades"></div>
+                            <h5>Seleccionar Facultades</h5>
+                            <div name="facultades" id="facultades"></div>
                         </div>
                     </div>
                 </div>
@@ -62,7 +68,7 @@
                             <h4><strong>Programas</strong></h4>
                         </div>
                         <div class="card-body">
-                           <div name="programas" id="programas"></div>
+                            <div name="programas" id="programas"></div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +77,6 @@
     </div>
 
     <script>
-
         facultades();
 
         function facultades() {
@@ -89,6 +94,41 @@
             });
 
         }
+
+        $('#facultades').change(function() {
+            facultades = $(this);
+            if ($(this).val() != '') {
+                var formData = new FormData();
+                formData.append('idfacultad', facultades.val());
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('registro.programas') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        facultades.prop('disabled', true);
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        facultades.prop('disabled', false)
+                        $('#programas').empty();
+                        data.forEach(programa => {
+                            //* Se crea un input tipo checkbox para cada programa recibido/
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                        });
+                    }
+                });
+            } else {
+                $('#programas').empty();
+                facultades.prop('disabled', false)
+            }
+        })
     </script>
 
 

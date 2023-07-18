@@ -104,7 +104,7 @@
 
         }
 
-        $('#facultades').change(function() {
+        $('#facultades').change(function() {         
             var facultadesSeleccionadas = $('.facultad-checkbox:checked');
             facultadesSeleccionadas.each(function() {
                 var facultadId = $(this).val();
@@ -130,7 +130,6 @@
                         success: function(data) {
                             console.log(data);
                             facultades.prop('disabled', false)
-                            $('#programas').empty();
                             data.forEach(programa => {
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                             });

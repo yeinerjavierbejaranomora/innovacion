@@ -54,10 +54,10 @@
                 <div class="col-4">
                     <div class="card shadow mb-4">
                         <div class="card-header text-center">
-                            <h3><strong>Facultades</strong></h3>
+                            <h4><strong>Facultades</strong></h4>
                         </div>
                         <div class="card-body text-start">
-                            <h6>Seleccionar Facultades</h6>
+                            <h5>Seleccionar Facultades</h5>
                             <div name="facultades" id="facultades"></div>
                         </div>
                     </div>

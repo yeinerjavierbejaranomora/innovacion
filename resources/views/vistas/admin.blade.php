@@ -66,7 +66,7 @@
                         <div class="card-body text-start">
                             <h5>Seleccionar Facultades</h5>
                             <div class="facultades"name="facultades" id="facultades"></div>
-                            <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button>
+                            <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
                     </div>
                 </div>
@@ -104,18 +104,17 @@
 
         }
 
-        $(document).on("click", "#buscarProgramas", function() {
+        $('#facultades').change(function() {
             var facultadesSeleccionadas = $('.facultad-checkbox:checked');
-            $("#programas").empty();
-            
+
             facultadesSeleccionadas.each(function() {
             var facultadId = $(this).val();
-            });
-
+            console.log(facultadId);
+            
             if ($(this).val() != '') {
                 var formData = new FormData();
                 formData.append('idfacultad', facultades.val());
-
+                
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -134,7 +133,6 @@
                         facultades.prop('disabled', false)
                         $('#programas').empty();
                         data.forEach(programa => {
-                            //* Se crea un input tipo checkbox para cada programa recibido/
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });
                     }
@@ -143,10 +141,11 @@
                 $('#programas').empty();
                 facultades.prop('disabled', false)
             }
+        });
         })
     </script>
-
-
+    
+    
 
 
     <!-- incluimos el footer -->

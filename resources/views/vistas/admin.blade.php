@@ -105,12 +105,12 @@
         }
 
         $('#facultades').change(function() {         
-            var facultadesSeleccionadas = $('.facultad-checkbox:checked');
+            var facultadesSeleccionadas = $('.facultades-checkbox:checked');
             console.log(facultadesSeleccionadas);
+            console.log(facultadId);
             facultadesSeleccionadas.each(function() {
                 var facultadId = $(this).val();
                 console.log('entra');
-                console.log(facultadId);
 
                 if ($(this).val() != '') {
                     var formData = new FormData();

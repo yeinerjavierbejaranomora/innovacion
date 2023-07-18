@@ -130,7 +130,8 @@
 
     <script>
         facultades();
-        graficoEstudiantes()
+        graficoEstudiantes();
+        graficoEstudiantesActivos();
 
         function facultades() {
             datos = $.ajax({

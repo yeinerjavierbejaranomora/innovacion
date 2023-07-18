@@ -125,6 +125,7 @@
 
     <script>
         facultades();
+        graficoActivos()
 
         function facultades() {
             datos = $.ajax({

@@ -93,7 +93,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-start">
+        <div class="row justify-content-center">
             <div class=" col-4 text-center">
                 <div class="card shadow mb-5">
                     <div class="card-header">
@@ -117,7 +117,7 @@
         </div>
 
 
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
@@ -312,7 +312,7 @@
                             labels: {
                                 render: function(args) {
                                     // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                    const value = args.value.toFixed(2) + '%';
+                                    const value = (args.percentage.toFixed(2)) + '%';
                                     return value;
                                 },
                                 size: '14',

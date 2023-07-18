@@ -82,17 +82,17 @@ class UserController extends Controller
         if (!empty($user->id_facultad)) {
             /** trae la facultad asignada */
             $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
-            $estudiantes = DB::table('programas')
+           /* $estudiantes = DB::table('programas')
                 ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
                 ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
                 ->where('facultad.id', '=', $user->id_facultad)
                 ->select('estudiantes.id')
                 ->count();
-            $estudiantesFacultad = $estudiantes;
+            $estudiantesFacultad = $estudiantes; */
         } else {
             /** si es super admin trae todas las facultades */
            /** */ $facultad = DB::table('facultad')->get();
-            $estudiantesFacultad = array();
+           /* $estudiantesFacultad = array();
             foreach ($facultad as $key => $value) {
                 $estudiantes = DB::table('programas')
                     ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
@@ -102,7 +102,7 @@ class UserController extends Controller
                     ->select('estudiantes.id')
                     ->count();
                 $estudiantesFacultad[$value->id] = $estudiantes;
-            } 
+            } */
         }
 
         // dd($user->nombre_rol);
@@ -112,6 +112,7 @@ class UserController extends Controller
          */
 
         /** creamos el array con los datos necesarios */
+
         $datos = array(
             'rol' => $nombre_rol,
             'facultad' => $facultad
@@ -122,7 +123,7 @@ class UserController extends Controller
         }
 
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas.' . $nombre_rol, ['estudiantes' => $estudiantesFacultad])->with('datos', $datos);
+        return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }
 
     // funcion para traer todos los usuarios a la vista de administracion

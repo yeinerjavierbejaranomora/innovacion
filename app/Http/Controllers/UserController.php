@@ -78,11 +78,11 @@ class UserController extends Controller
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
 
-        /** traemos las facultades del sistema  */
+        /** traemos las facultades del sistema 
         if (!empty($user->id_facultad)) {
 
             /** trae la facultad asignada */
-            $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
+           /* $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
             $estudiantes = DB::table('programas')
                 ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
                 ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
@@ -91,8 +91,8 @@ class UserController extends Controller
                 ->count();
             $estudiantesFacultad = $estudiantes;
         } else {
-            /** si es super admin trae todas las facultades */
-            $facultad = DB::table('facultad')->get();
+            /** si es super admin trae todas las facultades 
+           /**  $facultad = DB::table('facultad')->get();
             $estudiantesFacultad = array();
             foreach ($facultad as $key => $value) {
                 $estudiantes = DB::table('programas')
@@ -103,7 +103,7 @@ class UserController extends Controller
                     ->select('estudiantes.id')
                     ->count();
                 $estudiantesFacultad[$value->id] = $estudiantes;
-            }
+            } */
         }
 
         // dd($user->nombre_rol);

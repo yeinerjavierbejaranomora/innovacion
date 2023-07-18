@@ -82,7 +82,7 @@ class UserController extends Controller
         if (!empty($user->id_facultad)) {
             /** trae la facultad asignada */
             $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
-           /* $estudiantes = DB::table('programas')
+            /* $estudiantes = DB::table('programas')
                 ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
                 ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
                 ->where('facultad.id', '=', $user->id_facultad)
@@ -91,8 +91,8 @@ class UserController extends Controller
             $estudiantesFacultad = $estudiantes; */
         } else {
             /** si es super admin trae todas las facultades */
-           /** */ $facultad = DB::table('facultad')->get();
-           /* $estudiantesFacultad = array();
+            /** */ $facultad = DB::table('facultad')->get();
+            /* $estudiantesFacultad = array();
             foreach ($facultad as $key => $value) {
                 $estudiantes = DB::table('programas')
                     ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
@@ -307,7 +307,7 @@ class UserController extends Controller
         $request->merge(['id' => $id]);
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-        LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionOriginal[0]->nombre ." fue actualizado" , 'Users',  json_encode($informacionOriginal), json_encode($request->all()));
+        LogUsuariosController::registrarLog('UPDATE', "El usuario " . $informacionOriginal[0]->nombre . " fue actualizado", 'Users',  json_encode($informacionOriginal), json_encode($request->all()));
     }
 
     // *Método que actualiza en la base de datos la edición del usuario
@@ -322,7 +322,7 @@ class UserController extends Controller
         $idBanner = $request->id_banner;
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
-        $programa = $request->programa;     
+        $programa = $request->programa;
         $Programas = '';
         if ($idFacultad == 0) :
             $idFacultad = NULL;
@@ -375,8 +375,8 @@ class UserController extends Controller
                 return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         else :
-            if ($actualizar) :                
-                $this->registrarLog($id,$informacionOriginal, $request);
+            if ($actualizar) :
+                $this->registrarLog($id, $informacionOriginal, $request);
                 return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
@@ -388,11 +388,11 @@ class UserController extends Controller
     public function inactivar_usuario()
     {
         $id = $_POST['id'];
-        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
+        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id', 'nombre', 'activo')->get();
         $inactivarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 0]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id', 'nombre', 'activo')->get();
         if ($inactivarUsuario) :
-            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue inactivado",'Users',json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El usuario " . $informacionActualizada[0]->nombre . " fue inactivado", 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -403,11 +403,11 @@ class UserController extends Controller
     public function activar_usuario()
     {
         $id = $_POST['id'];
-        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
+        $informacionOriginal = DB::table('users')->where('id', '=', $id)->select('id', 'nombre', 'activo')->get();
         $activarUsuario = DB::table('users')->where('id', '=', $id)->update(['activo' => 1]);
-        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id','nombre','activo')->get();
+        $informacionActualizada = DB::table('users')->where('id', '=', $id)->select('id', 'nombre', 'activo')->get();
         if ($activarUsuario) :
-            LogUsuariosController::registrarLog('UPDATE', "El usuario ". $informacionActualizada[0]->nombre . " fue activado", 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El usuario " . $informacionActualizada[0]->nombre . " fue activado", 'Users', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";
         else :
             return "false";
@@ -417,11 +417,11 @@ class UserController extends Controller
     public function inactivar_rol()
     {
         $id = $_POST['id'];
-        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
+        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id', 'nombreRol', 'activo')->get();
         $inactivarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 0]);
-        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
+        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id', 'nombreRol', 'activo')->get();
         if ($inactivarRol) :
-            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionActualizada[0]->nombreRol . " fue inactivado", 'Roles',json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El rol " . $informacionActualizada[0]->nombreRol . " fue inactivado", 'Roles', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "deshabilitado";
         else :
             return "false";
@@ -431,11 +431,11 @@ class UserController extends Controller
     public function activar_rol()
     {
         $id = $_POST['id'];
-        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get(); 
+        $informacionOriginal = DB::table('roles')->where('id', '=', $id)->select('id', 'nombreRol', 'activo')->get();
         $activarRol = DB::table('roles')->where('id', '=', $id)->update(['activo' => 1]);
-        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id','nombreRol','activo')->get();
+        $informacionActualizada = DB::table('roles')->where('id', '=', $id)->select('id', 'nombreRol', 'activo')->get();
         if ($activarRol) :
-            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionActualizada[0]->nombreRol . " fue activado", 'Roles',json_encode($informacionOriginal), json_encode($informacionActualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El rol " . $informacionActualizada[0]->nombreRol . " fue activado", 'Roles', json_encode($informacionOriginal), json_encode($informacionActualizada));
             return  "habilitado";
         else :
             return "false";
@@ -457,7 +457,7 @@ class UserController extends Controller
         $id_llegada = $_POST['id'];
         $nombre = $_POST['nombre'];
 
-        
+
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
@@ -467,10 +467,10 @@ class UserController extends Controller
         $update = DB::table('roles')->where('id', '=', $id)->update(['nombreRol' => $nombre]);
 
         $request->merge(['id' => $id]);
-        $informacionAcualizada= $request->except(['_token']);
-    
+        $informacionAcualizada = $request->except(['_token']);
+
         if ($update) :
-            LogUsuariosController::registrarLog('UPDATE', "El rol ". $informacionOriginal[0]->nombreRol ." fue actualizado" , 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
+            LogUsuariosController::registrarLog('UPDATE', "El rol " . $informacionOriginal[0]->nombreRol . " fue actualizado", 'Roles', json_encode($informacionOriginal), json_encode($informacionAcualizada));
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return "actualizado";
         else :
@@ -486,12 +486,12 @@ class UserController extends Controller
         $crear = DB::table('roles')->insert([
             'nombreRol' => $nombre,
         ]);
-        
+
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-        
+
         if ($crear) :
-            LogUsuariosController::registrarLog('INSERT', "Rol creado" ,'Roles', json_encode($request->all()), NULL);
+            LogUsuariosController::registrarLog('INSERT', "Rol creado", 'Roles', json_encode($request->all()), NULL);
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
             return redirect()->route('admin.roles')->with('success', 'Rol creado correctamente');
         else :
@@ -503,24 +503,27 @@ class UserController extends Controller
     /**
      * Metodo que trae los programas de varias facultades
      * @param request recibe los nombres de los programas
-     * 
+     * @return JSON retorna los ids y nombres de programas según las facultades seleccionadas
      */
     public function traerProgramas(Request $request)
     {
-        $idsFacultad = $request->input('idfacultad');   
-        $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
-        foreach($programas as $programa)
-        {
+        $idsFacultad = $request->input('idfacultad');
+        $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa')->get();
+        foreach ($programas as $programa) {
             $arreglo[] = [
                 'id' => $programa->id,
                 'nombre' => $programa->programa
             ];
-        }        
+        }
         header("Content-Type: application/json");
-        echo json_encode( $arreglo);        
+        echo json_encode($arreglo);
     }
 
-    public function estudiantesActivosGeneral ()
+    /**
+     * Método que trae los estudiantes activos de toda la Ibero
+     * @return JSON retorna los estudiantes agrupados en activos e inactivos
+     */
+    public function estudiantesActivosGeneral()
     {
         $estudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, estado'))
@@ -531,9 +534,14 @@ class UserController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
+    /**
+     * Método que muestra el estado del sello financiero de los estudiantes activos
+     * @return JSON retorna los estudiantes agrupados en activos e inactivos
+     */
     public function selloEstudiantesActivos()
     {
         $sello = DB::table('datosMafi')
+            ->where('estado','activo')
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
@@ -541,4 +549,18 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
+
+    public function estudiantesRetencion()
+    {
+        $retencion = DB::table('datosMafi')
+            ->where('datosMafi.sello', 'TIENE RETENCION')
+            ->where('estado','activo')
+            ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, autorizado_asistir'))
+            ->groupBy('autorizado_asistir')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $retencion));
+    }
+
 }

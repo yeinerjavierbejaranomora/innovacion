@@ -21,7 +21,7 @@
         max-height: 320px;
     }
     
-    .card-boddy {
+    .card-body {
         overflow: auto;
     }
 </style>

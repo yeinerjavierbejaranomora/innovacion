@@ -41,7 +41,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
             <div class="input-group">
 
                 <div class="input-group-append">

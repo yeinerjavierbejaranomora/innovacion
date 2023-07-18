@@ -250,7 +250,7 @@
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
+                                return label + 's: ' + valores[index];
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',

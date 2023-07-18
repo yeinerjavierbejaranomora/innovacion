@@ -43,11 +43,46 @@
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
 
-            <!-- Content Row -->
-            <div class="row" id="facultades">
+            <!-- Checkbox Facultades -->
+            <div class="row justify-content-between" id="facultades">
+                <div class="col-4 text-center">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4><strong>Facultades</strong></h4>
+                        </div>
+                        <div class="card-body">
+                           <select name="facultades" id="facultades"></select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+
+        facultades();
+
+        function facultades() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('registro.facultades') }}",
+                method: 'post',
+                success: function(data) {
+                    data.forEach(facultad => {
+                        $('#facultades').append(`<label <input type="checkbox" id="" value="${facultad.id}">${facultad.nombre}></label>`);
+                    });
+                }
+            });
+
+        }
+    </script>
+
+
+
+
     <!-- incluimos el footer -->
     @include('layout.footer')
 </div>

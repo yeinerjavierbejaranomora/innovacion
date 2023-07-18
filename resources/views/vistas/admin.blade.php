@@ -123,7 +123,7 @@
                     contentType: false,
                     processData: false,
                     success: function(datos) {
-
+                        datos=json_decode(datos);
                         console.log('cambio');
                         console.log(datos);
                         datos.each(programa => {

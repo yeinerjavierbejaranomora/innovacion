@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4r">
+                <div class="col-4">
                     <div class="card shadow mb-4">
                         <div class="card-header text-center">
                             <h4><strong>Programas</strong></h4>

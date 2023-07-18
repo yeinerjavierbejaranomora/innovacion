@@ -512,8 +512,8 @@ class UserController extends Controller
         foreach($programas as $programa)
         {
             $arreglo = [
-                'id' => $programas->id,
-                'nombre' => $programas->programa
+                'id' => $programa->id,
+                'nombre' => $programa->programa
             ];
         }
         dd($arreglo);

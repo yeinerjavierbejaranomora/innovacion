@@ -89,7 +89,7 @@
         facultades();
 
         function facultades() {
-            $.ajax({
+           datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -101,7 +101,7 @@
                     });
                 }
             });
-            console.log(data);
+            console.log(datos);
         }
 
         $('#facultades').change(function() {         

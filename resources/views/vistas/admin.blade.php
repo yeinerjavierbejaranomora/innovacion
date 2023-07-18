@@ -80,7 +80,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>
-                        <div class="card-body text-star" style="overflow: auto;">
+                        <div class="card-body text-star" style="overflow: auto;max-height: 320px;">
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>
@@ -88,6 +88,43 @@
             </div>
         </div>
     </div>
+
+    <br>
+
+    <div class="row justify-content-start" id="graficos>
+        <div class="col-4 text-center">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Sello financiero</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="activos"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Activos con Retención</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="retencion"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Activos Primer Ingreso</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="primerIngreso"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script>
         facultades();
@@ -107,6 +144,8 @@
             });
 
         }
+
+
 
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             if ($('#facultades input[type="checkbox"]:checked').length > 0) {

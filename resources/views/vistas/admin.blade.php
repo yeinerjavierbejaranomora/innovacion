@@ -122,8 +122,8 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
-                        response.data.forEach(programa => {
+                    success: function(data) {
+                        data.data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.nombre}</label><br>`);
                         });
                     }

@@ -52,16 +52,16 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="d-sm-flex text-center">
-                <h1 class="h3 mb-0 text-gray-800">Informe de Facultades</h1>
+            <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
-
+            <br>
             <div class="text-center" id="mensaje">
                 <h3>Por defecto se muestran los datos de todas las facultades,
                     si quieres ver datos en especifico, selecciona alguna facultad.
                 </h3>
             </div>
-
+            <br>
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
                 <div class="col-4">

@@ -8,7 +8,6 @@
     #facultades {
         font-size: 18px;
     }
-
 </style>
 
 
@@ -68,6 +67,7 @@
                             <h4><strong>Programas</strong></h4>
                         </div>
                         <div class="card-body">
+                            <h5>Seleccionar Programas</h5>
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>
@@ -95,8 +95,9 @@
 
         }
 
-        $('#facultades').change(function() {
+        $('.facultades-checkbox').change(function() {
             facultades = $(this);
+            
             if ($(this).val() != '') {
                 var formData = new FormData();
                 formData.append('idfacultad', facultades.val());

@@ -500,13 +500,23 @@ class UserController extends Controller
         endif;
     }
 
+    /**
+     * Metodo que trae los programas de varias facultades
+     * @param request recibe los nombres de los programas
+     * 
+     */
     public function traerProgramas(Request $request)
     {
-        $idsFacultad = $request->input('idfacultad');
-    
+        $idsFacultad = $request->input('idfacultad');   
         $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
-
-        return ['programas'=>$programas];
-        
+        foreach($programas as $programa)
+        {
+            $arreglo = [
+                'id' => $programas->id,
+                'nombre' => $programas->programa
+            ];
+        }
+        dd($arreglo);
+        return ['programas'=>$programas];        
     }
 }

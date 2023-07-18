@@ -44,13 +44,14 @@
             </div>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="facultades">
-                <div class="col-4 text-center">
+            <div class="row justify-content-between" id="">
+                <div class="col-4 text-start">
                     <div class="card shadow mb-4">
                         <div class="card-header">
                             <h4><strong>Facultades</strong></h4>
                         </div>
                         <div class="card-body">
+                            <h6>Seleccionar Facultades</h6>
                            <div name="facultades" id="facultades"></div>
                         </div>
                     </div>
@@ -82,7 +83,7 @@
                 method: 'post',
                 success: function(data) {
                     data.forEach(facultad => {
-                        $('div #facultades').append(`<label> <input type="checkbox" id="" value="${facultad.id}">${facultad.nombre}</label><br>`);
+                        $('div #facultades').append(`<label> <input type="checkbox" id="" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
                     });
                 }
             });

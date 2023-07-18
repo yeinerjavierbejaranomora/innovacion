@@ -17,7 +17,11 @@
         border-radius: 10px;
     }
 
-    #cardFacultades #cardProgramas {
+    #cardFacultades {
+        max-height: 280.22px;
+    }
+
+    #cardProgramas {
         max-height: 280.22px;
     }
 </style>
@@ -78,7 +82,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardProgramas">
-                        <div class="card-header text-center" >
+                        <div class="card-header text-center">
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">
@@ -227,51 +231,51 @@
         }
 
         function graficoEstudiantesActivos() {
-                var url = '/home/facultades/activos/' + idFacultad;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('activos').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            plugins: {
+            var url = '/home/facultades/activos/' + idFacultad;
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.sello;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('activos').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            labels: {
+                                render: 'percenteaje',
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
                                 labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    labels: {
-                                        font: {
-                                            size: 14
-                                        }
+                                    font: {
+                                        size: 14
                                     }
                                 }
-                            },
+                            }
                         },
-                        plugin: [ChartDataLabels]
-                    });
+                    },
+                    plugin: [ChartDataLabels]
                 });
-            }
+            });
+        }
     </script>
 
     <!-- incluimos el footer -->

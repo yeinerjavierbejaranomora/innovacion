@@ -199,7 +199,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            return label + 's: ' + valores[index];
+                            return label + 'S: ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',
@@ -220,6 +220,7 @@
                             legend: {
                                 labels: {
                                     font: {
+                                        textTransform: 'uppercase',
                                         size: 14
                                     }
                                 }

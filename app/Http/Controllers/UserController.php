@@ -500,4 +500,10 @@ class UserController extends Controller
         endif;
     }
 
+    public function traerProgramas()
+    {
+        $idsFacultad = $_POST;
+        $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE IN `idsFacultad` = :id');
+        return $programas;
+    }
 }

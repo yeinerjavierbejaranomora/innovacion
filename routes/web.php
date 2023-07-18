@@ -66,6 +66,9 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/updateRol', 'update_rol')->middleware('auth')->name('rol.update');
     /** Ruta para crear Rol */
     Route::post('/home/crearRol', 'crear_rol')->middleware('auth')->name('rol.crear');
+
+    /** Ruta para traer los programas */
+    Route::post('/home/programas', 'trareprogramas')->name('traer.programas');
 });
 
 Route::controller(MafiController::class)->group(function () {

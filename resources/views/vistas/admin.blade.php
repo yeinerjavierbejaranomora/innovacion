@@ -114,15 +114,14 @@
             });
             formData = valoresSeleccionados;
             console.log(formData);
-            /*
+            
             if ($(this).val() != '') {
-                formData.append('idfacultad', facultades.val());
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('registro.programas') }}",
+                    url: "{{ route('traer.programas') }}",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -140,7 +139,7 @@
                 });
             } else {
                 $('#programas').empty();
-            } */
+            } 
         });
     </script>
 

@@ -516,7 +516,8 @@ class UserController extends Controller
                 'nombre' => $programa->programa
             ];
         }
-        dd($arreglo);
-        return ['programas'=>$programas];        
+        
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $arreglo));        
     }
 }

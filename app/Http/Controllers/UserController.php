@@ -515,9 +515,19 @@ class UserController extends Controller
                 'id' => $programa->id,
                 'nombre' => $programa->programa
             ];
-        }
-        
+        }        
         header("Content-Type: application/json");
         echo json_encode( $arreglo);        
+    }
+
+    public function estudiantesActivosGeneral ()
+    {
+        $sello = DB::table('datosMafi')
+            ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, estado'))
+            ->groupBy('estado')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
     }
 }

@@ -87,41 +87,40 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row justify-content-start" id="graficos">
-        <div class=" col-4 text-center">
-            <div class="card shadow mb-4">
-                <div class="card-header">
-                    <h4><strong>Sello financiero</strong></h4>
-                </div>
-                <div class="card-body">
-                    <canvas id="activos"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-4 text-center">
-            <div class="card shadow mb-4">
-                <div class="card-header">
-                    <h4><strong>Activos con Retención</strong></h4>
-                </div>
-                <div class="card-body">
-                    <canvas id="retencion"></canvas>
+        <div class="row justify-content-start" id="graficos">
+            <div class=" col-4 text-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h4><strong>Estudiantes</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="estudiantes"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-4 text-center">
-            <div class="card shadow mb-4">
-                <div class="card-header">
-                    <h4><strong>Activos Primer Ingreso</strong></h4>
+            <div class="col-4 text-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h4><strong>Activos con Retención</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="retencion"></canvas>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas id="primerIngreso"></canvas>
+            </div>
+            <div class="col-4 text-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h4><strong>Activos Primer Ingreso</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="primerIngreso"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <script>
@@ -142,8 +141,6 @@
             });
 
         }
-
-
 
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -175,14 +172,57 @@
                 })
             } else {
                 $('#mensaje').show();
+                $('#programas').empty();
             }
         });
+
+        function graficoActivos() {
+            var url = '/home/estudiantes';
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.estado;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('estudiantes').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            labels: {
+                                render: 'percenteaje',
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+            });
+        }
     </script>
-
-
-
-
-
 
     <!-- incluimos el footer -->
     @include('layout.footer')

@@ -1516,7 +1516,30 @@ dd($cuentaCursosCiclo1);
             ->select('codprograma')
             ->get();
 
-            dd($sql);
+            $periodos=array(04,05,06,07,08,11,12,13,16,17,31,32.33,34,35,41,42,43,44,45,51,52,53,54,55);
+
+            
+
+            foreach ($sql as $key => $programa) {
+                dd($programa);
+                foreach ($periodos as $key => $value) {
+
+                    $insertPlaneacion = DB::table('programasPeriodos')
+                    ->insert([
+                        'codPrograma' => $codBanner,
+                        'codMateria' => $codMateria,
+                        'orden' => $orden,
+                        'semestre' => '1',
+                        'programada' => '',
+                        'codprograma' => $programa,
+                    ]);
+                
+                }
+
+              
+            }
+
+          
 
 
         }

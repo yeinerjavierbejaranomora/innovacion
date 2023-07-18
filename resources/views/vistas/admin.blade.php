@@ -112,8 +112,8 @@
             valoresSeleccionados = []
             checkboxesSeleccionados.each(function() {
                 valoresSeleccionados.push($(this).val());
-                
             });
+            console.log(valoresSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

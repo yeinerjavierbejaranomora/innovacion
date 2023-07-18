@@ -199,7 +199,7 @@
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
                         }]
                     },
                     options: {

@@ -16,6 +16,14 @@
         padding: 10px 30px;
         border-radius: 10px;
     }
+
+    .card {
+        max-height: 320px;
+    }
+    
+    .card-boddy {
+        overflow: auto;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -40,9 +48,6 @@
                     <h3> Bienvenido {{auth()->user()->nombre}}</h3>
                 </div>
             </div>
-
-
-
 
         </nav>
         <!-- End of Topbar -->

@@ -106,7 +106,7 @@
 
         $('#facultades').change(function() {         
             var facultadesSeleccionadas = $('.facultades-checkbox:checked');
-                var facultadId = $(this).val();
+                var facultadId = $('.facultades-checkbox:checked').val();
                 console.log(facultadId);
                 console.log('entra');
 
@@ -137,7 +137,6 @@
                     });
                 } else {
                     $('#programas').empty();
-
                 }
             });
     </script>

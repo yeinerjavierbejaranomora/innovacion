@@ -1558,7 +1558,7 @@ dd($cuentaCursosCiclo1);
                     ]);
                 
                 }
-                die;
+           
               
             }
 

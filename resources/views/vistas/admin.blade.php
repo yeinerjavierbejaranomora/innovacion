@@ -9,7 +9,7 @@
         font-size: 18px;
     }
 
-    #btn {
+    #buscarProgramas {
     background-color: #dfc14e;
     border-color: #dfc14e;
     width: 150px;
@@ -66,7 +66,7 @@
                         <div class="card-body text-start">
                             <h5>Seleccionar Facultades</h5>
                             <div class="facultades"name="facultades" id="facultades"></div>
-                            <button type="button" class="btn btn-warning" id="btn">Seleccionar</button>
+                            <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button>
                         </div>
                     </div>
                 </div>
@@ -104,8 +104,13 @@
 
         }
 
-        $('.facultades-checkbox').change(function() {
-            facultades = $(this);
+        $(document).on("click", "#buscarProgramas", function() {
+            var facultadesSeleccionadas = $('.facultad-checkbox:checked');
+            $("#programas").empty();
+            
+            facultadesSeleccionadas.each(function() {
+            var facultadId = $(this).val();
+            });
 
             if ($(this).val() != '') {
                 var formData = new FormData();

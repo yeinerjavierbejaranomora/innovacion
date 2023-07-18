@@ -22,6 +22,7 @@
     }
 
     #cardProgramas {
+        min-height: 280.22px;
         max-height: 280.22px;
     }
 </style>
@@ -96,7 +97,7 @@
             <div class=" col-4 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <h4><strong>Estudiantes</strong></h4>
+                        <h4><strong>Total estudiantes Banner</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="estudiantes"></canvas>
@@ -244,7 +245,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            return label + ': ' + valores[index];
+                            return label + 's: ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',

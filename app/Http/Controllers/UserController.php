@@ -509,7 +509,6 @@ class UserController extends Controller
         }
 
         $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
-        dd($programas);
-        return $programas;
+        return ['programas'=>$programas];
     }
 }

@@ -143,9 +143,6 @@
         })
     </script>
 
-
-
-
     <!-- incluimos el footer -->
     @include('layout.footer')
 </div>

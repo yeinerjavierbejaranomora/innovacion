@@ -108,6 +108,7 @@
             var facultadesSeleccionadas = $('.facultades-checkbox:checked');
             console.log(facultadesSeleccionadas);
             var facultadId = $(this).val();
+            console.log(1);
             console.log(facultadId);
             facultadesSeleccionadas.each(function() {
                 console.log('entra');

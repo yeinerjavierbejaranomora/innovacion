@@ -115,14 +115,13 @@
             });
             formData = valoresSeleccionados;
             console.log(formData);
-            console.log('cambio');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('traer.programas') }}",
-                    data:  FormData,
+                    data:  formData,
                     cache: false,
                     contentType: false,
                     processData: false,

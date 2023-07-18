@@ -113,14 +113,15 @@
             checkboxesSeleccionados.each(function() {
                 valoresSeleccionados.push($(this).val());
             });
-            console.log(valoresSeleccionados);
+            formData = valoresSeleccionados;
+            console.log(formData);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('traer.programas') }}",
-                    data:  valoresSeleccionados,
+                    data:  FormData,
                     cache: false,
                     contentType: false,
                     processData: false,

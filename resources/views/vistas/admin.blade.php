@@ -51,7 +51,17 @@
                             <h4><strong>Facultades</strong></h4>
                         </div>
                         <div class="card-body">
-                           <select name="facultades" id="facultades"></select>
+                           <div name="facultades" id="facultades"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h4><strong>Programas</strong></h4>
+                        </div>
+                        <div class="card-body">
+                           <div name="programas" id="programas"></div>
                         </div>
                     </div>
                 </div>

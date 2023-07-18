@@ -49,7 +49,7 @@ class UserController extends Controller
 
     /// cargamos la vista dependiendo el usuario
     /**
-     * @Author Rube
+     * 
      */
     public function home()
     {

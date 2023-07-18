@@ -137,7 +137,7 @@
                     });
                 } else {
                     $('#programas').empty();
-                    facultades.prop('disabled', false)
+
                 }
             });
     </script>

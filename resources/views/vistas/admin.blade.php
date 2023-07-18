@@ -20,7 +20,6 @@
     .card {
         max-height: 320px;
     }
-    
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -53,9 +52,14 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <div class="d-sm-flex text-center">
+                <h1 class="h3 mb-0 text-gray-800">Informe de Facultades</h1>
+            </div>
+
+            <div class="text-center" id="mensaje">
+                <h3>Por defecto se muestran los datos de todas las facultades,
+                    si quieres ver datos en especifico, selecciona alguna facultad.
+                </h3>
             </div>
 
             <!-- Checkbox Facultades -->
@@ -105,33 +109,37 @@
         }
 
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
-            $('#programas').empty();
-            var formData = new FormData();
-            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-            valoresSeleccionados = []
-            checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad[]', $(this).val());
-            });
+            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                $('#mensaje').hide();
+                $('#programas').empty();
+                var formData = new FormData();
+                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                valoresSeleccionados = []
+                checkboxesSeleccionados.each(function() {
+                    formData.append('idfacultad[]', $(this).val());
+                });
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('traer.programas') }}",
-                    data:  formData,
+                    data: formData,
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function(datos) {
-                        datos=jQuery.parseJSON(datos);
+                        datos = jQuery.parseJSON(datos);
 
-                      $.each(datos, function( key,value){
-                            console.log(value);
+                        $.each(datos, function(key, value) {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
                         });
                     }
-                    })
-                });
+                })
+            } else {
+                $('#mensaje').show();
+            }
+        });
     </script>
 
 

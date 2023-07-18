@@ -10,12 +10,12 @@
     }
 
     #buscarProgramas {
-    background-color: #dfc14e;
-    border-color: #dfc14e;
-    width: 150px;
-    padding: 10px 30px;
-    border-radius: 10px;
-}
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        width: 150px;
+        padding: 10px 30px;
+        border-radius: 10px;
+    }
 </style>
 
 
@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-body text-start">
                             <h5>Seleccionar Facultades</h5>
-                            <div class="facultades"name="facultades" id="facultades"></div>
+                            <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
                     </div>
@@ -106,46 +106,45 @@
 
         $('#facultades').change(function() {
             var facultadesSeleccionadas = $('.facultad-checkbox:checked');
-
             facultadesSeleccionadas.each(function() {
-            var facultadId = $(this).val();
-            console.log(facultadId);
-            
-            if ($(this).val() != '') {
-                var formData = new FormData();
-                formData.append('idfacultad', facultades.val());
-                
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('registro.programas') }}",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        facultades.prop('disabled', true);
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        facultades.prop('disabled', false)
-                        $('#programas').empty();
-                        data.forEach(programa => {
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-                        });
-                    }
-                });
-            } else {
-                $('#programas').empty();
-                facultades.prop('disabled', false)
-            }
-        });
+                var facultadId = $(this).val();
+                console.log(facultadId);
+
+                if ($(this).val() != '') {
+                    var formData = new FormData();
+                    formData.append('idfacultad', facultades.val());
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('registro.programas') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function() {
+                            facultades.prop('disabled', true);
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            facultades.prop('disabled', false)
+                            $('#programas').empty();
+                            data.forEach(programa => {
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                            });
+                        }
+                    });
+                } else {
+                    $('#programas').empty();
+                    facultades.prop('disabled', false)
+                }
+            });
         })
     </script>
-    
-    
+
+
 
 
     <!-- incluimos el footer -->

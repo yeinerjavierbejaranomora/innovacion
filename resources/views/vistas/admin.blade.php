@@ -93,99 +93,99 @@
 
     <div class="row justify-content-start" id="graficos">
         <div class=" col-4 text-center">
-        <div class="card shadow mb-4">
-            <div class="card-header">
-                <h4><strong>Sello financiero</strong></h4>
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Sello financiero</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="activos"></canvas>
+                </div>
             </div>
-            <div class="card-body">
-                <canvas id="activos"></canvas>
+        </div>
+        <div class="col-4 text-center">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Activos con Retención</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="retencion"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h4><strong>Activos Primer Ingreso</strong></h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="primerIngreso"></canvas>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-4 text-center">
-        <div class="card shadow mb-4">
-            <div class="card-header">
-                <h4><strong>Activos con Retención</strong></h4>
-            </div>
-            <div class="card-body">
-                <canvas id="retencion"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-4 text-center">
-        <div class="card shadow mb-4">
-            <div class="card-header">
-                <h4><strong>Activos Primer Ingreso</strong></h4>
-            </div>
-            <div class="card-body">
-                <canvas id="primerIngreso"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-<script>
-    facultades();
+    <script>
+        facultades();
 
-    function facultades() {
-        datos = $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{ route('registro.facultades') }}",
-            method: 'post',
-            success: function(data) {
-                data.forEach(facultad => {
-                    $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
-                });
-            }
-        });
-
-    }
-
-
-
-    $('body').on('change', '#facultades input[type="checkbox"]', function() {
-        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-            $('#mensaje').hide();
-            $('#programas').empty();
-            var formData = new FormData();
-            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-            valoresSeleccionados = []
-            checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad[]', $(this).val());
-            });
-            $.ajax({
+        function facultades() {
+            datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                type: 'post',
-                url: "{{ route('traer.programas') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(datos) {
-                    datos = jQuery.parseJSON(datos);
-
-                    $.each(datos, function(key, value) {
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
+                url: "{{ route('registro.facultades') }}",
+                method: 'post',
+                success: function(data) {
+                    data.forEach(facultad => {
+                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                     });
                 }
-            })
-        } else {
-            $('#mensaje').show();
+            });
+
         }
-    });
-</script>
+
+
+
+        $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                $('#mensaje').hide();
+                $('#programas').empty();
+                var formData = new FormData();
+                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                valoresSeleccionados = []
+                checkboxesSeleccionados.each(function() {
+                    formData.append('idfacultad[]', $(this).val());
+                });
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('traer.programas') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(datos) {
+                        datos = jQuery.parseJSON(datos);
+
+                        $.each(datos, function(key, value) {
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
+                        });
+                    }
+                })
+            } else {
+                $('#mensaje').show();
+            }
+        });
+    </script>
 
 
 
 
 
 
-<!-- incluimos el footer -->
-@include('layout.footer')
+    <!-- incluimos el footer -->
+    @include('layout.footer')
 </div>

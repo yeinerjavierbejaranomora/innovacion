@@ -504,6 +504,7 @@ class UserController extends Controller
     {
         $idsFacultad = $_POST;
         dd($idsFacultad);
+        
         $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
         return $programas;
     }

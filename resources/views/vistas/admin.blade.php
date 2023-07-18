@@ -18,7 +18,7 @@
     }
 
     .card {
-        max-height: 320px;
+        max-height: 311px;
     }
 </style>
 
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card shadow mb-4" style="max-height: 320px;">
+                    <div class="card shadow mb-4">
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>

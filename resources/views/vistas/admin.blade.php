@@ -111,9 +111,10 @@
             const valoresSeleccionados = [];
             checkboxesSeleccionados.each(function() {
                 valoresSeleccionados.push($(this).val());
+                formData.append('idfacultad[]', $(this).val());
             });
-            formData = valoresSeleccionados;
             console.log(formData);
+
             if ($(this).val() != '') {
                 $.ajax({
                     headers: {

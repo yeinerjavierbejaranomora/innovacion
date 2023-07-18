@@ -18,7 +18,7 @@
     }
 
     .card {
-        max-height: 311px;
+        max-height: 280.22px;
     }
 </style>
 

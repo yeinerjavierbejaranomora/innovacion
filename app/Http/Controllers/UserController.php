@@ -504,6 +504,7 @@ class UserController extends Controller
     {
         $idsFacultad = $_POST;
 
+        dd($idsFacultad);
         if (!is_array($idsFacultad)) {
             $idsFacultad = [$idsFacultad];
         }

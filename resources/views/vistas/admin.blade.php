@@ -68,7 +68,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Facultades</strong></h4>
                         </div>
-                        <div class="card-body text-start">
+                        <div class="card-body text-start" style="overflow: auto;">
                             <h5 class="text-center">Seleccionar Facultades</h5>
                             <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
@@ -80,7 +80,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Programas</strong></h4>
                         </div>
-                        <div class="card-body text-star">
+                        <div class="card-body text-star" style="overflow: auto;">
                             <h5 class="text-center">Seleccionar Programas</h5>
                             <div name="programas" id="programas"></div>
                         </div>

@@ -64,19 +64,19 @@
                             <h4><strong>Facultades</strong></h4>
                         </div>
                         <div class="card-body text-start">
-                            <h5>Seleccionar Facultades</h5>
+                            <h5 class="text-center">Seleccionar Facultades</h5>
                             <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-4r">
                     <div class="card shadow mb-4">
-                        <div class="card-header">
+                        <div class="card-header text-center">
                             <h4><strong>Programas</strong></h4>
                         </div>
                         <div class="card-body">
-                            <h5>Seleccionar Programas</h5>
+                            <h5 class="text-center">Seleccionar Programas</h5>
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>
@@ -106,6 +106,7 @@
 
         $('#facultades').change(function() {         
             var facultadesSeleccionadas = $('.facultad-checkbox:checked');
+            console.log(facultadesSeleccionadas);
             facultadesSeleccionadas.each(function() {
                 var facultadId = $(this).val();
                 console.log(facultadId);

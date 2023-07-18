@@ -25,6 +25,7 @@
         min-height: 280.22px;
         max-height: 280.22px;
     }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -199,7 +200,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            return label + 'S: ' + valores[index];
+                            return label + 's: ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',
@@ -220,7 +221,6 @@
                             legend: {
                                 labels: {
                                     font: {
-                                        textTransform: 'uppercase',
                                         size: 14
                                     }
                                 }

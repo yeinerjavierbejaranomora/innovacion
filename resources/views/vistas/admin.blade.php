@@ -127,6 +127,7 @@
                         console.log('cambio');
                         console.log(datos);
                         datos.forEach(programa => {
+                            console.log(programa);
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.nombre}</label><br>`);
                         });
                     }

@@ -502,13 +502,15 @@ class UserController extends Controller
 
     public function traerProgramas()
     {
-        $idsFacultad = $_POST('idfacultad');
+        $idsFacultad = $_POST;
 
         if (!is_array($idsFacultad)) {
             $idsFacultad = [$idsFacultad];
         }
 
         $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
+        
+        
         return ['programas'=>$programas];
     }
 }

@@ -109,17 +109,18 @@
             var formData = new FormData();
 
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            valoresSeleccionados = []
             checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad', $(this).val());
+                valoresSeleccionados.push($(this).val());
+                
             });
-            console.log('entra');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('traer.programas') }}",
-                    data: formData,
+                    data:  valoresSeleccionados,
                     cache: false,
                     contentType: false,
                     processData: false,

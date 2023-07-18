@@ -1561,7 +1561,8 @@ dd($cuentaCursosCiclo1);
             }
 
           
-
+exit;
+die;
 
         }
 

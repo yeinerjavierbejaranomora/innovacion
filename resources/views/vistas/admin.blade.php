@@ -97,11 +97,11 @@
                 method: 'post',
                 success: function(data) {
                     data.forEach(facultad => {
-                        $('div #facultades').append(`<label> <input type="checkbox" id="" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
+                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
                     });
                 }
             });
-
+            console.log(data);
         }
 
         $('#facultades').change(function() {         

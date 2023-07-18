@@ -123,6 +123,7 @@
                     contentType: false,
                     processData: false,
                     success: function(datos) {
+                        
                         console.log('cambio');
                         console.log(datos.data);
                         datos.forEach(programa => {

@@ -97,7 +97,7 @@
                 method: 'post',
                 success: function(data) {
                     data.forEach(facultad => {
-                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
+                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                     });
                 }
             });

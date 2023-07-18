@@ -110,7 +110,7 @@
                         <h4><strong>Activos con Retención</strong></h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion"></canvas>
+                        <canvas id="activos"></canvas>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            return label + ': ' + valores[index];
+                            return label + 's: ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',
@@ -231,7 +231,7 @@
         }
 
         function graficoEstudiantesActivos() {
-            var url = '/home/facultades/activos/' + idFacultad;
+            var url = '/home/estudiantesActivos';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
                     return elemento.sello;

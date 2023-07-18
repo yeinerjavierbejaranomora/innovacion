@@ -72,6 +72,8 @@ Route::controller(UserController::class)->group(function () {
 
     /** Ruta para cargar gráfica de estudiantes activos e inactivos */
     Route::get('/home/estudiantes', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos');
+    /** Ruta para cargar gráfica de estudiantes activos e inactivos */
+    Route::get('/home/estudiantesActivos', 'selloEstudiantesActivos')->middleware('auth')->name('sello.activos');
 });
 
 Route::controller(MafiController::class)->group(function () {

@@ -511,7 +511,7 @@ class UserController extends Controller
         $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
         foreach($programas as $programa)
         {
-            $arreglo = [
+            $arreglo[] = [
                 'id' => $programa->id,
                 'nombre' => $programa->programa
             ];

@@ -504,11 +504,12 @@ class UserController extends Controller
     {
         $idsFacultad = $_POST;
 
+        dd($idsFacultad);
         if (!is_array($idsFacultad)) {
             $idsFacultad = [$idsFacultad];
         }
 
-        $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
+        $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
         dd($programas);
         
         return ['programas'=>$programas];

@@ -105,17 +105,17 @@
         }
 
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            $('#programas').empty();
+            var formData = new FormData();
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             const valoresSeleccionados = [];
             checkboxesSeleccionados.each(function() {
-                valoresSeleccionados.push($(this).val());
-                console.log(valoresSeleccionados);
+                formData.append('idfacultad[]', $(this).val());
+                console.log(formData);
             });
-
+            /*
             if ($(this).val() != '') {
-                var formData = new FormData();
                 formData.append('idfacultad', facultades.val());
-
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -139,7 +139,7 @@
                 });
             } else {
                 $('#programas').empty();
-            }
+            } */
         });
     </script>
 

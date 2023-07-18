@@ -44,13 +44,13 @@
             </div>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="">
-                <div class="col-4 text-start">
+            <div class="row justify-content-around" id="">
+                <div class="col-4">
                     <div class="card shadow mb-4">
-                        <div class="card-header">
+                        <div class="card-header text-center">
                             <h4><strong>Facultades</strong></h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body text-start">
                             <h6>Seleccionar Facultades</h6>
                            <div name="facultades" id="facultades"></div>
                         </div>

@@ -112,6 +112,7 @@
             checkboxesSeleccionados.each(function() {
                 formData.append('idfacultad[]', $(this).val());
             });
+            console.log('cambio');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

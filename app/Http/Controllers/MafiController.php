@@ -1547,17 +1547,15 @@ dd($cuentaCursosCiclo1);
             
 
             foreach ($sql as $key => $programa) {
-                dd($programa->codprograma);
+                
                 foreach ($periodos as $key => $value) {
-
+                    dd($value);
                     $insertPlaneacion = DB::table('programasPeriodos')
                     ->insert([
-                        'codPrograma' => $codBanner,
-                        'codMateria' => $codMateria,
-                        'orden' => $orden,
-                        'semestre' => '1',
-                        'programada' => '',
-                        'codprograma' => $programa,
+                        'codPrograma' => $programa->codprograma,
+                        'periodo' => $codMateria,
+                        'estado' => $orden,
+                       
                     ]);
                 
                 }

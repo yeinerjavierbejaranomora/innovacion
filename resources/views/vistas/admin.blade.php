@@ -109,6 +109,7 @@
             console.log(facultadesSeleccionadas);
             facultadesSeleccionadas.each(function() {
                 var facultadId = $(this).val();
+                console.log('entra');
                 console.log(facultadId);
 
                 if ($(this).val() != '') {

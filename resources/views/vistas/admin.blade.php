@@ -106,11 +106,8 @@
 
         $('#facultades').change(function() {         
             var facultadesSeleccionadas = $('.facultades-checkbox:checked');
-            console.log(facultadesSeleccionadas);
-            var facultadId = $(this).val();
-            console.log(1);
-            console.log(facultadId);
-            facultadesSeleccionadas.each(function() {
+                var facultadId = $(this).val();
+                console.log(facultadId);
                 console.log('entra');
 
                 if ($(this).val() != '') {
@@ -143,7 +140,6 @@
                     facultades.prop('disabled', false)
                 }
             });
-        })
     </script>
 
     <!-- incluimos el footer -->

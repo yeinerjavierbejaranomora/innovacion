@@ -284,7 +284,7 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
-                    return elemento.sello;
+                    return elemento.autorizado_asistir;
                 });
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;

@@ -545,7 +545,6 @@ class UserController extends Controller
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
-        dd($sello);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }

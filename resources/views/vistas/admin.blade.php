@@ -25,7 +25,6 @@
         min-height: 280.22px;
         max-height: 280.22px;
     }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -94,9 +93,9 @@
             </div>
         </div>
 
-        <div class="row justify-content-start" id="graficos">
+        <div class="row justify-content-start">
             <div class=" col-4 text-center">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-5">
                     <div class="card-header">
                         <h4><strong>Total estudiantes Banner</strong></h4>
                     </div>
@@ -106,7 +105,7 @@
                 </div>
             </div>
             <div class="col-4 text-center">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-5">
                     <div class="card-header">
                         <h4><strong>Activos - Sello Financiero</strong></h4>
                     </div>
@@ -115,7 +114,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 text-center">
+        </div>
+
+
+        <div class="row justify-content-center"> 
+            <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
                         <h4><strong>Activos con Retención</strong></h4>
@@ -307,7 +310,11 @@
                         maintainAspectRatio: false,
                         plugins: {
                             labels: {
-                                render: 'percenteaje',
+                                render: function(args) {
+                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                    const value = args.value.toFixed(2) + '%';
+                                    return value;
+                                },
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',
@@ -326,7 +333,6 @@
                 });
             });
         }
-
     </script>
 
     <!-- incluimos el footer -->

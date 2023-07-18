@@ -125,10 +125,8 @@
                     success: function(datos) {
                         datos=jQuery.parseJSON(datos);
 
-                        console.log('cambio');
-                        console.log(datos);
-                        datos.each(programa => {
-                            console.log(programa);
+                      $.each(datos, function( key,value){
+                            console.log(value);
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.nombre}</label><br>`);
                         });
                     }

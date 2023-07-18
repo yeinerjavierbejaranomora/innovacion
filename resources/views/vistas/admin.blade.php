@@ -290,7 +290,7 @@
                     return elemento.TOTAL;
                 });
                 // Crear el gráfico circular
-                var ctx = document.getElementById('activos').getContext('2d');
+                var ctx = document.getElementById('retencion').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: {

@@ -504,10 +504,8 @@ class UserController extends Controller
     {
         $idsFacultad = $request->input('idfacultad');
     
-
         $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
 
-        dd($programas);
         return ['programas'=>$programas];
     }
 }

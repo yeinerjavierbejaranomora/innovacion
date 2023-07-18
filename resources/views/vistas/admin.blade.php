@@ -8,6 +8,14 @@
     #facultades {
         font-size: 18px;
     }
+
+    #btn {
+    background-color: #dfc14e;
+    border-color: #dfc14e;
+    width: 150px;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
 </style>
 
 
@@ -58,6 +66,7 @@
                         <div class="card-body text-start">
                             <h5>Seleccionar Facultades</h5>
                             <div class="facultades"name="facultades" id="facultades"></div>
+                            <button type="button" class="btn btn-warning" id="btn">Seleccionar</button>
                         </div>
                     </div>
                 </div>

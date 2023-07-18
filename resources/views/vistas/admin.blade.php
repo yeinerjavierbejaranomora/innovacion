@@ -89,7 +89,7 @@
         facultades();
 
         function facultades() {
-           datos = $.ajax({
+            datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -101,44 +101,46 @@
                     });
                 }
             });
-            console.log(datos);
+
         }
 
-        $('#facultades').change(function() {         
-            var facultadesSeleccionadas = $('.facultades-checkbox:checked');
-                var facultadId = $('.facultades-checkbox:checked').val();
-                console.log(facultadId);
-                console.log('entra');
-
-                if ($(this).val() != '') {
-                    var formData = new FormData();
-                    formData.append('idfacultad', facultades.val());
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('registro.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        beforeSend: function() {
-                            facultades.prop('disabled', true);
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            facultades.prop('disabled', false)
-                            data.forEach(programa => {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
-                            });
-                        }
-                    });
-                } else {
-                    $('#programas').empty();
-                }
+        $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            const valoresSeleccionados = [];
+            checkboxesSeleccionados.each(function() {
+                valoresSeleccionados.push($(this).val());
+                console.log(valoresSeleccionados);
             });
+
+            if ($(this).val() != '') {
+                var formData = new FormData();
+                formData.append('idfacultad', facultades.val());
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('registro.programas') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        facultades.prop('disabled', true);
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        facultades.prop('disabled', false)
+                        data.forEach(programa => {
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                        });
+                    }
+                });
+            } else {
+                $('#programas').empty();
+            }
+        });
     </script>
 
     <!-- incluimos el footer -->

@@ -111,9 +111,8 @@
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             valoresSeleccionados = []
             checkboxesSeleccionados.each(function() {
-                valoresSeleccionados.push($(this).val());
+                formData.append('idfacultad[]', $(this).val());
             });
-            formData = valoresSeleccionados;
             console.log(formData);
                 $.ajax({
                     headers: {

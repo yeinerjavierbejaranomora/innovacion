@@ -500,17 +500,16 @@ class UserController extends Controller
         endif;
     }
 
-    public function traerProgramas()
+    public function traerProgramas(Request $request)
     {
-        $idsFacultad = $_POST;
-
+        $idsFacultad = $request->input('idfacultad');
         dd($idsFacultad);
         if (!is_array($idsFacultad)) {
             $idsFacultad = [$idsFacultad];
         }
 
-        $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->get();
-        dd($programas);
+        $programas = DB::table('programas')->whereIn('Facultad',$idsFacultad)->select('id','programa')->dd();
+
         
         return ['programas'=>$programas];
     }

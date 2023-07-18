@@ -57,7 +57,7 @@
                         </div>
                         <div class="card-body text-start">
                             <h5>Seleccionar Facultades</h5>
-                            <div name="facultades" id="facultades"></div>
+                            <div class="facultades"name="facultades" id="facultades"></div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
 
         $('.facultades-checkbox').change(function() {
             facultades = $(this);
-            
+
             if ($(this).val() != '') {
                 var formData = new FormData();
                 formData.append('idfacultad', facultades.val());

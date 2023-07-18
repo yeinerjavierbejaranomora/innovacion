@@ -503,8 +503,7 @@ class UserController extends Controller
     public function traerProgramas()
     {
         $idsFacultad = $_POST;
-        $programas = DB::table('programs')->whereIn('id',$idsFacultad)->select('id','programa')
-        ->get();
+        $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }

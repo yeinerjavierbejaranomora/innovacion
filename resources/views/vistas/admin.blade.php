@@ -6,10 +6,9 @@
 <!--  creamos el contenido principal body -->
 <style>
     #facultades {
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: lowercase
+        font-size: 18px;
     }
+
 </style>
 
 
@@ -55,7 +54,7 @@
                 <div class="col-4">
                     <div class="card shadow mb-4">
                         <div class="card-header text-center">
-                            <h4><strong>Facultades</strong></h4>
+                            <h3><strong>Facultades</strong></h3>
                         </div>
                         <div class="card-body text-start">
                             <h6>Seleccionar Facultades</h6>

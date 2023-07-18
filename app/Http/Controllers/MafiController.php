@@ -1544,8 +1544,6 @@ dd($cuentaCursosCiclo1);
                 24=>55
             );
 
-            
-
             foreach ($sql as $key => $programa) {
                 
                 foreach ($periodos as $key => $value) {
@@ -1559,7 +1557,6 @@ dd($cuentaCursosCiclo1);
                     ]);
                 
                 }
-
               
             }
 

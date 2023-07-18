@@ -89,8 +89,6 @@
         </div>
     </div>
 
-    <br>
-
     <div class="row justify-content-start" id="graficos">
         <div class=" col-4 text-center">
             <div class="card shadow mb-4">

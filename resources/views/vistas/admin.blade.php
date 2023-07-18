@@ -97,7 +97,7 @@
                 method: 'post',
                 success: function(data) {
                     data.forEach(facultad => {
-                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
+                        $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                     });
                 }
             });
@@ -107,19 +107,21 @@
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             $('#programas').empty();
             var formData = new FormData();
-
-            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-            checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad', $(this).val());
-            });
             console.log('entra');
+            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            valoresSeleccionados = []
+            checkboxesSeleccionados.each(function() {
+                valoresSeleccionados.push($(this).val());
+            });
+            formData = valoresSeleccionados;
+            console.log(formData);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('traer.programas') }}",
-                    data: formData,
+                    data:  formData,
                     cache: false,
                     contentType: false,
                     processData: false,

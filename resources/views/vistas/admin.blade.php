@@ -75,7 +75,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Programas</strong></h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body text-star">
                             <h5 class="text-center">Seleccionar Programas</h5>
                             <div name="programas" id="programas"></div>
                         </div>

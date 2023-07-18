@@ -107,14 +107,11 @@
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             $('#programas').empty();
             var formData = new FormData();
+
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-            const valoresSeleccionados = [];
             checkboxesSeleccionados.each(function() {
-                valoresSeleccionados.push($(this).val());
                 formData.append('idfacultad', $(this).val());
             });
-
-            if ($(this).val() != '') {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -131,9 +128,6 @@
                         });
                     }
                 });
-            } else {
-                $('#programas').empty();
-            } 
         });
     </script>
 

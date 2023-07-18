@@ -126,12 +126,8 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    beforeSend: function() {
-                        facultades.prop('disabled', true);
-                    },
                     success: function(data) {
                         console.log(data);
-                        facultades.prop('disabled', false)
                         data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });

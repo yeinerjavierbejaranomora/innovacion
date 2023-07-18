@@ -107,13 +107,11 @@
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             $('#programas').empty();
             var formData = new FormData();
-            console.log('entra');
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             valoresSeleccionados = []
             checkboxesSeleccionados.each(function() {
                 formData.append('idfacultad[]', $(this).val());
             });
-            console.log('cambio');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -125,13 +123,12 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        console.log(data);
-                        data.forEach(programa => {
+                        data.datos.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });
                     }
+                    })
                 });
-        });
     </script>
 
     <!-- incluimos el footer -->

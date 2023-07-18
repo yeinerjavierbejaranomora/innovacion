@@ -844,7 +844,7 @@ class facultadController extends Controller
             ->select('datosMafiReplica.autorizado_asistir', DB::raw('COUNT(datosMafiReplica.autorizado_asistir) AS TOTAL'))
             ->groupBy('datosMafiReplica.autorizado_asistir')
             ->get();
-
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }

@@ -111,10 +111,9 @@
             const valoresSeleccionados = [];
             checkboxesSeleccionados.each(function() {
                 valoresSeleccionados.push($(this).val());
+                formData.append('idfacultad[]', $(this).val());
             });
-            formData = valoresSeleccionados;
-            console.log(formData);
-            console.log('test');
+
             if ($(this).val() != '') {
                 $.ajax({
                     headers: {
@@ -127,7 +126,6 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        console.log(data);
                         data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                         });

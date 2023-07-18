@@ -114,7 +114,7 @@
             });
             formData = valoresSeleccionados;
             console.log(formData);
-            
+            console.log('test');
             if ($(this).val() != '') {
                 $.ajax({
                     headers: {

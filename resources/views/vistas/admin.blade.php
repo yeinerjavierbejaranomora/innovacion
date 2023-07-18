@@ -107,7 +107,7 @@
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             $('#programas').empty();
             var formData = new FormData();
-
+            console.log('entra');
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             valoresSeleccionados = []
             checkboxesSeleccionados.each(function() {

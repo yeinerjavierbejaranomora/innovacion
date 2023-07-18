@@ -76,11 +76,11 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4" style="max-height: 320px;">
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>
-                        <div class="card-body text-star" style="overflow: auto;max-height: 320px;">
+                        <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>

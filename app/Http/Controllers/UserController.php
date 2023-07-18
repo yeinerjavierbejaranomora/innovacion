@@ -518,6 +518,6 @@ class UserController extends Controller
         }
         
         header("Content-Type: application/json");
-        echo json_encode(array('datos' => $arreglo));        
+        echo json_encode(array($arreglo));        
     }
 }

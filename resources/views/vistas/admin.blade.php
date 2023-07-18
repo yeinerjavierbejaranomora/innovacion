@@ -123,8 +123,8 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        console.log(data.datos)
-                        data.datos.forEach(programa => {
+                        console.log(data)
+                        data.forEach(programa => {
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.nombre}</label><br>`);
                         });
                     }

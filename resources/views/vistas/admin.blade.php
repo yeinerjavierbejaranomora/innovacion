@@ -77,8 +77,8 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header text-center" id="cardProgramas">
+                    <div class="card shadow mb-4" id="cardProgramas">
+                        <div class="card-header text-center" >
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">

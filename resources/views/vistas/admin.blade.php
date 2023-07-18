@@ -125,7 +125,7 @@
 
     <script>
         facultades();
-        graficoActivos()
+        graficoEstudiantes()
 
         function facultades() {
             datos = $.ajax({
@@ -177,7 +177,8 @@
             }
         });
 
-        function graficoActivos() {
+
+        function graficoEstudiantes() {
             var url = '/home/estudiantes';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
@@ -223,6 +224,53 @@
                 });
             });
         }
+
+        function graficoEstudiantesActivos() {
+                var url = '/home/facultades/activos/' + idFacultad;
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('activos').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            plugins: {
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                });
+            }
     </script>
 
     <!-- incluimos el footer -->

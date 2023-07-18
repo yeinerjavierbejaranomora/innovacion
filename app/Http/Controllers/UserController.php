@@ -522,9 +522,20 @@ class UserController extends Controller
 
     public function estudiantesActivosGeneral ()
     {
-        $sello = DB::table('datosMafi')
+        $estudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, estado'))
             ->groupBy('estado')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
+    }
+
+    public function selloEstudiantesActivos()
+    {
+        $sello = DB::table('datosMafi')
+            ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, sello'))
+            ->groupBy('sello')
             ->get();
 
         header("Content-Type: application/json");

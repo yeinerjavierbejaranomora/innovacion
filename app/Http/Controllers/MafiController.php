@@ -1516,7 +1516,7 @@ dd($cuentaCursosCiclo1);
             ->select('codprograma')
             ->get();
 
-            $periodos=[
+            $periodos=array(
                 0=>4,
                 1=>5,
                 2=>6,
@@ -1542,7 +1542,7 @@ dd($cuentaCursosCiclo1);
                 22=>53,
                 23=>54,
                 24=>55
-            ];
+            );
 
             
 

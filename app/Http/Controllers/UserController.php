@@ -507,7 +507,7 @@ class UserController extends Controller
         if (!is_array($idsFacultad)) {
             $idsFacultad = [$idsFacultad];
         }
-
+        
         $programas = DB::table('programas')->whereIn('id',$idsFacultad)->select('id','programa')->get();
         return $programas;
     }

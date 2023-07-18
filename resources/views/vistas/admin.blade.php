@@ -44,7 +44,7 @@
             </div>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-around" id="">
+            <div class="row justify-content-center" id="">
                 <div class="col-4">
                     <div class="card shadow mb-4">
                         <div class="card-header text-center">

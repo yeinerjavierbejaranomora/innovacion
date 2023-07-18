@@ -6,7 +6,7 @@
 <!--  creamos el contenido principal body -->
 <style>
     #facultades {
-        font-size: 24px;
+        font-size: 16px;
         font-weight: bold;
         text-transform: lowercase
     }

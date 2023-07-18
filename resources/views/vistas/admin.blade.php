@@ -115,6 +115,7 @@
             });
             formData = valoresSeleccionados;
             console.log(formData);
+            console.log('cambio');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -17,7 +17,7 @@
         border-radius: 10px;
     }
 
-    .card {
+    #cardFacultades #cardProgramas {
         max-height: 280.22px;
     }
 </style>
@@ -62,10 +62,11 @@
                 </h3>
             </div>
             <br>
+
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
                 <div class="col-4">
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Facultades</strong></h4>
                         </div>
@@ -77,7 +78,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card shadow mb-4">
-                        <div class="card-header text-center">
+                        <div class="card-header text-center" id="cardProgramas">
                             <h4><strong>Seleccionar Programas</strong></h4>
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">

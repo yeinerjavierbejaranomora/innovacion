@@ -113,7 +113,6 @@
                 valoresSeleccionados.push($(this).val());
                 formData.append('idfacultad[]', $(this).val());
             });
-            console.log(formData);
 
             if ($(this).val() != '') {
                 $.ajax({

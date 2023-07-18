@@ -62,11 +62,8 @@
             <div class="row justify-content-center" id="">
                 <div class="col-4">
                     <div class="card shadow mb-4">
-                        <div class="card-header text-center">
-                            <h4><strong>Facultades</strong></h4>
-                        </div>
                         <div class="card-body text-start" style="overflow: auto;">
-                            <h5 class="text-center">Seleccionar Facultades</h5>
+                            <h5 class="text-center"></h5>
                             <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
@@ -74,11 +71,9 @@
                 </div>
                 <div class="col-4">
                     <div class="card shadow mb-4">
-                        <div class="card-header text-center">
-                            <h4><strong>Programas</strong></h4>
-                        </div>
+                        
                         <div class="card-body text-star" style="overflow: auto;">
-                            <h5 class="text-center">Seleccionar Programas</h5>
+                            <h5 class="text-center"></h5>
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>

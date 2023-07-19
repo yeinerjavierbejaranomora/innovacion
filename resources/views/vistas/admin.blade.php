@@ -486,7 +486,7 @@
                     data: {
                         labels: labels.map(function(label, index) {
                             if (label.includes("ESTUDIANTE")) {
-                                label.replace(/ESTUDIANTE\S*/i, "");
+                                label = label.replace(/ESTUDIANTE\S*/i, "");
                             }
                             return label + ': ' + valores[index];
                         }),

@@ -311,7 +311,7 @@
                         responsive: true,
                         plugins: {
                             datalabels: {
-                                formatter: (valores), 
+                                formatter: valores, 
                             },
                             labels: {
                                 render: 'percenteaje',

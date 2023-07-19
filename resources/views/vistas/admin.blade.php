@@ -397,9 +397,7 @@
                                         legend: {
                                             position: 'right',
                                             labels: {
-                                                padding: {
-                                                    left: 20,
-                                                },
+                                                padding: 10,
                                                 content: 'Total: ' + total, // Muestra el total en la anotación
                                                 font: {
                                                     size: 12

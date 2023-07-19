@@ -346,7 +346,7 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
 
-                var total = data;
+            
 
 
                 var labels = data.data.map(function(elemento) {
@@ -355,9 +355,10 @@
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;
                 });
+                
               total = valores.reduce((a, b) => a + b, 0);
 
-console.log(total);
+
                 console.log(valores);
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
@@ -397,6 +398,7 @@ console.log(total);
                             legend: {
                                 position: 'right',
                                 labels: {
+                                    content: 'Total: ' + total, // Muestra el total en la anotación
                                     font: {
                                         size: 14
                                     }

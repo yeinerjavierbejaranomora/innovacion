@@ -440,6 +440,7 @@
                                 plugin: [ChartDataLabels]
                             });
                     });
+                    
             }
 
             /**

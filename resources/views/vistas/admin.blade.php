@@ -347,14 +347,23 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
 
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.autorizado_asistir;
-                    });
-                    var valores = data.data.map(function(elemento) {
+                    var total = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
 
-                    total = valores.reduce((a, b) => a + b, 0);
+                    total = total.reduce((a, b) => a + b, 0);
+
+
+                    var labels = data.data.map(function(elemento) {
+                        elemento.autorizado_asistir.push('total');
+                        return elemento.autorizado_asistir;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        elemento.TOTAL.push(total);
+                        return elemento.TOTAL;
+                    });
+
+                   
                     console.log( data.data);
 
                     console.log(valores);
@@ -387,6 +396,14 @@
                                     },
                                 },
                                     plugins: {
+                                        zoom: {
+                                            zoom: {
+                                                wheel: {
+                                                enabled: true // Activar el desplazamiento con la rueda del ratón
+                                                },
+                                                mode: 'xy', // Habilitar el desplazamiento en ambos ejes (X e Y)
+                                            }
+                                            },
                                         labels: {
                                             render: 'percenteaje',
                                             size: '14',

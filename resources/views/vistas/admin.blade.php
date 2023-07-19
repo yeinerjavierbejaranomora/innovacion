@@ -342,7 +342,7 @@
             $.getJSON(url, function(data) {
 
                 var total = data;
-console.log("Total:", total);
+
 
                 var labels = data.data.map(function(elemento) {
                     return elemento.autorizado_asistir;
@@ -350,6 +350,8 @@ console.log("Total:", total);
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;
                 });
+
+                console.log(valores);
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
                 var myChart = new Chart(ctx, {

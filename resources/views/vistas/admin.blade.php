@@ -611,8 +611,7 @@
                     type: 'bar',
                     data: {
                         labels: labels.map(function(label, index) {
-                            if (label == '')
-                            {
+                            if (label == '') {
                                 label = 'IBERO';
                             }
                             return label + ': ' + valores[index];
@@ -630,12 +629,9 @@
                         responsive: true,
 
                         plugins: {
-                            labels: {
-                                render: 'percentage',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
+                            datalabels: {
+                                formatter: function(value, context) {
+                                    return value
                             },
                             legend: {
                                 position: 'bottom',

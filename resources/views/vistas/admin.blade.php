@@ -384,6 +384,7 @@
                                     padding: {
                                         left: 20,
                                     },
+                                },
                                     plugins: {
                                         labels: {
                                             render: 'percenteaje',

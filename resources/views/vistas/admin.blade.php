@@ -113,7 +113,7 @@
                     <div class="card-header">
                         <h4><strong>Total estudiantes con sello financiero</strong></h4>
                     </div>
-                    <div class="card-body text-end">
+                    <div class="card-body">
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-end">
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>

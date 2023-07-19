@@ -272,7 +272,7 @@
                                 position: 'right',
                                 labels: {
                                     font: {
-                                        size: 18
+                                        size: 14
                                     }
                                 }
                             }
@@ -328,7 +328,7 @@
                                 align: 'left',
                                 labels: {
                                     font: {
-                                        size: 18
+                                        size: 14
                                     }
                                 }
                             }
@@ -398,7 +398,7 @@ console.log(total);
                                 position: 'right',
                                 labels: {
                                     font: {
-                                        size: 18
+                                        size: 14
                                     }
                                 }
                             }
@@ -459,7 +459,7 @@ console.log(total);
                                 labels: {
 
                                     font: {
-                                        size: 18
+                                        size: 14
                                     }
                                 }
                             }
@@ -517,7 +517,7 @@ console.log(total);
                                 labels: {
 
                                     font: {
-                                        size: 16
+                                        size: 14
                                     }
                                 }
                             }

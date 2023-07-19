@@ -315,7 +315,7 @@
                             labels: {
                                 render: function(args) {
                                     // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                    const value = (args.percentage.toFixed(2)) + '%';
+                                    const value = (args.percentage.toFixed(3)) + '%';
                                     return value;
                                 },
                                 size: '14',

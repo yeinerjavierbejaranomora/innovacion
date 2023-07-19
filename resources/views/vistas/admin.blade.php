@@ -573,7 +573,7 @@
 
                         plugins: {
                             labels: {
-                                render: percentage,
+                                render: 'percentage',
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',
@@ -631,7 +631,7 @@
 
                         plugins: {
                             labels: {
-                                render: percentage,
+                                render: 'percentage',
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',

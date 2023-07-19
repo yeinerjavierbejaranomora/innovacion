@@ -277,8 +277,7 @@
                 var ctx = document.getElementById('activos').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',
-                    data: {
-                        position:'right',
+                    data: {                      
                         labels: labels.map(function(label, index) {
                             if (label == 'NO EXISTE') {
                                 label = 'SIN SELLO';
@@ -303,6 +302,7 @@
                             },
                             legend: {
                                 labels: {
+                                    position:'right',
                                     font: {
                                         size: 14
                                     }
@@ -341,7 +341,8 @@
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                            'rgba(208,171,75,1)','rgba(56,101,120,1)','rgba(229,137,7,1)']
                         }]
                     },
                     options: {
@@ -349,7 +350,7 @@
                         height: 400,
                         plugins: {
                             labels: {
-                                position:'right',
+                                
                                 render: function(args) {
                                     // Obtener el valor del porcentaje y formatearlo con dos decimales
                                     const value = (args.percentage.toFixed(2)) + '%';
@@ -362,6 +363,7 @@
                             },
                             legend: {
                                 labels: {
+                                    position:'right',
                                     font: {
                                         size: 14
                                     }

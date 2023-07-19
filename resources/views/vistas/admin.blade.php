@@ -296,7 +296,7 @@
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
                         }]
                     },
                     options: {
@@ -388,9 +388,6 @@
             });
         }
 
-
-
-
         /**
          * Método que genera el gráfico de estudiantes de primer ingreso
          */
@@ -417,7 +414,7 @@
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
                         }]
                     },
                     options: {

@@ -348,8 +348,7 @@
                         }]
                     },
                     options: {
-                        width: 500,
-                        height: 500,
+                        maintainAspectRatio: false,
                         plugins: {
                             labels: {
                                 

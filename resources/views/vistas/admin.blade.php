@@ -368,7 +368,7 @@
 
 
                     var labels = data.data.map(function(elemento) {
-                        elemento.autorizado_asistir.push('total');
+                        
                         return elemento.autorizado_asistir;
                     });
                     var valores = data.data.map(function(elemento) {

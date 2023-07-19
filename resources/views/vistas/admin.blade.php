@@ -301,8 +301,8 @@
                                 textMargin: 6
                             },
                             legend: {
-                                labels: {
-                                    position:'right',
+                                position:'right',
+                                labels: {                  
                                     font: {
                                         size: 14
                                     }
@@ -362,8 +362,8 @@
                                 textMargin: 6
                             },
                             legend: {
+                                position:'right',
                                 labels: {
-                                    position:'right',
                                     font: {
                                         size: 14
                                     }

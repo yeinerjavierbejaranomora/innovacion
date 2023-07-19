@@ -302,6 +302,7 @@
                             },
                             legend: {
                                 position:'bottom',
+                                align: 'left',
                                 labels: {              
                                     font: {
                                         size: 14

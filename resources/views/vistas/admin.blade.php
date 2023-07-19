@@ -288,54 +288,63 @@
         function graficoRetencionActivos() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
-                var labels = data.data.map(function(elemento) {
-                    return elemento.autorizado_asistir;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('retencion').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
-                        }]
-                    },
-                    options: {
-                        width: 800,
-                        height: 400,
-                        plugins: {
-                            labels: {
-                                render: function(args) {
-                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                    const value = (args.percentage.toFixed(3)) + '%';
-                                    return value;
-                                },
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.autorizado_asistir;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('retencion').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
+                                }]
                             },
-                            legend: {
-                                labels: {
-                                    font: {
-                                        size: 14
-                                    }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
-            });
-        }
+                            options: {
+                                width: 800,
+                                height: 400,
+                                plugins: {
+                                    plugins: {
+                                        datalabels: {
+                                            anchor: 'end', // Colocar las etiquetas a la derecha del gráfico
+                                            align: 'start', // Alinear las etiquetas con el inicio del texto
+                                            font: {
+                                                size: 14,
+                                                weight: 'bolder'
+                                            },
+                                        },
+                                        labels: {
+                                            render: function(args) {
+                                                // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                                const value = (args.percentage.toFixed(3)) + '%';
+                                                return value;
+                                            },
+                                            size: '14',
+                                            fontStyle: 'bolder',
+                                            position: 'outside',
+                                            textMargin: 6
+                                        },
+                                        legend: {
+                                            labels: {
+                                                font: {
+                                                    size: 14
+                                                }
+                                            }
+                                        }
+                                    },
+                                },
+                                plugin: [ChartDataLabels]
+                            });
+                    });
+            }
     </script>
 
     <!-- incluimos el footer -->

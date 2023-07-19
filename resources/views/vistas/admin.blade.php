@@ -238,6 +238,9 @@
             });
         }
 
+        /**
+         * Método que genera el gráfico de sello financiero
+         */
         function graficoEstudiantesActivos() {
             var url = '/home/estudiantesActivos';
             $.getJSON(url, function(data) {
@@ -253,6 +256,10 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if(label == 'NO EXISTE')
+                            {
+                                label = 'SIN SELLO';
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{

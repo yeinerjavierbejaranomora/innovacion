@@ -38,9 +38,8 @@
     }
 
     .card-body canvas {
-        width: 100%;
+        width: 100% !important;
     }
-
 
     .card-body {
         overflow-x: auto;

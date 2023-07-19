@@ -247,7 +247,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position:'left',
+                                position:'right',
                                 labels: {
                                     font: {
                                         size: 14

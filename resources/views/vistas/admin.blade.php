@@ -306,7 +306,7 @@
                                 align: 'left',
                                 labels: {              
                                     font: {
-                                        size: 30
+                                        size: 14
                                     }
                                 }
                             }
@@ -366,7 +366,7 @@
                                 position:'right',
                                 labels: {
                                     font: {
-                                        size: 14
+                                        size: 25
                                     }
                                 }
                             }

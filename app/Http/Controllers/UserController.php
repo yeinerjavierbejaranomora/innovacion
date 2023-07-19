@@ -562,13 +562,12 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-        WHERE estado = 'activo' AND sello = 'TIENE RETENCION' AND autorizado_asistir != ''
-        GROUP BY autorizado_asistir;
+        WHERE sello = 'TIENE RETENCION' 
+        GROUP BY autorizado_asistir
          */
         $retencion = DB::table('datosMafi')
-            ->where('datosMafi.sello', 'TIENE RETENCION')
-            ->where('estado', 'activo')
-            ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, autorizado_asistir'))
+            ->where('sello', 'TIENE RETENCION')
+            ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
             ->get();
 

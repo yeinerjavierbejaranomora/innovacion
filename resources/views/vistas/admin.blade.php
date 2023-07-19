@@ -38,7 +38,7 @@
     }
 
     .card-body {
-        overflow-x: auto;
+        overflow-x: scroll;
     }
 </style>
 

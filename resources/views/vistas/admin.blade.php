@@ -346,9 +346,6 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
 
-            
-
-
                 var labels = data.data.map(function(elemento) {
                     return elemento.autorizado_asistir;
                 });
@@ -488,6 +485,9 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if (label.includes("estudiante")) {
+                                label.replace(/estudiante\s*/i, "");
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{

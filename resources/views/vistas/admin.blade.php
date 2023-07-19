@@ -398,7 +398,7 @@
                                 labels: {
                                     content: 'Total: ' + total, // Muestra el total en la anotación
                                     font: {
-                                        size: 12
+                                        size: 10
                                     }
                                 }
                             }
@@ -520,7 +520,7 @@
                                 labels: {
 
                                     font: {
-                                        size: 12
+                                        size: 10
                                     }
                                 }
                             }

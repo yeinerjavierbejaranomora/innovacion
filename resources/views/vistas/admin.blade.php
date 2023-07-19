@@ -438,6 +438,7 @@
                                         },
                                         legend: {
                                             position: 'bottom',
+                                            align: 'start',
                                             labels: {
                                                 padding: 10,
                                                 content: 'Total: ' + total, // Muestra el total en la anotación

@@ -306,7 +306,7 @@
                                 align: 'left',
                                 labels: {              
                                     font: {
-                                        size: 14
+                                        size: 80
                                     }
                                 }
                             }

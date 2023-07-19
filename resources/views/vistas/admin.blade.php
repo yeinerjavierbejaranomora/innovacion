@@ -680,7 +680,14 @@
                         }]
                     },
                     data: {
+                        labels: labels.map(function(label, index) {
+                            if (label == '') {
+                                label = 'IBERO';
+                            }
+                            return label + ': ' + valores[index];
+                        }),
                         datasets:[{ 
+                            label: 'ASP',
                             data: valores,
                             backgroundColor: ['rgba(223, 193, 78, 1)']
                         }]

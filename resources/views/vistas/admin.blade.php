@@ -351,7 +351,9 @@
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;
                 });
+              total = valores.reduce((a, b) => a + b, 0);
 
+console.log(total);
                 console.log(valores);
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');

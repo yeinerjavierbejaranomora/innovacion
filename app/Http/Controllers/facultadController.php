@@ -848,4 +848,8 @@ class facultadController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
+
+    /**
+     * 
+     */
 }

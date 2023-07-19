@@ -136,16 +136,16 @@
             </div>
         </div>
 
-
+        <br>
         <div class="row justify-content-center">
 
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <h4><strong>Con Sello Financiero</strong></h4>
+                        <h4><strong>Estudiantes primer ingreso con tipo de sello</strong></h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="sello"></canvas>
+                        <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,8 @@
         facultades();
         graficoEstudiantes();
         graficoEstudiantesActivos();
-        graficoRetencion()
+        graficoRetencion();
+        graficoSelloPrimerIngreso();
 
         /**
          * Método que trae las facultades y genera los checkbox en la vista
@@ -393,21 +394,24 @@
         /**
          * Método que genera el gráfico de estudiantes de primer ingreso
          */
-        function graficoSelloActivos() {
-            var url = '/home/selloActivos';
+        function graficoSelloPrimerIngreso() {
+            var url = '/home/estudiantesPrimerIngreso';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
-                    return elemento.autorizado_asistir;
+                    return elemento.sello;
                 });
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;
                 });
                 // Crear el gráfico circular
-                var ctx = document.getElementById('sello').getContext('2d');
+                var ctx = document.getElementById('primerIngreso').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if (label == 'NO EXISTE') {
+                                label = 'SIN SELLO';
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{
@@ -417,8 +421,9 @@
                         }]
                     },
                     options: {
-                        width: 800,
-                        height: 400,
+                        maintainAspectRatio: false,
+                        responsive: true,
+
                         plugins: {
                             labels: {
                                 render: function(args) {
@@ -432,9 +437,11 @@
                                 textMargin: 6
                             },
                             legend: {
+                                position: 'right',
                                 labels: {
+
                                     font: {
-                                        size: 14
+                                        size: 18
                                     }
                                 }
                             }

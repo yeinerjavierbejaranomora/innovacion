@@ -533,7 +533,7 @@ class UserController extends Controller
             ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
             ->groupBy('estado')
             ->get();
-            
+
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
@@ -583,9 +583,13 @@ class UserController extends Controller
 
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+        WHERE tipoestudiante = 'PRIMER INGRESO'
         GROUP BY sello
          */
-        $sello = DB::table('datosMafi');
+        $sello = DB::table('datosMafi')
+        ->where('tipoestudiante', 'PRIMER INGRESO')
+        ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+        ->groupBy('sello')->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));

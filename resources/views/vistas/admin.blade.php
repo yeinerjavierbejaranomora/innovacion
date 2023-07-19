@@ -505,8 +505,6 @@
                     plugin: [ChartDataLabels]
                 });
             });
-            total = valores.reduce((a, b) => a + b, 0);
-            console.log(data.data);
 
         }
 

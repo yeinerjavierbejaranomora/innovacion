@@ -94,7 +94,7 @@
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
-                            <h4><strong>Seleccionar Facultades</strong></h4>
+                            <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades"></div>
@@ -105,7 +105,7 @@
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardProgramas">
                         <div class="card-header text-center">
-                            <h4><strong>Seleccionar Programas</strong></h4>
+                            <h5<strong>Seleccionar Programas</strong></h5>
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
@@ -115,7 +115,7 @@
                 <div class=" col-4 text-center">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h4><strong>Total estudiantes Banner</strong></h4>
+                            <h5><strong>Total estudiantes Banner</strong></h5>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>
@@ -132,7 +132,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h4><strong>Total estudiantes con sello financiero</strong></h4>
+                        <h5><strong>Total estudiantes con sello financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -142,8 +142,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-
-                        <h4><strong>Con Sello de Retención (ASP)</strong></h4>
+                        <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="cont">
@@ -157,11 +156,12 @@
         </div>
 
         <br>
+
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h4><strong>Estudiantes primer ingreso con tipos de sellos</strong></h4>
+                        <h5><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="primerIngreso"></canvas>
@@ -169,9 +169,9 @@
                 </div>
             </div>
             <div class="col-6 text-center">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h4><strong>Tipos de estudiantes</strong></h4>
+                        <h5><strong>Tipos de estudiantes</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="tipoEstudiante"></canvas>
@@ -179,6 +179,33 @@
                 </div>
             </div>
         </div>
+
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5><strong>Operadores</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="operadores"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <div class="card shadow mb-4 graficos">
+                    <div class="card-header">
+                        <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id=""></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -428,8 +455,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position: 'bottom',
-                                align: 'start',
+                                position: 'right',
                                 labels: {
                                     padding: 10,
                                     content: 'Total: ' + total, // Muestra el total en la anotación
@@ -508,7 +534,6 @@
 
         }
 
-
         /**Método que genera el gráfico con todos los tipos de estudiantes */
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes';
@@ -556,6 +581,64 @@
                             },
                             legend: {
                                 position: 'right',
+                                labels: {
+
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+            });
+        }
+
+        /**Método que genera el gráfico con los 5 operadores que mas estudiantes traen */
+        function graficoOperadores() {
+            var url = '/home/operadores';
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.operador;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('operadores').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico de Barras',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+
+                        plugins: {
+                            labels: {
+                                render: function(args) {
+                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                    const value = (args.percentage.toFixed(2)) + '%';
+                                    return value;
+                                },
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                position: 'bottom',
                                 labels: {
 
                                     font: {

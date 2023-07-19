@@ -547,7 +547,7 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        *GROUP BY sello
+         *GROUP BY sello
          */
         $sello = DB::table('datosMafi')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -566,8 +566,8 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-        *WHERE sello = 'TIENE RETENCION' 
-        *GROUP BY autorizado_asistir
+         *WHERE sello = 'TIENE RETENCION' 
+         *GROUP BY autorizado_asistir
          */
         $retencion = DB::table('datosMafi')
             ->where('sello', 'TIENE RETENCION')
@@ -579,22 +579,31 @@ class UserController extends Controller
         echo json_encode(array('data' => $retencion));
     }
 
-    public function estudiantesPrimerIngreso(){
+    /**
+     * Método que muestra el sello de los estudiantes de primer ingreso 
+     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
+     */
+    public function estudiantesPrimerIngreso()
+    {
 
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        *WHERE tipoestudiante = 'PRIMER INGRESO'
-        *GROUP BY sello
+         *WHERE tipoestudiante = 'PRIMER INGRESO'
+         *GROUP BY sello
          */
         $sello = DB::table('datosMafi')
-        ->where('tipoestudiante', 'PRIMER INGRESO')
-        ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-        ->groupBy('sello')->get();
+            ->where('tipoestudiante', 'PRIMER INGRESO')
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
 
+    /**
+     * Método que trae todos los tipos de estudiantes
+     * @return JSON retorna todos los tipos de estudiantes
+     */
     public function tiposEstudiantes()
     {
         /**
@@ -603,11 +612,32 @@ class UserController extends Controller
          * GROUP BY tipoestudiante
          */
         $tipoEstudiantes = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
-        ->groupBy('tipoestudiante')->get();
+            ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
+            ->groupBy('tipoestudiante')->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
+    /**
+     * Método que muestra los 5 operadores que mas estudiantes traen
+     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
+     */
+    public function operadores()
+    {
+        /**
+         * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
+        GROUP BY operador ASC
+        ORDER BY TOTAL DESC
+         */
+        $operadores = DB::table('datosMafi')
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
+    }
 }

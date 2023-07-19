@@ -109,7 +109,7 @@
             <div class="col-4 text-center">
                 <div class="card shadow mb-5">
                     <div class="card-header">
-                        <h4><strong>Activos - Sello Financiero</strong></h4>
+                        <h4><strong>Sello Financiero General</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -123,7 +123,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <h4><strong>Activos con Retención</strong></h4>
+                        <h4><strong>Activos con Retención (ASP)</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>

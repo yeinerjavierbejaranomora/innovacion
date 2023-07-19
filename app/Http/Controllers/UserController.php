@@ -552,17 +552,16 @@ class UserController extends Controller
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
-            
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
 
 
-
     public function estudiantesRetencion()
     {
         /**
-         * SELECT COUNT(DISTINCT idbanner) AS TOTAL, autorizado_asistir FROM datosMafi 
+         * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
         WHERE estado = 'activo' AND sello = 'TIENE RETENCION' AND autorizado_asistir != ''
         GROUP BY autorizado_asistir;
          */

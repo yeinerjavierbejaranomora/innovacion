@@ -272,7 +272,7 @@
                                 position: 'right',
                                 labels: {
                                     font: {
-                                        size: 14
+                                        size: 12
                                     }
                                 }
                             }
@@ -328,7 +328,7 @@
                                 align: 'left',
                                 labels: {
                                     font: {
-                                        size: 14
+                                        size: 12
                                     }
                                 }
                             }
@@ -400,7 +400,7 @@
                                 labels: {
                                     content: 'Total: ' + total, // Muestra el total en la anotación
                                     font: {
-                                        size: 14
+                                        size: 12
                                     }
                                 }
                             }
@@ -461,7 +461,7 @@
                                 labels: {
 
                                     font: {
-                                        size: 14
+                                        size: 12
                                     }
                                 }
                             }
@@ -519,7 +519,7 @@
                                 labels: {
 
                                     font: {
-                                        size: 14
+                                        size: 12
                                     }
                                 }
                             }

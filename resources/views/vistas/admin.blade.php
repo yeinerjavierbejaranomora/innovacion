@@ -307,6 +307,10 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if(label == '')
+                            {
+                                label = 'NO AUTORIZADO A PLATAFORMA'
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{

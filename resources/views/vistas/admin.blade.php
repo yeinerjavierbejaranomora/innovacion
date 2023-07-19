@@ -347,180 +347,184 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
 
-                var labels = data.data.map(function(elemento) {
-                    return elemento.autorizado_asistir;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                
-              total = valores.reduce((a, b) => a + b, 0);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.autorizado_asistir;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+
+                    total = valores.reduce((a, b) => a + b, 0);
 
 
-                console.log(valores);
-                // Crear el gráfico circular
-                var ctx = document.getElementById('retencion').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == '') {
-                                label = 'NO AUTORIZADO A PLATAFORMA'
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            labels: {
-                                render: 'percenteaje',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
-                            },
-                            legend: {
-                                position: 'right',
-                                labels: {
-                                    content: 'Total: ' + total, // Muestra el total en la anotación
-                                    font: {
-                                        size: 10
+                    console.log(valores);
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('retencion').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'NO AUTORIZADO A PLATAFORMA'
                                     }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
-            });
-        }
-
-        /**
-         * Método que genera el gráfico de estudiantes de primer ingreso
-         */
-        function graficoSelloPrimerIngreso() {
-            var url = '/home/estudiantesPrimerIngreso';
-            $.getJSON(url, function(data) {
-                var labels = data.data.map(function(elemento) {
-                    return elemento.sello;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('primerIngreso').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == 'NO EXISTE') {
-                                label = 'SIN SELLO';
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-
-                        plugins: {
-                            labels: {
-                                render: 'percenteaje',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
                             },
-                            legend: {
-                                position: 'right',
-                                labels: {
-
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
-            });
-        }
-
-        /**Método que genera el gráfico con todos los tipos de estudiantes */
-        function graficoTipoDeEstudiante() {
-            var url = '/home/tipoEstudiantes';
-            $.getJSON(url, function(data) {
-                var labels = data.data.map(function(elemento) {
-                    return elemento.tipoestudiante;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label.includes("ESTUDIANTE")) {
-                                label = label.replace(/ESTUDIANTE \S*/i, "");
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-
-                        plugins: {
-                            labels: {
-                                render: function(args) {
-                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                    const value = (args.percentage.toFixed(2)) + '%';
-                                    return value;
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                    plugins: {
+                                        labels: {
+                                            render: 'percenteaje',
+                                            size: '14',
+                                            fontStyle: 'bolder',
+                                            position: 'outside',
+                                            textMargin: 6
+                                        },
+                                        legend: {
+                                            position: 'right',
+                                            labels: {
+                                                content: 'Total: ' + total, // Muestra el total en la anotación
+                                                font: {
+                                                    size: 10
+                                                }
+                                            }
+                                        }
+                                    },
                                 },
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
-                            },
-                            legend: {
-                                position: 'right',
-                                labels: {
+                                plugin: [ChartDataLabels]
+                            });
+                    });
+            }
 
-                                    font: {
-                                        size: 10
+            /**
+             * Método que genera el gráfico de estudiantes de primer ingreso
+             */
+            function graficoSelloPrimerIngreso() {
+                var url = '/home/estudiantesPrimerIngreso';
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('primerIngreso').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == 'NO EXISTE') {
+                                    label = 'SIN SELLO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+
+                            plugins: {
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
                                     }
                                 }
-                            }
+                            },
                         },
-                    },
-                    plugin: [ChartDataLabels]
+                        plugin: [ChartDataLabels]
+                    });
                 });
-            });
-        }
+            }
+
+            /**Método que genera el gráfico con todos los tipos de estudiantes */
+            function graficoTipoDeEstudiante() {
+                var url = '/home/tipoEstudiantes';
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.tipoestudiante;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label.includes("ESTUDIANTE")) {
+                                    label = label.replace(/ESTUDIANTE \S*/i, "");
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+
+                            plugins: {
+                                labels: {
+                                    render: function(args) {
+                                        // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                        const value = (args.percentage.toFixed(2)) + '%';
+                                        return value;
+                                    },
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+
+                                        font: {
+                                            size: 10
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                });
+            }
     </script>
 
     <!-- incluimos el footer -->

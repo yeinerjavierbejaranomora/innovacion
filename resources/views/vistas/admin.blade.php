@@ -113,7 +113,6 @@
         <br>
 
         <div class="row justify-content-center">
-
             <div class="col-6 text-center">
                 <div class="card shadow mb-6">
                     <div class="card-header">
@@ -138,14 +137,23 @@
 
         <br>
         <div class="row justify-content-center">
-
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <h4><strong>Estudiantes primer ingreso con tipo de sello</strong></h4>
+                        <h4><strong>Estudiantes primer ingreso con tipos de sellos</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="primerIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h4><strong>Tipos de estudiantes</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="tipoEstudiante"></canvas>
                     </div>
                 </div>
             </div>
@@ -359,7 +367,7 @@ console.log("Total:", total);
                             label: 'Gráfico Circular',
                             data: valores,
                             backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(208,171,75,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
                             ]
                         }]
                     },
@@ -421,6 +429,64 @@ console.log("Total:", total);
                             label: 'Gráfico Circular',
                             data: valores,
                             backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+
+                        plugins: {
+                            labels: {
+                                render: function(args) {
+                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                    const value = (args.percentage.toFixed(2)) + '%';
+                                    return value;
+                                },
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                position: 'right',
+                                labels: {
+
+                                    font: {
+                                        size: 18
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+            });
+        }
+
+        /**Método que genera el gráfico con todos los tipos de estudiantes */
+        function graficoTipoDeEstudiante() {
+            var url = '/home//tipoEstudiantes';
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.tipoestudiante;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor:['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ]
                         }]
                     },
                     options: {

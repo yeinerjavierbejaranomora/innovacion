@@ -595,4 +595,19 @@ class UserController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
+    public function tiposEstudiantes()
+    {
+        /**
+         * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
+         * tipoestudiante FROM `datosMafi` 
+         * GROUP BY tipoestudiante
+         */
+        $tipoEstudiantes = DB::table('datosMafi')
+        ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
+        ->groupBy('tipoestudiante')->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $tipoEstudiantes));
+    }
+
 }

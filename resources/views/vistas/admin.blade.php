@@ -114,8 +114,8 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center" id="chartEstudiantes">
-                    <div class="card shadow mb-5">
+                <div class=" col-4 text-center" >
+                    <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h4><strong>Total estudiantes Banner</strong></h4>
                         </div>

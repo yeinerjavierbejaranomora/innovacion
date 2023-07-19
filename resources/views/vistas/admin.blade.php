@@ -615,6 +615,10 @@
                     type: 'bar',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if (label == '')
+                            {
+                                label = 'IBERO';
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{

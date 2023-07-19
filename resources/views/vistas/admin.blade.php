@@ -26,6 +26,11 @@
         min-height: 405.6px;
         max-height: 405.6px;
     }
+
+    #centrar {
+        display: flex;
+        align-items: center;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -75,7 +80,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Facultades</strong></h4>
                         </div>
-                        <div class="card-body text-start align-middle" style="overflow: auto;">
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
@@ -250,7 +255,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position:'right',
+                                position: 'right',
                                 labels: {
                                     font: {
                                         size: 18
@@ -280,7 +285,7 @@
                 var ctx = document.getElementById('activos').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',
-                    data: {                      
+                    data: {
                         labels: labels.map(function(label, index) {
                             if (label == 'NO EXISTE') {
                                 label = 'SIN SELLO';
@@ -305,9 +310,9 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position:'right',
+                                position: 'right',
                                 align: 'left',
-                                labels: {              
+                                labels: {
                                     font: {
                                         size: 18
                                     }
@@ -347,7 +352,8 @@
                             label: 'Gráfico Circular',
                             data: valores,
                             backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                            'rgba(208,171,75,1)','rgba(56,101,120,1)','rgba(229,137,7,1)']
+                                'rgba(208,171,75,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ]
                         }]
                     },
                     options: {
@@ -355,7 +361,7 @@
                         responsive: true,
                         plugins: {
                             labels: {
-                                
+
                                 render: function(args) {
                                     // Obtener el valor del porcentaje y formatearlo con dos decimales
                                     const value = (args.percentage.toFixed(2)) + '%';
@@ -367,7 +373,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position:'right',
+                                position: 'right',
                                 labels: {
                                     font: {
                                         size: 18

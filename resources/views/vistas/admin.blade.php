@@ -469,11 +469,11 @@
                     },
                     plugin: [ChartDataLabels]
                 });
-            });
-            if(myChart.data.labels.lenght>3)
+                if(myChart.data.labels.lenght>3)
             {
                 $('.contbody').css('width', '800px');
             }
+            });     
         }
 
         /**

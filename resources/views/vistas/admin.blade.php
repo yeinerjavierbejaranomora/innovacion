@@ -118,8 +118,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 text-center">
-                <div class="card shadow mb-7">
+            <div class="col-6 text-center">
+                <div class="card shadow mb-6">
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
@@ -302,7 +302,8 @@
                             },
                             legend: {
                                 position:'right',
-                                labels: {                  
+                                labels: {  
+                                    position:'right',                
                                     font: {
                                         size: 14
                                     }

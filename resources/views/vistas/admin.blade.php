@@ -632,6 +632,7 @@
                             datalabels: {
                                 formatter: function(value, context) {
                                     return value
+                                },
                             },
                             legend: {
                                 position: 'bottom',
@@ -646,6 +647,7 @@
                     },
                     plugin: [ChartDataLabels]
                 });
+
             });
         }
     </script>

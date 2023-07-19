@@ -167,6 +167,7 @@
         graficoEstudiantesActivos();
         graficoRetencion();
         graficoSelloPrimerIngreso();
+        graficoTipoDeEstudiante()
 
         /**
          * Método que trae las facultades y genera los checkbox en la vista
@@ -340,10 +341,6 @@
         function graficoRetencion() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
-
-                var total = data.reduce((a, b) => a + b, 0);
-console.log("Total:", total);
-
                 var labels = data.data.map(function(elemento) {
                     return elemento.autorizado_asistir;
                 });
@@ -356,8 +353,6 @@ console.log("Total:", total);
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-
-                           
                             if (label == '') {
                                 label = 'NO AUTORIZADO A PLATAFORMA'
                             }
@@ -465,7 +460,7 @@ console.log("Total:", total);
 
         /**Método que genera el gráfico con todos los tipos de estudiantes */
         function graficoTipoDeEstudiante() {
-            var url = '/home//tipoEstudiantes';
+            var url = '/home/tipoEstudiantes';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
                     return elemento.tipoestudiante;
@@ -484,7 +479,7 @@ console.log("Total:", total);
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor:['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                 'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
                             ]
                         }]

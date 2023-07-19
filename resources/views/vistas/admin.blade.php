@@ -348,6 +348,7 @@
                         height: 400,
                         plugins: {
                             labels: {
+                                position:'right',
                                 render: function(args) {
                                     // Obtener el valor del porcentaje y formatearlo con dos decimales
                                     const value = (args.percentage.toFixed(2)) + '%';

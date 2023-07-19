@@ -341,6 +341,10 @@
         function graficoRetencion() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
+
+                var total = data;
+console.log("Total:", total);
+
                 var labels = data.data.map(function(elemento) {
                     return elemento.autorizado_asistir;
                 });

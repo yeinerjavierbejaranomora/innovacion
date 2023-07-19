@@ -278,6 +278,7 @@
                 var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: {
+                        position:'right',
                         labels: labels.map(function(label, index) {
                             if (label == 'NO EXISTE') {
                                 label = 'SIN SELLO';

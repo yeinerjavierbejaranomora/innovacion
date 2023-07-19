@@ -45,6 +45,7 @@
     .cont{
         width: 500px;
         max-width: 450px;
+        overflow-x: scroll;
     }
 </style>
 
@@ -352,9 +353,18 @@
                     },
                     plugin: [ChartDataLabels]
                 });
+                var containerBody = $('.contbody');
+                if(myChart.data.labels.length > 3)
+                {
+                    containerBody.style.width = '700px';
+                }
             });
         }
 
+
+      
+      
+      
         /**
          * Método que genera el gráfico de estudiantes con retención (ASP)
          */
@@ -444,6 +454,7 @@
                     
             }
 
+            const
             /**
              * Método que genera el gráfico de estudiantes de primer ingreso
              */

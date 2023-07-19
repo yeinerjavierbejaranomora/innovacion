@@ -90,23 +90,25 @@
                         </div>
                     </div>
                 </div>
+                <div class=" col-4 text-center">
+                    <div class="card shadow mb-5">
+                        <div class="card-header">
+                            <h4><strong>Total estudiantes Banner</strong></h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="estudiantes"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <br>
 
         <div class="row justify-content-center">
-            <div class=" col-4 text-center">
-                <div class="card shadow mb-5">
-                    <div class="card-header">
-                        <h4><strong>Total estudiantes Banner</strong></h4>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="estudiantes"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 text-center">
+
+            <div class="col-5 text-center">
                 <div class="card shadow mb-5">
                     <div class="card-header">
                         <h4><strong>Total estudiantes con sello financiero</strong></h4>
@@ -116,17 +118,28 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row justify-content-center">
-            <div class="col-6 text-center">
-                <div class="card shadow mb-4">
+            <div class="col-5 text-center">
+                <div class="card shadow mb-5">
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            
+            <div class="col-6 text-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h4><strong>Con Sello Financiero</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sello"></canvas>
                     </div>
                 </div>
             </div>
@@ -138,7 +151,7 @@
         facultades();
         graficoEstudiantes();
         graficoEstudiantesActivos();
-        graficoRetencionActivos()
+        graficoRetencion()
 
         /**
          * Método que trae las facultades y genera los checkbox en la vista
@@ -265,8 +278,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            if(label == 'NO EXISTE')
-                            {
+                            if (label == 'NO EXISTE') {
                                 label = 'SIN SELLO';
                             }
                             return label + ': ' + valores[index];
@@ -304,7 +316,7 @@
         /**
          * Método que genera el gráfico de estudiantes con retención (ASP)
          */
-        function graficoRetencionActivos() {
+        function graficoRetencion() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
@@ -319,8 +331,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            if(label == '')
-                            {
+                            if (label == '') {
                                 label = 'NO AUTORIZADO A PLATAFORMA'
                             }
                             return label + ': ' + valores[index];
@@ -360,7 +371,60 @@
             });
         }
 
-
+        /**
+         * Método que genera el gráfico de estudiantes con retención (ASP)
+         */
+        function graficoSelloActivos() {
+            var url = '/home/selloActivos';
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.autorizado_asistir;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('sello').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75)']
+                        }]
+                    },
+                    options: {
+                        width: 800,
+                        height: 400,
+                        plugins: {
+                            labels: {
+                                render: function(args) {
+                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                    const value = (args.percentage.toFixed(2)) + '%';
+                                    return value;
+                                },
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+            });
+        }
     </script>
 
     <!-- incluimos el footer -->

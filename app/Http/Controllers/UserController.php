@@ -539,8 +539,8 @@ class UserController extends Controller
     }
 
     /**
-     * Método que muestra el estado del sello financiero de los estudiantes activos
-     * @return JSON retorna los estudiantes agrupados en activos e inactivos
+     * Método que muestra el estado del sello financiero de todos los estudiantes
+     * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
     public function selloEstudiantesActivos()
     {
@@ -557,7 +557,10 @@ class UserController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
-
+    /**
+     * Método que trae los estudiantes con retención
+     * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
+     */
     public function estudiantesRetencion()
     {
         /**
@@ -574,4 +577,17 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
+
+    public function estudiantesPrimerIngreso(){
+
+        /**
+         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+        GROUP BY sello
+         */
+        $sello = DB::table('datosMafi');
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
+    }
+
 }

@@ -31,6 +31,10 @@
         display: flex;
         align-items: center;
     }
+
+    .graficos {
+        min-height: 420px;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -114,7 +118,7 @@
 
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <div class="card shadow mb-6">
+                <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h4><strong>Total estudiantes con sello financiero</strong></h4>
                     </div>
@@ -124,7 +128,7 @@
                 </div>
             </div>
             <div class="col-6 text-center">
-                <div class="card shadow mb-6">
+                <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
@@ -138,7 +142,7 @@
         <br>
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4 graficos">
                     <div class="card-header">
                         <h4><strong>Estudiantes primer ingreso con tipos de sellos</strong></h4>
                     </div>
@@ -148,7 +152,7 @@
                 </div>
             </div>
             <div class="col-6 text-center">
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4 graficos">
                     <div class="card-header">
                         <h4><strong>Tipos de estudiantes</strong></h4>
                     </div>
@@ -509,7 +513,7 @@ console.log("Total:", total);
                                 labels: {
 
                                     font: {
-                                        size: 18
+                                        size: 16
                                     }
                                 }
                             }

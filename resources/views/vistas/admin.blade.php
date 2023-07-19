@@ -75,7 +75,7 @@
                         <div class="card-header text-center">
                             <h4><strong>Seleccionar Facultades</strong></h4>
                         </div>
-                        <div class="card-body text-start" style="overflow: auto;">
+                        <div class="card-body text-start align-middle" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades"></div>
                             <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>

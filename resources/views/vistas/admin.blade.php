@@ -43,7 +43,8 @@
     }
 
     .cont{
-        width
+        width: 500px;
+        max-width: 450px;
     }
 </style>
 

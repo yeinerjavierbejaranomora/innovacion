@@ -547,7 +547,7 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        GROUP BY sello
+        *GROUP BY sello
          */
         $sello = DB::table('datosMafi')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -566,8 +566,8 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-        WHERE sello = 'TIENE RETENCION' 
-        GROUP BY autorizado_asistir
+        *WHERE sello = 'TIENE RETENCION' 
+        *GROUP BY autorizado_asistir
          */
         $retencion = DB::table('datosMafi')
             ->where('sello', 'TIENE RETENCION')
@@ -583,8 +583,8 @@ class UserController extends Controller
 
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        WHERE tipoestudiante = 'PRIMER INGRESO'
-        GROUP BY sello
+        *WHERE tipoestudiante = 'PRIMER INGRESO'
+        *GROUP BY sello
          */
         $sello = DB::table('datosMafi')
         ->where('tipoestudiante', 'PRIMER INGRESO')

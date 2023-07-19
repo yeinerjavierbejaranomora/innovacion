@@ -109,8 +109,8 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-4 text-center">
-                <div class="card shadow mb-4">
+            <div class="col-6 text-center">
+                <div class="card shadow mb-6">
                     <div class="card-header">
                         <h4><strong>Total estudiantes con sello financiero</strong></h4>
                     </div>
@@ -119,8 +119,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 text-center">
-                <div class="card shadow mb-8">
+            <div class="col-6 text-center">
+                <div class="card shadow mb-6">
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
@@ -302,7 +302,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position:'bottom',
+                                position:'right',
                                 align: 'left',
                                 labels: {              
                                     font: {

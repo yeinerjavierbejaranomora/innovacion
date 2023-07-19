@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5 text-center">
+            <div class="col-7 text-center">
                 <div class="card shadow mb-7">
                     <div class="card-header">
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>

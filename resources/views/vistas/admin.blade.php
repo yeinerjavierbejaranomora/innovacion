@@ -109,7 +109,7 @@
             <div class="col-4 text-center">
                 <div class="card shadow mb-5">
                     <div class="card-header">
-                        <h4><strong>Sello Financiero General</strong></h4>
+                        <h4><strong>Total estudiantes con sello financiero</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -123,7 +123,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <h4><strong>Activos con Retención (ASP)</strong></h4>
+                        <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -140,6 +140,9 @@
         graficoEstudiantesActivos();
         graficoRetencionActivos()
 
+        /**
+         * Método que trae las facultades y genera los checkbox en la vista
+         */
         function facultades() {
             datos = $.ajax({
                 headers: {
@@ -156,6 +159,10 @@
 
         }
 
+        /**
+         * Método que trae los programas correspondientes a cada facultad según 
+         * los checkbox marcados
+         */
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                 $('#mensaje').hide();
@@ -190,7 +197,9 @@
             }
         });
 
-
+        /**
+         * Método que muestra el total de estudiantes activos e inactivos
+         */
         function graficoEstudiantes() {
             var url = '/home/estudiantes';
             $.getJSON(url, function(data) {
@@ -292,6 +301,9 @@
             });
         }
 
+        /**
+         * Método que genera el gráfico de estudiantes con retención (ASP)
+         */
         function graficoRetencionActivos() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
@@ -347,6 +359,8 @@
                 });
             });
         }
+
+
     </script>
 
     <!-- incluimos el footer -->

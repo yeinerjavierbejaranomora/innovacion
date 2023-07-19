@@ -18,13 +18,13 @@
     }
 
     #cardFacultades {
-        min-height: 453.26px;
-        max-height: 453.26px;
+        min-height: 405.6px;
+        max-height: 405.6px;
     }
 
     #cardProgramas {
-        min-height: 453.26px;
-        max-height: 453.26px;
+        min-height: 405.6px;
+        max-height: 405.6px;
     }
 </style>
 

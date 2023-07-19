@@ -629,8 +629,8 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
-                            if (label.includes("ESTUDIANTE")) {
-                                label = label.replace(/ESTUDIANTE \S*/i, "");
+                            if (label.includes("ESTUDIANTE ")) {
+                                label = label.replace(/ESTUDIANTE\S*/i, "");
                             }
                             return label + ': ' + valores[index];
                         }),

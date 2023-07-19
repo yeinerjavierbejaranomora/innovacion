@@ -382,7 +382,8 @@
                                 responsive: true,
                                 layout: {
                                     padding: {
-                                        left: 20,
+                                        left: 25,
+                                        right: 20,
                                     },
                                 },
                                     plugins: {
@@ -396,9 +397,10 @@
                                         legend: {
                                             position: 'right',
                                             labels: {
+                                                padding: 20,
                                                 content: 'Total: ' + total, // Muestra el total en la anotación
                                                 font: {
-                                                    size: 10
+                                                    size: 12
                                                 }
                                             }
                                         }
@@ -441,7 +443,11 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
-
+                            layout: {
+                                padding:{
+                                    left: 20,
+                                },
+                            },
                             plugins: {
                                 labels: {
                                     render: 'percenteaje',
@@ -516,7 +522,7 @@
                                     labels: {
 
                                         font: {
-                                            size: 10
+                                            size: 12
                                         }
                                     }
                                 }

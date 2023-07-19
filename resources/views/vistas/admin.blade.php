@@ -27,6 +27,11 @@
         max-height: 405.6px;
     }
 
+    #chartEstudiantes {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
     #centrar {
         display: flex;
         align-items: center;
@@ -109,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center">
+                <div class=" col-4 text-center" id="chartEstudiantes">
                     <div class="card shadow mb-5">
                         <div class="card-header">
                             <h4><strong>Total estudiantes Banner</strong></h4>

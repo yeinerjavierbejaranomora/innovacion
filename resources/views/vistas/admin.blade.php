@@ -344,6 +344,9 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+
+                            var total = data.reduce((a, b) => a + b, 0);
+console.log("Total:", total);
                             if (label == '') {
                                 label = 'NO AUTORIZADO A PLATAFORMA'
                             }

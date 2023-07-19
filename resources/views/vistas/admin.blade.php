@@ -366,7 +366,7 @@
                                 position:'right',
                                 labels: {
                                     font: {
-                                        size: 25
+                                        size: 20
                                     }
                                 }
                             }

@@ -416,7 +416,6 @@
                     return elemento.TOTAL;
                 });
 
-
                 console.log(data.data);
 
                 console.log(valores);
@@ -449,14 +448,6 @@
                             },
                         },
                         plugins: {
-                            zoom: {
-                                zoom: {
-                                    wheel: {
-                                        enabled: true // Activar el desplazamiento con la rueda del ratón
-                                    },
-                                    mode: 'xy', // Habilitar el desplazamiento en ambos ejes (X e Y)
-                                }
-                            },
                             labels: {
                                 render: 'percenteaje',
                                 size: '14',
@@ -479,7 +470,10 @@
                     plugin: [ChartDataLabels]
                 });
             });
-
+            if(myChart.data.labels.lenght>3)
+            {
+                $('.contbody').css('width', '800px');
+            }
         }
 
         /**

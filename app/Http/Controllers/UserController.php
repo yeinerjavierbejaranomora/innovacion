@@ -525,8 +525,12 @@ class UserController extends Controller
      */
     public function estudiantesActivosGeneral()
     {
+        /**
+         * SELECT COUNT(estado) AS TOTAL, estado FROM `datosMafi`
+        GROUP BY estado
+         */
         $estudiantes = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, estado'))
+            ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
             ->groupBy('estado')
             ->get();
 
@@ -540,8 +544,9 @@ class UserController extends Controller
      */
     public function selloEstudiantesActivos()
     {
+
         $sello = DB::table('datosMafi')
-            ->where('estado','activo')
+            ->where('estado', 'activo')
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
@@ -549,11 +554,18 @@ class UserController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
+
+
     public function estudiantesRetencion()
     {
+        /**
+         * SELECT COUNT(DISTINCT idbanner) AS TOTAL, autorizado_asistir FROM datosMafi 
+        WHERE estado = 'activo' AND sello = 'TIENE RETENCION' AND autorizado_asistir != ''
+        GROUP BY autorizado_asistir;
+         */
         $retencion = DB::table('datosMafi')
             ->where('datosMafi.sello', 'TIENE RETENCION')
-            ->where('estado','activo')
+            ->where('estado', 'activo')
             ->select(DB::raw('COUNT(DISTINCT idbanner) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
             ->get();
@@ -561,5 +573,4 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
-
 }

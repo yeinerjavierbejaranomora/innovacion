@@ -312,37 +312,27 @@
                         width: 800,
                         height: 400,
                         plugins: {
-                            plugins: {
-                                datalabels: {
-                                    anchor: 'end', // Colocar las etiquetas a la derecha del gráfico
-                                    align: 'start', // Alinear las etiquetas con el inicio del texto
-                                    font: {
-                                        size: 14,
-                                        weight: 'bolder'
-                                    },
+                            labels: {
+                                render: function(args) {
+                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
+                                    const value = (args.percentage.toFixed(2)) + '%';
+                                    return value;
                                 },
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
                                 labels: {
-                                    render: function(args) {
-                                        // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                        const value = (args.percentage.toFixed(3)) + '%';
-                                        return value;
-                                    },
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    labels: {
-                                        font: {
-                                            size: 14
-                                        }
+                                    font: {
+                                        size: 14
                                     }
                                 }
-                            },
+                            }
                         },
-                        plugin: [ChartDataLabels]
-                    }
+                    },
+                    plugin: [ChartDataLabels]
                 });
             });
         }

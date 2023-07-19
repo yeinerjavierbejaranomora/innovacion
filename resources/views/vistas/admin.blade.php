@@ -437,7 +437,7 @@
                                             textMargin: 6
                                         },
                                         legend: {
-                                            position: 'right',
+                                            position: 'bottom',
                                             labels: {
                                                 padding: 10,
                                                 content: 'Total: ' + total, // Muestra el total en la anotación
@@ -555,7 +555,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position: 'right',
+                                position: 'bottom',
                                 labels: {
                                     padding: 10,
                                     content: 'Total: ' + total, // Muestra el total en la anotación
@@ -570,66 +570,6 @@
                 });
             }
 
-        /**
-         * Método que genera el gráfico de estudiantes de primer ingreso
-         */
-        function graficoSelloPrimerIngreso() {
-            var url = '/home/estudiantesPrimerIngreso';
-            $.getJSON(url, function(data) {
-                var labels = data.data.map(function(elemento) {
-                    return elemento.sello;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('primerIngreso').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == 'NO EXISTE') {
-                                label = 'SIN SELLO';
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        layout: {
-                            padding: {
-                                left: 20,
-                            },
-                        },
-                        plugins: {
-                            labels: {
-                                render: 'percenteaje',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
-                            },
-                            legend: {
-                                position: 'right',
-                                labels: {
-
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
-            });
-        }
 
         /**Método que genera el gráfico con todos los tipos de estudiantes */
         function graficoTipoDeEstudiante() {

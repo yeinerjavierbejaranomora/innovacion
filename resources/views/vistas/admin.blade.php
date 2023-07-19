@@ -230,7 +230,7 @@
                     data: {
                         labels: labels.map(function(label, index) {
                             label = label.toUpperCase();
-                            return label + 's: ' + valores[index];
+                            return label + 'S: ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',

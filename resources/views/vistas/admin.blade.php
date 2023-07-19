@@ -37,7 +37,7 @@
         max-height: 420px;
     }
 
-    .graficos .card-body {
+    .card-body {
         overflow-x: auto;
     }
 </style>

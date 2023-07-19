@@ -310,8 +310,9 @@
                         maintainAspectRatio: false,
                         responsive: true,
                         plugins: {
-                            datalabels: {
-                                formatter: valores, 
+                            formatter: function(value, context) {
+                                // Aquí devolvemos los valores que queremos mostrar en el gráfico
+                                return value + ' (' + context.dataset.labels[context.dataIndex] + ')';
                             },
                             labels: {
                                 render: 'percenteaje',
@@ -544,7 +545,7 @@
 
         /**
          * Método que genera el gráfico con todos los tipos de estudiantes 
-        */
+         */
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes';
             $.getJSON(url, function(data) {
@@ -703,7 +704,6 @@
 
             });
         }
-
     </script>
 
     <!-- incluimos el footer -->

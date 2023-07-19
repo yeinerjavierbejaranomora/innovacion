@@ -340,6 +340,10 @@
         function graficoRetencion() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
+
+                var total = data.reduce((a, b) => a + b, 0);
+console.log("Total:", total);
+
                 var labels = data.data.map(function(elemento) {
                     return elemento.autorizado_asistir;
                 });
@@ -352,6 +356,8 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+
+                           
                             if (label == '') {
                                 label = 'NO AUTORIZADO A PLATAFORMA'
                             }

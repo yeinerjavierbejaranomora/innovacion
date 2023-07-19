@@ -229,6 +229,7 @@
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            label = label.toUpperCase();
                             return label + 's: ' + valores[index];
                         }),
                         datasets: [{

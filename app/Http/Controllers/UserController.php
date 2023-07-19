@@ -533,6 +533,7 @@ class UserController extends Controller
             ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
             ->groupBy('estado')
             ->get();
+            
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));

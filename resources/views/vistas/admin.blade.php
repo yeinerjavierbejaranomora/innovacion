@@ -310,9 +310,11 @@
                         maintainAspectRatio: false,
                         responsive: true,
                         plugins: {
-                            formatter: function(value, context) {
-                                // Aquí devolvemos los valores que queremos mostrar en el gráfico
-                                return value;
+                            datalabels: {
+                                formatter: function(value, context) {
+                                    // Aquí devolvemos los valores que queremos mostrar en el gráfico
+                                    return value + ' (' + context.dataset.labels[context.dataIndex] + ')';
+                                },
                             },
                             labels: {
                                 render: 'percenteaje',

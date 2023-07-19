@@ -355,7 +355,7 @@
                     });
 
                     total = valores.reduce((a, b) => a + b, 0);
-
+                    console.log( data.data);
 
                     console.log(valores);
                     // Crear el gráfico circular

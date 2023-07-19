@@ -367,7 +367,7 @@
                         return elemento.autorizado_asistir;
                     });
                     var valores = data.data.map(function(elemento) {
-                        elemento.TOTAL.push(total);
+                       
                         return elemento.TOTAL;
                     });
 

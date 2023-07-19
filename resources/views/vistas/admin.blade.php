@@ -6,7 +6,7 @@
 <!--  creamos el contenido principal body -->
 <style>
     #facultades {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     #buscarProgramas {

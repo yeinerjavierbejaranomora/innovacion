@@ -78,6 +78,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/home/retencionActivos', 'estudiantesRetencion')->middleware('auth')->name('retencion.activos');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso */
     Route::get('/home/estudiantesPrimerIngreso', 'estudiantesPrimerIngreso')->middleware('auth')->name('sello.estudiantes');
+    /** Ruta para cargar gráfica de estudiantes tipos de estudiantes */
+    Route::get('/home/tipoEstudiantes', 'tiposEstudiantes')->middleware('auth')->name('tipo.estudiantes');
 });
 
 Route::controller(MafiController::class)->group(function () {
@@ -231,13 +233,5 @@ Route::controller(facultadController::class)->group(function () {
     Route::get('/home/getplaneacion', 'get_planeacion')->middleware('auth')->name('programas.planeacion');
     /** Ruta para visualizar la planeación de cada programa */
     Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
-
-    /** Ruta para traer datos de gráfico activos */
-    Route::get('/home/facultades/activos/{id}', 'getEstudiantesSello')->middleware('auth')->name('facultad.activos');
-    /** Ruta para traer datos de gráfico activos de primer ingreso*/
-    Route::get('/home/facultades/primerIngreso/{id}', 'getEstudiantesPrimerIngreso')->middleware('auth')->name('facultad.activos');
-    /** Ruta para traer datos de gráfico retencion*/
-    Route::get('/home/facultades/retencion/{id}', 'getEstudiantesRetencion')->middleware('auth')->name('facultad.retencion');
-
     
 });

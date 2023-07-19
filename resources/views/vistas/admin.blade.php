@@ -309,7 +309,8 @@
                         }]
                     },
                     options: {
-                        maintainAspectRatio: false,
+                        width: 800,
+                        height: 400,
                         plugins: {
                             labels: {
                                 render: function(args) {

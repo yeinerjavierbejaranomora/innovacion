@@ -550,8 +550,7 @@
                     },
                     plugin: [ChartDataLabels]
                 });
-            });
-        }
+            }
 
         /**
          * Método que genera el gráfico de estudiantes de primer ingreso

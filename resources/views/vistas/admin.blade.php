@@ -132,7 +132,7 @@
 
 
         <div class="row justify-content-center">
-            
+
             <div class="col-6 text-center">
                 <div class="card shadow mb-4">
                     <div class="card-header">
@@ -247,6 +247,7 @@
                                 textMargin: 6
                             },
                             legend: {
+                                position:'left',
                                 labels: {
                                     font: {
                                         size: 14
@@ -372,7 +373,7 @@
         }
 
         /**
-         * Método que genera el gráfico de estudiantes con retención (ASP)
+         * Método que genera el gráfico de estudiantes de primer ingreso
          */
         function graficoSelloActivos() {
             var url = '/home/selloActivos';

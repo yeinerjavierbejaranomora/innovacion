@@ -366,7 +366,7 @@
                                 position:'right',
                                 labels: {
                                     font: {
-                                        size: 20
+                                        size: 18
                                     }
                                 }
                             }
@@ -376,6 +376,10 @@
                 });
             });
         }
+
+
+
+        
         /**
          * Método que genera el gráfico de estudiantes de primer ingreso
          */

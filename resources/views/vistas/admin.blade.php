@@ -573,11 +573,7 @@
 
                         plugins: {
                             labels: {
-                                render: function(args) {
-                                    // Obtener el valor del porcentaje y formatearlo con dos decimales
-                                    const value = (args.percentage.toFixed(2)) + '%';
-                                    return value;
-                                },
+                                render: percentage,
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',

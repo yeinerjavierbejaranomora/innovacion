@@ -210,12 +210,16 @@
 
 
     <script>
+        /**
+         * Llamado a todos los scripts
+         */
         facultades();
         graficoEstudiantes();
         graficoEstudiantesActivos();
         graficoRetencion();
         graficoSelloPrimerIngreso();
-        graficoTipoDeEstudiante()
+        graficoTipoDeEstudiante();
+        graficoOperadores();
 
         /**
          * Método que trae las facultades y genera los checkbox en la vista

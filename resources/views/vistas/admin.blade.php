@@ -333,7 +333,7 @@
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
 
-                var total = data.reduce((a, b) => a + b, 0);
+                var total = data;
 console.log("Total:", total);
 
                 var labels = data.data.map(function(elemento) {

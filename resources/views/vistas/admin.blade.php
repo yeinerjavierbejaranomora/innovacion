@@ -442,11 +442,6 @@
                     },
                     plugin: [ChartDataLabels]
                 });
-                var containerBody = $('.contbody');
-                if (myChart.data.labels.length > 3) {
-                    containerBody.style.width = '700px';
-                }
-
             });
 
         }
@@ -510,61 +505,9 @@
                     plugin: [ChartDataLabels]
                 });
             });
-
             total = valores.reduce((a, b) => a + b, 0);
             console.log(data.data);
 
-            console.log(valores);
-            // Crear el gráfico circular
-            var ctx = document.getElementById('retencion').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels.map(function(label, index) {
-                        if (label == '') {
-                            label = 'NO AUTORIZADO A PLATAFORMA'
-                        }
-                        return label + ': ' + valores[index];
-                    }),
-                    datasets: [{
-                        label: 'Gráfico Circular',
-                        data: valores,
-                        backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                            'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                        ]
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    layout: {
-                        padding: {
-                            left: 25,
-                            right: 20,
-                        },
-                    },
-                    plugins: {
-                        labels: {
-                            render: 'percenteaje',
-                            size: '14',
-                            fontStyle: 'bolder',
-                            position: 'outside',
-                            textMargin: 6
-                        },
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 10,
-                                content: 'Total: ' + total, // Muestra el total en la anotación
-                                font: {
-                                    size: 12
-                                }
-                            }
-                        }
-                    },
-                },
-                plugin: [ChartDataLabels]
-            });
         }
 
 

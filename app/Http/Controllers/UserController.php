@@ -627,8 +627,9 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador ASC
+        GROUP BY operador
         ORDER BY TOTAL DESC
+        LIMIT 5
          */
         $operadores = DB::table('datosMafi')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -639,5 +640,30 @@ class UserController extends Controller
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
+    }
+
+    /**
+     * Método que muestra los 5 programas con mayor cantidad de estudiantes inscritos
+     * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
+     */
+
+    public function estudiantesProgramas()
+    {
+        /**
+        * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
+        GROUP BY codprograma
+        ORDER BY TOTAL DESC
+        LIMIT 5
+         */
+
+        $programas = DB::table('datosMafi')
+        ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
+        ->groupBy('codprograma')
+        ->orderByDesc('TOTAL')
+        ->limit(5)
+        ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $programas));
     }
 }

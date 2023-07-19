@@ -82,6 +82,8 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/home/tipoEstudiantes', 'tiposEstudiantes')->middleware('auth')->name('tipo.estudiantes');
     /** Ruta para cargar gráfica de los operadores que mas estudiantes traen */
     Route::get('/home/operadores', 'operadores')->middleware('auth')->name('operadores.estudiantes');
+    /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos */
+    Route::get('/home/estudiantesProgramas' ,'estudiantesProgramas')->middleware('auth')->name('programas.estudiantes');
 });
 
 Route::controller(MafiController::class)->group(function () {

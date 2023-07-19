@@ -199,7 +199,7 @@
                         <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
                     </div>
                     <div class="card-body">
-                        <canvas id=""></canvas>
+                        <canvas id="estudiantesProgramas"></canvas>
                     </div>
                 </div>
             </div>
@@ -220,6 +220,7 @@
         graficoSelloPrimerIngreso();
         graficoTipoDeEstudiante();
         graficoOperadores();
+        graficoProgramas()
 
         /**
          * Método que trae las facultades y genera los checkbox en la vista
@@ -538,7 +539,9 @@
 
         }
 
-        /**Método que genera el gráfico con todos los tipos de estudiantes */
+        /**
+         * Método que genera el gráfico con todos los tipos de estudiantes 
+        */
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes';
             $.getJSON(url, function(data) {
@@ -595,7 +598,9 @@
             });
         }
 
-        /**Método que genera el gráfico con los 5 operadores que mas estudiantes traen */
+        /**
+         * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
+         */
         function graficoOperadores() {
             var url = '/home/operadores';
             $.getJSON(url, function(data) {
@@ -618,6 +623,59 @@
                         }),
                         datasets: [{
                             label: 'Operadores con mayor cantidad de estudiantes',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+
+            });
+        }
+
+        /**
+         * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
+         */
+        function graficoProgramas() {
+            var url = '/home/estudiantesProgramas';
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.codprograma;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            if (label == '') {
+                                label = 'IBERO';
+                            }
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Programas con mayor cantidad de estudiantes',
                             data: valores,
                             backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                 'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'

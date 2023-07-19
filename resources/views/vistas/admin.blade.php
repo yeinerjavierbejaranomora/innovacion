@@ -42,12 +42,8 @@
         max-height: 420px;
     }
 
-    .card-body canvas {
-        width: 100% !important;
-    }
-
-    .card-body {
-        overflow-x: auto;
+    .cont{
+        width
     }
 </style>
 
@@ -144,10 +140,15 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
+                        
                         <h4><strong>Con Sello de Retención (ASP)</strong></h4>
                     </div>
-                    <div class="card-body text-end">
-                        <canvas id="retencion"></canvas>
+                    <div class="card-body">
+                        <div class="cont">
+                            <div class="contbody">
+                                <canvas id="retencion"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

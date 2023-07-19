@@ -239,6 +239,7 @@
                     },
                     options: {
                         maintainAspectRatio: false,
+                        responsive: true,
                         plugins: {
                             labels: {
                                 render: 'percenteaje',
@@ -251,7 +252,7 @@
                                 position:'right',
                                 labels: {
                                     font: {
-                                        size: 14
+                                        size: 18
                                     }
                                 }
                             }
@@ -292,6 +293,7 @@
                         }]
                     },
                     options: {
+                        responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
                             labels: {
@@ -306,7 +308,7 @@
                                 align: 'left',
                                 labels: {              
                                     font: {
-                                        size: 14
+                                        size: 18
                                     }
                                 }
                             }

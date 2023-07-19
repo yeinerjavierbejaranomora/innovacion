@@ -347,8 +347,8 @@
                         }]
                     },
                     options: {
-                        width: 800,
-                        height: 400,
+                        width: 500,
+                        height: 500,
                         plugins: {
                             labels: {
                                 

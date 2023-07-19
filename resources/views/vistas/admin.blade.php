@@ -310,6 +310,9 @@
                         maintainAspectRatio: false,
                         responsive: true,
                         plugins: {
+                            datalabels: {
+                                formatter: (valores), 
+                            },
                             labels: {
                                 render: 'percenteaje',
                                 size: '14',
@@ -679,19 +682,6 @@
                             backgroundColor: ['rgba(74, 72, 72, 1)']
                         }]
                     },
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == '') {
-                                label = 'IBERO';
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets:[{ 
-                            label: 'ASP',
-                            data: valores,
-                            backgroundColor: ['rgba(223, 193, 78, 1)']
-                        }]
-                    },
                     options: {
                         maintainAspectRatio: false,
                         responsive: true,
@@ -713,6 +703,7 @@
 
             });
         }
+
     </script>
 
     <!-- incluimos el footer -->

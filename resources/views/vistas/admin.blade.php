@@ -312,7 +312,7 @@
                         plugins: {
                             formatter: function(value, context) {
                                 // Aquí devolvemos los valores que queremos mostrar en el gráfico
-                                return value + ' (' + context.dataset.labels[context.dataIndex] + ')';
+                                return value;
                             },
                             labels: {
                                 render: 'percenteaje',

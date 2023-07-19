@@ -34,6 +34,7 @@
 
     .graficos {
         min-height: 420px;
+        max-height: 420px;
     }
 </style>
 
@@ -269,7 +270,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position: 'right',
+                                position: 'bottom',
                                 labels: {
                                     font: {
                                         size: 12
@@ -486,7 +487,7 @@
                     data: {
                         labels: labels.map(function(label, index) {
                             if (label.includes("ESTUDIANTE")) {
-                                label = label.replace(/ESTUDIANTE\S*/i, "");
+                                label = label.replace(/ESTUDIANTE \S*/i, "");
                             }
                             return label + ': ' + valores[index];
                         }),

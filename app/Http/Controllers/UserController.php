@@ -591,13 +591,13 @@ class UserController extends Controller
          *WHERE tipoestudiante = 'PRIMER INGRESO'
          *GROUP BY sello
          */
-        $sello = DB::table('datosMafi')
+        $primerIngreso = DB::table('datosMafi')
             ->where('tipoestudiante', 'PRIMER INGRESO')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')->get();
 
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
+        echo json_encode(array('data' => $primerIngreso));
     }
 
     /**
@@ -676,7 +676,7 @@ class UserController extends Controller
         /**
          * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
         INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad = ''
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
         GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
@@ -700,7 +700,7 @@ class UserController extends Controller
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
         INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
         GROUP BY dm.sello
          */
         $facultades = $request->input('idfacultad');
@@ -716,7 +716,7 @@ class UserController extends Controller
     }
 
     /**
-     * Método que trae los estudiantes con retención
+     * Método que trae los estudiantes con retención de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
     public function retencionEstudiantesFacultad(Request $request)
@@ -724,7 +724,7 @@ class UserController extends Controller
         /**
          * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
         INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
         WHERE dm.sello = 'TIENE RETENCION' 
         GROUP BY dm.autorizado_asistir
          */
@@ -739,5 +739,32 @@ class UserController extends Controller
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
+    }
+
+    /**
+     * Método que muestra el sello de los estudiantes de primer ingreso de las facultades seleccionadas por el usuario
+     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
+     */
+    public function primerIngresoEstudiantesFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
+        FROM datosMafi AS dm
+        JOIN programas AS p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        AND dm.tipoestudiante = 'PRIMER INGRESO'
+        GROUP BY dm.sello;
+         */
+
+        $facultades = $request->input('idfacultad');
+        $primerIngreso = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->where('dm.tipoestudiante', 'PRIMER INGRESO')
+            ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
+            ->groupBy('dm.sello')->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $primerIngreso));
     }
 }

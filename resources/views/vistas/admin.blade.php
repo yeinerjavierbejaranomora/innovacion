@@ -700,7 +700,7 @@
             });
         }
 
-        function graficosporFaculad(valoresSeleccionados){
+        function graficosporFacultad(valoresSeleccionados){
             console.log(valoresSeleccionados);
             $('#estudiantes, #activos, #retencion, #primerIngreso, #tipoEstudiante, #operadores, #primerIngreso').empty();
         }

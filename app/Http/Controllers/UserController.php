@@ -668,7 +668,7 @@ class UserController extends Controller
     }
 
     /**
-     * Método que trae los estudiantes activos e inactivos de algunas facultades en específico
+     * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
     public function estudiantesActivosFacultad(Request $request)
@@ -676,18 +676,42 @@ class UserController extends Controller
         /**
          * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
         INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
-        GROUP BY estado
+        WHERE p.Facultad = ''
+        GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad',$facultades)
+            ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado')
             ->groupBy('dm.estado')
             ->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
+    }
+
+    /**
+     * Método que muestra el estado del sello financiero de los estudiantes de las facultades seleccionadas por el usuario
+     * @return JSON retorna los estudiantes agrupados según su sello financiero
+     */
+    public function selloEstudiantesFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
+        INNER JOIN programas p ON p.codprograma = dm.programa
+        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
+        GROUP BY dm.sello
+         */
+        $facultades = $request->input('idfacultad');
+        $sello = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
+            ->groupBy('dm.sello')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
     }
 }

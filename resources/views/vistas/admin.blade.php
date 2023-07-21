@@ -209,7 +209,7 @@
          */
         facultades();
         graficoEstudiantes();
-        graficoEstudiantesActivos();
+        graficoSelloFinanciero();
         graficoRetencion();
         graficoSelloPrimerIngreso();
         graficoTipoDeEstudiante();
@@ -344,7 +344,7 @@
          */
         var chartEstudiantesActivos;
 
-        function graficoEstudiantesActivos() {
+        function graficoSelloFinanciero() {
             var url = '/home/estudiantesActivos';
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
@@ -376,7 +376,6 @@
                         plugins: {
                             labels: {
                                 render: 'percenteaje',
-                                padding: 50,
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',
@@ -727,6 +726,8 @@
             }
 
             graficoEstudiantesPorFacultades(facultades);
+            graficoSelloFinancieroporFacultad(facultades);
+            
         }
 
         /** 
@@ -802,6 +803,80 @@
                 }
             });
         }
+
+        /**
+         * Método que genera el gráfico de sello financiero de alguna facultad en específico
+         */
+        function graficoEstudiantesPorFacultades(facultades) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('estudiantes.sello.facultad') }}",
+                data: {
+                    idfacultad: facultades
+                },
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    console.log(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    console.log(labels);
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('estudiantes').getContext('2d');
+                    chartEstudiantes = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                label = label.toUpperCase();
+                                return label + 'S: ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                }
+            });
+        }
+
     </script>
 
     <!-- incluimos el footer -->

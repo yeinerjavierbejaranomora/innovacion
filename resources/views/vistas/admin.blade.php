@@ -452,9 +452,7 @@
                                 render: 'percenteaje',
                                 size: '14',
                                 fontStyle: 'bolder',
-                                display: function(context) {
-                                    return context.dataIndex % 2; // display labels with an odd index
-                                },
+                                display: 'auto',
                                 position: 'inside',
                                 textMargin: 6
                             },

@@ -45,12 +45,6 @@
         min-height: 420px;
         max-height: 420px;
     }
-
-    .cont {
-        width: 500px;
-        max-width: 450px;
-        overflow-x: scroll;
-    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -149,11 +143,7 @@
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="cont">
-                            <div class="contbody">
-                                <canvas id="retencion"></canvas>
-                            </div>
-                        </div>
+                        <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
@@ -448,7 +438,30 @@
                             ]
                         }]
                     },
+                    
                     options: {
+                        tooltips: {
+                titleFontSize: 0,
+                titleMarginBottom: 0,
+                bodyFontSize: 12
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 12,
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 12,
+                        beginAtZero: true
+                    }
+                }]
+            },
                         maintainAspectRatio: false,
                         responsive: true,
                         layout: {
@@ -465,6 +478,16 @@
                                 position: 'outside',
                                 textMargin: 6
                             },
+                            datalabels: {
+          anchor: 'end',
+          align: 'end',
+          labels: {
+            value: {
+              color: 'blue'
+            }
+          }
+
+        },
                             legend: {
                                 position: 'right',
                                 labels: {
@@ -726,7 +749,6 @@
         }
 
         function graficoEstudiantesPorFacultades(facultades) {
-            console.log(facultades);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -743,7 +765,7 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
-                    console.log (labels);
+                    console.log(labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });

@@ -679,7 +679,7 @@ class UserController extends Controller
         WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
         GROUP BY estado
          */
-        $facultades = $_POST;
+        $facultades = $request->input('idfacultad');
         dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')

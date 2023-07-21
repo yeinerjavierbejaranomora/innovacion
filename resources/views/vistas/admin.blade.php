@@ -652,6 +652,8 @@
         /**
          * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
          */
+
+        var chartProgramas;
         function graficoProgramas() {
             var url = '/home/estudiantesProgramas';
             $.getJSON(url, function(data) {
@@ -663,7 +665,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartProgramas = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -702,7 +704,9 @@
 
         function graficosporFacultad(valoresSeleccionados){
             console.log(valoresSeleccionados);
-            $('#estudiantes, #activos, #retencion, #primerIngreso, #tipoEstudiante, #operadores, #primerIngreso').destroy();
+            if(chartProgramas){
+                chartProgramas.destroy();
+            }
         }
     </script>
 

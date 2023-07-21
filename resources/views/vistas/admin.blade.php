@@ -452,7 +452,7 @@
                                 render: 'percenteaje',
                                 size: '14',
                                 fontStyle: 'bolder',
-                                position: 'outside',
+                                position: 'inside',
                                 textMargin: 6
                             },
                             legend: {

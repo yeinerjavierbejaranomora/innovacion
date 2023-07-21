@@ -680,7 +680,7 @@ class UserController extends Controller
         GROUP BY estado
          */
         $facultades = $request->input('facultades');
-        
+        dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad', '=', $facultades)

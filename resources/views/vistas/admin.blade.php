@@ -759,12 +759,9 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
-
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
-                    console.log(labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -832,12 +829,9 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
-
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
                     });
-                    console.log(labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -905,12 +899,10 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
 
                     var labels = data.data.map(function(elemento) {
                         return elemento.autorizado_asistir;
                     });
-                    console.log(labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });

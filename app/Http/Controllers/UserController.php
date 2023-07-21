@@ -679,7 +679,6 @@ class UserController extends Controller
         WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
         GROUP BY estado
          */
-        dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad', '=', $facultades)

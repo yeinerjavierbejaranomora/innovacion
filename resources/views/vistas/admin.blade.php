@@ -423,7 +423,7 @@
                     return elemento.TOTAL;
                 });
                 // Crear el gráfico circular
-                var ctx = document.getElementById('prueba').getContext('2d');
+                var ctx = document.getElementById('retencion').getContext('2d');
                 // create the chart
   var chartRetencion = anychart.pie();
 

@@ -428,14 +428,14 @@
   var chartRetencion = anychart.pie();
 
 // set the chart title
-chart.title("Population by Race for the United States: 2010 Census");
+chartRetencion.title("Population by Race for the United States: 2010 Census");
 
 // add the data
-chart.data(data);
+chartRetencion.data(data);
 
 // display the chart in the container
-chart.container('container');
-chart.draw();
+chartRetencion.container('container');
+chartRetencion.draw();
 
             });
         }

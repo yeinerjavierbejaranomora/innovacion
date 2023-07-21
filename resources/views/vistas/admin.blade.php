@@ -733,7 +733,7 @@
                 },
                 type: 'post',
                 url: "{{ route('estudiantes.activos.facultad') }}",
-                data: facultades,
+                data: { idfacultad: facultades },
                 success: function(data) {
 
                     var labels = data.data.map(function(elemento) {

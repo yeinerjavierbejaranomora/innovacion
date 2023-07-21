@@ -46,8 +46,7 @@
         max-height: 420px;
     }
 </style>
-<script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
-<script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -143,7 +142,7 @@
                     <div class="card-header">
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
-                    <div id="prueba" class="card-body">
+                    <div class="card-body">
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
@@ -421,20 +420,55 @@
                     return elemento.TOTAL;
                 });
                 // Crear el gráfico circular
-             
-                // create the chart
-                var chartRetencion = anychart.pie();
-
-                // set the chart title
-                chartRetencion.title("Population by Race for the United States: 2010 Census");
-
-                // add the data
-                chartRetencion.data(data);
-
-                // display the chart in the container
-                chartRetencion.container('prueba');
-                chartRetencion.draw();
-
+                var ctx = document.getElementById('retencion').getContext('2d');
+                chartRetencion = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            if (label == '') {
+                                label = 'NO AUTORIZADO A PLATAFORMA'
+                            }
+                            return label + ': ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        layout: {
+                            padding: {
+                                left: 25,
+                                right: 20,
+                            },
+                        },
+                        plugins: {
+                            labels: {
+                                render: 'percenteaje',
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                position: 'center',
+                                labels: {
+                                    padding: 10,
+                                    content: 'Total: ' + total, // Muestra el total en la anotación
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
             });
         }
 

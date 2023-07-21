@@ -726,10 +726,10 @@
             if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso &&
                 chartTipoEstudiante && chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                $(".titulosFacultad").removeAttribute("hidden");
             
-                    $('.titulos').hide();
+                $('.titulos').hide();
 
-                    $(".titulosFacultad").removeAttribute("hidden");
             }
 
             graficoEstudiantesPorFacultades(facultades);

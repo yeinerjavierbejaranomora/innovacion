@@ -42,8 +42,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 420px;
+        max-height: 420px;
     }
 </style>
 
@@ -143,11 +143,7 @@
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div style="width: 400px; overflow-x: scroll;">
-                            <div id="chartContainer" style="width: 600px; height: 600px;">
-                                <canvas id="retencion"></canvas>
-                            </div>
-                        </div>
+                        <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
@@ -414,32 +410,31 @@
 
                 total = total.reduce((a, b) => a + b, 0);
 
-                var labels = data.data.map(function(elemento) {
-                    return elemento.autorizado_asistir || 'NO AUTORIZADO A PLATAFORMA';
-                });
 
+                var labels = data.data.map(function(elemento) {
+
+                    return elemento.autorizado_asistir;
+                });
                 var valores = data.data.map(function(elemento) {
+
                     return elemento.TOTAL;
                 });
-
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
                 chartRetencion = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
+                            if (label == '') {
+                                label = 'NO AUTORIZADO A PLATAFORMA'
+                            }
                             return label + ': ' + valores[index];
                         }),
                         datasets: [{
                             label: 'Gráfico Circular',
                             data: valores,
-                            backgroundColor: [
-                                'rgba(74, 72, 72, 1)',
-                                'rgba(223, 193, 78, 1)',
-                                'rgba(208, 171, 75, 1)',
-                                'rgba(186, 186, 186, 1)',
-                                'rgba(56, 101, 120, 1)',
-                                'rgba(229, 137, 7, 1)'
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
                             ]
                         }]
                     },
@@ -454,66 +449,27 @@
                         },
                         plugins: {
                             labels: {
-                                render: 'percentage',
-                                fontStyle: 'bold',
+                                render: 'percenteaje',
+                                size: '14',
+                                fontStyle: 'bolder',
                                 display: 'auto',
                                 position: 'outside',
-                                textMargin: 6,
-                                fontSize: 14
+                                textMargin: 6
                             },
                             legend: {
                                 position: 'right',
                                 labels: {
-                                    padding: 10,
                                     usePointStyle: true,
-                                    fontSize: 12,
-                                    generateLabels: function(chart) {
-                                        var data = chart.data;
-                                        if (data.labels.length && data.datasets.length) {
-                                            return data.labels.map(function(label, i) {
-                                                var meta = chart.getDatasetMeta(0);
-                                                var ds = data.datasets[0];
-                                                var arc = meta.data[i];
-                                                var custom = arc && arc.custom || {};
-                                                var getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
-                                                var arcOpts = chart.options.elements.arc;
-                                                var fill = custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
-                                                var stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
-                                                var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
-
-                                                // Compatibilidad para leyendas con texto personalizado
-                                                var labelContent = label;
-                                                if (label.includes(': ')) {
-                                                    labelContent = label.split(': ')[0];
-                                                }
-
-                                                return {
-                                                    text: labelContent + ': ' + ds.data[i],
-                                                    fillStyle: fill,
-                                                    strokeStyle: stroke,
-                                                    lineWidth: bw,
-                                                    hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
-                                                    index: i
-                                                };
-                                            });
-                                        }
-                                        return [];
+                                    padding: 20,
+                                    content: 'Total: ' + total,
+                                    font: {
+                                        size: 12
                                     }
                                 }
                             }
                         },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'right',
-                                align: 'center',
-                                labels: {
-                                    usePointStyle: true,
-                                    padding: 20,
-                                }
-                            }
-                        }
                     },
+                    plugin: [ChartDataLabels]
                 });
             });
         }

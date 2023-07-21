@@ -419,10 +419,6 @@
 
                     return elemento.TOTAL;
                 });
-
-                console.log(data.data);
-
-                console.log(valores);
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
                 var myChart = new Chart(ctx, {

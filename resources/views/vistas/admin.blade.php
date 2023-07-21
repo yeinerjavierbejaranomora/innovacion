@@ -142,7 +142,8 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Con Sello de Retención (ASP)</strong></h5>
+                        <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
+                        <h5 class="titulosFacultad" hidden><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -726,11 +727,10 @@
             if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso &&
                 chartTipoEstudiante && chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                $(".titulosFacultad").show();
-            
-                $('.titulos').hide();
-
+                
             }
+            $(".titulosFacultad").show();
+            $(".titulos").hide();
 
             graficoEstudiantesPorFacultades(facultades);
             graficoSelloFinancieroporFacultad(facultades);
@@ -912,6 +912,9 @@
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                label = 'NO AUTORIZADO A PLATAFORMA'
+                            }
                                 label = label.toUpperCase();
                                 return label + ': ' + valores[index];
                             }),

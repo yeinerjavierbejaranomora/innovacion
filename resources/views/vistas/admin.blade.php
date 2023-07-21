@@ -327,9 +327,11 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
+                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
+                                }
                             }
                         },
                     },
@@ -386,6 +388,7 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
+                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
@@ -529,9 +532,11 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
+                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
+                                }
                             }
                         },
                     },
@@ -591,9 +596,11 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
+                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
+                                }
                             }
                         },
                     },
@@ -642,11 +649,11 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
-                                    usePointStyle: true,
-                                    padding: 20,
+
                                     font: {
                                         size: 12
                                     }
+                                }
                             }
                         },
                     },
@@ -661,6 +668,7 @@
          */
 
         var chartProgramas;
+
 
         function graficoProgramas() {
             var url = '/home/estudiantesProgramas';
@@ -696,11 +704,11 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
-                                    usePointStyle: true,
-                                    padding: 20,
+
                                     font: {
                                         size: 12
                                     }
+                                }
                             }
                         },
                     },
@@ -709,6 +717,10 @@
 
             });
         }
+
+        /**
+         * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
+         */
 
         function graficosporFacultad(facultades) {
             console.log(facultades);
@@ -719,6 +731,10 @@
 
             graficoEstudiantesPorFacultades(facultades);
         }
+
+        /** 
+         * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
+         */
 
         function graficoEstudiantesPorFacultades(facultades) {
             $.ajax({
@@ -775,10 +791,13 @@
                                 legend: {
                                     position: 'bottom',
                                     labels: {
-                                        font: {
-                                            size: 12
-                                        }
+                                    usePointStyle: true,
+                                    padding: 20,
+                                    content: 'Total: ' + total,
+                                    font: {
+                                        size: 12
                                     }
+                                }
                                 }
                             },
                         },

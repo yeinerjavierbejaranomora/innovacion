@@ -736,11 +736,10 @@
                 data: { idfacultad: facultades },
                 success: function(data) {
                     console.log(data);
-                    var datos = data.data;
-                    var labels = datos.map(function(elemento) {
+                    var labels = data.estado.map(function(elemento) {
                         return elemento.estado;
                     });
-                    var valores = datos.map(function(elemento) {
+                    var valores = data.TOTAL.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular

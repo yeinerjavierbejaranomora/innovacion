@@ -789,7 +789,6 @@
                                     labels: {
                                         usePointStyle: true,
                                         padding: 20,
-                                        content: 'Total: ' + total,
                                         font: {
                                             size: 12
                                         }

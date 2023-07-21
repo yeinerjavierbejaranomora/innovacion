@@ -145,7 +145,7 @@
                     <div class="card-header">
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div id="prueba" class="card-body">
                                 <canvas id="retencion"></canvas> 
                     </div>
                 </div>
@@ -423,7 +423,7 @@
                     return elemento.TOTAL;
                 });
                 // Crear el gráfico circular
-                var ctx = document.getElementById('retencion').getContext('2d');
+                var ctx = document.getElementById('prueba').getContext('2d');
                 // create the chart
   var chartRetencion = anychart.pie();
 

@@ -456,7 +456,7 @@
                                 textMargin: 6
                             },
                             legend: {
-                                position: 'center',
+                                position: 'right',
                                 labels: {
                                     padding: 10,
                                     content: 'Total: ' + total, // Muestra el total en la anotación

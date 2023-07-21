@@ -256,7 +256,7 @@
                     valoresSeleccionados.push($(this).val());
                     formData.append('idfacultad[]', $(this).val());
                 });
-                
+
                 graficosporFacultad(valoresSeleccionados);
 
                 $.ajax({
@@ -286,6 +286,8 @@
         /**
          * Método que muestra el total de estudiantes activos e inactivos
          */
+        var chartEstudiantes;
+
         function graficoEstudiantes() {
             var url = '/home/estudiantes';
             $.getJSON(url, function(data) {
@@ -297,7 +299,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('estudiantes').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartEstudiantes = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -344,6 +346,8 @@
         /**
          * Método que genera el gráfico de sello financiero
          */
+        var chartEstudiantesActivos;
+
         function graficoEstudiantesActivos() {
             var url = '/home/estudiantesActivos';
             $.getJSON(url, function(data) {
@@ -355,7 +359,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('activos').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartEstudiantesActivos = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -400,6 +404,8 @@
         /**
          * Método que genera el gráfico de estudiantes con retención (ASP)
          */
+        var chartRetencion;
+
         function graficoRetencion() {
             var url = '/home/retencionActivos';
             $.getJSON(url, function(data) {
@@ -421,7 +427,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartRetencion = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -469,16 +475,17 @@
                     },
                     plugin: [ChartDataLabels]
                 });
-                if(myChart.data.labels.lenght>3)
-            {
-                $('.contbody').css('width', '800px');
-            }
-            });     
+                if (myChart.data.labels.lenght > 3) {
+                    $('.contbody').css('width', '800px');
+                }
+            });
         }
 
         /**
          * Método que genera el gráfico de estudiantes de primer ingreso
          */
+        var chartSelloPrimerIngreso;
+
         function graficoSelloPrimerIngreso() {
             var url = '/home/estudiantesPrimerIngreso';
             $.getJSON(url, function(data) {
@@ -490,7 +497,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('primerIngreso').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartSelloPrimerIngreso = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -541,6 +548,8 @@
         /**
          * Método que genera el gráfico con todos los tipos de estudiantes 
          */
+        var chartTipoEstudiante;
+
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes';
             $.getJSON(url, function(data) {
@@ -552,7 +561,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartTipoEstudiante = new Chart(ctx, {
                     type: 'pie',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -600,6 +609,8 @@
         /**
          * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
          */
+        var chartOperadores;
+
         function graficoOperadores() {
             var url = '/home/operadores';
             $.getJSON(url, function(data) {
@@ -611,7 +622,7 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('operadores').getContext('2d');
-                var myChart = new Chart(ctx, {
+                chartOperadores = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: labels.map(function(label, index) {
@@ -654,6 +665,7 @@
          */
 
         var chartProgramas;
+
         function graficoProgramas() {
             var url = '/home/estudiantesProgramas';
             $.getJSON(url, function(data) {
@@ -702,10 +714,11 @@
             });
         }
 
-        function graficosporFacultad(valoresSeleccionados){
+        function graficosporFacultad(valoresSeleccionados) {
             console.log(valoresSeleccionados);
-            if(chartProgramas){
-                chartProgramas.destroy();
+            if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso 
+            && chartTipoEstudiante && chartOperadores ) {
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante && chartOperadores].forEach(chart => chart.destroy());
             }
         }
     </script>

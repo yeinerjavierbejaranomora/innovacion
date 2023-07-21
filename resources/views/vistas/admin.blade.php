@@ -325,10 +325,11 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
-                                }
                             }
                         },
                     },
@@ -383,6 +384,8 @@
                                 position: 'right',
                                 align: 'left',
                                 labels: {
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
@@ -524,11 +527,11 @@
                             legend: {
                                 position: 'right',
                                 labels: {
-
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
-                                }
                             }
                         },
                     },
@@ -586,11 +589,11 @@
                             legend: {
                                 position: 'right',
                                 labels: {
-
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
-                                }
                             }
                         },
                     },
@@ -639,11 +642,11 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
-
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
-                                }
                             }
                         },
                     },
@@ -693,11 +696,11 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
-
+                                    usePointStyle: true,
+                                    padding: 20,
                                     font: {
                                         size: 12
                                     }
-                                }
                             }
                         },
                     },

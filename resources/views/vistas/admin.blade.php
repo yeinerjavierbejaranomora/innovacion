@@ -733,13 +733,18 @@
                 },
                 type: 'post',
                 url: "{{ route('estudiantes.activos.facultad') }}",
-                data: { idfacultad: facultades },
+                data: {
+                    idfacultad: facultades
+                },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
                     console.log(data);
-                    
-                    console.log(labels);
-                    var valores = data.TOTAL.map(function(elemento) {
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.estado;
+                    });
+                    console.log (labels);
+                    var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular

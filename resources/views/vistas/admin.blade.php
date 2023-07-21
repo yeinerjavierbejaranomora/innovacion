@@ -253,8 +253,12 @@
                 var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                 valoresSeleccionados = []
                 checkboxesSeleccionados.each(function() {
+                    valoresSeleccionados.push($(this).val());
                     formData.append('idfacultad[]', $(this).val());
                 });
+                
+                graficosporFacultad(valoresSeleccionados);
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -698,6 +702,11 @@
                 });
 
             });
+        }
+
+        function grafiosporFaculad(valoresSeleccionados){
+            console.log(valoresSeleccionados);
+            $('#estudiantes, #activos, #retencion, #primerIngreso, #tipoEstudiante, #operadores, #primerIngreso').empty();
         }
     </script>
 

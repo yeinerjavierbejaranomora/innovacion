@@ -45,6 +45,8 @@
         min-height: 420px;
         max-height: 420px;
     }
+
+    
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -143,7 +145,7 @@
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion"></canvas>
+                                <canvas id="retencion"></canvas> 
                     </div>
                 </div>
             </div>
@@ -421,87 +423,19 @@
                 });
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
-                chartRetencion = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == '') {
-                                label = 'NO AUTORIZADO A PLATAFORMA'
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
-                    },
-                    
-                    options: {
-                        tooltips: {
-                titleFontSize: 0,
-                titleMarginBottom: 0,
-                bodyFontSize: 12
-            },
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        fontSize: 12,
-                        display: false
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        fontSize: 12,
-                        beginAtZero: true
-                    }
-                }]
-            },
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        layout: {
-                            padding: {
-                                left: 25,
-                                right: 20,
-                            },
-                        },
-                        plugins: {
-                            labels: {
-                                render: 'percenteaje',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
-                            },
-                            datalabels: {
-          anchor: 'end',
-          align: 'end',
-          labels: {
-            value: {
-              color: 'blue'
-            }
-          }
+                // create the chart
+  var chartRetencion = anychart.pie();
 
-        },
-                            legend: {
-                                position: 'right',
-                                labels: {
-                                    padding: 10,
-                                    content: 'Total: ' + total, // Muestra el total en la anotación
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
+// set the chart title
+chart.title("Population by Race for the United States: 2010 Census");
+
+// add the data
+chart.data(data);
+
+// display the chart in the container
+chart.container('container');
+chart.draw();
+
             });
         }
 
@@ -765,7 +699,7 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
-                    console.log(labels);
+                    console.log (labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -815,6 +749,8 @@
                 }
             });
         }
+
+
     </script>
 
     <!-- incluimos el footer -->

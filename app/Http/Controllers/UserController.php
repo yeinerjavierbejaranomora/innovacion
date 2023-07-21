@@ -683,7 +683,7 @@ class UserController extends Controller
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad',$facultades)
-            ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado', 'p.Facultad')
+            ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado')
             ->groupBy('dm.estado')
             ->get();
 

@@ -671,7 +671,7 @@ class UserController extends Controller
      * Método que trae los estudiantes activos e inactivos de algunas facultades en específico
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
-    public function estudiantesActivosFacultad($facultades)
+    public function estudiantesActivosFacultad(Request $request)
     {
         /**
          * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
@@ -679,6 +679,8 @@ class UserController extends Controller
         WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
         GROUP BY estado
          */
+        $facultades = $_POST;
+        dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad',$facultades)

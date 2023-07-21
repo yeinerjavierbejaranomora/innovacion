@@ -45,8 +45,6 @@
         min-height: 420px;
         max-height: 420px;
     }
-
-    
 </style>
 <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
@@ -146,7 +144,7 @@
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div id="prueba" class="card-body">
-                                <canvas id="retencion"></canvas> 
+                        <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
@@ -425,17 +423,17 @@
                 // Crear el gráfico circular
                 var ctx = document.getElementById('retencion').getContext('2d');
                 // create the chart
-  var chartRetencion = anychart.pie();
+                var chartRetencion = anychart.pie();
 
-// set the chart title
-chartRetencion.title("Population by Race for the United States: 2010 Census");
+                // set the chart title
+                chartRetencion.title("Population by Race for the United States: 2010 Census");
 
-// add the data
-chartRetencion.data(data);
+                // add the data
+                chartRetencion.data(data);
 
-// display the chart in the container
-chartRetencion.container('prueba');
-chartRetencion.draw();
+                // display the chart in the container
+                chartRetencion.container('prueba');
+                chartRetencion.draw();
 
             });
         }
@@ -700,7 +698,7 @@ chartRetencion.draw();
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
-                    console.log (labels);
+                    console.log(labels);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -750,8 +748,6 @@ chartRetencion.draw();
                 }
             });
         }
-
-
     </script>
 
     <!-- incluimos el footer -->

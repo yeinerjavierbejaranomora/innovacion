@@ -113,8 +113,12 @@
                 <div class=" col-4 text-center">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" hidden><strong>Estudiantes por Facultad</strong></h5>
+                            <div class="titulos">
+                                <h5><strong>Total estudiantes Banner</strong></h5>
+                            </div>
+                            <div class="facultadtitulos" hidden>
+                                <h5><strong>Estudiantes por Facultad</strong></h5>
+                            </div>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>
@@ -728,14 +732,14 @@
                 chartTipoEstudiante || chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 
+                $(".facultadtitulos").show();
+                $(".titulos").hide();
+    
+                graficoEstudiantesPorFacultades(facultades);
+                graficoSelloFinancieroporFacultad(facultades);
+                graficoRetencionporFacultad(facultades);
+                graficoSelloPrimerIngresoporFacultad(facultades);
             }
-            $("h5.facultadtitulos").show();
-            $("h5.titulos").hide();
-
-            graficoEstudiantesPorFacultades(facultades);
-            graficoSelloFinancieroporFacultad(facultades);
-            graficoRetencionporFacultad(facultades);
-            graficoSelloPrimerIngresoporFacultad(facultades);
             
         }
 

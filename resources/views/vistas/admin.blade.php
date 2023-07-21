@@ -735,7 +735,7 @@
                 url: "{{ route('estudiantes.activos.facultad') }}",
                 data: { idfacultad: facultades },
                 success: function(data) {
-
+                    console.log(data);
                     console.log(data.estado);
                     var labels = data.estado;
                     var valores = data.TOTAL.map(function(elemento) {

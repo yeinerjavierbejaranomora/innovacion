@@ -807,7 +807,7 @@
         /**
          * Método que genera el gráfico de sello financiero de alguna facultad en específico
          */
-        function graficoEstudiantesPorFacultades(facultades) {
+        function graficoSelloFinancieroporFacultad(facultades) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

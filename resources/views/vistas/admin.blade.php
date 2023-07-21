@@ -702,7 +702,7 @@
 
         function graficosporFacultad(valoresSeleccionados){
             console.log(valoresSeleccionados);
-            $('#estudiantes, #activos, #retencion, #primerIngreso, #tipoEstudiante, #operadores, #primerIngreso').empty();
+            $('#estudiantes, #activos, #retencion, #primerIngreso, #tipoEstudiante, #operadores, #primerIngreso').destroy();
         }
     </script>
 

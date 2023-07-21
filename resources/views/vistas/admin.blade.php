@@ -729,7 +729,7 @@
             
                     $('.titulos').hide();
 
-                    $('.titulosFacultad').show();
+                    $(".titulosFacultad").removeAttribute("hidden");
             }
 
             graficoEstudiantesPorFacultades(facultades);

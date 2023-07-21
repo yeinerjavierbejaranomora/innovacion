@@ -42,8 +42,8 @@
     }
 
     .graficos {
-        min-height: 420px;
-        max-height: 420px;
+        min-height: 600px;
+        max-height: 600px;
     }
 </style>
 
@@ -143,8 +143,8 @@
                         <h5><strong>Con Sello de Retención (ASP)</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div style="width: 800px; overflow-x: scroll;">
-                            <div id="chartContainer" style="width: 1000px; height: 400px;">
+                        <div style="width: 400px; overflow-x: scroll;">
+                            <div id="chartContainer" style="width: 600px; height: 600px;">
                                 <canvas id="retencion"></canvas>
                             </div>
                         </div>

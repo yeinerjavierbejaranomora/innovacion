@@ -726,7 +726,7 @@
 
         function graficoEstudiantesPorFacultades(facultades) {
             var url = '/home/estudiantes/' + facultades;
-            console.olog(facultades);
+            console.log(facultades);
             $.getJSON(url, function(data) {
                 var labels = data.data.map(function(elemento) {
                     return elemento.estado;

@@ -714,4 +714,30 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
+
+    /**
+     * Método que trae los estudiantes con retención
+     * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
+     */
+    public function retencionEstudiantesFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
+        INNER JOIN programas p ON p.codprograma = dm.programa
+        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
+        WHERE dm.sello = 'TIENE RETENCION' 
+        GROUP BY dm.autorizado_asistir
+         */
+        $facultades = $request->input('idfacultad');
+        $retencion = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->where('dm.sello', 'TIENE RETENCION')
+            ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
+            ->groupBy('dm.autorizado_asistir')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $retencion));
+    }
 }

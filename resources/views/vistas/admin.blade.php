@@ -829,13 +829,13 @@
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantes').getContext('2d');
+                    var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantes = new Chart(ctx, {
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
                                 label = label.toUpperCase();
-                                return label + 'S: ' + valores[index];
+                                return label + ': ' + valores[index];
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',

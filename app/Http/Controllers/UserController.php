@@ -650,20 +650,45 @@ class UserController extends Controller
     public function estudiantesProgramas()
     {
         /**
-        * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
+         * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
         GROUP BY codprograma
         ORDER BY TOTAL DESC
         LIMIT 5
          */
 
         $programas = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
-        ->groupBy('codprograma')
-        ->orderByDesc('TOTAL')
-        ->limit(5)
-        ->get();
+            ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
+            ->groupBy('codprograma')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
+    }
+
+    /**
+     * Método que trae los estudiantes activos e inactivos de algunas facultades en específico
+     * @return JSON retorna los estudiantes agrupados en activos e inactivos
+     */
+    public function estudiantesActivosFacultad(Request $request)
+    {
+        /**
+         * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
+        INNER JOIN programas p ON p.codprograma = dm.programa
+        WHERE p.Facultad = 'FAC CIENCIAS DE LA SALUD'
+        GROUP BY estado
+         */
+        $facultades = $request->input('facultades');
+        dd($facultades);
+        $estudiantes = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->where('p.Facultad', '=', 'FAC CIENCIAS DE LA SALUD')
+            ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado', 'p.Facultad')
+            ->groupBy('estado')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
     }
 }

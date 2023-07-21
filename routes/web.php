@@ -72,7 +72,7 @@ Route::controller(UserController::class)->group(function () {
 
     /** Ruta para cargar gráfica de estudiantes activos e inactivos */
     Route::get('/home/estudiantes', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos');
-    /** Ruta para cargar gráfica de estudiantes activos e inactivos */
+    /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
     Route::get('/home/estudiantesActivos', 'selloEstudiantesActivos')->middleware('auth')->name('sello.activos');
     /** Ruta para cargar gráfica de estudiantes activos con retenciòn */
     Route::get('/home/retencionActivos', 'estudiantesRetencion')->middleware('auth')->name('retencion.activos');
@@ -84,6 +84,9 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/home/operadores', 'operadores')->middleware('auth')->name('operadores.estudiantes');
     /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos */
     Route::get('/home/estudiantesProgramas' ,'estudiantesProgramas')->middleware('auth')->name('programas.estudiantes');
+
+    /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
+    Route::get('/home/estudiantes/{facultades}', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos.facultad');
 });
 
 Route::controller(MafiController::class)->group(function () {

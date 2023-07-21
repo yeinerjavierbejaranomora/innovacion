@@ -8,6 +8,9 @@
     #facultades {
         font-size: 14px;
     }
+    #programas {
+        font-size: 14px;
+    }
 
     #buscarProgramas {
         background-color: #dfc14e;
@@ -251,13 +254,11 @@
                 $('#programas').empty();
                 var formData = new FormData();
                 var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                valoresSeleccionados = []
                 checkboxesSeleccionados.each(function() {
-                    valoresSeleccionados.push($(this).val());
                     formData.append('idfacultad[]', $(this).val());
                 });
 
-                graficosporFacultad(valoresSeleccionados);
+                graficosporFacultad(formData);
 
                 $.ajax({
                     headers: {
@@ -711,13 +712,71 @@
             });
         }
 
-        function graficosporFacultad(valoresSeleccionados) {
-            console.log(valoresSeleccionados);
+        function graficosporFacultad(facultades) {
+            console.log(facultades);
             if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso 
             && chartTipoEstudiante && chartOperadores ) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
+
+            graficoEstudiantesPorFacultades(facultades);
         }
+
+        function graficoEstudiantesPorFacultades(facultades) {
+            var url = '/home/estudiantes/' + facultades;
+            $.getJSON(url, function(data) {
+                var labels = data.data.map(function(elemento) {
+                    return elemento.estado;
+                });
+                var valores = data.data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                // Crear el gráfico circular
+                var ctx = document.getElementById('estudiantes').getContext('2d');
+                chartEstudiantes = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels.map(function(label, index) {
+                            label = label.toUpperCase();
+                            return label + 'S: ' + valores[index];
+                        }),
+                        datasets: [{
+                            label: 'Gráfico Circular',
+                            data: valores,
+                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            datalabels: {
+                                formatter: function(value, context) {
+                                    return value;
+                                },
+                            },
+                            labels: {
+                                render: 'percenteaje',
+                                size: '14',
+                                fontStyle: 'bolder',
+                                position: 'outside',
+                                textMargin: 6
+                            },
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                    },
+                    plugin: [ChartDataLabels]
+                });
+            });
+        }
+
     </script>
 
     <!-- incluimos el footer -->

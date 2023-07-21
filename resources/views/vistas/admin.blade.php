@@ -726,14 +726,13 @@
         }
 
         function graficoEstudiantesPorFacultades(facultades) {
-            var url = '/home/estudiantes/' + facultades;
             console.log(facultades);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('traer.programas') }}",
+                url: "{{ route('estudiantes.activos.facultad') }}",
                 data: facultades,
                 success: function(data) {
 

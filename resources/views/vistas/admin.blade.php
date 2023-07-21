@@ -737,11 +737,10 @@
                 success: function(data) {
                     console.log(data);
                     var datos = data.data;
-                    console.log(datos);
-                    var labels = data.map(function(elemento) {
+                    var labels = datos.map(function(elemento) {
                         return elemento.estado;
                     });
-                    var valores = data.map(function(elemento) {
+                    var valores = datos.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular

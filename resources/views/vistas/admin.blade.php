@@ -114,7 +114,7 @@
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="titulosFacultad" hidden><strong>Estudiantes por Facultad</strong></h5>
+                            <h5 class="facultadTitulos" hidden><strong>Estudiantes por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>
@@ -132,7 +132,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
-                        <h5 class="titulosFacultad" hidden><strong>Sello finaciero por Facultad</strong></h5>
+                        <h5 class="facultadTitulos" hidden><strong>Sello finaciero por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -143,7 +143,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
-                        <h5 class="titulosFacultad" hidden><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
+                        <h5 class="facultadTitulos" hidden><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -158,8 +158,8 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
-                        <h5 class="titulosFacultad" hidden><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
+                        <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
+                        <h5 class="facultadTitulos" hidden><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="primerIngreso"></canvas>
@@ -729,7 +729,7 @@
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 
             }
-            $(".titulosFacultad").show();
+            $(".facultadTitulos").show();
             $(".titulos").hide();
 
             graficoEstudiantesPorFacultades(facultades);

@@ -327,7 +327,6 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
-                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
@@ -388,7 +387,6 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
-                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
@@ -532,7 +530,6 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
-                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
@@ -596,7 +593,6 @@
                                 labels: {
                                     usePointStyle: true,
                                     padding: 20,
-                                    content: 'Total: ' + total,
                                     font: {
                                         size: 12
                                     }
@@ -791,13 +787,13 @@
                                 legend: {
                                     position: 'bottom',
                                     labels: {
-                                    usePointStyle: true,
-                                    padding: 20,
-                                    content: 'Total: ' + total,
-                                    font: {
-                                        size: 12
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        content: 'Total: ' + total,
+                                        font: {
+                                            size: 12
+                                        }
                                     }
-                                }
                                 }
                             },
                         },

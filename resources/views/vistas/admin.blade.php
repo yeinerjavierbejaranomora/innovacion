@@ -376,7 +376,7 @@
                         plugins: {
                             labels: {
                                 render: 'percenteaje',
-                                padding: 10,
+                                padding: 50,
                                 size: '14',
                                 fontStyle: 'bolder',
                                 position: 'outside',

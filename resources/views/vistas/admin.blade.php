@@ -253,12 +253,14 @@
                 $('#mensaje').hide();
                 $('#programas').empty();
                 var formData = new FormData();
+                const valoresSeleccionados = [];
                 var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
+                    valoresSeleccionados.push($(this).val());
                     formData.append('idfacultad[]', $(this).val());
                 });
 
-                graficosporFacultad(formData);
+                graficosporFacultad(valoresSeleccionados);
 
                 $.ajax({
                     headers: {

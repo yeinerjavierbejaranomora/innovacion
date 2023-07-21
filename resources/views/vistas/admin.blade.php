@@ -729,8 +729,8 @@
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 
             }
-            $("h5 .facultadtitulos").show();
-            $(".titulos").hide();
+            $("h5.facultadtitulos").show();
+            $("h5.titulos").hide();
 
             graficoEstudiantesPorFacultades(facultades);
             graficoSelloFinancieroporFacultad(facultades);

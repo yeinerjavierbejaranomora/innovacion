@@ -206,6 +206,7 @@
 
 
     <script>
+        $(document).ready(function() {
         /**
          * Llamado a todos los scripts
          */
@@ -727,7 +728,7 @@
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             
                     $('.titulos').hide();
-                    
+
                     $('.titulosFacultad').show();
             }
 
@@ -882,7 +883,7 @@
                 }
             });
         }
-
+    });
     </script>
 
 

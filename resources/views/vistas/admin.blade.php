@@ -434,7 +434,7 @@ chartRetencion.title("Population by Race for the United States: 2010 Census");
 chartRetencion.data(data);
 
 // display the chart in the container
-chartRetencion.container('retencion');
+chartRetencion.container('prueba');
 chartRetencion.draw();
 
             });

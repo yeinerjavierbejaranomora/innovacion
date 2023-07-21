@@ -912,7 +912,7 @@
                     });
                     // Crear el gráfico circular
                     var ctx = document.getElementById('retencion').getContext('2d');
-                    chartEstudiantesActivos = new Chart(ctx, {
+                    chartRetencion = new Chart(ctx, {
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
@@ -988,7 +988,7 @@
                     });
                     // Crear el gráfico circular
                     var ctx = document.getElementById('primerIngreso').getContext('2d');
-                    chartEstudiantesActivos = new Chart(ctx, {
+                    chartSelloPrimerIngreso = new Chart(ctx, {
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {

@@ -114,7 +114,9 @@
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="titulosFacultad" hidden><strong>Estudiantes por Facultad</strong></h5>
+                            <div class="titulosFacultad" hidden>
+                                <h5><strong>Estudiantes por Facultad</strong></h5>
+                            </div>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>

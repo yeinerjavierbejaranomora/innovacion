@@ -680,10 +680,10 @@ class UserController extends Controller
         GROUP BY estado
          */
         $facultades = $request->input('facultades');
-        dd($facultades);
+        
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->where('p.Facultad', '=', 'FAC CIENCIAS DE LA SALUD')
+            ->where('p.Facultad', '=', $facultades)
             ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado', 'p.Facultad')
             ->groupBy('estado')
             ->get();

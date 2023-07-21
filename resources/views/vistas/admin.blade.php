@@ -737,7 +737,9 @@
                 success: function(data) {
                     console.log(data);
                     console.log(data.estado);
-                    var labels = data.estado;
+
+                    var labels = jsonData.data.map(item => item.TOTAL);
+                    console.log(labels);
                     var valores = data.TOTAL.map(function(elemento) {
                         return elemento.TOTAL;
                     });

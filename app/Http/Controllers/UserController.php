@@ -684,7 +684,7 @@ class UserController extends Controller
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad',$facultades)
             ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado', 'p.Facultad')
-            ->groupBy('estado')
+            ->groupBy('dm.estado')
             ->get();
 
         header("Content-Type: application/json");

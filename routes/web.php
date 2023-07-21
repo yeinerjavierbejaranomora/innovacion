@@ -86,7 +86,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/home/estudiantesProgramas' ,'estudiantesProgramas')->middleware('auth')->name('programas.estudiantes');
 
     /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
-    Route::get('/home/estudiantes/{facultades}', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos.facultad');
+    Route::get('/home/estudiantes/{facultades}', 'estudiantesActivosFacultad')->middleware('auth')->name('estudiantes.activos.facultad');
 });
 
 Route::controller(MafiController::class)->group(function () {

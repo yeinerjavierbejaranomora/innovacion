@@ -736,6 +736,8 @@
                 data: { idfacultad: facultades },
                 success: function(data) {
                     console.log(data);
+                    var datos = data.data;
+                    console.log(datos);
                     var labels = data.map(function(elemento) {
                         return elemento.estado;
                     });

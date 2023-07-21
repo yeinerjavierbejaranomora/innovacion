@@ -726,7 +726,7 @@
             if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso &&
                 chartTipoEstudiante && chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                $(".titulosFacultad").removeAttribute("hidden");
+                $(".titulosFacultad").show();
             
                 $('.titulos').hide();
 

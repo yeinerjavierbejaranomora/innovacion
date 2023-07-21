@@ -113,7 +113,8 @@
                 <div class=" col-4 text-center">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5><strong>Total estudiantes Banner</strong></h5>
+                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 id="tituloEstudiantesFacultad" hidden><strong>Estudiantes por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>
@@ -130,7 +131,8 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Total estudiantes con sello financiero</strong></h5>
+                        <h5 id="tituloSello"><strong>Total estudiantes con sello financiero</strong></h5>
+                        <h5 id="tituloSelloFacacultad" hidden><strong>Sello finaciero por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -723,6 +725,9 @@
             if (chartProgramas && chartEstudiantes && chartEstudiantesActivos && chartRetencion && chartSelloPrimerIngreso &&
                 chartTipoEstudiante && chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+            
+                    $('#tituloEstudiantes', 'tituloSello').hide();
+                    $('#tituloEstudiantesFacultad', 'tituloSelloFacultad').show();
             }
 
             graficoEstudiantesPorFacultades(facultades);

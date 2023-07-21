@@ -261,7 +261,7 @@
                     formData.append('idfacultad[]', $(this).val());
                 });
 
-                graficosporFacultad(formData);
+                graficosporFacultad(valoresSeleccionados);
 
                 $.ajax({
                     headers: {

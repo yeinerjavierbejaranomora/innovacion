@@ -772,6 +772,7 @@
                     }
 
                     if (isChartEmpty(chartSelloPrimerIngreso)) {
+                        console.log(isChartEmpty(chartSelloPrimerIngreso));
                         $('#vacioPrimerIngreso').show;
                     }
 

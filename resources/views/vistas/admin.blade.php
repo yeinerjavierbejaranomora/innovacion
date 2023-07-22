@@ -180,7 +180,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
@@ -199,7 +199,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Operadores</strong></h5>
+                        <h5 class="titulos"><strong>Operadores</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
@@ -213,7 +213,7 @@
             <div class="col-6 text-center">
                 <div class="card shadow mb-4 graficos">
                     <div class="card-header">
-                        <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">

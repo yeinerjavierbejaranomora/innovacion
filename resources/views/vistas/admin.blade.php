@@ -364,11 +364,9 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-                    if (chartEstudiantes.data.labels.length > 0 && chartEstudiantes.data.datasets[0].data.length > 0) {
-                        console.log("El gráfico tiene datos.");
-                    } else {
-                        console.log("El gráfico está vacío.");
-                    }
+                    if (chartEstudiantes.data.labels.length === 0 && chartEstudiantes.data.datasets[0].data.length === 0) {
+                        $('#vacioTotalEstudiantes').show;
+                    } 
                 });
             }
 
@@ -572,6 +570,9 @@
                         },
                         plugin: [ChartDataLabels]
                     });
+                    if (chartSelloPrimerIngreso.data.labels.length === 0 && chartSelloPrimerIngreso.data.datasets[0].data.length === 0) {
+                        $('#vacioPrimerIngreso').show;
+                    } 
                 });
 
             }

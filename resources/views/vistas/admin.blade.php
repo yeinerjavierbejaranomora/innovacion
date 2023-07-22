@@ -116,7 +116,7 @@
                             <div class="titulos">
                                 <h5><strong>Total estudiantes Banner</strong></h5>
                             </div>
-                            <div id="facultadtitulos" hidden>
+                            <div id="facultadtitulos" style="display: none;">
                                 <h5><strong>Estudiantes por Facultad</strong></h5>
                             </div>
                         </div>

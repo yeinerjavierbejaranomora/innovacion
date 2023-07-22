@@ -1086,13 +1086,10 @@
                             },
                             plugin: [ChartDataLabels]
                         });
-                        if (chartSelloPrimerIngreso.data.labels.length > 0 && chartSelloPrimerIngreso.data.datasets[0].data.length > 0) {
-                            console.log("hay datos");
-                        }
-                        else{
+                        if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             console.log('entra');
                             console.log('a');
-                            var ver = $('#vacioPrimerIngreso').show;
+                            var ver = $('#vacioPrimerIngreso').show();
                             console.log (ver);
                         }
                     }

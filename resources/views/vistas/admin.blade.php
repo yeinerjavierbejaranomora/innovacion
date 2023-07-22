@@ -1091,7 +1091,8 @@
                         }
                         else{
                             console.log('entra');
-                            $('#vacioPrimerIngreso').show;
+                            var ver = $('#vacioPrimerIngreso').show;
+                            console.log (ver);
                         }
                     }
                 });

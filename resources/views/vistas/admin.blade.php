@@ -113,13 +113,8 @@
                 <div class=" col-4 text-center">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <div class="titulos">
-                                <h5><strong>Total estudiantes Banner</strong></h5>
-
-
-                                <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
-
-                            </div>
+                            <h5><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
                             <div class="card-body">
                                 <canvas id="estudiantes"></canvas>
                             </div>
@@ -166,6 +161,9 @@
                             <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
+                            <div id="#prueba" class="text-center">
+                                <h5>No hay datos por mostrar</h5>
+                            </div>
                             <canvas id="primerIngreso"></canvas>
                         </div>
                     </div>
@@ -739,6 +737,12 @@
                         graficoSelloFinancieroporFacultad(facultades);
                         graficoRetencionporFacultad(facultades);
                         graficoSelloPrimerIngresoporFacultad(facultades);
+
+                        if (isChartEmpty(chartSelloPrimerIngreso)) {
+                            $('#prueba').show;
+                        }
+
+
                     }
 
                 }

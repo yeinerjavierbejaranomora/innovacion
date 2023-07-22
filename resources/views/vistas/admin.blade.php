@@ -364,6 +364,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
+                    if (chartEstudiantes.data.labels.length > 0 && myChart.data.datasets[0].data.length > 0) {
+                        console.log("El gráfico tiene datos.");
+                    } else {
+                        console.log("El gráfico está vacío.");
+                    }
                 });
             }
 

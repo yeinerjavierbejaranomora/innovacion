@@ -1090,6 +1090,7 @@
                             console.log("hay datos");
                         }
                         else{
+                            console.log('entra');
                             $('#vacioPrimerIngreso').show;
                         }
                     }

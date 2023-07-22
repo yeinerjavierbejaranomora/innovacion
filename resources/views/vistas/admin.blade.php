@@ -1086,6 +1086,9 @@
                             },
                             plugin: [ChartDataLabels]
                         });
+                        if (chartSelloPrimerIngreso.data.labels.length === 0 && chartSelloPrimerIngreso.data.datasets[0].data.length === 0) {
+                        $('#vacioPrimerIngreso').show;
+                    }
                     }
                 });
             }

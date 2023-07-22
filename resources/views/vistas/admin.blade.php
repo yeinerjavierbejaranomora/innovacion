@@ -96,7 +96,6 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades"></div>
-                            <!-- <button type="button" class="btn btn-warning" id="buscarProgramas">Seleccionar</button> -->
                         </div>
                     </div>
                 </div>
@@ -114,10 +113,12 @@
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h5><strong>Total estudiantes Banner</strong></h5>
-
                             <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
+                            <div id="vacioTotalEstudiantes" class="text-center" style="display: none;">
+                                <h5>No hay datos por mostrar</h5>
+                            </div>
                             <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
@@ -136,6 +137,9 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div id="vacioTotalSello" class="text-center" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -147,6 +151,9 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div id="vacioRetencion" class="text-center" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
@@ -163,7 +170,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="#prueba" class="text-center">
+                        <div id="vacioPrimerIngreso" class="text-center" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="primerIngreso"></canvas>
@@ -174,8 +181,12 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div id="vacioTipoEstudiante" class="text-center" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                 </div>
@@ -189,8 +200,12 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5><strong>Operadores</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div id="vacioOperadores" class="text-center" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
                         <canvas id="operadores"></canvas>
                     </div>
                 </div>
@@ -199,8 +214,12 @@
                 <div class="card shadow mb-4 graficos">
                     <div class="card-header">
                         <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
+                        <div id="vacioProgramas" class="text-center" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                 </div>
@@ -740,11 +759,33 @@
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
 
-                    if (isChartEmpty(chartSelloPrimerIngreso)) {
-                        $('#prueba').show;
+                    if (isChartEmpty(chartEstudiantes)) {
+                        $('#vacioTotalEstudiantes').show;
                     }
 
+                    if (isChartEmpty(chartEstudiantesActivos)) {
+                        $('#vacioTotalSello').show;
+                    }
 
+                    if (isChartEmpty(chartRetencion)) {
+                        $('#vacioRetencion').show;
+                    }
+
+                    if (isChartEmpty(chartSelloPrimerIngreso)) {
+                        $('#vacioPrimerIngreso').show;
+                    }
+
+                    if (isChartEmpty(chartTipoEstudiante)) {
+                        $('#vacioTipoEstudiante').show;
+                    }
+
+                    if (isChartEmpty(chartOperadores)) {
+                        $('#vacioOperadores').show;
+                    }
+
+                    if (isChartEmpty(chartProgramas)) {
+                        $('#vacioProgramas').show;
+                    }
                 }
 
             }

@@ -116,7 +116,7 @@
                             <div class="titulos">
                                 <h5><strong>Total estudiantes Banner</strong></h5>
                             </div>
-                            <div class="facultadtitulos" hidden>
+                            <div id="facultadtitulos" hidden>
                                 <h5><strong>Estudiantes por Facultad</strong></h5>
                             </div>
                         </div>
@@ -732,7 +732,7 @@
                 chartTipoEstudiante || chartOperadores) {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 
-                $(".facultadtitulos").show();
+                $("#facultadtitulos").show();
                 $(".titulos").hide();
     
                 graficoEstudiantesPorFacultades(facultades);

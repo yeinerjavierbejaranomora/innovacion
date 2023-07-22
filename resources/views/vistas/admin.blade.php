@@ -364,7 +364,7 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-                    if (chartEstudiantes.data.labels.length > 0 && myChart.data.datasets[0].data.length > 0) {
+                    if (chartEstudiantes.data.labels.length > 0 && chartEstudiantes.data.datasets[0].data.length > 0) {
                         console.log("El gráfico tiene datos.");
                     } else {
                         console.log("El gráfico está vacío.");
@@ -764,6 +764,7 @@
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
 
+                    /** 
                     if (isChartEmpty(chartEstudiantes)) {
                         $('#vacioTotalEstudiantes').show;
                     }
@@ -792,6 +793,7 @@
                     if (isChartEmpty(chartProgramas)) {
                         $('#vacioProgramas').show;
                     }
+                    */
                 }
 
             }

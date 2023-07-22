@@ -866,6 +866,10 @@
                             },
                             plugin: [ChartDataLabels]
                         });
+                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                            var ver = $('#vacioTotalEstudiantes').show();
+                          
+                        }
                     }
                 });
             }
@@ -936,6 +940,10 @@
                             },
                             plugin: [ChartDataLabels]
                         });
+                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                            var ver = $('#vacioTotalSello').show();
+                          
+                        }
                     }
                 });
             }
@@ -1010,6 +1018,10 @@
                             },
                             plugin: [ChartDataLabels]
                         });
+                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                            var ver = $('#vacioRetencion').show();
+                          
+                        }
                     }
                 });
             }
@@ -1087,10 +1099,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            console.log('entra');
-                            console.log('a');
                             var ver = $('#vacioPrimerIngreso').show();
-                            console.log (ver);
+                          
                         }
                     }
                 });

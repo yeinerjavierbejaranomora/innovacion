@@ -1091,6 +1091,7 @@
                         }
                         else{
                             console.log('entra');
+                            console.log('a');
                             var ver = $('#vacioPrimerIngreso').show;
                             console.log (ver);
                         }

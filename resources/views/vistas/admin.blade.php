@@ -278,13 +278,14 @@
              * Llama la función que muestra los gráficos de las facultades seleccionadas, también
              * de los programas
              */
+            const facultadesSeleccionadas = [];
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     console.log(1);
                     $('#programas').empty();
                     $('#mensaje').hide();
                     var formData = new FormData();
-                    const facultadesSeleccionadas = [];
+                    
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     checkboxesSeleccionados.each(function() {
                         facultadesSeleccionadas.push($(this).val());
@@ -317,6 +318,7 @@
                     $('.facultadtitulos').hide();
                     $('.titulos').show();
                     $('.vacio').hide();
+                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 }
 
             });

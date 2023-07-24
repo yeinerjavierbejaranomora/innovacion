@@ -277,7 +277,7 @@
                     const facultadesSeleccionadas = [];
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     checkboxesSeleccionados.each(function() {
-                        valoresSeleccionados.push($(this).val());
+                        facultadesSeleccionadas.push($(this).val());
                         formData.append('idfacultad[]', $(this).val());
                     });
                     graficosporFacultad(facultadesSeleccionadas);

@@ -308,13 +308,13 @@
             });
 
             $('body').on('change', '#programas input[type="checkbox"]', function() {
-            console.log('entra');
             const programasSeleccionados = [];
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
                     console.log(programasSeleccionados);
+                    graficosporPrograma(programasSeleccionados);
             });
             /**
              * Método que muestra el total de estudiantes activos e inactivos

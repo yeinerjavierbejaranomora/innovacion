@@ -300,6 +300,7 @@
                     })
 
                     $('body').on('change', '#programas input[type="checkbox"]', function() {
+                        if ($('#programas input[type="checkbox"]:checked').length > 0) { 
                         const programasSeleccionados = [];
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         checkboxesProgramas.each(function() {
@@ -307,6 +308,11 @@
                         });
                         console.log(programasSeleccionados);
                         graficosporPrograma(programasSeleccionados, facultadesSeleccionadas);
+                    }
+                    else
+                    {
+                        graficosporFacultad(facultadesSeleccionadas);
+                    }
                     });
 
                 } else {
@@ -1309,9 +1315,6 @@
                 $(".titulos").hide();
                 $(".vacio").hide();
                 }         
-                else {
-                    graficosporFacultad(facultades)
-                }
             }
         });
     </script>

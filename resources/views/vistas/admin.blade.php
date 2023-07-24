@@ -770,8 +770,8 @@
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
                     graficoTiposDeEstudiantesFacultad(facultades);
-                    operadoresFacultad(facultades);
-                    programasFacultad(facultades);
+                    graficoOperadoresFacultad(facultades);
+                    graficoProgramasFacultad(facultades);
                 }
 
             }
@@ -1102,7 +1102,6 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
@@ -1168,7 +1167,7 @@
             /**
              * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
              */
-            function operadoresFacultad(facultades) {
+            function graficoOperadoresFacultad(facultades) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1180,12 +1179,11 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-                        console.log(labels);
+        
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1233,7 +1231,7 @@
                 });
             }
 
-            function programasFacultad(facultades) {
+            function graficoProgramasFacultad(facultades) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1245,12 +1243,10 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.codprograma;
                         });
-                        console.log(labels);
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });

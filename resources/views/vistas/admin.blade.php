@@ -289,6 +289,7 @@
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
                 }
                 else{
+                    
                     $('div #facultades input[type="checkbox"]').prop('disabled', false);
                 }
 

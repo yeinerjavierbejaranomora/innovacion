@@ -280,9 +280,7 @@
                         valoresSeleccionados.push($(this).val());
                         formData.append('idfacultad[]', $(this).val());
                     });
-
                     graficosporFacultad(valoresSeleccionados);
-
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -300,6 +298,8 @@
                             });
                         }
                     })
+                    const checkboxesProgramas = $('#programas').find('input[type="checkbox"]');
+                    console.log(checkboxesProgramas);
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();

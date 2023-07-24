@@ -358,6 +358,7 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
+                    $('div #facultades input[type="checkbox"]').prop('disabled', false);
                     graficosporFacultad(guardarFacultades);
                 }
             });
@@ -817,7 +818,7 @@
                     destruirGraficos();
                     $(".programastitulos").hide();
                     $(".titulos").hide();
-                    $(".titulosFacultad").show();
+                    $(".facultadtitulos").show();
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroporFacultad(facultades);
                     graficoRetencionporFacultad(facultades);

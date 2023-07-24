@@ -235,7 +235,16 @@
             /**
              * Llamado a todos los scripts
              */
-
+            function llamadoFunciones() {
+                facultades();
+                graficoEstudiantes();
+                graficoSelloFinanciero();
+                graficoRetencion();
+                graficoSelloPrimerIngreso();
+                graficoTipoDeEstudiante();
+                graficoOperadores();
+                graficoProgramas()
+            }
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */
@@ -294,14 +303,7 @@
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
-                    facultades();
-                    graficoEstudiantes();
-                    graficoSelloFinanciero();
-                    graficoRetencion();
-                    graficoSelloPrimerIngreso();
-                    graficoTipoDeEstudiante();
-                    graficoOperadores();
-                    graficoProgramas()
+                    llamadoFunciones();
                 }
             });
 

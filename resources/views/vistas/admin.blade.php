@@ -232,6 +232,8 @@
 
     <script>
         $(document).ready(function() {
+
+            llamadoFunciones();
             /**
              * Llamado a todos los scripts
              */

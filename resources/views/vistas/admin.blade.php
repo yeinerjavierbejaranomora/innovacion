@@ -306,16 +306,7 @@
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }
-
-                // Capturar los checkboxes del elemento con ID "programas"
-                const checkboxesProgramas = $('#programas').find('input[type="checkbox"]');
-
-                // Hacer algo con los checkboxes capturados
-                checkboxesProgramas.each(function() {
-                    const isChecked = $(this).prop('checked');
-                    const value = $(this).val();
-                    console.log(`Checkbox con valor ${value} está ${isChecked ? 'seleccionado' : 'deseleccionado'}`);
-                });
+                
             });
 
             /**

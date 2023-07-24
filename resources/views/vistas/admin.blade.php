@@ -285,9 +285,9 @@
              */
             const facultadesSeleccionadas = [];
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length == 4) {
+                if ($('#facultades input[type="checkbox"]:checked').length == 5) {
                     destruirGraficos();
-                    llamadoFunciones();
+
                 }
 
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

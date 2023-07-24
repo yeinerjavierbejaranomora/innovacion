@@ -239,6 +239,18 @@
     <script>
         $(document).ready(function() {
 
+
+            // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
+            $(document).ajaxStart(function() {
+                $('div #facultades input[type="checkbox"]').prop('disabled', true);
+            });
+
+            // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+            $(document).ajaxStop(function() {
+                $('div #facultades input[type="checkbox"]').prop('disabled', false);
+            });
+
+
             llamadoFunciones();
             facultades();
             /**
@@ -842,10 +854,6 @@
                     data: {
                         idfacultad: facultades
                     },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
@@ -877,11 +885,6 @@
                                         formatter: function(value, context) {
                                             return value;
                                         },
-                                    },
-                                    plugins: {
-                                        afterDraw: function(chart, easing) {
-                                            $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',

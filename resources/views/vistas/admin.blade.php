@@ -298,8 +298,12 @@
                             });
                         }
                     })
-                    const checkboxesProgramas = $('#programas').find('input[type="checkbox"]');
-                    console.log(checkboxesProgramas);
+                    const programasSeleccionados = [];
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    console.log(programasSeleccionados);
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
@@ -1019,12 +1023,12 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
+     
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.sello;
                         });
-                        console.log(labels);
+  
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1104,7 +1108,7 @@
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
                         });
-                        console.log(labels);
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });

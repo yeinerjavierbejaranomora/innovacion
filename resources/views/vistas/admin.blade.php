@@ -1346,9 +1346,6 @@
                     data: {
                         programa: programas
                     },
-                    beforeSend: function() {
-                    programas.prop('disabled', true);
-                },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {

@@ -1327,6 +1327,7 @@
                 $(".facultadtitulos").hide();
                 $(".titulos").hide();
                 $(".vacio").hide();
+                $(".programastitulos").show();
                 }         
             }
         });

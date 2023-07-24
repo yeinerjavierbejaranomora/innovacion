@@ -298,12 +298,6 @@
                             });
                         }
                     })
-                    const programasSeleccionados = [];
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
-                    });
-                    console.log(programasSeleccionados);
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
@@ -313,6 +307,15 @@
                 
             });
 
+            $('body').on('change', '#programas input[type="checkbox"]', function() {
+            console.log('entra');
+            const programasSeleccionados = [];
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    console.log(programasSeleccionados);
+            });
             /**
              * Método que muestra el total de estudiantes activos e inactivos
              */

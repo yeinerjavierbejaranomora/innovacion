@@ -309,9 +309,10 @@
                         }
                     })
 
-                    
+
                     $('body').on('change', '#programas input[type="checkbox"]', function() {
                         if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                            $('div #facultades input[type="checkbox"]').prop('disabled', true);
                             console.log(2);
                             const programasSeleccionados = [];
                             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
@@ -795,6 +796,7 @@
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     $(".facultadtitulos").show();
+                    $(".programastitulos").hide();
                     $(".titulos").hide();
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroporFacultad(facultades);

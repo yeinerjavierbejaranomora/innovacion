@@ -272,11 +272,25 @@
 
             }
 
-
+            /**
+             * Método para destruir todos los gráficos
+             */
             function destruirGraficos() {
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
+            /**
+             * Método que trae la información de toda la Ibero 
+             * */    
+            function informacionGeneral() {
+                $('#mensaje').show();
+                $('#programas').empty();
+                $('.facultadtitulos').hide();
+                $('.titulos').show();
+                $('.vacio').hide();
+                destruirGraficos();
+                llamadoFunciones();
+            }
             /**
              * Método que trae los programas correspondientes a cada facultad según 
              * los checkbox marcados.
@@ -286,8 +300,7 @@
             const facultadesSeleccionadas = [];
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {
-                    destruirGraficos();
-                    llamadoFunciones
+                    informacionGeneral();
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         console.log(1);
@@ -322,13 +335,7 @@
                     }
                 }
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
-                    $('#mensaje').show();
-                    $('#programas').empty();
-                    $('.facultadtitulos').hide();
-                    $('.titulos').show();
-                    $('.vacio').hide();
-                    destruirGraficos();
-                    llamadoFunciones();
+                   informacionGeneral();
                 }
 
             });

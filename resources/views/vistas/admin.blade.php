@@ -272,51 +272,50 @@
              */
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        $('#programas').empty();
-                        var formData = new FormData();
-                        const valoresSeleccionados = [];
-                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                        checkboxesSeleccionados.each(function() {
-                            valoresSeleccionados.push($(this).val());
-                            formData.append('idfacultad[]', $(this).val());
-                        });
+                    $('#programas').empty();
+                    var formData = new FormData();
+                    const valoresSeleccionados = [];
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    checkboxesSeleccionados.each(function() {
+                        valoresSeleccionados.push($(this).val());
+                        formData.append('idfacultad[]', $(this).val());
+                    });
 
-                        graficosporFacultad(valoresSeleccionados);
+                    graficosporFacultad(valoresSeleccionados);
 
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('traer.programas') }}",
-                            data: formData,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            success: function(datos) {
-                                datos = jQuery.parseJSON(datos);
-                                $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.nombre}"> ${value.nombre}</label><br>`);
-                                });
-                            }
-                        })
-                    }
-                 else {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('traer.programas') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            datos = jQuery.parseJSON(datos);
+                            $.each(datos, function(key, value) {
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.nombre}"> ${value.nombre}</label><br>`);
+                            });
+                        }
+                    })
+                } else {
                     $('#mensaje').show();
                     $('#programas').empty();
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }
 
-                if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        console.log(1);
-                        const programasSeleccionados = [];
-                        var checkboxesSeleccionados = $('#programas input[type="checkbox"]:checked');
-                        checkboxesSeleccionados.each(function() {
-                            programasSeleccionados.push($(this).val());
-                        });
-                        graficosporPrograma(programasSeleccionados);
-                    }
+                // Capturar los checkboxes del elemento con ID "programas"
+                const checkboxesProgramas = $('#programas').find('input[type="checkbox"]');
+
+                // Hacer algo con los checkboxes capturados
+                checkboxesProgramas.each(function() {
+                    const isChecked = $(this).prop('checked');
+                    const value = $(this).val();
+                    console.log(`Checkbox con valor ${value} está ${isChecked ? 'seleccionado' : 'deseleccionado'}`);
+                });
             });
 
             /**
@@ -1308,7 +1307,7 @@
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 }
                 $(".facultadtitulos").hide();
-                    $(".titulos").hide();
+                $(".titulos").hide();
             }
 
         });

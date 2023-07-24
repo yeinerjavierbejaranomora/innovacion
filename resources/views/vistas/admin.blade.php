@@ -309,8 +309,19 @@
                         }
                     })
 
+                }
+                
+                if ($('#facultades input[type="checkbox"]:checked').length == 0) {
+                    $('#mensaje').show();
+                    $('#programas').empty();
+                    $('.facultadtitulos').hide();
+                    $('.titulos').show();
+                    $('.vacio').hide();
+                }
 
-                    $('body').on('change', '#programas input[type="checkbox"]', function() {
+            });
+
+            $('body').on('change', '#programas input[type="checkbox"]', function() {
                         if ($('#programas input[type="checkbox"]:checked').length > 0) {
                             $('div #facultades input[type="checkbox"]').prop('disabled', true);
                             console.log(2);
@@ -329,18 +340,6 @@
                             $("#ocultarGraficoProgramas").show();
                         }
                     });
-
-                }
-                
-                if ($('#facultades input[type="checkbox"]:checked').length == 0) {
-                    $('#mensaje').show();
-                    $('#programas').empty();
-                    $('.facultadtitulos').hide();
-                    $('.titulos').show();
-                    $('.vacio').hide();
-                }
-
-            });
 
 
             /**

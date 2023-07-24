@@ -116,7 +116,7 @@
                             <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center" style="display: none;">
+                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
                                 <h5>No hay datos por mostrar</h5>
                             </div>
                             <canvas id="estudiantes"></canvas>
@@ -137,7 +137,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center" style="display: none;">
+                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="activos"></canvas>
@@ -151,7 +151,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioRetencion" class="text-center" style="display: none;">
+                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="retencion"></canvas>
@@ -170,7 +170,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioPrimerIngreso" class="text-center" style="display: none;">
+                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="primerIngreso"></canvas>
@@ -184,7 +184,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTipoEstudiante" class="text-center" style="display: none;">
+                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="tipoEstudiante"></canvas>
@@ -203,7 +203,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioOperadores" class="text-center" style="display: none;">
+                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="operadores"></canvas>
@@ -217,7 +217,7 @@
                         <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioProgramas" class="text-center" style="display: none;">
+                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
@@ -1299,13 +1299,13 @@
             }
 
             function graficosporPrograma(programas) {
-                console.log('entra');
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                 }
                 $(".facultadtitulos").hide();
                 $(".titulos").hide();
+                $(".vacio").hide();
             }
 
         });

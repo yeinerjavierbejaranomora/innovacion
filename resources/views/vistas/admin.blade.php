@@ -312,6 +312,7 @@
                     else
                     {
                         graficosporFacultad(facultadesSeleccionadas);
+                        $('.facultadtitulos').show();
                     }
                     });
 

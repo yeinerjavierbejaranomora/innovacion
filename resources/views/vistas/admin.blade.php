@@ -315,7 +315,6 @@
                             checkboxesProgramas.each(function() {
                                 programasSeleccionados.push($(this).val());
                             });
-                            console.log(programasSeleccionados);
                             graficosporPrograma(programasSeleccionados);
                         } else {
                             graficosporFacultad(facultadesSeleccionadas);
@@ -1326,8 +1325,9 @@
             function graficosporPrograma(programas) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
-                        console.log('entra');
-                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                    console.log('entra');
+                    var destroy = [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                    console.log(destroy);
                     $(".facultadtitulos").hide();
                     $(".titulos").hide();
                     $(".vacio").hide();

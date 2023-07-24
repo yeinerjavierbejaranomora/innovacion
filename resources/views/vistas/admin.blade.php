@@ -248,7 +248,10 @@
 
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
             $(document).ajaxStop(function() {
-                $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                if (desactivar == false)
+                {
+                    $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                }
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
@@ -359,9 +362,10 @@
 
             });
 
-
+            var desactivar = false;
             $('body').on('change', '#programas input[type="checkbox"]', function() {
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                    desactivar = true;
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     console.log(2);
                     const programasSeleccionados = [];

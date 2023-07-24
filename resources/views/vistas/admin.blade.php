@@ -285,46 +285,42 @@
              */
             const facultadesSeleccionadas = [];
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length == 4) {
-                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                if ($('#facultades input[type="checkbox"]:checked').length == 5) {
+                    destruirGraficos();
+                    llamadoFunciones
+                } else {
+                    if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                        console.log(1);
+                        $('#programas').empty();
+                        $('#mensaje').hide();
+                        var formData = new FormData();
+
+                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            facultadesSeleccionadas.push($(this).val());
+                            formData.append('idfacultad[]', $(this).val());
+                        });
+                        graficosporFacultad(facultadesSeleccionadas);
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: "{{ route('traer.programas') }}",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(datos) {
+                                datos = jQuery.parseJSON(datos);
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                                });
+                            }
+                        })
+
+                    }
                 }
-                else{
-                    
-                    $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                }
-
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                    console.log(1);
-                    $('#programas').empty();
-                    $('#mensaje').hide();
-                    var formData = new FormData();
-
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        facultadesSeleccionadas.push($(this).val());
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-                    graficosporFacultad(facultadesSeleccionadas);
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            datos = jQuery.parseJSON(datos);
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    })
-
-                }
-
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
                     $('#mensaje').show();
                     $('#programas').empty();
@@ -336,6 +332,7 @@
                 }
 
             });
+
 
             $('body').on('change', '#programas input[type="checkbox"]', function() {
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {

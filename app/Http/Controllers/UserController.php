@@ -850,4 +850,32 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
+
+    /**
+     * Métodos para gráficos de programas
+     */
+
+     /**
+     * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
+     * @return JSON retorna los estudiantes agrupados en activos e inactivos
+     */
+    public function estudiantesActivosPrograma(Request $request)
+    {
+        /**
+         * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
+        INNER JOIN programas p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.estado
+         */
+        $programas = $request->input('programa');
+        $estudiantes = DB::table('datosMafi')
+            ->whereIn('p.Facultad', $programas)
+            ->select(DB::raw('COUNT(estado) AS TOTAL'), 'estado')
+            ->groupBy('estado')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
+    }
+
 }

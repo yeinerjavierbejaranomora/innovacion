@@ -274,11 +274,14 @@
 
             /**
              * Método que trae los programas correspondientes a cada facultad según 
-             * los checkbox marcados
+             * los checkbox marcados.
+             * Llama la función que muestra los gráficos de las facultades seleccionadas, también
+             * de los programas
              */
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
+                    $('#mensaje').hide();
                     var formData = new FormData();
                     const facultadesSeleccionadas = [];
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -306,23 +309,21 @@
                     })
 
                     $('body').on('change', '#programas input[type="checkbox"]', function() {
-                        if ($('#programas input[type="checkbox"]:checked').length > 0) { 
-                        const programasSeleccionados = [];
-                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                        checkboxesProgramas.each(function() {
-                            programasSeleccionados.push($(this).val());
-                        });
-                        console.log(programasSeleccionados);
-                        graficosporPrograma(programasSeleccionados, facultadesSeleccionadas);
-                    }
-                    else
-                    {
-                        graficosporFacultad(facultadesSeleccionadas);
-                        $('.facultadtitulos').show();
-                        $('.programastitulos').hide();
-                        $('.vacio').hide();
-                        $("#ocultarGraficoProgramas").show();
-                    }
+                        if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                            const programasSeleccionados = [];
+                            var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                            checkboxesProgramas.each(function() {
+                                programasSeleccionados.push($(this).val());
+                            });
+                            console.log(programasSeleccionados);
+                            graficosporPrograma(programasSeleccionados, facultadesSeleccionadas);
+                        } else {
+                            graficosporFacultad(facultadesSeleccionadas);
+                            $('.facultadtitulos').show();
+                            $('.programastitulos').hide();
+                            $('.vacio').hide();
+                            $("#ocultarGraficoProgramas").show();
+                        }
                     });
 
                 } else {
@@ -756,7 +757,9 @@
                             datasets: [{
                                 label: 'Programas con mayor cantidad de estudiantes',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)']
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
                             }]
                         },
                         options: {
@@ -801,7 +804,6 @@
                     graficoOperadoresFacultad(facultades);
                     graficoProgramasFacultad(facultades);
                 }
-
             }
 
             /** 
@@ -1321,18 +1323,92 @@
                 });
             }
 
-            function graficosporPrograma(programas,facultades) {
+            function graficosporPrograma(programas) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                $(".facultadtitulos").hide();
-                $(".titulos").hide();
-                $(".vacio").hide();
-                $(".programastitulos").show();
-                $("#ocultarGraficoProgramas").hide();     
-                }         
+                    $(".facultadtitulos").hide();
+                    $(".titulos").hide();
+                    $(".vacio").hide();
+                    $(".programastitulos").show();
+                    $("#ocultarGraficoProgramas").hide();
+
+                    graficoEstudiantesPorPrograma(programas);
+                }
             }
         });
+
+        function graficoEstudiantesPorPrograma(programas) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('estudiantes.activos.programa') }}",
+                data: {
+                    programa: programas
+                },
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.estado;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('estudiantes').getContext('2d');
+                    chartEstudiantes = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                label = label.toUpperCase();
+                                return label + 'S: ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                        $('#vacioTotalEstudiantes').show();
+                    } else {
+                        $('#vacioTotalEstudiantes').hide();
+                    }
+                }
+            });
+        }
     </script>
 
 

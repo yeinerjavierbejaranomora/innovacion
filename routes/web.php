@@ -99,6 +99,10 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/operadoresFacultad', 'operadoresFacultad')->middleware('auth')->name('estudiantes.operador.facultad');
     /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos por facultad*/
     Route::post('/home/estudiantesProgramasFacultad' ,'estudiantesProgramasFacultad')->middleware('auth')->name('programas.estudiantes.facultad');
+    
+    /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
+    Route::post('/home/estudiantesPrograma', 'estudiantesActivosPrograma')->middleware('auth')->name('estudiantes.activos.programa');
+
 });
 
 Route::controller(MafiController::class)->group(function () {

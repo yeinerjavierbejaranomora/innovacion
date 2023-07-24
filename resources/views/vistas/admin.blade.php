@@ -238,7 +238,7 @@
             /**
              * Llamado a todos los scripts
              */
-            function llamadoFunciones() {               
+            function llamadoFunciones() {
                 graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
@@ -273,35 +273,44 @@
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#mensaje').hide();
-                    $('#programas').empty();
-                    var formData = new FormData();
-                    const valoresSeleccionados = [];
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        valoresSeleccionados.push($(this).val());
-                        formData.append('idfacultad[]', $(this).val());
-                    });
+                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
 
-                    graficosporFacultad(valoresSeleccionados);
+                        const valoresSeleccionados = [];
+                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            valoresSeleccionados.push($(this).val());
+                        });
+                        graficosporPrograma(valoresSeleccionados);
+                    } else {
+                        $('#programas').empty();
+                        var formData = new FormData();
+                        const valoresSeleccionados = [];
+                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            valoresSeleccionados.push($(this).val());
+                            formData.append('idfacultad[]', $(this).val());
+                        });
 
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            datos = jQuery.parseJSON(datos);
+                        graficosporFacultad(valoresSeleccionados);
 
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    })
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: "{{ route('traer.programas') }}",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(datos) {
+                                datos = jQuery.parseJSON(datos);
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.nombre}"> ${value.nombre}</label><br>`);
+                                });
+                            }
+                        })
+                    }
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
@@ -1182,7 +1191,7 @@
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-        
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1290,6 +1299,15 @@
                         }
                     }
                 });
+            }
+
+            function graficosporPrograma(programas) {
+                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+                    chartTipoEstudiante || chartOperadores) {
+                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                }
+                $(".facultadtitulos").hide();
+                    $(".titulos").hide();
             }
 
         });

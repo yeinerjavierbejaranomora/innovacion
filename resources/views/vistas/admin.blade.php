@@ -791,10 +791,8 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-
                     $(".facultadtitulos").show();
                     $(".titulos").hide();
-
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroporFacultad(facultades);
                     graficoRetencionporFacultad(facultades);
@@ -1326,7 +1324,7 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     console.log('entra');
-                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => destroy());
 
                     $(".facultadtitulos").hide();
                     $(".titulos").hide();

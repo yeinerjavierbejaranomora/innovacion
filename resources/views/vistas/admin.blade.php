@@ -330,14 +330,14 @@
                         }
                     });
 
-                } else {
+                }
+                
+                if ($('#facultades input[type="checkbox"]:checked').length == 0) {
                     $('#mensaje').show();
                     $('#programas').empty();
                     $('.facultadtitulos').hide();
                     $('.titulos').show();
                     $('.vacio').hide();
-
-                   
                 }
 
             });

@@ -313,12 +313,16 @@
                     {
                         graficosporFacultad(facultadesSeleccionadas);
                         $('.facultadtitulos').show();
+                        $('.vacio').hide();
                     }
                     });
 
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
+                    $('.facultadtitulos').hide();
+                    $('.titulos').show();
+
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }

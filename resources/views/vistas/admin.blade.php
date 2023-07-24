@@ -217,7 +217,7 @@
                 </div>
             </div>
             <div class="col-6 text-center">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-4 graficos" id="graficoProgramas>
                     <div class="card-header">
                         <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
@@ -321,6 +321,7 @@
                         $('.facultadtitulos').show();
                         $('.programastitulos').hide();
                         $('.vacio').hide();
+                        $("#graficoProgramas").show(); 
                     }
                     });
 
@@ -1328,6 +1329,7 @@
                 $(".titulos").hide();
                 $(".vacio").hide();
                 $(".programastitulos").show();
+                $("#graficoProgramas").hide();     
                 }         
             }
         });

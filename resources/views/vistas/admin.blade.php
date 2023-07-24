@@ -112,7 +112,7 @@
                 <div class=" col-4 text-center">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
                             <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
                         </div>
                         <div class="card-body">
@@ -234,11 +234,11 @@
         $(document).ready(function() {
 
             llamadoFunciones();
+            facultades();
             /**
              * Llamado a todos los scripts
              */
-            function llamadoFunciones() {
-                facultades();
+            function llamadoFunciones() {               
                 graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
@@ -757,7 +757,6 @@
              */
 
             function graficosporFacultad(facultades) {
-                console.log(facultades);
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
@@ -1230,7 +1229,9 @@
                     }
                 });
             }
-
+            /**
+             * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
+             */
             function graficoProgramasFacultad(facultades) {
                 $.ajax({
                     headers: {

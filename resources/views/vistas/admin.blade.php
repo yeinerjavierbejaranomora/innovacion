@@ -321,7 +321,7 @@
                         $('.facultadtitulos').show();
                         $('.programastitulos').hide();
                         $('.vacio').hide();
-                        $("#graficoProgramas").show(); 
+                        
                     }
                     });
 

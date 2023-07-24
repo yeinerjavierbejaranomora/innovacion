@@ -790,8 +790,8 @@
             function graficosporFacultad(facultades) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
-                  var destroy =  [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                  console.log(destroy);
+                    [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+
                     $(".facultadtitulos").show();
                     $(".titulos").hide();
 
@@ -1327,7 +1327,7 @@
                     chartTipoEstudiante || chartOperadores) {
                     console.log('entra');
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                    
+
                     $(".facultadtitulos").hide();
                     $(".titulos").hide();
                     $(".vacio").hide();
@@ -1337,79 +1337,79 @@
                     graficoEstudiantesPorPrograma(programas);
                 }
             }
-        });
 
-        function graficoEstudiantesPorPrograma(programas) {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('estudiantes.activos.programa') }}",
-                data: {
-                    programa: programas
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.estado;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantes').getContext('2d');
-                    chartEstudiantes = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                label = label.toUpperCase();
-                                return label + 'S: ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    formatter: function(value, context) {
-                                        return value;
+            function graficoEstudiantesPorPrograma(programas) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.activos.programa') }}",
+                    data: {
+                        programa: programas
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.estado;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('estudiantes').getContext('2d');
+                        chartEstudiantes = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    label = label.toUpperCase();
+                                    return label + 'S: ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: function(value, context) {
+                                            return value;
+                                        },
                                     },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'bottom',
                                     labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'outside',
+                                        textMargin: 6
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                        $('#vacioTotalEstudiantes').show();
-                    } else {
-                        $('#vacioTotalEstudiantes').hide();
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                            $('#vacioTotalEstudiantes').show();
+                        } else {
+                            $('#vacioTotalEstudiantes').hide();
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
+        });
     </script>
 
 

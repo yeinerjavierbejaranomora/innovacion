@@ -281,7 +281,7 @@
 
             /**
              * Método que trae la información de toda la Ibero 
-             * */    
+             * */
             function informacionGeneral() {
                 $('#mensaje').show();
                 $('#programas').empty();
@@ -291,15 +291,14 @@
                 destruirGraficos();
                 llamadoFunciones();
             }
-            
-            
+
             /**
              * Método que trae los programas correspondientes a cada facultad según 
              * los checkbox marcados.
              * Llama la función que muestra los gráficos de las facultades seleccionadas, también
              * de los programas
              */
-            
+
             var guardarFacultades = "";
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
@@ -341,7 +340,7 @@
                     }
                 }
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
-                   informacionGeneral();
+                    informacionGeneral();
                 }
 
             });
@@ -843,6 +842,10 @@
                     data: {
                         idfacultad: facultades
                     },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                    },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
@@ -918,6 +921,10 @@
                     data: {
                         idfacultad: facultades
                     },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                    },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
@@ -992,6 +999,10 @@
                     url: "{{ route('estudiantes.retencion.facultad') }}",
                     data: {
                         idfacultad: facultades
+                    },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1071,6 +1082,10 @@
                     url: "{{ route('estudiantes.primerIngreso.facultad') }}",
                     data: {
                         idfacultad: facultades
+                    },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1153,6 +1168,10 @@
                     data: {
                         idfacultad: facultades
                     },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                    },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1230,6 +1249,10 @@
                     data: {
                         idfacultad: facultades
                     },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                    },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1295,6 +1318,10 @@
                     url: "{{ route('programas.estudiantes.facultad') }}",
                     data: {
                         idfacultad: facultades
+                    },
+                    beforeSend: function() {
+                        // Deshabilitar los checkboxes antes de la solicitud AJAX
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);

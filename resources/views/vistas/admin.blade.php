@@ -291,6 +291,8 @@
                 destruirGraficos();
                 llamadoFunciones();
             }
+            
+            
             /**
              * Método que trae los programas correspondientes a cada facultad según 
              * los checkbox marcados.
@@ -298,6 +300,8 @@
              * de los programas
              */
             
+            var guardarFacultades = "";
+
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {
                     informacionGeneral();
@@ -314,6 +318,7 @@
                             formData.append('idfacultad[]', $(this).val());
                         });
                         console.log(facultadesSeleccionadas);
+                        guardarFacultades = facultadesSeleccionadas;
                         graficosporFacultad(facultadesSeleccionadas);
                         $.ajax({
                             headers: {
@@ -353,7 +358,7 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
-                    
+                    graficosporFacultad(guardarFacultades);
                 }
             });
 
@@ -812,6 +817,7 @@
                     destruirGraficos();
                     $(".programastitulos").hide();
                     $(".titulos").hide();
+                    $(".titulosFacultad").show();
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroporFacultad(facultades);
                     graficoRetencionporFacultad(facultades);

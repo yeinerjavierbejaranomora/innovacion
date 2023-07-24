@@ -272,16 +272,6 @@
              */
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                    $('#mensaje').hide();
-                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        console.log(1);
-                        const programasSeleccionados = [];
-                        var checkboxesSeleccionados = $('#programas input[type="checkbox"]:checked');
-                        checkboxesSeleccionados.each(function() {
-                            programasSeleccionados.push($(this).val());
-                        });
-                        graficosporPrograma(programasSeleccionados);
-                    } else {
                         $('#programas').empty();
                         var formData = new FormData();
                         const valoresSeleccionados = [];
@@ -311,12 +301,22 @@
                             }
                         })
                     }
-                } else {
+                 else {
                     $('#mensaje').show();
                     $('#programas').empty();
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }
+
+                if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                        console.log(1);
+                        const programasSeleccionados = [];
+                        var checkboxesSeleccionados = $('#programas input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
+                        graficosporPrograma(programasSeleccionados);
+                    }
             });
 
             /**

@@ -375,6 +375,7 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
+                    desactivar = false;
                     $('div #facultades input[type="checkbox"]').prop('disabled', false);
                     graficosporFacultad(guardarFacultades);
                 }

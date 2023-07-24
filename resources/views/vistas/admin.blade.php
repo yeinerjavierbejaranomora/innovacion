@@ -303,7 +303,7 @@
                         success: function(datos) {
                             datos = jQuery.parseJSON(datos);
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.nombre}"> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });
                         }
                     })

@@ -508,11 +508,12 @@ class UserController extends Controller
     public function traerProgramas(Request $request)
     {
         $idsFacultad = $request->input('idfacultad');
-        $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa')->get();
+        $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
         foreach ($programas as $programa) {
             $arreglo[] = [
                 'id' => $programa->id,
-                'nombre' => $programa->programa
+                'nombre' => $programa->programa,
+                'codprograma' => $programa->codprograma
             ];
         }
         header("Content-Type: application/json");
@@ -869,7 +870,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $estudiantes = DB::table('datosMafi')
-            ->whereIn('codprograma', $programas)
+            ->whereIn('programa', $programas)
             ->select(DB::raw('COUNT(estado) AS TOTAL'), 'estado')
             ->groupBy('estado')
             ->get();

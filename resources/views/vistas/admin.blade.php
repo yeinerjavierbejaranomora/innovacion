@@ -764,6 +764,7 @@
                     graficoSelloFinancieroporFacultad(facultades);
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
+                    graficoTiposDeEstudiantesFacultad(facultades);
 
                 }
 
@@ -1165,6 +1166,11 @@
                     }
                 });
             }
+
+            /**
+             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
+             */
+
         });
     </script>
 

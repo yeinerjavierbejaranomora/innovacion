@@ -769,7 +769,7 @@ class UserController extends Controller
     }
 
     /**
-     * Método que muestra los tipos de estudiantes de las facultades seleccionadas por el usuario
+     * Método que muestra los 5 operadores que mas estudiantes traen de las facultades seleccionadas por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
     public function tiposEstudiantesFacultad(Request $request)
@@ -782,7 +782,7 @@ class UserController extends Controller
          * GROUP BY tipoestudiante
          */
         $facultades = $request->input('idfacultad');
-        $tipoEstudiantes = DB::table('datosMafi')
+        $tipoEstudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
@@ -790,5 +790,34 @@ class UserController extends Controller
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
+    }
+
+    /**
+     * Método que muestra los tipos de estudiantes de las facultades seleccionadas por el usuario
+     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
+     */
+    public function operadoresFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
+         * FROM datosMafi AS dm
+         * JOIN programas AS p ON p.codprograma = dm.programa
+         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+         * GROUP BY dm.operador
+         * ORDER BY TOTAL DESC
+        LIMIT 5
+         */
+        $facultades = $request->input('idfacultad');
+        $operadores = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
+            ->groupBy('dm.operador')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
     }
 }

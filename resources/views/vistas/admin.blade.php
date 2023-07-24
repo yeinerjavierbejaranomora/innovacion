@@ -366,7 +366,7 @@
                     });
                     if (chartEstudiantes.data.labels.length === 0 && chartEstudiantes.data.datasets[0].data.length === 0) {
                         $('#vacioTotalEstudiantes').show;
-                    } 
+                    }
                 });
             }
 
@@ -572,7 +572,7 @@
                     });
                     if (chartSelloPrimerIngreso.data.labels.length === 0 && chartSelloPrimerIngreso.data.datasets[0].data.length === 0) {
                         $('#vacioPrimerIngreso').show;
-                    } 
+                    }
                 });
 
             }
@@ -653,7 +653,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
-                    // Crear el gráfico circular
+                    // Crear el gráfico de barras
                     var ctx = document.getElementById('operadores').getContext('2d');
                     chartOperadores = new Chart(ctx, {
                         type: 'bar',
@@ -756,7 +756,7 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                        
+
                     $(".facultadtitulos").show();
                     $(".titulos").hide();
 
@@ -838,10 +838,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#vacioTotalEstudiantes').show();           
-                        }
-                        else
-                        {
+                            $('#vacioTotalEstudiantes').show();
+                        } else {
                             $('#vacioTotalEstudiantes').hide();
                         }
                     }
@@ -915,10 +913,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#vacioTotalSello').show(); 
-                        }
-                        else
-                        {
+                            $('#vacioTotalSello').show();
+                        } else {
                             $('#vacioTotalSello').hide();
                         }
                     }
@@ -996,10 +992,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#vacioRetencion').show();  
-                        }
-                        else
-                        {
+                            $('#vacioRetencion').show();
+                        } else {
                             $('#vacioRetencion').hide();
                         }
                     }
@@ -1079,9 +1073,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            $('#vacioPrimerIngreso').show();                        
-                        }
-                        else{
+                            $('#vacioPrimerIngreso').show();
+                        } else {
                             $('#vacioPrimerIngreso').hide();
                         }
                     }
@@ -1158,9 +1151,8 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                            $('#vacioTipoEstudiante').show();   
-                        }
-                        else{
+                            $('#vacioTipoEstudiante').show();
+                        } else {
                             $('#vacioTipoEstudiante').hide();
                         }
                     }
@@ -1170,6 +1162,70 @@
             /**
              * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
              */
+            function operadoresFacultad(facultades) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.operador.facultad') }}",
+                    data: {
+                        idfacultad: facultades
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        console.log(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.operador;
+                        });
+                        console.log(labels);
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var ctx = document.getElementById('operadores').getContext('2d');
+                        chartOperadores = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
+                                    }
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                            $('#vacioOperadores').show();
+                        } else {
+                            $('#vacioOperadores').hide();
+                        }
+                    }
+                });
+            }
 
         });
     </script>

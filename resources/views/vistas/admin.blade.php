@@ -1335,7 +1335,6 @@
                     graficoEstudiantesPorPrograma(programas);
                 }
             }
-
             function graficoEstudiantesPorPrograma(programas) {
                 $.ajax({
                     headers: {

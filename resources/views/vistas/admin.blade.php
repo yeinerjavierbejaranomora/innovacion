@@ -897,11 +897,7 @@
                                     }
 
                                 },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                    }
-                                },
+                                
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -927,10 +923,7 @@
                     data: {
                         idfacultad: facultades
                     },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    },
+
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
@@ -981,11 +974,6 @@
                                         }
                                     }
                                 },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                    }
-                                },
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1010,10 +998,6 @@
                     url: "{{ route('estudiantes.retencion.facultad') }}",
                     data: {
                         idfacultad: facultades
-                    },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1069,11 +1053,6 @@
                                         }
                                     }
                                 },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                    }
-                                },
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1099,13 +1078,9 @@
                     data: {
                         idfacultad: facultades
                     },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    },
+                    
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.sello;
@@ -1159,11 +1134,7 @@
                                         }
                                     }
                                 },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                    }
-                                },
+                                
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1189,10 +1160,7 @@
                     data: {
                         idfacultad: facultades
                     },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    },
+                    
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1245,11 +1213,7 @@
                                         }
                                     }
                                 },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                                    }
-                                },
+                            
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1274,10 +1238,6 @@
                     url: "{{ route('estudiantes.operador.facultad') }}",
                     data: {
                         idfacultad: facultades
-                    },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1319,11 +1279,6 @@
                                                 size: 12
                                             }
                                         }
-                                    }
-                                },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
                                     }
                                 },
                             },
@@ -1390,11 +1345,6 @@
                                                 size: 12
                                             }
                                         }
-                                    }
-                                },
-                                plugins: {
-                                    afterDraw: function(chart, easing) {
-                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
                                     }
                                 },
                             },

@@ -837,6 +837,8 @@
                     $(".programastitulos").hide();
                     $(".titulos").hide();
                     $(".facultadtitulos").show();
+                    $("#ocultarGraficoProgramas").show();    
+
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroporFacultad(facultades);
                     graficoRetencionporFacultad(facultades);

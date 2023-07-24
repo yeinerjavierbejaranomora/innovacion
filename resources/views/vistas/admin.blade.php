@@ -878,6 +878,11 @@
                                             return value;
                                         },
                                     },
+                                    plugins: {
+                                        afterDraw: function(chart, easing) {
+                                            $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                                        }
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -897,7 +902,7 @@
                                     }
 
                                 },
-                                
+
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1078,7 +1083,7 @@
                     data: {
                         idfacultad: facultades
                     },
-                    
+
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1134,7 +1139,7 @@
                                         }
                                     }
                                 },
-                                
+
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1160,7 +1165,7 @@
                     data: {
                         idfacultad: facultades
                     },
-                    
+
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1213,7 +1218,7 @@
                                         }
                                     }
                                 },
-                            
+
                             },
                             plugin: [ChartDataLabels]
                         });

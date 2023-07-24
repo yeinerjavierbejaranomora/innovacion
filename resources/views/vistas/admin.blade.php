@@ -895,6 +895,12 @@
                                             }
                                         }
                                     }
+
+                                },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                                    }
                                 },
                             },
                             plugin: [ChartDataLabels]
@@ -973,6 +979,11 @@
                                                 size: 12
                                             }
                                         }
+                                    }
+                                },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
                                     }
                                 },
                             },
@@ -1056,6 +1067,11 @@
                                                 size: 12
                                             }
                                         }
+                                    }
+                                },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
                                     }
                                 },
                             },
@@ -1143,6 +1159,11 @@
                                         }
                                     }
                                 },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                                    }
+                                },
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1224,6 +1245,11 @@
                                         }
                                     }
                                 },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                                    }
+                                },
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1295,6 +1321,11 @@
                                         }
                                     }
                                 },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                                    }
+                                },
                             },
                             plugin: [ChartDataLabels]
                         });
@@ -1359,6 +1390,11 @@
                                                 size: 12
                                             }
                                         }
+                                    }
+                                },
+                                plugins: {
+                                    afterDraw: function(chart, easing) {
+                                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
                                     }
                                 },
                             },

@@ -114,6 +114,7 @@
                         <div class="card-header">
                             <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
                             <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
+                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
                         </div>
                         <div class="card-body">
                             <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
@@ -135,6 +136,7 @@
                     <div class="card-header">
                         <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
@@ -149,6 +151,7 @@
                     <div class="card-header">
                         <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioRetencion" class="text-center vacio" style="display: none;">
@@ -168,6 +171,7 @@
                     <div class="card-header">
                         <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
@@ -182,6 +186,7 @@
                     <div class="card-header">
                         <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
@@ -201,6 +206,7 @@
                     <div class="card-header">
                         <h5 class="titulos"><strong>Operadores</strong></h5>
                         <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioOperadores" class="text-center vacio" style="display: none;">
@@ -313,6 +319,7 @@
                     {
                         graficosporFacultad(facultadesSeleccionadas);
                         $('.facultadtitulos').show();
+                        $('.programastitulos').hide();
                         $('.vacio').hide();
                     }
                     });
@@ -323,7 +330,7 @@
                     $('.facultadtitulos').hide();
                     $('.titulos').show();
                     $('.vacio').hide();
-                    
+
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }

@@ -274,13 +274,13 @@
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#mensaje').hide();
                     if ($('#programas input[type="checkbox"]:checked').length > 0) {
-
-                        const valoresSeleccionados = [];
-                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        console.log(1);
+                        const programasSeleccionados = [];
+                        var checkboxesSeleccionados = $('#programas input[type="checkbox"]:checked');
                         checkboxesSeleccionados.each(function() {
-                            valoresSeleccionados.push($(this).val());
+                            programasSeleccionados.push($(this).val());
                         });
-                        graficosporPrograma(valoresSeleccionados);
+                        graficosporPrograma(programasSeleccionados);
                     } else {
                         $('#programas').empty();
                         var formData = new FormData();

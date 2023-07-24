@@ -297,7 +297,7 @@
              * Llama la función que muestra los gráficos de las facultades seleccionadas, también
              * de los programas
              */
-            const facultadesSeleccionadas = [];
+            
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {
                     informacionGeneral();
@@ -307,7 +307,7 @@
                         $('#programas').empty();
                         $('#mensaje').hide();
                         var formData = new FormData();
-
+                        const facultadesSeleccionadas = [];
                         var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                         checkboxesSeleccionados.each(function() {
                             facultadesSeleccionadas.push($(this).val());
@@ -353,12 +353,7 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
-                    $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                    graficosporFacultad(facultadesSeleccionadas);
-                    $('.facultadtitulos').show();
-                    $('.programastitulos').hide();
-                    $('.vacio').hide();
-                    $("#ocultarGraficoProgramas").show();
+                    
                 }
             });
 

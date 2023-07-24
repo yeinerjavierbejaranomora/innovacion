@@ -316,7 +316,7 @@
                                 programasSeleccionados.push($(this).val());
                             });
                             console.log(programasSeleccionados);
-                            graficosporPrograma(programasSeleccionados, facultadesSeleccionadas);
+                            graficosporPrograma(programasSeleccionados);
                         } else {
                             graficosporFacultad(facultadesSeleccionadas);
                             $('.facultadtitulos').show();

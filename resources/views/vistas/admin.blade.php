@@ -274,13 +274,13 @@
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
                     var formData = new FormData();
-                    const valoresSeleccionados = [];
+                    const facultadesSeleccionadas = [];
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     checkboxesSeleccionados.each(function() {
                         valoresSeleccionados.push($(this).val());
                         formData.append('idfacultad[]', $(this).val());
                     });
-                    graficosporFacultad(valoresSeleccionados);
+                    graficosporFacultad(facultadesSeleccionadas);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -298,24 +298,27 @@
                             });
                         }
                     })
+
+                    $('body').on('change', '#programas input[type="checkbox"]', function() {
+                        const programasSeleccionados = [];
+                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                        checkboxesProgramas.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
+                        console.log(programasSeleccionados);
+                        graficosporPrograma(programasSeleccionados, facultadesSeleccionadas);
+                    });
+
                 } else {
                     $('#mensaje').show();
                     $('#programas').empty();
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }
-                
+
             });
 
-            $('body').on('change', '#programas input[type="checkbox"]', function() {
-            const programasSeleccionados = [];
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
-                    });
-                    console.log(programasSeleccionados);
-                    graficosporPrograma(programasSeleccionados);
-            });
+
             /**
              * Método que muestra el total de estudiantes activos e inactivos
              */
@@ -1026,12 +1029,12 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-     
+
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.sello;
                         });
-  
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1298,15 +1301,20 @@
                 });
             }
 
-            function graficosporPrograma(programas) {
+            function graficosporPrograma(programas,facultades) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-                }
                 $(".facultadtitulos").hide();
                 $(".titulos").hide();
                 $(".vacio").hide();
+                }         
+                else {
+                    graficosporFacultad(facultades)
+
+                }
             }
+        }
 
         });
     </script>

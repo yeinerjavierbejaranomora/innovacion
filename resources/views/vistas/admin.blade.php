@@ -309,6 +309,7 @@
                         }
                     })
 
+                    
                     $('body').on('change', '#programas input[type="checkbox"]', function() {
                         if ($('#programas input[type="checkbox"]:checked').length > 0) {
                             console.log(2);

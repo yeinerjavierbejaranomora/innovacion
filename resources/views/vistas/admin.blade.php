@@ -1311,11 +1311,8 @@
                 }         
                 else {
                     graficosporFacultad(facultades)
-
                 }
             }
-        }
-
         });
     </script>
 

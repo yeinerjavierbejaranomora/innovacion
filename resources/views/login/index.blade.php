@@ -1,5 +1,5 @@
 @extends('layout.plantillaFormularios')
-@section('title', 'LoginPrueba')
+@section('title', 'Login')
 @section('content')
 
 <div class="container align-middle shadow-lg rounded" >

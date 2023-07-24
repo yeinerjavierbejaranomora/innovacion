@@ -820,4 +820,34 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
     }
+
+    /**
+     * Método que muestra los 5 programas con mayor cantidad de estudiantes inscritos de las facultades seleccionadas por el usuario
+     * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
+     */
+
+    public function estudiantesProgramasFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+         * * FROM datosMafi AS dm
+         * JOIN programas AS p ON p.codprograma = dm.programa
+         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+         * GROUP BY dm.codprograma
+         * ORDER BY TOTAL DESC
+         * LIMIT 5
+         */
+        $facultades = $request->input('idfacultad');
+        $programas = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
+            ->groupBy('dm.codprograma')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $programas));
+    }
 }

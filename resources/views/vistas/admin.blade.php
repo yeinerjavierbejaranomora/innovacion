@@ -771,6 +771,7 @@
                     graficoSelloPrimerIngresoporFacultad(facultades);
                     graficoTiposDeEstudiantesFacultad(facultades);
                     operadoresFacultad(facultades);
+                    programasFacultad(facultades);
                 }
 
             }
@@ -1233,7 +1234,65 @@
             }
 
             function programasFacultad(facultades) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('programas.estudiantes.facultad') }}",
+                    data: {
+                        idfacultad: facultades
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        console.log(data);
 
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.codprograma;
+                        });
+                        console.log(labels);
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
+                        chartProgramas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
+                            $('#vacioProgramas').show();
+                        } else {
+                            $('#vacioProgramas').hide();
+                        }
+                    }
+                });
             }
 
         });

@@ -322,7 +322,8 @@
                     $('#programas').empty();
                     $('.facultadtitulos').hide();
                     $('.titulos').show();
-
+                    $('.vacio').hide();
+                    
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
                     llamadoFunciones();
                 }

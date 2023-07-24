@@ -280,6 +280,7 @@
              */
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                    console.log(1);
                     $('#programas').empty();
                     $('#mensaje').hide();
                     var formData = new FormData();
@@ -310,6 +311,7 @@
 
                     $('body').on('change', '#programas input[type="checkbox"]', function() {
                         if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                            console.log(2);
                             const programasSeleccionados = [];
                             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                             checkboxesProgramas.each(function() {
@@ -1335,6 +1337,8 @@
                     graficoEstudiantesPorPrograma(programas);
                 }
             }
+
+
             function graficoEstudiantesPorPrograma(programas) {
                 $.ajax({
                     headers: {

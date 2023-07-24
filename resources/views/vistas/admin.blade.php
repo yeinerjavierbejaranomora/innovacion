@@ -313,6 +313,7 @@
                             facultadesSeleccionadas.push($(this).val());
                             formData.append('idfacultad[]', $(this).val());
                         });
+                        console.log(facultadesSeleccionadas);
                         graficosporFacultad(facultadesSeleccionadas);
                         $.ajax({
                             headers: {

@@ -756,7 +756,7 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-
+                        
                     $(".facultadtitulos").show();
                     $(".titulos").hide();
 
@@ -765,36 +765,6 @@
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
 
-                    /** 
-                    if (isChartEmpty(chartEstudiantes)) {
-                        $('#vacioTotalEstudiantes').show;
-                    }
-
-                    if (isChartEmpty(chartEstudiantesActivos)) {
-                        $('#vacioTotalSello').show;
-                    }
-
-                    if (isChartEmpty(chartRetencion)) {
-                        $('#vacioRetencion').show;
-                    }
-
-                    if (isChartEmpty(chartSelloPrimerIngreso)) {
-                        console.log(isChartEmpty(chartSelloPrimerIngreso));
-                        $('#vacioPrimerIngreso').show;
-                    }
-
-                    if (isChartEmpty(chartTipoEstudiante)) {
-                        $('#vacioTipoEstudiante').show;
-                    }
-
-                    if (isChartEmpty(chartOperadores)) {
-                        $('#vacioOperadores').show;
-                    }
-
-                    if (isChartEmpty(chartProgramas)) {
-                        $('#vacioProgramas').show;
-                    }
-                    */
                 }
 
             }
@@ -867,8 +837,11 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            var ver = $('#vacioTotalEstudiantes').show();
-                          
+                            $('#vacioTotalEstudiantes').show();           
+                        }
+                        else
+                        {
+                            $('#vacioTotalEstudiantes').hide();
                         }
                     }
                 });
@@ -941,8 +914,11 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            var ver = $('#vacioTotalSello').show();
-                          
+                            $('#vacioTotalSello').show(); 
+                        }
+                        else
+                        {
+                            $('#vacioTotalSello').hide();
                         }
                     }
                 });
@@ -1019,8 +995,11 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            var ver = $('#vacioRetencion').show();
-                          
+                            $('#vacioRetencion').show();  
+                        }
+                        else
+                        {
+                            $('#vacioRetencion').hide();
                         }
                     }
                 });
@@ -1099,8 +1078,89 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            var ver = $('#vacioPrimerIngreso').show();
-                          
+                            $('#vacioPrimerIngreso').show();                        
+                        }
+                        else{
+                            $('#vacioPrimerIngreso').hide();
+                        }
+                    }
+                });
+            }
+
+            /**
+             * Método que genera el gráfico con los tipos de estudiante por facultad
+             */
+            function graficoTiposDeEstudiantesFacultad(facultades) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.tipo.facultad') }}",
+                    data: {
+                        idfacultad: facultades
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        console.log(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+                        console.log(labels);
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                        chartTipoEstudiante = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    label = label.toUpperCase();
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: function(value, context) {
+                                            return value;
+                                        },
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'outside',
+                                        textMargin: 6
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                            $('#vacioTipoEstudiante').show();   
+                        }
+                        else{
+                            $('#vacioTipoEstudiante').hide();
                         }
                     }
                 });

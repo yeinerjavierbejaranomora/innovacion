@@ -767,4 +767,28 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));
     }
+
+    /**
+     * Método que muestra los tipos de estudiantes de las facultades seleccionadas por el usuario
+     * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
+     */
+    public function tiposEstudiantesFacultad(Request $request)
+    {
+        /**
+         * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
+         * FROM datosMafi AS dm
+         * JOIN programas AS p ON p.codprograma = dm.programa
+         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+         * GROUP BY tipoestudiante
+         */
+        $facultades = $request->input('idfacultad');
+        $tipoEstudiantes = DB::table('datosMafi')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
+            ->groupBy('dm.tipoestudiante')->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $tipoEstudiantes));
+    }
 }

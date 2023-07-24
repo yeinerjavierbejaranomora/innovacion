@@ -93,6 +93,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/estudiantesRetencionFacultad', 'retencionEstudiantesFacultad')->middleware('auth')->name('estudiantes.retencion.facultad');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/estudiantesPrimerIngresoFacultad', 'primerIngresoEstudiantesFacultad')->middleware('auth')->name('estudiantes.primerIngreso.facultad');
+    /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
+    Route::post('/home/tiposEstudiantes', 'tiposEstudiantesFacultad')->middleware('auth')->name('estudiantes.tipo.facultad');
 });
 
 Route::controller(MafiController::class)->group(function () {

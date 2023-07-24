@@ -321,6 +321,7 @@
                             });
                             graficosporPrograma(programasSeleccionados);
                         } else {
+                            $('div #facultades input[type="checkbox"]').prop('disabled', false);
                             graficosporFacultad(facultadesSeleccionadas);
                             $('.facultadtitulos').show();
                             $('.programastitulos').hide();

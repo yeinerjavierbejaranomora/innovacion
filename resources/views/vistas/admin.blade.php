@@ -765,7 +765,7 @@
                     graficoRetencionporFacultad(facultades);
                     graficoSelloPrimerIngresoporFacultad(facultades);
                     graficoTiposDeEstudiantesFacultad(facultades);
-
+                    operadoresFacultad(facultades);
                 }
 
             }
@@ -1225,6 +1225,10 @@
                         }
                     }
                 });
+            }
+
+            function programasFacultad(facultades){
+                
             }
 
         });

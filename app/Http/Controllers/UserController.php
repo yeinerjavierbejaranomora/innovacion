@@ -856,17 +856,16 @@ class UserController extends Controller
      * Métodos para gráficos de programas
      */
 
-     /**
+    /**
      * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
     public function estudiantesActivosPrograma(Request $request)
     {
         /**
-         * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.estado
+         * SELECT  COUNT(estado) AS TOTAL, estado FROM `datosMafi`
+        WHERE codprograma IN ('') -- Reemplaza con los programas específicos
+        GROUP BY estado
          */
         $programas = $request->input('programa');
         $estudiantes = DB::table('datosMafi')
@@ -879,4 +878,21 @@ class UserController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
+    public function selloEstudiantesPrograma(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.sello
+         */
+        $programas = $request->input('programa');
+        $sello = DB::table('datosMafi')
+            ->whereIn('programa', $programas)
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
+    }
 }

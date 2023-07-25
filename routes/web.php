@@ -102,7 +102,8 @@ Route::controller(UserController::class)->group(function () {
     
     /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
     Route::post('/home/estudiantesPrograma', 'estudiantesActivosPrograma')->middleware('auth')->name('estudiantes.activos.programa');
-
+    /** Ruta para cargar gráfica de el sello financiero de los estudiantes de cada programa */
+    Route::post('/home/estudiantesSelloPrograma', 'selloEstudiantesPrograma')->middleware('auth')->name('estudiantes.sello.programa');
 });
 
 Route::controller(MafiController::class)->group(function () {

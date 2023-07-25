@@ -301,7 +301,6 @@
              * */
             function informacionGeneral() {
                 $('#mensaje').show();
-                $('#programas').empty();
                 $('.facultadtitulos').hide();
                 $('.titulos').show();
                 $('.vacio').hide();
@@ -840,9 +839,9 @@
                     $("#ocultarGraficoProgramas").show();    
 
                     graficoEstudiantesPorFacultades(facultades);
-                    graficoSelloFinancieroporFacultad(facultades);
-                    graficoRetencionporFacultad(facultades);
-                    graficoSelloPrimerIngresoporFacultad(facultades);
+                    graficoSelloFinancieroPorFacultad(facultades);
+                    graficoRetencionPorFacultad(facultades);
+                    graficoSelloPrimerIngresoPorFacultad(facultades);
                     graficoTiposDeEstudiantesFacultad(facultades);
                     graficoOperadoresFacultad(facultades);
                     graficoProgramasFacultad(facultades);
@@ -930,7 +929,7 @@
             /**
              * Método que genera el gráfico de sello financiero de alguna facultad en específico
              */
-            function graficoSelloFinancieroporFacultad(facultades) {
+            function graficoSelloFinancieroPorFacultad(facultades) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1006,7 +1005,7 @@
             /**
              * Método que genera el gráfico ASP de alguna facultad en específico
              */
-            function graficoRetencionporFacultad(facultades) {
+            function graficoRetencionPorFacultad(facultades) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1085,7 +1084,7 @@
             /**
              * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
              */
-            function graficoSelloPrimerIngresoporFacultad(facultades) {
+            function graficoSelloPrimerIngresoPorFacultad(facultades) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1392,7 +1391,6 @@
                 }
             }
 
-
             function graficoEstudiantesPorPrograma(programas) {
                 $.ajax({
                     headers: {
@@ -1460,6 +1458,79 @@
                             $('#vacioTotalEstudiantes').show();
                         } else {
                             $('#vacioTotalEstudiantes').hide();
+                        }
+                    }
+                });
+            }
+
+            function grafioFinancieroPorPrograma (programas){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.sello.programa') }}",
+                    data: {
+                        programa: programas
+                    },
+
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.sello;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('activos').getContext('2d');
+                        chartEstudiantesActivos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    label = label.toUpperCase();
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: function(value, context) {
+                                            return value;
+                                        },
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'outside',
+                                        textMargin: 6
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                            $('#vacioTotalSello').show();
+                        } else {
+                            $('#vacioTotalSello').hide();
                         }
                     }
                 });

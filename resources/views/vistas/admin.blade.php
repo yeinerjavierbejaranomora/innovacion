@@ -13,6 +13,13 @@
         font-size: 14px;
     }
 
+    .btn {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        width: 150px;
+        padding: 10px 30px;
+        border-radius: 10px;
+    }
 
     #cardFacultades {
         min-height: 405.6px;
@@ -208,7 +215,7 @@
                         </div>
                         <canvas id="operadores"></canvas>
                         <div class="d-flex justify-content-end">
-                            <a href="" class="btn btn-warning"> Ver más </a>
+                            <a href="" class="btn"> Ver más </a>
                         </div>
                         <br>
                     </div>
@@ -227,7 +234,7 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn btn-warning"> Ver más </a>
+                        <a href="" class="btn"> Ver más </a>
                     </div>
                 </div>
             </div>

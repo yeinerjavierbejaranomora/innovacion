@@ -92,11 +92,11 @@
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
+                            <h5><strong>Seleccionar Facultades</st  rong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div>
-                                <label> <input type="checkbox" value="todos" id="mostrarTodos" checked> Ver Todo</label>
+                            <div class="form-check">
+                                <label> <input type="checkbox" class="form-check-input" value="todos" id="mostrarTodos" checked> Ver Todo</label>
                             </div>
                             <br>
                             <div class="facultades" name="facultades" id="facultades" style="display: none;">

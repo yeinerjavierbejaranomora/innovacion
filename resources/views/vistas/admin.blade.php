@@ -322,7 +322,7 @@
             var guardarFacultades = "";
 
             $('body').on('change', '#mostrarTodos', function() {
-                if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0)
+                if ($('#mostrarTodos').prop('checked'))
                 {
                     console.log('entra');
                     $('#facultades').hide();

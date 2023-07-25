@@ -92,7 +92,7 @@
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</st  rong></h5>
+                            <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="form-check">

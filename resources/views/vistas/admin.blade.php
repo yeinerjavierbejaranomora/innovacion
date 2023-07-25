@@ -217,6 +217,7 @@
                         <div class="d-flex justify-content-end">
                             <a href="#" class="btn btn-secondary"> Ver más </a>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -234,6 +235,7 @@
                         <div class="d-flex justify-content-end">
                             <a href="#" class="btn btn-secondary"> Ver más </a>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>

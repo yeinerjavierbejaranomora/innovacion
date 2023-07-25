@@ -1394,6 +1394,7 @@
                     grafioSelloFinancieroPorPrograma(programas);
                     graficoRetencionPorPrograma(programas);
                     graficoSelloPrimerIngresoPorPrograma(programas);
+                    graficoTiposDeEstudiantesPrograma(programas);
                 }
             }
 

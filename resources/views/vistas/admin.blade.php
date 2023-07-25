@@ -96,7 +96,7 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="form-check">
-                                <label> <input type="checkbox" class="form-check-input" value="todos" id="mostrarTodos" checked> Ver Todo</label>
+                                <label> <input type="checkbox" value="todos" id="mostrarTodos" checked> Ver Todo</label>
                             </div>
                             <br>
                             <div class="facultades" name="facultades" id="facultades" style="display: none;">

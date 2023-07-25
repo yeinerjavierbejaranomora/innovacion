@@ -18,8 +18,9 @@
         border-color: #dfc14e;
         color: white;
         width: 100px;
-        height: 20px;
+        height: 30px;
         border-radius: 10px;
+        font-size: 10px;
     }
 
     #cardFacultades {

@@ -17,7 +17,8 @@
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 50px;
+        width: 100px;
+        height: 20px;
         border-radius: 10px;
     }
 

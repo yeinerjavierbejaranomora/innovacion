@@ -319,7 +319,13 @@
             var guardarFacultades = "";
 
             $('body').on('change', '#mostrarTodos input[type="checkbox"]', function() {
-                $('#facultades input[type="checkbox"]:checked').show();
+                if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0)
+                {
+                    console.log('entra');
+                }
+                else{
+                    $('#facultades').show();
+                }
             });
 
 

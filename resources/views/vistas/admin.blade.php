@@ -31,6 +31,13 @@
         max-height: 405.6px;
     }
 
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display:none;
+    }
     #chartEstudiantes {
         min-height: 405.6px;
         max-height: 405.6px;
@@ -132,10 +139,6 @@
             </div>
 
         </div>
-
-        <br>
-
-        <br>
 
         <div class="row justify-content-center">
         <div class="col-6 text-center">

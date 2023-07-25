@@ -16,8 +16,8 @@
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
-        width: 150px;
-        padding: 10px 30px;
+        color: white;
+        width: 50px;
         border-radius: 10px;
     }
 

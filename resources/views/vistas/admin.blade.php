@@ -95,7 +95,9 @@
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades"></div>
+                            <div class="facultades" name="facultades" id="facultades">
+                            <label> <input type="checkbox" value="todos" id="mostrarTodos" checked> Ver Todo</label><br>
+                            </div>
                         </div>
                     </div>
                 </div>

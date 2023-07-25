@@ -106,6 +106,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/estudiantesSelloPrograma', 'selloEstudiantesPrograma')->middleware('auth')->name('estudiantes.sello.programa');
     /** Ruta para cargar gráfica de estudiantes activos con retención de cada programa */
     Route::post('/home/estudiantesRetencionPrograma', 'retencionEstudiantesPrograma')->middleware('auth')->name('estudiantes.retencion.programa');
+    /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada programa*/
+    Route::post('/home/estudiantesPrimerIngresoPrograma', 'primerIngresoEstudiantesPrograma')->middleware('auth')->name('estudiantes.primerIngreso.programa');
 });
 
 Route::controller(MafiController::class)->group(function () {

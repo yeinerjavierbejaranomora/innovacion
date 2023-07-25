@@ -923,4 +923,29 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
+
+    /**
+     * Método que muestra el sello de los estudiantes de primer ingreso de los programas seleccionados por el usuario
+     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
+     */
+    public function primerIngresoEstudiantesPrograma(Request $request)
+    {
+        /**
+         * SELECT COUNT(sello) AS TOTAL, sello
+        FROM datosMafi
+        WHERE programa IN ('') -- Reemplaza con los programas específicos
+        AND tipoestudiante = 'PRIMER INGRESO'
+        GROUP BY sello;
+         */
+
+        $programas = $request->input('programa');
+        $primerIngreso = DB::table('datosMafi')
+            ->whereIn('programa', $programas)
+            ->where('tipoestudiante', 'PRIMER INGRESO')
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $primerIngreso));
+    }
 }

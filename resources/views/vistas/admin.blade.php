@@ -356,6 +356,7 @@
                 }
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
                     informacionGeneral();
+                    $('#programas').empty();
                 }
 
             });
@@ -1392,6 +1393,7 @@
                     graficoEstudiantesPorPrograma(programas);
                     grafioSelloFinancieroPorPrograma(programas);
                     graficoRetencionPorPrograma(programas);
+                    graficoSelloPrimerIngresoPorPrograma(programas);
                 }
             }
 
@@ -1627,6 +1629,88 @@
                     }
                 });
             }
+
+            /**
+             * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
+             */
+            function graficoSelloPrimerIngresoPorPrograma(programas) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.primerIngreso.programa') }}",
+                    data: {
+                        programa: programas
+                    },
+
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.sello;
+                        });
+
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('primerIngreso').getContext('2d');
+                        chartSelloPrimerIngreso = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'NO EXISTE') {
+                                        label = 'SIN SELLO';
+                                    }
+                                    label = label.toUpperCase();
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: function(value, context) {
+                                            return value;
+                                        },
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'outside',
+                                        textMargin: 6
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
+                            $('#vacioPrimerIngreso').show();
+                        } else {
+                            $('#vacioPrimerIngreso').hide();
+                        }
+                    }
+                });    
+            }       
         });
     </script>
 

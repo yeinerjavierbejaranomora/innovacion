@@ -13,13 +13,6 @@
         font-size: 14px;
     }
 
-    #buscarProgramas {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        width: 150px;
-        padding: 10px 30px;
-        border-radius: 10px;
-    }
 
     #cardFacultades {
         min-height: 405.6px;

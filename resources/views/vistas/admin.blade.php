@@ -20,7 +20,7 @@
         width: 100px;
         height: 30px;
         border-radius: 10px;
-        font-size: 10px;
+        font-size: 16px;
     }
 
     #cardFacultades {
@@ -216,10 +216,9 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="operadores"></canvas>
-                        <div class="d-flex justify-content-end">
+                        <div class="card-footer d-flex justify-content-end">
                             <a href="" class="btn"> Ver más </a>
                         </div>
-                        <br>
                     </div>
                 </div>
             </div>

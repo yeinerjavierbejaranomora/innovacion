@@ -328,6 +328,7 @@
                     $('#facultades').hide();
                 }
                 else{
+                    console.log('1');
                     $('#facultades').show();
                 }
             });

@@ -214,6 +214,7 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="operadores"></canvas>
+                        <a href="#" class="btn btn-secondary"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -228,6 +229,8 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
+                        <a href="#" class="btn btn-secondary"> Ver más </a>
+                        
                     </div>
                 </div>
             </div>
@@ -369,7 +372,7 @@
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
                     informacionGeneral();
                     $('#programas').empty();
-                    
+
                 }
 
             });
@@ -1350,6 +1353,7 @@
                     }
                 });
             }
+
             /**
              * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
              */
@@ -1417,6 +1421,10 @@
                 });
             }
 
+            /**
+             * Método que limpia la data de los gráficos y después invoca todos los gráficos por los 
+             * programas que seleccione el usuario
+             */
             function graficosporPrograma(programas) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {

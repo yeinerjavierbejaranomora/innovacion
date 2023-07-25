@@ -36,8 +36,9 @@
     }
 
     .hidden {
-        display:none;
+        display: none;
     }
+
     #chartEstudiantes {
         min-height: 405.6px;
         max-height: 405.6px;
@@ -103,10 +104,10 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
-                            <div>
-                                <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
-                            </div>
-                            <br>
+                                <div>
+                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                                </div>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -121,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center">
+                <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
@@ -141,7 +142,7 @@
         </div>
 
         <div class="row justify-content-center">
-        <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
@@ -156,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
@@ -171,7 +172,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
@@ -186,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
@@ -201,7 +202,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Operadores</strong></h5>
@@ -216,7 +217,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
@@ -319,12 +320,9 @@
             var guardarFacultades = "";
 
             $('body').on('change', '#mostrarTodos', function() {
-                if ($('#mostrarTodos').prop('checked'))
-                {
+                if ($('#mostrarTodos').prop('checked')) {
                     location.reload();
-                }
-                else{
-                    console.log('1');
+                } else {
                     $('.ocultarFacultades').show();
                 }
             });
@@ -453,8 +451,10 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-                    if (chartEstudiantes.data.labels.length === 0 && chartEstudiantes.data.datasets[0].data.length === 0) {
-                        $('#vacioTotalEstudiantes').show;
+                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                        $('#colEstudiantes').addClass('hidden');
+                    } else {
+                        $('#colEstudiantes').removeClass('hidden');
                     }
                 });
             }
@@ -516,6 +516,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
+                    if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                        $('#colSelloFinanciero').addClass('hidden');
+                    } else {
+                        $('#colSelloFinanciero').removeClass('hidden');
+                    }
                 });
             }
 
@@ -595,6 +600,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
+                    if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                        $('#colRetencion').addClass('hidden');
+                    } else {
+                        $('#colRetencion').removeClass('hidden');
+                    }
                 });
             }
 
@@ -659,8 +669,10 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-                    if (chartSelloPrimerIngreso.data.labels.length === 0 && chartSelloPrimerIngreso.data.datasets[0].data.length === 0) {
-                        $('#vacioPrimerIngreso').show;
+                    if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
+                        $('#colPrimerIngreso').addClass('hidden');
+                    } else {
+                        $('#colPrimerIngreso').removeClass('hidden');
                     }
                 });
 
@@ -725,6 +737,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
+                    if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                        $('#colTipoEstudiantes').addClass('hidden');
+                    } else {
+                        $('#colTipoEstudiantes').removeClass('hidden');
+                    }
                 });
             }
 
@@ -778,7 +795,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-
+                    if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                        $('#colOperadores').addClass('hidden');
+                    } else {
+                        $('#vacioOperadores').removeClass('hidden');
+                    }
                 });
             }
 
@@ -834,7 +855,11 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-
+                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
+                        $('#colProgramas').addClass('hidden');
+                    } else {
+                        $('#colProgramas').removeClass('hidden');
+                    }
                 });
             }
 
@@ -931,9 +956,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#vacioTotalEstudiantes').show();
+                            $('#colEstudiantes').addClass('hidden');
                         } else {
-                            $('#vacioTotalEstudiantes').hide();
+                            $('#colEstudiantes').removeClass('hidden');
                         }
                     }
                 });
@@ -1010,9 +1035,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#vacioTotalSello').show();
+                            $('#colSelloFinanciero').addClass('hidden');
                         } else {
-                            $('#vacioTotalSello').hide();
+                            $('#colSelloFinanciero').removeClass('hidden');
                         }
                     }
                 });
@@ -1089,9 +1114,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#vacioRetencion').show();
+                            $('#colRetencion').addClass('hidden');
                         } else {
-                            $('#vacioRetencion').hide();
+                            $('#colRetencion').removeClass('hidden');
                         }
                     }
                 });
@@ -1171,9 +1196,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            $('#vacioPrimerIngreso').show();
+                            $('#colPrimerIngreso').addClass('hidden');
                         } else {
-                            $('#vacioPrimerIngreso').hide();
+                            $('#colPrimerIngreso').removeClass('hidden');
                         }
                     }
                 });
@@ -1250,9 +1275,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                            $('#vacioTipoEstudiante').show();
+                            $('#colTipoEstudiantes').addClass('hidden');
                         } else {
-                            $('#vacioTipoEstudiante').hide();
+                            $('#colTipoEstudiantes').removeClass('hidden');
                         }
                     }
                 });
@@ -1317,9 +1342,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                            $('#vacioOperadores').show();
+                            $('#colOperadores').addClass('hidden');
                         } else {
-                            $('#vacioOperadores').hide();
+                            $('#vacioOperadores').removeClass('hidden');
                         }
                     }
                 });
@@ -1383,9 +1408,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                            $('#vacioProgramas').show();
+                            $('#colProgramas').addClass('hidden');
                         } else {
-                            $('#vacioProgramas').hide();
+                            $('#colProgramas').removeClass('hidden');
                         }
                     }
                 });
@@ -1479,9 +1504,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#vacioTotalEstudiantes').show();
+                            $('#colEstudiantes').addClass('hidden');
                         } else {
-                            $('#vacioTotalEstudiantes').hide();
+                            $('#colEstudiantes').removeClass('hidden');
                         }
                     }
                 });
@@ -1637,9 +1662,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#vacioRetencion').show();
+                            $('#colRetencion').addClass('hidden');
                         } else {
-                            $('#vacioRetencion').hide();
+                            $('#colRetencion').removeClass('hidden');
                         }
                     }
                 });
@@ -1719,13 +1744,13 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            $('#vacioPrimerIngreso').show();
+                            $('#colPrimerIngreso').addClass('hidden');
                         } else {
-                            $('#vacioPrimerIngreso').hide();
+                            $('#colPrimerIngreso').removeClass('hidden');
                         }
                     }
-                });    
-            }       
+                });
+            }
 
             /**
              * Método que genera el gráfico con los tipos de estudiante por programa
@@ -1798,14 +1823,14 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                            $('#vacioTipoEstudiante').show();
+                            $('#colTipoEstudiantes').addClass('hidden');
                         } else {
-                            $('#vacioTipoEstudiante').hide();
+                            $('#colTipoEstudiantes').removeClass('hidden');
                         }
                     }
                 });
             }
-    
+
             /**
              * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
              */
@@ -1865,14 +1890,14 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                            $('#vacioOperadores').show();
+                            $('#colOperadores').addClass('hidden');
                         } else {
-                            $('#vacioOperadores').hide();
+                            $('#vacioOperadores').removeClass('hidden');
                         }
                     }
                 });
             }
-            
+
         });
     </script>
 

@@ -324,8 +324,11 @@
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked'))
                 {
-                    console.log('entra');
+                    $('#mensaje').show();
                     $('.ocultarFacultades').hide();
+                    $('#programas').empty();
+                    destruirGraficos();
+                    llamadoFunciones();
                 }
                 else{
                     console.log('1');

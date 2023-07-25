@@ -318,7 +318,7 @@
 
             var guardarFacultades = "";
 
-            $('body').on('change', '#mostrarTodos input[type="checkbox"]', function() {
+            $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0)
                 {
                     console.log('entra');

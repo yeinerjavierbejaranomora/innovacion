@@ -95,8 +95,8 @@
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades">
                             <label> <input type="checkbox" value="todos" id="mostrarTodos" checked> Ver Todo</label><br>
+                            <div class="facultades" name="facultades" id="facultades" style="display: none;">
                             </div>
                         </div>
                     </div>
@@ -283,7 +283,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(facultad => {
-                            $('div #facultades').append(`<label style="display: none;"> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
+                            $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                         });
                     }
                 });

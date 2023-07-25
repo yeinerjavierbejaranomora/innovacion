@@ -283,7 +283,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(facultad => {
-                            $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
+                            $('div #facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}" style="display: none;"> ${facultad.nombre}</label><br>`);
                         });
                     }
                 });
@@ -317,6 +317,11 @@
              */
 
             var guardarFacultades = "";
+
+            $('body').on('change', '#mostrarTodos input[type="checkbox"]', function() {
+                $('#facultades input[type="checkbox"]:checked').show();
+            });
+
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {

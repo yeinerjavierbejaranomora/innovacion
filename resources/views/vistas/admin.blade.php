@@ -33,6 +33,7 @@
 
     .card {
         margin-bottom: 3%;
+        height: 430px;
     }
 
     .hidden {
@@ -230,7 +231,7 @@
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
                         <a href="#" class="btn btn-secondary"> Ver más </a>
-                        
+
                     </div>
                 </div>
             </div>

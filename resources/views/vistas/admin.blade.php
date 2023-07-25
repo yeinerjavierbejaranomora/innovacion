@@ -325,11 +325,11 @@
                 if ($('#mostrarTodos').prop('checked'))
                 {
                     console.log('entra');
-                    $('#facultades').hide();
+                    $('.ocultarFacultades').hide();
                 }
                 else{
                     console.log('1');
-                    $('#facultades').show();
+                    $('.ocultarFacultades').show();
                 }
             });
 

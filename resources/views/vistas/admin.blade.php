@@ -1390,10 +1390,14 @@
                     $("#ocultarGraficoProgramas").hide();
 
                     graficoEstudiantesPorPrograma(programas);
-                    grafioFinancieroPorPrograma(programas);
+                    grafioSelloFinancieroPorPrograma(programas);
+                    graficoRetencionPorPrograma(programas);
                 }
             }
 
+            /** 
+             * Método que muestra los estudiantes activos e inactivos de algún programa en específico
+             */
             function graficoEstudiantesPorPrograma(programas) {
                 $.ajax({
                     headers: {
@@ -1465,8 +1469,10 @@
                     }
                 });
             }
-
-            function grafioFinancieroPorPrograma(programas) {
+            /**
+             * Método que genera el gráfico de sello financiero de algún programa en específico
+             */
+            function grafioSelloFinancieroPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1537,6 +1543,82 @@
                             $('#vacioTotalSello').show();
                         } else {
                             $('#vacioTotalSello').hide();
+                        }
+                    }
+                });
+            }
+
+            function graficoRetencionPorPrograma(programas) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.retencion.programa') }}",
+                    data: {
+                        programa: programas
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.autorizado_asistir;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('retencion').getContext('2d');
+                        chartRetencion = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                    }
+                                    label = label.toUpperCase();
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: function(value, context) {
+                                            return value;
+                                        },
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'outside',
+                                        textMargin: 6
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                            $('#vacioRetencion').show();
+                        } else {
+                            $('#vacioRetencion').hide();
                         }
                     }
                 });

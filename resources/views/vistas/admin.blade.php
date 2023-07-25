@@ -324,8 +324,7 @@
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked'))
                 {
-                    $('.ocultarFacultades').hide();            
-                    informacionGeneral();
+                    location.reload();
                 }
                 else{
                     console.log('1');

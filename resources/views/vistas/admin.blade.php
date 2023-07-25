@@ -135,8 +135,10 @@
 
         <br>
 
+        <br>
+
         <div class="row justify-content-center">
-            <div class="col-6 text-center">
+        <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
@@ -166,11 +168,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <br>
-
-        <div class="row justify-content-center">
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -201,11 +198,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <br>
-
-        <div class="row justify-content-center">
             <div class="col-6 text-center">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -236,6 +228,8 @@
                 </div>
             </div>
         </div>
+
+        <br>
 
 
     </div>

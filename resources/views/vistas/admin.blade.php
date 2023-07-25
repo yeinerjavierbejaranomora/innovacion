@@ -33,7 +33,6 @@
 
     .card {
         margin-bottom: 3%;
-        height: 430px;
     }
 
     .hidden {
@@ -51,8 +50,8 @@
     }
 
     .graficos {
-        min-height: 420px;
-        max-height: 420px;
+        min-height: 440px;
+        max-height: 440px;
     }
 </style>
 
@@ -231,7 +230,6 @@
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
                         <a href="#" class="btn btn-secondary"> Ver más </a>
-
                     </div>
                 </div>
             </div>

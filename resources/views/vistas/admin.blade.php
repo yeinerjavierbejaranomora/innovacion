@@ -214,7 +214,9 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="operadores"></canvas>
-                        <a href="#" class="btn btn-secondary"> Ver más </a>
+                        <div class="text-end">
+                            <a href="#" class="btn btn-secondary"> Ver más </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,7 +231,9 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
-                        <a href="#" class="btn btn-secondary"> Ver más </a>
+                        <div class="text-end">
+                            <a href="#" class="btn btn-secondary"> Ver más </a>
+                        </div>
                     </div>
                 </div>
             </div>

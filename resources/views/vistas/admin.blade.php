@@ -248,8 +248,7 @@
 
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
             $(document).ajaxStop(function() {
-                if (desactivar == false)
-                {
+                if (desactivar == false) {
                     $('div #facultades input[type="checkbox"]').prop('disabled', false);
                 }
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
@@ -836,7 +835,7 @@
                     $(".programastitulos").hide();
                     $(".titulos").hide();
                     $(".facultadtitulos").show();
-                    $("#ocultarGraficoProgramas").show();    
+                    $("#ocultarGraficoProgramas").show();
 
                     graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroPorFacultad(facultades);
@@ -954,6 +953,9 @@
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
+                                    if (label == 'NO EXISTE') {
+                                        label = 'SIN SELLO';
+                                    }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
@@ -1388,7 +1390,7 @@
                     $("#ocultarGraficoProgramas").hide();
 
                     graficoEstudiantesPorPrograma(programas);
-                    grafioFinancieroPorPrograma (programas);
+                    grafioFinancieroPorPrograma(programas);
                 }
             }
 
@@ -1464,7 +1466,7 @@
                 });
             }
 
-            function grafioFinancieroPorPrograma (programas){
+            function grafioFinancieroPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1489,6 +1491,9 @@
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
+                                    if (label == 'NO EXISTE') {
+                                        label = 'SIN SELLO';
+                                    }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),

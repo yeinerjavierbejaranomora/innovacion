@@ -950,7 +950,7 @@ class UserController extends Controller
     }
 
     /**
-     * Método que muestra los 5 operadores que mas estudiantes traen de las facultades seleccionadas por el usuario
+     * Método que muestra los 5 operadores que mas estudiantes traen de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
     public function tiposEstudiantesPrograma(Request $request)
@@ -969,5 +969,32 @@ class UserController extends Controller
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
+    }
+
+    /**
+     * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
+     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
+     */
+    public function operadoresPrograma(Request $request)
+    {
+        /**
+         * SELECT COUNT(operador) AS TOTAL, operador 
+         * FROM datosMafi
+         * WHERE programa IN ('') -- Reemplaza con los programas específicos
+         * GROUP BY operador
+         * ORDER BY TOTAL DESC
+        LIMIT 5
+         */
+        $programas = $request->input('programa');
+        $operadores = DB::table('datosMafi')
+            ->whereIn('programa', $programas)
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
     }
 }

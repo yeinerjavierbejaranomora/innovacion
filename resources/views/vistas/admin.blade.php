@@ -1395,6 +1395,7 @@
                     graficoRetencionPorPrograma(programas);
                     graficoSelloPrimerIngresoPorPrograma(programas);
                     graficoTiposDeEstudiantesPrograma(programas);
+                    graficoOperadoresPrograma(programas);
                 }
             }
 
@@ -1792,6 +1793,72 @@
                 });
             }
     
+            /**
+             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
+             */
+            function graficoOperadoresPrograma(programas) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.operador.programa') }}",
+                    data: {
+                        programa: programas
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.operador;
+                        });
+
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var ctx = document.getElementById('operadores').getContext('2d');
+                        chartOperadores = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
+                                    }
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                        if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                            $('#vacioOperadores').show();
+                        } else {
+                            $('#vacioOperadores').hide();
+                        }
+                    }
+                });
+            }
             
         });
     </script>

@@ -225,9 +225,9 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
-                        <div class="d-flex justify-content-end">
-                            <a href="" class="btn btn-warning"> Ver más </a>
-                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" class="btn btn-warning"> Ver más </a>
                     </div>
                 </div>
             </div>

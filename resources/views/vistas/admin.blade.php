@@ -325,6 +325,7 @@
                 if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0)
                 {
                     console.log('entra');
+                    $('#facultades').hide();
                 }
                 else{
                     $('#facultades').show();

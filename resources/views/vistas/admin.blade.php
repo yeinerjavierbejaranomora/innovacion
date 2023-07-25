@@ -1469,6 +1469,7 @@
                     }
                 });
             }
+
             /**
              * Método que genera el gráfico de sello financiero de algún programa en específico
              */
@@ -1548,6 +1549,9 @@
                 });
             }
 
+            /**
+             * Método que genera el gráfico ASP de algún programa en específico
+             */
             function graficoRetencionPorPrograma(programas) {
                 $.ajax({
                     headers: {

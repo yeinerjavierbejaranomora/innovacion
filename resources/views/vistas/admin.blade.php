@@ -324,11 +324,8 @@
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked'))
                 {
-                    $('#mensaje').show();
-                    $('.ocultarFacultades').hide();
-                    $('#programas').empty();
-                    destruirGraficos();
-                    llamadoFunciones();
+                    $('.ocultarFacultades').hide();            
+                    informacionGeneral();
                 }
                 else{
                     console.log('1');
@@ -387,7 +384,6 @@
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     desactivar = true;
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    console.log(2);
                     const programasSeleccionados = [];
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     checkboxesProgramas.each(function() {

@@ -215,7 +215,7 @@
                         </div>
                         <canvas id="operadores"></canvas>
                         <div class="d-flex justify-content-end">
-                            <a href="#" class="btn btn-secondary"> Ver más </a>
+                            <a href="" class="btn btn-warning"> Ver más </a>
                         </div>
                         <br>
                     </div>
@@ -233,9 +233,8 @@
                         </div>
                         <canvas id="estudiantesProgramas"></canvas>
                         <div class="d-flex justify-content-end">
-                            <a href="#" class="btn btn-secondary"> Ver más </a>
+                            <a href="" class="btn btn-warning"> Ver más </a>
                         </div>
-                        <br>
                     </div>
                 </div>
             </div>

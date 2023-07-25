@@ -997,4 +997,58 @@ class UserController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
     }
+
+    
+    /**
+     * Método que muestra todos los operadores que traen estudiantes de los programas seleccionados por el usuario
+     * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
+     */
+    public function operadoresProgramaTotal(Request $request)
+    {
+        /**
+         * SELECT COUNT(operador) AS TOTAL, operador 
+         * FROM datosMafi
+         * WHERE programa IN ('') -- Reemplaza con los programas específicos
+         * GROUP BY operador
+         * ORDER BY TOTAL DESC
+         */
+        $programas = $request->input('programa');
+        $operadores = DB::table('datosMafi')
+            ->whereIn('programa', $programas)
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
+    }
+
+    /**
+     * Método que muestra los estudiantes inscritos en cada programa, organizados de forma descendente
+     * @return JSON retorna un JSON todos los programas, agrupados por programa
+     */
+
+     public function estudiantesProgramasFacultadTotal(Request $request)
+     {
+         /**
+          * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+          * * FROM datosMafi AS dm
+          * JOIN programas AS p ON p.codprograma = dm.programa
+          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+          * GROUP BY dm.codprograma
+          * ORDER BY TOTAL DESC
+          */
+         $facultades = $request->input('idfacultad');
+         $programas = DB::table('datosMafi as dm')
+             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+             ->whereIn('p.Facultad', $facultades)
+             ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
+             ->groupBy('dm.codprograma')
+             ->orderByDesc('TOTAL')
+             ->get();
+ 
+         header("Content-Type: application/json");
+         echo json_encode(array('data' => $programas));
+     }
 }

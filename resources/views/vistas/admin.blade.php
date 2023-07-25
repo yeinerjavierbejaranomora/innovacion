@@ -367,8 +367,7 @@
                     }
                 }
                 if ($('#facultades input[type="checkbox"]:checked').length == 0) {
-                    informacionGeneral();
-                    $('#programas').empty();
+                    location.reload();
                 }
 
             });

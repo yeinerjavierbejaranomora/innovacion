@@ -1388,6 +1388,7 @@
                     $("#ocultarGraficoProgramas").hide();
 
                     graficoEstudiantesPorPrograma(programas);
+                    grafioFinancieroPorPrograma (programas);
                 }
             }
 

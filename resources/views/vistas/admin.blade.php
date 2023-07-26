@@ -1474,7 +1474,7 @@
                         if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                             $('#colOperadores').addClass('hidden');
                         } else {
-                            $('#vacioOperadores').removeClass('hidden');
+                            $('#colOperadores').removeClass('hidden');
                         }
                     }
                 });

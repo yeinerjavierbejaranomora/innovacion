@@ -15,7 +15,7 @@ class HistorialEstudianteController extends Controller
         // Aquí va la lógica para obtener el historial del estudiante con el ID proporcionado
 
         // Supongamos que tienes una variable $historial con los datos del historial del estudiante
-        $historial = [];
+        $historial = [0=>'test'];
 
         // Pasar los datos del historial a la vista y cargarla
         return view('historial_estudiante', ['historial' => $historial]);

@@ -443,6 +443,7 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
+                    programasSeleccionados = [];
                     desactivar = false;
                     $('div #facultades input[type="checkbox"]').prop('disabled', false);
                     graficosporFacultad(facultadesSeleccionadas);
@@ -1967,7 +1968,6 @@
                 if (chartOperadoresTotal) {
                     chartOperadoresTotal.destroy();
                 }
-
                 graficoOperadoresTotal();
             });
 

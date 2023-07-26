@@ -399,6 +399,7 @@
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                console.log('entra 1');
                 desactivar = true;
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                 programasSeleccionados = [];
@@ -408,6 +409,7 @@
                 graficosporPrograma(programasSeleccionados);
             }else{
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                    console.log('entra 2');
                     $('#programas').empty();
                     $('#mensaje').hide();
                     var formData = new FormData();
@@ -438,6 +440,7 @@
                     });
                 }
                 else{
+                    console.log('entra 3');
                     location.reload();
                 }
             }

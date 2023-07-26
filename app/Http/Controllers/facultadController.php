@@ -410,9 +410,9 @@ class facultadController extends Controller
 
     /** Función para visualizar la vista de los programas del usuario */
 
-    public function programasUsuario()
+    public function programasUsuario($nombre)
     {
-        dd($_GET);
+        dd($nombre);
         return view('vistas.admin.facultades');
     }
 

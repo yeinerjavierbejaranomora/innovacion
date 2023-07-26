@@ -466,7 +466,7 @@
                         processData: false,
                         success: function(datos) {
                             console.log(datos);
-                            // datos = jQuery.parseJSON(datos);
+                            datos = jQuery.parseJSON(datos);
                             console.log(datos);
                             $.each(datos, function(key, value) {
                                 console.log(value);

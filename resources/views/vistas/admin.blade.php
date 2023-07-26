@@ -1978,7 +1978,9 @@
             function graficoOperadoresTotal() {
                 if (guardarFacultades.length > 0) {
                     var url = "{{ route('operadoresFacultad.estudiantes') }}";
-                    data = 'idfacultad: facultades';
+                     var data = {
+                        idfacultad: facultades
+                    }
                 } else {
                     var url = "{{ route('estudiantes.operador.programa') }}";
                     data = '';

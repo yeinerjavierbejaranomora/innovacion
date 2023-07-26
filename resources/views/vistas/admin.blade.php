@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card shadow col-6 ml-2" id="cardProgramas">
+                        <div class="card shadow col-6" id="cardProgramas">
                             <div class="card-header text-center">
                                 <h5><strong>Seleccionar Programas</strong></h5>
                             </div>

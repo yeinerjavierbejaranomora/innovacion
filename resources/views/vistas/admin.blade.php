@@ -395,7 +395,7 @@
                         $('#mensaje').hide();
                         var formData = new FormData();
                         var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                        const facultadesSeleccionadas = [];
+                        facultadesSeleccionadas = [];
                         checkboxesSeleccionados.each(function() {
                             facultadesSeleccionadas.push($(this).val());
                             formData.append('idfacultad[]', $(this).val());
@@ -437,7 +437,7 @@
                     desactivar = true;
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    const programasSeleccionados = [];
+                    programasSeleccionados = [];
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });

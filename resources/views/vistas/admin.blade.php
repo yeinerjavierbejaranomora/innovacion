@@ -165,7 +165,7 @@
             </div>
 
             <div class="row">
-                <button class="btn" type="button" id="mostrarTodos">
+                <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
@@ -393,23 +393,58 @@
          * de los programas
          */
 
+         var programasSeleccionados = [];
+        var desactivar = false;
+        var facultadesSeleccionadas = [];
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
-            
-            }else
-            {
+                desactivar = true;
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                graficosporPrograma(programasSeleccionados);
+            }else{
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-
+                    $('#programas').empty();
+                    $('#mensaje').hide();
+                    var formData = new FormData();
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    facultadesSeleccionadas = [];
+                    checkboxesSeleccionados.each(function() {
+                        facultadesSeleccionadas.push($(this).val());
+                        formData.append('idfacultad[]', $(this).val());
+                    });
+                    console.log(facultadesSeleccionadas);
+                    graficosporFacultad(facultadesSeleccionadas);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('traer.programas') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            datos = jQuery.parseJSON(datos);
+                            $.each(datos, function(key, value) {
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                            });
+                        }
+                    });
                 }
-                else
-                {
+                else{
                     location.reload();
                 }
             }
 
         });
 
+    
         $('body').on('change', '#mostrarTodos', function() {
             if ($('#mostrarTodos').prop('checked')) {
                 location.reload();
@@ -418,8 +453,8 @@
             }
         });
 
-        var facultadesSeleccionadas = [];
-
+        /** 
+         *     
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             if ($('#facultades input[type="checkbox"]:checked').length == 5) {
                 informacionGeneral();
@@ -464,8 +499,6 @@
 
         });
 
-        var programasSeleccionados = [];
-        var desactivar = false;
         $('body').on('change', '#programas input[type="checkbox"]', function() {
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
                 desactivar = true;
@@ -484,7 +517,7 @@
             }
         });
 
-
+        */
         /**
          * Método que muestra el total de estudiantes activos e inactivos
          */

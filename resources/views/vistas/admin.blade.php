@@ -392,7 +392,7 @@
          * Llama la función que muestra los gráficos de las facultades seleccionadas, también
          * de los programas
          */
-        var formData = new FormData();
+        
         var programasSeleccionados = [];
         var desactivar = false;
         var facultadesSeleccionadas = [];
@@ -416,27 +416,9 @@
                     facultadesSeleccionadas = [];
                     checkboxesSeleccionados.each(function() {
                         facultadesSeleccionadas.push($(this).val());
-                        formData.append('idfacultad[]', $(this).val());
                     });
                     console.log(facultadesSeleccionadas);
                     graficosporFacultad(facultadesSeleccionadas);
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            datos = jQuery.parseJSON(datos);
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    });
                 }
                 else{
                     console.log('entra 3');
@@ -457,6 +439,12 @@
 
         $('body').on('change', '#facultades input[type="checkbox"]', function() {
             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                var formData = new FormData();
+                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                        formData.append('idfacultad[]', $(this).val());
+                    });
+
                 $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

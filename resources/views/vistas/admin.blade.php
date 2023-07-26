@@ -370,7 +370,14 @@
              * Llama la función que muestra los gráficos de las facultades seleccionadas, también
              * de los programas
              */
-         
+
+            $('#').on('click',function(e){
+                e.preventDefault();
+                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                
+                }
+
+            });
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {

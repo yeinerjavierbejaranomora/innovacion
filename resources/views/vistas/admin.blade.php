@@ -165,7 +165,7 @@
             </div>
 
             <div class="row">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn" type="button" id="mostrarTodos">
                     Generar Reporte
                 </button>
             </div>

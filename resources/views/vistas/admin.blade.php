@@ -136,6 +136,11 @@
                                 <br>
                             </div>
                         </div>
+                        <div class="card-footer text-end">
+                        <div class="modal-footer">
+                        <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" data-dismiss="modal">Ver programas</button>
+                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4 text-start">

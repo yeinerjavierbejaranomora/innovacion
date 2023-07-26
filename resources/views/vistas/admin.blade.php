@@ -59,7 +59,7 @@
     }
 
     #operadoresTotal{
-        height: 1000px!important;
+        height: 600px!important;
     }
 </style>
 

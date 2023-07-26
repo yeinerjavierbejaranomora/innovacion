@@ -10,6 +10,7 @@ use App\Http\Controllers\cambioController;
 use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\facultadController;
+use App\Http\Controllers\HistorialEstudianteController;
 
 /*
 |--------------------------------------------------------------------------

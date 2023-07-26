@@ -29,7 +29,7 @@ class historialController extends Controller
      * Función para cargar la vista del historial academico de los estudiantes
      * @return view el historial academico de los estudiantes
      * */
-    public function view_programas()
+    public function index()
     {
         return view('vistas.estudiantes.index');
     }

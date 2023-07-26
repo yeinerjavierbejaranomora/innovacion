@@ -1973,6 +1973,7 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal() {
+                console.log(guardarFacultades);
                 if (guardarFacultades.length > 0) {
                     var url = "{{ route('operadoresFacultad.estudiantes') }}";
                      var data = {

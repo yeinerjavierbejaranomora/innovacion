@@ -1963,7 +1963,6 @@
 
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();
-                chartOperadoresTotal.destroy();
                 graficoOperadoresTotal();
             });
 

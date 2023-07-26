@@ -7,7 +7,7 @@
 
 <style>
     .textoPequeño{
-        font-size: 8px;
+        font-size: 14px;
         text-transform: lowercase;
     }
 </style>
@@ -63,7 +63,7 @@
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             <?php $facultades=facultades()?>
             @foreach ($facultades as $facultad)
-            <a class="textoPequeño text-center" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" return="['facultades'=>$facultades]"] class="collapse-item">
+            <a class="collapse-item textoPequeño" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" return="['facultades'=>$facultades]"] >
                 {{$facultad->nombre}}               
             </a> <br> 
             @endforeach

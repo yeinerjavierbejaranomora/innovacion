@@ -1673,9 +1673,9 @@
                             plugin: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#colSelloFinanciero').show();
+                            $('#colSelloFinanciero').addClass('hidden');
                         } else {
-                            $('#colSelloFinanciero').hide();
+                            $('#colSelloFinanciero').removeClass('hidden');
                         }
                     }
                 });

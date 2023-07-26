@@ -395,6 +395,7 @@
                         $('#mensaje').hide();
                         var formData = new FormData();
                         var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        const facultadesSeleccionadas = [];
                         checkboxesSeleccionados.each(function() {
                             facultadesSeleccionadas.push($(this).val());
                             formData.append('idfacultad[]', $(this).val());

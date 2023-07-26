@@ -137,10 +137,9 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="text-end">
+                            <!-- <div class="text-end">
                                 <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
-
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -445,7 +444,7 @@
             });
 
 
-            $('#verProgramas').on('click', function(e) {
+            $('body').on('change', '#facultades input[type="checkbox"]:checked', function(e) {
                 e.preventDefault();
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();

@@ -8,6 +8,7 @@
 <style>
     .textoPequeño{
         font-size: 8px;
+        text-transform: lowercase;
     }
 </style>
 

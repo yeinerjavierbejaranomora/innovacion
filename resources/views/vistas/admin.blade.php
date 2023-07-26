@@ -136,8 +136,11 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer text-end">
-                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" data-dismiss="modal">Ver programas</button>
+                        <div class="card-footer">
+                            <div class="text-end">
+                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>

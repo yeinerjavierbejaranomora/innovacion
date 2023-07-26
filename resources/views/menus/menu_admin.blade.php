@@ -12,7 +12,7 @@
     }
 
     #accordionSidebar {
-    width: 400px;
+    width: 260px!important;
 }
 </style>
 

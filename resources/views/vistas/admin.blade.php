@@ -57,6 +57,11 @@
         min-height: 460px;
         max-height: 460px;
     }
+
+    .custom-modal {
+        max-width: 800px;
+        width: 90%;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -246,7 +251,7 @@
         <br>
         <!-- Modal -->
         <div class="modal fade" id="modalOperadoresFacultad" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresFacultad" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered custom-modal" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="title">Operadores por facultad</h5>

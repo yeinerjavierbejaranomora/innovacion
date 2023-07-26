@@ -374,7 +374,7 @@
              * de los programas
              */
 
-          
+
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {
@@ -1964,7 +1964,10 @@
 
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();
-                $('#operadoresTotal').empty();
+                if (chartOperadoresTotal) {
+                    chartOperadoresTotal.destroy();
+                }
+
                 graficoOperadoresTotal();
             });
 
@@ -1977,7 +1980,7 @@
                 console.log(facultadesSeleccionadas);
                 if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('operadoresFacultad.estudiantes') }}";
-                     var data = {
+                    var data = {
                         idfacultad: facultadesSeleccionadas
                     }
                 } else {
@@ -1993,50 +1996,50 @@
                     data: data,
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.operador;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico de barras
-                    var ctx = document.getElementById('operadoresTotal').getContext('2d');
-                    chartOperadoresTotal = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Operadores ordenados de forma descendente',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.operador;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico de barras
+                        var ctx = document.getElementById('operadoresTotal').getContext('2d');
+                        chartOperadoresTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
+                                    }
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Operadores ordenados de forma descendente',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
 
-                                        font: {
-                                            size: 12
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                }
-            });
+                            plugin: [ChartDataLabels]
+                        });
+                    }
+                });
 
             }
 

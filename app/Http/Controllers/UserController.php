@@ -1025,6 +1025,28 @@ class UserController extends Controller
     }
 
     /**
+     * Método que muestra los operadores ordenados de forma descendente en función de la cantidad de estudiantes que traen
+     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
+     */
+    public function operadoresTotal()
+    {
+        /**
+         * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
+        GROUP BY operador
+        ORDER BY TOTAL DESC
+         */
+        $operadores = DB::table('datosMafi')
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
+    }
+
+
+    /**
      * Método que muestra todos los operadores que traen estudiantes de las facultades seleccionadas por el usuario
      * @return JSON retorna los operadores, agrupados por operador
      */

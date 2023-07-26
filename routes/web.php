@@ -110,8 +110,12 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/estudiantesPrimerIngresoPrograma', 'primerIngresoEstudiantesPrograma')->middleware('auth')->name('estudiantes.primerIngreso.programa');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/tiposPrograma', 'tiposEstudiantesPrograma')->middleware('auth')->name('estudiantes.tipo.programa');
-     /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por programa */
-     Route::post('/home/operadoresPrograma', 'operadoresPrograma')->middleware('auth')->name('estudiantes.operador.programa');
+    /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por programa */
+    Route::post('/home/operadoresPrograma', 'operadoresPrograma')->middleware('auth')->name('estudiantes.operador.programa');
+
+    /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
+    Route::get('/home/operadoresTotal', 'operadoresTotal')->middleware('auth')->name('operadoresTotal.estudiantes');
+
 });
 
 Route::controller(MafiController::class)->group(function () {

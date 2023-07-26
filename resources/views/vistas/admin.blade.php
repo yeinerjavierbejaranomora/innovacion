@@ -255,7 +255,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="OperadoresFacultad">
+                        <div id="operadoresFacultad">
 
                         </div>
                     </div>
@@ -271,7 +271,6 @@
 
     <script>
         $(document).ready(function() {
-
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -300,7 +299,8 @@
                 graficoSelloPrimerIngreso();
                 graficoTipoDeEstudiante();
                 graficoOperadores();
-                graficoProgramas()
+                graficoProgramas();
+                graficoOperadores();
             }
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -1934,6 +1934,58 @@
                 });
             }
 
+
+
+            /**
+             * Método que trae todos los operadores de la Ibero
+             */
+            function graficoOperadores() {
+                var url = '/home/operadoresTotal';
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.operador;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico de barras
+                    var ctx = document.getElementById('operadoresFacultad').getContext('2d');
+                    chartOperadores = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'IBERO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Operadores ordenados de forma descendente',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                });
+            }
         });
     </script>
 

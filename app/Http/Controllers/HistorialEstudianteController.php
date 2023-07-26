@@ -12,7 +12,7 @@ class HistorialEstudianteController extends Controller
      * */
     function index(){
               
-        return view('vistas.historial.estudiantes');
+        Route::get('/users', [UserController::class, 'index']);
     }
 
 }

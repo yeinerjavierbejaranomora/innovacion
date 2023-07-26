@@ -374,7 +374,7 @@
              * de los programas
              */
 
-            var guardarFacultades = "";
+            var guardarFacultades = [];
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {

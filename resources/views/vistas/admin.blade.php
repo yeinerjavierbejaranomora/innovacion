@@ -106,7 +106,6 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
-                <div class="col-8">
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
@@ -133,7 +132,6 @@
                     </div>
                 </div>
                 <button class="btn btn-warning" id="generarReporte">Generar Reporte</button>
-                </div>
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">

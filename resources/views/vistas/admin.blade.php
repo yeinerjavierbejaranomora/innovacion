@@ -220,7 +220,7 @@
                         <canvas id="operadores"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn"> Ver más </a>
+                        <a href="" class="btn" data-toggle="modal" data-target="#modalOperadoresFacultad"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -244,7 +244,27 @@
         </div>
 
         <br>
+        <!-- Modal -->
+        <div class="modal fade" id="modalOperadoresFacultad" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresFacultad" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Operadores por facultad</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="OperadoresFacultad">
 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 

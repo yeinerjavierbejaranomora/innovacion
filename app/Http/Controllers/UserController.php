@@ -1025,6 +1025,34 @@ class UserController extends Controller
     }
 
     /**
+     * Método que muestra todos los operadores que traen estudiantes de las facultades seleccionadas por el usuario
+     * @return JSON retorna los operadores, agrupados por operador
+     */
+    public function operadoresFacultadTotal(Request $request)
+    {
+        /**
+         * SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
+         * FROM datosMafi AS dm
+         * JOIN programas AS p ON p.codprograma = dm.programa
+         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+         * GROUP BY dm.operador
+         * ORDER BY TOTAL DESC
+        LIMIT 5
+         */
+        $facultades = $request->input('idfacultad');
+        $operadores = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
+            ->groupBy('dm.operador')
+            ->orderByDesc('TOTAL')
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $operadores));
+    }
+
+    /**
      * Método que muestra los estudiantes inscritos en cada programa, organizados de forma descendente
      * @return JSON retorna un JSON todos los programas, agrupados por programa
      */
@@ -1051,4 +1079,5 @@ class UserController extends Controller
          header("Content-Type: application/json");
          echo json_encode(array('data' => $programas));
      }
+
 }

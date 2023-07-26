@@ -2080,6 +2080,7 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
                             return elemento.codprograma;
                         });

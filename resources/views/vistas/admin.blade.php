@@ -148,15 +148,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-2 mb-2">
-                <button class="btn btn-warning" type="button" id="generarReporte">
+            <div class="row justify-content-center mt-1">
+                <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
 
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-1">
         <div class="col-6 text-center" id="colSelloFinanciero">
             <div class="card shadow mb-6 graficos">
                 <div class="card-header">

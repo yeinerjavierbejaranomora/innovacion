@@ -1977,15 +1977,22 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal() {
-                console.log(facultadesSeleccionadas);
-                if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('operadoresFacultad.estudiantes') }}";
+
+                if (programasSeleccionados.length > 0) {
+                    var url = "{{ route('operadoresPrograma.estudiantes') }}";
                     var data = {
-                        idfacultad: facultadesSeleccionadas
+                        programa: programasSeleccionados
                     }
                 } else {
-                    var url = "{{ route('operadoresTotal.estudiantes') }}";
-                    data = '';
+                    if (facultadesSeleccionadas.length > 0) {
+                        var url = "{{ route('operadoresFacultad.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSeleccionadas
+                        }
+                    } else {
+                        var url = "{{ route('operadoresTotal.estudiantes') }}";
+                        data = '';
+                    }
                 }
                 $.ajax({
                     headers: {

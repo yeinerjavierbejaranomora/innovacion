@@ -255,9 +255,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="operadoresFacultad">
-
-                        </div>
+                        <canvas id="operadoresFacultad"></canvas>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -302,6 +300,9 @@
                 graficoProgramas();
                 graficoOperadoresTotal();
             }
+
+           
+
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */

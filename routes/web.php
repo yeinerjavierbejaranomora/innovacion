@@ -283,7 +283,7 @@ Route::controller(facultadController::class)->group(function () {
 });
 
 /** Controlador para el menú desplegable de facultades */
-Route::controller(estudiantesController::class)->group(function () {
+Route::controller(HistorialEstudianteController::class)->group(function () {
 
     /** Ruta para cargar informacion de los estudiantes */
     Route::get('historial/estudiantes' ,'index')->name('historial.estudiantes');

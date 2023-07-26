@@ -286,7 +286,7 @@ Route::controller(facultadController::class)->group(function () {
 Route::controller(estudiantesController::class)->group(function () {
 
     /** Ruta para cargar informacion de los estudiantes */
-    Route::get('historial/estudiantes' ,'historial')->name('historial.estudiantes');
+    Route::get('historial/estudiantes' ,'index')->name('historial.estudiantes');
 
     
 });

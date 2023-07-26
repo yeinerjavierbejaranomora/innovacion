@@ -122,7 +122,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-between" id="">
-                <div class="col-4 text-center">
+                <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Facultades</strong></h5>
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>

@@ -10,6 +10,10 @@
         font-size: 14px;
         text-transform: lowercase;
     }
+
+    #accordionSidebar {
+    width: 400px;
+}
 </style>
 
 <!-- Sidebar -->

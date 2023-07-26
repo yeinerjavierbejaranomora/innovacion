@@ -12,6 +12,11 @@
     #programas {
         font-size: 14px;
     }
+    
+    #generarReporte {
+        margin-left: 300px;
+    }
+
 
     .btn {
         background-color: #dfc14e;
@@ -159,7 +164,7 @@
                 </div>
             </div>
 
-            <div class="row" style="margin: left 300px !important;">
+            <div class="row">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

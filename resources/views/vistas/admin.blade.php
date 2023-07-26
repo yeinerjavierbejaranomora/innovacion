@@ -159,7 +159,7 @@
                 </div>
             </div>
 
-            <div class="row justify-content-start" style="margin: left 300px;">
+            <div class="row" style="margin: left 300px;">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

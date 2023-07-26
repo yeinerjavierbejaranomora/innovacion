@@ -15,7 +15,6 @@
     
     #generarReporte {
         margin-left: 260px;
-        margin-top: 30px;
     }
 
 

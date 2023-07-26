@@ -28,11 +28,13 @@
     #cardFacultades {
         min-height: 405.6px;
         max-height: 405.6px;
+        margin: 2%;
     }
 
     #cardProgramas {
         min-height: 405.6px;
         max-height: 405.6px;
+        margin: 2%;
     }
 
     .card {

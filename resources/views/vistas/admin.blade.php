@@ -225,7 +225,7 @@
                         <canvas id="operadores"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
+                        <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -325,11 +325,9 @@
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
-                graficoOperadoresTotal();
-                graficoProgramasTotal();
             }
 
-           
+
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -354,7 +352,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartProgramasTotal,chartOperadoresTotal,chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramasTotal, chartOperadoresTotal, chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -433,12 +431,13 @@
 
             });
 
+
+            const programasSeleccionados = [];
             var desactivar = false;
             $('body').on('change', '#programas input[type="checkbox"]', function() {
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     desactivar = true;
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    const programasSeleccionados = [];
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
@@ -1963,14 +1962,38 @@
                 });
             }
 
+
+            $('#botonModalOperador').on("click", function(e) {
+                e.preventDefault();
+                graficoOperadoresTotal();
+
+
+            });
+
             /**
              * Método que trae todos los operadores de la Ibero
              */
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal() {
-                var url = '/home/operadoresTotal';
-                $.getJSON(url, function(data) {
+                if (guardarFacultades.length > 0) {
+                    var url = "{{ route('operadoresFacultad.estudiantes') }}";
+                    data = 'idfacultad: facultades';
+                } else {
+                    var url = "{{ route('estudiantes.operador.programa') }}";
+                    data = '';
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: {
+                        data
+                    },
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;
                     });
@@ -2013,7 +2036,9 @@
                         },
                         plugin: [ChartDataLabels]
                     });
-                });
+                }
+            });
+
             }
 
             /**
@@ -2069,6 +2094,7 @@
                     });
                 });
             }
+
         });
     </script>
 

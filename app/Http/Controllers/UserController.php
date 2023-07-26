@@ -1037,7 +1037,6 @@ class UserController extends Controller
          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          * GROUP BY dm.operador
          * ORDER BY TOTAL DESC
-        LIMIT 5
          */
         $facultades = $request->input('idfacultad');
         $operadores = DB::table('datosMafi as dm')

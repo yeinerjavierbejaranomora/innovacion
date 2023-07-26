@@ -352,7 +352,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartProgramasTotal, chartOperadoresTotal, chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -390,7 +390,6 @@
                     informacionGeneral();
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        console.log(1);
                         $('#programas').empty();
                         $('#mensaje').hide();
                         var formData = new FormData();
@@ -430,7 +429,6 @@
                 }
 
             });
-
 
             const programasSeleccionados = [];
             var desactivar = false;

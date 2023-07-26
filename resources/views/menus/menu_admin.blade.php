@@ -65,7 +65,7 @@
             @foreach ($facultades as $facultad)
             <a class="collapse-item textoPequeño" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" return="['facultades'=>$facultades]"] >
                 {{$facultad->nombre}}               
-            </a> <br> 
+            </a>
             @endforeach
         </div>
         </div>

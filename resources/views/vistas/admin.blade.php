@@ -466,8 +466,11 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
+                            console.log(datos);
                             datos = jQuery.parseJSON(datos);
+                            console.log(datos);
                             $.each(datos, function(key, value) {
+                                console.log(value);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });
                         }

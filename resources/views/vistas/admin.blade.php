@@ -173,7 +173,7 @@
 
         </div>
 
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-start mt-5">
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">

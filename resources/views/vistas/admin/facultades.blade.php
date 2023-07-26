@@ -116,8 +116,7 @@
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h3>Por defecto se muestran los datos de todas las facultades,
-                    si quieres ver datos en especifico, selecciona alguna facultad.
+                <h3>Aquí puedes visualizar el informe completo de {{$nombre}}
                 </h3>
             </div>
             <br>

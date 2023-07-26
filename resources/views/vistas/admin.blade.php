@@ -106,6 +106,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
+                <div class="col-8">
                 <div class="col-4">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
@@ -130,6 +131,8 @@
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>
+                </div>
+                <button class="btn btn-warning" id="generarReporte">Generar Reporte</button>
                 </div>
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
@@ -311,7 +314,6 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
-
             llamadoFunciones();
             facultades();
             /**
@@ -326,8 +328,6 @@
                 graficoOperadores();
                 graficoProgramas();
             }
-
-
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -374,7 +374,12 @@
              * de los programas
              */
 
-
+            $('#').on('click',function(e){
+                e.preventDefault();
+                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                
+                }
+            });
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {

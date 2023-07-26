@@ -410,10 +410,9 @@ class facultadController extends Controller
 
     /** Función para visualizar la vista de los programas del usuario */
 
-    public function programasUsuario()
+    public function programasUsuario($nombre)
     {
- 
-        return view('vistas.admin.facultades');
+        return view('vistas.admin.facultades', ['nombre'=>$nombre]);
     }
 
     /**Función para visualizar los estudiantes de cada facultad */

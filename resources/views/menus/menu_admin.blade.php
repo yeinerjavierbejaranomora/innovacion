@@ -67,7 +67,7 @@
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             <?php $facultades=facultades()?>
             @foreach ($facultades as $facultad)
-            <a class="collapse-item textoPequeño" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" return="['facultades'=>$facultades]"] >
+            <a class="collapse-item textoPequeño" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" >
                 {{$facultad->nombre}}               
             </a>
             @endforeach

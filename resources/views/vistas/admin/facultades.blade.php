@@ -109,15 +109,13 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Facultad de {{$nombre}}</strong></h1>
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h3>Por defecto se muestran los datos de todas las facultades,
-                    si quieres ver datos en especifico, selecciona alguna facultad.
+                <h3>Aquí puedes visualizar el informe completo de {{$nombre}}
                 </h3>
             </div>
             <br>
@@ -318,7 +316,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
     <!-- incluimos el footer -->

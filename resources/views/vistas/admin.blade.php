@@ -28,13 +28,11 @@
     #cardFacultades {
         min-height: 405.6px;
         max-height: 405.6px;
-        margin: 2%;
     }
 
     #cardProgramas {
         min-height: 405.6px;
         max-height: 405.6px;
-        margin: 2%;
     }
 
     .card {
@@ -148,7 +146,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-1">
+
+            <div class="row justify-content-center">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
@@ -156,7 +155,7 @@
 
     </div>
 
-    <div class="row justify-content-center mt-1">
+    <div class="row justify-content-center mt-5">
         <div class="col-6 text-center" id="colSelloFinanciero">
             <div class="card shadow mb-6 graficos">
                 <div class="card-header">

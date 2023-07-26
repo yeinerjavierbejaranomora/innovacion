@@ -371,7 +371,7 @@
              * de los programas
              */
 
-            $('#').on('click',function(e){
+            $('#generarReporte').on('click',function(e){
                 e.preventDefault();
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                 

@@ -116,7 +116,7 @@ Route::controller(UserController::class)->group(function () {
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
     Route::get('/home/operadoresTotal', 'operadoresTotal')->middleware('auth')->name('operadoresTotal.estudiantes');
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos*/
-    Route::post('/home/estudiantesProgramasTotal' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');
+    Route::get('/home/estudiantesProgramasTotal' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');
 });
 
 Route::controller(MafiController::class)->group(function () {

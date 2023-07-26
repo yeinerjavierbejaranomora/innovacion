@@ -374,7 +374,7 @@
              * de los programas
              */
 
-            var guardarFacultades = [];
+          
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {
@@ -384,6 +384,7 @@
                 }
             });
 
+            const facultadesSeleccionadas = [];
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {
@@ -393,14 +394,12 @@
                         $('#programas').empty();
                         $('#mensaje').hide();
                         var formData = new FormData();
-                        const facultadesSeleccionadas = [];
                         var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                         checkboxesSeleccionados.each(function() {
                             facultadesSeleccionadas.push($(this).val());
                             formData.append('idfacultad[]', $(this).val());
                         });
                         console.log(facultadesSeleccionadas);
-                        guardarFacultades = facultadesSeleccionadas;
                         graficosporFacultad(facultadesSeleccionadas);
                         $.ajax({
                             headers: {
@@ -444,7 +443,7 @@
                 } else {
                     desactivar = false;
                     $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                    graficosporFacultad(guardarFacultades);
+                    graficosporFacultad(facultadesSeleccionadas);
                 }
             });
 
@@ -1972,11 +1971,11 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal() {
-                console.log(guardarFacultades);
-                if (guardarFacultades.length > 0) {
+                console.log(facultadesSeleccionadas);
+                if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('operadoresFacultad.estudiantes') }}";
                      var data = {
-                        idfacultad: facultades
+                        idfacultad: facultadesSeleccionadas
                     }
                 } else {
                     var url = "{{ route('operadoresTotal.estudiantes') }}";

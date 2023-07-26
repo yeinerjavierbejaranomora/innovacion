@@ -1964,8 +1964,6 @@
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();
                 graficoOperadoresTotal();
-
-
             });
 
             /**
@@ -1989,9 +1987,7 @@
                     },
                     type: 'post',
                     url: url,
-                    data: {
-                        data
-                    },
+                    data: data,
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                     var labels = data.data.map(function(elemento) {

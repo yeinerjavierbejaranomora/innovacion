@@ -14,7 +14,8 @@
     }
     
     #generarReporte {
-        margin-left: 300px;
+        margin-left: 260px;
+        margin-top: 30px;
     }
 
 

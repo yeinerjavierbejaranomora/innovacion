@@ -529,7 +529,7 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(estado) AS TOTAL, estado FROM `datosMafi`
-        GROUP BY estado
+        *GROUP BY estado
          */
         $estudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
@@ -629,9 +629,9 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador
-        ORDER BY TOTAL DESC
-        LIMIT 5
+        *GROUP BY operador
+        *ORDER BY TOTAL DESC
+        *LIMIT 5
          */
         $operadores = DB::table('datosMafi')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -653,9 +653,9 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-        GROUP BY codprograma
-        ORDER BY TOTAL DESC
-        LIMIT 5
+        *GROUP BY codprograma
+        *ORDER BY TOTAL DESC
+        *LIMIT 5
          */
 
         $programas = DB::table('datosMafi')
@@ -677,9 +677,9 @@ class UserController extends Controller
     {
         /**
          * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.estado
+        *INNER JOIN programas p ON p.codprograma = dm.programa
+        *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        *GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
         $estudiantes = DB::table('datosMafi as dm')
@@ -701,9 +701,9 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.sello
+        *INNER JOIN programas p ON p.codprograma = dm.programa
+        *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        *GROUP BY dm.sello
          */
         $facultades = $request->input('idfacultad');
         $sello = DB::table('datosMafi as dm')
@@ -725,10 +725,10 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        WHERE dm.sello = 'TIENE RETENCION' 
-        GROUP BY dm.autorizado_asistir
+       *INNER JOIN programas p ON p.codprograma = dm.programa
+       *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+       *WHERE dm.sello = 'TIENE RETENCION' 
+       *GROUP BY dm.autorizado_asistir
          */
         $facultades = $request->input('idfacultad');
         $retencion = DB::table('datosMafi as dm')
@@ -751,11 +751,11 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-        FROM datosMafi AS dm
-        JOIN programas AS p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        AND dm.tipoestudiante = 'PRIMER INGRESO'
-        GROUP BY dm.sello;
+       *FROM datosMafi AS dm
+       *JOIN programas AS p ON p.codprograma = dm.programa
+       *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+       *AND dm.tipoestudiante = 'PRIMER INGRESO'
+       *GROUP BY dm.sello;
          */
 
         $facultades = $request->input('idfacultad');
@@ -807,7 +807,7 @@ class UserController extends Controller
          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          * GROUP BY dm.operador
          * ORDER BY TOTAL DESC
-        LIMIT 5
+        *LIMIT 5
          */
         $facultades = $request->input('idfacultad');
         $operadores = DB::table('datosMafi as dm')
@@ -865,8 +865,8 @@ class UserController extends Controller
     {
         /**
          * SELECT  COUNT(estado) AS TOTAL, estado FROM `datosMafi`
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        GROUP BY estado
+        *WHERE programa IN ('') -- Reemplaza con los programas específicos
+        *GROUP BY estado
          */
         $programas = $request->input('programa');
         $estudiantes = DB::table('datosMafi')
@@ -887,8 +887,8 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi` 
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        GROUP BY sello
+        *WHERE programa IN ('') -- Reemplaza con los programas específicos
+        *GROUP BY sello
          */
         $programas = $request->input('programa');
         $sello = DB::table('datosMafi')
@@ -909,9 +909,9 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        WHERE sello = 'TIENE RETENCION' 
-        GROUP BY autorizado_asistir
+        *WHERE programa IN ('') -- Reemplaza con los programas específicos
+        *WHERE sello = 'TIENE RETENCION' 
+        *GROUP BY autorizado_asistir
          */
         $programas = $request->input('programa');
         $retencion = DB::table('datosMafi')
@@ -933,10 +933,10 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(sello) AS TOTAL, sello
-        FROM datosMafi
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        AND tipoestudiante = 'PRIMER INGRESO'
-        GROUP BY sello;
+        *FROM datosMafi
+        *WHERE programa IN ('') -- Reemplaza con los programas específicos
+        *AND tipoestudiante = 'PRIMER INGRESO'
+        *GROUP BY sello;
          */
 
         $programas = $request->input('programa');
@@ -984,7 +984,7 @@ class UserController extends Controller
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
          * GROUP BY operador
          * ORDER BY TOTAL DESC
-        LIMIT 5
+        *LIMIT 5
          */
         $programas = $request->input('programa');
         $operadores = DB::table('datosMafi')
@@ -1060,8 +1060,8 @@ class UserController extends Controller
     {
         /**
          * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador
-        ORDER BY TOTAL DESC
+        *GROUP BY operador
+        *ORDER BY TOTAL DESC
          */
         $operadores = DB::table('datosMafi')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -1082,8 +1082,8 @@ class UserController extends Controller
      {
          /**
           * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-         GROUP BY codprograma
-         ORDER BY TOTAL DESC
+         *GROUP BY codprograma
+         *ORDER BY TOTAL DESC
           */
  
          $programas = DB::table('datosMafi')

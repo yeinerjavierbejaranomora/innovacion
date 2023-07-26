@@ -66,9 +66,7 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
             <div class="input-group">
-
                 <div class="input-group-append">
                     <h3> Bienvenido {{auth()->user()->nombre}}</h3>
                 </div>
@@ -76,160 +74,230 @@
 
         </nav>
         <!-- End of Topbar -->
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="text-center mb-4">
-                <h1 class="h3 mb-0 text-gray-800 text-center" style="font-weight: 100;">Programas facultad de {{$datos['facultad']}}</h1>
-                <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+            <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
-
-            @if(count($datos['programas']) === 0)
-            <h3 class="text-center">NO HAY DATOS POR MOSTRAR</h3>
-            @endif
-
-            <!-- Content Row -->
-            <div class="row" id="facultades">
-                @foreach($datos['programas'] as $key => $value)
-                @foreach($estudiantes as $key => $est)
-                @if($value->codprograma == $key)
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card shadow h-100 py-2 inactivo mostrar programas" data-valor="{{ $value->id }}">
-                        <div class=" card-body ">
-                            <div class="row text-center">
-                                <div class="col mx-auto">
-                                    <div class="text-xs font-weight-bold">
-                                        <h5> PROGRAMA DE {{$value->programa}}</h5>
-                                    </div>
-                                    <!-- <button id="mostrar" name="mostrar" type="input" value="{{ $value->id }}" class="mostrar btn btn-warning text-dark"> -->
-                                    <div class=" mb-0 font-weight-bold">
-                                        <p>Estudiantes inscritos {{$est}}</p>
-                                    </div>
-                                    <!-- </button> -->
-
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                @endif
-                @endforeach
-                @endforeach
+            <br>
+            <div class="text-center" id="mensaje">
+                <h3>Por defecto se muestran los datos de todas las facultades,
+                    si quieres ver datos en especifico, selecciona alguna facultad.
+                </h3>
             </div>
-
-            <div class="row justify-content-start">
-                <div class="col-4 text-center">
-                    <div class="card shadow mb-4">
-                        <div class="card-header">
-                            <h4><strong>Sello financiero</strong></h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="activos"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-center">
-                    <div class="card shadow mb-4">
-                        <div class="card-header">
-                            <h4><strong>Activos con Retención</strong></h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="retencion"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-center">
-                    <div class="card shadow mb-4">
-                        <div class="card-header">
-                            <h4><strong>Activos Primer Ingreso</strong></h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="primerIngreso"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!--Nav Datos de la Facultad-->
-            <nav class="nav nav-pills nav-justified align-content-middle d-flex align-items-center justify-content-center" id="nav" name="nav" style="display: none !important;">
-                <a class="nav-link my-auto" href="#estudiantes">
-                    <h4>Estudiantes</h4>
-                </a>
-                <a class="nav-link my-auto" href="#malla">
-                    <h4>Malla Curricular</h4>
-                </a>
-                <a class="nav-link my-auto" href="#planeacion">
-                    <h4>Planeacion</h4>
-                </a>
-            </nav>
-
             <br>
 
-            <!-- DataTable Estudiantes-->
-            <div class="row" id="est" style="display: none;">
-
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="table">
-                                <table id="example" class="display" style="width:100%">
-                                </table>
+            <!-- Checkbox Facultades -->
+            <div class="row justify-content-start" id="">
+                <div class="col-4 text-star">
+                    <div class="card shadow mb-5" id="cardFacultades">
+                        <div class="card-header text-center">
+                            <h5><strong>Seleccionar Facultades</strong></h5>
+                        </div>
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                            <div class="facultades" name="facultades" id="facultades">
+                                <div>
+                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                                </div>
+                                <br>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <div class="text-end">
+                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-start">
+                    <div class="card shadow mb-5" id="cardProgramas">
+                        <div class="card-header text-center">
+                            <h5><strong>Seleccionar Programas</strong></h5>
+                        </div>
+                        <div class="card-body text-star" style="overflow: auto;">
+                            <div name="programas" id="programas"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-4 text-center" id="colEstudiantes">
+                    <div class="card shadow mb-5" id="chartEstudiantes">
+                        <div class="card-header">
+                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
+                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
+                                <h5>No hay datos por mostrar</h5>
+                            </div>
+                            <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- DataTable Malla Curricular-->
-            <div class="row" id="mall" style="display: none;">
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="table">
-                                <table id="malla" class="display" style="width:100%">
-                                </table>
-                            </div>
+            <div class="row">
+                <button class="btn" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-start mt-5">
+            <div class="col-6 text-center" id="colSelloFinanciero">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
                         </div>
+                        <canvas id="activos"></canvas>
                     </div>
                 </div>
             </div>
-
-            <!-- DataTable Planeación-->
-            <div class="row" id="plan" style="display: none;">
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="table">
-                                <table id="planeacion" class="display" style="width:100%">
-                                </table>
-                            </div>
+            <div class="col-6 text-center" id="colRetencion">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
                         </div>
+                        <canvas id="retencion"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colPrimerIngreso">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="primerIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colTipoEstudiantes">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="tipoEstudiante"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colOperadores">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Operadores</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="operadores"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colProgramas">
+                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="estudiantesProgramas"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <br>
+
+        <!-- Modal Todos los Operadores de la Ibero -->
+        <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Operadores</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="operadoresTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Todos los Programas de la Ibero -->
+        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Programas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="programasTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
-    <script>
+</div>
+
+    <!-- <script>
         /** Función para mostrar el Nav solo al dar click en el botón 
          * Además de cargar la dataTable dependiendo el nav
          */
         $(document).ready(function() {
-            var idFacultad = '<?php echo $idFacultad; ?>';
+            var idFacultad = '';
 
             graficoActivos();
             graficoRetencion();
@@ -715,6 +783,6 @@
                 }
             }
         }
-    </script>
+    </script> -->
     @include('layout.footer')
 </div>

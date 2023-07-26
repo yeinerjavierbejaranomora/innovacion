@@ -12,7 +12,7 @@ class HistorialEstudianteController extends Controller
      * */
     function index(){
               
-        return redirect()->route('historial.estudiantes');
+        return redirect()->route('vistas.historial.estudiantes');
     }
 
 }

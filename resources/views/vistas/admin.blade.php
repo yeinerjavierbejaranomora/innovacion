@@ -122,7 +122,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="">
+            <div class="row justify-content-start" id="">
                 <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
@@ -428,6 +428,7 @@
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                    $('#programas').empty();
                     var formData = new FormData();
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     checkboxesSeleccionados.each(function() {

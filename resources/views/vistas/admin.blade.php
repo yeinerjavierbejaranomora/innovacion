@@ -437,6 +437,7 @@
                     desactivar = true;
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    const programasSeleccionados = [];
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
@@ -1963,6 +1964,7 @@
 
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();
+                $('#operadoresTotal').empty();
                 graficoOperadoresTotal();
             });
 

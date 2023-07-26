@@ -137,9 +137,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <div class="modal-footer">
                                 <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" data-dismiss="modal">Ver programas</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -444,7 +442,8 @@
             });
 
 
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            $('#verProgramas').on('click', function(e) {
+                e.preventDefault();
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
                     var formData = new FormData();
@@ -471,7 +470,6 @@
                         }
                     })
                 }
-
             });
 
             /**

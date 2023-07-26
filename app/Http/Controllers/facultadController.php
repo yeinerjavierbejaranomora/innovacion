@@ -412,7 +412,7 @@ class facultadController extends Controller
 
     public function programasUsuario()
     {
- 
+        dd($_GET);
         return view('vistas.admin.facultades');
     }
 

@@ -109,7 +109,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <?php dd($nombre)?>
             <!-- Page Heading -->
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Facultad de </strong></h1>

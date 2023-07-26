@@ -108,7 +108,6 @@
             <div class="row justify-content-center" id="">
                 <div class="col-8">
                     <div class="row">
-                    <div class="col-12 col-md-4">
                         <div class="card shadow col-4" id="cardFacultades">
                             <div class="card-header text-center">
                                 <h5><strong>Seleccionar Facultades</strong></h5>
@@ -122,8 +121,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4">
                         <div class="card shadow col-4" id="cardProgramas">
                             <div class="card-header text-center">
                                 <h5><strong>Seleccionar Programas</strong></h5>
@@ -131,15 +128,15 @@
                             <div class="card-body text-star" style="overflow: auto;">
                                 <div name="programas" id="programas"></div>
                             </div>
+
                         </div>
-                    </div>       
                     </div>
                     <div class="row">
-                    <button>
-                        Generar Reporte
-                    </button>
+                        <button>
+                            Generar Reporte
+                        </button>
                     </div>
-                    
+
                 </div>
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">

@@ -444,8 +444,7 @@
             });
 
 
-            $('body').on('change', '#facultades input[type="checkbox"]:checked', function(e) {
-                e.preventDefault();
+            $('body').on('change', '#facultades input[type="checkbox"]:checked', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
                     var formData = new FormData();

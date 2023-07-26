@@ -394,7 +394,7 @@
                 } else {
                     $('.ocultarFacultades').show();
                     destruirGraficos();
-                    
+                    ocultarDivs()
                 }
             });    
 

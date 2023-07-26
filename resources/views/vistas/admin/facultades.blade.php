@@ -115,34 +115,14 @@
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h3>Aquí puedes visualizar el informe completo de {{$nombre}}
-                </h3>
+                <h4>Aquí puedes visualizar el informe completo de {{$nombre}}
+                </h4>
             </div>
             <br>
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-start" id="">
-                <div class="col-4 text-star">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
-                        </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades">
-                                <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <!-- <div class="text-end">
-                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-start">
+                <div class="col-6 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -152,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center" id="colEstudiantes">
+                <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>

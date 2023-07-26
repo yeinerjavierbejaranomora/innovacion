@@ -106,7 +106,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
-                <div class="col-4">
+                <div class="col-8">
                     <div class="card shadow mb-4" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Facultades</strong></h5>
@@ -120,8 +120,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-4">
+
                     <div class="card shadow mb-4" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -371,10 +370,10 @@
              * de los programas
              */
 
-            $('#generarReporte').on('click',function(e){
+            $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                
+
                 }
 
             });
@@ -2066,15 +2065,15 @@
             var chartProgramasTotal;
 
             function graficoProgramasTotal() {
-                    if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('FacultadTotal.estudiantes') }}";
-                        var data = {
-                            idfacultad: facultadesSeleccionadas
-                        }
-                    } else {
-                        var url = "{{ route('programasTotal.estudiantes') }}";
-                        data = '';
+                if (facultadesSeleccionadas.length > 0) {
+                    var url = "{{ route('FacultadTotal.estudiantes') }}";
+                    var data = {
+                        idfacultad: facultadesSeleccionadas
                     }
+                } else {
+                    var url = "{{ route('programasTotal.estudiantes') }}";
+                    data = '';
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

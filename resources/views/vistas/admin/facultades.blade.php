@@ -115,8 +115,8 @@
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h3>Aquí puedes visualizar el informe completo de {{$nombre}}
-                </h3>
+                <h4>Aquí puedes visualizar el informe completo de {{$nombre}}
+                </h4>
             </div>
             <br>
 

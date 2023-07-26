@@ -10,9 +10,15 @@ class HistorialEstudianteController extends Controller
      * Función para cargar la vista del historial academico de  los estudiantes
      * @return view del historial de los estudiantes
      * */
-    function index(){
-              
-        return view('vistas.historial.estudiantes');
+    public function historial()
+    {
+        // Aquí va la lógica para obtener el historial del estudiante con el ID proporcionado
+
+        // Supongamos que tienes una variable $historial con los datos del historial del estudiante
+        $historial = [...];
+
+        // Pasar los datos del historial a la vista y cargarla
+        return view('historial_estudiante', ['historial' => $historial]);
     }
 
 }

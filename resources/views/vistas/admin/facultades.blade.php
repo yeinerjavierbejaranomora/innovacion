@@ -126,12 +126,13 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
-                    </div>
-                    <div class="card-footer text-center">
+                        <div class="card-footer text-center">
                         <button class="btn" type="button" id="generarReporte">
                             Generar Reporte
                         </button>
                     </div>
+                    </div>
+                    
                 </div>
                 <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">

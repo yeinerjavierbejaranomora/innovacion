@@ -395,8 +395,17 @@
 
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
-            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+            if ($('#programas input[type="checkbox"]:checked').length > 0) {
+            
+            }else
+            {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
 
+                }
+                else
+                {
+                    location.reload();
+                }
             }
 
         });

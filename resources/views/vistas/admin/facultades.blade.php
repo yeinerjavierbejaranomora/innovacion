@@ -115,7 +115,8 @@
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h4>Aquí puedes visualizar el informe completo de {{$nombre}}
+                <h4>Aquí puedes visualizar el informe completo de {{$nombre}}, por defecto visualizas toda la
+                    información de la facultad, si quieres ver algunos programas en específico, seleccionalos.
                 </h4>
             </div>
             <br>

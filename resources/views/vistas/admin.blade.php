@@ -384,7 +384,7 @@
                 }
             });
 
-            const facultadesSeleccionadas = [];
+            var facultadesSeleccionadas = [];
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length == 5) {
@@ -430,7 +430,7 @@
 
             });
 
-            const programasSeleccionados = [];
+            var programasSeleccionados = [];
             var desactivar = false;
             $('body').on('change', '#programas input[type="checkbox"]', function() {
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {

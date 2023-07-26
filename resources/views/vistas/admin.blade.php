@@ -58,9 +58,8 @@
         max-height: 460px;
     }
 
-    .custom-modal {
-        max-width: 800px;
-        width: 90%;
+    #operadoresTotal{
+        height: 1000px!important;
     }
 </style>
 
@@ -252,7 +251,7 @@
 
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="title">Operadores</h5>

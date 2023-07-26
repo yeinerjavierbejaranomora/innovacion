@@ -427,13 +427,13 @@
             }
 
         });
-
-    
+  
         $('body').on('change', '#mostrarTodos', function() {
             if ($('#mostrarTodos').prop('checked')) {
                 location.reload();
             } else {
                 $('.ocultarFacultades').show();
+                destruirGraficos();
             }
         });
 

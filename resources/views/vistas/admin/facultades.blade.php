@@ -14,11 +14,6 @@
         font-size: 14px;
     }
 
-    #generarReporte {
-        margin-left: 170px;
-    }
-
-
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -132,6 +127,11 @@
                             <div name="programas" id="programas"></div>
                         </div>
                     </div>
+                    <div class="card-footer text-center">
+                        <button class="btn" type="button" id="generarReporte">
+                            Generar Reporte
+                        </button>
+                    </div>
                 </div>
                 <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
@@ -150,11 +150,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <button class="btn" type="button" id="generarReporte">
-                    Generar Reporte
-                </button>
-            </div>
 
         </div>
 
@@ -303,7 +298,7 @@
     @include('layout.footer')
 </div>
 
-    <!-- <script>
+<!-- <script>
         /** Función para mostrar el Nav solo al dar click en el botón 
          * Además de cargar la dataTable dependiendo el nav
          */

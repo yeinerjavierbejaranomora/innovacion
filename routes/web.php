@@ -122,6 +122,8 @@ Route::controller(UserController::class)->group(function () {
 
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos*/
     Route::post('/home/estudiantesProgramasTotal' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');
+    /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos de cada facultad */
+    Route::post('/home/estudiantesFacultadTotal' ,'estudiantesFacultadTotal')->middleware('auth')->name('FacultadTotal.estudiantes');
 });
 
 Route::controller(MafiController::class)->group(function () {

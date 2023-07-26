@@ -1102,7 +1102,7 @@ class UserController extends Controller
      * @return JSON retorna un JSON todos los programas, agrupados por programa
      */
        
-    public function estudiantesProgramasFacultadTotal(Request $request)
+    public function estudiantesFacultadTotal(Request $request)
     {
         /**
          * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 

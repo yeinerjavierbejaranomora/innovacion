@@ -58,8 +58,9 @@
         max-height: 460px;
     }
 
-    #operadoresTotal{
-        height: 600px!important;
+    #operadoresTotal,
+    #programasTotal {
+        height: 600px !important;
     }
 </style>
 
@@ -1976,7 +1977,6 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal() {
-
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadoresPrograma.estudiantes') }}";
                     var data = {
@@ -2055,51 +2055,64 @@
             var chartProgramasTotal;
 
             function graficoProgramasTotal() {
-                var url = '/home/estudiantesProgramasTotal';
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('programasTotal').getContext('2d');
-                    chartProgramasTotal = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Programas',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
+                    if (facultadesSeleccionadas.length > 0) {
+                        var url = "{{ route('FacultadTotal.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSeleccionadas
+                        }
+                    } else {
+                        var url = "{{ route('programasTotal.estudiantes') }}";
+                        data = '';
+                    }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.codprograma;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('programasTotal').getContext('2d');
+                        chartProgramasTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Programas',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
 
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
 
-                                        font: {
-                                            size: 12
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
+                            plugin: [ChartDataLabels]
+                        });
+                    }
                 });
             }
 

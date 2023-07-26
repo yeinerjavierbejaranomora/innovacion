@@ -373,9 +373,13 @@
                 [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());            
             }
 
+            /**
+             * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
+             */
             function ocultarDivs(){
                 $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');    
             }
+
             /**
              * Método que trae la información de toda la Ibero 
              * */
@@ -388,6 +392,10 @@
                 llamadoFunciones();
             }
 
+            /**
+             * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 
+             * o en caso contrario, muestra las facultades y limpia la página de la data anterior
+             * */  
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {
                     location.reload();
@@ -410,6 +418,9 @@
                     });
                     graficosporPrograma(programasSeleccionados);
                 } else {
+                    if ($('#facultades input[type="checkbox"]:checked').length == 5) {
+                        informacionGeneral();
+                    }      
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         $('#mensaje').hide();
                         var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -456,72 +467,6 @@
 
             });
 
-
-            /** 
-             *     
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length == 5) {
-                    informacionGeneral();
-                } else {
-                    if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        $('#programas').empty();
-                        $('#mensaje').hide();
-                        var formData = new FormData();
-                        var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                        facultadesSeleccionadas = [];
-                        checkboxesSeleccionados.each(function() {
-                            facultadesSeleccionadas.push($(this).val());
-                            formData.append('idfacultad[]', $(this).val());
-                        });
-                        console.log(facultadesSeleccionadas);
-                        graficosporFacultad(facultadesSeleccionadas);
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('traer.programas') }}",
-                            data: formData,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            success: function(datos) {
-                                datos = jQuery.parseJSON(datos);
-                                $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-                                });
-                            }
-                        })
-
-                    }
-                }
-                if ($('#facultades input[type="checkbox"]:checked').length == 0) {
-                    informacionGeneral();
-                    $('#programas').empty();
-
-                }
-
-            });
-
-            $('body').on('change', '#programas input[type="checkbox"]', function() {
-                if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                    desactivar = true;
-                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    programasSeleccionados = [];
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
-                    });
-                    graficosporPrograma(programasSeleccionados);
-                } else {
-                    programasSeleccionados = [];
-                    desactivar = false;
-                    $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                    graficosporFacultad(facultadesSeleccionadas);
-                }
-            });
-
-            */
             /**
              * Método que muestra el total de estudiantes activos e inactivos
              */

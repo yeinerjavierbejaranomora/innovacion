@@ -354,7 +354,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramasTotal,chartOperadoresTotal,chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -1966,6 +1966,8 @@
             /**
              * Método que trae todos los operadores de la Ibero
              */
+            var chartOperadoresTotal;
+
             function graficoOperadoresTotal() {
                 var url = '/home/operadoresTotal';
                 $.getJSON(url, function(data) {
@@ -1977,7 +1979,7 @@
                     });
                     // Crear el gráfico de barras
                     var ctx = document.getElementById('operadoresTotal').getContext('2d');
-                    chartOperadores = new Chart(ctx, {
+                    chartOperadoresTotal = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {
@@ -2017,6 +2019,8 @@
             /**
              * Método que trae todos los programas de la Ibero
              */
+            var chartProgramasTotal;
+
             function graficoProgramasTotal() {
                 var url = '/home/estudiantesProgramasTotal';
                 $.getJSON(url, function(data) {
@@ -2028,7 +2032,7 @@
                     });
                     // Crear el gráfico circular
                     var ctx = document.getElementById('programasTotal').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
+                    chartProgramasTotal = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {

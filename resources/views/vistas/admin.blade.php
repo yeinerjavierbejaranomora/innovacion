@@ -242,7 +242,7 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -1969,6 +1969,14 @@
                     chartOperadoresTotal.destroy();
                 }
                 graficoOperadoresTotal();
+            });
+
+            $('#botonModalProgramas').on("click", function(e) {
+                e.preventDefault();
+                if (chartProgramasTotal) {
+                    chartProgramasTotal.destroy();
+                }
+                graficoProgramasTotal();
             });
 
             /**

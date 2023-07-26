@@ -159,7 +159,7 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-start">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

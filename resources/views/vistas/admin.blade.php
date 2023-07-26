@@ -300,7 +300,7 @@
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
-                graficoOperadores();
+                graficoOperadoresTotal();
             }
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -1939,7 +1939,7 @@
             /**
              * Método que trae todos los operadores de la Ibero
              */
-            function graficoOperadores() {
+            function graficoOperadoresTotal() {
                 var url = '/home/operadoresTotal';
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {

@@ -410,27 +410,10 @@ class facultadController extends Controller
 
     /** Función para visualizar la vista de los programas del usuario */
 
-    public function programasUsuario($nombre)
+    public function programasUsuario()
     {
-        // Se obtiene el id del programa que recibe el metodo
-        $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
-        $idFacultad = $consulta[0]->id;
-        // Se consulta cuales son los programas que se encuentran activos
-        $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id', 'codprograma')->get();
-        $cuenta = array();
-        // Con este foreach se cuentan los alumnos inscritos en el programa
-        foreach ($programas as $key => $value) {
-            $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
-            // array_push($cuenta, $cantidad);
-            $cuenta[$value->codprograma] = $cantidad;
-        }
-        // Se almacena el nombre de la facultad y los programas que se encuentra activos en la variable datos 
-        $datos = array(
-            'facultad' => $nombre,
-            'programas' => $programas,
-        );
-
-        return view('vistas.admin.facultades', ['estudiantes' => $cuenta, 'idFacultad' => $idFacultad])->with('datos', $datos);
+ 
+        return view('vistas.admin.facultades');
     }
 
     /**Función para visualizar los estudiantes de cada facultad */

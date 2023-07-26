@@ -225,7 +225,7 @@
                         <canvas id="operadores"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn" data-toggle="modal" data-target="#modalOperadoresFacultad"> Ver más </a>
+                        <a href="" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -242,25 +242,26 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" class="btn"> Ver más </a>
+                        <a href="" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
         </div>
 
         <br>
-        <!-- Modal -->
-        <div class="modal fade" id="modalOperadoresFacultad" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresFacultad" aria-hidden="true">
+
+        <!-- Modal Todos los Operadores de la Ibero -->
+        <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered custom-modal" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="title">Operadores por facultad</h5>
+                        <h5 class="modal-title" id="title">Operadores/h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <canvas id="operadoresFacultad"></canvas>
+                        <canvas id="operadoresTotal"></canvas>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -268,6 +269,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Todos los Programas de la Ibero -->
+        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered custom-modal" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Programas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="programasTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
@@ -304,6 +326,7 @@
                 graficoOperadores();
                 graficoProgramas();
                 graficoOperadoresTotal();
+                graficoProgramasTotal();
             }
 
            
@@ -1940,8 +1963,6 @@
                 });
             }
 
-
-
             /**
              * Método que trae todos los operadores de la Ibero
              */
@@ -1955,7 +1976,7 @@
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico de barras
-                    var ctx = document.getElementById('operadoresFacultad').getContext('2d');
+                    var ctx = document.getElementById('operadoresTotal').getContext('2d');
                     chartOperadores = new Chart(ctx, {
                         type: 'bar',
                         data: {
@@ -1976,6 +1997,58 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                });
+            }
+
+            /**
+             * Método que trae todos los programas de la Ibero
+             */
+            function graficoProgramasTotal() {
+                var url = '/home/estudiantesProgramasTotal';
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.codprograma;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('programasTotal').getContext('2d');
+                    chartProgramas = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'IBERO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Programas',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+
                             plugins: {
                                 legend: {
                                     position: 'bottom',

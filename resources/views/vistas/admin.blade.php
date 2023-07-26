@@ -131,7 +131,6 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-warning" id="generarReporte">Generar Reporte</button>
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
@@ -371,13 +370,7 @@
              * Llama la función que muestra los gráficos de las facultades seleccionadas, también
              * de los programas
              */
-
-            $('#').on('click',function(e){
-                e.preventDefault();
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                
-                }
-            });
+         
 
             $('body').on('change', '#mostrarTodos', function() {
                 if ($('#mostrarTodos').prop('checked')) {

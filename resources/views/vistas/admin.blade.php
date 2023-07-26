@@ -1978,7 +1978,7 @@
                         idfacultad: facultades
                     }
                 } else {
-                    var url = "{{ route('estudiantes.operador.programa') }}";
+                    var url = "{{ route('operadoresTotal.estudiantes') }}";
                     data = '';
                 }
                 $.ajax({

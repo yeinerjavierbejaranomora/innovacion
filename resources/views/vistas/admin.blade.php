@@ -107,9 +107,9 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-center" id="">
+            <div class="row justify-content-between" id="">
                 <div class="col-8">
-                    <div class="row">
+                    <div class="row justify-content-between">
                         <div class="card shadow col-6" id="cardFacultades">
                             <div class="card-header text-center">
                                 <h5><strong>Seleccionar Facultades</strong></h5>

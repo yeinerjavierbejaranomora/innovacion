@@ -6,48 +6,80 @@
 <!--  creamos el contenido principal body -->
 
 <style>
-    .button:hover {
+    #facultades {
+        font-size: 14px;
+    }
+
+    #programas {
+        font-size: 14px;
+    }
+
+    #generarReporte {
+        margin-left: 260px;
+    }
+
+
+    .btn {
         background-color: #dfc14e;
-        transition: 0.7s;
-    }
-
-    .activo {
-        background-color: #dfc14e !important;
-        border-radius: 30px !important;
+        border-color: #dfc14e;
         color: white;
-        cursor: pointer;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
-    .activo i {
-        color: #4a4a48 !important;
-    }
-
-    .inactivo {
-        background-color: #edeff2 !important;
-        border-radius: 30px !important;
-        color: black;
-        cursor: pointer;
-        border-color: black;
-    }
-
-    .inactivo:hover {
-        background-color: #dfc14e !important;
-        border-radius: 30px !important;
+    #botonModalProgramas,
+    #botonModalOperador {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
         color: white;
-        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
-    .inactivo i {
-        color: #dfc14e !important;
+    #cardFacultades {
+        min-height: 405.6px;
+        max-height: 405.6px;
     }
 
-    .inactivo:hover i {
-        color: #4a4a48 !important;
+    #cardProgramas {
+        min-height: 405.6px;
+        max-height: 405.6px;
     }
 
-    #activos #retencion #primerIngreso {
-        width: 400px;
-        height: 400px;
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #chartEstudiantes {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    #centrar {
+        display: flex;
+        align-items: center;
+    }
+
+    .graficos {
+        min-height: 460px;
+        max-height: 460px;
+    }
+
+    #operadoresTotal,
+    #programasTotal {
+        height: 600px !important;
     }
 </style>
 

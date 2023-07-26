@@ -18,7 +18,7 @@ class HistorialEstudianteController extends Controller
         $historial = [0=>'test'];
 
         // Pasar los datos del historial a la vista y cargarla
-        return view('historial_estudiante', ['historial' => $historial]);
+        return view('vistas.estudiantes.index', ['historial' => $historial]);
     }
 
 }

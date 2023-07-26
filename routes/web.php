@@ -124,6 +124,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/estudiantesProgramasTotal' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos de cada facultad */
     Route::post('/home/estudiantesFacultadTotal' ,'estudiantesFacultadTotal')->middleware('auth')->name('FacultadTotal.estudiantes');
+
+     
 });
 
 Route::controller(MafiController::class)->group(function () {
@@ -279,3 +281,14 @@ Route::controller(facultadController::class)->group(function () {
     Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
     
 });
+
+/** Controlador para el menú desplegable de facultades */
+Route::controller(estudiantesController::class)->group(function () {
+
+    /** Ruta para cargar informacion de los estudiantes */
+    Route::get('historial/estudiantes' ,'historial')->name('historial.estudiantes');
+
+    
+});
+
+

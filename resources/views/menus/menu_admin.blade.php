@@ -7,7 +7,7 @@
 
 <style>
     .textoPequeño{
-        font-size: 12px;
+        font-size: 8px;
     }
 </style>
 

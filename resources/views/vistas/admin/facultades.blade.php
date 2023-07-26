@@ -321,7 +321,8 @@
 
 
     </div>
-
+    <!-- incluimos el footer -->
+    @include('layout.footer')
 </div>
 
     <!-- <script>
@@ -816,5 +817,3 @@
             }
         }
     </script> -->
-    @include('layout.footer')
-</div>

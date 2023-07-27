@@ -300,7 +300,10 @@
         traerProgramas();
         function traerProgramas() {
             var formData = new FormData();
-            formData =['idfacultad', "<?=$nombre?>"];
+            var data = idfacultad[]: <?=$nombre?>;
+            console.log(data);
+            die();
+            formData =data;
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

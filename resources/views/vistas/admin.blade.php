@@ -339,7 +339,6 @@
 
             llamadoFunciones();
             facultades();
-            Contador();
             /**
              * Llamado a todos los scripts
              */
@@ -409,6 +408,7 @@
                     $('.ocultarFacultades').show();
                     destruirGraficos();
                     ocultarDivs()
+                    Contador();
                 }
             });
 

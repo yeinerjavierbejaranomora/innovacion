@@ -385,8 +385,8 @@
         });
 
         function graficosporPrograma(programas) {
-            if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                chartTipoEstudiante || chartOperadores) {
+            // if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+            //     chartTipoEstudiante || chartOperadores) {
                 destruirGraficos();
                 $(".titulos").hide();
                 $(".programastitulos").show();
@@ -398,7 +398,7 @@
                 graficoSelloPrimerIngresoPorPrograma(programas);
                 graficoTiposDeEstudiantesPrograma(programas);
                 graficoOperadoresPrograma(programas);
-            }
+            // }
         }
 
         /** 

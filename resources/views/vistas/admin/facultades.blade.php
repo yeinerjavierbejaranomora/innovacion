@@ -419,11 +419,10 @@
                     }
                 }
             } else {
-                var formData = new FormData();
-                formData.append('idfacultad[]', "<?= $nombre ?>");
+                var facultad = ('idfacultad[]', "<?= $nombre ?>");
                 url = "{{ route('estudiantes.activos.facultad') }}";
                 data = {
-                    idfacultad: ('idfacultad[]', "<?= $nombre ?>")
+                    idfacultad: facultad
                 }
             }
             $.ajax({

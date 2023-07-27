@@ -420,9 +420,10 @@
                 }
             } else {
                 var formData = new FormData();
-                formData.append('idfacultad[]', "<?= $nombre ?>");
                 url = "{{ route('estudiantes.activos.facultad') }}";
-                data = formData;
+                data = {
+                    idfacultad: "<?= $nombre ?>";
+                }
             }
             $.ajax({
                 headers: {

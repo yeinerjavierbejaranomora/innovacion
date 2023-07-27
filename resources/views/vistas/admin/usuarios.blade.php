@@ -179,11 +179,8 @@
         facultades = $(this);
         //* comprueba que el valor de facultados sea diferente a vacio/
         if ($(this).val() != '') {
-            //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
-            var formData = new FormData();
-            //* Se añade el par clave/valor con el valor del select/
+            var formData = new FormData();        
             formData.append('idfacultad', facultades.val());
-            //* Se envia el id de facultad pormedio de ajax para recibir los programas relacionados al id enviado/
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -202,7 +199,6 @@
                     facultades.prop('disabled', false)
                     $('#nuevousuario div#programas').empty();
                     data.forEach(programa => {
-                        //* Se crea un input tipo checkbox para cada programa recibido/
                         $('#nuevousuario div#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
                     });
                 }

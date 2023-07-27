@@ -4,26 +4,26 @@
 @auth
     @switch(auth()->user()->id_rol)
         @case (1)
-            break;     
+            @break;     
         @case (2)
-            break;
+            @break;
         @case (3)
-            break;  
+            @break;  
         @case (4)
-            break;  
+            @break;  
         @case (5)
-            break;  
+            @break;  
         @case (6)
-            break;  
+            @break;  
         @case (9)
             @include('menus.menu_admin')
-            break;  
+            @break;  
         @case (19)
             @include('menus.menu_rector') 
-            break;
+            @break;
         @case (20)
             @include('menus.menu_Vicerrector')  
-            break;         
+            @break;         
     @endswitch
 
 @endauth

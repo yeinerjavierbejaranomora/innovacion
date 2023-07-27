@@ -387,17 +387,17 @@
         function graficosporPrograma(programas) {
             // if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
             //     chartTipoEstudiante || chartOperadores) {
-                // destruirGraficos();
-                $(".titulos").hide();
-                $(".programastitulos").show();
-                $("#ocultarGraficoProgramas").hide();
+            // destruirGraficos();
+            $(".titulos").hide();
+            $(".programastitulos").show();
+            $("#ocultarGraficoProgramas").hide();
 
-                graficoEstudiantesPorPrograma(programas);
-                grafioSelloFinancieroPorPrograma(programas);
-                graficoRetencionPorPrograma(programas);
-                graficoSelloPrimerIngresoPorPrograma(programas);
-                graficoTiposDeEstudiantesPrograma(programas);
-                graficoOperadoresPrograma(programas);
+            // graficoEstudiantesPorPrograma(programas);
+            // grafioSelloFinancieroPorPrograma(programas);
+            // graficoRetencionPorPrograma(programas);
+            // graficoSelloPrimerIngresoPorPrograma(programas);
+            // graficoTiposDeEstudiantesPrograma(programas);
+            // graficoOperadoresPrograma(programas);
             // }
         }
 
@@ -405,16 +405,26 @@
          * Método que muestra los estudiantes activos e inactivos de algún programa en específico
          */
         var chartEstudiantes;
-        function graficoEstudiantesPorPrograma(programas) {
+
+        function graficoEstudiantes() {
+            var data;
+            var url;
+            if (programasSeleccionados.length > 0) {
+                url = "{{ route('estudiantes.activos.programa') }}";
+                data = {
+                    programa: programasSeleccionados
+                }
+            } else {
+                url ="{{ route('estudiantes.activos.facultad') }}";
+                data.append('idfacultad[]', "<?= $nombre ?>");
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.activos.programa') }}",
-                data: {
-                    programa: programas
-                },
+                url: url,
+                data:data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
                     var labels = data.data.map(function(elemento) {
@@ -481,7 +491,8 @@
          * Método que genera el gráfico de sello financiero de algún programa en específico
          */
         var chartEstudiantesActivos;
-        function grafioSelloFinancieroPorPrograma(programas) {
+
+        function grafioSelloFinanciero() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -561,7 +572,8 @@
          * Método que genera el gráfico ASP de algún programa en específico
          */
         var chartRetencion;
-        function graficoRetencionPorPrograma(programas) {
+
+        function graficoRetencion() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -641,7 +653,8 @@
          * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
          */
         var chartSelloPrimerIngreso;
-        function graficoSelloPrimerIngresoPorPrograma(programas) {
+
+        function graficoSelloPrimerIngreso() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -724,7 +737,8 @@
          * Método que genera el gráfico con los tipos de estudiante por programa
          */
         var chartTipoEstudiante;
-        function graficoTiposDeEstudiantesPrograma(programas) {
+
+        function graficoTiposDeEstudiantes() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -804,7 +818,8 @@
          * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
          */
         var chartOperadores;
-        function graficoOperadoresPrograma(programas) {
+
+        function graficoOperadores() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

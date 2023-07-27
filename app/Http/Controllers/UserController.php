@@ -285,7 +285,7 @@ class UserController extends Controller
         //dd($request->all());
         $id = decrypt($id);
         $id_banner = $request->id_banner;
-        dd($request);
+        dd($documento);
         $documento = $request->documento;
         $nombre = $request->nombre;
         $email = $request->email;

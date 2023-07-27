@@ -363,6 +363,7 @@
          * Controlador botón generarReporte
          */
         var programasSeleccionados = [];
+        console.log(programasSeleccionados);
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
@@ -412,7 +413,7 @@
             if (programasSeleccionados.length > 0) {
                 url = "{{ route('estudiantes.activos.programa') }}";
                 data = {
-                    programa: programasSeleccionados
+                    programa: programasSeleccionados,
                 }
             } else {
                 url ="{{ route('estudiantes.activos.facultad') }}";

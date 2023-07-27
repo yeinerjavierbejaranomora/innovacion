@@ -293,9 +293,19 @@
 
     <script>
         traerProgramas();
-        graficoEstudiantes();
 
         var totalSeleccionado
+
+
+        function invocarGraficos(){
+            graficoEstudiantes();
+            grafioSelloFinanciero();
+            graficoRetencion();
+            graficoSelloPrimerIngreso();
+            graficoTiposDeEstudiantes();
+            graficoOperadores();
+        }
+
 
         /**
          * Método que cuenta la cantidad de programas de la facultad correspondiente
@@ -369,7 +379,7 @@
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
-                graficosporPrograma(programasSeleccionados);
+                graficosporPrograma();
             } else {
                 programasSeleccionados = [];
                 /**
@@ -378,7 +388,7 @@
             }
         });
 
-        function graficosporPrograma(programas) {
+        function graficosporPrograma() {
             if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                 chartTipoEstudiante || chartOperadores) {
                 destruirGraficos();
@@ -386,12 +396,7 @@
                 $(".programastitulos").show();
                 $("#ocultarGraficoProgramas").hide();
 
-                graficoEstudiantesPorPrograma();
-                grafioSelloFinancieroPorPrograma();
-                graficoRetencionPorPrograma();
-                graficoSelloPrimerIngresoPorPrograma();
-                graficoTiposDeEstudiantesPrograma();
-                graficoOperadoresPrograma();
+                invocarGraficos();
             }
         }
 

@@ -4,16 +4,22 @@
 @auth
     @switch(auth()->user()->id_rol)
         @case (1)
+        @include('menus.menu_Decano')
             @break;     
         @case (2)
+        @include('menus.menu_Director')
             @break;
         @case (3)
+        @include('menus.menu_Coordinador')
             @break;  
         @case (4)
+        @include('menus.menu_Lider')
             @break;  
         @case (5)
+        @include('menus.menu_Docente')
             @break;  
         @case (6)
+        @include('menus.menu_Estudiante')
             @break;  
         @case (9)
             @include('menus.menu_admin')
@@ -25,7 +31,6 @@
             @include('menus.menu_Vicerrector')  
             @break;         
     @endswitch
-
 @endauth
 
 <!--  creamos el contenido principal body -->

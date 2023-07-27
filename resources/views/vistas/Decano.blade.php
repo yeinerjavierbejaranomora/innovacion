@@ -114,7 +114,7 @@
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h3>A continuación podrás visualizar los datos de tus Facultades: {{$facultades->nombre}}
+                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades->nombre }}
                 </h3>
             </div>
             <br>

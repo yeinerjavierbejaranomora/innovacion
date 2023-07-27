@@ -339,6 +339,7 @@
 
             llamadoFunciones();
             facultades();
+            Contador();
             /**
              * Llamado a todos los scripts
              */
@@ -444,6 +445,11 @@
                 }
             });
 
+            var totalSeleccionado;
+            function Contador() {
+                totalSeleccionado = $('#facultades input[type="checkbox"]').length;   
+                console.log(totalSeleccionado);   
+            }
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -464,11 +470,9 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            if($('#facultades input[type="checkbox"]:checked').length < 5)
-                            {
+                            if ($('#facultades input[type="checkbox"]:checked').length < 5) {
                                 datos = jQuery.parseJSON(datos);
-                            }
-                            else{
+                            } else {
                                 datos = datos;
                             }
                             console.log(datos);
@@ -477,8 +481,7 @@
                             });
                         }
                     })
-                }
-                else {
+                } else {
                     $('#programas').empty();
                 }
             });

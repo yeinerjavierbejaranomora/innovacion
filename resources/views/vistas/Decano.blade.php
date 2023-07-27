@@ -115,7 +115,7 @@
             <br>
 
             <div class="text-center" id="mensaje">
-            <?php dd($facultades->nombre)?>
+            <?php dd($facultades->name)?>
                 <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades}}
                 </h3>
 

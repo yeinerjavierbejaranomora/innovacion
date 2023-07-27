@@ -448,6 +448,7 @@
             var totalSeleccionado;
             function Contador() {
                 totalSeleccionado = $('#facultades input[type="checkbox"]').length;   
+                totalSeleccionado -= 1;
                 console.log(totalSeleccionado);   
             }
 

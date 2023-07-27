@@ -287,7 +287,7 @@ class UserController extends Controller
     {
         //dd($request->all());
         $id = decrypt($id);
-        $idBanner = $request->id_banner;
+        $id_banner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;
         $email = $request->email;
@@ -329,7 +329,7 @@ class UserController extends Controller
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
-                'id_banner' => $idBanner,
+                'id_banner' => $id_banner,
                 'documento' => $documento,
                 'nombre' => $nombre,
                 'email' => $email,

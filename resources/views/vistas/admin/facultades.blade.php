@@ -363,7 +363,6 @@
          * Controlador botón generarReporte
          */
         var programasSeleccionados = [];
-        console.log(programasSeleccionados);
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
@@ -411,13 +410,15 @@
             var data;
             var url;
             console.log(programasSeleccionados);
-            if (programasSeleccionados.length > 0) {
-                url = "{{ route('estudiantes.activos.programa') }}";
-                data = {
-                    programa: programasSeleccionados,
+            if (programasSeleccionados.length > NULL) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
                 }
             } else {
-                url ="{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.activos.facultad') }}";
                 data.append('idfacultad[]', "<?= $nombre ?>");
             }
             $.ajax({
@@ -426,7 +427,7 @@
                 },
                 type: 'post',
                 url: url,
-                data:data,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
                     var labels = data.data.map(function(elemento) {

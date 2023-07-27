@@ -2041,7 +2041,7 @@
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('operadoresF}.facultad.estudiantes') }}";
+                        var url = "{{ route('operadores.facultad.estudiantes') }}";
                         var data = {
                             idfacultad: facultadesSeleccionadas
                         }

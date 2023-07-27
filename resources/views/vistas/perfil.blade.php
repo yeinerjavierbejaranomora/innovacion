@@ -17,9 +17,9 @@
         @case (9)
             @include('menus.menu_admin')
             break;  
-        @case 19
+        @case (19)
             @include('menus.menu_rector') 
-        @case 20
+        @case (20)
             @include('menus.menu_Vicerrector')           
     @endswitch
 

@@ -79,7 +79,6 @@ class UserController extends Controller
         auth()->user()->nombre_rol = $nombre_rol;
 
         if (!empty($user->id_facultad)) {
-
             $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
         } else {
             $facultad = DB::table('facultad')->get();
@@ -96,7 +95,7 @@ class UserController extends Controller
 
         if ($nombre_rol === 'Decano') {
             $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre')->get();
-            return view('vistas.Decano', ['facultades' => $facultades]);
+            return view('vistas.Decano', ['facultades' => $facultades])->with('datos', $datos);
         }
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);

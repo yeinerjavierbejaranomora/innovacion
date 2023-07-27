@@ -115,10 +115,10 @@
             <br>
 
             <div class="text-center" id="mensaje">
-            @foreach($facultades as $facultad)
-                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultad->nombre}}
+            <?php dd($facultades)?>
+                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultad}}
                 </h3>
-            @endforeach
+
             </div>
             <br>
 

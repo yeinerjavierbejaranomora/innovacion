@@ -398,6 +398,16 @@
             }
 
             /**
+             * Método que cuenta la cantidad de checkbox de facultades
+             */
+            var totalSeleccionado;
+            function Contador() {
+                totalSeleccionado = $('#facultades input[type="checkbox"]').length;   
+                totalSeleccionado -= 1;
+                console.log(totalSeleccionado);   
+            }
+
+            /**
              * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 
              * o en caso contrario, muestra las facultades y limpia la página de la data anterior
              * */
@@ -445,12 +455,7 @@
                 }
             });
 
-            var totalSeleccionado;
-            function Contador() {
-                totalSeleccionado = $('#facultades input[type="checkbox"]').length;   
-                totalSeleccionado -= 1;
-                console.log(totalSeleccionado);   
-            }
+           
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -471,7 +476,7 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            if ($('#facultades input[type="checkbox"]:checked').length < 5) {
+                            if ($('#facultades input[type="checkbox"]:checked').length < totalSeleccionado) {
                                 datos = jQuery.parseJSON(datos);
                             } else {
                                 datos = datos;

@@ -418,7 +418,7 @@
                     }
                 }
             } else {
-                var facultad;
+                var facultad = [];
                 facultad.push("<?= $nombre ?>");
                 console.log(facultad);
                 url = "{{ route('estudiantes.activos.facultad') }}";

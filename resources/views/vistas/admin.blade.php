@@ -430,6 +430,7 @@
                         } else {
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            programasSeleccionados = [];
                             facultadesSeleccionadas = [];
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());

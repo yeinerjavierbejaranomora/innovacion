@@ -179,7 +179,7 @@
                                                 <p class="mb-0">Id Banner</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"> <input type="text"
+                                                <p class="text-muted mb-0"> <input type="number"
                                                         class="form-control" name="id_banner"
                                                         value="{{ $datos['user']->id_banner }}"
                                                         {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>

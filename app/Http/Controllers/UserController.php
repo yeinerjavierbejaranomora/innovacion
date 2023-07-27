@@ -169,15 +169,12 @@ class UserController extends Controller
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id_llegada)
     {
-        // *Condición para descencriptar el id del usuario
         $id = base64_decode(urldecode($id_llegada));
 
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
 
-        //return $id;
-        // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 
         // *Condicional para determinar si el usuario cuenta con una facultad
@@ -291,7 +288,6 @@ class UserController extends Controller
         $documento = $request->documento;
         $nombre = $request->nombre;
         $email = $request->email;
-        $idBanner = $request->id_banner;
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
         $programa = $request->programa;

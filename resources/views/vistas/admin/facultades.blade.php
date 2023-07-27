@@ -1063,6 +1063,7 @@
         function graficoOperadoresTotal() {
             var data;
             var url;
+            console.log(programasSeleccionados);
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
                     url = "{{ route('operadores.programa.estudiantes') }}";

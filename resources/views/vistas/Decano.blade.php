@@ -114,10 +114,11 @@
             </div>
             <br>
 
-            <?php var_dump($facultades->name);?>
             <div class="text-center" id="mensaje">
-                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades}}
+            @foreach($facultades as $facultad)
+                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultad->nombre}}
                 </h3>
+            @endforeach
             </div>
             <br>
 

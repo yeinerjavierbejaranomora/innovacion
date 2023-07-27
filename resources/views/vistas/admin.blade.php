@@ -471,7 +471,7 @@
                             else{
                                 datos = datos;
                             }
-                            
+                            console.log(datos);
                             $.each(datos, function(key, value) {
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });

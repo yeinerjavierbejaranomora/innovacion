@@ -464,9 +464,14 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            console.log(datos);
-                            datos = jQuery.parseJSON(datos);
-                            console.log(datos);
+                            if($('#facultades input[type="checkbox"]:checked').length < 4)
+                            {
+                                datos = jQuery.parseJSON(datos);
+                            }
+                            else{
+                                datos = datos;
+                            }
+                            
                             $.each(datos, function(key, value) {
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });
@@ -1384,7 +1389,6 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
@@ -1511,7 +1515,6 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
-                    console.log('entra');
 
                     $(".facultadtitulos").hide();
                     $(".titulos").hide();
@@ -1994,7 +1997,6 @@
                 e.preventDefault();
                 if (chartOperadoresTotal) {
                     chartOperadoresTotal.destroy();
-                    console.log('destruido operador');
                 }
                 graficoOperadoresTotal();
             });

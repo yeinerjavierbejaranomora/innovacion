@@ -500,13 +500,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
+                    url = "{{ route('estudiantes.sello.programa') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.sello.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
@@ -593,13 +593,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
+                    url = "{{ route('estudiantes.retencion.programa') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.retencion.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
@@ -687,13 +687,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
+                    url = "{{ route('estudiantes.primerIngreso.programa') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.primerIngreso.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
@@ -783,13 +783,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
+                    url = "{{ route('estudiantes.tipo.programa') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.tipo.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
@@ -876,13 +876,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
+                    url = "{{ route('estudiantes.operador.programa') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
+                url = "{{ route('estudiantes.operador.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }

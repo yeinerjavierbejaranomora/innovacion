@@ -124,7 +124,9 @@
                             <h5><strong>Seleccionar Programas</strong></h5>
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
+                            <div name="programas" id="programas">
+                            <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                            </div>
                         </div>
                         <div class="card-footer text-center">
                             <button class="btn" type="button" id="generarReporte">

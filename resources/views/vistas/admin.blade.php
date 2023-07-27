@@ -2035,13 +2035,13 @@
 
             function graficoOperadoresTotal() {
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('operadoresPrograma.estudiantes') }}";
+                    var url = "{{ route('operadores.programa.estudiantes') }}";
                     var data = {
                         programa: programasSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('operadoresFacultad.estudiantes') }}";
+                        var url = "{{ route('operadoresF}.facultad.estudiantes') }}";
                         var data = {
                             idfacultad: facultadesSeleccionadas
                         }

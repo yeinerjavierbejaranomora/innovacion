@@ -1063,13 +1063,13 @@
             var url;
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
-                    url = "{{ route('operadoresPrograma.estudiantes') }}";
+                    url = "{{ route('operadores.programa.estudiantes') }}";
                     data = {
                         programa: programasSeleccionados,
                     }
                 }
             } else {
-                url = "{{ route('operadoresFacultad.estudiantes') }}";
+                url = "{{ route('operadores.facultad.estudiantes') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }

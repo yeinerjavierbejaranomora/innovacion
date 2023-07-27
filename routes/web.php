@@ -115,11 +115,11 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/operadoresPrograma', 'operadoresPrograma')->middleware('auth')->name('estudiantes.operador.programa');
 
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Facultad*/
-    Route::post('/home/operadoresFacultadTotal', 'operadoresFacultadTotal')->middleware('auth')->name('operadoresFacultad.estudiantes');
+    Route::post('/home/operadoresFacultadTotal', 'operadoresFacultadTotal')->middleware('auth')->name('operadores.facultad.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
     Route::post('/home/operadoresTotal', 'operadoresTotal')->middleware('auth')->name('operadoresTotal.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
-    Route::post('/home/operadoresProgramaTotal', 'operadoresProgramaTotal')->middleware('auth')->name('operadoresPrograma.estudiantes');
+    Route::post('/home/operadoresProgramaTotal', 'operadoresProgramaTotal')->middleware('auth')->name('operadores.programa.estudiantes');
 
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos*/
     Route::post('/home/estudiantesProgramasTotal' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');

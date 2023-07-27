@@ -295,9 +295,45 @@
         </div>
 
     </div>
+
+    <script>
+        function traerProgramas() {
+            var formData = new FormData();
+            formData =['idfacultad[]', "<?=$nombre?>"];
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('traer.programas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    try {
+                        datos = jQuery.parseJSON(datos);
+                    } catch {
+                        datos = datos;
+                    }
+                    console.log(datos);
+                    $.each(datos, function(key, value) {
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                    });
+                }
+            })
+        }
+    </script>
+
     <!-- incluimos el footer -->
     @include('layout.footer')
 </div>
+
+
+
+
+
+
 
 <!-- <script>
         /** Función para mostrar el Nav solo al dar click en el botón 

@@ -269,7 +269,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <hr>
+                                        <hr {{ auth()->user()->id_rol != 9 ? 'style=display:none;' : '' }}>
                                         @if ($facultades != '' || ($facultades = null))
                                             <div class="row" {{ auth()->user()->id_rol != 9 ? 'style=display:none;' : '' }}>
                                                 <div class="col-sm-3 text-dark">

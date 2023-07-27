@@ -293,7 +293,7 @@
 
     <script>
         traerProgramas();
-
+        invocarGraficos();
         var totalSeleccionado
 
 

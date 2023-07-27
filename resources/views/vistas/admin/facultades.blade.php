@@ -404,6 +404,7 @@
         /** 
          * Método que muestra los estudiantes activos e inactivos de algún programa en específico
          */
+        var chartEstudiantes;
         function graficoEstudiantesPorPrograma(programas) {
             $.ajax({
                 headers: {
@@ -479,6 +480,7 @@
         /**
          * Método que genera el gráfico de sello financiero de algún programa en específico
          */
+        var chartEstudiantesActivos;
         function grafioSelloFinancieroPorPrograma(programas) {
             $.ajax({
                 headers: {
@@ -558,6 +560,7 @@
         /**
          * Método que genera el gráfico ASP de algún programa en específico
          */
+        var chartRetencion;
         function graficoRetencionPorPrograma(programas) {
             $.ajax({
                 headers: {
@@ -637,6 +640,7 @@
         /**
          * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
          */
+        var chartSelloPrimerIngreso;
         function graficoSelloPrimerIngresoPorPrograma(programas) {
             $.ajax({
                 headers: {
@@ -719,6 +723,7 @@
         /**
          * Método que genera el gráfico con los tipos de estudiante por programa
          */
+        var chartTipoEstudiante;
         function graficoTiposDeEstudiantesPrograma(programas) {
             $.ajax({
                 headers: {
@@ -798,6 +803,7 @@
         /**
          * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
          */
+        var chartOperadores;
         function graficoOperadoresPrograma(programas) {
             $.ajax({
                 headers: {

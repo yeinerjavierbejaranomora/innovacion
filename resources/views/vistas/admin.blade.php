@@ -1993,6 +1993,7 @@
                 e.preventDefault();
                 if (chartOperadoresTotal) {
                     chartOperadoresTotal.destroy();
+                    console.log('destruido operador');
                 }
                 graficoOperadoresTotal();
             });

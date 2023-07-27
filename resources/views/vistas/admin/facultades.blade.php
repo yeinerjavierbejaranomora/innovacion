@@ -310,8 +310,8 @@
         }
 
         /**
-             * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
-             */
+         * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
+         */
         function ocultarDivs() {
             $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
         }
@@ -374,6 +374,15 @@
             }
         });
 
+        function alerta() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes seleccionar al menos un programa',
+                confirmButtonColor: '#dfc14e',
+            })
+        }
+
         /**
          * Controlador botón generarReporte
          */
@@ -393,9 +402,9 @@
                 graficosporPrograma();
             } else {
                 programasSeleccionados = [];
-                /**
-                 * Aquí va la alerta
-                 */
+                destruirGraficos();
+                ocultarDivs();
+                alerta();
             }
         });
 

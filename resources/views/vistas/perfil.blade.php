@@ -19,8 +19,10 @@
             break;  
         @case (19)
             @include('menus.menu_rector') 
+            break;
         @case (20)
-            @include('menus.menu_Vicerrector')           
+            @include('menus.menu_Vicerrector')  
+            break;         
     @endswitch
 
 <!--  creamos el contenido principal body -->

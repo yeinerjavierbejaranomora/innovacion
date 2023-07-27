@@ -379,20 +379,20 @@
         });
 
         function graficosporPrograma(programas) {
-            // if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-            //     chartTipoEstudiante || chartOperadores) {
-            // destruirGraficos();
-            $(".titulos").hide();
-            $(".programastitulos").show();
-            $("#ocultarGraficoProgramas").hide();
+            if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+                chartTipoEstudiante || chartOperadores) {
+                destruirGraficos();
+                $(".titulosfacultad").hide();
+                $(".programastitulos").show();
+                $("#ocultarGraficoProgramas").hide();
 
-            // graficoEstudiantesPorPrograma(programas);
-            // grafioSelloFinancieroPorPrograma(programas);
-            // graficoRetencionPorPrograma(programas);
-            // graficoSelloPrimerIngresoPorPrograma(programas);
-            // graficoTiposDeEstudiantesPrograma(programas);
-            // graficoOperadoresPrograma(programas);
-            // }
+                graficoEstudiantesPorPrograma();
+                grafioSelloFinancieroPorPrograma();
+                graficoRetencionPorPrograma();
+                graficoSelloPrimerIngresoPorPrograma();
+                graficoTiposDeEstudiantesPrograma();
+                graficoOperadoresPrograma();
+            }
         }
 
         /** 
@@ -400,7 +400,6 @@
          */
         var chartEstudiantes;
 
-        console.log(programasSeleccionados);
         function graficoEstudiantes() {
             var data;
             var url;
@@ -492,16 +491,28 @@
         var chartEstudiantesActivos;
 
         function grafioSelloFinanciero() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.sello.programa') }}",
-                data: {
-                    programa: programas
-                },
-
+                url: url,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
                     var labels = data.data.map(function(elemento) {
@@ -573,15 +584,28 @@
         var chartRetencion;
 
         function graficoRetencion() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.retencion.programa') }}",
-                data: {
-                    programa: programas
-                },
+                url: url,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
 
@@ -654,16 +678,28 @@
         var chartSelloPrimerIngreso;
 
         function graficoSelloPrimerIngreso() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.primerIngreso.programa') }}",
-                data: {
-                    programa: programas
-                },
-
+                url: url,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
 
@@ -738,16 +774,28 @@
         var chartTipoEstudiante;
 
         function graficoTiposDeEstudiantes() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.tipo.programa') }}",
-                data: {
-                    programa: programas
-                },
-
+                url: url,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
 
@@ -819,15 +867,28 @@
         var chartOperadores;
 
         function graficoOperadores() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.operador.programa') }}",
-                data: {
-                    programa: programas
-                },
+                url: url,
+                data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
 

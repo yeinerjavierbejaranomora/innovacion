@@ -125,7 +125,7 @@
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas">
-                            <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
+                                <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                             </div>
                         </div>
                         <div class="card-footer text-center">
@@ -303,6 +303,15 @@
         /**
          * Método que trae los programas correspondientes a la facultad 
          */
+
+        var totalSeleccionado
+
+        function Contador() {
+            totalSeleccionado = $('#programas input[type="checkbox"]').length;
+            totalSeleccionado -= 1;
+        }
+
+
         function traerProgramas() {
             var formData = new FormData();
             formData.append('idfacultad[]', "<?= $nombre ?>");
@@ -335,12 +344,34 @@
          * Controlador del botón mostrarTodos
          */
         $('body').on('change', '#mostrarTodos', function() {
-                if ($('#mostrarTodos').prop('checked')) {
-                    location.reload();
-                } else {
-                    $('.todosProgramas').removeClass('hidden');
-                }
-            });
+            if ($('#mostrarTodos').prop('checked')) {
+                location.reload();
+            } else {
+                $('.todosProgramas').removeClass('hidden');
+            }
+        });
+
+        /**
+         * Controlador botón generarReporte
+         */
+        var programasSeleccionados = [];
+        $('#generarReporte').on('click', function(e) {
+            e.preventDefault();
+            if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                console.log(programasSeleccionados);
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                // graficosporPrograma(programasSeleccionados);
+            } else {
+                programasSeleccionados = [];
+                /**
+                 * Aquí va la alerta
+                 */
+            }
+        });
     </script>
 
     <!-- incluimos el footer -->

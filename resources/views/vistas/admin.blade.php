@@ -371,6 +371,12 @@
 
             }
 
+            var totalSeleccionado
+
+            function Contador() {
+                totalSeleccionado = $('#programas input[type="checkbox"]').length;
+                totalSeleccionado -= 1;
+            }
             /**
              * Método para destruir todos los gráficos
              */
@@ -425,7 +431,7 @@
                 } else {
 
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == 5) {
+                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             informacionGeneral();
                         } else {
                             $('#mensaje').hide();
@@ -444,7 +450,7 @@
                 }
             });
 
-           
+
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -466,10 +472,9 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            try{
+                            try {
                                 datos = jQuery.parseJSON(datos);
-                            }
-                            catch{
+                            } catch {
                                 datos = datos;
                             }
                             console.log(datos);

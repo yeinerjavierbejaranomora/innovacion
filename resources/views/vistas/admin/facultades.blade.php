@@ -315,9 +315,9 @@
         /**
          * Método que trae los programas correspondientes a la facultad 
          */
-        var formData = new FormData();
+        
         function traerProgramas() {
-            
+            var formData = new FormData();
             formData.append('idfacultad[]', "<?= $nombre ?>");
             $.ajax({
                 headers: {

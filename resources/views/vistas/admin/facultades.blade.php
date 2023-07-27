@@ -1071,7 +1071,7 @@
             } else {
                 url = "{{ route('operadoresFacultad.estudiantes') }}";
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
+                    idfacultad: ["<?= $nombre ?>"],
                 }
             }
             $.ajax({

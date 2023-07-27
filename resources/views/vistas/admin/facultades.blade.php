@@ -419,10 +419,9 @@
                     }
                 }
             } else {
-                var formData = new FormData();
                 url = "{{ route('estudiantes.activos.facultad') }}";
                 data = {
-                    idfacultad: "<?= $nombre ?>";
+                    idfacultad: "<?= $nombre ?>"
                 }
             }
             $.ajax({

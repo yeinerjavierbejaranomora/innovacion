@@ -300,7 +300,7 @@
 
     <script>
         traerProgramas();
-
+        graficoEstudiantes();
 
         var totalSeleccionado
 

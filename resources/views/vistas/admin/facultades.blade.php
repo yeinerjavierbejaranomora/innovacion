@@ -301,8 +301,7 @@
 
         function traerProgramas() {
             var formData = new FormData();
-            formData = ['<?= $nombre ?>']
-
+            formData.append('idfacultad[]', <?= $nombre ?>);
             console.log(formData);
             $.ajax({
                 headers: {

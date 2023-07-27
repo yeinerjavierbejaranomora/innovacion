@@ -423,7 +423,7 @@
                 formData.append('idfacultad[]', "<?= $nombre ?>");
                 url = "{{ route('estudiantes.activos.facultad') }}";
                 data = {
-                    idfacultad: formData
+                    idfacultad: ('idfacultad[]', "<?= $nombre ?>")
                 }
             }
             $.ajax({

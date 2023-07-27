@@ -1,7 +1,7 @@
 <!-- en esta vista incluiremos todos los datos relacionados con el usuario -->
 
 @include('layout.header')
-    @switch
+    @switch(auth()->user()->id_rol)
         @case 1
             break;     
         @case 2

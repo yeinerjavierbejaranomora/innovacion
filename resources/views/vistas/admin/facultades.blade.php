@@ -387,7 +387,7 @@
         function graficosporPrograma(programas) {
             // if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
             //     chartTipoEstudiante || chartOperadores) {
-                destruirGraficos();
+                // destruirGraficos();
                 $(".titulos").hide();
                 $(".programastitulos").show();
                 $("#ocultarGraficoProgramas").hide();

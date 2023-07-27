@@ -2,7 +2,7 @@
 @include('layout.header')
 
 <!-- incluimos el menu -->
-@include('menus.menu_rector')
+@include('menus.menu_Rector')
 <!--  creamos el contenido principal body -->
 <style>
     #facultades {

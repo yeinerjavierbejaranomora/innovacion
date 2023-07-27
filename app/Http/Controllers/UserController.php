@@ -282,11 +282,9 @@ class UserController extends Controller
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
-        //dd($request->all());
         $id = decrypt($id);
         $id_banner = $request->id_banner;
         $documento = $request->documento;
-        dd($documento);
         $nombre = $request->nombre;
         $email = $request->email;
         $idRol = $request->id_rol;

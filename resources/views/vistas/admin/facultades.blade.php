@@ -952,6 +952,7 @@
         /**
          * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
          */
+        var chartProgramas;
         function graficoProgramasFacultad() {
             $.ajax({
                 headers: {

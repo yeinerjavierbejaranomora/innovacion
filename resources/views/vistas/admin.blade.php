@@ -455,6 +455,7 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
+                    console.log(formData);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

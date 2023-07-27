@@ -395,7 +395,6 @@
                 }
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                 programasSeleccionados = [];
-                console.log(programasSeleccionados);
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
@@ -908,7 +907,7 @@
                     idfacultad: ["<?= $nombre ?>"]
                 }
             }
-            console.log(data);
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1069,14 +1068,13 @@
                     programa: programasSeleccionados,
                 }
             } else {
-                console.log('entra');
+        
                 url = "{{ route('operadores.facultad.estudiantes') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
             }
 
-            console.log(data);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1086,7 +1084,7 @@
                 data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
+
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;
                     });

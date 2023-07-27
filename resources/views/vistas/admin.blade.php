@@ -407,8 +407,7 @@
                 } else {
                     $('.ocultarFacultades').show();
                     destruirGraficos();
-                    ocultarDivs()
-                    Contador();
+                    ocultarDivs();
                 }
             });
 

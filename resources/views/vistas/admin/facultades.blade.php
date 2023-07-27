@@ -410,7 +410,6 @@
         function graficoEstudiantes() {
             var data;
             var url;
-            console.log(programasSeleccionados);
             if (programasSeleccionados != undefined) {
                 if (programasSeleccionados.length > 0) {
                     url = "{{ route('estudiantes.activos.programa') }}";
@@ -419,7 +418,9 @@
                     }
                 }
             } else {
-                var facultad = ('idfacultad[]', "<?= $nombre ?>");
+                var facultad;
+                facultad.push("<?= $nombre ?>");
+                console.log(facultad);
                 url = "{{ route('estudiantes.activos.facultad') }}";
                 data = {
                     idfacultad: facultad

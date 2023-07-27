@@ -464,7 +464,7 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            if($('#facultades input[type="checkbox"]:checked').length < 4)
+                            if($('#facultades input[type="checkbox"]:checked').length < 5)
                             {
                                 datos = jQuery.parseJSON(datos);
                             }

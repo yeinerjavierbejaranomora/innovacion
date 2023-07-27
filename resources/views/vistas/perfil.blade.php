@@ -1,8 +1,28 @@
 <!-- en esta vista incluiremos todos los datos relacionados con el usuario -->
 
 @include('layout.header')
+    @switch
+        @case 1
+            break;     
+        @case 2
+            break;
+        @case 3
+            break;  
+        @case 4
+            break;  
+        @case 5
+            break;  
+        @case 6
+            break;  
+        @case 9
+            @include('menus.menu_admin')
+            break;  
+        @case 19
+            @include('menus.menu_rector') 
+        @case 20
+            @include('menus.menu_Vicerrector')           
+    @endswitch
 
-@include('menus.menu_admin')
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->

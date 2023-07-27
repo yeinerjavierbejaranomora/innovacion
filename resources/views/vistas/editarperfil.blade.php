@@ -236,8 +236,7 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="nombre"
-                                                        value="{{ $datos['user']->nombre }}"
-                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
+                                                        value="{{ $datos['user']->nombre }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -276,7 +275,7 @@
                                                 <div class="col-sm-3 text-dark">
                                                     <p class="mb-0">Facultad</p>
                                                 </div>
-                                                <select class="form-select" name="facultades" id="facultades">
+                                                <select class="form-select" name="facultades" id="facultades" {{ auth()->user()->id_rol != 9 ? 'style="display:none;"' : '' }}>
                                                     @if ($datos['user']->id_facultad == '')
                                                         <option value="" selected>Seleccione una facultad</option>
                                                         @foreach ($facultades as $facultad)
@@ -284,7 +283,7 @@
                                                                 {{ $facultad->nombre }}</option>
                                                         @endforeach
                                                     @else
-                                                        <option value="" selected>Seleccione una facultad</option>
+                                                        <option value="" selected >Seleccione una facultad</option>
                                                         @foreach ($facultades as $facultad)
                                                             <option
                                                                 {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }}

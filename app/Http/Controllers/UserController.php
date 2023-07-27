@@ -94,6 +94,10 @@ class UserController extends Controller
             $nombre_rol = strtolower($nombre_rol);
         }
 
+        if ($nombre_rol === 'Decano') {
+            $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.facultad')->select('f.nombre')->get();
+            return view('vistas.Decano', ['facultades' => $facultades]);
+        }
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }

@@ -385,7 +385,7 @@
         });
 
         function graficosporPrograma(programas) {
-            if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+            if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                 chartTipoEstudiante || chartOperadores) {
                 destruirGraficos();
                 $(".titulos").hide();

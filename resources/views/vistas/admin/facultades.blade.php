@@ -297,7 +297,9 @@
         graficoProgramasFacultad();
         var totalSeleccionado
 
-
+        /**
+         * Método que trae los gráficos de la vista
+         */
         function invocarGraficos() {
             graficoEstudiantes();
             grafioSelloFinanciero();
@@ -307,6 +309,12 @@
             graficoOperadores();
         }
 
+        /**
+             * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
+             */
+        function ocultarDivs() {
+            $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+        }
 
         /**
          * Método que cuenta la cantidad de programas de la facultad correspondiente
@@ -361,6 +369,8 @@
                 location.reload();
             } else {
                 $('.todosProgramas').removeClass('hidden');
+                destruirGraficos();
+                ocultarDivs();
             }
         });
 

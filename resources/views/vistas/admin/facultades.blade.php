@@ -301,7 +301,7 @@
 
         function traerProgramas() {
             var formData = new FormData();
-            formData = '<?= $nombre ?>'
+            formData = ['<?= $nombre ?>']
 
             console.log(formData);
             $.ajax({

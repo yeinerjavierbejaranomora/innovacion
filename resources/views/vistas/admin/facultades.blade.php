@@ -1036,6 +1036,160 @@
                 }
             });
         }
+
+        $('#botonModalOperador').on("click", function(e) {
+            e.preventDefault();
+            if (chartOperadoresTotal) {
+                chartOperadoresTotal.destroy();
+            }
+            graficoOperadoresTotal();
+        });
+
+        $('#botonModalProgramas').on("click", function(e) {
+            e.preventDefault();
+            if (chartProgramasTotal) {
+                chartProgramasTotal.destroy();
+            }
+            graficoProgramasTotal();
+        });
+
+        /**
+         * Método que trae todos los operadores de la Facultad
+         */
+        var chartOperadoresTotal;
+
+        function graficoOperadoresTotal() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('operadoresPrograma.estudiantes') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('operadoresFacultad.estudiantes') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.operador;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico de barras
+                    var ctx = document.getElementById('operadoresTotal').getContext('2d');
+                    chartOperadoresTotal = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'IBERO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Operadores ordenados de forma descendente',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                }
+            });
+
+        }
+
+        /**
+         * Método que trae todos los programas de la Facultad
+         */
+        var chartProgramasTotal;
+
+        function graficoProgramasTotal() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('programasTotal.estudiantes') }}",
+                data: {
+                    idfacultad: ["<?= $nombre ?>"]
+                },
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.codprograma;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('programasTotal').getContext('2d');
+                    chartProgramasTotal = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Programas',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                }
+            });
+        }
     </script>
 
     <!-- incluimos el footer -->

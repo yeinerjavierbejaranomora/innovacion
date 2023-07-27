@@ -139,8 +139,7 @@
                 <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
+                            <h5 class="facultadtitulos"><strong>Estudiantes {{$nombre}}</strong></h5>
                             <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
                         </div>
                         <div class="card-body">
@@ -233,7 +232,7 @@
             <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos {{$nombre}}</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioProgramas" class="text-center vacio" style="display: none;">

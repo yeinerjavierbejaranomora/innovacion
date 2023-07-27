@@ -125,7 +125,7 @@
                         </div>
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas">
-                            <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                            <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                             </div>
                         </div>
                         <div class="card-footer text-center">
@@ -323,7 +323,7 @@
                     }
                     console.log(datos);
                     $.each(datos, function(key, value) {
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                        $('#programas').append(`<label class="hidden"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                     });
                 }
             })

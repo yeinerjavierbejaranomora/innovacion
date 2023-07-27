@@ -902,7 +902,7 @@
                     }
                 }
             } else {
-                console.log('entra');
+                
                 url = "{{ route('estudiantes.operador.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
@@ -1071,11 +1071,13 @@
                     }
                 }
             } else {
+                console.log('entra');
                 url = "{{ route('operadores.facultad.estudiantes') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
             }
+            
             console.log(data);
             $.ajax({
                 headers: {

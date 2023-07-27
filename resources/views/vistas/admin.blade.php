@@ -445,10 +445,25 @@
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
-                        location.reload();
+                        /** Alerta */
+                        programasSeleccionados = [];
+                        facultadesSeleccionadas = [];
+                        destruirGraficos();
+                        ocultarDivs();
+                        alerta();
                     }
                 }
             });
+
+            function alerta() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos una facultad',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
+
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

@@ -1,6 +1,7 @@
 <!-- en esta vista incluiremos todos los datos relacionados con el usuario -->
-
 @include('layout.header')
+
+@auth
     @switch(auth()->user()->id_rol)
         @case (1)
             break;     
@@ -24,6 +25,8 @@
             @include('menus.menu_Vicerrector')  
             break;         
     @endswitch
+
+@endauth
 
 <!--  creamos el contenido principal body -->
 

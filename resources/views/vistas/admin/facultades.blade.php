@@ -902,7 +902,7 @@
                     }
                 }
             } else {
-                
+
                 url = "{{ route('estudiantes.operador.facultad') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
@@ -1063,20 +1063,19 @@
         function graficoOperadoresTotal() {
             var data;
             var url;
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('operadores.programa.estudiantes') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
+            if (programasSeleccionados.length > 0) {
+                url = "{{ route('operadores.programa.estudiantes') }}";
+                data = {
+                    programa: programasSeleccionados,
                 }
-            else {
+            } else {
                 console.log('entra');
                 url = "{{ route('operadores.facultad.estudiantes') }}";
                 data = {
                     idfacultad: ["<?= $nombre ?>"]
                 }
             }
-            
+
             console.log(data);
             $.ajax({
                 headers: {

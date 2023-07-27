@@ -1,9 +1,4 @@
-<?php function facultades()
-{
-    $facultades=DB::table('facultad')->get();
-    return $facultades;
-}
-?>
+
 
 <style>
     .textoPequeño{

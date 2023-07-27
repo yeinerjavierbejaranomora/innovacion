@@ -300,7 +300,9 @@
 
     <script>
         traerProgramas();
-
+        /**
+         * Método que trae los programas correspondientes a la facultad 
+         */
         function traerProgramas() {
             var formData = new FormData();
             formData.append('idfacultad[]', "<?= $nombre ?>");
@@ -323,11 +325,22 @@
                     }
                     console.log(datos);
                     $.each(datos, function(key, value) {
-                        $('#programas').append(`<label class="hidden"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                        $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                     });
                 }
             })
         }
+
+        /**
+         * Controlador del botón mostrarTodos
+         */
+        $('body').on('change', '#mostrarTodos', function() {
+                if ($('#mostrarTodos').prop('checked')) {
+                    location.reload();
+                } else {
+                    $('.todosProgramas').removeClass('hidden');
+                }
+            });
     </script>
 
     <!-- incluimos el footer -->

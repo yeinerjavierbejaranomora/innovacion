@@ -406,7 +406,10 @@
          * Método que muestra los estudiantes activos e inactivos de algún programa en específico
          */
         var chartEstudiantes;
+        var facultad = [];
+        facultad.push("<?= $nombre ?>");
 
+        console.log(programasSeleccionados);
         function graficoEstudiantes() {
             var data;
             var url;
@@ -418,9 +421,6 @@
                     }
                 }
             } else {
-                var facultad = [];
-                facultad.push("<?= $nombre ?>");
-                console.log(facultad);
                 url = "{{ route('estudiantes.activos.facultad') }}";
                 data = {
                     idfacultad: facultad

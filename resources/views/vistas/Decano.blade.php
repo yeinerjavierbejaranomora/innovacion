@@ -114,7 +114,7 @@
             </div>
             <br>
 
-            <?php var_dump($facultades);?>
+            <?php var_dump($facultades["nombre"]);?>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades}}
                 </h3>

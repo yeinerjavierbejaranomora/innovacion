@@ -299,14 +299,12 @@
     <script>
         traerProgramas();
 
-
-        console.log('test');
         function traerProgramas() {
             var formData = new FormData();
-            var data = idfacultad: <?=$nombre?>;
-            console.log(data);
-            die();
-            formData =data;
+            formData = {
+                'idfacultad[]': '<?= $nombre ?>'
+            };
+            console.log(formData);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

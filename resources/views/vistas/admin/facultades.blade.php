@@ -342,6 +342,13 @@
         }
 
         /**
+         * Método para destruir todos los gráficos
+         */
+        function destruirGraficos() {
+            [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+        }
+
+        /**
          * Controlador del botón mostrarTodos
          */
         $('body').on('change', '#mostrarTodos', function() {
@@ -377,36 +384,35 @@
             }
         });
 
-        function graficosporFacultad(facultades) {
+        function graficosporPrograma(programas) {
             if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                 chartTipoEstudiante || chartOperadores) {
                 destruirGraficos();
-                $(".programastitulos").show();
                 $(".titulos").hide();
+                $(".programastitulos").show();
+                $("#ocultarGraficoProgramas").hide();
 
-                graficoEstudiantesPorFacultades(facultades);
-                graficoSelloFinancieroPorFacultad(facultades);
-                graficoRetencionPorFacultad(facultades);
-                graficoSelloPrimerIngresoPorFacultad(facultades);
-                graficoTiposDeEstudiantesFacultad(facultades);
-                graficoOperadoresFacultad(facultades);
-                graficoProgramasFacultad(facultades);
+                graficoEstudiantesPorPrograma(programas);
+                grafioSelloFinancieroPorPrograma(programas);
+                graficoRetencionPorPrograma(programas);
+                graficoSelloPrimerIngresoPorPrograma(programas);
+                graficoTiposDeEstudiantesPrograma(programas);
+                graficoOperadoresPrograma(programas);
             }
         }
 
         /** 
-         * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
+         * Método que muestra los estudiantes activos e inactivos de algún programa en específico
          */
-
-        function graficoEstudiantesPorFacultades(facultades) {
+        function graficoEstudiantesPorPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.activos.facultad') }}",
+                url: "{{ route('estudiantes.activos.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
@@ -457,9 +463,7 @@
                                         }
                                     }
                                 }
-
                             },
-
                         },
                         plugin: [ChartDataLabels]
                     });
@@ -473,17 +477,17 @@
         }
 
         /**
-         * Método que genera el gráfico de sello financiero de alguna facultad en específico
+         * Método que genera el gráfico de sello financiero de algún programa en específico
          */
-        function graficoSelloFinancieroPorFacultad(facultades) {
+        function grafioSelloFinancieroPorPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.sello.facultad') }}",
+                url: "{{ route('estudiantes.sello.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
 
                 success: function(data) {
@@ -552,17 +556,17 @@
         }
 
         /**
-         * Método que genera el gráfico ASP de alguna facultad en específico
+         * Método que genera el gráfico ASP de algún programa en específico
          */
-        function graficoRetencionPorFacultad(facultades) {
+        function graficoRetencionPorPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.retencion.facultad') }}",
+                url: "{{ route('estudiantes.retencion.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
@@ -631,17 +635,17 @@
         }
 
         /**
-         * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
+         * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
          */
-        function graficoSelloPrimerIngresoPorFacultad(facultades) {
+        function graficoSelloPrimerIngresoPorPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.primerIngreso.facultad') }}",
+                url: "{{ route('estudiantes.primerIngreso.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
 
                 success: function(data) {
@@ -713,17 +717,17 @@
         }
 
         /**
-         * Método que genera el gráfico con los tipos de estudiante por facultad
+         * Método que genera el gráfico con los tipos de estudiante por programa
          */
-        function graficoTiposDeEstudiantesFacultad(facultades) {
+        function graficoTiposDeEstudiantesPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.tipo.facultad') }}",
+                url: "{{ route('estudiantes.tipo.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
 
                 success: function(data) {
@@ -794,18 +798,19 @@
         /**
          * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
          */
-        function graficoOperadoresFacultad(facultades) {
+        function graficoOperadoresPrograma(programas) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('estudiantes.operador.facultad') }}",
+                url: "{{ route('estudiantes.operador.programa') }}",
                 data: {
-                    idfacultad: facultades
+                    programa: programas
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
+
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;
                     });
@@ -852,73 +857,6 @@
                         $('#colOperadores').addClass('hidden');
                     } else {
                         $('#colOperadores').removeClass('hidden');
-                    }
-                }
-            });
-        }
-
-        /**
-         * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
-         */
-        function graficoProgramasFacultad(facultades) {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('programas.estudiantes.facultad') }}",
-                data: {
-                    idfacultad: facultades
-                },
-                beforeSend: function() {
-                    // Deshabilitar los checkboxes antes de la solicitud AJAX
-                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                        $('#colProgramas').addClass('hidden');
-                    } else {
-                        $('#colProgramas').removeClass('hidden');
                     }
                 }
             });

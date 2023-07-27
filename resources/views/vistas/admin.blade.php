@@ -476,9 +476,10 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            if ($('#facultades input[type="checkbox"]:checked').length < totalSeleccionado) {
+                            try{
                                 datos = jQuery.parseJSON(datos);
-                            } else {
+                            }
+                            catch{
                                 datos = datos;
                             }
                             console.log(datos);

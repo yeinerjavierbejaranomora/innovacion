@@ -410,7 +410,7 @@
             var data;
             var url;
             console.log(programasSeleccionados);
-            if (programasSeleccionados.length > NULL) {
+            if (programasSeleccionados.length != NULL) {
                 if (programasSeleccionados.length > 0) {
                     url = "{{ route('estudiantes.activos.programa') }}";
                     data = {

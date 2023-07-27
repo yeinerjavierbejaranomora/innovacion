@@ -953,6 +953,7 @@
          * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
          */
         var chartProgramas;
+
         function graficoProgramasFacultad() {
             $.ajax({
                 headers: {
@@ -960,7 +961,9 @@
                 },
                 type: 'post',
                 url: "{{ route('programas.estudiantes.facultad') }}",
-                data: idfacultad: ["<?= $nombre ?>"],
+                data: {
+                    idfacultad: ["<?= $nombre ?>"]
+                },
                 beforeSend: function() {
                     // Deshabilitar los checkboxes antes de la solicitud AJAX
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);

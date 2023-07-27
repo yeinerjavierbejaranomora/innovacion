@@ -297,6 +297,7 @@
     </div>
 
     <script>
+        function traerProgramas();
         function traerProgramas() {
             var formData = new FormData();
             formData =['idfacultad[]', "<?=$nombre?>"];

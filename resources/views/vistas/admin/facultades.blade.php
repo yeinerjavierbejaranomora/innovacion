@@ -297,10 +297,10 @@
     </div>
 
     <script>
-        function traerProgramas();
+        traerProgramas();
         function traerProgramas() {
             var formData = new FormData();
-            formData =('idfacultad[]', "<?=$nombre?>");
+            formData =['idfacultad[]', "<?=$nombre?>"];
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

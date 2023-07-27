@@ -113,8 +113,9 @@
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
             <br>
+            <?php var_dump($facultades);?>
             <div class="text-center" id="mensaje">
-                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades->nombre }}
+                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades}}
                 </h3>
             </div>
             <br>

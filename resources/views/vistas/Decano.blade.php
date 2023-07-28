@@ -135,7 +135,7 @@
                                 <div>
                                     <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
                                     @foreach ($facultades as $facultad)
-                                    <label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad}"> ${facultad}</label><br>
+                                    <label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
                                     @endforeach
                                 </div>
                                 <br>

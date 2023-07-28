@@ -116,7 +116,7 @@
 
             <div class="text-center" id="mensaje">
             <?php var_dump($facultades)?>
-                <h3>A continuación podrás visualizar los datos de tus Facultades: {{ $facultades}}
+                <h3>A continuación podrás visualizar los datos de tus Facultades: 
                 </h3>
 
             </div>

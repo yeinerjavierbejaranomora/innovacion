@@ -1,4 +1,3 @@
-
 @include('layout.header')
 
 @include('menus.menu_Decano')
@@ -115,9 +114,9 @@
             <br>
 
             <div class="text-center" id="mensaje">
-                <h3>A continuación podrás visualizar los datos de tus Facultades: 
+                <h3>A continuación podrás visualizar los datos de tus Facultades:
                     @foreach ($facultades as $facultad)
-                        {{$facultad}}
+                    {{$facultad}}
                     @endforeach
                 </h3>
 
@@ -135,6 +134,9 @@
                             <div class="facultades" name="facultades" id="facultades">
                                 <div>
                                     <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                                    @foreach ($facultades as $facultad)
+                                    <label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad}"> ${facultad}</label><br>
+                                    @endforeach
                                 </div>
                                 <br>
                             </div>
@@ -359,18 +361,8 @@
              * Método que trae las facultades y genera los checkbox en la vista
              */
             function facultades() {
-                datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('registro.facultades') }}",
-                    method: 'post',
-                    success: function(data) {
-                        data.forEach(facultad => {
-                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
-                        });
-                    }
-                });
+
+            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad}"> ${facultad.nombre}</label><br>`);
 
             }
 
@@ -2185,7 +2177,3 @@
     <!-- incluimos el footer -->
     @include('layout.footer')
 </div>
-
-
-
-

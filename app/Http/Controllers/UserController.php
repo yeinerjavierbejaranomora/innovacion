@@ -107,7 +107,7 @@ class UserController extends Controller
 
         if($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider')
         {
-            $idPrograma= trim($user->id_facultad, ';');
+            $idPrograma= trim($user->programa, ';');
             $programas = explode(";", $idPrograma);
             foreach ($programas as $key => $value) {
                     

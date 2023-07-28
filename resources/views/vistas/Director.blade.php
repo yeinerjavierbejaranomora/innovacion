@@ -109,7 +109,7 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
-          
+
                     @foreach ($programas as $programa)
                     {{$programa->programa}}
                     @endforeach
@@ -260,17 +260,17 @@
     </div>
 
     <script>
-        programasUsuario();
+        // programasUsuario();
         invocarGraficos();
 
         var totalSeleccionado
 
         var programasSeleccionados = [];
 
-        function programasUsuario() {
-            programasSeleccionados = <?php echo json_encode($programas->codprogama); ?>;
-            console.log(programasSeleccionados);
-        }
+        // function programasUsuario() {
+        //     programasSeleccionados = <?php echo json_encode($programas->codprogama); ?>;
+        //     console.log(programasSeleccionados);
+        // }
 
 
         /**

@@ -139,7 +139,7 @@
                 <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="facultadtitulos"><strong>Estudiantes {{$nombre}}</strong></h5>
+                            <h5 class="facultadtitulos"><strong>Estudiantes </strong></h5>
                             <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
                         </div>
                         <div class="card-body">
@@ -159,7 +159,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Sello finaciero {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Sello finaciero  </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -173,7 +173,7 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP) {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP)  </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -187,7 +187,7 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos  </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -201,7 +201,7 @@
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes  </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -215,7 +215,7 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Operadores {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Operadores  </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -232,7 +232,7 @@
             <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos {{$nombre}}</strong></h5>
+                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos  </strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioProgramas" class="text-center vacio" style="display: none;">

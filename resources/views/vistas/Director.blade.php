@@ -109,7 +109,7 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
-                    @foreach ($consulta as $programa)
+                    @foreach ($programas as $programa)
                     {{$programa->programa}}
                     @endforeach
                 </h3>
@@ -126,7 +126,7 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
-                                @foreach ($consulta as $programa)
+                                @foreach ($programas as $programa)
                                 <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}"> {{$programa->programa}} </label><br>
                                 @endforeach
                             </div>
@@ -267,7 +267,7 @@
         var programasSeleccionados = [];
 
         function programasUsuario() {
-            programasSeleccionados = <?php echo json_encode($consulta->codprogama); ?>;
+            programasSeleccionados = <?php echo json_encode($programas->codprogama); ?>;
             console.log(programasSeleccionados);
         }
 

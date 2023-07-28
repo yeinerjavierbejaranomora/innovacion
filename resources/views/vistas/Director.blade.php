@@ -269,6 +269,7 @@
 
         function programasUsuario() {
             <?php 
+            $datos = array();
                 foreach ($programa as $programa)
                 {
                     $datos[] = [$programa->codprograma];

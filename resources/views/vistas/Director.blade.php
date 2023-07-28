@@ -127,7 +127,7 @@
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                                 @foreach ($programas as $programa)
-                                    <label class="hidden"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
+                                <label class="hidden"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
                                 @endforeach
                             </div>
                         </div>
@@ -162,7 +162,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Sello finaciero  </strong></h5>
+                        <h5 class="facultadtitulos"><strong>Sello finaciero </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -176,7 +176,7 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP)  </strong></h5>
+                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP) </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -190,7 +190,7 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos  </strong></h5>
+                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -204,7 +204,7 @@
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes  </strong></h5>
+                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -218,7 +218,7 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Operadores  </strong></h5>
+                        <h5 class="facultadtitulos"><strong>Operadores </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
                     </div>
                     <div class="card-body">
@@ -229,22 +229,6 @@
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colProgramas">
-                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
-                    <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos  </strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="estudiantesProgramas"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -272,33 +256,22 @@
             </div>
         </div>
 
-        <!-- Modal Todos los Programas de la Ibero -->
-        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Programas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="programasTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <script>
-        traerProgramas();
+        
         invocarGraficos();
-        graficoProgramasFacultad();
+
         var totalSeleccionado
+
+        var programasSeleccionados = [];
+        function programasUsuario()
+        {
+            var progrs = <?php echo json_encode($codigos); ?>;
+                console.log(programasSeleccionados);
+                graficosporFacultad(programasSeleccionados);
+        }
+
 
         /**
          * Método que trae los gráficos de la vista
@@ -360,7 +333,7 @@
         /**
          * Controlador botón generarReporte
          */
-        var programasSeleccionados = [];
+        
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
@@ -399,21 +372,12 @@
         var chartEstudiantes;
 
         function graficoEstudiantes() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+
+            var url = "{{ route('estudiantes.activos.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -489,20 +453,9 @@
         var chartEstudiantesActivos;
 
         function grafioSelloFinanciero() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.sello.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.sello.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+            var url = "{{ route('estudiantes.sello.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
             $.ajax({
                 headers: {
@@ -582,21 +535,12 @@
         var chartRetencion;
 
         function graficoRetencion() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.retencion.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.retencion.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+
+            var url = "{{ route('estudiantes.retencion.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -676,21 +620,12 @@
         var chartSelloPrimerIngreso;
 
         function graficoSelloPrimerIngreso() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.primerIngreso.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.primerIngreso.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+
+            var url = "{{ route('estudiantes.primerIngreso.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -772,21 +707,12 @@
         var chartTipoEstudiante;
 
         function graficoTiposDeEstudiantes() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.tipo.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.tipo.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+
+            var url = "{{ route('estudiantes.tipo.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -865,21 +791,9 @@
         var chartOperadores;
 
         function graficoOperadores() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.operador.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-
-                url = "{{ route('estudiantes.operador.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+            url = "{{ route('estudiantes.operador.programa') }}";
+            data = {
+                programa: programasSeleccionados,
             }
 
             $.ajax({
@@ -948,69 +862,6 @@
          */
         var chartProgramas;
 
-        function graficoProgramasFacultad() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('programas.estudiantes.facultad') }}",
-                data: {
-                    idfacultad: ["<?= $nombre ?>"]
-                },
-                beforeSend: function() {
-                    // Deshabilitar los checkboxes antes de la solicitud AJAX
-                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                        $('#colProgramas').addClass('hidden');
-                    } else {
-                        $('#colProgramas').removeClass('hidden');
-                    }
-                }
-            });
-        }
 
         $('#botonModalOperador').on("click", function(e) {
             e.preventDefault();
@@ -1020,13 +871,7 @@
             graficoOperadoresTotal();
         });
 
-        $('#botonModalProgramas').on("click", function(e) {
-            e.preventDefault();
-            if (chartProgramasTotal) {
-                chartProgramasTotal.destroy();
-            }
-            graficoProgramasTotal();
-        });
+ 
 
         /**
          * Método que trae todos los operadores de la Facultad
@@ -1034,21 +879,10 @@
         var chartOperadoresTotal;
 
         function graficoOperadoresTotal() {
-            var data;
-            var url;
-            if (programasSeleccionados.length > 0) {
-                url = "{{ route('operadores.programa.estudiantes') }}";
-                data = {
-                    programa: programasSeleccionados,
-                }
-            } else {
-
-                url = "{{ route('operadores.facultad.estudiantes') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+            var url = "{{ route('operadores.programa.estudiantes') }}";
+            var data = {
+                programa: programasSeleccionados,
             }
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1104,67 +938,6 @@
                 }
             });
 
-        }
-
-        /**
-         * Método que trae todos los programas de la Facultad
-         */
-        var chartProgramasTotal;
-
-        function graficoProgramasTotal() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('programasTotal.estudiantes') }}",
-                data: {
-                    idfacultad: ["<?= $nombre ?>"]
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('programasTotal').getContext('2d');
-                    chartProgramasTotal = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Programas',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                }
-            });
         }
     </script>
 

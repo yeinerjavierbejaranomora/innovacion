@@ -330,7 +330,7 @@
     <script>
         $(document).ready(function() {
 
-            facultadesUsuario();
+            // facultadesUsuario();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);

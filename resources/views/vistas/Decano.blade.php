@@ -343,7 +343,6 @@
             });
 
             llamadoFunciones();
-            facultades();
             /**
              * Llamado a todos los scripts
              */

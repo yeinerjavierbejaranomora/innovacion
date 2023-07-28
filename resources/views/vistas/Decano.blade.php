@@ -135,7 +135,7 @@
                                 <div>
                                     <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
                                     @foreach ($facultades as $facultad)
-                                    <label class="hidden idFacultad"> <input type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
+                                    <label class="hidden idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
                                     @endforeach
                                 </div>
                                 <br>
@@ -330,7 +330,7 @@
     <script>
         $(document).ready(function() {
 
-            // facultadesUsuario();
+            facultadesUsuario();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -381,14 +381,14 @@
 
 
             var facultadesSeleccionadas = [];
-            
-            // function facultadesUsuario(){
-            //     var checkboxesFacultades = $('#facultades .idFacultad input[type="checkbox"]');
-            //     checkboxesSeleccionados.each(function() {
-            //     facultadesSeleccionadas.push($(this).val());
-            //     });
-            //     console.log(facultadesSeleccionadas);
-            // }
+
+            function facultadesUsuario() {
+                $('#facultades .idFacultad input[type="checkbox"]').each(function() {
+                    var facultad = $(this).data('facultad');
+                    facultadesSeleccionadas.push(facultad);
+                });
+                console.log(facultadesSeleccionadas);
+            }
 
             /**
              * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 
@@ -405,7 +405,7 @@
             });
 
             var programasSeleccionados = [];
-            
+
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {

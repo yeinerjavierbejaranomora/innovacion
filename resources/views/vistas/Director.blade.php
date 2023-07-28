@@ -268,7 +268,7 @@
         var programasSeleccionados = [];
         function programasUsuario()
         {
-            var progrs = <?php echo json_encode($codigos); ?>;
+            programasSeleccionados = <?php echo json_encode($codigos); ?>;
                 console.log(programasSeleccionados);
         }
 

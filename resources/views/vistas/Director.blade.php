@@ -328,31 +328,31 @@
          * Método que trae los programas correspondientes a la facultad 
          */
 
-        function traerProgramas() {
-            var formData = new FormData();
-            formData.append('idfacultad[]', "<?= $nombre ?>");
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('traer.programas') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(datos) {
-                    try {
-                        datos = jQuery.parseJSON(datos);
-                    } catch {
-                        datos = datos;
-                    }
-                    $.each(datos, function(key, value) {
-                        $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-                    });
-                }
-            })
-        }
+        // function traerProgramas() {
+        //     var formData = new FormData();
+        //     formData.append('idfacultad[]', "<?= $nombre ?>");
+        //     $.ajax({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         type: 'post',
+        //         url: "{{ route('traer.programas') }}",
+        //         data: formData,
+        //         cache: false,
+        //         contentType: false,
+        //         processData: false,
+        //         success: function(datos) {
+        //             try {
+        //                 datos = jQuery.parseJSON(datos);
+        //             } catch {
+        //                 datos = datos;
+        //             }
+        //             $.each(datos, function(key, value) {
+        //                 $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+        //             });
+        //         }
+        //     })
+        // }
 
         /**
          * Método para destruir todos los gráficos

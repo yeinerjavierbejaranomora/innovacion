@@ -342,7 +342,6 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
-            llamadoFunciones();
             /**
              * Llamado a todos los scripts
              */

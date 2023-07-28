@@ -112,6 +112,7 @@ class UserController extends Controller
             foreach ($programas as $key => $value) {
                     
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->get();
+                dd($consulta);
                 $nombreProgramas[$value] = $consulta->programa;
                 $codProgramas[$value] = $consulta->codprograma;
                 }

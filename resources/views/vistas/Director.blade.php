@@ -1,589 +1,1199 @@
-
-
-
 @include('layout.header')
 
 @include('menus.menu_Director')
-<!--  crea,os el contenido principal body -->
+<!--  creamos el contenido principal body -->
+
+<style>
+    #facultades {
+        font-size: 14px;
+    }
+
+    #programas {
+        font-size: 14px;
+    }
+
+    .btn {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #botonModalProgramas,
+    #botonModalOperador {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #cardFacultades {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    #cardProgramas {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #chartEstudiantes {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    #centrar {
+        display: flex;
+        align-items: center;
+    }
+
+    .graficos {
+        min-height: 460px;
+        max-height: 460px;
+    }
+
+    #operadoresTotal,
+    #programasTotal {
+        height: 600px !important;
+    }
+</style>
 
 
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
 
+    <!-- Main Content -->
+    <div id="content">
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <h3> Bienvenido {{auth()->user()->nombre}}</h3>
+                </div>
+            </div>
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
+        </nav>
+        <!-- End of Topbar -->
 
-                <!-- Topbar Search -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Programas</strong></h1>
+            </div>
+            <br>
+            <div class="text-center" id="mensaje">
+                <h3>A continuación podrás visualizar los datos de tus Programas:
+                    @foreach ($programas as $programa)
+                    {{$programa->codprograma}}
+                    @endforeach
+                </h3>
+            </div>
+            <br>
+
+            <!-- Checkbox Facultades -->
+            <div class="row justify-content-start" id="">
+                <div class="col-6 text-start">
+                    <div class="card shadow mb-5" id="cardProgramas">
+                        <div class="card-header text-center">
+                            <h5><strong>Seleccionar Programas</strong></h5>
+                        </div>
+                        <div class="card-body text-star" style="overflow: auto;">
+                            <div name="programas" id="programas">
+                                <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn" type="button" id="generarReporte">
+                                Generar Reporte
                             </button>
                         </div>
                     </div>
-                </form>
 
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                            aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                        placeholder="Search for..." aria-label="Search"
-                                        aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                        alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                        alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                        alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                        alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                src="img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </nav>
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
-
-                <!-- Content Row -->
-                <div class="row">
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
+                <div class=" col-6 text-center" id="colEstudiantes">
+                    <div class="card shadow mb-5" id="chartEstudiantes">
+                        <div class="card-header">
+                            <h5 class="facultadtitulos"><strong>Estudiantes {{$nombre}}</strong></h5>
+                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
                         </div>
-                    </div>
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Earnings (Annual)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
+                                <h5>No hay datos por mostrar</h5>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="progress progress-sm mr-2">
-                                                    <div class="progress-bar bg-info" role="progressbar"
-                                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pending Requests Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Pending Requests</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <!-- Content Row -->
-
-                <div class="row">
-
-                    <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-primary"></i> Direct
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-success"></i> Social
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-info"></i> Referral
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content Row -->
-                <div class="row">
-
-                    <!-- Content Column -->
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Project Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="small font-weight-bold">Server Migration <span
-                                        class="float-right">20%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h4 class="small font-weight-bold">Sales Tracking <span
-                                        class="float-right">40%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h4 class="small font-weight-bold">Customer Database <span
-                                        class="float-right">60%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar" role="progressbar" style="width: 60%"
-                                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h4 class="small font-weight-bold">Payout Details <span
-                                        class="float-right">80%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <h4 class="small font-weight-bold">Account Setup <span
-                                        class="float-right">Complete!</span></h4>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Color System -->
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-primary text-white shadow">
-                                    <div class="card-body">
-                                        Primary
-                                        <div class="text-white-50 small">#4e73df</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-success text-white shadow">
-                                    <div class="card-body">
-                                        Success
-                                        <div class="text-white-50 small">#1cc88a</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-info text-white shadow">
-                                    <div class="card-body">
-                                        Info
-                                        <div class="text-white-50 small">#36b9cc</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-warning text-white shadow">
-                                    <div class="card-body">
-                                        Warning
-                                        <div class="text-white-50 small">#f6c23e</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-danger text-white shadow">
-                                    <div class="card-body">
-                                        Danger
-                                        <div class="text-white-50 small">#e74a3b</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-secondary text-white shadow">
-                                    <div class="card-body">
-                                        Secondary
-                                        <div class="text-white-50 small">#858796</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-light text-black shadow">
-                                    <div class="card-body">
-                                        Light
-                                        <div class="text-black-50 small">#f8f9fc</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-dark text-white shadow">
-                                    <div class="card-body">
-                                        Dark
-                                        <div class="text-white-50 small">#5a5c69</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Illustrations -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                        src="img/undraw_posting_photo.svg" alt="...">
-                                </div>
-                                <p>Add some quality, svg illustrations to your project courtesy of <a
-                                        target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                    constantly updated collection of beautiful svg images that you can use
-                                    completely free and without attribution!</p>
-                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                    unDraw &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Approach -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                    CSS bloat and poor page performance. Custom CSS classes are used to create
-                                    custom components and custom utility classes.</p>
-                                <p class="mb-0">Before working with this theme, you should become familiar with the
-                                    Bootstrap framework, especially the utility classes.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
-            <!-- /.container-fluid -->
+
 
         </div>
 
+        <div class="row justify-content-start mt-5">
+            <div class="col-6 text-center" id="colSelloFinanciero">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Sello finaciero {{$nombre}}</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="activos"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colRetencion">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP) {{$nombre}}</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="retencion"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colPrimerIngreso">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos {{$nombre}}</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="primerIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colTipoEstudiantes">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes {{$nombre}}</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="tipoEstudiante"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colOperadores">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Operadores {{$nombre}}</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="operadores"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center" id="colProgramas">
+                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
+                    <div class="card-header">
+                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos {{$nombre}}</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="estudiantesProgramas"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Modal Todos los Operadores de la Ibero -->
+        <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Operadores</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="operadoresTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Todos los Programas de la Ibero -->
+        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Programas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="programasTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-    <!-- End of Content Wrapper -->
 
+    <script>
+        traerProgramas();
+        invocarGraficos();
+        graficoProgramasFacultad();
+        var totalSeleccionado
+
+        /**
+         * Método que trae los gráficos de la vista
+         */
+        function invocarGraficos() {
+            graficoEstudiantes();
+            grafioSelloFinanciero();
+            graficoRetencion();
+            graficoSelloPrimerIngreso();
+            graficoTiposDeEstudiantes();
+            graficoOperadores();
+        }
+
+        /**
+         * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
+         */
+        function ocultarDivs() {
+            $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+        }
+
+        /**
+         * Método que cuenta la cantidad de programas de la facultad correspondiente
+         */
+        function Contador() {
+            totalSeleccionado = $('#programas input[type="checkbox"]').length;
+            totalSeleccionado -= 1;
+        }
+
+        /**
+         * Método que trae los programas correspondientes a la facultad 
+         */
+
+        function traerProgramas() {
+            var formData = new FormData();
+            formData.append('idfacultad[]', "<?= $nombre ?>");
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('traer.programas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    try {
+                        datos = jQuery.parseJSON(datos);
+                    } catch {
+                        datos = datos;
+                    }
+                    $.each(datos, function(key, value) {
+                        $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                    });
+                }
+            })
+        }
+
+        /**
+         * Método para destruir todos los gráficos
+         */
+        function destruirGraficos() {
+            [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+        }
+
+        /**
+         * Controlador del botón mostrarTodos
+         */
+        $('body').on('change', '#mostrarTodos', function() {
+            if ($('#mostrarTodos').prop('checked')) {
+                location.reload();
+            } else {
+                $('.todosProgramas').removeClass('hidden');
+                destruirGraficos();
+                ocultarDivs();
+            }
+        });
+
+        function alerta() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes seleccionar al menos un programa',
+                confirmButtonColor: '#dfc14e',
+            })
+        }
+
+        /**
+         * Controlador botón generarReporte
+         */
+        var programasSeleccionados = [];
+        $('#generarReporte').on('click', function(e) {
+            e.preventDefault();
+            if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado) {
+                    location.reload();
+                }
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                graficosporPrograma();
+            } else {
+                programasSeleccionados = [];
+                destruirGraficos();
+                ocultarDivs();
+                alerta();
+            }
+        });
+
+        function graficosporPrograma() {
+            if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+                chartTipoEstudiante || chartOperadores) {
+                destruirGraficos();
+                $(".facultadtitulos").hide();
+                $(".programastitulos").show();
+                $("#ocultarGraficoProgramas").hide();
+
+                invocarGraficos();
+            }
+        }
+
+        /** 
+         * Método que muestra los estudiantes activos e inactivos de algún programa en específico
+         */
+        var chartEstudiantes;
+
+        function graficoEstudiantes() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.activos.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.activos.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.estado;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('estudiantes').getContext('2d');
+                    chartEstudiantes = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                label = label.toUpperCase();
+                                return label + 'S: ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                        $('#colEstudiantes').addClass('hidden');
+                    } else {
+                        $('#colEstudiantes').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico de sello financiero de algún programa en específico
+         */
+        var chartEstudiantesActivos;
+
+        function grafioSelloFinanciero() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.sello.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.sello.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('activos').getContext('2d');
+                    chartEstudiantesActivos = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == 'NO EXISTE') {
+                                    label = 'SIN SELLO';
+                                }
+                                label = label.toUpperCase();
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                        $('#colSelloFinanciero').addClass('hidden');
+                    } else {
+                        $('#colSelloFinanciero').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico ASP de algún programa en específico
+         */
+        var chartRetencion;
+
+        function graficoRetencion() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.retencion.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.retencion.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.autorizado_asistir;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('retencion').getContext('2d');
+                    chartRetencion = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'NO AUTORIZADO A PLATAFORMA'
+                                }
+                                label = label.toUpperCase();
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                        $('#colRetencion').addClass('hidden');
+                    } else {
+                        $('#colRetencion').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
+         */
+        var chartSelloPrimerIngreso;
+
+        function graficoSelloPrimerIngreso() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.primerIngreso.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.primerIngreso.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('primerIngreso').getContext('2d');
+                    chartSelloPrimerIngreso = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == 'NO EXISTE') {
+                                    label = 'SIN SELLO';
+                                }
+                                label = label.toUpperCase();
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
+                        $('#colPrimerIngreso').addClass('hidden');
+                    } else {
+                        $('#colPrimerIngreso').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico con los tipos de estudiante por programa
+         */
+        var chartTipoEstudiante;
+
+        function graficoTiposDeEstudiantes() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.tipo.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+                url = "{{ route('estudiantes.tipo.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.tipoestudiante;
+                    });
+
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                    chartTipoEstudiante = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                label = label.toUpperCase();
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    formatter: function(value, context) {
+                                        return value;
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                        $('#colTipoEstudiantes').addClass('hidden');
+                    } else {
+                        $('#colTipoEstudiantes').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
+         */
+        var chartOperadores;
+
+        function graficoOperadores() {
+            var data;
+            var url;
+            if (programasSeleccionados != undefined) {
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('estudiantes.operador.programa') }}";
+                    data = {
+                        programa: programasSeleccionados,
+                    }
+                }
+            } else {
+
+                url = "{{ route('estudiantes.operador.facultad') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.operador;
+                    });
+
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    var ctx = document.getElementById('operadores').getContext('2d');
+                    chartOperadores = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'IBERO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Operadores con mayor cantidad de estudiantes',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                        $('#colOperadores').addClass('hidden');
+                    } else {
+                        $('#colOperadores').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
+         */
+        var chartProgramas;
+
+        function graficoProgramasFacultad() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('programas.estudiantes.facultad') }}",
+                data: {
+                    idfacultad: ["<?= $nombre ?>"]
+                },
+                beforeSend: function() {
+                    // Deshabilitar los checkboxes antes de la solicitud AJAX
+                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                },
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.codprograma;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
+                    chartProgramas = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Operadores con mayor cantidad de estudiantes',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
+                        $('#colProgramas').addClass('hidden');
+                    } else {
+                        $('#colProgramas').removeClass('hidden');
+                    }
+                }
+            });
+        }
+
+        $('#botonModalOperador').on("click", function(e) {
+            e.preventDefault();
+            if (chartOperadoresTotal) {
+                chartOperadoresTotal.destroy();
+            }
+            graficoOperadoresTotal();
+        });
+
+        $('#botonModalProgramas').on("click", function(e) {
+            e.preventDefault();
+            if (chartProgramasTotal) {
+                chartProgramasTotal.destroy();
+            }
+            graficoProgramasTotal();
+        });
+
+        /**
+         * Método que trae todos los operadores de la Facultad
+         */
+        var chartOperadoresTotal;
+
+        function graficoOperadoresTotal() {
+            var data;
+            var url;
+            if (programasSeleccionados.length > 0) {
+                url = "{{ route('operadores.programa.estudiantes') }}";
+                data = {
+                    programa: programasSeleccionados,
+                }
+            } else {
+
+                url = "{{ route('operadores.facultad.estudiantes') }}";
+                data = {
+                    idfacultad: ["<?= $nombre ?>"]
+                }
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.operador;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico de barras
+                    var ctx = document.getElementById('operadoresTotal').getContext('2d');
+                    chartOperadoresTotal = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'IBERO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Operadores ordenados de forma descendente',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                }
+            });
+
+        }
+
+        /**
+         * Método que trae todos los programas de la Facultad
+         */
+        var chartProgramasTotal;
+
+        function graficoProgramasTotal() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('programasTotal.estudiantes') }}",
+                data: {
+                    idfacultad: ["<?= $nombre ?>"]
+                },
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.codprograma;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('programasTotal').getContext('2d');
+                    chartProgramasTotal = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Programas',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugin: [ChartDataLabels]
+                    });
+                }
+            });
+        }
+    </script>
+
+    <!-- incluimos el footer -->
+    @include('layout.footer')
 </div>
-<!-- End of Page Wrapper -->
-
-   <!-- Scroll to Top Button-->
-   <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  
- 
- @include('layout.footer')

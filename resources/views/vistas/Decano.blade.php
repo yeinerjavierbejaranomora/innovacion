@@ -135,7 +135,7 @@
                                 <div>
                                     <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
                                     @foreach ($facultades as $facultad)
-                                    <label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
+                                    <label class="hidden"> <input type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
                                     @endforeach
                                 </div>
                                 <br>
@@ -406,7 +406,7 @@
                 if ($('#mostrarTodos').prop('checked')) {
                     location.reload();
                 } else {
-                    $('.ocultarFacultades').show();
+                    $('.ocultarFacultades').removeClass('hidden');
                     destruirGraficos();
                     ocultarDivs();
                 }

@@ -95,7 +95,8 @@ class UserController extends Controller
 
         if ($nombre_rol === 'Decano') {
             // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
-            $idfacultad = trim($user->id_Facultad, ',');
+            $idfacultad = trim($user->id_facultad, ',');
+
             $facultades = explode(",", $idfacultad);
                 // foreach ($facultades as $key => $value) {
                 //     $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();

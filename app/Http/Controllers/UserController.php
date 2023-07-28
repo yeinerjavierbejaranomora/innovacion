@@ -94,7 +94,14 @@ class UserController extends Controller
         }
 
         if ($nombre_rol === 'Decano') {
-            $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_Facultad, ';');
+            $facultades = explode(";", $idfacultad);
+            dd($facultades);
+                // foreach ($facultades as $key => $value) {
+                //     $consulta = DB::table('programas')->select('programa')->where('id', '=', $value)->get();
+                //     $nombre_programas[$value] = $consulta[0]->programa;
+                // }
             return view('vistas.Decano', ['facultades' => $facultades])->with('datos', $datos);
         }
         /** cargamos la vista predeterminada para cada rol con la data */

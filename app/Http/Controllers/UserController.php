@@ -109,13 +109,12 @@ class UserController extends Controller
         {
             $idPrograma= trim($user->programa, ';');
             $programas = explode(';', $idPrograma);
-            dd($programas);
-            foreach ($programas as $key => $value) {
-                    
+            foreach ($programas as $key => $value) {            
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->get();
                 $nombreProgramas[$value] = $consulta->programa;
                 $codProgramas[$value] = $consulta->codprograma;
                 }
+                dd($consulta);
             return view('vistas.' . $nombre_rol, ['programas' => $nombreProgramas], ['codigos' =>$codProgramas])->with('datos', $datos);
         }
 

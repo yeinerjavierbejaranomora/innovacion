@@ -98,7 +98,7 @@ class UserController extends Controller
             $idfacultad = trim($user->id_facultad, ',');
             $facultades = explode(",", $idfacultad);
                 foreach ($facultades as $key => $value) {
-                $consulta = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+                $consulta = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->where('f.di',$value)->select('f.nombre as name')->get();
                 $nombreFacultades[$value] = $consulta[0]->name;
                 }
             return view('vistas.Decano', ['facultades' => $nombreFacultades])->with('datos', $datos);

@@ -101,7 +101,7 @@ class UserController extends Controller
                 $consulta = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->where('f.id',$value)->select('f.nombre as name')->get();
                 $nombreFacultades[$value] = $consulta;
                 }
-            return view('vistas.Decano', ['facultades' => $nombreFacultades])->with('datos', $datos);
+            return view('vistas.Decano', ['facultades' => $consulta])->with('datos', $datos);
         }
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);

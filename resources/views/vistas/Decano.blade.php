@@ -383,10 +383,7 @@
             var facultadesSeleccionadas = [];
 
             function facultadesUsuario() {
-                $('#facultades .idFacultad input[type="checkbox"]').each(function() {
-                    var facultad = $(this).data('facultad');
-                    facultadesSeleccionadas.push(facultad);
-                });
+                var facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 console.log(facultadesSeleccionadas);
             }
 

@@ -260,6 +260,7 @@
 
     <script>
         
+        programasUsuario();
         invocarGraficos();
 
         var totalSeleccionado

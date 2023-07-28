@@ -104,6 +104,19 @@ class UserController extends Controller
                 }
             return view('vistas.Decano', ['facultades' => $nombreFacultades])->with('datos', $datos);
         }
+
+        if($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider')
+        {
+            $idPrograma= trim($user->id_facultad, ';');
+            $programas = explode(",", $idPrograma);
+            foreach ($programas as $key => $value) {
+                    
+                $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->first();
+                $nombreProgramas[$value] = $consulta->nombre;
+                }
+            return view('vistas.' . $nombre_rol, ['facultades' => $nombreProgramas])->with('datos', $datos);
+        }
+
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.' . $nombre_rol)->with('datos', $datos);
     }

@@ -270,7 +270,7 @@
         function programasUsuario() {
             <?php 
             $datos = array();
-                foreach ($programa as $programa)
+                foreach ($programas as $programa)
                 {
                     $datos[] = $programa->codprograma;
                 }

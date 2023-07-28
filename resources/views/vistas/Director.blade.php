@@ -275,7 +275,7 @@
                     $datos[] = $programa->codprograma;
                 }
             ?>;
-            programasSeleccionados = <?php echo json_encode([$datos]); ?>;
+            programasSeleccionados = <?php echo json_encode($datos); ?>;
             console.log(programasSeleccionados);
         }
 

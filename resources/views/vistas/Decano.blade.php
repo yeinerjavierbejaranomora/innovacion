@@ -115,7 +115,7 @@
             <br>
 
             <div class="text-center" id="mensaje">
-            <?php var_dump($facultades)?>
+            <?php dd($facultades)?>
                 <h3>A continuación podrás visualizar los datos de tus Facultades: 
                 </h3>
 

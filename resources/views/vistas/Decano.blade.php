@@ -384,6 +384,7 @@
 
             function facultadesUsuario() {
                 var facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
+                console.log(facultadesSeleccionadas);
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
@@ -525,23 +526,25 @@
              */
 
             function graficosporFacultad(facultades) {
+                console.log('entra');
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
-                    $(".programastitulos").hide();
-                    $(".titulos").hide();
-                    $(".facultadtitulos").show();
-                    $("#ocultarGraficoProgramas").show();
-
-                    graficoEstudiantesPorFacultades(facultades);
-                    graficoSelloFinancieroPorFacultad(facultades);
-                    graficoRetencionPorFacultad(facultades);
-                    graficoSelloPrimerIngresoPorFacultad(facultades);
-                    graficoTiposDeEstudiantesFacultad(facultades);
-                    graficoOperadoresFacultad(facultades);
-                    graficoProgramasFacultad(facultades);
                 }
+                $(".programastitulos").hide();
+                $(".titulos").hide();
+                $(".facultadtitulos").show();
+                $("#ocultarGraficoProgramas").show();
+                graficoEstudiantesPorFacultades(facultades);
+                graficoSelloFinancieroPorFacultad(facultades);
+                graficoRetencionPorFacultad(facultades);
+                graficoSelloPrimerIngresoPorFacultad(facultades);
+                graficoTiposDeEstudiantesFacultad(facultades);
+                graficoOperadoresFacultad(facultades);
+                graficoProgramasFacultad(facultades);
+
             }
+
 
             /** 
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico

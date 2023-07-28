@@ -382,13 +382,13 @@
 
             var facultadesSeleccionadas = [];
             
-            function facultadesUsuario(){
-                var checkboxesFacultades = $('#facultades .idFacultad input[type="checkbox"]');
-                checkboxesSeleccionados.each(function() {
-                facultadesSeleccionadas.push($(this).val());
-                });
-                console.log(facultadesSeleccionadas);
-            }
+            // function facultadesUsuario(){
+            //     var checkboxesFacultades = $('#facultades .idFacultad input[type="checkbox"]');
+            //     checkboxesSeleccionados.each(function() {
+            //     facultadesSeleccionadas.push($(this).val());
+            //     });
+            //     console.log(facultadesSeleccionadas);
+            // }
 
             /**
              * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 

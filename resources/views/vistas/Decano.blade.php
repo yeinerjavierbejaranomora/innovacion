@@ -357,15 +357,6 @@
                 graficoProgramas();
             }
 
-            /**
-             * Método que trae las facultades y genera los checkbox en la vista
-             */
-            function facultades() {
-
-            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad}"> ${facultad.nombre}</label><br>`);
-
-            }
-
             var totalSeleccionado
 
             function Contador() {

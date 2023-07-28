@@ -259,7 +259,7 @@
     </div>
 
     <script>
-        
+
         programasUsuario();
         invocarGraficos();
 
@@ -270,7 +270,6 @@
         {
             var progrs = <?php echo json_encode($codigos); ?>;
                 console.log(programasSeleccionados);
-                graficosporFacultad(programasSeleccionados);
         }
 
 

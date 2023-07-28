@@ -111,9 +111,7 @@ class UserController extends Controller
             $programas = explode(';', $idPrograma);
             foreach ($programas as $key => $value) {            
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->get();
-                dd($consulta);
-                $nombreProgramas[$value] = $consulta->programa;
-                $codProgramas[$value] = $consulta->codprograma;
+                $nombreProgramas[$value] = $consulta;
                 }
             return view('vistas.' . $nombre_rol, ['programas' => $nombreProgramas], ['codigos' =>$codProgramas])->with('datos', $datos);
         }

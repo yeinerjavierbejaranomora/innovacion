@@ -357,13 +357,13 @@
         function graficosporPrograma() {
             if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                 chartTipoEstudiante || chartOperadores) {
-                destruirGraficos();
-                $(".facultadtitulos").hide();
+                destruirGraficos();          
+            }
+            $(".facultadtitulos").hide();
                 $(".programastitulos").show();
                 $("#ocultarGraficoProgramas").hide();
 
                 invocarGraficos();
-            }
         }
 
         /** 

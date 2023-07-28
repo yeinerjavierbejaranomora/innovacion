@@ -126,8 +126,8 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
-                                @foreach ($programas as $programa)
-                                <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
+                                @foreach ($consulta as $programa)
+                                <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}"> {{$programa->programa}} </label><br>
                                 @endforeach
                             </div>
                         </div>

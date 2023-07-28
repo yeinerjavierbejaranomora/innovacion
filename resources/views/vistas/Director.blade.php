@@ -127,7 +127,7 @@
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                                 @foreach ($programas as $programa)
-                                <label class="hidden"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
+                                <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
                                 @endforeach
                             </div>
                         </div>
@@ -259,17 +259,16 @@
     </div>
 
     <script>
-
         programasUsuario();
         invocarGraficos();
 
         var totalSeleccionado
 
         var programasSeleccionados = [];
-        function programasUsuario()
-        {
+
+        function programasUsuario() {
             programasSeleccionados = <?php echo json_encode($codigos); ?>;
-                console.log(programasSeleccionados);
+            console.log(programasSeleccionados);
         }
 
 
@@ -315,7 +314,7 @@
             if ($('#mostrarTodos').prop('checked')) {
                 location.reload();
             } else {
-                $('.todosProgramas').removeClass('hidden');
+                $('label.idProgramas').removeClass('hidden');
                 destruirGraficos();
                 ocultarDivs();
             }
@@ -333,7 +332,7 @@
         /**
          * Controlador botón generarReporte
          */
-        
+
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
@@ -871,7 +870,7 @@
             graficoOperadoresTotal();
         });
 
- 
+
 
         /**
          * Método que trae todos los operadores de la Facultad

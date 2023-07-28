@@ -383,7 +383,7 @@
             var facultadesSeleccionadas = [];
 
             function facultadesUsuario() {
-                var facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
+                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 console.log(facultadesSeleccionadas);
                 graficosporFacultad(facultadesSeleccionadas);
             }

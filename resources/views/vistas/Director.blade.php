@@ -126,6 +126,9 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
+                                @foreach ($programas as $programa)
+                                    <label class="hidden"> <input type="checkbox" value="{{$programa}}"> {{$programa}} </label><br>
+                                @endforeach
                             </div>
                         </div>
                         <div class="card-footer text-center">
@@ -324,35 +327,6 @@
             totalSeleccionado -= 1;
         }
 
-        /**
-         * Método que trae los programas correspondientes a la facultad 
-         */
-
-        // function traerProgramas() {
-        //     var formData = new FormData();
-        //     formData.append('idfacultad[]', "<?= $nombre ?>");
-        //     $.ajax({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         },
-        //         type: 'post',
-        //         url: "{{ route('traer.programas') }}",
-        //         data: formData,
-        //         cache: false,
-        //         contentType: false,
-        //         processData: false,
-        //         success: function(datos) {
-        //             try {
-        //                 datos = jQuery.parseJSON(datos);
-        //             } catch {
-        //                 datos = datos;
-        //             }
-        //             $.each(datos, function(key, value) {
-        //                 $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-        //             });
-        //         }
-        //     })
-        // }
 
         /**
          * Método para destruir todos los gráficos

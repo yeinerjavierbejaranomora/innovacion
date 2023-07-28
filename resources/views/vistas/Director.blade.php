@@ -109,8 +109,8 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
-                    @foreach ($codigos as $codigo)
-                    {{$codigo}}
+                    @foreach ($consulta as $programa)
+                    {{$programa->programa}}
                     @endforeach
                 </h3>
             </div>
@@ -267,7 +267,7 @@
         var programasSeleccionados = [];
 
         function programasUsuario() {
-            programasSeleccionados = <?php echo json_encode($codigos); ?>;
+            programasSeleccionados = <?php echo json_encode($consulta->codprogama); ?>;
             console.log(programasSeleccionados);
         }
 

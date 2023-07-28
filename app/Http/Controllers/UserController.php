@@ -99,7 +99,7 @@ class UserController extends Controller
             $facultades = explode(",", $idfacultad);
                 foreach ($facultades as $key => $value) {
                     
-                $consulta = DB::table('facultad')->where('id',$value)->select('f.nombre')->first();
+                $consulta = DB::table('facultad')->where('id',$value)->select('nombre')->first();
                 $nombreFacultades[$value] = $consulta;
                 }
             return view('vistas.Decano', ['facultades' => $nombreFacultades])->with('datos', $datos);

@@ -340,6 +340,7 @@
                     location.reload();
                 }
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                console.log(checkboxesProgramas);
                 programasSeleccionados = [];
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());

@@ -383,9 +383,7 @@
             var facultadesSeleccionadas = [];
 
             function facultadesUsuario() {
-                <?php foreach ($facultades as $facultad) { ?>
-                    facultadesSeleccionadas.push('<?php echo $facultad; ?>');
-                <?php } ?>
+                var facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 console.log(facultadesSeleccionadas);
             }
 

@@ -56,7 +56,7 @@
     }
 
     .hidden {
-        display: none;
+        visibility: hidden;
     }
 
     #chartEstudiantes {
@@ -329,7 +329,7 @@
 
     <script>
         $(document).ready(function() {
-            
+
             facultadesUsuario();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {

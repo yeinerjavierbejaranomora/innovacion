@@ -272,7 +272,7 @@
             $datos = array();
                 foreach ($programa as $programa)
                 {
-                    $datos[] = [$programa->codprograma];
+                    $datos[] = $programa->codprograma;
                 }
             ?>;
             programasSeleccionados = <?php echo json_encode([$datos]); ?>;

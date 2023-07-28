@@ -112,9 +112,10 @@ class UserController extends Controller
             foreach ($programas as $key => $value) {
                     
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->first();
-                $nombreProgramas[$value] = $consulta->nombre;
+                $nombreProgramas[$value] = $consulta->programa;
+                $codProgramas[$value] = $consulta->codprograma;
                 }
-            return view('vistas.' . $nombre_rol, ['programas' => $nombreProgramas])->with('datos', $datos);
+            return view('vistas.' . $nombre_rol, ['programas' => $nombreProgramas], ['codigos' =>$codProgramas])->with('datos', $datos);
         }
 
         /** cargamos la vista predeterminada para cada rol con la data */

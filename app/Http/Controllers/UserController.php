@@ -108,11 +108,10 @@ class UserController extends Controller
         if($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider')
         {
             $idPrograma= trim($user->id_facultad, ';');
-            $programas = explode(",", $idPrograma);
+            $programas = explode(";", $idPrograma);
             foreach ($programas as $key => $value) {
                     
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->get();
-                dd($consulta);
                 $nombreProgramas[$value] = $consulta->programa;
                 $codProgramas[$value] = $consulta->codprograma;
                 }

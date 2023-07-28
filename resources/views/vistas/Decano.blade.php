@@ -396,7 +396,7 @@
                 if ($('#mostrarTodos').prop('checked')) {
                     location.reload();
                 } else {
-                    $('.ocultarFacultades').removeClass('hidden');
+                    $('label.hidden').removeClass('hidden');
                     destruirGraficos();
                     ocultarDivs();
                 }

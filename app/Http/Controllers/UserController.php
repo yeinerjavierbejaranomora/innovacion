@@ -113,7 +113,7 @@ class UserController extends Controller
                 $consulta = DB::table('programas')->where('id',$value)->select('programa', 'codprograma')->first();
                 $data[$value] = $consulta;
             }
-            dd($data);
+            dd($programas);
             return view('vistas.' . $nombre_rol, ['programas' => $data])->with('datos', $datos);
         }
 

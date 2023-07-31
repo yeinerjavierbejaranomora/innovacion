@@ -84,7 +84,7 @@ class cambioController extends Controller
 
         if($user->id_facultad)
         {
-            $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->select('nombre')->get();
+            $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->select('nombre')->first();
         }
         else
         {

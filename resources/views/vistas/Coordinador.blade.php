@@ -286,6 +286,7 @@
     <script>
         programasUsuario();
         invocarGraficos();
+        Contador();
 
         var totalSeleccionado
 

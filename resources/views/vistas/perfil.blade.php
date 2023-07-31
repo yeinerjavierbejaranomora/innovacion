@@ -183,9 +183,8 @@
                                     <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> {{ $datos['rol'] }}</p>
-                                    <?php dd($datos['facultad']);?>
 
-                                    <!-- <p class="text-muted mb-4">{{ $datos['facultad'] }}</p> -->
+                                    <p class="text-muted mb-4">{{ $datos->facultad }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <!--Botón que permite actualizar los datos del Usuario-->
                                         <a href="{{ route('user.editar',['id'=>encrypt(auth()->user()->id)]) }}">

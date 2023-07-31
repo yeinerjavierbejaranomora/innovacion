@@ -395,6 +395,7 @@
                 graficosporPrograma();
             } else {
                 programasSeleccionados = [];
+                $("#mensaje").empty();
                 destruirGraficos();
                 ocultarDivs();
                 alerta();

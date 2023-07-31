@@ -449,6 +449,7 @@
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
                 }
+                $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
 
@@ -498,6 +499,7 @@
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
                         destruirGraficos();
+                        $("#mensaje").empty();
                         ocultarDivs();
                         alerta();
                     }

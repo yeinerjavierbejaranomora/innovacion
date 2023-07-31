@@ -106,7 +106,7 @@
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
                                     <div name="facultades" id="facultades">
-                                        
+
                                     </div>
                                 </div>
                                 <div id="programas"> </div>
@@ -141,15 +141,15 @@
 
 <!-- Alertas al crear usuario -->
 @if(session('success'))
-    <script>
-        Swal.fire("Éxito", "{{ session('success') }}", "success");
-    </script>
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
 @endif
 
 @if($errors->any())
-    <script>
-        Swal.fire("Error", "{{ $errors->first() }}", "error");
-    </script>
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
 @endif
 
 <script>
@@ -171,40 +171,42 @@
     }
 
     //* Comprueba si el select de facultades cambia de valor/
-    $('#nuevousuario select#facultades').change(function() {
-        console.log('1');
-        facultades = $(this);
-        //* comprueba que el valor de facultados sea diferente a vacio/
-        if ($(this).val() != '') {
-            var formData = new FormData();        
-            formData.append('idfacultad', facultades.val());
+    $('body').on('change', '#facultades input[type="checkbox"]', function() {
+        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+            $('#programas').empty();
+            var formData = new FormData();
+            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                formData.append('idfacultad[]', $(this).val());
+            });
+            console.log(formData);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('registro.programas') }}",
+                url: "{{ route('traer.programas') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
-                    facultades.prop('disabled', true);
-                },
-                success: function(data) {
-                    console.log(data);
-                    facultades.prop('disabled', false)
-                    $('#nuevousuario div#programas').empty();
-                    data.forEach(programa => {
-                        $('#nuevousuario div#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                success: function(datos) {
+                    try {
+                        datos = jQuery.parseJSON(datos);
+                    } catch {
+                        datos = datos;
+                    }
+                    console.log(datos);
+                    $.each(datos, function(key, value) {
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                     });
                 }
-            });
+            })
         } else {
             $('#programas').empty();
-            facultades.prop('disabled', false)
         }
-    })
+    });
+
 
     /** DataTable */
     var xmlhttp = new XMLHttpRequest();

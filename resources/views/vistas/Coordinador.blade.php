@@ -308,11 +308,11 @@
             $("#mensaje").empty();
             if (programasSeleccionados.length > 1)
             {
-                var textoNuevo = "<h3>Informe programas" + programasSeleccionados +"</h3>";
+                var textoNuevo = "<h3>Informe programas " + programasSeleccionados +" </h3>";
             }
             else
             {
-                var textoNuevo = "<h3>Informe programa" + programasSeleccionados +"</h3>";
+                var textoNuevo = "<h3>Informe programa " + programasSeleccionados +" </h3>";
             }
              $("#mensaje").html(textoNuevo);
         }

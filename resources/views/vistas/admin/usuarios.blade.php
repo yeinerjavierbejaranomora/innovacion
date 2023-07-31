@@ -103,13 +103,17 @@
                                         <option value="9">Admin</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div >
                                     <label for="message-text" class="col-form-label">Facultad</label>
                                     <div name="facultades" id="facultades">
 
                                     </div>
                                 </div>
-                                <div id="programas"> </div>
+                                <div>
+                                    <label for="message-text" style="display:none;" id="tituloPrograma" class="col-form-label">Programas</label>
+                                    <div id="programas"> </div>
+                                </div>
+                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-success">Crear</button>
@@ -174,6 +178,7 @@
     $('body').on('change', '#facultades input[type="checkbox"]', function() {
         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
             $('#programas').empty();
+            $('#tituloPrograma').show();
             var formData = new FormData();
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             checkboxesSeleccionados.each(function() {

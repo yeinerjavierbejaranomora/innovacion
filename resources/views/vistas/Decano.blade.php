@@ -128,7 +128,7 @@
                 <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
-                            <h5><strong></strong></h5>
+                            <h5><strong>Seleccionar Facultad</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
@@ -142,9 +142,6 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <!-- <div class="text-end">
-                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
-                            </div> -->
                         </div>
                     </div>
                 </div>

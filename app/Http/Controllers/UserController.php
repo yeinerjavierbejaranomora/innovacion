@@ -252,7 +252,7 @@ class UserController extends Controller
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
-            if (empty($programa)) :
+            if (empty($programa) || $programa == NULL) :
                 $nombre_programas = NULL;
             else :
                 foreach ($programas as $key => $value) {

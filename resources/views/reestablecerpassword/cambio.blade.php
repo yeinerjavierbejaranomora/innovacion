@@ -154,6 +154,13 @@
                                     @if($datos['facultad'] != NULL)
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     @endif
+                                    @if ($datos['programa'] != NULL)
+                                    <p class="text-muted mb-1">Programas</p>
+                                    @foreach($datos['programa'] as $programa)
+                                    <p class="text-muted mb-1">{{ $programa }}</p>
+                                    @endforeach
+                                    <br>
+                                    @endif
                                 </div>
                             </div>
                         </div>

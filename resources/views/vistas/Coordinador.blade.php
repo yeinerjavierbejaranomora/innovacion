@@ -894,15 +894,15 @@
         var chartTiposEstudiantesTotal
 
         function tiposEstudiantesTotal() {
-
+            var url, data;
             if (programasSeleccionados.length > 0) {
-                var url = "{{ route('operadores.programa.estudiantes') }}";
-                var data = {
+                url = "{{ route('operadores.programa.estudiantes') }}";
+                data = {
                     programa: programasSeleccionados
                 }
             } else {
-                var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
-                var data = {
+                url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                data = {
                     programa: programasSelect
                 }
             }
@@ -965,14 +965,17 @@
         var chartOperadoresTotal;
 
         function graficoOperadoresTotal() {
+            var url, data;
             if (programasSeleccionados.length > 0) {
-                var url = "{{ route('operadores.programa.estudiantes') }}";
-                var data = {
+                url = "{{ route('operadores.programa.estudiantes') }}";
+                data = {
                     programa: programasSeleccionados
+                    
                 }
+                
             } else {
-                var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
-                var data = {
+                url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                data = {
                     programa: programasSelect
                 }
             }

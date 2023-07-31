@@ -244,10 +244,14 @@ class UserController extends Controller
         $user = auth()->user();
         // *Validación para determinar si el usuario cuenta con una facultad*
         if ($user->id_facultad != NULL || $user->programa != NULL) {
-            // *Consulta para obtener el nombre de la facultad según el ID de esta
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
+            if($user->id_facultad != NULL && !empty($user->id_facultad))
+            {
+                $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
             $facultad = $facultad->nombre;
-            // *Explode para que muestre los programas por separado
+            }
+            else{
+                $facultad = NULL;
+            }
             $programa = trim($user->programa, ';');
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);

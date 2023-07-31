@@ -29,7 +29,8 @@
         place-items: center;
         font-size: 14px;
     }
-
+    
+    #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
         background-color: #dfc14e;
@@ -76,6 +77,7 @@
         max-height: 460px;
     }
 
+    #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
         height: 600px !important;
@@ -237,6 +239,9 @@
                         </div>
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalTiposEstudiantes" class="btn" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                    </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="colOperadores">
@@ -318,6 +323,25 @@
             </div>
         </div>
 
+        <!-- Modal Todos los Tipos de estudiantes -->
+        <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="tiposEstudiantesTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -804,7 +828,7 @@
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label.includes("ESTUDIANTE ")) {
@@ -813,7 +837,7 @@
                                 return label + ': ' + valores[index];
                             }),
                             datasets: [{
-                                label: 'Gráfico Circular',
+                                label: 'Tipos de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -823,20 +847,10 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
-
                             plugins: {
-                                labels: {
-                                    render: 'percentage',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
                                 legend: {
-                                    position: 'right',
+                                    position: 'bottom',
                                     labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
                                         font: {
                                             size: 12
                                         }
@@ -1341,47 +1355,32 @@
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
+                                    label: 'Tipos de estudiantes',
                                     data: valores,
                                     backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
                                     labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
+                                        font: {
+                                            size: 12
                                         }
                                     }
-                                },
-
+                                }
                             },
+                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -1892,47 +1891,32 @@
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
+                                    label: 'Tipos de estudiantes',
                                     data: valores,
                                     backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
                                     labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
+                                        font: {
+                                            size: 12
                                         }
                                     }
-                                },
-
+                                }
                             },
+                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -2028,6 +2012,86 @@
                 graficoProgramasTotal();
             });
 
+            $('#botonModalTiposEstudiantes').on("click", function(e) {
+                e.preventDefault();
+                if (chartTiposEstudiantesTotal) {
+                    chartTiposEstudiantesTotal.destroy();
+                }
+                tiposEstudiantesTotal();
+            });
+
+            var chartTiposEstudiantesTotal
+            
+            function tiposEstudiantesTotal() {
+                if (programasSeleccionados.length > 0) {
+                    var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                    var data = {
+                        programa: programasSeleccionados
+                    }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSeleccionadas
+                        }
+                    } else {
+                        var url = "{{ route('tiposEstudiantes.total.estudiantes') }}";
+                        data = '';
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        // Crear el gráfico de barras
+                        var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
+                        chartTiposEstudiantesTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    label: 'Tipos de esudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugin: [ChartDataLabels]
+                        });
+                    }
+                });
+
+            }
+            
             /**
              * Método que trae todos los operadores de la Ibero
              */

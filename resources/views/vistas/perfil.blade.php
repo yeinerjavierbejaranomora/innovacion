@@ -184,10 +184,11 @@
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> {{ $datos['rol'] }}</p>
 
-                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                                    <p class="text-muted mb-1">{{ $datos['facultad'] }}</p>
                                     @if ($datos['programa'] != NULL)
+                                    <p class="text-muted mb-1">Programas</p>
                                     @foreach($datos['programa'] as $programa)
-                                    <p class="text-muted mb-4">{{ $programa }}</p>
+                                    <p class="text-muted mb-1">{{ $programa }}</p>
                                     @endforeach
                                     @endif
                                     <div class="d-flex justify-content-center mb-2">

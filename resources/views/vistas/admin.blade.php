@@ -237,6 +237,9 @@
                         </div>
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalTiposEstudiantes" class="btn" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                    </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="colOperadores">
@@ -318,6 +321,25 @@
             </div>
         </div>
 
+        <!-- Modal Todos los Tipos de estudiantes -->
+        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="tiposEstudiantesTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -2018,6 +2040,11 @@
                 graficoProgramasTotal();
             });
 
+            
+            var chartTiposEstudiantesTotal
+            
+            
+            
             /**
              * Método que trae todos los operadores de la Ibero
              */

@@ -105,9 +105,9 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
-                                    <select class="form-control" name="id_facultad" id="facultades">
-                                        <option value="" selected>Seleccione la facultad</option>
-                                    </select>
+                                    <div class="form-control" name="id_facultad" id="facultades">
+                                        
+                                    </div>
                                 </div>
                                 <div id="programas"> </div>
                                 <div class="modal-footer">
@@ -164,7 +164,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario select#facultades').append(`<option value="${facultad.nombre}">${facultad.nombre}</option>`);
+                    $('#nuevousuario select#facultades').append(`<label> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                 })
             }
         })

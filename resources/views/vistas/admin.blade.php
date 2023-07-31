@@ -813,7 +813,7 @@
                                 return label + ': ' + valores[index];
                             }),
                             datasets: [{
-                                label: 'Gráfico Circular',
+                                label: 'Tipos de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -823,20 +823,10 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
-
                             plugins: {
-                                labels: {
-                                    render: 'percentage',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
                                 legend: {
-                                    position: 'right',
+                                    position: 'bottom',
                                     labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
                                         font: {
                                             size: 12
                                         }

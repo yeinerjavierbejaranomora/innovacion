@@ -610,6 +610,7 @@ class UserController extends Controller
         $tipoEstudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
+            ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
 

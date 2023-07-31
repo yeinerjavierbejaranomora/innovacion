@@ -368,6 +368,27 @@
              * Llamado a todos los scripts
              */
 
+
+            function estadoUsuarioPrograma() {
+                $("#mensaje").empty();
+                if (programasSeleccionados.length > 1) {
+                    var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                }
+                $("#mensaje").html(textoNuevo);
+            }
+
+            function estadoUsuarioFacultad() {
+                $("#mensaje").empty();
+                if (facultadesSeleccionadas.length > 1) {
+                    var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
+                }
+                $("#mensaje").html(textoNuevo);
+            }
+
             var totalSeleccionado
 
             function Contador() {
@@ -403,6 +424,7 @@
 
             var facultadesSeleccionadas = [];
             var facultadesSelect;
+
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
@@ -434,9 +456,9 @@
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
+                    estadoUsuarioPrograma()
                     graficosporPrograma(programasSeleccionados);
                 } else {
-
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             informacionGeneral();
@@ -449,6 +471,7 @@
                                 facultadesSeleccionadas.push($(this).val());
                             });
                             console.log(facultadesSeleccionadas);
+                            estadoUsuarioFacultad()
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
@@ -927,19 +950,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -1463,19 +1486,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -1580,7 +1603,7 @@
             });
 
             var chartTiposEstudiantesTotal
-            
+
             function tiposEstudiantesTotal() {
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
@@ -1745,9 +1768,9 @@
                     }
                 } else {
                     var url = "{{ route('FacultadTotal.estudiantes') }}";
-                        var data = {
-                            idfacultad: facultadesSelect
-                        }
+                    var data = {
+                        idfacultad: facultadesSelect
+                    }
                 }
                 $.ajax({
                     headers: {

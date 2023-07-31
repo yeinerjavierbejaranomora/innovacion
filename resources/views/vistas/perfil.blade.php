@@ -184,7 +184,7 @@
                                     <h5 class="my-3">{{ auth()->user()->nombre }}</h5>
                                     <p class="text-muted mb-1"> {{ $datos['rol'] }}</p>
 
-                                    <p class="text-muted mb-4">{{ $datos->facultad }}</p>
+                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     <div class="d-flex justify-content-center mb-2">
                                         <!--Botón que permite actualizar los datos del Usuario-->
                                         <a href="{{ route('user.editar',['id'=>encrypt(auth()->user()->id)]) }}">

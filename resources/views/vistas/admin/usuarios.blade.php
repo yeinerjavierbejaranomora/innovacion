@@ -27,9 +27,6 @@
                 </div>
             </div>
 
-
-
-
         </nav>
         <!-- End of Topbar -->
 
@@ -167,7 +164,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevousuario select#facultades').append(`<option value="${facultad.nombre}">${facultad.nombre}</option>`);
                 })
             }
         })

@@ -36,7 +36,7 @@ class RegistroController extends Controller
     /** Trae los datos dela tabla programas si el id coincide con el que se ricibe por POST desde el formulario de registro */
     public function programas() {
         $idFacultad = $_POST['idfacultad'];
-        $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `idFacultad` = :id', ['id' => $idFacultad]);
+        $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `Facultad` = :id', ['id' => $idFacultad]);
         return $programas;
     }
 

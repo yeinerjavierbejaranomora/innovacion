@@ -804,7 +804,7 @@
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label.includes("ESTUDIANTE ")) {

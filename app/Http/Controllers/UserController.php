@@ -589,7 +589,9 @@ class UserController extends Controller
         $primerIngreso = DB::table('datosMafi')
             ->where('tipoestudiante', 'PRIMER INGRESO')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')->get();
+            ->groupBy('sello')
+            ->limit(5)
+            ->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));

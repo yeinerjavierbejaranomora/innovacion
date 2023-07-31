@@ -185,7 +185,7 @@
                                     <p class="text-muted mb-1"> {{ $datos['rol'] }}</p>
 
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
-                                    @if ($datos['programa' != NULL])
+                                    @if ($datos['programa'] != NULL)
                                     @foreach($datos['programa'] as $programa)
                                     <p class="text-muted mb-4">{{ $programa }}</p>
                                     @endforeach

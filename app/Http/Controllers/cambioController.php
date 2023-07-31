@@ -90,7 +90,6 @@ class cambioController extends Controller
         {
             $facultad = NULL;
         }
-        dd($facultad);
         $datos = array(
             'rol' => $nombre_rol,
             'facultad' => $facultad

@@ -364,13 +364,10 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
-            /**
-             * Llamado a todos los scripts
-             */
-
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
+                console.log('entra');
                 if (programasSeleccionados.length > 1) {
                     var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
                 } else {
@@ -428,7 +425,6 @@
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-                console.log(facultadesSeleccionadas);
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
@@ -470,7 +466,6 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
-                            console.log(facultadesSeleccionadas);
                             estadoUsuarioFacultad()
                             graficosporFacultad(facultadesSeleccionadas);
                         }
@@ -503,7 +498,6 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
-                    console.log(formData);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -520,7 +514,6 @@
                             } catch {
                                 datos = datos;
                             }
-                            console.log(datos);
                             $.each(datos, function(key, value) {
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });
@@ -571,7 +564,7 @@
              */
 
             function graficosporFacultad(facultades) {
-                console.log('entra');
+
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
@@ -596,7 +589,7 @@
              */
 
             function graficoEstudiantesPorFacultades(facultades) {
-                console.log(facultades);
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

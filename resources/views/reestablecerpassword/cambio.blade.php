@@ -152,8 +152,7 @@
                                     <h5 class="my-3">{{auth()->user()->nombre}}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     @if($datos['facultad'] != NULL)
-                                    <?php dd($datos);?>
-                                    <p class="text-muted mb-4">{{ $datos->facultad }}</p>
+                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     @endif
                                 </div>
                             </div>

@@ -441,6 +441,29 @@
                 }
             });
 
+            function estadoUsuarioPrograma() {
+                $("#mensaje").empty();
+
+                if (programasSeleccionados.length > 1) {
+                    var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                }
+                $("#mensaje").html(textoNuevo);
+            }
+
+            function estadoUsuarioFacultad() {
+
+                $("#mensaje").empty();
+                if (facultadesSeleccionadas.length > 1) {
+                    var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>"; 
+                }
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+            }
+
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
@@ -451,6 +474,7 @@
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
+                    estadoUsuarioPrograma();
                     graficosporPrograma(programasSeleccionados);
                 } else {
 
@@ -466,6 +490,7 @@
                                 facultadesSeleccionadas.push($(this).val());
                             });
                             console.log(facultadesSeleccionadas);
+                            estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {

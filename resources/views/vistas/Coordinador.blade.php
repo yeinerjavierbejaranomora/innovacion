@@ -291,6 +291,7 @@
 
         var programasSeleccionados = [];
 
+        var programasSelect;
         function programasUsuario() {
             <?php
             $datos = array();
@@ -300,8 +301,9 @@
             ?>;
             programasSeleccionados = <?php echo json_encode($datos); ?>;
             console.log(programasSeleccionados);
+            programasSelect = programasSeleccionados;
         }
-        console.log(programasSeleccionados);
+        console.log(programasSelect);
 
         /**
          * Método que trae los gráficos de la vista
@@ -408,7 +410,6 @@
             var data = {
                 programa: programasSeleccionados,
             }
-            console.log(programasSeleccionados);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -443,7 +443,6 @@
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
-
                 if (programasSeleccionados.length > 1) {
                     var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
                 } else {
@@ -454,7 +453,6 @@
             }
 
             function estadoUsuarioFacultad() {
-
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
@@ -524,7 +522,6 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
-                    console.log(formData);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

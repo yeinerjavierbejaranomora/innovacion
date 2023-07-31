@@ -29,7 +29,8 @@
         place-items: center;
         font-size: 14px;
     }
-
+    
+    #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
         background-color: #dfc14e;
@@ -322,7 +323,7 @@
         </div>
 
         <!-- Modal Todos los Tipos de estudiantes -->
-        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
+        <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header">

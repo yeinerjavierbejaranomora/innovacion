@@ -381,8 +381,8 @@
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
-                    console.log('entra');
                 } else {
+                    console.log('entra');
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }
                 $("#mensaje").html(textoNuevo);

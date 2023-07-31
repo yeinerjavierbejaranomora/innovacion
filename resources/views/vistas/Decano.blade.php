@@ -133,7 +133,7 @@
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
                                 <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
+                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label> <br>
                                     @foreach ($facultades as $facultad)
                                     <label class="hidden idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
                                     @endforeach

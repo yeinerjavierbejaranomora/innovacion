@@ -209,6 +209,7 @@
             })
         } else {
             $('#programas').empty();
+            $('#tituloPrograma').hide();
         }
     });
 

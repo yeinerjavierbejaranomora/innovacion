@@ -896,7 +896,7 @@
         function tiposEstudiantesTotal() {
             var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
             var data = {
-                programa: programasSeleccionados
+                programa: programasSelect
             }
             console.log(programasSeleccionados);
             $.ajax({
@@ -959,7 +959,7 @@
         function graficoOperadoresTotal() {
             var url = "{{ route('operadores.programa.estudiantes') }}";
             var data = {
-                programa: programasSeleccionados,
+                programa: programasSelect,
             }
             $.ajax({
                 headers: {

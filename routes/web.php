@@ -126,12 +126,12 @@ Route::controller(UserController::class)->group(function () {
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos de cada facultad */
     Route::post('/home/estudiantesFacultadTotal' ,'estudiantesFacultadTotal')->middleware('auth')->name('FacultadTotal.estudiantes');
 
-        /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Facultad*/
-        Route::post('/home/tiposEstudiantesFacultadTotal', 'tiposEstudiantesFacultadTotal')->middleware('auth')->name('tiposEstudiantes.facultad.estudiantes');
-        /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
-        Route::post('/home/tiposEsudiantesTotal', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
-        /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
-        Route::post('/home/tiposEsudiantesProgramaTotal', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
+    /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Facultad*/
+    Route::post('/home/tiposEstudiantesFacultadTotal', 'tiposEstudiantesFacultadTotal')->middleware('auth')->name('tiposEstudiantes.facultad.estudiantes');
+    /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
+    Route::post('/home/tiposEsudiantesTotal', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
+    /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
+    Route::post('/home/tiposEsudiantesProgramaTotal', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
 
      
 });

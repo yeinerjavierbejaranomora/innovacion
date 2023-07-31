@@ -408,7 +408,7 @@
             var data = {
                 programa: programasSeleccionados,
             }
-
+            console.log(programasSeleccionados);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

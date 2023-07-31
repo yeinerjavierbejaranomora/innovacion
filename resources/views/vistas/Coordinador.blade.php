@@ -899,15 +899,11 @@
         var chartTiposEstudiantesTotal
 
         function tiposEstudiantesTotal() {
-            if (programasSeleccionados.length > 0) {
-                var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
-                var data = {
-                    programa: programasSeleccionados
-                }
-            } else {
-                    var url = "{{ route('tiposEstudiantes.total.estudiantes') }}";
-                    data = '';
+            var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+            var data = {
+                programa: programasSeleccionados
             }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

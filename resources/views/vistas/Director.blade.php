@@ -113,7 +113,7 @@
                 <h3>A continuación podrás visualizar los datos de tus Programas:
 
                     @foreach ($programas as $programa)
-                    {{$programa->codprograma}}
+                    {{$programa->codprograma}} -
                     @endforeach
                 </h3>
             </div>
@@ -130,7 +130,7 @@
                             <div name="programas" id="programas">
                                 <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                                 @foreach ($programas as $programa)
-                                <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}"> {{$programa->programa}} </label><br>
+                                <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}"> {{$programa->programa}}</label><br>
                                 @endforeach
                             </div>
                         </div>

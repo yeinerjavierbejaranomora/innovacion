@@ -152,7 +152,7 @@
                                     <h5 class="my-3">{{auth()->user()->nombre}}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     @if($datos['facultad'] != NULL)
-                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                                    <p class="text-muted mb-1">{{ $datos['facultad'] }}</p>
                                     @endif
                                     @if ($datos['programa'] != NULL)
                                     <p class="text-muted mb-1">Programas</p>

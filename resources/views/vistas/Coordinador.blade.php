@@ -292,6 +292,7 @@
         var programasSeleccionados = [];
 
         var programasSelect;
+
         function programasUsuario() {
             <?php
             $datos = array();
@@ -894,9 +895,17 @@
         var chartTiposEstudiantesTotal
 
         function tiposEstudiantesTotal() {
-            var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
-            var data = {
-                programa: programasSelect
+
+            if (programasSeleccionados.length > 0) {
+                var url = "{{ route('operadores.programa.estudiantes') }}";
+                var data = {
+                    programa: programasSeleccionados
+                }
+            } else {
+                var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                var data = {
+                    programa: programasSelect
+                }
             }
             console.log(programasSeleccionados);
             $.ajax({
@@ -957,9 +966,16 @@
         var chartOperadoresTotal;
 
         function graficoOperadoresTotal() {
-            var url = "{{ route('operadores.programa.estudiantes') }}";
-            var data = {
-                programa: programasSelect,
+            if (programasSeleccionados.length > 0) {
+                var url = "{{ route('operadores.programa.estudiantes') }}";
+                var data = {
+                    programa: programasSeleccionados
+                }
+            } else {
+                var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                var data = {
+                    programa: programasSelect
+                }
             }
             $.ajax({
                 headers: {

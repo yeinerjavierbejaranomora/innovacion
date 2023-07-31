@@ -384,6 +384,7 @@
                 } else {
                     console.log('entra');
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
+                    console.log (textoNuevo);
                 }
                 $("#mensaje").html(textoNuevo);
             }

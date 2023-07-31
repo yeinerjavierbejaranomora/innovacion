@@ -377,10 +377,11 @@
             }
 
             function estadoUsuarioFacultad() {
-                console.log('entra');
+
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                    console.log('entra');
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }

@@ -186,8 +186,8 @@
 
                                     <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
                                     @if ($datos['programa' != NULL])
-                                    @foreach($datos['programa'] as programa)
-                                    <p class="text-muted mb-4">{{ programa }}</p>
+                                    @foreach($datos['programa'] as $programa)
+                                    <p class="text-muted mb-4">{{ $programa }}</p>
                                     @endforeach
                                     @endif
                                     <div class="d-flex justify-content-center mb-2">

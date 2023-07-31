@@ -301,10 +301,9 @@
             }
             ?>;
             programasSeleccionados = <?php echo json_encode($datos); ?>;
-            console.log(programasSeleccionados);
             programasSelect = programasSeleccionados;
         }
-        console.log(programasSelect);
+
 
         /**
          * Método que trae los gráficos de la vista

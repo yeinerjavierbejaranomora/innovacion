@@ -105,7 +105,7 @@
                                 </div>
                                 <div>
                                     <label for="message-text" class="col-form-label">Facultad</label>
-                                    <div class="form-control" name="facultades" id="facultades">
+                                    <div name="facultades" id="facultades">
                                         
                                     </div>
                                 </div>

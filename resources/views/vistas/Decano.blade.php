@@ -1591,11 +1591,13 @@
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
                         var data = {
-                            idfacultad: facultadesSeleccionadas
+                            idfacultad: facultadesSelect
                         }
                     } else {
-                        var url = "{{ route('tiposEstudiantes.total.estudiantes') }}";
-                        data = '';
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSelect
+                        }
                     }
                 }
                 $.ajax({
@@ -1668,8 +1670,10 @@
                             idfacultad: facultadesSeleccionadas
                         }
                     } else {
-                        var url = "{{ route('operadoresTotal.estudiantes') }}";
-                        data = '';
+                        var url = "{{ route('operadores.facultad.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSelect
+                        }
                     }
                 }
                 $.ajax({
@@ -1740,8 +1744,10 @@
                         idfacultad: facultadesSeleccionadas
                     }
                 } else {
-                    var url = "{{ route('programasTotal.estudiantes') }}";
-                    data = '';
+                    var url = "{{ route('operadores.facultad.estudiantes') }}";
+                        var data = {
+                            idfacultad: facultadesSelect
+                        }
                 }
                 $.ajax({
                     headers: {

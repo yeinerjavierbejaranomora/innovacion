@@ -367,7 +367,7 @@
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
-                console.log('entra');
+
                 if (programasSeleccionados.length > 1) {
                     var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
                 } else {
@@ -377,6 +377,7 @@
             }
 
             function estadoUsuarioFacultad() {
+                console.log('entra');
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";

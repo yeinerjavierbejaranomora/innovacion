@@ -83,7 +83,7 @@ class cambioController extends Controller
         auth()->user()->nombre_rol = $nombre_rol;
 
         dd($user->id_facultad);
-        if (!empty($user->id_facultad) && ($user->id_facultad) != NULL) {
+        if (!empty($user->id_facultad) && ($user->id_facultad) != "NULL") {
             $consulta = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->select('nombre')->first();
             $facultad = $consulta->nombre;
         } else {

@@ -2049,14 +2049,14 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.operador;
+                            return elemento.tipoestudiante;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
                         // Crear el gráfico de barras
                         var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
-                        chartOperadoresTotal = new Chart(ctx, {
+                        chartTiposEstudiantesTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {

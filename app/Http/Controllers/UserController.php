@@ -590,7 +590,6 @@ class UserController extends Controller
             ->where('tipoestudiante', 'PRIMER INGRESO')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
-            ->limit(5)
             ->get();
 
         header("Content-Type: application/json");
@@ -610,7 +609,9 @@ class UserController extends Controller
          */
         $tipoEstudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
-            ->groupBy('tipoestudiante')->get();
+            ->groupBy('tipoestudiante')
+            ->limit(5)
+            ->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));

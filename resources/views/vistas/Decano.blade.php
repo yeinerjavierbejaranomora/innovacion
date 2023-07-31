@@ -1744,7 +1744,7 @@
                         idfacultad: facultadesSeleccionadas
                     }
                 } else {
-                    var url = "{{ route('operadores.facultad.estudiantes') }}";
+                    var url = "{{ route('FacultadTotal.estudiantes') }}";
                         var data = {
                             idfacultad: facultadesSelect
                         }

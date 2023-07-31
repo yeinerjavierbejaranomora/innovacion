@@ -905,15 +905,8 @@
                     programa: programasSeleccionados
                 }
             } else {
-                if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
-                    var data = {
-                        idfacultad: facultadesSeleccionadas
-                    }
-                } else {
                     var url = "{{ route('tiposEstudiantes.total.estudiantes') }}";
                     data = '';
-                }
             }
             $.ajax({
                 headers: {

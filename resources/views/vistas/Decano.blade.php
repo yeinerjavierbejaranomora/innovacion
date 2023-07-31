@@ -386,6 +386,7 @@
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                     console.log (textoNuevo);
                 }
+                $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
 

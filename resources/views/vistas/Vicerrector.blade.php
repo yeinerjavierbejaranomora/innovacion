@@ -484,9 +484,6 @@
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             informacionGeneral();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]')) {
-                                location.reload();
-                            }
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];

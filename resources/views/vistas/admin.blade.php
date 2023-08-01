@@ -494,9 +494,6 @@
                             }
                             informacionGeneral();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]').prop('checked')) {
-                                location.reload();
-                            }
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];

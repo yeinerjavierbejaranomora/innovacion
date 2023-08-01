@@ -370,7 +370,7 @@
                 $("#mensaje").empty();
 
                 if (programasSeleccionados.length > 1) {
-                    var programasArray = programasSeleccionados.split(',');
+                    var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h3>Informe programas " + programasFormateados + " </h3>";
                 } else {
@@ -444,7 +444,7 @@
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
                     $('#colcardProgramas, #colEstudiantes').addClass('col-6');
                     $('label.idFacultad').removeClass('hidden');
-                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad " + valorFacultad + " </h3>";
+                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     var idFacultadesArray = Object.values(facultadesSelect);
                     var formData = new FormData();

@@ -482,11 +482,9 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
-                            
+                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {   
                             informacionGeneral();
-                        } else {
-                            
+                        } else {                  
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];
@@ -494,13 +492,13 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
+                            console.log('entra');
 
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
                         /** Alerta */
-                        console.log('entra');
                         if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
                                 location.reload();
                             }

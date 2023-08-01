@@ -58,8 +58,10 @@ class RegistroController extends Controller
     }
 
     public function crearUsuario(UsuarioRegistroRequest $request){
-        dd($request->all());
         $data = $request->all();
+        $facultades = $data['facultad'];
+        
+        dd($facultades);
         $user = new User($data);
         $user->save();
 

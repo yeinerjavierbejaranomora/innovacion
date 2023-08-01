@@ -433,7 +433,6 @@
 
             function vistaEntrada(){
                 var cantidadFacultades = Object.keys(facultadesSelect).length;
-                console.log(cantidadFacultades);
                 if (cantidadFacultades === 1){
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
@@ -442,14 +441,13 @@
 
                     var formData = new FormData();    
                         formData.append('idfacultad[]', facultadesSelect);
-                        console.log(formData);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'post',
                         url: "{{ route('traer.programas') }}",
-                        data: formData,
+                        data: facultadesSelect,
                         cache: false,
                         contentType: false,
                         processData: false,

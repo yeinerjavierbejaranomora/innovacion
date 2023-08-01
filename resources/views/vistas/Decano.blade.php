@@ -509,7 +509,6 @@
 
                 if($('#mostrarTodos input[type="checkbox"]:checked'))
                 {
-                    console.log('entra');
                     location.reload();
                 }
 

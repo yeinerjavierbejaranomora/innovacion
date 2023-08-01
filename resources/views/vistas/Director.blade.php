@@ -122,7 +122,7 @@
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" ">
 
-                <div class="col-6 text-center" id="colCardProgramas">
+                <div class="col-6 text-start" id="colCardProgramas">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -323,7 +323,6 @@
 
         }
 
-
         /**
          * Método que trae los gráficos de la vista
          */
@@ -351,18 +350,17 @@
             totalSeleccionado -= 1;
         }
 
-        function estadoUsuario(){
-            $("#mensaje").empty();
-            if (programasSeleccionados.length > 1)
-            {
-                var textoNuevo = "<h3>Informe programas " + programasSeleccionados +" </h3>";
+        function estadoUsuario() {
+                $("#mensaje").empty();
+                if (programasSeleccionados.length > 1) {
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                }
+                $("#mensaje").html(textoNuevo);
             }
-            else
-            {
-                var textoNuevo = "<h3>Informe programa " + programasSeleccionados +" </h3>";
-            }
-             $("#mensaje").html(textoNuevo);
-        }
 
         /**
          * Método para destruir todos los gráficos

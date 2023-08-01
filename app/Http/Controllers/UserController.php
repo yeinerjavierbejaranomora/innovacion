@@ -499,8 +499,6 @@ class UserController extends Controller
     public function traerProgramas(Request $request)
     {
         $idsFacultad = $request->input('idfacultad');
-        var_dump($idsFacultad);
-        die();
         $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
         foreach ($programas as $programa) {
             $arreglo[] = [
@@ -520,6 +518,7 @@ class UserController extends Controller
             ->whereIn('codfacultad', $codFacultad)
             ->pluck('nombre')
             ->toArray();
+
         $programas = DB::table('programas')->whereIn('Facultad', $nombreFacultad)->select('id', 'programa', 'codprograma')->get();
 
         header("Content-Type: application/json");

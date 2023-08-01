@@ -520,16 +520,10 @@ class UserController extends Controller
             ->whereIn('codfacultad', $codFacultad)
             ->pluck('nombre')
             ->toArray();
-        $programasPorFacultad = array();
-        var_dump($nombreFacultad);
-        die();
-        foreach ($nombreFacultad as $facultad) {
-            $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get();
-            $programasPorFacultad[] = $programas;
-        }
+        $programas = DB::table('programas')->whereIn('Facultad', [$nombreFacultad])->select('id', 'programa', 'codprograma')->get();
 
         header("Content-Type: application/json");
-        echo json_encode($programasPorFacultad);
+        echo json_encode($programas);
     }
     /**
      * Método que trae los estudiantes activos de toda la Ibero

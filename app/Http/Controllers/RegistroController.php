@@ -58,7 +58,6 @@ class RegistroController extends Controller
     }
 
     public function crearUsuario(UsuarioRegistroRequest $request){
-        /** Inserta los datos validades en la tabla users usando el model Userphp */
         $data = $request->all();
         $user = new User($data);
         $user->save();
@@ -68,12 +67,9 @@ class RegistroController extends Controller
         
         LogUsuariosController::registrarLog('INSERT', "Usuario creado" ,'Users', json_encode($request->all()), NULL);
 
-        /** si la insercion es correcta */
         if($user):
-            /** Redirecciona a la vista de administración de usuarios con un mensaje de exito */
             return redirect()->route('admin.users')->with('success','Usuario creado correctamente');
         else:
-            /** Redirecciona a la vista de administración de usuarios con un mensaje de error */
             return redirect()->route('admin.users')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }

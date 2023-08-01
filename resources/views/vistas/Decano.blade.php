@@ -436,12 +436,13 @@
                 console.log(cantidadFacultades);
                 if (cantidadFacultades === 1){
                     $('#colCardFacultades').hide();
-                    $('#colCardEstudiantes, #colEstudiantes').removeClass('col-4');
-                    $('#colCardEstudiantes, #colEstudiantes').addClass('col-6');
+                    $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
+                    $('#colcardProgramas, #colEstudiantes').addClass('col-6');
                     $('label.idFacultad').removeClass('hidden');
 
                     var formData = new FormData();    
                         formData.append('idfacultad[]', facultadesSelect);
+                        console.log(formData);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

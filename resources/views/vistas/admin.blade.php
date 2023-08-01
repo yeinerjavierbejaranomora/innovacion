@@ -29,7 +29,7 @@
         place-items: center;
         font-size: 14px;
     }
-    
+
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
@@ -471,6 +471,7 @@
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                Contador();
                 // if($('#mostrarTodos input[type="checkbox"]:checked').length > 0 && $('#facultades input[type="checkbox"]:checked').length === 0)
                 // {
                 //     location.reload();
@@ -484,9 +485,11 @@
                     estadoUsuarioPrograma();
                     graficosporPrograma(programasSeleccionados);
                 } else {
-
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
+                            if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
+                                location.reload();
+                            }
                             informacionGeneral();
                         } else {
                             $('#mensaje').hide();
@@ -501,10 +504,6 @@
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
-                        if($('#mostrarTodos input[type="checkbox"]:checked').length > 0)
-                        {
-                            location.reload();
-                        }
                         /** Alerta */
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
@@ -1404,19 +1403,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -1940,19 +1939,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -2057,7 +2056,7 @@
             });
 
             var chartTiposEstudiantesTotal
-            
+
             function tiposEstudiantesTotal() {
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
@@ -2127,7 +2126,7 @@
                 });
 
             }
-            
+
             /**
              * Método que trae todos los operadores de la Ibero
              */

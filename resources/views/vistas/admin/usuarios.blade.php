@@ -200,9 +200,9 @@
                     } catch {
                         datos = datos;
                     } 
-                    console.log(datos);
-                    datos.forEach(arreglo=>{
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${arreglo.id}"> ${arreglo.programa}</label><br>`);
+                    $.each(datos, function(key, value) {
+                        console.log(value);
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.programa}</label><br>`);
                     });
                 }
             })

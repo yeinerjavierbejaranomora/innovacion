@@ -441,7 +441,6 @@
                 var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSelect[key[0]];
                 
-                console.log(facultadesSelect);
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');

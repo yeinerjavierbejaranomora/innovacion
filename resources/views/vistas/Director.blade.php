@@ -120,7 +120,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" id="">
+            <div class="row justify-content-start" id="colCardProgramas">
                 <div class="col-6 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
@@ -287,6 +287,8 @@
         programasUsuario();
         invocarGraficos();
         Contador();
+        vistaEntrada();
+
         var totalSeleccionado
 
         var programasSeleccionados = [];
@@ -304,7 +306,21 @@
             programasSelect = programasSeleccionados;
         }
 
-        function 
+        function vistaEntrada(){
+            var key = Object.keys(programasSelect);
+                var cantidadProgramas = key.length;
+                var valorPrograma = programasSelect[key[0]];
+
+            if(cantidadProgramas === 1)
+            {
+                $('#colCardProgramas').hide();
+                $('#colEstudiantes').removeClass('col-6');
+                $('#colEstudiantes').addClass('col-8');
+                var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
+                    $("#mensaje").html(textoNuevo);
+            }
+
+        }
 
 
         /**

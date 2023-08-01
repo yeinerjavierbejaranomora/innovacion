@@ -399,6 +399,7 @@
             function Contador() {
                 totalSeleccionado = $('#programas input[type="checkbox"]').length;
                 totalSeleccionado -= 1;
+                console.log(totalSeleccionado);
             }
             /**
              * Método para destruir todos los gráficos

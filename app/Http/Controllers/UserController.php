@@ -515,7 +515,6 @@ class UserController extends Controller
     {
         $codFacultad = $request->input('codfacultad');
         $nombreFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->select('nombre')->get();
-        var_dump($nombreFacultad);
         foreach ($nombreFacultad as $facultad){
             echo $facultad->nombre;
         }

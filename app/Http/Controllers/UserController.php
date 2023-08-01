@@ -498,7 +498,8 @@ class UserController extends Controller
      */
     public function traerProgramas(Request $request)
     {
-        $idsFacultad = $request->input('idfacultad');
+        $codFacultad = $request->input('codfacultad');
+        $idsFacultad = DB::table('facultades')->whereIn('codfacultad', $codFacultad)->get();
         $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
         foreach ($programas as $programa) {
             $arreglo[] = [

@@ -168,7 +168,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario #facultades').append(`<label> <input type="checkbox" id="" name="facultad[]" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
+                    $('#nuevousuario #facultades').append(`<label> <input type="checkbox" id="" name="facultad[]" value="${facultad.codFacultad}"> ${facultad.nombre}</label><br>`);
                 })
             }
         })
@@ -182,7 +182,7 @@
             var formData = new FormData();
             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
             checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad[]', $(this).val());
+                formData.append('codfacultad[]', $(this).val());
             });
             console.log(formData);
             $.ajax({

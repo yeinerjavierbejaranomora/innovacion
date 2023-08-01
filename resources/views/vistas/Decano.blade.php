@@ -372,7 +372,7 @@
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
-                    var textoNuevo = "<h3>Informe programas " + programasFormateados + " </h3>";
+                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
                 }
@@ -385,7 +385,7 @@
                 if (facultadesSeleccionadas.length > 1) {
                     var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.join(' - ');
-                    var textoNuevo = "<h3>Informe facultades " + facultadesFormateadas + " </h3>";
+                    var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }

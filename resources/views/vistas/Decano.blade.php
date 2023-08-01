@@ -353,6 +353,7 @@
 
             facultadesUsuario();
             vistaEntrada();
+            Contador();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -552,7 +553,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Debes seleccionar al menos un programas',
+                    text: 'Debes seleccionar al menos un programa',
                     confirmButtonColor: '#dfc14e',
                 })
             }

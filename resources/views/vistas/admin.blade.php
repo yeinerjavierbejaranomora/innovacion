@@ -489,11 +489,11 @@
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             
+                            informacionGeneral();
+                        } else {
                             if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
                                 location.reload();
                             }
-                            informacionGeneral();
-                        } else {
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];

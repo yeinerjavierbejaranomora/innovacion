@@ -184,7 +184,6 @@
             checkboxesSeleccionados.each(function() {
                 formData.append('codfacultad[]', $(this).val());
             });
-            console.log(formData);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -202,7 +201,7 @@
                         datos = datos;
                     } 
                     $.each(datos, function(key, value) {
-                        console.log(value.id);
+                        console.log(value);
                         $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
                     });
                 }

@@ -472,6 +472,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
+                console.log(totalSeleccionado);
                 // if($('#mostrarTodos input[type="checkbox"]:checked').length > 0 && $('#facultades input[type="checkbox"]:checked').length === 0)
                 // {
                 //     location.reload();

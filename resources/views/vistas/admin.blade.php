@@ -500,6 +500,7 @@
                         }
                     } else {
                         /** Alerta */
+                        console.log('entra');
                         if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
                                 location.reload();
                             }

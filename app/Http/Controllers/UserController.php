@@ -515,6 +515,8 @@ class UserController extends Controller
     {
         $codFacultad = $request->input('codfacultad');
         $idsFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->get();
+        var_dump($idsFacultad);
+        die();
         $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
         foreach ($programas as $programa) {
             $arreglo[] = [

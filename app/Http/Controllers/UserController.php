@@ -513,18 +513,21 @@ class UserController extends Controller
         echo json_encode($arreglo);
     }
 
-    public function traerProgramasUsuarios (Request $request)
+    public function traerProgramasUsuarios(Request $request)
     {
         $codFacultad = $request->input('codfacultad');
-        $nombreFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->select('nombre')->get();
+        $nombreFacultad = DB::table('facultad')
+            ->whereIn('codfacultad', $codFacultad)
+            ->pluck('nombre')
+            ->toArray();
         $programasPorFacultad = array();
         var_dump($nombreFacultad);
         die();
-        foreach ($nombreFacultad as $facultad){
+        foreach ($nombreFacultad as $facultad) {
             $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get();
-            $programasPorFacultad[]= $programas;   
+            $programasPorFacultad[] = $programas;
         }
-        
+
         header("Content-Type: application/json");
         echo json_encode($programasPorFacultad);
     }
@@ -1143,7 +1146,7 @@ class UserController extends Controller
         echo json_encode(array('data' => $programas));
     }
 
-     /**
+    /**
      * Método que trae todos los tipos de estudiantes
      * @return JSON retorna todos los tipos de estudiantes
      */

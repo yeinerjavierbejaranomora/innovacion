@@ -126,7 +126,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" >
+            <div class="row justify-content-start">
                 <div class="col-4 text-star" id="colCardFacultades">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
@@ -383,7 +383,7 @@
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
                 } else {
-                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>"; 
+                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
@@ -431,17 +431,19 @@
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
-            function vistaEntrada(){
+            function vistaEntrada() {
                 var cantidadFacultades = Object.keys(facultadesSelect).length;
                 console.log(facultadesSelect);
-                if (cantidadFacultades === 1){
+                if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
                     $('#colcardProgramas, #colEstudiantes').addClass('col-6');
                     $('label.idFacultad').removeClass('hidden');
-
-                    var formData = new FormData();    
-                        formData.append('idfacultad[]', facultadesSelect);
+                    var idFacultadesArray = Object.values(facultadesSelect);
+                    var formData = new FormData();
+                    idFacultadesArray.forEach((facultad) => {
+                        formData.append('idfacultad[]', facultad);
+                    });
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -121,7 +121,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-start" ">
-                <div class="col-6 text-start" id="colCardProgramas>
+                <div class="col-6 text-start" id="colCardProgramas">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>

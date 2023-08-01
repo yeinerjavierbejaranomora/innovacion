@@ -511,6 +511,21 @@ class UserController extends Controller
         echo json_encode($arreglo);
     }
 
+    public function traerProgramasUsuarios (Request $request)
+    {
+        $codFacultad = $request->input('codfacultad');
+        $idsFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->get();
+        $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
+        foreach ($programas as $programa) {
+            $arreglo[] = [
+                'id' => $programa->id,
+                'nombre' => $programa->programa,
+                'codprograma' => $programa->codprograma
+            ];
+        }
+        header("Content-Type: application/json");
+        echo json_encode($arreglo);
+    }
     /**
      * Método que trae los estudiantes activos de toda la Ibero
      * @return JSON retorna los estudiantes agrupados en activos e inactivos

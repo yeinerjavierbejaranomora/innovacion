@@ -70,6 +70,8 @@ Route::controller(UserController::class)->group(function () {
 
     /** Ruta para traer los programas */
     Route::post('/home/programas', 'traerprogramas')->name('traer.programas');
+    /** Ruta para traer programas en la vista Usuarios */
+    Route::post('/home/programasUsuarios', 'traerProgramasUsuarios')->name('traer.programas.usuarios');
 
     /** Ruta para cargar gráfica de estudiantes activos e inactivos */
     Route::get('/home/estudiantes', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos');

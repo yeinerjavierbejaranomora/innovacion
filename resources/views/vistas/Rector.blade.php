@@ -484,7 +484,7 @@
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             informacionGeneral();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]:checked')) {
+                            if ($('#mostrarTodos input[type="checkbox"]').is(':checked')) {
                                 location.reload();
                             }
                             $('#mensaje').hide();

@@ -434,14 +434,17 @@
             }
 
             function vistaEntrada() {
-                var cantidadFacultades = Object.keys(facultadesSelect).length;
+                var key = Object.keys(facultadesSelect)
+                var cantidadFacultades = key.length;
+                var valorFacultad = facultadesSelect[key[0]];
+                
                 console.log(facultadesSelect);
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
                     $('#colcardProgramas, #colEstudiantes').addClass('col-6');
                     $('label.idFacultad').removeClass('hidden');
-                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad " + facultadesSelect + " </h3>";
+                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     var idFacultadesArray = Object.values(facultadesSelect);
                     var formData = new FormData();

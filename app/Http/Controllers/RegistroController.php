@@ -60,11 +60,8 @@ class RegistroController extends Controller
     public function crearUsuario(UsuarioRegistroRequest $request){
         $data = $request->all();
         $facultades = $data['facultad'];
-        
-        dd($facultades);
-        $user = new User($data);
-        $user->save();
-
+        $data['id_facultad'] = implode(',', $facultades);
+        $user = User::create($data);
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
         

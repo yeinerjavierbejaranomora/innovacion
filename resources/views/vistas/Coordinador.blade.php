@@ -305,20 +305,32 @@
             programasSelect = programasSeleccionados;
         }
 
-        function estadoUsuario(){
-            $("#mensaje").empty();
-            if (programasSeleccionados.length > 1)
-            {
-                var textoNuevo = "<h3>Informe programas " + programasSeleccionados +" </h3>";
+        function estadoUsuario() {
+                $("#mensaje").empty();
+                if (programasSeleccionados.length > 1) {
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
+                } else {
+                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                }
+                $("#mensaje").html(textoNuevo);
             }
-            else
+
+        function vistaEntrada(){
+            var key = Object.keys(programasSelect);
+                var cantidadProgramas = key.length;
+                var valorPrograma = programasSelect[key[0]];
+
+            if(cantidadProgramas === 1)
             {
-                var textoNuevo = "<h3>Informe programa " + programasSeleccionados +" </h3>";
+                $('#colCardProgramas').hide();
+                $('#colEstudiantes').removeClass('col-6');
+                $('#colEstudiantes').addClass('col-8');
+                var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
+                    $("#mensaje").html(textoNuevo);
             }
-             $("#mensaje").html(textoNuevo);
         }
-
-
 
         /**
          * Método que trae los gráficos de la vista

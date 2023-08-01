@@ -518,7 +518,7 @@ class UserController extends Controller
         $programasPorFacultad = array();
         foreach ($nombreFacultad as $facultad){
             $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get();
-            $programasPorFacultad= $programas;   
+            $programasPorFacultad[]= $programas;   
         }
         
         header("Content-Type: application/json");

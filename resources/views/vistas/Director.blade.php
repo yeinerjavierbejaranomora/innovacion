@@ -120,7 +120,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" ">
+            <div class="row justify-content-center" ">
 
                 <div class="col-6 text-center" id="colCardProgramas">
                     <div class="card shadow mb-5" id="cardProgramas">

@@ -81,20 +81,13 @@ class User extends Authenticatable
 
     public function setFacultadAttribute($value)
     {
-        /** se crea la variable $Programa para el string de los programas*/
         $Facultades = '';
-        /**se comprueba que el campo no este vacio*/
         if (isset($value)) :
-            /** Se recorre el arreglo recibido, y se añade a la variable $Programa
-             *  en cada iteracion, añadiendole el ; como separador
-             */
             foreach ($value as $facultad) :
                 $Facultades .= $facultad . ",";
             endforeach;
-            /**En el campo programa se añade el contenido de la variable $Programa */
             $this->attributes['id_facultad'] = $Facultades;
         else:
-            /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $this->attributes['id_facultad'] = '';
         endif;
     }

@@ -499,6 +499,8 @@ class UserController extends Controller
     public function traerProgramas(Request $request)
     {
         $idsFacultad = $request->input('idfacultad');
+        var_dump($idsFacultad);
+        die();
         $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
         foreach ($programas as $programa) {
             $arreglo[] = [
@@ -516,6 +518,8 @@ class UserController extends Controller
         $codFacultad = $request->input('codfacultad');
         $nombreFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->select('nombre')->get();
         $programasPorFacultad = array();
+        var_dump($programasPorFacultad);
+        die();
         foreach ($nombreFacultad as $facultad){
             $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get();
             $programasPorFacultad[]= $programas;   

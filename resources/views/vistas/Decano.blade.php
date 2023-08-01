@@ -447,7 +447,7 @@
                         },
                         type: 'post',
                         url: "{{ route('traer.programas') }}",
-                        data: facultadesSelect,
+                        data: formData,
                         cache: false,
                         contentType: false,
                         processData: false,

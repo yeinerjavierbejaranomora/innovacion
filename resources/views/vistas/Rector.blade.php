@@ -29,7 +29,7 @@
         place-items: center;
         font-size: 14px;
     }
-    
+
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
@@ -444,20 +444,24 @@
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
                 if (programasSeleccionados.length > 1) {
-                    var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
                 }
-                $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
 
             function estadoUsuarioFacultad() {
+
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                    var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.join(' - ');
+                    var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
                 } else {
-                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>"; 
+                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
@@ -467,6 +471,9 @@
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                if ($('#mostrarTodos input[type="checkbox"]:checked')) {
+                    location.reload();
+                }
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -1392,19 +1399,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -1928,19 +1935,19 @@
                                 }]
                             },
                             options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                        },
                             plugin: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
@@ -2045,7 +2052,7 @@
             });
 
             var chartTiposEstudiantesTotal
-            
+
             function tiposEstudiantesTotal() {
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
@@ -2115,7 +2122,7 @@
                 });
 
             }
-            
+
             /**
              * Método que trae todos los operadores de la Ibero
              */

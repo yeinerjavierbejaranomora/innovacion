@@ -304,6 +304,8 @@
             programasSelect = programasSeleccionados;
         }
 
+        function 
+
 
         /**
          * Método que trae los gráficos de la vista

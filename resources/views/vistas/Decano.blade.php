@@ -368,7 +368,6 @@
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
-
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');

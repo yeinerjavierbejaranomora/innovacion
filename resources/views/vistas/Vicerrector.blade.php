@@ -430,20 +430,23 @@
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
                 if (programasSeleccionados.length > 1) {
-                    var textoNuevo = "<h3>Informe programas " + programasSeleccionados + " </h3>";
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
                 }
-                $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
 
             function estadoUsuarioFacultad() {
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                    var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.join(' - ');
+                    var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
                 } else {
-                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>"; 
+                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
@@ -467,6 +470,10 @@
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                if($('#mostrarTodos input[type="checkbox"]:checked'))
+                {
+                    location.reload();
+                }
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];

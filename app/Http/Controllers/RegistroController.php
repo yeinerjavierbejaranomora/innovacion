@@ -13,33 +13,28 @@ class RegistroController extends Controller
 {
     //
     /** Carga la vista del formulario de registro */
-    public function index()
-    {
+    public function index() {
         return view('registro.index');
     }
 
-    public function indexPrueba()
-    {
+    public function indexPrueba() {
         return view('registroprueba.index');
     }
 
     /** Traer los datos de la tabla roles */
-    public function roles()
-    {
+    public function roles() {
         $roles = DB::table('roles')->get();
         return $roles;
     }
 
     /** Trae los datos de la tabla facultades */
-    public function facultades()
-    {
+    public function facultades() {
         $facultades = DB::table('facultad')->get();
         return $facultades;
     }
 
     /** Trae los datos dela tabla programas si el id coincide con el que se ricibe por POST desde el formulario de registro */
-    public function programas()
-    {
+    public function programas() {
         $idFacultad = $_POST['idfacultad'];
         $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `Facultad` = :id', ['id' => $idFacultad]);
         return $programas;
@@ -49,38 +44,43 @@ class RegistroController extends Controller
     /** Recibe los datos validados del formulario de registro luego de pasar por el UsuarioRegistroRequet
      * y realiza la insercion del usuario en la tabla users
      */
-    public function saveRegistro(UsuarioRegistroRequest $request)
-    {
+    public function saveRegistro(UsuarioRegistroRequest $request){
         /** Inserta los datos validades en la tabla users usando el model Userphp */
         $usuario = User::create($request->validated());
         /** si la insercion es correcta */
-        if ($usuario) :
+        if($usuario):
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            return redirect()->route('registro.index')->with('success', 'Usuario creado correctamente');
-        else :
+            return redirect()->route('registro.index')->with('success','Usuario creado correctamente');
+        else:
             /** Redirecciona al formulario registro mostrando un mensaje de error */
             return redirect()->route('registro.index')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }
 
-    public function crearUsuario(UsuarioRegistroRequest $request)
-    {
+    public function crearUsuario(UsuarioRegistroRequest $request){
         $data = $request->validated();
-        $facultades = $data['facultad'];
-        $user = new User($data);
-        $user->facultad = $facultades;
-        $user->save();
-        
+
+    // Obtener el array de facultades seleccionadas desde el request
+    $facultades = $data['facultad'];
+
+    // Asignar el array de facultades al atributo 'facultad' del modelo User
+    $user = new User($data);
+    $user->facultad = $facultades;
+
+    // Guardar el modelo en la base de datos
+    $user->save();
+        /** Inserta los datos validades en la tabla users usando el model Userphp */
+        $usuario = User::create($request->validated());
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-
-        LogUsuariosController::registrarLog('INSERT', "Usuario creado", 'Users', json_encode($request->all()), NULL);
+        
+        LogUsuariosController::registrarLog('INSERT', "Usuario creado" ,'Users', json_encode($request->all()), NULL);
 
         /** si la insercion es correcta */
-        if ($user) :
+        if($usuario):
             /** Redirecciona a la vista de administración de usuarios con un mensaje de exito */
-            return redirect()->route('admin.users')->with('success', 'Usuario creado correctamente');
-        else :
+            return redirect()->route('admin.users')->with('success','Usuario creado correctamente');
+        else:
             /** Redirecciona a la vista de administración de usuarios con un mensaje de error */
             return redirect()->route('admin.users')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;

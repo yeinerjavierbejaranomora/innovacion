@@ -492,16 +492,18 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
-                            console.log('entra');
-
+                            var long = $('#facultades input[type="checkbox"]:checked').length;
+                            console.log(long);
+                            if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
+                                console.log('entra');
+                                location.reload();
+                            }
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
                         /** Alerta */
-                        if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
-                                location.reload();
-                            }
+                        
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
                         destruirGraficos();

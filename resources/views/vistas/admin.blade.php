@@ -472,11 +472,6 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                console.log(totalSeleccionado);
-                // if($('#mostrarTodos input[type="checkbox"]:checked').length > 0 && $('#facultades input[type="checkbox"]:checked').length === 0)
-                // {
-                //     location.reload();
-                // }
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -491,9 +486,7 @@
                             
                             informacionGeneral();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
-                                location.reload();
-                            }
+                            
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];
@@ -501,13 +494,15 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
-                            console.log(facultadesSeleccionadas);
+
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {
                         /** Alerta */
-                        
+                        if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
+                                location.reload();
+                            }
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
                         destruirGraficos();
@@ -535,7 +530,7 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
-                    console.log(formData);
+
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -552,7 +547,7 @@
                             } catch {
                                 datos = datos;
                             }
-                            console.log(datos);
+
                             $.each(datos, function(key, value) {
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
                             });
@@ -1052,7 +1047,6 @@
              */
 
             function graficoEstudiantesPorFacultades(facultades) {
-                console.log(facultades);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

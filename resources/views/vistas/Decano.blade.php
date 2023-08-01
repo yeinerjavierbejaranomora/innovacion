@@ -435,9 +435,10 @@
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
+            var key = Object.keys(facultadesSelect)
+            var cantidadFacultades = key.length;
             function vistaEntrada() {
-                var key = Object.keys(facultadesSelect)
-                var cantidadFacultades = key.length;
+                
                 var valorFacultad = facultadesSelect[key[0]];
                 
                 console.log(facultadesSelect);
@@ -496,6 +497,12 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                if(cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0)
+                {
+                    $('#mensaje').hide();
+                    alertaProgramas();   
+                }
+
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -539,7 +546,14 @@
                 })
             }
 
-
+            function alertaProgramas() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un programas',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();

@@ -520,8 +520,6 @@ class UserController extends Controller
             $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get()->toArray();
             $programasPorFacultad[$facultad->nombre] = $programas;   
         }
-        var_dump($programasPorFacultad);
-        die();
         header("Content-Type: application/json");
         echo json_encode($programasPorFacultad);
     }

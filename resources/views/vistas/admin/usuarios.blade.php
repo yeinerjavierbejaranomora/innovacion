@@ -201,7 +201,6 @@
                         datos = datos;
                     } 
                     datos.forEach(arreglo=>{
-                        console.log(value.codprograma);
                         $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${arreglo.id}"> ${arreglo.programa}</label><br>`);
                     });
                 }

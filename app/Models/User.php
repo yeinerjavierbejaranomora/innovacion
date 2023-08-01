@@ -81,6 +81,7 @@ class User extends Authenticatable
 
     public function setFacultadAttribute($value)
     {
+        dd($value);
         $Facultades = '';
         if (isset($value)) :
             foreach ($value as $facultad) :

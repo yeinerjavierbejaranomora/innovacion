@@ -488,12 +488,13 @@
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
-                            console.log('entra');
+                            
                             if ($('#mostrarTodos input[type="checkbox"]:checked').length > 0) {
                                 location.reload();
                             }
                             informacionGeneral();
                         } else {
+                            console.log('entra');
                             $('#mensaje').hide();
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];

@@ -494,7 +494,7 @@
                             }
                             informacionGeneral();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]')) {
+                            if ($('#mostrarTodos input[type="checkbox"]:checked')) {
                                 location.reload();
                             }
                             $('#mensaje').hide();

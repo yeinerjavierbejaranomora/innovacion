@@ -515,20 +515,15 @@ class UserController extends Controller
     {
         $codFacultad = $request->input('codfacultad');
         $nombreFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->select('nombre')->get();
+        $programasPorFacultad = array();
         foreach ($nombreFacultad as $facultad){
-            echo $facultad->nombre;
+            $programas = DB::table('programas')->whereIn('Facultad', $facultad)->select('id', 'programa', 'codprograma')->get();
+            $programasPorFacultad[$facultad->nombre] = $programas;   
         }
+        var_dump($programasPorFacultad);
         die();
-        $programas = DB::table('programas')->whereIn('Facultad', $nombreFacultad)->select('id', 'programa', 'codprograma')->get();
-        foreach ($programas as $programa) {
-            $arreglo[] = [
-                'id' => $programa->id,
-                'nombre' => $programa->programa,
-                'codprograma' => $programa->codprograma
-            ];
-        }
         header("Content-Type: application/json");
-        echo json_encode($arreglo);
+        echo json_encode($programasPorFacultad);
     }
     /**
      * Método que trae los estudiantes activos de toda la Ibero

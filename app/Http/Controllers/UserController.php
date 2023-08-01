@@ -517,7 +517,7 @@ class UserController extends Controller
         $nombreFacultad = DB::table('facultad')->whereIn('codfacultad',$codFacultad)->select('nombre')->get();
         $programasPorFacultad = array();
         foreach ($nombreFacultad as $facultad){
-            $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get()->toArray();
+            $programas = DB::table('programas')->whereIn('Facultad', [$facultad->nombre])->select('id', 'programa', 'codprograma')->get();
             $programasPorFacultad= $programas;   
         }
         

@@ -507,8 +507,9 @@
                     alertaProgramas();   
                 }
 
-                if($('#mostrarTodos input[type="checkbox"]:checked') && $('#facultades input[type="checkbox"]:checked').length == 0)
+                if($('#mostrarTodos input[type="checkbox"]:checked'))
                 {
+                    console.log('entra');
                     location.reload();
                 }
 

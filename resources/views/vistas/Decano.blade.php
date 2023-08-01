@@ -519,7 +519,7 @@
                         if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
                             location.reload();
                         } else {
-                            if ($('#mostrarTodos input[type="checkbox"]:checked')) {
+                            if ($('#mostrarTodos input[type="checkbox"]').is(':checked')) {
                                 location.reload();
                             }
                             $('#mensaje').hide();

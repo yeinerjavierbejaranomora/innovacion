@@ -515,8 +515,6 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if($('#facultades input[type="checkbox"]:checked').length == 1)
-                        {}
                         else
                         {
                             if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {

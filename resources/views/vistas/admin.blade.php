@@ -481,6 +481,7 @@
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
+                    estadoUsuarioPrograma();
                     graficosporPrograma(programasSeleccionados);
                 } else {
 
@@ -496,6 +497,7 @@
                                 facultadesSeleccionadas.push($(this).val());
                             });
                             console.log(facultadesSeleccionadas);
+                            estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas);
                         }
                     } else {

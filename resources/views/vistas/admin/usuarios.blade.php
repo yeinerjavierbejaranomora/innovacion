@@ -106,7 +106,6 @@
                                 <div >
                                     <label for="message-text" class="col-form-label">Facultad</label>
                                     <div name="facultades" id="facultades">
-
                                     </div>
                                 </div>
                                 <div>
@@ -200,7 +199,6 @@
                     } catch {
                         datos = datos;
                     } 
-                    console.log(datos);
                     $.each(datos, function(key, value) {
                         $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.programa}</label><br>`);
                     });

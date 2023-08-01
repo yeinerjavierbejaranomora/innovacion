@@ -353,7 +353,6 @@
 
             facultadesUsuario();
             vistaEntrada();
-            Contador();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -499,6 +498,7 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                Contador();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 if(cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0)

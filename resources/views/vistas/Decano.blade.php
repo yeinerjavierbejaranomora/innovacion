@@ -435,9 +435,9 @@
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
-            var key = Object.keys(facultadesSelect)
+            
             function vistaEntrada() {
-                
+                var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSelect[key[0]];
                 

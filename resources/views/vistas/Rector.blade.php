@@ -471,7 +471,8 @@
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                if ($('#mostrarTodos input[type="checkbox"]:checked')) {
+                if($('#mostrarTodos input[type="checkbox"]:checked') && $('#facultades input[type="checkbox"]:checked').length == 0)
+                {
                     location.reload();
                 }
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {

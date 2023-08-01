@@ -58,17 +58,6 @@ class RegistroController extends Controller
     }
 
     public function crearUsuario(UsuarioRegistroRequest $request){
-        $data = $request->validated();
-
-    // Obtener el array de facultades seleccionadas desde el request
-    $facultades = $data['facultad'];
-
-    // Asignar el array de facultades al atributo 'facultad' del modelo User
-    $user = new User($data);
-    $user->facultad = $facultades;
-
-    // Guardar el modelo en la base de datos
-    $user->save();
         /** Inserta los datos validades en la tabla users usando el model Userphp */
         $usuario = User::create($request->validated());
         $parametros = collect($request->all())->except(['_token'])->toArray();

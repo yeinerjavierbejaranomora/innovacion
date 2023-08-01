@@ -436,9 +436,9 @@
             }
 
             var key = Object.keys(facultadesSelect)
-            var cantidadFacultades = key.length;
             function vistaEntrada() {
                 
+                var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSelect[key[0]];
                 
                 console.log(facultadesSelect);

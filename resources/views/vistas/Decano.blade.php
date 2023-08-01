@@ -525,6 +525,9 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
+                            if ($('#mostrarTodos').prop('checked')) {
+                                location.reload();
+                            }
                             estadoUsuarioFacultad()
                             graficosporFacultad(facultadesSeleccionadas);
                         }

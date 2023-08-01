@@ -493,7 +493,6 @@
                                 facultadesSeleccionadas.push($(this).val());
                             });
                             var long = $('#facultades input[type="checkbox"]:checked').length;
-                            console.log(long);
                             if ($('#mostrarTodos').prop('checked')) {
                                 location.reload();
                             }

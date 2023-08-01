@@ -497,7 +497,6 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                console.log(totalSeleccionado);
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 if(cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0)
@@ -516,18 +515,23 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
-                            location.reload();
-                        } else {
-                            $('#mensaje').hide();
-                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                            programasSeleccionados = [];
-                            facultadesSeleccionadas = [];
-                            checkboxesSeleccionados.each(function() {
-                                facultadesSeleccionadas.push($(this).val());
-                            });
-                            estadoUsuarioFacultad()
-                            graficosporFacultad(facultadesSeleccionadas);
+                        if($('#facultades input[type="checkbox"]:checked').length == 1)
+                        {}
+                        else
+                        {
+                            if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
+                                location.reload();
+                            } else {
+                                $('#mensaje').hide();
+                                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                                programasSeleccionados = [];
+                                facultadesSeleccionadas = [];
+                                checkboxesSeleccionados.each(function() {
+                                    facultadesSeleccionadas.push($(this).val());
+                                });
+                                estadoUsuarioFacultad()
+                                graficosporFacultad(facultadesSeleccionadas);
+                            }
                         }
                     } else {
                         /** Alerta */

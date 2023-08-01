@@ -79,17 +79,4 @@ class User extends Authenticatable
         endif;
     }
 
-    public function setFacultadAttribute($value)
-    {
-        $Facultades = '';
-        if (isset($value)) :
-            foreach ($value as $facultad) :
-                $Facultades .= $facultad . ",";
-            endforeach;
-            $this->attributes['id_facultad'] = rtrim($Facultades, ",");
-        else:
-            $this->attributes['id_facultad'] = '';
-        endif;
-    }
-
 }

@@ -433,6 +433,7 @@
 
             function vistaEntrada(){
                 var cantidadFacultades = Object.keys(facultadesSelect).length;
+                console.log(facultadesSelect);
                 if (cantidadFacultades === 1){
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');

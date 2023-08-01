@@ -202,7 +202,7 @@
                     } 
                     $.each(datos, function(key, value) {
                         console.log(value);
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.nombre}</label><br>`);
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.programa}</label><br>`);
                     });
                 }
             })

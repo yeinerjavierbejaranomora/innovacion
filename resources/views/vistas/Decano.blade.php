@@ -497,6 +497,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
+                console.log(totalSeleccionado);
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 if(cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0)

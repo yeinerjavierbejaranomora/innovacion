@@ -126,8 +126,8 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" id="">
-                <div class="col-4 text-star">
+            <div class="row justify-content-start" >
+                <div class="col-4 text-star" id="colCardFacultades">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Facultad</strong></h5>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-start">
+                <div class="col-4 text-start" id="colcardProgramas">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -352,6 +352,7 @@
         $(document).ready(function() {
 
             facultadesUsuario();
+            vistaEntrada();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -428,6 +429,40 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
                 graficosporFacultad(facultadesSeleccionadas);
+            }
+
+            function vistaEntrada(){
+                if (facultadesSelect.length == 1){
+                    $('#colCardFacultades').hide();
+                    $('#colCardEstudiantes, #colEstudiantes').removeClass('col-4');
+                    $('#colCardEstudiantes, #colEstudiantes').addClass('col-6');
+                    $('label.idFacultad').removeClass('hidden');
+
+                    var formData = new FormData();    
+                        formData.append('idfacultad[]', facultadesSelect);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('traer.programas') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            try {
+                                datos = jQuery.parseJSON(datos);
+                            } catch {
+                                datos = datos;
+                            }
+                            $.each(datos, function(key, value) {
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                            });
+                        }
+                    })
+
+                }
             }
 
             /**

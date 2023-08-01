@@ -196,11 +196,7 @@
                 contentType: false,
                 processData: false,
                 success: function(datos) {
-                    try {
-                        datos = jQuery.parseJSON(datos);
-                    } catch {
-                        datos = datos;
-                    }
+                    
                     console.log(datos); 
                     $.each(datos, function(key, value) {
                         console.log(value.id);

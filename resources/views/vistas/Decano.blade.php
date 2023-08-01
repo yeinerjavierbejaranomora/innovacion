@@ -383,7 +383,9 @@
 
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h3>Informe facultades " + facultadesSeleccionadas + " </h3>";
+                    var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.join(' - ');
+                    var textoNuevo = "<h3>Informe facultades " + facultadesFormateadas + " </h3>";
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
                 }

@@ -393,10 +393,10 @@
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + programasFormateados);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + programasSeleccionados);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);
             }
@@ -408,10 +408,10 @@
                     var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.join(' - ');
                     var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + facultadesFormateadas);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + facultadesSeleccionadas);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);

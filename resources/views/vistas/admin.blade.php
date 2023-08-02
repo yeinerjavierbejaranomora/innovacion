@@ -182,7 +182,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5<strong>Estado Financiero</strong></h5>
+                        <h5><strong>Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
@@ -401,7 +401,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(facultad => {
-                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
                         });
                     }
                 });
@@ -533,7 +533,7 @@
                             }
 
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     })

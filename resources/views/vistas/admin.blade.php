@@ -2184,7 +2184,8 @@
                                     datalabels: {
                                     color: 'black',
                                     font: {
-                                        weight: 'semibold'
+                                        weight: 'light',
+                                        size: 8
                                     },
                                     formatter: Math.round
                                 },
@@ -2272,14 +2273,14 @@
                                     datalabels: {
                                     color: 'black',
                                     font: {
-                                        weight: 'semibold'
+                                        weight: 'light',
+                                        size: 8
                                     },
                                     formatter: Math.round
                                 },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
-
                                             font: {
                                                 size: 12
                                             }
@@ -2352,14 +2353,14 @@
                                     datalabels: {
                                     color: 'black',
                                     font: {
-                                        weight: 'semibold'
+                                        weight: 'light',
+                                        size: 8
                                     },
                                     formatter: Math.round
                                 },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
-
                                             font: {
                                                 size: 12
                                             }

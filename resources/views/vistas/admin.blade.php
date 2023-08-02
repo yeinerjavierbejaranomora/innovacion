@@ -386,7 +386,7 @@
                 });
             }
 
-            $(".botonModal").on('click', function(e) {
+            $("botonModalOperador").on('click', function(e) {
                 var elementosTitulos = $(this).closest('.modal').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {

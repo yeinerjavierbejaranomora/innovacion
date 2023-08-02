@@ -1217,11 +1217,13 @@
                                             size: 12
                                         },
                                 },
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                datalabels: {
+                                    color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
-                                    },
+                                },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',

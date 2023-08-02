@@ -258,7 +258,8 @@
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
                                                 <!--Validación para saber si el usuario tiene algún programa-->
-                                                @if(!empty($datos['programa']))
+                                                <?php dd($datos['programa']);?>
+                                                @if($datos['programa'])
                                                 <!--Ciclo para recorrer el array de programas e imprimirlos en pantalla-->
                                                 @foreach ($datos['programa'] as $key => $value)
                                                 {{$value}} <br>

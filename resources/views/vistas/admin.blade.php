@@ -158,9 +158,7 @@
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
-                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
+                            <h5><strong>Total estudiantes Banner</strong></h5>
                         </div>
                         <div class="card-body">
                             <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
@@ -184,9 +182,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Estado Financiero</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                        <h5<strong>Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
@@ -199,9 +195,7 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                        <h5><strong>Estado Financiero - Retención</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioRetencion" class="text-center vacio" style="display: none;">
@@ -214,9 +208,7 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
+                        <h5><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
@@ -229,9 +221,7 @@
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                        <h5><strong>Tipos de estudiantes</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
@@ -247,9 +237,7 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Operadores</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                        <h5><strong>Operadores</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioOperadores" class="text-center vacio" style="display: none;">
@@ -265,8 +253,7 @@
             <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
+                        <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioProgramas" class="text-center vacio" style="display: none;">
@@ -414,7 +401,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(facultad => {
-                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
+                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
                         });
                     }
                 });
@@ -446,8 +433,6 @@
              * */
             function informacionGeneral() {
                 $('#mensaje').show();
-                $('.facultadtitulos').hide();
-                $('.titulos').show();
                 $('.vacio').hide();
                 destruirGraficos();
                 llamadoFunciones();
@@ -645,7 +630,7 @@
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label == 'NO EXISTE') {
-                                    label = 'SIN SELLO';
+                                    label = 'INACTIVO';
                                 }
                                 return label + ': ' + valores[index];
                             }),
@@ -1026,9 +1011,6 @@
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
-                    $(".programastitulos").hide();
-                    $(".titulos").hide();
-                    $(".facultadtitulos").show();
                     $("#ocultarGraficoProgramas").show();
 
                     graficoEstudiantesPorFacultades(facultades);
@@ -1565,10 +1547,7 @@
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
 
-                    $(".facultadtitulos").hide();
-                    $(".titulos").hide();
                     $(".vacio").hide();
-                    $(".programastitulos").show();
                     $("#ocultarGraficoProgramas").hide();
 
                     graficoEstudiantesPorPrograma(programas);

@@ -268,8 +268,8 @@
 
                                         </div>
                                     </div>
-                                    @endunless
                                     <hr>
+                                    @endunless
                                     <div class="row">
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Estado</p>

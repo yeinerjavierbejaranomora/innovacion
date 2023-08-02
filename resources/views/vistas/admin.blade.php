@@ -868,6 +868,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores) + 500;
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
@@ -895,6 +896,12 @@
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
+                                scales: {
+                                y: {
+                                    max: maxValor,
+                                    beginAtZero: true
+                                }
+                            },
                                 datalabels: {
                                     color: 'black',
                                     font: {
@@ -936,6 +943,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores) + 500;
                     // Crear el gráfico de barras
                     var ctx = document.getElementById('operadores').getContext('2d');
                     chartOperadores = new Chart(ctx, {
@@ -962,7 +970,7 @@
                         options: {
                             scales: {
                                 y: {
-                                    max: 10000,
+                                    max: maxValor,
                                     beginAtZero: true
                                 }
                             },
@@ -1011,6 +1019,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores) + 500;
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                     chartProgramas = new Chart(ctx, {
@@ -1035,6 +1044,12 @@
                             }]
                         },
                         options: {
+                            scales: {
+                                y: {
+                                    max: maxValor,
+                                    beginAtZero: true
+                                }
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {

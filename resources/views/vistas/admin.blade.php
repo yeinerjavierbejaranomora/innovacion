@@ -708,7 +708,7 @@
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label == '') {
-                                    label = 'NO AUTORIZADO A PLATAFORMA'
+                                    label = 'SIN MARCACIÓN'
                                 }
                                 return label + ': ' + valores[index];
                             }),
@@ -782,7 +782,7 @@
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label == 'NO EXISTE') {
-                                    label = 'SIN SELLO';
+                                    label = 'INACTIVO';
                                 }
                                 return label + ': ' + valores[index];
                             }),
@@ -1170,7 +1170,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                        label = 'INACTIVO';
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1249,7 +1249,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                        label = 'SIN MARCACIÓN'
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1330,7 +1330,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                        label = 'INACTIVO';
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1411,7 +1411,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Tipos de estudiantes',
@@ -1485,7 +1485,7 @@
                                     if (label == '') {
                                         label = 'IBERO';
                                     }
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Operadores con mayor cantidad de estudiantes',
@@ -1562,7 +1562,7 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Operadores con mayor cantidad de estudiantes',
@@ -1734,7 +1734,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                        label = 'INACTIVO';
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1813,7 +1813,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                        label = 'SIN MARCACIÓN'
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1894,7 +1894,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                        label = 'INACTIVO';
                                     }
                                     label = label.toUpperCase();
                                     return label + ': ' + valores[index];
@@ -1976,7 +1976,7 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Tipos de estudiantes',
@@ -2051,7 +2051,7 @@
                                     if (label == '') {
                                         label = 'IBERO';
                                     }
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Operadores con mayor cantidad de estudiantes',
@@ -2163,7 +2163,7 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Tipos de esudiantes',
@@ -2252,7 +2252,7 @@
                                     if (label == '') {
                                         label = 'IBERO';
                                     }
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Operadores ordenados de forma descendente',
@@ -2331,7 +2331,7 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    return label + ': ' + valores[index];
+                                    return label;
                                 }),
                                 datasets: [{
                                     label: 'Programas',

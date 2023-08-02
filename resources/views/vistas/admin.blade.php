@@ -473,6 +473,7 @@
             });
 
             $('#verProgramas').on('click', function(e) {
+                console.log('entra');
                 $('#programas input[type="checkbox"]').removeAttr('checked');
             });
 

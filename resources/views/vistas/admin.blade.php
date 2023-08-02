@@ -871,7 +871,13 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     if ((maxValorAux - maxValor) < 600) {
-                        var yMax = maxValorAux + 1000;
+                        if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
+                            var yMax = maxValorAux + 1000;
+                        }
                     } else {
                         var yMax = maxValorAux;
                     }
@@ -952,7 +958,13 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     if ((maxValorAux - maxValor) < 600) {
-                        var yMax = maxValorAux + 1000;
+                        if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
+                            var yMax = maxValorAux + 1000;
+                        }
                     } else {
                         var yMax = maxValorAux;
                     }
@@ -1034,7 +1046,13 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     if ((maxValorAux - maxValor) < 600) {
-                        var yMax = maxValorAux + 1000;
+                        if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
+                            var yMax = maxValorAux + 1000;
+                        }
                     } else {
                         var yMax = maxValorAux;
                     }
@@ -1478,7 +1496,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -1564,7 +1588,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -1657,7 +1687,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -2090,7 +2126,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -2177,7 +2219,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -2304,7 +2352,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -2403,7 +2457,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }
@@ -2498,7 +2558,13 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
+                            if(maxValor<1000)
+                        {
+                            var yMax = maxValorAux + 100;
+                        }
+                        else{
                             var yMax = maxValorAux + 1000;
+                        }
                         } else {
                             var yMax = maxValorAux;
                         }

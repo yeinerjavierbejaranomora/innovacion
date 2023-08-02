@@ -1497,21 +1497,21 @@
                         console.log(maxValor)
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
 
-                        console.log(maxValorAux - maxValor);
-
-                        if ((maxValorAux - maxValor) < 600) {
-                            if(maxValor<1000)
+                        if(maxValor<1000)
                         {
-                            console.log(1);
-                            var yMax = maxValorAux + 100;
+                            yMax = (Math.ceil(maxValor / 100) * 100) + 200; 
                         }
+                        else
+                        {
+                            if ((maxValorAux - maxValor) < 600) {
+                            
+                                var yMax = maxValorAux + 1000;
+                            }
                         else{
-                            console.log(2);
-                            var yMax = maxValorAux + 1000;
-                        }
-                        } else {
                             var yMax = maxValorAux;
                         }
+                        }
+                        
                         console.log(yMax);
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
@@ -1594,16 +1594,19 @@
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        if ((maxValorAux - maxValor) < 600) {
-                            if(maxValor<1000)
+                        if(maxValor<1000)
                         {
-                            var yMax = maxValorAux + 100;
+                            yMax = (Math.ceil(maxValor / 100) * 100) + 200; 
                         }
+                        else
+                        {
+                            if ((maxValorAux - maxValor) < 600) {
+                            
+                                var yMax = maxValorAux + 1000;
+                            }
                         else{
-                            var yMax = maxValorAux + 1000;
-                        }
-                        } else {
                             var yMax = maxValorAux;
+                        }
                         }
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
@@ -1693,16 +1696,19 @@
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        if ((maxValorAux - maxValor) < 600) {
-                            if(maxValor<1000)
+                        if(maxValor<1000)
                         {
-                            var yMax = maxValorAux + 100;
+                            yMax = (Math.ceil(maxValor / 100) * 100) + 200; 
                         }
+                        else
+                        {
+                            if ((maxValorAux - maxValor) < 600) {
+                            
+                                var yMax = maxValorAux + 1000;
+                            }
                         else{
-                            var yMax = maxValorAux + 1000;
-                        }
-                        } else {
                             var yMax = maxValorAux;
+                        }
                         }
                         var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                         chartProgramas = new Chart(ctx, {

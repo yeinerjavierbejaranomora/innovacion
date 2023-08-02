@@ -175,9 +175,7 @@
                                             </h3>
                                         </div>
                                         <hr>
-                                        @if(count($errors)>0)
-                                        <h4>{{$errors}}</h4>
-                                        @endif
+                    
                                         <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">

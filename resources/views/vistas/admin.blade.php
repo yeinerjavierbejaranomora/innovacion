@@ -1494,18 +1494,22 @@
                             return elemento.TOTAL;
                         });
                         var maxValor = Math.max(...valores);
+                        console.log(maxValor)
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         if ((maxValorAux - maxValor) < 600) {
                             if(maxValor<1000)
                         {
+                            console.log(1);
                             var yMax = maxValorAux + 100;
                         }
                         else{
+                            console.log(2);
                             var yMax = maxValorAux + 1000;
                         }
                         } else {
                             var yMax = maxValorAux;
                         }
+                        console.log(yMax);
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {

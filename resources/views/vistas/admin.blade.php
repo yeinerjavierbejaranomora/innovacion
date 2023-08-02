@@ -386,16 +386,6 @@
                 });
             }
 
-            $("botonModalOperador").on('click', function(e) {
-                var elementosTitulos = $(this).closest('.modal').find("strong");
-                var parteEliminar = ': ';
-                elementosTitulos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-                });
-            });
-
             function estadoUsuarioPrograma() {
                 limpiarTitulos();
                 $("#mensaje").empty();

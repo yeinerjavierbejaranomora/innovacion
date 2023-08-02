@@ -593,11 +593,11 @@ class UserController extends Controller
 
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-         *WHERE tipoestudiante = 'PRIMER INGRESO'
-         *GROUP BY sello
+         * WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+         * GROUP BY sello;
          */
         $primerIngreso = DB::table('datosMafi')
-            ->where('tipoestudiante', 'PRIMER INGRESO')
+            ->whereIn('tipoestudiante', 'PRIMER INGRESO, PRIMER INGRESO PSEUDO INGRES, TRANSFERENTE EXTERNO, TRANSFERENTE EXTERNO (ASISTEN), TRANSFERENTE EXTERNO PSEUD ING, TRANSFERENTE INTERNO')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();

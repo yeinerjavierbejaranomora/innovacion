@@ -251,15 +251,15 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    @if($datos['rol'] != 'Decano')
                                     <div class="row">
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Programas</p>
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
-                                                <?php dd($datos['programa']);?>
                                                 <!--Validación para saber si el usuario tiene algún programa-->
-                                                @if($datos['programa'] && $datos['programa'] != "NULL")
+                                                @if($datos['programa'])
                                                 <!--Ciclo para recorrer el array de programas e imprimirlos en pantalla-->
                                                 @foreach ($datos['programa'] as $key => $value)
                                                 {{$value}} <br>
@@ -270,6 +270,7 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    @endif
                                     @endunless
                                     <div class="row">
                                         <div class="col-sm-3 text-dark">

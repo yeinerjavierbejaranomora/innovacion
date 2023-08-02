@@ -230,7 +230,7 @@
 </script>
 @endif
 
-@if($errors->any())
+@if (session('errors'))
 <script>
     Swal.fire("Error", "{{ $errors->first() }}", "error");
 </script>

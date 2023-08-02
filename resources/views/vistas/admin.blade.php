@@ -865,7 +865,6 @@
                                 datalabels: {
                                     anchor: 'end',
                                     align: 'top',
-                                    offset: 3
                                 }
                             }]
                         },

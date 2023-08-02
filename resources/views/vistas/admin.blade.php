@@ -938,11 +938,11 @@
                         },
                         options: {
                             scales: {
-                                    y: {
-                                        max: 10000,
-                                        beginAtZero: true
-                                    }
-                                },
+                                y: {
+                                    max: 10000,
+                                    beginAtZero: true
+                                }
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
@@ -956,7 +956,6 @@
                                 legend: {
                                     position: 'bottom',
                                     labels: {
-
                                         font: {
                                             size: 12
                                         }
@@ -1098,7 +1097,8 @@
                                     label: 'Gráfico Circular',
                                     data: valores,
                                     backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
+                                }, ]
+
                             },
                             options: {
                                 maintainAspectRatio: false,
@@ -1394,7 +1394,6 @@
                     data: {
                         idfacultad: facultades
                     },
-
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 
@@ -1417,13 +1416,24 @@
                                 datasets: [{
                                     label: 'Tipos de estudiantes',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }, ]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1482,13 +1492,24 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1548,13 +1569,24 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1949,13 +1981,24 @@
                                 datasets: [{
                                     label: 'Tipos de estudiantes',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2015,13 +2058,24 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2116,17 +2170,27 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
-
                                             font: {
                                                 size: 12
                                             }
@@ -2194,13 +2258,24 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2262,7 +2337,11 @@
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ]
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
@@ -2270,6 +2349,13 @@
                                 responsive: true,
 
                                 plugins: {
+                                    datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {

@@ -124,11 +124,11 @@ class cambioController extends Controller
                 return redirect()->route('user.perfil', ['id' => encrypt($request->id)])->with('success', 'Contraseña cambiada');
             else :
                 /**si el update falla redirige nuevamente al formulario de cambio de contraseña */
-                return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->with(['errors' => 'Error al modificar la contraseña.']);
+                return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->withErrors(['errors' => 'Error al modificar la contraseña.']);
             endif;
         else :
             /** si la contraseña actual no corresponde a la registrada en la DB, redirige al formulario de cambio de contraseña */
-            return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->with(['errors' => 'Ingrese contraseña actual.']);
+            return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->withErrors(['errors' => 'Ingrese contraseña actual.']);
         endif;
     }
 }

@@ -166,6 +166,9 @@
                             </div>
                             <canvas id="estudiantes"></canvas>
                         </div>
+                        <div class="card-footer">
+                        <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -449,9 +452,14 @@
                     location.reload();
                 } else {
                     $('.ocultarFacultades').show();
+                    $('#verProgramas').show();
                     destruirGraficos();
                     ocultarDivs();
                 }
+            });
+
+            $('#verProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').removeAttr('checked');
             });
 
             var programasSeleccionados = [];

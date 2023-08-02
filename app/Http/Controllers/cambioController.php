@@ -120,6 +120,7 @@ class cambioController extends Controller
             $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->password)]);
             /**si el update se hace correctamente se redirige al formulario de login */
             if ($cambioPass) :
+                
                 return redirect()->route('user.perfil', ['id' => encrypt($user->id)])->with('success', 'Contraseña cambiada');
             else :
                 /**si el update falla redirige nuevamente al formulario de cambio de contraseña */

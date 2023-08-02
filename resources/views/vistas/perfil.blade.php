@@ -299,3 +299,9 @@
     </div>
     @include('layout.footer')
 </div>
+
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif

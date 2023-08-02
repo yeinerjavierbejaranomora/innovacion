@@ -154,7 +154,7 @@
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-end">
-                        <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
+                        <button type="button" id="verProgramas" class="btn" style="display:none; height: 55px;">Deshacer Todos</button>
                         </div>
                     </div>
                 </div>
@@ -452,7 +452,6 @@
                     location.reload();
                 } else {
                     $('.ocultarFacultades').show();
-                    $('#verProgramas').show();
                     destruirGraficos();
                     ocultarDivs();
                 }
@@ -468,6 +467,9 @@
                 e.preventDefault();
                 Contador();
                 console.log(totalProgramas);
+                if ($('#verProgramas').is(':hidden')) {
+                    $('#verProgramas').show();
+                }
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];

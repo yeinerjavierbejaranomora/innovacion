@@ -287,7 +287,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="" href="{{ route('user.actualizar')" role="button">Cambiar Contraseña</a>
+                        <div class="text-center">
+                            <a class="" href="{{ route('cambio.cambio')" role="button">Cambiar Contraseña</a>
+                        </div>
                     </div>
                 </div>
             </section>

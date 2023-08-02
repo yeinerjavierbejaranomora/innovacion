@@ -596,8 +596,17 @@ class UserController extends Controller
          * WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
          * GROUP BY sello;
          */
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
         $primerIngreso = DB::table('datosMafi')
-            ->whereIn('tipoestudiante', ['PRIMER INGRESO, PRIMER INGRESO PSEUDO INGRES, TRANSFERENTE EXTERNO, TRANSFERENTE EXTERNO (ASISTEN), TRANSFERENTE EXTERNO PSEUD ING, TRANSFERENTE INTERNO'])
+            ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();

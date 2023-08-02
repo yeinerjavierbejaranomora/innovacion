@@ -367,8 +367,7 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores,' + 
-                '#tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal' ).find("strong");
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal' ).find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();

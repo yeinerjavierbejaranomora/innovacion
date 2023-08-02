@@ -414,7 +414,7 @@
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalFacultades -= 1;
 
-                totalProgramas = $('#programas input[type="checkbox"]'.length);
+                totalProgramas = $('#programas input[type="checkbox"]').length;
             }
             /**
              * Método para destruir todos los gráficos

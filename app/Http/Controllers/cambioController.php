@@ -69,16 +69,10 @@ class cambioController extends Controller
      */
     public function consultaCambio($idBanner)
     {
-
-        /** Se decifra el idBanner */
         $idBanner = decrypt($idBanner);
-
         $user = auth()->user();
-
-        /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
 
-        /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
 
@@ -91,8 +85,6 @@ class cambioController extends Controller
 
         $programa = trim($user->programa, ';');
         $programas = explode(";", $programa);
-        //$programas = explode(";", $user->programa);
-        // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
         if (empty($programa) || $programa == NULL) :
             $nombre_programas = NULL;
         else :
@@ -107,12 +99,9 @@ class cambioController extends Controller
             'facultad' => $facultad,
             'programa' => $nombre_programas,
         );
-        /**Se realiza la consulta para comprobrar que exista el usuario */
         $user = User::where('id_banner', $idBanner)->first();
-        /** Si es diferente al vacio lleva a la vista  */
         if ($user != []) :
             return view('reestablecerpassword.cambio')->with('datos', $datos);
-            /** En caso contrario redirige al inicio */
         else :
             return redirect()->route('home.index');
         endif;
@@ -125,22 +114,20 @@ class cambioController extends Controller
      */
     public function cambioSave(CambioPassRequest $request)
     {
-        /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         $user = DB::table('users')->select('users.email', 'users.password', 'users.id_banner')->where('id', '=', $request->id)->first();
         /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */
         if (Hash::check($request->password_actual, $user->password)) :
-            /** Se realiza el update de la password si el id y el documento son iguales a los datos que vienen del formulario  */
             $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->password)]);
             /**si el update se hace correctamente se redirige al formulario de login */
             if ($cambioPass) :
-                return redirect()->route('login.index');
+                return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->with('success', 'Contraseña cambiada');
             else :
                 /**si el update falla redirige nuevamente al formulario de cambio de contraseña */
-                return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->withErrors(['errors' => 'Error al modificar la contraseña.']);
+                return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->with(['errors' => 'Error al modificar la contraseña.']);
             endif;
         else :
             /** si la contraseña actual no corresponde a la registrada en la DB, redirige al formulario de cambio de contraseña */
-            return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->withErrors(['errors' => 'Ingrese contraseña actual.']);
+            return redirect()->route('cambio.cambio', ['idbanner' => encrypt($user->id_banner)])->with(['errors' => 'Ingrese contraseña actual.']);
         endif;
     }
 }

@@ -225,7 +225,18 @@
     </div>
 
 
+<!-- Alertas al cambiar contraseña -->
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
 
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
     <script>
         // * Función para enviar alerta al usuario *
         function validacion() {

@@ -229,12 +229,12 @@
     Swal.fire("Éxito", "{{ session('success') }}", "success");
 </script>
 @endif
-
-@if($errors->any())
+@elseif
+($errors->any())
 <script>
     Swal.fire("Error", "{{ $errors->first() }}", "error");
 </script>
-@endif
+@endelse
     <script>
         // * Función para enviar alerta al usuario *
         function validacion() {

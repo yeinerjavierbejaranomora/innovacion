@@ -154,14 +154,14 @@
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
-                        <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
+                            <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center" id="colEstudiantes">
+                <div class="col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5><strong>Total estudiantes Banner</strong></h5>
+                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         </div>
                         <div class="card-body">
                             <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
@@ -185,7 +185,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Estado Financiero</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
@@ -198,7 +198,7 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioRetencion" class="text-center vacio" style="display: none;">
@@ -211,7 +211,7 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
@@ -224,7 +224,7 @@
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Tipos de estudiantes</strong></h5>
+                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
@@ -240,7 +240,7 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5><strong>Operadores</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioOperadores" class="text-center vacio" style="display: none;">
@@ -256,7 +256,7 @@
             <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioProgramas" class="text-center vacio" style="display: none;">
@@ -366,14 +366,28 @@
                 graficoProgramas();
             }
 
+            function limpiarTitulos() {
+                var contenidoActual = $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').text();
+
+                // Definir la parte que deseas eliminar a partir de cierto punto
+                var parteEliminar = ': ';
+
+                // Utilizar una expresión regular para buscar y reemplazar el texto a partir de cierto punto
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+            }
+
             function estadoUsuarioPrograma() {
+                $('#tituloEstadoFinanciero strong').append(' - Nueva información');
+
                 $("#mensaje").empty();
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);
             }
@@ -385,8 +399,10 @@
                     var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.join(' - ');
                     var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
@@ -881,18 +897,18 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
@@ -970,18 +986,18 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     // Crear el gráfico de barras
                     var ctx = document.getElementById('operadores').getContext('2d');
                     chartOperadores = new Chart(ctx, {
@@ -1060,18 +1076,18 @@
                     var maxValor = Math.max(...valores);
                     var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                     var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                     chartProgramas = new Chart(ctx, {

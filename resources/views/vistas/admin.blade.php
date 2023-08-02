@@ -489,7 +489,6 @@
             });
 
             $('#verProgramas').on('click', function(e) {
-                console.log('entra');
                 $('#programas input[type="checkbox"]').prop('checked', false);
             });
 
@@ -498,7 +497,6 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                console.log(totalProgramas);
                 if ($('#verProgramas').is(':hidden')) {
                     $('#verProgramas').show();
                 }

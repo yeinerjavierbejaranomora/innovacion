@@ -597,7 +597,7 @@ class UserController extends Controller
          * GROUP BY sello;
          */
         $primerIngreso = DB::table('datosMafi')
-            ->whereIn('tipoestudiante', 'PRIMER INGRESO, PRIMER INGRESO PSEUDO INGRES, TRANSFERENTE EXTERNO, TRANSFERENTE EXTERNO (ASISTEN), TRANSFERENTE EXTERNO PSEUD ING, TRANSFERENTE INTERNO')
+            ->whereIn('tipoestudiante', ['PRIMER INGRESO, PRIMER INGRESO PSEUDO INGRES, TRANSFERENTE EXTERNO, TRANSFERENTE EXTERNO (ASISTEN), TRANSFERENTE EXTERNO PSEUD ING, TRANSFERENTE INTERNO'])
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();

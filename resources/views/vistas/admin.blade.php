@@ -929,13 +929,24 @@
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
                             }]
                         },
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                 legend: {
                                     position: 'bottom',
                                     labels: {
@@ -947,7 +958,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                         $('#colOperadores').addClass('hidden');
@@ -988,14 +999,24 @@
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                },
                             }]
                         },
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
-
                             plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                 legend: {
                                     position: 'bottom',
                                     labels: {
@@ -1007,7 +1028,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
                         $('#colProgramas').addClass('hidden');

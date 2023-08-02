@@ -153,7 +153,7 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer text-end">
                         <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
                         </div>
                     </div>

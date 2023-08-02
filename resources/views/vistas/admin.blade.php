@@ -372,8 +372,11 @@
                 // Definir la parte que deseas eliminar a partir de cierto punto
                 var parteEliminar = ': ';
 
-                // Utilizar una expresión regular para buscar y reemplazar el texto a partir de cierto punto
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                elementosTitulos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
             }
 
             function estadoUsuarioPrograma() {

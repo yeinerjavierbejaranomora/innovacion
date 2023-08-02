@@ -377,8 +377,7 @@
             }
 
             function estadoUsuarioPrograma() {
-                $('#tituloEstadoFinanciero strong').append(' - Nueva información');
-
+                limpiarTitulos();
                 $("#mensaje").empty();
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
@@ -393,7 +392,7 @@
             }
 
             function estadoUsuarioFacultad() {
-
+                limpiarTitulos();
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var facultadesArray = Object.values(facultadesSeleccionadas);

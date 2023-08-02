@@ -863,7 +863,6 @@
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
                                 ],
                                 datalabels: {
-                                    color: 'black',
                                     anchor: 'end',
                                     align: 'top',
                                     offset: 5

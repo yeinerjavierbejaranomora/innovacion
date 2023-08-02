@@ -602,7 +602,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
                         $('#colEstudiantes').addClass('hidden');
@@ -667,7 +667,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
@@ -751,7 +751,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                         $('#colRetencion').addClass('hidden');
@@ -820,7 +820,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                         $('#colPrimerIngreso').addClass('hidden');
@@ -1130,7 +1130,7 @@
                                 },
 
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
                             $('#colEstudiantes').addClass('hidden');
@@ -1209,7 +1209,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                             $('#colSelloFinanciero').addClass('hidden');
@@ -1288,7 +1288,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -1370,7 +1370,7 @@
                                 },
 
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             $('#colPrimerIngreso').addClass('hidden');
@@ -1444,7 +1444,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -1520,7 +1520,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                             $('#colOperadores').addClass('hidden');
@@ -1598,7 +1598,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
                             $('#colProgramas').addClass('hidden');
@@ -1694,7 +1694,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
                             $('#colEstudiantes').addClass('hidden');
@@ -1773,7 +1773,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                             $('#colSelloFinanciero').addClass('hidden');
@@ -1852,7 +1852,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -1934,7 +1934,7 @@
                                 },
 
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             $('#colPrimerIngreso').addClass('hidden');
@@ -2009,7 +2009,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -2087,7 +2087,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                             $('#colOperadores').addClass('hidden');
@@ -2198,7 +2198,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                     }
                 });
@@ -2287,7 +2287,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                     }
                 });
@@ -2367,7 +2367,7 @@
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                     }
                 });

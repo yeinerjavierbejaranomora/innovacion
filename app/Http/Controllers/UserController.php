@@ -588,8 +588,7 @@ class UserController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso 
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function estudiantesPrimerIngreso()
-    {
+    public function estudiantesPrimerIngreso(){
 
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
@@ -763,8 +762,7 @@ class UserController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function primerIngresoEstudiantesFacultad(Request $request)
-    {
+    public function primerIngresoEstudiantesFacultad(Request $request){
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
          *FROM datosMafi AS dm
@@ -773,12 +771,20 @@ class UserController extends Controller
          *AND dm.tipoestudiante = 'PRIMER INGRESO'
          *GROUP BY dm.sello;
          */
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
 
         $facultades = $request->input('idfacultad');
         $primerIngreso = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad', $facultades)
-            ->where('dm.tipoestudiante', 'PRIMER INGRESO')
+            ->whereIn('dm.tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
             ->groupBy('dm.sello')->get();
 
@@ -957,11 +963,19 @@ class UserController extends Controller
          *AND tipoestudiante = 'PRIMER INGRESO'
          *GROUP BY sello;
          */
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
 
         $programas = $request->input('programa');
         $primerIngreso = DB::table('datosMafi')
             ->whereIn('programa', $programas)
-            ->where('tipoestudiante', 'PRIMER INGRESO')
+            ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')->get();
 

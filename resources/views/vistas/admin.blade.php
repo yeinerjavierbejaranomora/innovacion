@@ -243,7 +243,7 @@
                         <div id="vacioOperadores" class="text-center vacio" style="display: none;">
                             <h5>No hay datos por mostrar</h5>
                         </div>
-                        <canvas id="operadores"></canvas>
+                        <canvas id="operadores" style="height: 400px;"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
@@ -854,7 +854,7 @@
                                 if (label.includes("ESTUDIANTE ")) {
                                     label = label.replace(/ESTUDIANTE\S*/i, "");
                                 }
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
                                 label: 'Tipos de estudiantes',
@@ -922,7 +922,7 @@
                                 if (label == '') {
                                     label = 'IBERO';
                                 }
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
                                 label: 'Operadores con mayor cantidad de estudiantes',
@@ -992,7 +992,7 @@
                                 if (label == '') {
                                     label = 'IBERO';
                                 }
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
                                 label: 'Programas con mayor cantidad de estudiantes',
@@ -1020,7 +1020,6 @@
                                 legend: {
                                     position: 'bottom',
                                     labels: {
-
                                         font: {
                                             size: 12
                                         }

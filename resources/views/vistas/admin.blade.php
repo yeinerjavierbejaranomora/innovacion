@@ -138,7 +138,7 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" style="height: 55px;">
                             <!-- <div class="text-end">
                                 <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
                             </div> -->

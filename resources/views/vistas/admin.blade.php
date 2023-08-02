@@ -1480,6 +1480,12 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: 10000,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {

@@ -233,7 +233,7 @@
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalTiposEstudiantes" class="btn" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                        <a href="" id="botonModalTiposEstudiantes" class="btn botonModal" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,7 @@
                         <canvas id="operadores" style="height: 400px;"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
+                        <a href="" id="botonModalOperador" class="btn botonModal" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -265,7 +265,7 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -376,8 +376,7 @@
                 });
             }
             
-            function limpiarTituloModal()
-            {
+            function limpiarTituloModal(){
                 var elementosTitulos = $('#tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
@@ -387,9 +386,14 @@
                 });
             }
 
-            $('.modal').on('shown.bs.modal', function() {
-                console.log('entra');
-                limpiarTituloModal();
+            $(".botonModal").on('click', function(e) {
+                var elementosTitulos = $(this).closest('.modal').find("strong");
+                var parteEliminar = ': ';
+                elementosTitulos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+                });
             });
 
             function estadoUsuarioPrograma() {

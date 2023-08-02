@@ -232,7 +232,7 @@
 
 @if (session('errors'))
 <script>
-    Swal.fire("Error", "{{ $errors->first() }}", "error");
+    Swal.fire("Error", "{{ session('errors') }}", "error");
 </script>
 @endif
     <script>

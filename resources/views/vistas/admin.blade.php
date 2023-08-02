@@ -579,9 +579,11 @@
                             responsive: true,
                             plugins: {
                                 datalabels: {
-                                    formatter: function(value, context) {
-                                        return value;
-                                    },
+                                    color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -647,6 +649,13 @@
                             responsive: true,
                             maintainAspectRatio: false,
                             plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                },
                                 labels: {
                                     render: 'percenteaje',
                                     size: '14',
@@ -1348,6 +1357,11 @@
                                     datalabels: {
                                         formatter: function(value, context) {
                                             return value;
+                                        },
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
                                     },
                                     labels: {

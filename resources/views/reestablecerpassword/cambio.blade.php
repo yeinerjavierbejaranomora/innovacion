@@ -228,8 +228,7 @@
 <script>
     Swal.fire("Éxito", "{{ session('success') }}", "success");
 </script>
-@elseif
-($errors->any())
+@elseif($errors->any())
 <script>
     Swal.fire("Error", "{{ $errors->first() }}", "error");
 </script>

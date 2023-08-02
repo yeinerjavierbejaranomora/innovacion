@@ -884,7 +884,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -973,7 +973,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -1063,7 +1063,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -1515,7 +1515,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -1609,7 +1609,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -1710,7 +1710,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -2151,7 +2151,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -2246,7 +2246,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -2380,7 +2380,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -2487,7 +2487,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {
@@ -2590,7 +2590,7 @@
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
-                            yMax = 150;
+                            yMax = 120;
                         } else if (maxValor < 500) {
                             yMax = 100 * Math.ceil(maxValor / 100) + 100;
                         } else if (maxValor < 1000) {

@@ -277,8 +277,8 @@
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Operadores</h5>
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Operadores</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -297,8 +297,8 @@
         <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Programas</h5>
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloProgramasTotal"><strong>Programas</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -317,8 +317,8 @@
         <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloTiposTotal"><strong>Tipos de estudiantes</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -367,7 +367,8 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas').find("strong");
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores,' + 
+                '#tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal' ).find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -383,10 +384,10 @@
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + programasFormateados);
                 } else {
                     var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);
             }
@@ -398,10 +399,10 @@
                     var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.join(' - ');
                     var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + facultadesFormateadas);
                 } else {
                     var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);

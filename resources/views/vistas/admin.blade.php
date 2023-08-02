@@ -153,6 +153,9 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
+                        <div class="card-footer">
+                        <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
+                        </div>
                     </div>
                 </div>
                 <div class=" col-4 text-center" id="colEstudiantes">
@@ -165,9 +168,6 @@
                                 <h5>No hay datos por mostrar</h5>
                             </div>
                             <canvas id="estudiantes"></canvas>
-                        </div>
-                        <div class="card-footer">
-                        <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
                         </div>
                     </div>
                 </div>

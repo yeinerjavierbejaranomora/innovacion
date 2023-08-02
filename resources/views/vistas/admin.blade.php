@@ -367,7 +367,7 @@
             }
 
             function limpiarTitulos() {
-                var contenidoActual = $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').text();
+                var elementosTitulos = $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').text();
 
                 // Definir la parte que deseas eliminar a partir de cierto punto
                 var parteEliminar = ': ';

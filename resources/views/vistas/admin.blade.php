@@ -943,7 +943,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
-                    var maxValor = Math.max(...valores) + 500;
+                    var maxValor = Math.max(...valores) + 1000;
                     // Crear el gráfico de barras
                     var ctx = document.getElementById('operadores').getContext('2d');
                     chartOperadores = new Chart(ctx, {
@@ -1019,7 +1019,7 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
-                    var maxValor = Math.max(...valores) + 500;
+                    var maxValor = Math.max(...valores) + 1000;
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                     chartProgramas = new Chart(ctx, {
@@ -1457,6 +1457,7 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores) + 1000;
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {
@@ -1477,6 +1478,12 @@
                                 }, ]
                             },
                             options: {
+                                scales: {
+                                y: {
+                                    max: maxValor,
+                                    beginAtZero: true
+                                }
+                            },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {

@@ -375,9 +375,9 @@
                     $(this).text(contenidoLimpio);
                 });
             }
-
-            $('.modal').on('shown.bs.modal', function() {
-                limpiarTituloModal();
+            
+            function limpiarTituloModal()
+            {
                 var elementosTitulos = $('#tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
@@ -385,6 +385,10 @@
                     var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
                     $(this).text(contenidoLimpio);
                 });
+            }
+
+            $('.modal').on('shown.bs.modal', function() {
+                limpiarTituloModal();
             });
 
             function estadoUsuarioPrograma() {

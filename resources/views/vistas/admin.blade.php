@@ -888,7 +888,7 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels],
+                        plugins: [ChartDataLabels],
                     });
                     if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                         $('#colTipoEstudiantes').addClass('hidden');

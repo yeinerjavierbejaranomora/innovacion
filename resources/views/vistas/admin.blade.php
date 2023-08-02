@@ -408,11 +408,13 @@
 
             }
 
-            var totalSeleccionado
+            var totalFacultades
 
             function Contador() {
-                totalSeleccionado = $('#programas input[type="checkbox"]').length;
-                totalSeleccionado -= 1;
+                totalFacultades = $('#facultades input[type="checkbox"]').length;
+                totalFacultades -= 1;
+
+                totalProgramas = $('#programas input[type="checkbox"]'.length);
             }
             /**
              * Método para destruir todos los gráficos
@@ -457,7 +459,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
                     checkboxesProgramas.each(function() {
@@ -467,7 +469,7 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
+                        if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades) {
                             informacionGeneral();
                         } else {
                             $('#mensaje').hide();

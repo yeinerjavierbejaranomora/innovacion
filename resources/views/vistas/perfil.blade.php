@@ -241,7 +241,8 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row">
+                                    @unless(in_array($datos['rol'], ['Admin', 'Rector', 'Vicerrector']))
+                                    <div class="row" >
                                         <div class="col-sm-3 text-dark">
                                             <p class="mb-0">Facultad</p>
                                         </div>
@@ -267,6 +268,7 @@
 
                                         </div>
                                     </div>
+                                    @endunless
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 text-dark">

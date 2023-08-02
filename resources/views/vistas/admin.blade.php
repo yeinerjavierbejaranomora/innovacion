@@ -367,11 +367,8 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos #tituloOperadores, #tituloProgramas').find("strong");
-
-                // Definir la parte que deseas eliminar a partir de cierto punto
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas').find("strong");
                 var parteEliminar = ': ';
-
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
                     var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
@@ -477,7 +474,7 @@
 
             $('#verProgramas').on('click', function(e) {
                 console.log('entra');
-                $('#programas input[type="checkbox"]').removeAttr('checked');
+                $('#programas input[type="checkbox"]').prop('checked', false);
             });
 
             var programasSeleccionados = [];

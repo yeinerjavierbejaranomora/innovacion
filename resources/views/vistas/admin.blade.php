@@ -580,10 +580,10 @@
                             plugins: {
                                 datalabels: {
                                     color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -651,10 +651,10 @@
                             plugins: {
                                 datalabels: {
                                     color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -741,10 +741,10 @@
                             plugins: {
                                 datalabels: {
                                     color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -819,10 +819,10 @@
                             plugins: {
                                 datalabels: {
                                     color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -869,12 +869,10 @@
                         return elemento.TOTAL;
                     });
                     var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor/1000)*1000;
-                    if((maxValorAux-maxValor)<600){
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    if ((maxValorAux - maxValor) < 600) {
                         var yMax = maxValorAux + 1000;
-                    }
-                    else
-                    {
+                    } else {
                         var yMax = maxValorAux;
                     }
                     // Crear el gráfico circular
@@ -905,11 +903,11 @@
                             responsive: true,
                             plugins: {
                                 scales: {
-                                y: {
-                                    max: yMax,
-                                    beginAtZero: true
-                                }
-                            },
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 datalabels: {
                                     color: 'black',
                                     font: {
@@ -952,12 +950,10 @@
                         return elemento.TOTAL;
                     });
                     var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor/1000)*1000;
-                    if((maxValorAux-maxValor)<600){
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    if ((maxValorAux - maxValor) < 600) {
                         var yMax = maxValorAux + 1000;
-                    }
-                    else
-                    {
+                    } else {
                         var yMax = maxValorAux;
                     }
                     // Crear el gráfico de barras
@@ -1036,12 +1032,10 @@
                         return elemento.TOTAL;
                     });
                     var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor/1000)*1000;
-                    if((maxValorAux-maxValor)<600){
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    if ((maxValorAux - maxValor) < 600) {
                         var yMax = maxValorAux + 1000;
-                    }
-                    else
-                    {
+                    } else {
                         var yMax = maxValorAux;
                     }
                     // Crear el gráfico circular
@@ -1167,7 +1161,7 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
@@ -1250,19 +1244,19 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
-                                datalabels: {
-                                    color: 'black',
+                                    },
+                                    datalabels: {
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -1338,12 +1332,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -1421,12 +1415,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -1481,7 +1475,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
-                        var maxValor = Math.ceil(Math.max(...valores)/1000)*1000;
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {
@@ -1503,21 +1503,21 @@
                             },
                             options: {
                                 scales: {
-                                y: {
-                                    max: maxValor,
-                                    beginAtZero: true
-                                }
-                            },
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1561,6 +1561,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -1584,16 +1591,22 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1641,6 +1654,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                         chartProgramas = new Chart(ctx, {
                             type: 'bar',
@@ -1661,16 +1681,22 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -1755,12 +1781,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -1836,12 +1862,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -1917,12 +1943,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -2000,12 +2026,12 @@
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
+                                        color: 'black',
                                         font: {
                                             weight: 'bold',
                                             size: 12
                                         },
-                                },
+                                    },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
@@ -2061,6 +2087,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                         chartTipoEstudiante = new Chart(ctx, {
@@ -2081,16 +2114,22 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2135,6 +2174,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -2158,16 +2204,22 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2249,6 +2301,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         // Crear el gráfico de barras
                         var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
                         chartTiposEstudiantesTotal = new Chart(ctx, {
@@ -2270,17 +2329,23 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'light',
-                                        size: 8
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2335,6 +2400,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         // Crear el gráfico de barras
                         var ctx = document.getElementById('operadoresTotal').getContext('2d');
                         chartOperadoresTotal = new Chart(ctx, {
@@ -2359,17 +2431,23 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'light',
-                                        size: 8
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {
@@ -2417,6 +2495,13 @@
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        if ((maxValorAux - maxValor) < 600) {
+                            var yMax = maxValorAux + 1000;
+                        } else {
+                            var yMax = maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('programasTotal').getContext('2d');
                         chartProgramasTotal = new Chart(ctx, {
@@ -2438,18 +2523,23 @@
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
-
                                 plugins: {
                                     datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'light',
-                                        size: 8
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
                                     },
-                                    formatter: Math.round
-                                },
                                     legend: {
                                         position: 'bottom',
                                         labels: {

@@ -1496,6 +1496,9 @@
                         var maxValor = Math.max(...valores);
                         console.log(maxValor)
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+
+                        console.log(maxValorAux - maxValor);
+
                         if ((maxValorAux - maxValor) < 600) {
                             if(maxValor<1000)
                         {

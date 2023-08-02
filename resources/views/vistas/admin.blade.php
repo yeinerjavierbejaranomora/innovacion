@@ -388,6 +388,7 @@
             }
 
             $('.modal').on('shown.bs.modal', function() {
+                console.log('entra');
                 limpiarTituloModal();
             });
 

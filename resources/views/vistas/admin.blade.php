@@ -1482,7 +1482,7 @@
                             options: {
                                 scales: {
                                     y: {
-                                        max: 10000,
+                                        max: 8000,
                                         beginAtZero: true
                                     }
                                 },

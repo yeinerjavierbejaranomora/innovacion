@@ -189,6 +189,7 @@
                     <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                         </div>
                         <div class="card-body">
                             <canvas id="estudiantes"></canvas>
@@ -199,6 +200,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -209,6 +211,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -219,6 +222,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="primerIngreso"></canvas>
@@ -229,6 +233,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="tipoEstudiante"></canvas>
@@ -242,6 +247,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="operadores" style="height: 400px;"></canvas>
@@ -255,6 +261,7 @@
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
                         <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 class="tituloPeriodo"><strong> Periodo</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="estudiantesProgramas"></canvas>
@@ -417,11 +424,11 @@
 
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas + " -" + periodosFormateados);
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
                     
                     var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas) + " -" + periodosFormateados;
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 }
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);

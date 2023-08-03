@@ -451,7 +451,6 @@
             function getPeriodos() {
                 var periodosSeleccionados = [];
                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-               console.log(checkboxesSeleccionados);
                checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
@@ -1212,6 +1211,7 @@
              */
 
             function graficoEstudiantesPorFacultades(facultades, periodos) {
+                console.log(periodos);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1223,6 +1223,7 @@
                         periodos: periodos
                     },
                     success: function(data) {
+                        console.log(data);
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
                             return elemento.estado;

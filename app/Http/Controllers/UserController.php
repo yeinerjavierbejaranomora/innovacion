@@ -709,9 +709,8 @@ class UserController extends Controller
          *GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
-        dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado')
             ->groupBy('dm.estado')
@@ -735,7 +734,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $sello = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
             ->groupBy('dm.sello')
@@ -760,7 +759,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $retencion = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->where('dm.sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
@@ -795,7 +794,7 @@ class UserController extends Controller
 
         $facultades = $request->input('idfacultad');
         $primerIngreso = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->whereIn('dm.tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
@@ -820,7 +819,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $tipoEstudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
             ->groupBy('dm.tipoestudiante')
@@ -849,7 +848,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $operadores = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
             ->groupBy('dm.operador')
@@ -879,7 +878,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $programas = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
             ->groupBy('dm.codprograma')

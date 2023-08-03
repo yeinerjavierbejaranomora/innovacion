@@ -147,7 +147,7 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
+                        <div class="card-footer text-center d-flex justify-content-around" style="height: 55px;">
                             <button type="button" id="verProgramas" class="btn deshacer">Deshacer Todas</button>
                             <button type="button" id="verProgramas" class="btn deshacer">Seleccionar Todas</button>
                         </div>

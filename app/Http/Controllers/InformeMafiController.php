@@ -560,7 +560,7 @@ class InformeMafiController extends Controller
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $operadores = DB::table('datosMafi')
-            ->whereIn('periodos',$periodos)
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')

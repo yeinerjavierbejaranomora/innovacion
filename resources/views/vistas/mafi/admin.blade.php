@@ -2429,6 +2429,7 @@
             var chartTiposEstudiantesTotal
 
             function tiposEstudiantesTotal() {
+                console.log(periodosSeleccionados);
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
                     var data = {

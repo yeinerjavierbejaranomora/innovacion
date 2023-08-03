@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer ">Deshacer Todos</button>
+                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
@@ -169,8 +169,8 @@
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer" style="display:none;">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer" style="display:none;">Seleccionar Todos</button>
+                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>

@@ -25,8 +25,15 @@ class InformeMafiController extends Controller
         $this->middleware('auth');
     }
 
-
-
+    /**
+     * Método que trae los periodos activos
+     * @return JSON Retorna un Json con los periodos activos
+     */
+    public function periodosActivos(){
+        $periodos = DB::table('perido')->where('periodoActivo',1)->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $periodos));
+    }
 
 
 

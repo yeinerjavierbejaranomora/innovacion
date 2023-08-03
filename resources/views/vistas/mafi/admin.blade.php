@@ -69,11 +69,6 @@
         display: none;
     }
 
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
     #centrar {
         display: flex;
         align-items: center;
@@ -419,7 +414,7 @@
              * Método que trae las facultades y genera los checkbox en la vista
              */
             function facultades() {
-                datos = $.ajax({
+                var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -431,15 +426,29 @@
                         });
                     }
                 });
-
             }
 
+            /**
+             * Método que trae los periodos activos
+             */
+            function periodos() {
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('periodos.activos') }}",
+                    method: 'post',
+                    success: function(data) {
+                        data.forEach(facultad => {
+                            $('div #periodos').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                        });
+                    }
+                });
+            }
             var totalFacultades
 
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
-                totalFacultades -= 1;
-
                 totalProgramas = $('#programas input[type="checkbox"]').length;
             }
             /**

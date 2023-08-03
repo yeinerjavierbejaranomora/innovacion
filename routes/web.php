@@ -11,6 +11,7 @@ use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\facultadController;
 use App\Http\Controllers\HistorialEstudianteController;
+use App\Http\Controllers\InformeMafiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,6 @@ Route::controller(UserController::class)->group(function () {
 
     /** Vista al pulsar el botón "Informe Mafi" */
     Route::get('/home/mafi', 'vistasMafi')->middleware('auth')->name('home.mafi');
-
 
     /** para cargar las vistas predefinidas en la facultad */
     Route::get('/home/facultad/', 'facultad')->middleware('auth')->name('facultad.index');
@@ -141,6 +141,11 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/tiposEsudiantesProgramaTotal', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
 
      
+});
+
+Route::controller(InformeMafiController::class)->group(function () {
+    /** Ruta para traer los periodos activos */
+    Route::post('/home/periodos', 'periodosActivos')->name('periodos.activos');
 });
 
 Route::controller(MafiController::class)->group(function () {

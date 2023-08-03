@@ -907,7 +907,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $estudiantes = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(estado) AS TOTAL'), 'estado')
             ->groupBy('estado')
             ->get();
@@ -929,7 +929,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $sello = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
@@ -952,7 +952,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $retencion = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
@@ -986,7 +986,7 @@ class UserController extends Controller
 
         $programas = $request->input('programa');
         $primerIngreso = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')->get();
@@ -1009,7 +1009,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $tipoEstudiantes = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
             ->orderByDesc('TOTAL')
@@ -1036,7 +1036,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $operadores = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
             ->orderByDesc('TOTAL')
@@ -1063,7 +1063,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $operadores = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
             ->orderByDesc('TOTAL')
@@ -1089,7 +1089,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $operadores = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
             ->groupBy('dm.operador')
@@ -1163,7 +1163,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $programas = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
             ->groupBy('dm.codprograma')
@@ -1210,7 +1210,7 @@ class UserController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $tipoEstudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
             ->groupBy('dm.tipoestudiante')
@@ -1235,7 +1235,7 @@ class UserController extends Controller
          */
         $programas = $request->input('programa');
         $tipoEstudiantes = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
+            ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
             ->orderByDesc('TOTAL')

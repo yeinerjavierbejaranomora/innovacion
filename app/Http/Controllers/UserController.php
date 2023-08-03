@@ -124,12 +124,12 @@ class UserController extends Controller
                 $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
                 $data[$value] = $consulta;
             }
-            return view('vistas.mafi' . $nombre_rol, ['programas' => $data])->with('datos', $datos);
+            return view('vistas.mafi.' . $nombre_rol, ['programas' => $data])->with('datos', $datos);
         }
 
 
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas.mafi' . $nombre_rol)->with('datos', $datos);
+        return view('vistas.mafi.' . $nombre_rol)->with('datos', $datos);
     }
 
     // funcion para traer todos los usuarios a la vista de administracion

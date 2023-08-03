@@ -81,17 +81,17 @@
             <div class="container mt-3">
                 <div class="row py-5">
                     <div class="col 4 text-center">
-                        <a class="boton" href="{{ route('home.mafi') }}">
+                        <a type="button" class="boton" href="{{ route('home.mafi') }}">
                             Informe Mafi
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a class="boton">
+                        <a type="button" class="boton">
                             Informe Moddle
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a class="boton">
+                        <a type="button"class="boton">
                             Planeación
                         </a>
                     </div>

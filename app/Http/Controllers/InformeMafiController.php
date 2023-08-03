@@ -38,15 +38,13 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes activos de toda la Ibero
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
-    public function estudiantesActivosGeneral(Request $request)
+    public function estudiantesActivosGeneral()
     {
         /**
          * SELECT COUNT(estado) AS TOTAL, estado FROM `datosMafi`
          *GROUP BY estado
          */
-        $periodo = $request->input('periodo');
         $estudiantes = DB::table('datosMafi')
-            ->whereIn('periodo',$periodo)
             ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
             ->groupBy('estado')
             ->get();
@@ -209,8 +207,10 @@ class InformeMafiController extends Controller
          *GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado')
             ->groupBy('dm.estado')

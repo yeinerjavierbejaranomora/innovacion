@@ -352,7 +352,7 @@
              * Llamado a todos los scripts
              */
             function llamadoFunciones() {
-                // graficoEstudiantes();
+                graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
@@ -458,11 +458,14 @@
                 return periodosSeleccionados;
             }
 
-            var totalFacultades
+            var totalFacultades;
+            var totalProgramas;
+            var totalPeriodos;
 
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;
+                totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
             /**
              * Método para destruir todos los gráficos
@@ -507,15 +510,16 @@
             
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                Contador();
                 var periodosSeleccionados = getPeriodos();
                 console.log(periodosSeleccionados);
-                Contador();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
-
+                if(periodosSeleccionados.length != totalPeriodos && periodosSeleccionados.length > 0){
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -523,7 +527,7 @@
                         programasSeleccionados.push($(this).val());
                     });
                     estadoUsuarioPrograma();
-                    graficosporPrograma(programasSeleccionados);
+                    graficosporPrograma(programasSeleccionados, periodosSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                         if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades) {
@@ -552,6 +556,11 @@
                         alerta();
                     }
                 }
+            }
+            else{
+                destruirGraficos();
+                llamadoFunciones();
+            }
             });
 
             function alerta() {
@@ -605,17 +614,9 @@
              */
             var chartEstudiantes;
 
-         /*  function graficoEstudiantes() {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos') }}",
-                    data: {
-                        periodo: periodosSeleccionados
-                    },
-                    success: function(data) {
+            function graficoEstudiantes() {
+                var url = '/home/estudiantes';
+                $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
@@ -674,10 +675,10 @@
                     } else {
                         $('#colEstudiantes').removeClass('hidden');
                     }
-                    }
+                    
                 });
             }
- */
+ 
             /**
              * Método que genera el gráfico de sello financiero
              */
@@ -1190,13 +1191,13 @@
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
              */
 
-            function graficosporFacultad(facultades) {
+            function graficosporFacultad(facultades, periodos) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
 
-                    graficoEstudiantesPorFacultades(facultades);
+                    graficoEstudiantesPorFacultades(facultades, periodos);
                     graficoSelloFinancieroPorFacultad(facultades);
                     graficoRetencionPorFacultad(facultades);
                     graficoSelloPrimerIngresoPorFacultad(facultades);
@@ -1210,7 +1211,7 @@
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
              */
 
-            function graficoEstudiantesPorFacultades(facultades) {
+            function graficoEstudiantesPorFacultades(facultades, periodos) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1218,7 +1219,8 @@
                     type: 'post',
                     url: "{{ route('estudiantes.activos.facultad') }}",
                     data: {
-                        idfacultad: facultades
+                        idfacultad: facultades,
+                        periodos: periodos
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);

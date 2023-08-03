@@ -71,7 +71,6 @@
     }
 
 
-
     .graficos {
         min-height: 460px;
         max-height: 460px;
@@ -134,10 +133,8 @@
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Periodos</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                        <br>    
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">  
                         <div name="periodos" id="periodos">
-                                <br>
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
@@ -154,7 +151,6 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
-                                <br>
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">

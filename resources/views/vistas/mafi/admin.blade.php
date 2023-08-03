@@ -391,10 +391,10 @@
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
-                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
+                    var textoNuevo = "<h5>Informe programas: " + programasFormateados + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
                 } else {
-                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                    var textoNuevo = "<h5>Informe programa " + programasSeleccionados + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);

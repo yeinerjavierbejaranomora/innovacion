@@ -344,9 +344,9 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
+            periodos();
             llamadoFunciones();
             facultades();
-            periodos();
             /**
              * Llamado a todos los scripts
              */
@@ -432,6 +432,7 @@
             /**
              * Método que trae los periodos activos
              */
+            var periodos = [];
             function periodos() {
                 var datos = $.ajax({
                     headers: {
@@ -442,9 +443,11 @@
                     success: function(data) {
                         data.forEach(periodo => {
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            periodos.push($(this).val());
                         });
                     }
                 });
+                console.log(periodos);
             }
             var totalFacultades
 
@@ -492,15 +495,17 @@
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 
-            var periodos = [];
+            
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
+                
                 Contador();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
+
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -530,7 +535,6 @@
                         }
                     } else {
                         /** Alerta */
-
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
                         destruirGraficos();
@@ -592,8 +596,17 @@
             var chartEstudiantes;
 
             function graficoEstudiantes() {
-                var url = '/home/estudiantes';
-                $.getJSON(url, function(data) {
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.activos') }}",
+                    data: {
+                        periodo: periodos
+                    },
+                    success: function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
@@ -651,6 +664,7 @@
                         $('#colEstudiantes').addClass('hidden');
                     } else {
                         $('#colEstudiantes').removeClass('hidden');
+                    }
                     }
                 });
             }
@@ -1832,7 +1846,6 @@
              * Método que muestra los estudiantes activos e inactivos de algún programa en específico
              */
             function graficoEstudiantesPorPrograma(programas) {
-                console.log(programas);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

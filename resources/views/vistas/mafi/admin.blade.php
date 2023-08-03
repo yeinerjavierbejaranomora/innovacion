@@ -22,12 +22,12 @@
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 200px;
+        width: 140px;
         height: 30px;
         border-radius: 10px;
-        font-weight: bold;
+        font-weight: 800;
         place-items: center;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .deshacer {
@@ -147,7 +147,7 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer text-center row" style="height: 55px;">
+                        <div class="card-footer text-center" style="height: 55px;">
                             <button type="button" id="verProgramas" class="btn deshacer">Deshacer Todas</button>
                             <button type="button" id="verProgramas" class="btn deshacer">Seleccionar Todas</button>
                         </div>

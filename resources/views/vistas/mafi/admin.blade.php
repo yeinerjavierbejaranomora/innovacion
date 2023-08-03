@@ -443,7 +443,6 @@
                     success: function(data) {
                         data.forEach(periodo => {
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                            totalPeriodos.push(periodo.periodos);
                         });
                     }
                 });

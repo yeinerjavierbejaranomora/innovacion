@@ -138,6 +138,8 @@
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="deshacerPeriodos" class="btn deshacer" style="display:none;">Deshacer Todos</button>
+                            <button type="button" id="seleccionarPeriodos" class="btn deshacer" style="display:none;">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -498,6 +500,14 @@
                 $('#programas input[type="checkbox"]').prop('checked', true);
             });
 
+            $('#deshacerPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', true);
+            });
+
             $('#deshacerFacultades').on('click', function(e) {
                 $('#facultades input[type="checkbox"]').prop('checked', false);
             });
@@ -558,7 +568,8 @@
                 facultadesSeleccionadas = [];
                 periodosSeleccionados = [];
                 destruirGraficos();
-                llamadoFunciones();
+                ocultarDivs();
+                alertaPeriodos();
             }
             });
 
@@ -571,6 +582,14 @@
                 })
             }
 
+            function alertaPeriodos() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un periodo',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

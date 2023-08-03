@@ -2407,7 +2407,8 @@
                 if (chartOperadoresTotal) {
                     chartOperadoresTotal.destroy();
                 }
-                graficoOperadoresTotal();
+                var periodos = getPeriodos();
+                graficoOperadoresTotal(periodos);
             });
 
             $('#botonModalProgramas').on("click", function(e) {
@@ -2415,7 +2416,8 @@
                 if (chartProgramasTotal) {
                     chartProgramasTotal.destroy();
                 }
-                graficoProgramasTotal();
+                var periodos = getPeriodos();
+                graficoProgramasTotal(periodos);
             });
 
             $('#botonModalTiposEstudiantes').on("click", function(e) {
@@ -2423,12 +2425,13 @@
                 if (chartTiposEstudiantesTotal) {
                     chartTiposEstudiantesTotal.destroy();
                 }
-                tiposEstudiantesTotal();
+                var periodos = getPeriodos();
+                tiposEstudiantesTotal(periodos);
             });
 
             var chartTiposEstudiantesTotal
 
-            function tiposEstudiantesTotal() {
+            function tiposEstudiantesTotal(periodosSeleccionados) {
                 console.log(periodosSeleccionados);
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
@@ -2538,7 +2541,7 @@
              */
             var chartOperadoresTotal;
 
-            function graficoOperadoresTotal() {
+            function graficoOperadoresTotal(periodosSeleccionados) {
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadores.programa.estudiantes') }}";
                     var data = {
@@ -2655,7 +2658,7 @@
              */
             var chartProgramasTotal;
 
-            function graficoProgramasTotal() {
+            function graficoProgramasTotal(periodosSeleccionados) {
                 if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('FacultadTotal.estudiantes') }}";
                     var data = {

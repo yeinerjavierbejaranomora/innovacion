@@ -448,7 +448,7 @@
                 });
             }
 
-            periodosSeleccionados = [];
+            var periodosSeleccionados = [];
             function getPeriodos() {
                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
                checkboxesSeleccionados.each(function() {

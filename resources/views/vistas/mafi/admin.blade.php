@@ -347,7 +347,7 @@
             periodos();
             llamadoFunciones();
             facultades();
-            getPeriodos();
+            
             /**
              * Llamado a todos los scripts
              */
@@ -455,7 +455,7 @@
                checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
-                console.log(periodosSeleccionados);
+                return periodosSeleccionados;
             }
 
             var totalFacultades
@@ -509,7 +509,8 @@
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                
+                var periodosSeleccionados = getPeriodos();
+                console.log(periodosSeleccionados);
                 Contador();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();

@@ -549,6 +549,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
+                vacio();
                 var periodosSeleccionados = getPeriodos();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
@@ -587,8 +588,8 @@
                         alerta();
                     }
                 }
-            }
-            else{
+                }
+                else{
                 /** Alerta Seleccionar al menos un periodo */
                 programasSeleccionados = [];
                 facultadesSeleccionadas = [];
@@ -596,7 +597,7 @@
                 destruirGraficos();
                 ocultarDivs();
                 alertaPeriodos();
-            }
+                }
             });
 
             function alerta() {

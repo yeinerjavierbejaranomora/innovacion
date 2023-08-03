@@ -147,9 +147,9 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer text-center d-flex justify-content-around" style="height: 55px;">
-                            <button type="button" id="verProgramas" class="btn deshacer">Deshacer Todas</button>
-                            <button type="button" id="verProgramas" class="btn deshacer">Seleccionar Todas</button>
+                        <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
+                            <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,8 @@
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="verProgramas" class="btn deshacer" style="display:none;">Deshacer Todos</button>
+                            <button type="button" id="deshacerProgramas" class="btn deshacer" style="display:none;">Deshacer Todos</button>
+                            <button type="button" id="seleccionarProgramas" class="btn deshacer" style="display:none;">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>

@@ -514,7 +514,6 @@
                 e.preventDefault();
                 Contador();
                 var periodosSeleccionados = getPeriodos();
-                console.log(periodosSeleccionados);
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
@@ -544,7 +543,7 @@
                                 location.reload();
                             }
                             estadoUsuarioFacultad();
-                            graficosporFacultad(facultadesSeleccionadas);
+                            graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
                         }
                     } else {
                         /** Alerta */

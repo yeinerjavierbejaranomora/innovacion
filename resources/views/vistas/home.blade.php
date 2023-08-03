@@ -32,6 +32,12 @@
 @endswitch
 @endauth
 
+<style>
+    #seccion{
+        border-radius: 10%;
+    }
+</style>
+
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
@@ -61,7 +67,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <section style="background-color: #eee;">
+            <section id="seccion" style="background-color: #eee;">
                 <div class="container py-5">
                 </div>
             </section>

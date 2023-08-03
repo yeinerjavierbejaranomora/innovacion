@@ -233,8 +233,10 @@ class InformeMafiController extends Controller
          *GROUP BY dm.sello
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $sello = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo', $periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
             ->groupBy('dm.sello')
@@ -258,8 +260,10 @@ class InformeMafiController extends Controller
          *GROUP BY dm.autorizado_asistir
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $retencion = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->where('dm.sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
@@ -293,8 +297,10 @@ class InformeMafiController extends Controller
         ];
 
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $primerIngreso = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->whereIn('dm.tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
@@ -318,8 +324,10 @@ class InformeMafiController extends Controller
          * GROUP BY tipoestudiante
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $tipoEstudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
             ->groupBy('dm.tipoestudiante')
@@ -347,8 +355,10 @@ class InformeMafiController extends Controller
          *LIMIT 5
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $operadores = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
             ->groupBy('dm.operador')
@@ -377,8 +387,10 @@ class InformeMafiController extends Controller
          * LIMIT 5
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $programas = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
             ->groupBy('dm.codprograma')
@@ -406,7 +418,10 @@ class InformeMafiController extends Controller
          *GROUP BY estado
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        
         $estudiantes = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(estado) AS TOTAL'), 'estado')
             ->groupBy('estado')
@@ -428,7 +443,9 @@ class InformeMafiController extends Controller
          *GROUP BY sello
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $sello = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
@@ -451,7 +468,9 @@ class InformeMafiController extends Controller
          *GROUP BY autorizado_asistir
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $retencion = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
@@ -485,7 +504,9 @@ class InformeMafiController extends Controller
         ];
 
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $primerIngreso = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -508,7 +529,9 @@ class InformeMafiController extends Controller
          * GROUP BY tipoestudiante
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $tipoEstudiantes = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
@@ -535,7 +558,9 @@ class InformeMafiController extends Controller
          * LIMIT 5
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $operadores = DB::table('datosMafi')
+            ->whereIn('periodos',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
@@ -562,7 +587,9 @@ class InformeMafiController extends Controller
          * ORDER BY TOTAL DESC
          */
         $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
         $operadores = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
@@ -588,8 +615,10 @@ class InformeMafiController extends Controller
          * ORDER BY TOTAL DESC
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $operadores = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
             ->groupBy('dm.operador')
@@ -611,6 +640,7 @@ class InformeMafiController extends Controller
          *GROUP BY operador
          *ORDER BY TOTAL DESC
          */
+
         $operadores = DB::table('datosMafi')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
@@ -662,8 +692,10 @@ class InformeMafiController extends Controller
          * ORDER BY TOTAL DESC
          */
         $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
         $programas = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo',$periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
             ->groupBy('dm.codprograma')
@@ -686,6 +718,7 @@ class InformeMafiController extends Controller
          * GROUP BY tipoestudiante
          */
         $tipoEstudiantes = DB::table('datosMafi')
+
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
             ->orderByDesc('TOTAL')
@@ -708,9 +741,11 @@ class InformeMafiController extends Controller
          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          * GROUP BY tipoestudiante
          */
+        $periodos = $request->input('periodos');
         $facultades = $request->input('idfacultad');
         $tipoEstudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->whereIn('dm.periodo', $periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
             ->groupBy('dm.tipoestudiante')
@@ -733,8 +768,10 @@ class InformeMafiController extends Controller
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
          * GROUP BY tipoestudiante
          */
+        $periodos = $request->input('periodos');
         $programas = $request->input('programa');
         $tipoEstudiantes = DB::table('datosMafi')
+            ->whereIn('periodo',$periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
@@ -744,7 +781,6 @@ class InformeMafiController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }
-
 
 }
 

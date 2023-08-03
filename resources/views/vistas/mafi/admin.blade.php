@@ -70,10 +70,7 @@
         display: none;
     }
 
-    #centrar {
-        display: flex;
-        align-items: center;
-    }
+
 
     .graficos {
         min-height: 460px;
@@ -130,8 +127,8 @@
             </div>
             <br>
 
-            <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" id="">
+            <!-- Checkbox Periodos -->
+            <div class="row justify-content-start">
                 <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardPeriodos">
                         <div class="card-header text-center">

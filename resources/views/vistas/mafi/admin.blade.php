@@ -440,8 +440,8 @@
                     url: "{{ route('periodos.activos') }}",
                     method: 'post',
                     success: function(data) {
-                        data.forEach(facultad => {
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                        data.forEach(periodo => {
+                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                         });
                     }
                 });

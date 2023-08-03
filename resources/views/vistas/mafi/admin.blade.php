@@ -346,6 +346,7 @@
 
             llamadoFunciones();
             facultades();
+            periodos();
             /**
              * Llamado a todos los scripts
              */

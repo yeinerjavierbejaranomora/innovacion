@@ -344,9 +344,9 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
-            periodos();
             llamadoFunciones();
             facultades();
+            periodos();
             /**
              * Llamado a todos los scripts
              */
@@ -433,7 +433,6 @@
              * Método que trae los periodos activos
              */
             function periodos() {
-                var totalPeriodos = [];
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -446,7 +445,6 @@
                         });
                     }
                 });
-                console.log(totalPeriodos);
             }
             
             var totalFacultades

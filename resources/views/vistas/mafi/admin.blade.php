@@ -30,6 +30,18 @@
         font-size: 14px;
     }
 
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 80px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 400;
+        place-items: center;
+        font-size: 10px;
+    } 
+
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
@@ -135,9 +147,9 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="verProgramas" class="btn">Deshacer Todas</button>
-                            <button type="button" id="verProgramas" class="btn">Seleccionar Todas</button>
+                        <div class="card-footer text-center row" style="height: 55px;">
+                            <button type="button" id="verProgramas" class="btn deshacer">Deshacer Todas</button>
+                            <button type="button" id="verProgramas" class="btn deshacer">Seleccionar Todas</button>
                         </div>
                     </div>
                 </div>
@@ -150,7 +162,7 @@
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="verProgramas" class="btn" style="display:none;">Deshacer Todos</button>
+                            <button type="button" id="verProgramas" class="btn deshacer" style="display:none;">Deshacer Todos</button>
                         </div>
                     </div>
                 </div>

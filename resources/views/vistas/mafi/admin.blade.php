@@ -22,24 +22,24 @@
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 140px;
+        width: 200px;
         height: 30px;
         border-radius: 10px;
-        font-weight: 800;
+        font-weight: bold;
         place-items: center;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .deshacer {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 80px;
+        width: 140px;
         height: 30px;
         border-radius: 10px;
-        font-weight: 400;
+        font-weight: 800;
         place-items: center;
-        font-size: 10px;
+        font-size: 12px;
     } 
 
     #botonModalTiposEstudiantes,

@@ -52,6 +52,12 @@ class UserController extends Controller
      */
     public function home ()
     {
+        
+        $user = auth()->user();
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+        $nombre_rol = $rol_db[0]->nombreRol;
+
+        auth()->user()->nombre_rol = $nombre_rol;
         return view('vistas.home');
     }
 

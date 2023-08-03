@@ -39,7 +39,23 @@
 
     <!-- Main Content -->
     <div id="content">
-        <!-- End of Topbar -->
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+
+
+            <div class="input-group">
+
+                <div class="input-group-append">
+                    <h3> Bienvenido {{ auth()->user()->nombre }}</h3>
+                </div>
+            </div>
+
+        </nav>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

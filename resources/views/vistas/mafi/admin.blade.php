@@ -187,7 +187,7 @@
 
         <div class="row justify-content-start mt-5">
             <div class="col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
+                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         </div>
@@ -339,12 +339,14 @@
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
                 $('div #programas input[type="checkbox"]').prop('disabled', true);
+                $('#generarReporte').prop("disabled", true);
             });
-
+            
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
             $(document).ajaxStop(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', false);
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
+                $('#generarReporte').prop("disabled", false);
             });
 
             periodos();

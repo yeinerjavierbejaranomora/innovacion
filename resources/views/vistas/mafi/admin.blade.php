@@ -405,7 +405,7 @@
                 $("#mensaje").empty();
                 var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.map(function(facultad) {
-                    return facultad.toLowerCase();
+                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();;
                     }).join(' - ');
 
                 if (facultadesSeleccionadas.length > 1) {

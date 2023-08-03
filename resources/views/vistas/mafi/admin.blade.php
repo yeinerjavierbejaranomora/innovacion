@@ -604,7 +604,7 @@
              */
             var chartEstudiantes;
 
-            function graficoEstudiantes() {
+         /*  function graficoEstudiantes() {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -676,7 +676,7 @@
                     }
                 });
             }
-
+ */
             /**
              * Método que genera el gráfico de sello financiero
              */

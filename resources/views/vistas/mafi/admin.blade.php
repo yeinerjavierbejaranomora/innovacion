@@ -132,9 +132,6 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
-                                <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
-                                </div>
                                 <br>
                             </div>
                         </div>
@@ -164,9 +161,6 @@
                             <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         </div>
                         <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
-                                <h5>No hay datos por mostrar</h5>
-                            </div>
                             <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
@@ -188,9 +182,6 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -201,9 +192,6 @@
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
@@ -214,9 +202,6 @@
                         <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
@@ -227,9 +212,6 @@
                         <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -243,9 +225,6 @@
                         <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="operadores" style="height: 400px;"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -259,9 +238,6 @@
                         <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -429,7 +405,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(facultad => {
-                            $('div #facultades').append(`<label class="ocultarFacultades" style="display: none;"> <input type="checkbox" value="${facultad.nombre}"> ${facultad.nombre}</label><br>`);
+                            $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
                         });
                     }
                 });
@@ -463,24 +439,10 @@
              * */
             function informacionGeneral() {
                 $('#mensaje').show();
-                $('.vacio').hide();
                 destruirGraficos();
                 llamadoFunciones();
             }
 
-            /**
-             * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 
-             * o en caso contrario, muestra las facultades y limpia la página de la data anterior
-             * */
-            $('body').on('change', '#mostrarTodos', function() {
-                if ($('#mostrarTodos').prop('checked')) {
-                    location.reload();
-                } else {
-                    $('.ocultarFacultades').show();
-                    destruirGraficos();
-                    ocultarDivs();
-                }
-            });
 
             $('#verProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', false);
@@ -1061,7 +1023,7 @@
                     if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                         $('#colOperadores').addClass('hidden');
                     } else {
-                        $('#vacioOperadores').removeClass('hidden');
+                        $('#colOperadores').removeClass('hidden');
                     }
                 });
             }
@@ -1810,7 +1772,6 @@
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
 
-                    $(".vacio").hide();
                     $("#ocultarGraficoProgramas").hide();
 
                     graficoEstudiantesPorPrograma(programas);

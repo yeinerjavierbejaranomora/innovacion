@@ -33,6 +33,17 @@
 @endauth
 
 <style>
+       .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
 </style>
 
 <!--  creamos el contenido principal body -->
@@ -68,19 +79,19 @@
                 <h1>Informes disponibles</h1>
             </section>
             <div class="container mt-3">
-                <div class="row">
+                <div class="row py-5">
                     <div class="col 4 text-center">
-                        <button>
+                        <button class="boton">
                             Informe Mafi
                         </button>
                     </div>
                     <div class="col 4 text-center">
-                        <button>
+                        <button class="boton">
                             Informe Moddle
                         </button>
                     </div>
                     <div class="col 4 text-center">
-                        <button>
+                        <button class="boton">
                             Planeación
                         </button>
                     </div>

@@ -549,7 +549,6 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                vacio();
                 var periodosSeleccionados = getPeriodos();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
@@ -598,6 +597,7 @@
                 ocultarDivs();
                 alertaPeriodos();
                 }
+                vacio();
             });
 
             function alerta() {

@@ -37,12 +37,12 @@
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 200px;
-        height: 30px;
+        width: 230px;
+        height: 50px;
         border-radius: 10px;
-        font-weight: bold;
+        font-weight: 600;
         place-items: center;
-        font-size: 14px;
+        font-size: 25px;
     }
 </style>
 

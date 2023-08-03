@@ -406,10 +406,10 @@
                 if (facultadesSeleccionadas.length > 1) {
                     var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.join(' - ');
-                    var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
+                    var textoNuevo = "<h5>Informe facultades: " + facultadesFormateadas + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
-                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
+                    var textoNuevo = "<h5>Informe facultad " + facultadesSeleccionadas + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();

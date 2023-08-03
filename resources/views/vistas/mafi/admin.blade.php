@@ -408,11 +408,11 @@
                     return facultad.toLowerCase();
                     }).join(' - ');
                 if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h5>Informe facultades: " + facultadesFormateadas + " </h5>";
+                    var textoNuevo = "<h4>Informe facultades: " + facultadesFormateadas + " </h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
                     
-                    var textoNuevo = "<h5>Informe facultad " + facultadesFormateadas + " </h5>";
+                    var textoNuevo = "<h4>Informe facultad: " + facultadesFormateadas + " </h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();

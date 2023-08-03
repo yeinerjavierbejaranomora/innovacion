@@ -344,9 +344,9 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
             });
 
+            periodos();
             llamadoFunciones();
             facultades();
-            periodos();
             /**
              * Llamado a todos los scripts
              */
@@ -446,8 +446,9 @@
                     }
                 });
             }
-            
+
             var totalFacultades
+
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;

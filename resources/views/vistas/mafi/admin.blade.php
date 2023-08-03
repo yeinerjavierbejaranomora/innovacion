@@ -1217,12 +1217,12 @@
                     $("#ocultarGraficoProgramas").show();
 
                     graficoEstudiantesPorFacultades(facultades, periodos);
-                    graficoSelloFinancieroPorFacultad(facultades);
-                    graficoRetencionPorFacultad(facultades);
-                    graficoSelloPrimerIngresoPorFacultad(facultades);
-                    graficoTiposDeEstudiantesFacultad(facultades);
-                    graficoOperadoresFacultad(facultades);
-                    graficoProgramasFacultad(facultades);
+                    graficoSelloFinancieroPorFacultad(facultades, periodos);
+                    graficoRetencionPorFacultad(facultades, periodos);
+                    graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
+                    graficoTiposDeEstudiantesFacultad(facultades, periodos);
+                    graficoOperadoresFacultad(facultades, periodos);
+                    graficoProgramasFacultad(facultades, periodos);
                 }
             }
 

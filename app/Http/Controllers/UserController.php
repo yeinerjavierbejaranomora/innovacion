@@ -703,12 +703,13 @@ class UserController extends Controller
     public function estudiantesActivosFacultad(Request $request)
     {
         /**
-         * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
+         *SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
          *INNER JOIN programas p ON p.codprograma = dm.programa
          *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          *GROUP BY dm.estado
          */
         $facultades = $request->input('idfacultad');
+        dd($facultades);
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
             ->whereIn('p.Facultad', $facultades)

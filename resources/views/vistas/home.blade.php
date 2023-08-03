@@ -33,7 +33,7 @@
 @endauth
 
 <style>
-       .boton {
+    .boton {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -81,19 +81,19 @@
             <div class="container mt-3">
                 <div class="row py-5">
                     <div class="col 4 text-center">
-                        <button class="boton">
+                        <a class="boton" href="{{ route('home.mafi') }}">
                             Informe Mafi
-                        </button>
+                        </a>
                     </div>
                     <div class="col 4 text-center">
-                        <button class="boton">
+                        <a class="boton">
                             Informe Moddle
-                        </button>
+                        </a>
                     </div>
                     <div class="col 4 text-center">
-                        <button class="boton">
+                        <a class="boton">
                             Planeación
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

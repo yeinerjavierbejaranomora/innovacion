@@ -106,8 +106,9 @@
                 <div class="input-group-append">
                     <h3> Bienvenido {{auth()->user()->nombre}}</h3>
                 </div>
+                -
                 <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
+                <h1 class="h3 mb-0 text-gray-800"> <strong> Informe de Facultades</strong></h1>
                  </div>
             </div>
 

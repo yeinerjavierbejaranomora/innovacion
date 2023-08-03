@@ -480,7 +480,7 @@
                 $('#programas input[type="checkbox"]').prop('checked', false);
             });
 
-            $('seleccionarProgramas').on('click', function(e) {
+            $('#seleccionarProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', true);
             });
 
@@ -488,7 +488,7 @@
                 $('#facultades input[type="checkbox"]').prop('checked', false);
             });
 
-            $('seleccionarFaculteades').on('click', function(e) {
+            $('#seleccionarFaculteades').on('click', function(e) {
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 

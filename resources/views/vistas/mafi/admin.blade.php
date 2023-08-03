@@ -171,7 +171,7 @@
                 </div>
             </div>
 
-            <div class="row text-center">
+            <div class="row text-center justify-content-center">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

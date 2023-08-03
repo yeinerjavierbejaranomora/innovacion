@@ -405,7 +405,9 @@
                 $("#mensaje").empty();
                 if (facultadesSeleccionadas.length > 1) {
                     var facultadesArray = Object.values(facultadesSeleccionadas);
-                    var facultadesFormateadas = facultadesArray.join(' - ');
+                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                    return facultad.toLowerCase();
+                    }).join(' - ');
                     var textoNuevo = "<h5>Informe facultades: " + facultadesFormateadas + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {

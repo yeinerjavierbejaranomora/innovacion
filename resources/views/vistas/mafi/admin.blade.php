@@ -561,6 +561,7 @@
                         programasSeleccionados.push($(this).val());
                     });
                     estadoUsuarioPrograma();
+                    $("#colProgramas").addClass("hidden");
                     graficosporPrograma(programasSeleccionados, periodosSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {                      

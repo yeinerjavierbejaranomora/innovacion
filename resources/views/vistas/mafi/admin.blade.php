@@ -1832,6 +1832,7 @@
              * Método que muestra los estudiantes activos e inactivos de algún programa en específico
              */
             function graficoEstudiantesPorPrograma(programas) {
+                console.log(programas);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

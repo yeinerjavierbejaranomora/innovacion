@@ -530,7 +530,7 @@ class InformeMafiController extends Controller
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
          * GROUP BY operador
          * ORDER BY TOTAL DESC
-         *LIMIT 5
+         * LIMIT 5
          */
         $programas = $request->input('programa');
         $operadores = DB::table('datosMafi')

@@ -33,9 +33,6 @@
 @endauth
 
 <style>
-    #seccion{
-        border-radius: 10%;
-    }
 </style>
 
 <!--  creamos el contenido principal body -->
@@ -67,15 +64,16 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <section id="seccion" style="background-color: #eee;">
-                <div class="container py-5">
-                    <div class="text-center">
-                        <h2>Informes disponibles</h2>
-                    </div>
-
-
-                </div>
+            <section id="seccion" style="background-color: #eee;" class="font-weight-bold text-dark text-center">
+                <h1>Informes disponibles</h1>
             </section>
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
         </div>
     </div>
     @include('layout.footer')

@@ -432,8 +432,8 @@
             /**
              * Método que trae los periodos activos
              */
-            var totalPeriodos = [];
             function periodos() {
+                var totalPeriodos = [];
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

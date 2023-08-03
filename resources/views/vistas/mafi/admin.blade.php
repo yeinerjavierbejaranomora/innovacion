@@ -118,7 +118,7 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>Por defecto se muestran los datos de todas las facultades,
-                    si quieres ver datos en especifico, selecciona alguna facultad.
+                    si quieres ver datos en especifico, selecciona alguna en específico.
                 </h3>
             </div>
             <br>
@@ -135,10 +135,9 @@
                                 <br>
                             </div>
                         </div>
-                        <div class="card-footer" style="height: 55px;">
-                            <!-- <div class="text-end">
-                                <button type="button" id="verProgramas" class="btn btn-warning ocultarFacultades" style="display:none;" data-dismiss="modal">Ver programas</button>
-                            </div> -->
+                        <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="verProgramas" class="btn">Deshacer Todas</button>
+                            <button type="button" id="verProgramas" class="btn">Seleccionar Todas</button>
                         </div>
                     </div>
                 </div>

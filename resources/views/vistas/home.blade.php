@@ -69,7 +69,7 @@
             <!-- Page Heading -->
             <section id="seccion" style="background-color: #eee;">
                 <div class="container py-5">
-                    <div class="text-center mt-2 mb-3">
+                    <div class="text-center">
                         <h2>Informes disponibles</h2>
                     </div>
 

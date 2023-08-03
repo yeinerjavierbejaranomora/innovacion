@@ -2504,7 +2504,12 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try{
+                            data = jQuery.parseJSON(data);
+                        }
+                        catch{
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });

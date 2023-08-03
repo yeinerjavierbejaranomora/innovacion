@@ -183,7 +183,7 @@
 
         </div>
 
-        <div class="row justify-content-start mt-5">
+        <div class="row justify-content-start mt-5 columnas">
             <div class="col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                 </div>
-            <div class="col-6 text-center" id="colSelloFinanciero">
+            <div class="col-6 text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colRetencion">
+            <div class="col-6 text-center " id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colPrimerIngreso">
+            <div class="col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colTipoEstudiantes">
+            <div class="col-6 text-center " id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
@@ -242,7 +242,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colOperadores">
+            <div class="col-6 text-center " id="colOperadores">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
@@ -256,7 +256,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colProgramas">
+            <div class="col-6 text-center " id="colProgramas">
                 <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
                         <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
@@ -543,7 +543,6 @@
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 
-            
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
@@ -617,6 +616,14 @@
                     confirmButtonColor: '#dfc14e',
                 })
             }
+
+
+            function vacio(){
+                if($("#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas").hasClass("hidden"))
+                {
+                    $('.columnas').text('No hay datos por mostrar');
+                }
+            }    
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

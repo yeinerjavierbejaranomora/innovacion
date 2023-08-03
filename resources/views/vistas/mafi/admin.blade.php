@@ -403,15 +403,16 @@
             function estadoUsuarioFacultad() {
                 limpiarTitulos();
                 $("#mensaje").empty();
-                if (facultadesSeleccionadas.length > 1) {
-                    var facultadesArray = Object.values(facultadesSeleccionadas);
+                var facultadesArray = Object.values(facultadesSeleccionadas);
                     var facultadesFormateadas = facultadesArray.map(function(facultad) {
                     return facultad.toLowerCase();
                     }).join(' - ');
+                if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h5>Informe facultades: " + facultadesFormateadas + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
-                    var textoNuevo = "<h5>Informe facultad " + facultadesSeleccionadas + " </h5>";
+                    
+                    var textoNuevo = "<h5>Informe facultad " + facultadesFormateadas + " </h5>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesSeleccionadas);
                 }
                 $("#mensaje").show();

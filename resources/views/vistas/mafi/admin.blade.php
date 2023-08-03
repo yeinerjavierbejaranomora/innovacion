@@ -347,6 +347,7 @@
             periodos();
             llamadoFunciones();
             facultades();
+            getPeriodos();
             /**
              * Llamado a todos los scripts
              */
@@ -445,6 +446,15 @@
                         });
                     }
                 });
+            }
+
+            periodosSeleccionados = [];
+            function getPeriodos() {
+               var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+               checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
+                });
+                console.log(periodosSeleccionados);
             }
 
             var totalFacultades
@@ -601,7 +611,7 @@
                     type: 'post',
                     url: "{{ route('estudiantes.activos') }}",
                     data: {
-                        periodo: periodos
+                        periodo: periodosSeleccionados
                     },
                     success: function(data) {
                     var labels = data.data.map(function(elemento) {

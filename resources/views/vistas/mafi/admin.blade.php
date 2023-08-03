@@ -352,7 +352,7 @@
              * Llamado a todos los scripts
              */
             function llamadoFunciones() {
-                graficoEstudiantes();
+                // graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();

@@ -31,8 +31,7 @@ class InformeMafiController extends Controller
      */
     public function periodosActivos(){
         $periodos = DB::table('periodo')->where('periodoActivo',1)->get();
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $periodos));
+        return $periodos;
     }
 
 

@@ -25,6 +25,12 @@
         font-size: 14px;
     }
 
+    #generarReporte {
+        width: 300px!important;
+        height: 60px!important;
+        font-size: 16px!important;
+    }
+
     .deshacer {
         background-color: #dfc14e;
         border-color: #dfc14e;

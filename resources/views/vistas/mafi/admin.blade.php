@@ -56,12 +56,7 @@
         font-size: 14px;
     }
 
-    #cardFacultades {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #cardProgramas {
+    #cardProgramas, #cardPeriodos,#cardFacultades {
         min-height: 405.6px;
         max-height: 405.6px;
     }
@@ -138,6 +133,21 @@
             <!-- Checkbox Facultades -->
             <div class="row justify-content-start" id="">
                 <div class="col-4 text-star">
+                    <div class="card shadow mb-5" id="cardPeriodos">
+                        <div class="card-header text-center">
+                            <h5><strong>Seleccionar Periodos</strong></h5>
+                        </div>
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                            <div  name="periodos" id="periodos">
+                                <br>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center" style="height: 55px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Facultades</strong></h5>
@@ -167,16 +177,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="estudiantes"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row">
@@ -188,6 +188,16 @@
         </div>
 
         <div class="row justify-content-start mt-5">
+            <div class="col-6 text-center" id="colEstudiantes">
+                    <div class="card shadow mb-5" id="chartEstudiantes">
+                        <div class="card-header">
+                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="estudiantes"></canvas>
+                        </div>
+                    </div>
+                </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -456,8 +466,20 @@
             }
 
 
-            $('#verProgramas').on('click', function(e) {
+            $('#deshacerProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('seleccionarProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').prop('checked', true);
+            });
+
+            $('#deshacerFacultades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('seleccionarFaculteades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 
             var programasSeleccionados = [];
@@ -465,8 +487,8 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                if ($('#verProgramas').is(':hidden')) {
-                    $('#verProgramas').show();
+                if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
+                    $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

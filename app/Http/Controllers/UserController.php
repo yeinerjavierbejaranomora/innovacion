@@ -47,13 +47,19 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    /// cargamos la vista dependiendo el usuario
     /**
-     * 
+     * Retorna a la vista Home
      */
-    public function home()
+    public function home ()
     {
+        return view('vistas.home');
+    }
 
+
+
+
+    public function vistasMafi()
+    {
         //return auth()->user()->id;
         // redirect()->route('login.home');
 

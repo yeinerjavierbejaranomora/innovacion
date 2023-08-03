@@ -138,7 +138,7 @@
                             <h5><strong>Seleccionar Periodos</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div  name="periodos" id="periodos">
+                            <div  name="periodos" id="periodos" class="mt-3>
                                 <br>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
                         </div>
-                        <div class="card-body text-star" style="overflow: auto;">
+                        <div class="card-body text-start" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">

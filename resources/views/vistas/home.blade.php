@@ -64,14 +64,26 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <section id="seccion" style="background-color: #eee;" class="font-weight-bold text-dark text-center">
+            <section id="seccion" style="background-color: #eee;" class="font-weight-bold text-dark text-center mb-2">
                 <h1>Informes disponibles</h1>
             </section>
-            <div class="container">
+            <div class="container mt-3">
                 <div class="row">
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
+                    <div class="col">
+                        <button>
+                            Informe Mafi
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button>
+                            Informe Moddle
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button>
+                            Planeación
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

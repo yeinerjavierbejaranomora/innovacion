@@ -447,8 +447,8 @@
                         });
                     }
                 });
+                console.log(totalPeriodos);
             }
-            console.log(totalPeriodos);
             
             var totalFacultades
             function Contador() {

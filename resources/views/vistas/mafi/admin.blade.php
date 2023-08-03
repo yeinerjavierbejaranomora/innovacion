@@ -138,7 +138,8 @@
                             <h5><strong>Seleccionar Periodos</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div  name="periodos" id="periodos">
+                        <br>    
+                        <div name="periodos" id="periodos">
                                 <br>
                             </div>
                         </div>

@@ -80,6 +80,11 @@
         max-height: 460px;
     }
 
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
+    }
+
     #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
@@ -230,7 +235,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -244,7 +249,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="colOperadores">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -258,7 +263,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="colProgramas">
-                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
+                <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
                         <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>

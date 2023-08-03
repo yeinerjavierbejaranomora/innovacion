@@ -432,7 +432,7 @@
             /**
              * Método que trae los periodos activos
              */
-            var periodos = [];
+            var totalPeriodos = [];
             function periodos() {
                 var datos = $.ajax({
                     headers: {
@@ -443,12 +443,12 @@
                     success: function(data) {
                         data.forEach(periodo => {
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                            periodos.push($(this).val());
+                            totalPeriodos.push(periodo.periodos);
                         });
                     }
                 });
             }
-            console.log(periodos);
+            console.log(totalPeriodos);
             
             var totalFacultades
             function Contador() {

@@ -447,10 +447,10 @@
                         });
                     }
                 });
-                console.log(periodos);
             }
+            console.log(periodos);
+            
             var totalFacultades
-
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;
@@ -596,7 +596,6 @@
             var chartEstudiantes;
 
             function graficoEstudiantes() {
-
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

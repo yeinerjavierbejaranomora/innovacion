@@ -517,7 +517,7 @@
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
-                if(periodosSeleccionados.length != totalPeriodos && periodosSeleccionados.length > 0){
+                if(periodosSeleccionados.length > 0){
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -553,6 +553,10 @@
                 }
             }
             else{
+                /** Alerta Seleccionar al menos un periodo */
+                programasSeleccionados = [];
+                facultadesSeleccionadas = [];
+                periodosSeleccionados = [];
                 destruirGraficos();
                 llamadoFunciones();
             }

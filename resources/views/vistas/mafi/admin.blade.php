@@ -488,10 +488,11 @@
                 $('#facultades input[type="checkbox"]').prop('checked', false);
             });
 
-            $('#seleccionarFaculteades').on('click', function(e) {
+            $('#seleccionarFacultades').on('click', function(e) {
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 
+            var periodos = [];
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             $('#generarReporte').on('click', function(e) {

@@ -77,6 +77,12 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/programas', 'traerprogramas')->name('traer.programas');
     /** Ruta para traer programas en la vista Usuarios */
     Route::post('/home/programasUsuarios', 'traerProgramasUsuarios')->name('traer.programas.usuarios');
+     
+});
+
+Route::controller(InformeMafiController::class)->group(function () {
+    /** Ruta para traer los periodos activos */
+    Route::post('/home/periodos', 'periodosActivos')->name('periodos.activos');
 
     /** Ruta para cargar gráfica de estudiantes activos e inactivos */
     Route::get('/home/estudiantes', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos');
@@ -139,13 +145,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/tiposEsudiantesTotal', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
     Route::post('/home/tiposEsudiantesProgramaTotal', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
-
-     
-});
-
-Route::controller(InformeMafiController::class)->group(function () {
-    /** Ruta para traer los periodos activos */
-    Route::post('/home/periodos', 'periodosActivos')->name('periodos.activos');
 });
 
 Route::controller(MafiController::class)->group(function () {

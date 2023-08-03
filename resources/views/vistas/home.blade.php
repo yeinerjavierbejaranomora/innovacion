@@ -69,17 +69,17 @@
             </section>
             <div class="container mt-3">
                 <div class="row">
-                    <div class="col">
+                    <div class="col 4 text-center">
                         <button>
                             Informe Mafi
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col 4 text-center">
                         <button>
                             Informe Moddle
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col 4 text-center">
                         <button>
                             Planeación
                         </button>

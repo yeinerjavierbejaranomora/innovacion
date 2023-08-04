@@ -159,8 +159,8 @@
             <div class=" col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Estudiantes </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
+                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="estudiantes"></canvas>
@@ -170,8 +170,8 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Sello finaciero </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                    <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -181,8 +181,8 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP) </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 class="tituloPeriodo"><strong</strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -192,8 +192,8 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
+                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="primerIngreso"></canvas>
@@ -203,8 +203,8 @@
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="tipoEstudiante"></canvas>
@@ -217,8 +217,8 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Operadores </strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="operadores"></canvas>
@@ -391,16 +391,38 @@
         totalSeleccionado -= 1;
     }
 
+    function limpiarTitulos() {
+        var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+        var parteEliminar = ': ';
+        elementosTitulos.each(function() {
+            var contenidoActual = $(this).text();
+            var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+            $(this).text(contenidoLimpio);
+            });
+        var parteTituloEliminar = 'Periodo: ';
+        var titulosPeriodos = $('.tituloPeriodo').find("strong");
+        titulosPeriodos.each(function() {
+            var contenidoActual = $(this).text();
+            var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+            $(this).text(contenidoLimpio);
+            });
+    }
+
+
     function estadoUsuario() {
+        limpiarTitulos();
+        var periodos = getPeriodos();
         $("#mensaje").empty();
-        if (programasSeleccionados.length > 1) {
-            var programasArray = Object.values(programasSeleccionados);
-            var programasFormateados = programasArray.join(' - ');
-            var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
-        } else {
-            var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
-        }
-        $("#mensaje").html(textoNuevo);
+            if (programasSeleccionados.length > 1) {
+                var programasArray = Object.values(programasSeleccionados);
+                var programasFormateados = programasArray.join(' - ');
+                var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+            $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasFormateados);
+                } else {
+                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasSeleccionados);
+                }
+            $("#mensaje").html(textoNuevo);
     }
 
     /**

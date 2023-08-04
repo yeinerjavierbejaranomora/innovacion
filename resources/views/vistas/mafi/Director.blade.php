@@ -68,6 +68,11 @@
         max-height: 460px;
     }
 
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
+    }
+
     #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
@@ -182,7 +187,7 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo"><strong</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -201,7 +206,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -215,7 +220,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="colOperadores">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -843,60 +848,96 @@
         }
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: url,
-            data: data,
-            success: function(data) {
-                data = jQuery.parseJSON(data);
-
-                var labels = data.data.map(function(elemento) {
-                    return elemento.tipoestudiante;
-                });
-
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                chartTipoEstudiante = new Chart(ctx, {
-                    type: 'bar',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.tipo.programa') }}",
                     data: {
-                        labels: labels.map(function(label, index) {
-                            label = label.toUpperCase();
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Tipos de estudiantes',
-                            data: valores,
-                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                        }]
+                        programa: programas,
+                        periodos: periodos
                     },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: {
-                                        size: 12
+
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                        chartTipoEstudiante = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    label = label.toUpperCase();
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Tipos de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
                                     }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                            $('#colTipoEstudiantes').addClass('hidden');
+                        } else {
+                            $('#colTipoEstudiantes').removeClass('hidden');
+                        }
+                    }
                 });
-                if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                    $('#colTipoEstudiantes').addClass('hidden');
-                } else {
-                    $('#colTipoEstudiantes').removeClass('hidden');
-                }
-            }
-        });
     }
 
     /**
@@ -912,64 +953,99 @@
         }
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: url,
-            data: data,
-            success: function(data) {
-                data = jQuery.parseJSON(data);
-
-                var labels = data.data.map(function(elemento) {
-                    return elemento.operador;
-                });
-
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                var ctx = document.getElementById('operadores').getContext('2d');
-                chartOperadores = new Chart(ctx, {
-                    type: 'bar',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.operador.programa') }}",
                     data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == '') {
-                                label = 'IBERO';
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Operadores con mayor cantidad de estudiantes',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
+                        programa: programas,
+                        periodos: periodos
                     },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
 
-                                    font: {
-                                        size: 12
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.operador;
+                        });
+
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        var ctx = document.getElementById('operadores').getContext('2d');
+                        chartOperadores = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
                                     }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                            $('#colOperadores').addClass('hidden');
+                        } else {
+                            $('#colOperadores').removeClass('hidden');
+                        }
+                    }
                 });
-                if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                    $('#colOperadores').addClass('hidden');
-                } else {
-                    $('#colOperadores').removeClass('hidden');
-                }
-            }
-        });
     }
 
     $('#botonModalOperador').on("click", function(e) {
@@ -1007,55 +1083,87 @@
         }
         console.log(programasSeleccionados);
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: url,
-            data: data,
-            success: function(data) {
-                data = jQuery.parseJSON(data);
-                var labels = data.data.map(function(elemento) {
-                    return elemento.tipoestudiante;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico de barras
-                var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
-                chartTiposEstudiantesTotal = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Tipos de esudiantes',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-
-                                    font: {
-                                        size: 12
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico de barras
+                        var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
+                        chartTiposEstudiantesTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Tipos de esudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
                                     }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    }
                 });
-            }
-        });
 
     }
     /**
@@ -1078,59 +1186,87 @@
             }
         }
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: url,
-            data: data,
-            success: function(data) {
-                data = jQuery.parseJSON(data);
-
-                var labels = data.data.map(function(elemento) {
-                    return elemento.operador;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico de barras
-                var ctx = document.getElementById('operadoresTotal').getContext('2d');
-                chartOperadoresTotal = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            if (label == '') {
-                                label = 'IBERO';
-                            }
-                            return label + ': ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Operadores ordenados de forma descendente',
-                            data: valores,
-                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                            ]
-                        }]
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-
-                                    font: {
-                                        size: 12
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.codprograma;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('programasTotal').getContext('2d');
+                        chartProgramasTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Programas',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
                                     }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    }
                 });
-            }
-        });
 
     }
 </script>

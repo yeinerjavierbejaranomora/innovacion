@@ -908,7 +908,7 @@
 
             function graficoTipoDeEstudiante() {
                 var tabla = <?php echo json_encode($tabla); ?>;
-                var url = '/home/tipoEstudiantes/';
+                var url = '/home/tipoEstudiantes'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.tipo_estudiante;

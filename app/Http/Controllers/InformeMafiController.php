@@ -84,11 +84,14 @@ class InformeMafiController extends Controller
          *WHERE sello = 'TIENE RETENCION' 
          *GROUP BY autorizado_asistir
          */
+
         $retencion = DB::table('datosMafi')
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
             ->get();
+
+
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
@@ -99,7 +102,6 @@ class InformeMafiController extends Controller
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
     public function estudiantesPrimerIngreso(){
-
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
          * WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
@@ -114,11 +116,13 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
 
-        $primerIngreso = DB::table('datosMafi')
+
+            $primerIngreso = DB::table('datosMafi')
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
+
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));
@@ -128,14 +132,24 @@ class InformeMafiController extends Controller
      * Método que trae todos los 5 tipos de estudiantes con mayor cantidad de datos
      * @return JSON retorna todos los tipos de estudiantes
      */
-    public function tiposEstudiantes()
+    public function tiposEstudiantes($tabla)
     {
+            dd($tabla);
         /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
          * tipoestudiante FROM `datosMafi` 
          * GROUP BY tipoestudiante
          */
-        $tipoEstudiantes = DB::table('datosMafi')
+        if($tabla == 'planeacion')
+        {
+            $tablaConsulta = 'planeacion';  
+        }
+        else
+        {
+            $tablaConsulta = 'datosMafi';  
+        }
+
+        $tipoEstudiantes = DB::table($tablaConsulta)
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
             ->orderByDesc('TOTAL')

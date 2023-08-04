@@ -28,8 +28,7 @@ class MafiController extends Controller
         return view('vistas.admin.mafi');
     }
 
-    public function getDataMafi()
-    {
+    public function getDataMafi(){
         /// para activar el perodo activo en la base de datos
         $this->periodo();
         /** Año y Mes Actual*/

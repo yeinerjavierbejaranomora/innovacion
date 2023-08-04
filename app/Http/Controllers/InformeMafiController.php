@@ -137,7 +137,7 @@ class InformeMafiController extends Controller
             WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
             GROUP BY sello;
              */
-            $primerIngreso = DB::table('estudiante')
+            $primerIngreso = DB::table('estudiantes')
             ->whereIn('tipo_estudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')

@@ -297,26 +297,6 @@
             </div>
         </div>
 
-        <!-- Modal Todos los Programas de la Ibero -->
-        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloProgramasTotal"><strong>Programas</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="programasTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Modal Todos los Tipos de estudiantes -->
         <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">

@@ -270,7 +270,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 text-center justify-content-center" id="vacio">
+            <div class="col-12 text-center justify-content-center hidden" id="vacio">
                     <h3>No hay datos por mostrar </h3>
             </div >
         </div>
@@ -342,7 +342,7 @@
 
     <script>
         $(document).ready(function() {
-            console.log('cambio');
+            console.log('cambio')
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {

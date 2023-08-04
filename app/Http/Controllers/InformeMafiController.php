@@ -71,7 +71,7 @@ class InformeMafiController extends Controller
                 ->groupBy('sello')
                 ->get();
         }
-        
+
         if ($tabla == 'planeacion') {
             $sello = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')
@@ -466,7 +466,7 @@ class InformeMafiController extends Controller
         ORDER BY TOTAL DESC
         LIMIT 5
          */
-        DB::table('estudiantes AS e')
+        $operadores = DB::table('estudiantes AS e')
         ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
         ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
         ->whereIn('e.marca_ingreso', $periodos)

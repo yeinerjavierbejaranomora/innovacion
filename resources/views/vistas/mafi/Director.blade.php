@@ -1060,7 +1060,7 @@
 
     function tiposEstudiantesTotal() {
         var data;
-        url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+        var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,
@@ -1072,7 +1072,6 @@
                 periodos: periodosSeleccionados
             }
         }
-        console.log(programasSeleccionados);
         $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1164,7 +1163,7 @@
 
     function graficoOperadoresTotal() {
         var data;
-        url = "{{ route('operadores.programa.estudiantes') }}";
+        var url = "{{ route('operadores.programa.estudiantes') }}";
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,

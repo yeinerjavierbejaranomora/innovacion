@@ -138,9 +138,8 @@
                     </div>
                     <div class="card-body text-star" style="overflow: auto;">
                         <div name="programas" id="programas">
-                            <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
                             @foreach ($programas as $programa)
-                            <label class="hidden idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}"> {{$programa->programa}}</label><br>
+                            <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
                             @endforeach
                         </div>
                     </div>
@@ -324,8 +323,6 @@
 
         if (cantidadProgramas === 1) {
             $('#colCardProgramas').hide();
-            $('#colEstudiantes').removeClass('col-6');
-            $('#colEstudiantes').addClass('col-8');
             var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
             $("#mensaje").html(textoNuevo);
         }
@@ -381,15 +378,6 @@
     /**
      * Controlador del botón mostrarTodos
      */
-    $('body').on('change', '#mostrarTodos', function() {
-        if ($('#mostrarTodos').prop('checked')) {
-            location.reload();
-        } else {
-            $('label.idProgramas').removeClass('hidden');
-            destruirGraficos();
-            ocultarDivs();
-        }
-    });
 
     function alerta() {
         Swal.fire({

@@ -116,6 +116,7 @@ class UserController extends Controller
 
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
 
+        $tabla = 'planeacion';    
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
         if ($nombre_rol === 'Admin') {
@@ -141,10 +142,10 @@ class UserController extends Controller
                 $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
                 $data[$value] = $consulta;
             }
-            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data]);
+            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data],);
         }
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas.planeacion.' . $nombre_rol . 'Planeacion');
+        return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['tabla' => $tabla]);
     }
 
     // funcion para traer todos los usuarios a la vista de administracion

@@ -89,12 +89,12 @@
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
+                        <a type="button" class="btn boton" >
                             Moddle
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a type="button"class="btn boton">
+                        <a type="button"class="btn boton" href="{{ route('home.planeacion') }}">
                             Planeación
                         </a>
                     </div>

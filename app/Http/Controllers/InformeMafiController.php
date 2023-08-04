@@ -540,8 +540,7 @@ class InformeMafiController extends Controller
      * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
      */
 
-    public function estudiantesProgramasFacultad(Request $request, $tabla)
-    {
+    public function estudiantesProgramasFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
@@ -568,7 +567,14 @@ class InformeMafiController extends Controller
         }
 
         if($tabla == "planeacion"){
-
+        /**
+         * SELECT COUNT(e.programa) AS TOTAL, e.programa 
+        FROM estudiantes e
+        JOIN programas p ON p.codprograma = e.programa
+        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
+        GROUP BY e.programa
+        ORDER BY TOTAL DESC
+        LIMIT 5 */    
         $programas = DB::table('estudiantes AS e')
             ->select(DB::raw('COUNT(e.programa) AS TOTAL'), 'e.programa')
             ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
@@ -594,8 +600,7 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
-    public function estudiantesActivosPrograma(Request $request)
-    {
+    public function estudiantesActivosPrograma(Request $request){
         /**
          * SELECT  COUNT(estado) AS TOTAL, estado FROM `datosMafi`
          *WHERE programa IN ('') -- Reemplaza con los programas específicos
@@ -621,6 +626,7 @@ class InformeMafiController extends Controller
      */
     public function selloEstudiantesPrograma(Request $request)
     {
+        
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi` 
          *WHERE programa IN ('') -- Reemplaza con los programas específicos

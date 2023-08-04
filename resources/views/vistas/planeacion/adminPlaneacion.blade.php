@@ -94,7 +94,7 @@
 
     <!-- Main Content -->
     <div id="content">
-        <?php var_dump($planeacion);?>
+        <?php var_dump($tabla);?>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 

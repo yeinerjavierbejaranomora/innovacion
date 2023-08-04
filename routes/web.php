@@ -90,7 +90,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de estudiantes activos e inactivos */
     Route::get('/home/estudiantes', 'estudiantesActivosGeneral')->middleware('auth')->name('estudiantes.activos');
     /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
-    Route::get('/home/estudiantesActivos', 'selloEstudiantesActivos')->middleware('auth')->name('sello.activos');
+    Route::get('/home/estudiantesActivos/{tabla}', 'selloEstudiantesActivos')->middleware('auth')->name('sello.activos');
     /** Ruta para cargar gráfica de estudiantes activos con retenciòn */
     Route::get('/home/retencionActivos/', 'estudiantesRetencion')->middleware('auth')->name('retencion.activos');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso */

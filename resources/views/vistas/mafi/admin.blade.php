@@ -376,7 +376,7 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -392,15 +392,6 @@
                 });
             }
             
-            function limpiarTituloModal(){
-                var elementosTitulos = $('#tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
-                var parteEliminar = ': ';
-                elementosTitulos.each(function() {
-                    var contenidoActual = $(this).text();
-                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
-                    $(this).text(contenidoLimpio);
-                });
-            }
 
             function estadoUsuarioPrograma() {
                 limpiarTitulos();
@@ -2695,105 +2686,6 @@
 
             }
 
-            /**
-             * Método que trae todos los programas de la Ibero
-             */
-            var chartProgramasTotal;
-
-            function graficoProgramasTotal(periodosSeleccionados) {
-                if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('FacultadTotal.estudiantes') }}";
-                    var data = {
-                        idfacultad: facultadesSeleccionadas,
-                        periodos: periodosSeleccionados
-                    }
-                } else {
-                    var url = "{{ route('programasTotal.estudiantes') }}";
-                    data = '';
-                }
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.codprograma;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        var maxValor = Math.max(...valores);
-                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('programasTotal').getContext('2d');
-                        chartProgramasTotal = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    return label;
-                                }),
-                                datasets: [{
-                                    label: 'Programas',
-                                    data: valores,
-                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                    }
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        max: yMax,
-                                        beginAtZero: true
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'light',
-                                            size: 8
-                                        },
-                                        formatter: Math.round
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                    }
-                });
-            }
 
         });
     </script>

@@ -254,8 +254,8 @@ class InformeMafiController extends Controller
     {
         /**
          * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
-         *INNER JOIN programas p ON p.codprograma = dm.programa
-         *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+         *INNER JOIN programas p ON p.codprograma = dm.codprograma
+         *WHERE p.Facultad IN ('') AND dm.periodo IN ('')
          *WHERE dm.sello = 'TIENE RETENCION' 
          *GROUP BY dm.autorizado_asistir
          */

@@ -116,7 +116,7 @@ Route::controller(InformeMafiController::class)->group(function () {
      /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por facultad */
     Route::post('/home/operadoresFacultad/{tabla}', 'operadoresFacultad')->middleware('auth')->name('estudiantes.operador.facultad');
     /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos por facultad*/
-    Route::post('/home/estudiantesProgramasFacultad' ,'estudiantesProgramasFacultad')->middleware('auth')->name('programas.estudiantes.facultad');
+    Route::post('/home/estudiantesProgramasFacultad/{tabla}' ,'estudiantesProgramasFacultad')->middleware('auth')->name('programas.estudiantes.facultad');
     
     /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
     Route::post('/home/estudiantesPrograma', 'estudiantesActivosPrograma')->middleware('auth')->name('estudiantes.activos.programa');

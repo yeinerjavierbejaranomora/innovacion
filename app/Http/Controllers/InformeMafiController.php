@@ -520,8 +520,8 @@ class InformeMafiController extends Controller
         $operadores = DB::table('estudiantes AS e')
         ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
         ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
-        ->where('programado_ciclo1', 'OK')
-        ->where('programado_ciclo2', 'OK')
+        ->where('e.programado_ciclo1', 'OK')
+        ->where('e.programado_ciclo2', 'OK')
         ->whereIn('e.marca_ingreso', $periodos)
         ->whereIn('p.Facultad', $facultades)
         ->groupBy('e.operador')
@@ -540,19 +540,22 @@ class InformeMafiController extends Controller
      * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
      */
 
-    public function estudiantesProgramasFacultad(Request $request)
+    public function estudiantesProgramasFacultad(Request $request, $tabla)
     {
-        /**
-         * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-         * * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.codprograma
-         * ORDER BY TOTAL DESC
-         * LIMIT 5
-         */
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
+        if($tabla == "Mafi"){ 
+        /**
+        SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+        FROM datosMafi AS dm
+        JOIN programas AS p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.codprograma
+        ORDER BY TOTAL DESC
+        LIMIT 5
+         */
         $programas = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
@@ -562,6 +565,22 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
+
+        if($tabla == "planeacion"){
+
+        $programas = DB::table('estudiantes AS e')
+            ->select(DB::raw('COUNT(e.programa) AS TOTAL'), 'e.programa')
+            ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
+            ->whereIn('e.marca_ingreso', $periodos)
+            ->whereIn('p.Facultad', $facultades)
+            ->groupBy('e.programa')
+            ->orderBy('TOTAL', 'DESC')
+            ->limit(5)
+            ->get();  
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));

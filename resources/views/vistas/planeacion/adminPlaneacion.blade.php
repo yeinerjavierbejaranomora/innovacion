@@ -490,7 +490,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartProgramas, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantesActivos, chartProgramas, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**

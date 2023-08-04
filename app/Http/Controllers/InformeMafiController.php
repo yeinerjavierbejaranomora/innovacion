@@ -367,7 +367,6 @@ class InformeMafiController extends Controller
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
-        dd($tabla);
         if($tabla == "Mafi")
         {
             /**

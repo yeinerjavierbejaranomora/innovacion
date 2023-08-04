@@ -134,13 +134,12 @@ class InformeMafiController extends Controller
      */
     public function tiposEstudiantes($tabla)
     {
-            dd($tabla);
         /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
          * tipoestudiante FROM `datosMafi` 
          * GROUP BY tipoestudiante
          */
-        if($tabla == 'planeacion')
+        if($tabla == "planeacion")
         {
             $tablaConsulta = 'planeacion';  
         }

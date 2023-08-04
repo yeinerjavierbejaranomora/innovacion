@@ -1076,7 +1076,8 @@
             var chartOperadores;
 
             function graficoOperadores() {
-                var url = '/home/operadores';
+                var tabla = 'Mafi';
+                var url = '/home/operadores/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;

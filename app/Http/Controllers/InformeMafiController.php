@@ -58,17 +58,24 @@ class InformeMafiController extends Controller
      * Método que muestra el estado del sello financiero de todos los estudiantes
      * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
-    public function selloEstudiantesActivos()
+    public function selloEstudiantesActivos($tabla)
     {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-         *GROUP BY sello
-         */
-        $sello = DB::table('datosMafi')
+        if ($tabla == 'Mafi')
+        {
+            /**
+            * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+            *GROUP BY sello
+            */
+            $sello = DB::table('datosMafi')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
+        }
+        if($tabla == 'planeacion')
+        {
 
+        }
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
@@ -132,8 +139,7 @@ class InformeMafiController extends Controller
      * Método que trae todos los 5 tipos de estudiantes con mayor cantidad de datos
      * @return JSON retorna todos los tipos de estudiantes
      */
-    public function tiposEstudiantes($tabla)
-    {
+    public function tiposEstudiantes($tabla){
         /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
          * tipoestudiante FROM `datosMafi` 
@@ -166,13 +172,14 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 operadores que mas estudiantes traen
      * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
      */
-    public function operadores()
+    public function operadores($tabla)
     {
+        if($tabla == "Mafi"){
         /**
-         * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-         *GROUP BY operador
-         *ORDER BY TOTAL DESC
-         *LIMIT 5
+        SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
+        GROUP BY operador
+        ORDER BY TOTAL DESC
+        LIMIT 5
          */
         $operadores = DB::table('datosMafi')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -180,7 +187,22 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
 
+        if($tabla == "planeacion")
+        {
+        /*  SELECT COUNT(operador) AS TOTAL,operador FROM `estudiantes`
+        GROUP BY operador
+        ORDER BY TOTAL DESC
+        LIMIT 5
+        */
+        $operadores = DB::table('estudiantes')
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+        }
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
     }

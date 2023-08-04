@@ -997,7 +997,8 @@
             var chartOperadores;
 
             function graficoOperadores() {
-                var url = '/home/operadores';
+                var tabla = <?php echo json_encode($tabla); ?>;
+                var url = '/home/operadores/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;

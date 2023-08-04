@@ -746,7 +746,7 @@
             var chartEstudiantesActivos;
 
             function graficoSelloFinanciero() {
-                var url = '/home/estudiantesActivos';
+                var url = '/home/estudiantesActivos/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;

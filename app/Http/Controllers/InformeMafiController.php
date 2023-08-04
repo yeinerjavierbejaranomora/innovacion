@@ -71,6 +71,7 @@ class InformeMafiController extends Controller
                 ->groupBy('sello')
                 ->get();
         }
+        
         if ($tabla == 'planeacion') {
             $sello = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')

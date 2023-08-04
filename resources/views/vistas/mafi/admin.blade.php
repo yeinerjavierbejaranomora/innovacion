@@ -986,7 +986,7 @@
             var chartTipoEstudiante;
 
             function graficoTipoDeEstudiante() {
-                var tabla = NULL;
+                var tabla = 'Mafi';
                 var url = '/home/tipoEstudiantes/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {

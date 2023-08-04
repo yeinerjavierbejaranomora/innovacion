@@ -12,6 +12,12 @@
         font-size: 14px;
     }
 
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -150,7 +156,11 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row text-center justify-content-center">
+                <button class="btn" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
+            </div>
         </div>
 
         <div class="row justify-content-start mt-5">

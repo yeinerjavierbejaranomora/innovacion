@@ -413,6 +413,11 @@
         limpiarTitulos();
         var periodos = getPeriodos();
         $("#mensaje").empty();
+        var periodosArray = Object.values(periodos);
+                var periodosFormateados = periodosArray.map(function(periodo) {
+                return periodo.replace(/2023/, '').trim();
+            }).join(' - '); 
+
             if (programasSeleccionados.length > 1) {
                 var programasArray = Object.values(programasSeleccionados);
                 var programasFormateados = programasArray.join(' - ');
@@ -422,6 +427,8 @@
                     var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasSeleccionados);
                 }
+            $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+            $("#mensaje").show();
             $("#mensaje").html(textoNuevo);
     }
 

@@ -149,15 +149,10 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card-footer text-center">
-                        <button class="btn" type="button" id="generarReporte">
-                            Generar Reporte
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="row text-center justify-content-center">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte

@@ -139,8 +139,7 @@ class InformeMafiController extends Controller
          * tipoestudiante FROM `datosMafi` 
          * GROUP BY tipoestudiante
          */
-        dd($tabla);
-        if($tabla == NULL){
+        if($tabla == "Mafi"){
             $tipoEstudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')

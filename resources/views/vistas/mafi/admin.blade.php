@@ -986,7 +986,8 @@
             var chartTipoEstudiante;
 
             function graficoTipoDeEstudiante() {
-                var url = '/home/tipoEstudiantes';
+                var tabla = NULL;
+                var url = '/home/tipoEstudiantes/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.tipoestudiante;

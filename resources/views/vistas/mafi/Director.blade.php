@@ -153,9 +153,6 @@
 
         </div>
 
-
-
-
         <div class="row justify-content-start mt-5">
             <div class=" col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos">
@@ -281,6 +278,7 @@
     Contador();
     vistaEntrada();
     periodos();
+    getPeriodos();
     var totalSeleccionado
 
     var programasSeleccionados = [];
@@ -328,6 +326,16 @@
         }
 
     }
+
+    function getPeriodos() {
+        var periodosSeleccionados = [];
+        var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                periodosSeleccionados.push($(this).val());
+            });
+            console.log(periodosSeleccionados);
+            return periodosSeleccionados;
+        }
 
     /**
      * Método que trae los gráficos de la vista

@@ -329,8 +329,7 @@ class InformeMafiController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function primerIngresoEstudiantesFacultad(Request $request)
-    {
+    public function primerIngresoEstudiantesFacultad(Request $request){
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
          *FROM datosMafi AS dm
@@ -366,17 +365,18 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos, de algunas facultades en específico
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
-         * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY tipoestudiante
-         */
+    public function tiposEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+        if($tabla == "Mafi")
+        {
+            /**
+        SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
+        FROM datosMafi AS dm
+        JOIN programas AS p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.tipoestudiante
+         */
         $tipoEstudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
@@ -386,6 +386,26 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
+
+        if($tabla == "planeacion")
+        {
+            /**
+        SELECT COUNT(e.tipo_estudiante) AS 'TOTAL', e.tipo_estudiante
+        FROM estudiantes e
+        JOIN programas p ON p.codprograma = e.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY e.tipo_estudiante
+        */
+        $tipoEstudiantes = DB::table('estudiantes AS e')
+            ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL'), 'e.tipo_estudiante')
+            ->groupBy('e.tipo_estudiante')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));

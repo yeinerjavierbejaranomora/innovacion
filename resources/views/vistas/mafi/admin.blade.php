@@ -566,7 +566,6 @@
                     estadoUsuarioPrograma();
                     $("#colProgramas").addClass("hidden");
                     graficosporPrograma(programasSeleccionados, periodosSeleccionados);
-                    vacio();
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {                      
                             $('#mensaje').hide();
@@ -582,7 +581,6 @@
                             }
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
-                            vacio();
                     } else {
                         /** Alerta */
                         programasSeleccionados = [];
@@ -590,7 +588,6 @@
                         destruirGraficos();
                         ocultarDivs();
                         alerta();
-                        vacio();
                     }
                 }
                 }
@@ -602,8 +599,9 @@
                 destruirGraficos();
                 ocultarDivs();
                 alertaPeriodos();
+                } 
+                
                 vacio();
-                }               
             });
 
             function alerta() {

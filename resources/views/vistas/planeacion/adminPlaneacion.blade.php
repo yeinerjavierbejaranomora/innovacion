@@ -94,7 +94,6 @@
 
     <!-- Main Content -->
     <div id="content">
-        <?php var_dump($tabla);?>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -184,17 +183,6 @@
         </div>
 
         <div class="row justify-content-start mt-5 columnas">
-            <div class="col-6 text-center" id="colEstudiantes">
-                <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                    <div class="card-header">
-                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="estudiantes"></canvas>
-                    </div>
-                </div>
-            </div>
             <div class="col-6 text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -366,7 +354,6 @@
              * Llamado a todos los scripts
              */
             function llamadoFunciones() {
-                graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
@@ -376,7 +363,7 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
+                var elementosTitulos = $('#tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -410,10 +397,10 @@
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
+                    $('#tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
                 } else {
                     var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
+                    $('#tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);
             }
@@ -434,11 +421,11 @@
 
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
+                    $('#tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
                     
                     var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
+                    $('#tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 }
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();
@@ -503,14 +490,14 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
             function ocultarDivs() {
-                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+                $('#colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
             /**
@@ -673,72 +660,6 @@
             /**
              * Método que muestra el total de estudiantes activos e inactivos
              */
-            var chartEstudiantes;
-
-            function graficoEstudiantes() {
-                var url = '/home/estudiantes';
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.estado;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantes').getContext('2d');
-                    chartEstudiantes = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                label = label.toUpperCase();
-                                return label + 'S: ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                        $('#colEstudiantes').addClass('hidden');
-                    } else {
-                        $('#colEstudiantes').removeClass('hidden');
-                    }
-                    
-                });
-            }
  
             /**
              * Método que genera el gráfico de sello financiero
@@ -1258,7 +1179,6 @@
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
 
-                    graficoEstudiantesPorFacultades(facultades, periodos);
                     graficoSelloFinancieroPorFacultad(facultades, periodos);
                     graficoRetencionPorFacultad(facultades, periodos);
                     graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
@@ -1268,88 +1188,6 @@
                 }
             }
 
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
-             */
-
-            function graficoEstudiantesPorFacultades(facultades, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.facultad') }}",
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }, ]
-
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-
-                                },
-
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
-            }
 
             /**
              * Método que genera el gráfico de sello financiero de alguna facultad en específico
@@ -1912,91 +1750,12 @@
 
                     $("#ocultarGraficoProgramas").hide();
 
-                    graficoEstudiantesPorPrograma(programas,periodos);
                     grafioSelloFinancieroPorPrograma(programas,periodos);
                     graficoRetencionPorPrograma(programas,periodos);
                     graficoSelloPrimerIngresoPorPrograma(programas,periodos);
                     graficoTiposDeEstudiantesPrograma(programas,periodos);
                     graficoOperadoresPrograma(programas,periodos);
                 }
-            }
-
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de algún programa en específico
-             */
-            function graficoEstudiantesPorPrograma(programas,periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.programa') }}",
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
             }
 
             /**

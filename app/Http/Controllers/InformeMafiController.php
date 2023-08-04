@@ -29,8 +29,7 @@ class InformeMafiController extends Controller
      * Método que trae los periodos activos
      * @return JSON Retorna un Json con los periodos activos
      */
-    public function periodosActivos()
-    {
+    public function periodosActivos(){
         $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
         return $periodos;
     }
@@ -138,6 +137,8 @@ class InformeMafiController extends Controller
             GROUP BY sello;
              */
             $primerIngreso = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->whereIn('tipo_estudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
@@ -269,8 +270,7 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
-    public function estudiantesActivosFacultad(Request $request)
-    {
+    public function estudiantesActivosFacultad(Request $request){
         /**
          *SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
          *INNER JOIN programas p ON p.codprograma = dm.programa
@@ -295,22 +295,47 @@ class InformeMafiController extends Controller
      * Método que muestra el estado del sello financiero de los estudiantes de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
-    public function selloEstudiantesFacultad(Request $request){
-        /**
-         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-         *INNER JOIN programas p ON p.codprograma = dm.programa
-         *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         *GROUP BY dm.sello
-         */
+    public function selloEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-        $sello = DB::table('datosMafi as dm')
+        $tabla = trim($tabla);
+
+        if($tabla == "Mafi")
+        {
+        /**
+        SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
+        INNER JOIN programas p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.sello
+        */
+            $sello = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
             ->whereIn('p.Facultad', $facultades)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
             ->groupBy('dm.sello')
             ->get();
+        }
+
+        if($tabla == "planeacion")
+        {
+        /**
+        SELECT COUNT(e.sello) AS TOTAL, e.sello FROM `estudiantes` e
+        INNER JOIN programas p ON p.codprograma = e.programa
+        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
+        GROUP BY e.sello */
+        DB::table('estudiantes AS e')
+        ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
+        ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+        ->where('programado_ciclo1', 'OK')
+        ->where('programado_ciclo2', 'OK')
+        ->whereIn('e.marca_ingreso', $periodos)
+        ->whereIn('p.Facultad', $facultades)
+        ->groupBy('e.sello')
+        ->get();
+        }
+        
+        
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
@@ -478,6 +503,8 @@ class InformeMafiController extends Controller
         $operadores = DB::table('estudiantes AS e')
         ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
         ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+        ->where('programado_ciclo1', 'OK')
+        ->where('programado_ciclo2', 'OK')
         ->whereIn('e.marca_ingreso', $periodos)
         ->whereIn('p.Facultad', $facultades)
         ->groupBy('e.operador')

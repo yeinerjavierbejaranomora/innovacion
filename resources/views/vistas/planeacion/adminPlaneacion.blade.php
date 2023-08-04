@@ -830,7 +830,7 @@
             var chartSelloPrimerIngreso;
 
             function graficoSelloPrimerIngreso() {
-                var url = '/home/estudiantesPrimerIngreso/'+tabla;
+                var url = '/home/estudiantesPrimerIngreso/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
@@ -1198,7 +1198,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.sello.facultad') }}",
+                    url: "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades,
                         periodos: periodos

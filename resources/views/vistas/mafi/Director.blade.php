@@ -1206,7 +1206,7 @@
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
                         // Crear el gráfico circular
-                        var ctx = document.getElementById('programasTotal').getContext('2d');
+                        var ctx = document.getElementById('opeardoresTotal').getContext('2d');
                         chartProgramasTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {

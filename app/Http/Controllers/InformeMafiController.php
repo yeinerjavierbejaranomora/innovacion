@@ -327,16 +327,15 @@ class InformeMafiController extends Controller
             $sello = DB::table('estudiantes AS e')
             ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
             ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
-            ->where('programado_ciclo1', 'OK')
-            ->where('programado_ciclo2', 'OK')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
             ->whereIn('e.marca_ingreso', $periodos)
             ->whereIn('p.Facultad', $facultades)
             ->groupBy('e.sello')
             ->get();
         }
         
-        
-
+    
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
@@ -346,24 +345,25 @@ class InformeMafiController extends Controller
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
     public function retencionEstudiantesFacultad(Request $request){
-        /**
-         * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
-         *INNER JOIN programas p ON p.codprograma = dm.codprograma
-         *WHERE p.Facultad IN ('') AND dm.periodo IN ('')
-         *WHERE dm.sello = 'TIENE RETENCION' 
-         *GROUP BY dm.autorizado_asistir
-         */
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-        $retencion = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-            ->whereIn('dm.periodo', $periodos)
-            ->whereIn('p.Facultad', $facultades)
-            ->where('dm.sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
-            ->groupBy('dm.autorizado_asistir')
-            ->get();
-
+        /**
+        SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
+        INNER JOIN programas p ON p.codprograma = dm.codprograma
+        WHERE p.Facultad IN ('') AND dm.periodo IN ('')
+        WHERE dm.sello = 'TIENE RETENCION' 
+        GROUP BY dm.autorizado_asistir
+         */
+        
+            $retencion = DB::table('datosMafi as dm')
+                ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->where('dm.sello', 'TIENE RETENCION')
+                ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
+                ->groupBy('dm.autorizado_asistir')
+                ->get();
+    
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
@@ -372,15 +372,12 @@ class InformeMafiController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function primerIngresoEstudiantesFacultad(Request $request){
-        /**
-         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-         *FROM datosMafi AS dm
-         *JOIN programas AS p ON p.codprograma = dm.programa
-         *WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         *AND dm.tipoestudiante = 'PRIMER INGRESO'
-         *GROUP BY dm.sello;
-         */
+    public function primerIngresoEstudiantesFacultad(Request $request, $tabla){
+        
+        $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');    
+        $tabla = trim($tabla);
+        
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -389,17 +386,37 @@ class InformeMafiController extends Controller
             'TRANSFERENTE EXTERNO PSEUD ING',
             'TRANSFERENTE INTERNO',
         ];
-
-        $facultades = $request->input('idfacultad');
-        $periodos = $request->input('periodos');
-        $primerIngreso = DB::table('datosMafi as dm')
+        if($tabla == "Mafi"){
+            /**
+            SELECT COUNT(dm.sello) AS TOTAL, dm.sello
+            FROM datosMafi AS dm
+            JOIN programas AS p ON p.codprograma = dm.programa
+            WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+            AND dm.tipoestudiante = 'PRIMER INGRESO'
+            GROUP BY dm.sello;
+         */
+            $primerIngreso = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
             ->whereIn('p.Facultad', $facultades)
             ->whereIn('dm.tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
             ->groupBy('dm.sello')->get();
+        }
 
+        if($tabla == "planeacion"){
+           
+           $primerIngreso = DB::table('estudiantes AS e')
+            ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
+            ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
+            ->whereIn('p.Facultad', $facultades)
+            ->whereIn('e.marca_ingreso', $periodos)
+            ->whereIn('e.tipo_estudiante', $tiposEstudiante)
+            ->groupBy('e.sello')
+            ->get();
+        }
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));
     }

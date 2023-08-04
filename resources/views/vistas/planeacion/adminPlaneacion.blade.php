@@ -1449,12 +1449,13 @@
              * Método que genera el gráfico con los tipos de estudiante por facultad
              */
             function graficoTiposDeEstudiantesFacultad(facultades,periodos) {
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.tipo.facultad',['tabla' =>" + tabla + "]) }}",
+                    url: "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades,
                         periodos: periodos

@@ -38,14 +38,9 @@
         font-size: 14px;
     }
 
-    #cardFacultades {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #cardProgramas {
-        min-height: 405.6px;
-        max-height: 405.6px;
+    #cardProgramas, #cardPeriodos {
+        min-height: 250px;
+        max-height: 250px;
     }
 
     .card {
@@ -164,7 +159,7 @@
 
         <div class="row justify-content-start mt-5">
             <div class=" col-6 text-center" id="colEstudiantes">
-                <div class="card shadow mb-5" id="chartEstudiantes">
+                <div class="card shadow mb-5 graficos">
                     <div class="card-header">
                         <h5 class="facultadtitulos"><strong>Estudiantes </strong></h5>
                         <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>

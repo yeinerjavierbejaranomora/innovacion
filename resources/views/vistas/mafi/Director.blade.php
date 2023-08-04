@@ -277,6 +277,8 @@
     invocarGraficos();
     Contador();
     vistaEntrada();
+    
+    var periodosSeleccionados = [];
     periodos();
     getPeriodos();
 
@@ -300,7 +302,6 @@
     /**
      * Método que trae los periodos activos
      */
-    var periodosSeleccionados = [];
     function periodos() {
         var datos = $.ajax({
             headers: {

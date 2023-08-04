@@ -342,6 +342,7 @@
 
     <script>
         $(document).ready(function() {
+            console.log('cambio');
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -621,7 +622,6 @@
                     confirmButtonColor: '#dfc14e',
                 })
             } 
-
 
             function vacio(){
                 if($("#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas").hasClass("hidden"))

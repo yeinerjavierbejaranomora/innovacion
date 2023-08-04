@@ -286,7 +286,7 @@
     invocarGraficos();
     Contador();
     vistaEntrada();
-
+    periodos();
     var totalSeleccionado
 
     var programasSeleccionados = [];

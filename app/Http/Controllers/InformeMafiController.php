@@ -275,8 +275,7 @@ class InformeMafiController extends Controller
      * Método que muestra el estado del sello financiero de los estudiantes de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
-    public function selloEstudiantesFacultad(Request $request)
-    {
+    public function selloEstudiantesFacultad(Request $request){
         /**
          * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
          *INNER JOIN programas p ON p.codprograma = dm.programa
@@ -301,8 +300,7 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function retencionEstudiantesFacultad(Request $request)
-    {
+    public function retencionEstudiantesFacultad(Request $request){
         /**
          * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
          *INNER JOIN programas p ON p.codprograma = dm.codprograma
@@ -368,7 +366,7 @@ class InformeMafiController extends Controller
     public function tiposEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-        dd($tabla);
+    
         if($tabla == "Mafi")
         {
             /**
@@ -407,7 +405,6 @@ class InformeMafiController extends Controller
             ->limit(5)
             ->get();
 
-            
         }
 
         header("Content-Type: application/json");

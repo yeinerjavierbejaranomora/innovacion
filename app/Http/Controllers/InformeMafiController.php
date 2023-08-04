@@ -39,8 +39,7 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes activos de toda la Ibero
      * @return JSON retorna los estudiantes agrupados en activos e inactivos
      */
-    public function estudiantesActivosGeneral()
-    {
+    public function estudiantesActivosGeneral(){
         /**
          * SELECT COUNT(estado) AS TOTAL, estado FROM `datosMafi`
          *GROUP BY estado
@@ -59,8 +58,7 @@ class InformeMafiController extends Controller
      * Método que muestra el estado del sello financiero de todos los estudiantes
      * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
-    public function selloEstudiantesActivos($tabla)
-    {
+    public function selloEstudiantesActivos($tabla){
         if ($tabla == 'Mafi') {
             /**
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
@@ -89,7 +87,7 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function estudiantesRetencion()
+    public function estudiantesRetencion($tabla)
     {
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
@@ -187,8 +185,7 @@ class InformeMafiController extends Controller
         LIMIT 5
              */
             $operadores = DB::table('datosMafi')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
+                
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
                 ->groupBy('operador')
                 ->orderByDesc('TOTAL')
@@ -203,6 +200,8 @@ class InformeMafiController extends Controller
         LIMIT 5
         */
             $operadores = DB::table('estudiantes')
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
                 ->groupBy('operador')
                 ->orderByDesc('TOTAL')

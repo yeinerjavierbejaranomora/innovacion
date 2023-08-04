@@ -1089,7 +1089,7 @@
                 var url = '/home/estudiantesProgramas/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
+                        return elemento.programa;
                     });
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;

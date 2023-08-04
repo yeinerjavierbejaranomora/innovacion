@@ -407,6 +407,7 @@
 
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();
+        getPeriodos();
         if ($('#programas input[type="checkbox"]:checked').length > 0) {
             if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado) {
                 location.reload();
@@ -450,6 +451,7 @@
         var url = "{{ route('estudiantes.activos.programa') }}";
         var data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
         $.ajax({
             headers: {
@@ -529,6 +531,7 @@
         var url = "{{ route('estudiantes.sello.programa') }}";
         var data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
         $.ajax({
             headers: {
@@ -612,6 +615,7 @@
         var url = "{{ route('estudiantes.retencion.programa') }}";
         var data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
 
         $.ajax({
@@ -697,6 +701,7 @@
         var url = "{{ route('estudiantes.primerIngreso.programa') }}";
         var data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
 
         $.ajax({
@@ -784,6 +789,7 @@
         var url = "{{ route('estudiantes.tipo.programa') }}";
         var data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
 
         $.ajax({
@@ -852,6 +858,7 @@
         url = "{{ route('estudiantes.operador.programa') }}";
         data = {
             programa: programasSeleccionados,
+            periodos: periodosSeleccionados
         }
 
         $.ajax({
@@ -939,11 +946,13 @@
         url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
         if (programasSeleccionados.length > 0) {
             data = {
-                programa: programasSeleccionados
+                programa: programasSeleccionados,
+                periodos: periodosSeleccionados
             }
         } else {
             data = {
-                programa: programasSelect
+                programa: programasSelect,
+                periodos: periodosSeleccionados
             }
         }
         console.log(programasSeleccionados);
@@ -1009,11 +1018,13 @@
         url = "{{ route('operadores.programa.estudiantes') }}";
         if (programasSeleccionados.length > 0) {
             data = {
-                programa: programasSeleccionados
+                programa: programasSeleccionados,
+                periodos: periodosSeleccionados
             }
         } else {
             data = {
-                programa: programasSelect
+                programa: programasSelect,
+                periodos: periodosSeleccionados
             }
         }
         $.ajax({

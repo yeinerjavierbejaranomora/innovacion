@@ -87,22 +87,18 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function estudiantesRetencion($tabla)
-    {
+    public function estudiantesRetencion(){
         /**
-         * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-         *WHERE sello = 'TIENE RETENCION' 
-         *GROUP BY autorizado_asistir
+        SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
+        WHERE sello = 'TIENE RETENCION' 
+        GROUP BY autorizado_asistir
          */
-
-        $retencion = DB::table('datosMafi')
+            $retencion = DB::table('datosMafi')
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
-            ->get();
-
-
-
+            ->get();  
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
@@ -111,12 +107,8 @@ class InformeMafiController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso 
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function estudiantesPrimerIngreso(){
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-         * WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
-         * GROUP BY sello;
-         */
+    public function estudiantesPrimerIngreso($tabla){
+        
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -126,13 +118,31 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
 
-
-        $primerIngreso = DB::table('datosMafi')
+        if($tabla == "Mafi"){
+        /**
+        SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+        WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+        GROUP BY sello;
+        */
+            $primerIngreso = DB::table('datosMafi')
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
+        }
 
+        if($tabla == "planeacion"){
+            /**
+            SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
+            WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+            GROUP BY sello;
+             */
+            $primerIngreso = DB::table('estudiante')
+            ->whereIn('tipo_estudiante', $tiposEstudiante)
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')
+            ->get();
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));

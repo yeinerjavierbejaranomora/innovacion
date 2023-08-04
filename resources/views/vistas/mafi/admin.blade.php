@@ -909,7 +909,7 @@
             var chartSelloPrimerIngreso;
 
             function graficoSelloPrimerIngreso() {
-                var url = '/home/estudiantesPrimerIngreso';
+                var url = '/home/estudiantesPrimerIngreso/'+tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;

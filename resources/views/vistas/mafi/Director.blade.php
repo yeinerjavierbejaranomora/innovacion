@@ -279,6 +279,7 @@
     vistaEntrada();
     periodos();
     getPeriodos();
+
     var totalSeleccionado
 
     var programasSeleccionados = [];
@@ -299,6 +300,7 @@
     /**
      * Método que trae los periodos activos
      */
+    var periodosSeleccionados = [];
     function periodos() {
         var datos = $.ajax({
             headers: {
@@ -306,12 +308,15 @@
             },
             url: "{{ route('periodos.activos') }}",
             method: 'post',
+            async: false,
             success: function(data) {
                 data.forEach(periodo => {
+                    periodosSeleccionados.push(periodo.periodos);
                     $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                 });
             }
         });
+        console.log(periodosSeleccionados);
     }
 
     function vistaEntrada() {
@@ -328,12 +333,11 @@
     }
 
     function getPeriodos() {
-        var periodosSeleccionados = [];
+        periodosSeleccionados = [];
         var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
             checkboxesSeleccionados.each(function() {
                 periodosSeleccionados.push($(this).val());
             });
-            console.log(periodosSeleccionados);
             return periodosSeleccionados;
         }
 

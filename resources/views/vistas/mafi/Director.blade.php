@@ -388,7 +388,6 @@
      */
     function Contador() {
         totalSeleccionado = $('#programas input[type="checkbox"]').length;
-        totalSeleccionado -= 1;
     }
 
     function limpiarTitulos() {

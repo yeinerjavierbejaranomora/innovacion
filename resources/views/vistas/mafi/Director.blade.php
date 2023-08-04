@@ -1183,9 +1183,14 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try{
+                            data = jQuery.parseJSON(data);
+                        }
+                        catch{
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
-                            return elemento.codprograma;
+                            return elemento.operador;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -1205,16 +1210,19 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
-                        // Crear el gráfico circular
+                        // Crear el gráfico de barras
                         var ctx = document.getElementById('operadoresTotal').getContext('2d');
-                        chartProgramasTotal = new Chart(ctx, {
+                        chartOperadoresTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
+                                    }
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: 'Programas',
+                                    label: 'Operadores ordenados de forma descendente',
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'

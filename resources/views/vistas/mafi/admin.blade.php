@@ -185,16 +185,16 @@
 
         <div class="row justify-content-start mt-5 columnas">
             <div class="col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="estudiantes"></canvas>
-                        </div>
+                <div class="card shadow mb-5 graficos" id="chartEstudiantes">
+                    <div class="card-header">
+                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="estudiantes"></canvas>
                     </div>
                 </div>
+            </div>
             <div class="col-6 text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -270,6 +270,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 tex center justify-content-center" id="vacio">
+                    <h3>No hay datos por mostrar </h3>
+            </div >
         </div>
 
         <br>
@@ -563,6 +566,7 @@
                     estadoUsuarioPrograma();
                     $("#colProgramas").addClass("hidden");
                     graficosporPrograma(programasSeleccionados, periodosSeleccionados);
+                    vacio();
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {                      
                             $('#mensaje').hide();
@@ -578,7 +582,7 @@
                             }
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
-                        
+                            vacio();
                     } else {
                         /** Alerta */
                         programasSeleccionados = [];
@@ -586,6 +590,7 @@
                         destruirGraficos();
                         ocultarDivs();
                         alerta();
+                        vacio();
                     }
                 }
                 }
@@ -597,8 +602,8 @@
                 destruirGraficos();
                 ocultarDivs();
                 alertaPeriodos();
-                }
-                
+                vacio();
+                }               
             });
 
             function alerta() {
@@ -617,13 +622,17 @@
                     text: 'Debes seleccionar al menos un periodo',
                     confirmButtonColor: '#dfc14e',
                 })
-            }
+            } 
 
 
             function vacio(){
                 if($("#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas").hasClass("hidden"))
                 {
-                    $('.columnas').text('No hay datos por mostrar');
+                    $('#vacio').show();
+                }
+                else
+                {   
+                    $('#vacio').hide();
                 }
             }    
 

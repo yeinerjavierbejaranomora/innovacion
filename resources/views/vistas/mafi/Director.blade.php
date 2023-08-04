@@ -156,12 +156,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row text-center justify-content-center">
+        </div>
+        
+        <div class="row text-center justify-content-center">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
-        </div>
 
         <div class="row justify-content-start mt-5">
             <div class=" col-6 text-center" id="colEstudiantes">

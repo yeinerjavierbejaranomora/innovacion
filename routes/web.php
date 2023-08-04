@@ -38,6 +38,9 @@ Route::controller(UserController::class)->group(function () {
     /** Vista al pulsar el botón "Informe Mafi" */
     Route::get('/home/mafi', 'vistasMafi')->middleware('auth')->name('home.mafi');
 
+    /** Vista al pulsar el botón "Planeación" */
+    Route::get('/home/mafi', 'vistasPlaneacion')->middleware('auth')->name('home.planeacion');
+
     /** para cargar las vistas predefinidas en la facultad */
     Route::get('/home/facultad/', 'facultad')->middleware('auth')->name('facultad.index');
     /** cargamos la vista del perfil del usuario */

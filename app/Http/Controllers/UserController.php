@@ -50,7 +50,7 @@ class UserController extends Controller
     /**
      * Retorna a la vista Home
      */
-    public function home ()
+    public function home()
     {
         
         $user = auth()->user();
@@ -61,31 +61,10 @@ class UserController extends Controller
         return view('vistas.home');
     }
 
-
-
-
-    public function vistasMafi()
-    {
-        //return auth()->user()->id;
-        // redirect()->route('login.home');
-
-        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
-        /** roles de usuario
-         *Decano       = 1
-         *Director     = 2
-         *Coordinador  = 3
-         *Lider        = 4
-         *Docente      = 5
-         *Estudiante   = 6
-         */
-
-        /** definimos la variable usuario */
-
+    public function vistasMafi(){
         $user = auth()->user();
 
-
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
-
 
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
@@ -130,6 +109,42 @@ class UserController extends Controller
 
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.mafi.' . $nombre_rol)->with('datos', $datos);
+    }
+
+    public function vistasPlaneacion(){
+        $user = auth()->user();
+
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol = $nombre_rol;
+        if ($nombre_rol === 'Admin') {
+            $nombre_rol = strtolower($nombre_rol);
+        }
+
+        if ($nombre_rol === 'Decano') {
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_facultad, ',');
+            $facultades = explode(",", $idfacultad);
+            foreach ($facultades as $key => $value) {
+
+                $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+                $nombreFacultades[$value] = $consulta->nombre;
+            }
+            return view('vistas.planeacion.DecanoPlaneacion', ['facultades' => $nombreFacultades]);
+        }
+
+        if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {
+            $idPrograma = trim($user->programa, ';');
+            $programas = explode(';', $idPrograma);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
+                $data[$value] = $consulta;
+            }
+            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data]);
+        }
+        /** cargamos la vista predeterminada para cada rol con la data */
+        return view('vistas.planeacion.' . $nombre_rol . 'Planeacion');
     }
 
     // funcion para traer todos los usuarios a la vista de administracion

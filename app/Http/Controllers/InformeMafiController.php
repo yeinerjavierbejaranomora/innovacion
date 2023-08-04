@@ -324,15 +324,15 @@ class InformeMafiController extends Controller
         INNER JOIN programas p ON p.codprograma = e.programa
         WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
         GROUP BY e.sello */
-        DB::table('estudiantes AS e')
-        ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
-        ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
-        ->where('programado_ciclo1', 'OK')
-        ->where('programado_ciclo2', 'OK')
-        ->whereIn('e.marca_ingreso', $periodos)
-        ->whereIn('p.Facultad', $facultades)
-        ->groupBy('e.sello')
-        ->get();
+            $sello = DB::table('estudiantes AS e')
+            ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
+            ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
+            ->whereIn('e.marca_ingreso', $periodos)
+            ->whereIn('p.Facultad', $facultades)
+            ->groupBy('e.sello')
+            ->get();
         }
         
         

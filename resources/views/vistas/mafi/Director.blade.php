@@ -288,6 +288,18 @@
 
     var programasSelect;
 
+    // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
+    $(document).ajaxStart(function() {
+        $('div #programas input[type="checkbox"]').prop('disabled', true);
+        $('#generarReporte').prop("disabled", true);
+    });
+            
+    // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+    $(document).ajaxStop(function() {              
+        $('div #programas input[type="checkbox"]').prop('disabled', false);
+        $('#generarReporte').prop("disabled", false);
+    });
+    
     function programasUsuario() {
         <?php
         $datos = array();
@@ -353,6 +365,14 @@
         graficoTiposDeEstudiantes();
         graficoOperadores();
     }
+
+    $('#deshacerPeriodos').on('click', function(e) {
+            $('#periodos input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarPeriodos').on('click', function(e) {
+            $('#periodos input[type="checkbox"]').prop('checked', true);
+    });
 
     /**
      * Método que oculta todos los divs de los gráficos, antes de generar algún reporte

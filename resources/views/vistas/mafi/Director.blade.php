@@ -62,10 +62,6 @@
         max-height: 405.6px;
     }
 
-    #centrar {
-        display: flex;
-        align-items: center;
-    }
 
     .graficos {
         min-height: 460px;

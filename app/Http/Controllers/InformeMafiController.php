@@ -366,7 +366,8 @@ class InformeMafiController extends Controller
     public function tiposEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-    
+        $tabla = trim($tabla);
+        dd($tabla);
         if($tabla == "Mafi")
         {
             /**

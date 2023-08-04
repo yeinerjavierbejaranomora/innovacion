@@ -598,7 +598,7 @@
                 ocultarDivs();
                 alertaPeriodos();
                 }
-                vacio();
+                
             });
 
             function alerta() {

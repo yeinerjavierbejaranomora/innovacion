@@ -141,19 +141,22 @@ class InformeMafiController extends Controller
          */
         if($tabla == "planeacion")
         {
-            $tablaConsulta = 'planeacion';  
+            $tipoEstudiantes = DB::table('estudiantes')
+            ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
+            ->groupBy('tipo_estudiante')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
         }
         else
         {
-            $tablaConsulta = 'datosMafi';  
-        }
-
-        $tipoEstudiantes = DB::table($tablaConsulta)
+            $tipoEstudiantes = DB::table('datosMafi')
             ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
             ->groupBy('tipoestudiante')
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));

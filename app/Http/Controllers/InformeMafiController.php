@@ -72,6 +72,12 @@ class InformeMafiController extends Controller
                 ->get();
         }
         if ($tabla == 'planeacion') {
+            $sello = DB::table('estudiantes')
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
+                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+                ->groupBy('sello')
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -106,8 +112,7 @@ class InformeMafiController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso 
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function estudiantesPrimerIngreso()
-    {
+    public function estudiantesPrimerIngreso(){
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
          * WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
@@ -138,8 +143,7 @@ class InformeMafiController extends Controller
      * Método que trae todos los 5 tipos de estudiantes con mayor cantidad de datos
      * @return JSON retorna todos los tipos de estudiantes
      */
-    public function tiposEstudiantes($tabla)
-    {
+    public function tiposEstudiantes($tabla){
         /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
          * tipoestudiante FROM `datosMafi` 
@@ -155,6 +159,8 @@ class InformeMafiController extends Controller
         }
         if ($tabla == "planeacion") {
             $tipoEstudiantes = DB::table('estudiantes')
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
                 ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
                 ->groupBy('tipo_estudiante')
                 ->orderByDesc('TOTAL')
@@ -180,6 +186,8 @@ class InformeMafiController extends Controller
         LIMIT 5
              */
             $operadores = DB::table('datosMafi')
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
                 ->groupBy('operador')
                 ->orderByDesc('TOTAL')
@@ -233,12 +241,14 @@ class InformeMafiController extends Controller
          ORDER BY TOTAL DESC
          LIMIT 5
         */
-        $programas = DB::table('estudiantes')
-        ->select(DB::raw('COUNT(programa) AS TOTAL, programa'))
-        ->groupBy('programa')
-        ->orderByDesc('TOTAL')
-        ->limit(5)
-        ->get();
+            $programas = DB::table('estudiantes')
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
+                ->select(DB::raw('COUNT(programa) AS TOTAL, programa'))
+                ->groupBy('programa')
+                ->orderByDesc('TOTAL')
+                ->limit(5)
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -398,7 +408,10 @@ class InformeMafiController extends Controller
         */
         $tipoEstudiantes = DB::table('estudiantes AS e')
             ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+            ->whereIn('e.marca_ingreso', $periodos)
             ->whereIn('p.Facultad', $facultades)
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
             ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL'), 'e.tipo_estudiante')
             ->groupBy('e.tipo_estudiante')
             ->orderByDesc('TOTAL')
@@ -415,19 +428,21 @@ class InformeMafiController extends Controller
      * Método que muestra los tipos de estudiantes de las facultades seleccionadas por el usuario
      * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
      */
-    public function operadoresFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
-         * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.operador
-         * ORDER BY TOTAL DESC
-         *LIMIT 5
-         */
+    public function operadoresFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+        
+        if($tabla == "Mafi"){
+        /**
+        SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
+        FROM datosMafi AS dm
+        JOIN programas AS p ON p.codprograma = dm.programa
+        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+        GROUP BY dm.operador
+        ORDER BY TOTAL DESC
+        LIMIT 5
+         */  
         $operadores = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
@@ -437,7 +452,31 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
 
+        if($tabla == "planeacion"){
+            
+        /**
+        SELECT COUNT(e.operador) AS TOTAL, e.operador 
+        FROM estudiantes e
+        JOIN programas AS p ON p.codprograma = e.programa
+        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
+        GROUP BY e.operador
+        ORDER BY TOTAL DESC
+        LIMIT 5
+         */
+        DB::table('estudiantes AS e')
+        ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
+        ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
+        ->whereIn('e.marca_ingreso', $periodos)
+        ->whereIn('p.Facultad', $facultades)
+        ->groupBy('e.operador')
+        ->orderBy('TOTAL', 'DESC')
+        ->limit(5)
+        ->get();
+        
+        }
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
     }

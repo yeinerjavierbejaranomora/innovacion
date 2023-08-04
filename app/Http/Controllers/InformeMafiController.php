@@ -368,6 +368,7 @@ class InformeMafiController extends Controller
     public function tiposEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+        dd($tabla);
         if($tabla == "Mafi")
         {
             /**
@@ -405,6 +406,8 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+
+            
         }
 
         header("Content-Type: application/json");

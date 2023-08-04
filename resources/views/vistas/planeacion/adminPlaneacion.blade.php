@@ -330,7 +330,7 @@
 
     <script>
         $(document).ready(function() {
-            console.log('cambio')
+            var tabla = <?php echo json_encode($tabla); ?>;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -906,8 +906,7 @@
              */
             var chartTipoEstudiante;
 
-            function graficoTipoDeEstudiante() {
-                var tabla = <?php echo json_encode($tabla); ?>;
+            function graficoTipoDeEstudiante() {         
                 var url = '/home/tipoEstudiantes/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
@@ -997,7 +996,6 @@
             var chartOperadores;
 
             function graficoOperadores() {
-                var tabla = <?php echo json_encode($tabla); ?>;
                 var url = '/home/operadores/'+ tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
@@ -1088,7 +1086,7 @@
             var chartProgramas;
 
             function graficoProgramas() {
-                var url = '/home/estudiantesProgramas';
+                var url = '/home/estudiantesProgramas/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.codprograma;

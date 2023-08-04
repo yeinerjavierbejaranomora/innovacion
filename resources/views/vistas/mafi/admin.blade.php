@@ -628,11 +628,11 @@
             function vacio(){
                 if($("#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas").hasClass("hidden"))
                 {
-                    $('#vacio').show();
+                    $('#vacio').addClass('hidden');
                 }
                 else
                 {   
-                    $('#vacio').hide();
+                    $('#vacio').removeClass('hidden');
                 }
             }    
 

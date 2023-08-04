@@ -274,12 +274,12 @@
 
 <script>
     programasUsuario();
-    invocarGraficos();
     Contador();
     vistaEntrada();
     
     var periodosSeleccionados = [];
     periodos();
+    invocarGraficos();
     getPeriodos();
 
     var totalSeleccionado

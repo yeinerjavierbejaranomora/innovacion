@@ -103,6 +103,8 @@ class InformeMafiController extends Controller
         
         if ($tabla == 'planeacion') {
             $retencion = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
@@ -655,22 +657,33 @@ class InformeMafiController extends Controller
      * Método que muestra el estado del sello financiero de los estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna los estudiantes agrupados según su sello financiero
      */
-    public function selloEstudiantesPrograma(Request $request)
-    {
+    public function selloEstudiantesPrograma(Request $request, $tabla){
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
         
+        if($tabla == "Mafi"){     
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi` 
          *WHERE programa IN ('') -- Reemplaza con los programas específicos
          *GROUP BY sello
          */
-        $programas = $request->input('programa');
-        $periodos = $request->input('periodos');
         $sello = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
             ->get();
+        }
+
+        if($tabla == "planeacion"){
+        $sello = DB::tabla('estudiantes')
+            ->whereIn('marca_ingreso', $periodos)
+            ->whereIn('programa', $programas)
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')
+            ->get();
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));

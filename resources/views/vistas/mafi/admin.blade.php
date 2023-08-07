@@ -2008,7 +2008,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.sello.programa') }}",
+                    url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
                         periodos: periodos

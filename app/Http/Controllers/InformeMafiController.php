@@ -789,8 +789,7 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesPrograma(Request $request, $tabla)
-    {
+    public function tiposEstudiantesPrograma(Request $request, $tabla){
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
@@ -821,7 +820,7 @@ class InformeMafiController extends Controller
         ->where('programado_ciclo1', 'OK')
         ->where('programado_ciclo2', 'OK')
         ->whereIn('marca_ingreso', $periodos)
-        ->whereIn('codprograma', $programas)
+        ->whereIn('programa', $programas)
         ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
         ->groupBy('tipo_estudiante')
         ->orderByDesc('TOTAL')
@@ -836,9 +835,13 @@ class InformeMafiController extends Controller
      * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
      */
-    public function operadoresPrograma(Request $request)
-    {
-        /**
+    public function operadoresPrograma(Request $request, $tabla){
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+        
+        if($tabla == "Mafi"){
+            /**
          * SELECT COUNT(operador) AS TOTAL, operador 
          * FROM datosMafi
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
@@ -846,8 +849,7 @@ class InformeMafiController extends Controller
          * ORDER BY TOTAL DESC
          * LIMIT 5
          */
-        $programas = $request->input('programa');
-        $periodos = $request->input('periodos');
+        
         $operadores = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
@@ -856,6 +858,22 @@ class InformeMafiController extends Controller
             ->orderByDesc('TOTAL')
             ->limit(5)
             ->get();
+        }
+
+        if($tabla == "planeacion")
+        {
+            $operadores = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
+            ->whereIn('marca_ingreso', $periodos)
+            ->whereIn('programa', $programas)
+            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
+            ->groupBy('operador')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+        }
+        
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));

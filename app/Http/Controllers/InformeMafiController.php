@@ -86,17 +86,30 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function estudiantesRetencion(){
+    public function estudiantesRetencion($tabla){
         /**
         SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
         WHERE sello = 'TIENE RETENCION' 
         GROUP BY autorizado_asistir
          */
+        if ($tabla == "Mafi")
+        {
             $retencion = DB::table('datosMafi')
             ->where('sello', 'TIENE RETENCION')
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
-            ->get();  
+            ->get(); 
+        }
+        
+        if ($tabla == 'planeacion') {
+            $retencion = DB::table('estudiantes')
+            ->where('sello', 'TIENE RETENCION')
+            ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
+            ->groupBy('tipo_estudiante')
+            ->get();
+        
+        }
+
         
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));

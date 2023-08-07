@@ -736,7 +736,7 @@
             var chartRetencion;
 
             function graficoRetencion() {
-                var url = '/home/retencionActivos';
+                var url = '/home/retencionActivos' + tabla;
                 $.getJSON(url, function(data) {
 
                     var total = data.data.map(function(elemento) {

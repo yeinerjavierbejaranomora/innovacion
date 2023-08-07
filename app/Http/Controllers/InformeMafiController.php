@@ -678,6 +678,8 @@ class InformeMafiController extends Controller
 
         if($tabla == "planeacion"){
         $sello = DB::tabla('estudiantes')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)
             ->whereIn('programa', $programas)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -693,16 +695,18 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención de los programas seleccionados por el usuario
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function retencionEstudiantesPrograma(Request $request)
-    {
+    public function retencionEstudiantesPrograma(Request $request, $tabla){
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+        
+        if($tabla == "Mafi"){
         /**
          * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi
          *WHERE programa IN ('') -- Reemplaza con los programas específicos
          *WHERE sello = 'TIENE RETENCION' 
          *GROUP BY autorizado_asistir
          */
-        $programas = $request->input('programa');
-        $periodos = $request->input('periodos');
         $retencion = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
@@ -710,6 +714,19 @@ class InformeMafiController extends Controller
             ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
             ->groupBy('autorizado_asistir')
             ->get();
+        }
+        if($tabla == "planeacion")
+        {
+            $retencion = DB::table('datosMafi')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
+            ->whereIn('marca_ingreso', $periodos)
+            ->whereIn('programa', $programas)
+            ->where('sello', 'TIENE RETENCION')
+            ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+            ->groupBy('autorizado_asistir')
+            ->get();
+        }
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));

@@ -1284,7 +1284,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.retencion.facultad') }}",
+                    url: "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades,
                         periodos: periodos

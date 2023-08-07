@@ -356,9 +356,13 @@ class InformeMafiController extends Controller
      * Método que trae los estudiantes con retención de las facultades seleccionadas por el usuario
      * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
      */
-    public function retencionEstudiantesFacultad(Request $request){
+    public function retencionEstudiantesFacultad(Request $request, $tabla){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
+        if($tabla == "Mafi")
+        {
         /**
         SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
         INNER JOIN programas p ON p.codprograma = dm.codprograma
@@ -366,7 +370,6 @@ class InformeMafiController extends Controller
         WHERE dm.sello = 'TIENE RETENCION' 
         GROUP BY dm.autorizado_asistir
          */
-        
             $retencion = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
                 ->whereIn('dm.periodo', $periodos)
@@ -375,7 +378,23 @@ class InformeMafiController extends Controller
                 ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
                 ->groupBy('dm.autorizado_asistir')
                 ->get();
-    
+        }
+
+        if($tabla == "planeacion")
+        {
+            $retencion = DB::table('estudiantes as e')
+            ->join('programas as p', 'p.codprograma', '=', 'e.programa')
+            ->where('e.programado_ciclo1', 'OK')
+            ->where('e.programado_ciclo2', 'OK')
+            ->whereIn('e.marca_ingreso', $periodos)
+            ->whereIn('p.Facultad', $facultades)
+            ->where('e.sello', 'TIENE RETENCION')
+            ->select(DB::raw('COUNT(e.autorizado_asistir) AS TOTAL, e.autorizado_asistir'))
+            ->groupBy('e.autorizado_asistir')
+            ->get();
+        
+        }
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }

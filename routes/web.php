@@ -125,7 +125,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de estudiantes activos con retención de cada programa */
     Route::post('/home/estudiantesRetencionPrograma/{tabla}', 'retencionEstudiantesPrograma')->middleware('auth')->name('estudiantes.retencion.programa');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada programa*/
-    Route::post('/home/estudiantesPrimerIngresoPrograma', 'primerIngresoEstudiantesPrograma')->middleware('auth')->name('estudiantes.primerIngreso.programa');
+    Route::post('/home/estudiantesPrimerIngresoPrograma/{tabla}', 'primerIngresoEstudiantesPrograma')->middleware('auth')->name('estudiantes.primerIngreso.programa');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/tiposPrograma', 'tiposEstudiantesPrograma')->middleware('auth')->name('estudiantes.tipo.programa');
     /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por programa */

@@ -1928,7 +1928,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.primerIngreso.programa') }}",
+                    url: "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
                         periodos: periodos

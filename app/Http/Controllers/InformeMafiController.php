@@ -677,7 +677,7 @@ class InformeMafiController extends Controller
         }
 
         if($tabla == "planeacion"){
-        $sello = DB::tabla('estudiantes')
+        $sello = DB::table('estudiantes')
             ->where('programado_ciclo1', 'OK')
             ->where('programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)
@@ -736,15 +736,11 @@ class InformeMafiController extends Controller
      * Método que muestra el sello de los estudiantes de primer ingreso de los programas seleccionados por el usuario
      * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
      */
-    public function primerIngresoEstudiantesPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello
-         *FROM datosMafi
-         *WHERE programa IN ('') -- Reemplaza con los programas específicos
-         *AND tipoestudiante = 'PRIMER INGRESO'
-         *GROUP BY sello;
-         */
+    public function primerIngresoEstudiantesPrograma(Request $request, $tabla){
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -754,14 +750,35 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
 
-        $programas = $request->input('programa');
-        $periodos = $request->input('periodos');
-        $primerIngreso = DB::table('datosMafi')
+        if($tabla == "Mafi")
+        {
+            /**
+         * SELECT COUNT(sello) AS TOTAL, sello
+         *FROM datosMafi
+         *WHERE programa IN ('') -- Reemplaza con los programas específicos
+         *AND tipoestudiante = 'PRIMER INGRESO'
+         *GROUP BY sello;
+         */
+            $primerIngreso = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')->get();
+        }
+        
+        if($tabla == "planeacion")
+        {
+            $primerIngreso = DB::table('planeacion')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
+            ->whereIn('marca_ingreso', $periodos)
+            ->whereIn('programa', $programas)
+            ->whereIn('tipo_estudiante', $tiposEstudiante)
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')->get();
+        }
+        
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $primerIngreso));

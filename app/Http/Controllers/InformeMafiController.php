@@ -641,7 +641,7 @@ class InformeMafiController extends Controller
          */
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
-
+        
         $estudiantes = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
@@ -678,8 +678,8 @@ class InformeMafiController extends Controller
 
         if($tabla == "planeacion"){
         $sello = DB::tabla('estudiantes')
-            ->where('e.programado_ciclo1', 'OK')
-            ->where('e.programado_ciclo2', 'OK')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)
             ->whereIn('programa', $programas)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -717,9 +717,9 @@ class InformeMafiController extends Controller
         }
         if($tabla == "planeacion")
         {
-            $retencion = DB::table('datosMafi')
-            ->where('e.programado_ciclo1', 'OK')
-            ->where('e.programado_ciclo2', 'OK')
+            $retencion = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)
             ->whereIn('programa', $programas)
             ->where('sello', 'TIENE RETENCION')

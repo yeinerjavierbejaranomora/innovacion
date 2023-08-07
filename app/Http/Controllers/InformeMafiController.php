@@ -104,8 +104,8 @@ class InformeMafiController extends Controller
         if ($tabla == 'planeacion') {
             $retencion = DB::table('estudiantes')
             ->where('sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-            ->groupBy('tipo_estudiante')
+            ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+            ->groupBy('autorizado_asistir')
             ->get();
         
         }

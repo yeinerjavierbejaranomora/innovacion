@@ -339,12 +339,12 @@ class InformeMafiController extends Controller
         WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
         GROUP BY e.sello */
             $sello = DB::table('estudiantes AS e')
-            ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
             ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
             ->where('e.programado_ciclo1', 'OK')
             ->where('e.programado_ciclo2', 'OK')
             ->whereIn('e.marca_ingreso', $periodos)
             ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
             ->groupBy('e.sello')
             ->get();
         }
@@ -769,14 +769,15 @@ class InformeMafiController extends Controller
         
         if($tabla == "planeacion")
         {
-            $primerIngreso = DB::table('planeacion')
+            $primerIngreso = DB::table('estudiantes')
             ->where('programado_ciclo1', 'OK')
             ->where('programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)
             ->whereIn('programa', $programas)
             ->whereIn('tipo_estudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')->get();
+            ->groupBy('sello')
+            ->get();
         }
         
 
@@ -788,16 +789,20 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesPrograma(Request $request)
+    public function tiposEstudiantesPrograma(Request $request, $tabla)
     {
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
+        if($tabla == "Mafi"){
         /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante
          * FROM datosMafi
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
          * GROUP BY tipoestudiante
          */
-        $programas = $request->input('programa');
-        $periodos = $request->input('periodos');
+        
         $tipoEstudiantes = DB::table('datosMafi')
             ->whereIn('periodo', $periodos)
             ->whereIn('codprograma', $programas)
@@ -807,6 +812,22 @@ class InformeMafiController extends Controller
             ->limit(5)
             ->get();
 
+        
+        }
+
+        if($tabla == "planeacion")
+        {
+        $tipoEstudiantes = DB::table('estudiantes')
+        ->where('programado_ciclo1', 'OK')
+        ->where('programado_ciclo2', 'OK')
+        ->whereIn('marca_ingreso', $periodos)
+        ->whereIn('codprograma', $programas)
+        ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
+        ->groupBy('tipo_estudiante')
+        ->orderByDesc('TOTAL')
+        ->limit(5)
+        ->get();
+        }
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }

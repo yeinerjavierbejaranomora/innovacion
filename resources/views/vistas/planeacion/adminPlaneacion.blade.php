@@ -2013,7 +2013,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.tipo.programa') }}",
+                    url: "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
                         periodos: periodos

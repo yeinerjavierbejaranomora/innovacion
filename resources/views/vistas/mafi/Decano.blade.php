@@ -397,7 +397,7 @@
                checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
-                return periodosSeleccionados;
+            return periodosSeleccionados;
             }
 
             function estadoUsuarioPrograma() {
@@ -467,8 +467,8 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
 
-                var periodosSeleccionados = getPeriodos();
-                console.log (periodosSeleccionados);
+                var periodos = getPeriodos();
+                console.log (periodos);
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 
@@ -632,6 +632,7 @@
              */
 
              function graficosporFacultad(facultades, periodos) {
+                console.log ('entra');
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();

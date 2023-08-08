@@ -195,7 +195,7 @@
         <div class=" col-6 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
                         <div class="card-body">
@@ -206,7 +206,7 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo">
                             <strong></strong>
                         </h5>
@@ -219,7 +219,7 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                         <h5 class="tituloPeriodo">
                             <strong></strong>
                         </h5>
@@ -655,7 +655,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     })

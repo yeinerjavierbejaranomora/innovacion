@@ -526,7 +526,7 @@
                     ocultarDivs();
                     alertaProgramas();
                     }
-
+                    else{
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
@@ -560,6 +560,7 @@
                             alertaFacultad();
                         }
                     }
+                }
                 } else {
                     programasSeleccionados = [];
                     facultadesSeleccionadas = [];

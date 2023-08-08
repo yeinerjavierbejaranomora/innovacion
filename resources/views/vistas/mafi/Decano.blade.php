@@ -643,14 +643,13 @@
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
              */
 
-             function graficosporFacultad(facultades, periodos) {
-                console.log (periodos);
+             function graficosporFacultad(facultades) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
                 }
-                    graficoEstudiantesPorFacultades(facultades, periodos);
+                    graficoEstudiantesPorFacultades(facultades);
                     graficoSelloFinancieroPorFacultad(facultades, periodos);
                     graficoRetencionPorFacultad(facultades, periodos);
                     graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
@@ -664,7 +663,7 @@
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
              */
 
-            function graficoEstudiantesPorFacultades(facultades, periodos) {
+            function graficoEstudiantesPorFacultades(facultades) {
 
                 $.ajax({
                     headers: {
@@ -674,7 +673,7 @@
                     url: "{{ route('estudiantes.activos.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);

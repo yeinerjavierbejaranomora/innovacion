@@ -361,6 +361,7 @@
             periodos();
             facultadesUsuario();
             vistaEntrada();
+            
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -501,7 +502,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     })
@@ -574,6 +575,7 @@
                     confirmButtonColor: '#dfc14e',
                 })
             }
+
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();

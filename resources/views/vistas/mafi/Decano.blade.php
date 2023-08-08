@@ -360,8 +360,8 @@
             var tabla = 'Mafi';
             periodos();
             vistaEntrada();
+            
             facultadesUsuario();
-
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -467,7 +467,8 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
 
-                var periodosSeleccionados = getPeriodos()
+                var periodosSeleccionados = getPeriodos();
+                console.log (periodosSeleccionados);
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 

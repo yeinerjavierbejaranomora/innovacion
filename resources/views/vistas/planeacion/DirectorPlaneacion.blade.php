@@ -487,15 +487,15 @@
                 ocultarDivs();
                 alerta();
             }
-        }
-        else{
+            }
+         else{
             programasSeleccionados = [];
             periodosSeleccionados = [];
             $("#mensaje").empty();
             destruirGraficos();
             ocultarDivs();
             alertaPeriodo();
-        }
+            }
         });
 
         function graficosporPrograma() {

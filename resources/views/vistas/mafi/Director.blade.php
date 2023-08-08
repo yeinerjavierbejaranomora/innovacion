@@ -496,10 +496,10 @@
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();
         Contador();
-        getPeriodos();
+        var periodosSeleccionados = getPeriodos();
         if(periodosSeleccionados.length > 0){
         if ($('#programas input[type="checkbox"]:checked').length > 0) {
-            if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
+            if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos == totalPeriodos) {
                 location.reload();
             }
             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

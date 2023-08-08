@@ -104,7 +104,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Facultades Planeación </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Facultades Moodle </strong></h3>
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+            <?php dd($tabla);?>
             <!-- Page Heading -->
             
             <br>

@@ -472,6 +472,21 @@
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 
+            $('#deshacerProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').prop('checked', true);
+            });
+
+            $('#deshacerPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', true);
+            });
 
             function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);

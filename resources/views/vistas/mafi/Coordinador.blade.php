@@ -280,6 +280,10 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+
+        var tabla = 'Mafi';    
+
     programasUsuario();
     Contador();
     vistaEntrada();
@@ -583,8 +587,9 @@
     var chartEstudiantesActivos;
 
     function grafioSelloFinanciero() {
-        var url = "{{ route('estudiantes.sello.programa') }}";
-        var data = {
+        var data;
+        var url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+        data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
         }
@@ -666,9 +671,9 @@
     var chartRetencion;
 
     function graficoRetencion() {
-
-        var url = "{{ route('estudiantes.retencion.programa') }}";
-        var data = {
+        var data;
+        var url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
+        data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
         }
@@ -752,9 +757,9 @@
     var chartSelloPrimerIngreso;
 
     function graficoSelloPrimerIngreso() {
-
-        var url = "{{ route('estudiantes.primerIngreso.programa') }}";
-        var data = {
+        var data;
+        var url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
+        data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
         }
@@ -840,9 +845,9 @@
     var chartTipoEstudiante;
 
     function graficoTiposDeEstudiantes() {
-
-        var url = "{{ route('estudiantes.tipo.programa') }}";
-        var data = {
+        var data;
+        var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
+        data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
         }
@@ -941,7 +946,8 @@
     var chartOperadores;
 
     function graficoOperadores() {
-        url = "{{ route('estudiantes.operador.programa') }}";
+        var data;
+        url = "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla,
         data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -1060,7 +1066,7 @@
 
     function tiposEstudiantesTotal() {
         var data;
-        var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+        var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,
@@ -1163,7 +1169,7 @@
 
     function graficoOperadoresTotal() {
         var data;
-        var url = "{{ route('operadores.programa.estudiantes') }}";
+        var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,
@@ -1267,4 +1273,6 @@
                 });
 
     }
+
+});
 </script>

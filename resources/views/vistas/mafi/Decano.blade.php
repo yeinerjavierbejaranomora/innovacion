@@ -408,10 +408,14 @@
             }
 
 
-            var totalSeleccionado
+            var totalFacultades;
+            var totalProgramas;
+            var totalPeriodos;
 
             function Contador() {
-                totalSeleccionado = $('#facultades input[type="checkbox"]').length;
+                totalFacultades = $('#facultades input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
+                totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
             /**
              * Método para destruir todos los gráficos
@@ -510,12 +514,9 @@
                 getPeriodos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
-                if (cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
-                    $('#mensaje').hide();
-                    alertaProgramas();
-                }
-
-                if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                console.log (totalProgramas);
+                console.log(#programas input[type="checkbox"]:checked);
+                if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
                     checkboxesProgramas.each(function() {
@@ -525,7 +526,7 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado) {
+                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos ) {
                             location.reload();
                         } else {
                             $('#mensaje').hide();
@@ -545,12 +546,12 @@
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
-                        alerta();
+                        alertaFacultad();
                     }
                 }
             });
 
-            function alerta() {
+            function alertaFacultad() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',

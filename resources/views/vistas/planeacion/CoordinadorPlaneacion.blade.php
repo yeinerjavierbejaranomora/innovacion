@@ -83,7 +83,7 @@
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
-
+    <?php dd($tabla);?>
     <!-- Main Content -->
     <div id="content">
 

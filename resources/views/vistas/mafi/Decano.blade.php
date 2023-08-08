@@ -141,9 +141,8 @@
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
                                 <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label> <br>
                                     @foreach ($facultades as $facultad)
-                                    <label class="hidden idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
+                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
                                     @endforeach
                                 </div>
                                 <br>
@@ -470,20 +469,6 @@
 
                 }
             }
-
-            /**
-             * Método que controla el boton de "Ver todo", al ser seleccionado recarga la página 
-             * o en caso contrario, muestra las facultades y limpia la página de la data anterior
-             * */
-            $('body').on('change', '#mostrarTodos', function() {
-                if ($('#mostrarTodos').prop('checked')) {
-                    location.reload();
-                } else {
-                    $('label.idFacultad').removeClass('hidden');
-                    destruirGraficos();
-                    ocultarDivs();
-                }
-            });
 
             var programasSeleccionados = [];
 

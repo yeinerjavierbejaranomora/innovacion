@@ -619,17 +619,7 @@
                     confirmButtonColor: '#dfc14e',
                 })
             } 
-
-            function vacio(){
-                if($("#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas").hasClass("hidden"))
-                {
-                    $('#vacio').addClass('hidden');
-                }
-                else
-                {   
-                    $('#vacio').removeClass('hidden');
-                }
-            }    
+  
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

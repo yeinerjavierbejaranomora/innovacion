@@ -396,6 +396,14 @@
             $('#periodos input[type="checkbox"]').prop('checked', true);
     });
 
+    $('#deshacerProgramas').on('click', function(e) {
+            $('#programas input[type="checkbox"]').prop('checked', false);
+            });
+
+    $('#seleccionarProgramas').on('click', function(e) {
+            $('#programas input[type="checkbox"]').prop('checked', true);
+    });
+
     /**
      * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
      */

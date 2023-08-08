@@ -132,7 +132,7 @@ class UserController extends Controller
                 $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
                 $nombreFacultades[$value] = $consulta->nombre;
             }
-            return view('vistas.planeacion.DecanoPlaneacion', ['facultades' => $nombreFacultades]);
+            return view('vistas.planeacion.DecanoPlaneacion', ['facultades' => $nombreFacultades], ['tabla' => $tabla]);
         }
 
         if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {

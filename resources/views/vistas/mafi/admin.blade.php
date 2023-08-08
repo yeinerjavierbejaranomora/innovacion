@@ -2475,21 +2475,22 @@
 
             function tiposEstudiantesTotal(periodosSeleccionados) {
                 console.log(periodosSeleccionados);
+                var data;
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
-                    var data = {
+                    var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
-                        var data = {
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
                     } else {
-                        var url = "{{ route('tiposEstudiantes.total.estudiantes') }}";
+                        var url = "{{ route('tiposEstudiantes.total.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = '';
                     }
                 }
@@ -2584,21 +2585,22 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal(periodosSeleccionados) {
+                var data;
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('operadores.programa.estudiantes') }}";
-                    var data = {
+                    var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('operadores.facultad.estudiantes') }}";
-                        var data = {
+                        var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
                     } else {
-                        var url = "{{ route('operadoresTotal.estudiantes') }}";
+                        var url = "{{ route('operadoresTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = '';
                     }
                 }
@@ -2702,13 +2704,13 @@
 
             function graficoProgramasTotal(periodosSeleccionados) {
                 if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('FacultadTotal.estudiantes') }}";
-                    var data = {
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    data = {
                         idfacultad: facultadesSeleccionadas,
                         periodos: periodosSeleccionados
                     }
                 } else {
-                    var url = "{{ route('programasTotal.estudiantes') }}";
+                    var url = "{{ route('programasTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                     data = '';
                 }
                 $.ajax({

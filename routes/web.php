@@ -132,23 +132,23 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/operadoresPrograma/{tabla}', 'operadoresPrograma')->middleware('auth')->name('estudiantes.operador.programa');
 
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Facultad*/
-    Route::post('/home/operadoresFacultadTotal', 'operadoresFacultadTotal')->middleware('auth')->name('operadores.facultad.estudiantes');
+    Route::post('/home/operadoresFacultadTotal/{tabla}', 'operadoresFacultadTotal')->middleware('auth')->name('operadores.facultad.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
     Route::post('/home/operadoresTotal/{tabla}', 'operadoresTotal')->middleware('auth')->name('operadoresTotal.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
-    Route::post('/home/operadoresProgramaTotal', 'operadoresProgramaTotal')->middleware('auth')->name('operadores.programa.estudiantes');
+    Route::post('/home/operadoresProgramaTotal/{tabla}', 'operadoresProgramaTotal')->middleware('auth')->name('operadores.programa.estudiantes');
 
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos*/
     Route::post('/home/estudiantesProgramasTotal/{tabla}' ,'estudiantesProgramasTotal')->middleware('auth')->name('programasTotal.estudiantes');
     /** Ruta para cargar gráfica de los programas y la cantidad de estudiantes inscritos de cada facultad */
-    Route::post('/home/estudiantesFacultadTotal' ,'estudiantesFacultadTotal')->middleware('auth')->name('FacultadTotal.estudiantes');
+    Route::post('/home/estudiantesFacultadTotal/{tabla}' ,'estudiantesFacultadTotal')->middleware('auth')->name('FacultadTotal.estudiantes');
 
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Facultad*/
-    Route::post('/home/tiposEstudiantesFacultadTotal', 'tiposEstudiantesFacultadTotal')->middleware('auth')->name('tiposEstudiantes.facultad.estudiantes');
+    Route::post('/home/tiposEstudiantesFacultadTotal/{tabla}', 'tiposEstudiantesFacultadTotal')->middleware('auth')->name('tiposEstudiantes.facultad.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
     Route::post('/home/tiposEsudiantesTotal/{tabla}', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
-    Route::post('/home/tiposEsudiantesProgramaTotal', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
+    Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
 });
 
 Route::controller(MafiController::class)->group(function () {

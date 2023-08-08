@@ -208,7 +208,7 @@
                     <div class="card-header">
                         <h5 class="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                            <strong></strong>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -358,6 +358,7 @@
             var tabla = 'Mafi';
             periodos();
             facultadesUsuario();
+            vistaEntrada();
             
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -398,7 +399,7 @@
                 return periodosSeleccionados;
             }
 
-            vistaEntrada();
+            
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();
@@ -462,10 +463,10 @@
             var facultadesSelect;
 
             function facultadesUsuario() {
-                console.log ('entra');
+                
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-
+                console.log(facultadesSeleccionadas);
                 var periodos = getPeriodos();
                 console.log (periodos);
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
@@ -522,7 +523,6 @@
                             });
                         }
                     })
-
                 }
             }
 

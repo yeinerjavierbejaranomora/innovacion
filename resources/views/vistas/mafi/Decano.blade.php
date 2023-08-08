@@ -464,6 +464,7 @@
             var facultadesSelect;
 
             function facultadesUsuario() {
+                console.log ('entra');
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
 

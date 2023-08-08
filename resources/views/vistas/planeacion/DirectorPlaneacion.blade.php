@@ -460,6 +460,8 @@
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
                 console.log(totalPeriodos);
                 console.log(totalSeleccionado);
+                console.log($('#programas input[type="checkbox"]:checked').length);
+                console.log($('#periodos input[type="checkbox"]:checked').lenght);
                 if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
                     location.reload();
                 }

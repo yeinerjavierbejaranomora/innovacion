@@ -407,7 +407,7 @@
                 return periodosSeleccionados;
             }
 
-        function limpiarTitulos() {
+            function limpiarTitulos() {
             var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
             var parteEliminar = ': ';
             elementosTitulos.each(function() {
@@ -422,7 +422,7 @@
                 var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
                 $(this).text(contenidoLimpio);
             });
-        }
+            }
 
 
             function estadoUsuarioPrograma() {

@@ -375,7 +375,6 @@
             /**
              * Método que trae los periodos activos
              */
-            var periodosSeleccionados = [];
             function periodos() {
                 var datos = $.ajax({
                     headers: {
@@ -392,7 +391,6 @@
                 });
 
             }
-            console.log(periodosSeleccionados);
             function getPeriodos() {
                 var periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
@@ -433,7 +431,6 @@
 
             function Contador() {
                 totalSeleccionado = $('#facultades input[type="checkbox"]').length;
-                console.log(totalSeleccionado);
             }
             /**
              * Método para destruir todos los gráficos

@@ -968,6 +968,8 @@ class InformeMafiController extends Controller
         if($tabla == "planeacion")
         {
             $operadores = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
             ->groupBy('operador')
             ->orderByDesc('TOTAL')
@@ -1003,6 +1005,8 @@ class InformeMafiController extends Controller
         if($tabla == "planeacion")
         {
         $programas = DB::table('estudiantes')
+        ->where('programado_ciclo1', 'OK')
+        ->where('programado_ciclo2', 'OK')
         ->select(DB::raw('COUNT(programa) AS TOTAL, programa'))
         ->groupBy('programa')
         ->orderByDesc('TOTAL')
@@ -1068,6 +1072,8 @@ class InformeMafiController extends Controller
 
         if($tabla == "planeacion"){
             $tipoEstudiantes = DB::table('estudiantes')
+            ->where('programado_ciclo1', 'OK')
+            ->where('programado_ciclo2', 'OK')
             ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
             ->groupBy('tipo_estudiante')
             ->orderByDesc('TOTAL')

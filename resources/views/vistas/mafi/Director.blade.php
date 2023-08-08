@@ -472,6 +472,15 @@
         })
     }
 
+    function alertaPeriodo() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debes seleccionar al menos un periodo',
+            confirmButtonColor: '#dfc14e',
+        })
+    }
+
     /**
      * Controlador botón generarReporte
      */
@@ -481,6 +490,7 @@
         Contador();
         getPeriodos();
         if ($('#programas input[type="checkbox"]:checked').length > 0) {
+            if(periodosSeleccionados.length > 0){
             if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
                 location.reload();
             }
@@ -499,6 +509,16 @@
             ocultarDivs();
             alerta();
         }
+    }
+    else{
+        programasSeleccionados = [];
+        periodosSeleccionados = [];
+            $("#mensaje").empty();
+            destruirGraficos();
+            ocultarDivs();
+            alertaPeriodo();
+    }
+
     });
 
     function graficosporPrograma() {

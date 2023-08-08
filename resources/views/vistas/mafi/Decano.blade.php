@@ -386,8 +386,8 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            periodosSeleccionados.push(periodo.periodos);
                         });
                     }
                 });

@@ -221,7 +221,7 @@
                     <div class="card-header">
                         <h5 class="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                         <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                            <strong></strong>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -466,7 +466,9 @@
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-                graficosporFacultad(facultadesSeleccionadas);
+
+                var periodosSeleccionados = getPeriodos()
+                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 
 

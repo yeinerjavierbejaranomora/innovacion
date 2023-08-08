@@ -956,7 +956,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla,
+                    url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                     data: data,
                     success: function(data) {
                         data = jQuery.parseJSON(data);

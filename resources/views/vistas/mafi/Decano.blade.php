@@ -526,7 +526,7 @@
                     graficosporPrograma(programasSeleccionados);
                 } else {
                     if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos ) {
+                        if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos ) {
                             location.reload();
                         } else {
                             $('#mensaje').hide();

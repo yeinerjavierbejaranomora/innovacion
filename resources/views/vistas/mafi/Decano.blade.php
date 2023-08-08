@@ -407,66 +407,6 @@
                 return periodosSeleccionados;
             }
 
-            function limpiarTitulos() {
-            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
-            var parteEliminar = ': ';
-            elementosTitulos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-            });
-            var parteTituloEliminar = 'Periodo: ';
-            var titulosPeriodos = $('.tituloPeriodo').find("strong");
-            titulosPeriodos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-            });
-            }
-
-
-            function estadoUsuarioPrograma() {
-                limpiarTitulos();
-                var periodos = getPeriodos();
-                $("#mensaje").empty();
-                if (programasSeleccionados.length > 1) {
-                    var programasArray = Object.values(programasSeleccionados);
-                    var programasFormateados = programasArray.join(' - ');
-                    var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
-                } else {
-                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
-                }
-                $("#mensaje").html(textoNuevo);
-            }
-
-            function estadoUsuarioFacultad() {
-                limpiarTitulos();
-                var periodos = getPeriodos();
-                $("#mensaje").empty();
-                var facultadesArray = Object.values(facultadesSeleccionadas);
-                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
-                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                    }).join(' - ');
-                
-                var periodosArray = Object.values(periodos);
-                    var periodosFormateados = periodosArray.map(function(periodo) {
-                    return periodo.replace(/2023/, '').trim();
-                    }).join(' - ');    
-
-                if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                } else {
-                    
-                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
-                $("#mensaje").show();
-                $("#mensaje").html(textoNuevo);
-            }
 
             var totalSeleccionado
 
@@ -627,6 +567,68 @@
                     confirmButtonColor: '#dfc14e',
                 })
             }
+
+            function limpiarTitulos() {
+            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+            var parteEliminar = ': ';
+            elementosTitulos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+            var parteTituloEliminar = 'Periodo: ';
+            var titulosPeriodos = $('.tituloPeriodo').find("strong");
+            titulosPeriodos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+            }
+
+            function estadoUsuarioPrograma() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
+                $("#mensaje").empty();
+                if (programasSeleccionados.length > 1) {
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
+                } else {
+                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
+                }
+                $("#mensaje").html(textoNuevo);
+            }
+
+            function estadoUsuarioFacultad() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
+                    }).join(' - ');
+                
+                var periodosArray = Object.values(periodos);
+                    var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                    }).join(' - ');    
+
+                if (facultadesSeleccionadas.length > 1) {
+                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
+                } else {
+                    
+                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
+                }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+            }
+
+
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

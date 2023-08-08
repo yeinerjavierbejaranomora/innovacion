@@ -148,16 +148,50 @@ class UserController extends Controller
         return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['tabla' => $tabla]);
     }
 
+    public function vistasModdle(){
+        $user = auth()->user();
+
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+
+        $tabla = 'moodle';    
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol = $nombre_rol;
+        if ($nombre_rol === 'Admin') {
+            $nombre_rol = strtolower($nombre_rol);
+        }
+
+        if ($nombre_rol === 'Decano') {
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_facultad, ',');
+            $facultades = explode(",", $idfacultad);
+            foreach ($facultades as $key => $value) {
+
+                $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+                $nombreFacultades[$value] = $consulta->nombre;
+            }
+            return view('vistas.moodle.DecanoMoodle', ['facultades' => $nombreFacultades], ['tabla' => $tabla]);
+        }
+
+        if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {
+            $idPrograma = trim($user->programa, ';');
+            $programas = explode(';', $idPrograma);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
+                $data[$value] = $consulta;
+            }
+            return view('vistas.moodle.' . $nombre_rol . 'Moodle', ['programas' => $data], ['tabla' => $tabla]);
+        }
+        /** cargamos la vista predeterminada para cada rol con la data */
+        return view('vistas.moodle.' . $nombre_rol . 'Moodle', ['tabla' => $tabla]);
+    }
     // funcion para traer todos los usuarios a la vista de administracion
 
-    public function userView()
-    {
+    public function userView(){
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.usuarios');
     }
 
-    public function get_users()
-    {
+    public function get_users(){
         /**Realiza la consulta anidada para onbtener el usuario con su rol */
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
             ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();

@@ -41,6 +41,9 @@ Route::controller(UserController::class)->group(function () {
     /** Vista al pulsar el botón "Planeación" */
     Route::get('/home/Planeacion', 'vistasPlaneacion')->middleware('auth')->name('home.planeacion');
 
+    /** Vista al pulsar el botón "Moodle" */
+    Route::get('/home/Planeacion', 'vistasMoodle')->middleware('auth')->name('home.moodle');
+
     /** para cargar las vistas predefinidas en la facultad */
     Route::get('/home/facultad/', 'facultad')->middleware('auth')->name('facultad.index');
     /** cargamos la vista del perfil del usuario */

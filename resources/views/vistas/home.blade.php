@@ -89,7 +89,7 @@
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a type="button" class="btn boton" >
+                        <a type="button" class="btn boton" herf="{{ route('home.moodle') }}">
                             Moddle
                         </a>
                     </div>

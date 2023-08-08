@@ -392,7 +392,7 @@
                 });
 
             }
-
+            console.log(periodosSeleccionados);
             function getPeriodos() {
                 var periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');

@@ -2266,7 +2266,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipo_estudiante;
+                            return elemento.tipoestudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {

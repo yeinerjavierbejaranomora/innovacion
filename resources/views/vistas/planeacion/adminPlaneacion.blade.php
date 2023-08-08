@@ -2232,16 +2232,17 @@
 
             function tiposEstudiantesTotal(periodosSeleccionados) {
                 console.log(periodosSeleccionados);
+                var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    var data = {
+                    data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        var data = {
+                        data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
@@ -2341,16 +2342,17 @@
             var chartOperadoresTotal;
 
             function graficoOperadoresTotal(periodosSeleccionados) {
+                var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    var data = {
+                    data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        var data = {
+                        data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
@@ -2458,9 +2460,10 @@
             var chartProgramasTotal;
 
             function graficoProgramasTotal(periodosSeleccionados) {
+                var data;
                 if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    var data = {
+                    data = {
                         idfacultad: facultadesSeleccionadas,
                         periodos: periodosSeleccionados
                     }

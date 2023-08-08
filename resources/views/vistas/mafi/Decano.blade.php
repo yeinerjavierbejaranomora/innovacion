@@ -375,6 +375,7 @@
             /**
              * Método que trae los periodos activos
              */
+            var periodosSeleccionados = [];
             function periodos() {
                 var datos = $.ajax({
                     headers: {
@@ -387,6 +388,10 @@
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                         });
                     }
+                });
+                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
                 });
             }
 
@@ -467,8 +472,7 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
                 console.log(facultadesSeleccionadas);
-                var periodos = getPeriodos();
-                console.log (periodos);
+                console.log (periodosSeleccionados);
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 

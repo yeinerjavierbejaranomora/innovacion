@@ -142,7 +142,7 @@
                             <div class="facultades" name="facultades" id="facultades">
                                 <div>
                                     @foreach ($facultades as $facultad)
-                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}"> {{$facultad}} </label><br>
+                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
                                     @endforeach
                                 </div>
                                 <br>
@@ -179,7 +179,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row text-center justify-content-center">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
@@ -1778,12 +1778,12 @@
 
             function graficoProgramasTotal() {
                 if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla;
                     var data = {
                         idfacultad: facultadesSeleccionadas
                     }
                 } else {
-                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla;
                     var data = {
                         idfacultad: facultadesSelect
                     }

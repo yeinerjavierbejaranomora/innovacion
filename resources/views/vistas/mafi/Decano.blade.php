@@ -408,26 +408,44 @@
             }
 
             function estadoUsuarioPrograma() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
                 $("#mensaje").empty();
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
-                    var textoNuevo = "<h3>Informe programas: " + programasFormateados + " </h3>";
+                    var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasFormateados);
                 } else {
-                    var textoNuevo = "<h3>Informe programa " + programasSeleccionados + " </h3>";
+                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
                 $("#mensaje").html(textoNuevo);
             }
 
             function estadoUsuarioFacultad() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
                 $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
+                    }).join(' - ');
+                
+                var periodosArray = Object.values(periodos);
+                    var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                    }).join(' - ');    
+
                 if (facultadesSeleccionadas.length > 1) {
-                    var facultadesArray = Object.values(facultadesSeleccionadas);
-                    var facultadesFormateadas = facultadesArray.join(' - ');
-                    var textoNuevo = "<h3>Informe facultades: " + facultadesFormateadas + " </h3>";
+                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
-                    var textoNuevo = "<h3>Informe facultad " + facultadesSeleccionadas + " </h3>";
+                    
+                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
@@ -1282,26 +1300,26 @@
              * Método que limpia la data de los gráficos y después invoca todos los gráficos por los 
              * programas que seleccione el usuario
              */
-            function graficosporPrograma(programas,periodos) {
+            function graficosporPrograma(programas) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
 
                     $("#ocultarGraficoProgramas").hide();
 
-                    graficoEstudiantesPorPrograma(programas,periodos);
-                    grafioSelloFinancieroPorPrograma(programas,periodos);
-                    graficoRetencionPorPrograma(programas,periodos);
-                    graficoSelloPrimerIngresoPorPrograma(programas,periodos);
-                    graficoTiposDeEstudiantesPrograma(programas,periodos);
-                    graficoOperadoresPrograma(programas,periodos);
+                    graficoEstudiantesPorPrograma(programas);
+                    grafioSelloFinancieroPorPrograma(programas);
+                    graficoRetencionPorPrograma(programas);
+                    graficoSelloPrimerIngresoPorPrograma(programas);
+                    graficoTiposDeEstudiantesPrograma(programas);
+                    graficoOperadoresPrograma(programas);
                 }
             }
 
             /** 
              * Método que muestra los estudiantes activos e inactivos de algún programa en específico
              */
-            function graficoEstudiantesPorPrograma(programas, periodos) {
+            function graficoEstudiantesPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1310,7 +1328,7 @@
                     url: "{{ route('estudiantes.activos.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1377,7 +1395,7 @@
             /**
              * Método que genera el gráfico de sello financiero de algún programa en específico
              */
-            function grafioSelloFinancieroPorPrograma(programas, periodos) {
+            function grafioSelloFinancieroPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1386,7 +1404,7 @@
                     url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
 
                     success: function(data) {
@@ -1457,7 +1475,7 @@
             /**
              * Método que genera el gráfico ASP de algún programa en específico
              */
-            function graficoRetencionPorPrograma(programas, periodos) {
+            function graficoRetencionPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1466,7 +1484,7 @@
                     url: "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1537,7 +1555,7 @@
             /**
              * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
              */
-            function graficoSelloPrimerIngresoPorPrograma(programas, periodos) {
+            function graficoSelloPrimerIngresoPorPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1546,7 +1564,7 @@
                     url: "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
 
                     success: function(data) {
@@ -1620,7 +1638,7 @@
             /**
              * Método que genera el gráfico con los tipos de estudiante por programa
              */
-            function graficoTiposDeEstudiantesPrograma(programas,periodos) {
+            function graficoTiposDeEstudiantesPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1629,7 +1647,7 @@
                     url: "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
 
                     success: function(data) {
@@ -1717,7 +1735,7 @@
             /**
              * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
              */
-            function graficoOperadoresPrograma(programas,periodos) {
+            function graficoOperadoresPrograma(programas) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1726,7 +1744,7 @@
                     url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas,
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
@@ -1813,7 +1831,6 @@
                     }
                 });
             }
-
 
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();

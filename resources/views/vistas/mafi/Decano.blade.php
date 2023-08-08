@@ -393,13 +393,13 @@
 
             function getPeriodos() {
                 var periodosSeleccionados = [];
-               var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-               checkboxesSeleccionados.each(function() {
+                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
-            return periodosSeleccionados;
+                return periodosSeleccionados;
             }
-            
+
             vistaEntrada();
 
             function estadoUsuarioPrograma() {
@@ -431,7 +431,6 @@
 
             function Contador() {
                 totalSeleccionado = $('#facultades input[type="checkbox"]').length;
-                totalSeleccionado -= 1;
                 console.log(totalSeleccionado);
             }
             /**

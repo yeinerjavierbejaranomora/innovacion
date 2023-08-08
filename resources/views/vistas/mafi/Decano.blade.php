@@ -515,7 +515,7 @@
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 console.log (totalProgramas);
-                console.log(#programas input[type="checkbox"]:checked);
+                console.log($('#programas input[type="checkbox"]:checked'));
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];

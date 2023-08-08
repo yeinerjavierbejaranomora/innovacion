@@ -378,20 +378,22 @@
              * Método que trae los periodos activos
              */
             function periodos() {
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('periodos.activos') }}",
-                    method: 'post',
-                    success: function(data) {
-                        data.forEach(periodo => {
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                        });
-                    }
-                });
-                console.log(periodosSeleccionados);
-            }
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('periodos.activos') }}",
+                method: 'post',
+                async: false,
+                success: function(data) {
+                    data.forEach(periodo => {
+                        periodosSeleccionados.push(periodo.periodos);
+                        $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                    });
+                }
+            });
+            console.log(periodosSeleccionados);
+        }
 
             function getPeriodos() {
                 periodosSeleccionados = [];

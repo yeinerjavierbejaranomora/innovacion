@@ -385,7 +385,6 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                         });
                     }
@@ -394,7 +393,7 @@
             }
 
             function getPeriodos() {
-                var periodosSeleccionados = [];
+                periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
@@ -463,7 +462,8 @@
             var facultadesSelect;
 
             function facultadesUsuario() {
-                
+                periodosSeleccionados = getPeriodos();
+                console.log(periodosSeleccionados);
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
                 console.log(facultadesSeleccionadas);

@@ -375,6 +375,7 @@
             /**
              * Método que trae los periodos activos
              */
+            var periodosSeleccionados = [];
             function periodos() {
                 var datos = $.ajax({
                     headers: {
@@ -385,9 +386,11 @@
                     success: function(data) {
                         data.forEach(periodo => {
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            periodosSeleccionados.push(periodo.periodos);
                         });
                     }
                 });
+
             }
 
             function getPeriodos() {
@@ -468,7 +471,7 @@
                 facultadesSelect = facultadesSeleccionadas;
                 console.log(facultadesSeleccionadas);
 
-                graficosporFacultad(facultadesSeleccionadas);
+                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 
             $('#deshacerProgramas').on('click', function(e) {
@@ -644,8 +647,7 @@
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
              */
 
-             function graficosporFacultad(facultades) {
-                var periodos = getPeriodos();
+             function graficosporFacultad(facultades, periodos) {
                 console.log (periodos);
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {

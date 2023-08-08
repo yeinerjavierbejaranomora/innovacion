@@ -799,6 +799,7 @@ class InformeMafiController extends Controller
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
 
+        dd($tabla);
         if ($tabla == "Mafi") {
             /**
              * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante
@@ -829,6 +830,7 @@ class InformeMafiController extends Controller
                 ->limit(5)
                 ->get();
         }
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }
@@ -837,8 +839,7 @@ class InformeMafiController extends Controller
      * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
      */
-    public function operadoresPrograma(Request $request, $tabla)
-    {
+    public function operadoresPrograma(Request $request, $tabla){
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);

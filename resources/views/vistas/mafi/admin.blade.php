@@ -270,9 +270,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 text-center justify-content-center hidden" id="vacio">
-                    <h3>No hay datos por mostrar </h3>
-            </div >
         </div>
 
         <br>

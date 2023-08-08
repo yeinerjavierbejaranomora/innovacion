@@ -148,7 +148,7 @@ class UserController extends Controller
         return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['tabla' => $tabla]);
     }
 
-    public function vistasModdle(){
+    public function vistasMoodle(){
         $user = auth()->user();
 
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();

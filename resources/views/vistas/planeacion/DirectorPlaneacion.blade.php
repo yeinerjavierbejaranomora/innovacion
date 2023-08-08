@@ -456,6 +456,7 @@
 
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
+            getPeriodos();
             Contador();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
                 console.log(totalPeriodos);

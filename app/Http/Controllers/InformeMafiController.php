@@ -794,8 +794,7 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesPrograma(Request $request, $tabla)
-    {
+    public function tiposEstudiantesPrograma(Request $request, $tabla){
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);

@@ -193,7 +193,7 @@
 
         <div class="row justify-content-start mt-5">
         <div class=" col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
+                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
                             <h5 class="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -234,7 +234,7 @@
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                         <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                            <strong></strong>
                         </h5>
                         <div class="card-body">
                             <canvas id="primerIngreso"></canvas>
@@ -359,8 +359,8 @@
         $(document).ready(function() {
             var tabla = 'Mafi';
             periodos();
-            facultadesUsuario();
             vistaEntrada();
+            facultadesUsuario();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -400,7 +400,6 @@
                 });
                 return periodosSeleccionados;
             }
-
 
             function estadoUsuarioPrograma() {
                 $("#mensaje").empty();

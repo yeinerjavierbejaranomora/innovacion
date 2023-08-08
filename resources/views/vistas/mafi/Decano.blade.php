@@ -138,8 +138,8 @@
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Periodos</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">  
-                        <div name="periodos" id="periodos">
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                            <div name="periodos" id="periodos">
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
@@ -192,17 +192,17 @@
         </div>
 
         <div class="row justify-content-start mt-5">
-        <div class=" col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="estudiantes"></canvas>
-                        </div>
+            <div class=" col-6 text-center" id="colEstudiantes">
+                <div class="card shadow mb-5 graficos" id="chartEstudiantes">
+                    <div class="card-header">
+                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="estudiantes"></canvas>
                     </div>
                 </div>
+            </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -232,7 +232,7 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                    <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
@@ -285,30 +285,30 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <br>
         <!-- Modal Todos los Tipos de estudiantes -->
         <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <canvas id="tiposEstudiantesTotal"></canvas>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                        </div>
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="tiposEstudiantesTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
+            </div>
         </div>
-        
+
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
@@ -359,9 +359,9 @@
             var periodosSeleccionados = [];
             periodos();
             facultadesUsuario();
-            
+
             vistaEntrada();
-            
+
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -381,22 +381,22 @@
              */
             function periodos() {
                 periodosSeleccionados = [];
-            var datos = $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('periodos.activos') }}",
-                method: 'post',
-                async: false,
-                success: function(data) {
-                    data.forEach(periodo => {
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('periodos.activos') }}",
+                    method: 'post',
+                    async: false,
+                    success: function(data) {
+                        data.forEach(periodo => {
 
-                        $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                    });
-                }
-            });
+                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                        });
+                    }
+                });
 
-        }
+            }
 
             function getPeriodos() {
                 periodosSeleccionados = [];
@@ -469,7 +469,7 @@
                 $('#periodos input[type="checkbox"]').prop('checked', true);
             });
 
-            function vistaEntrada() {
+        function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSelect[key[0]];
@@ -505,56 +505,85 @@
                         }
                     })
                 }
-            }
+        }
 
-            var programasSeleccionados = [];
-            $('#generarReporte').on('click', function(e) {
+        var programasSeleccionados = [];
+        $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
                 getPeriodos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
-                console.log($('#programas input[type="checkbox"]:checked'));
-                if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                console.log(cantidadFacultades);
+
+                if (periodosSeleccionados.length > 0) {
+                    if(cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0)
+                    {
                     programasSeleccionados = [];
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
-                    });
-                    estadoUsuarioPrograma()
-                    graficosporPrograma(programasSeleccionados);
-                } else {
-                    if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                        if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos ) {
-                            location.reload();
+                    facultadesSeleccionadas = [];
+                    periodosSeleccionados = [];
+                    destruirGraficos();
+                    ocultarDivs();
+                    alertaProgramas();
+                    }
+
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                        programasSeleccionados = [];
+                        checkboxesProgramas.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
+                        estadoUsuarioPrograma()
+                        graficosporPrograma(programasSeleccionados);
+                    } else {
+                        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                            if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
+                                location.reload();
+                            } else {
+                                $('#mensaje').hide();
+                                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                                programasSeleccionados = [];
+                                facultadesSeleccionadas = [];
+                                checkboxesSeleccionados.each(function() {
+                                    facultadesSeleccionadas.push($(this).val());
+                                });
+                                estadoUsuarioFacultad()
+                                graficosporFacultad(facultadesSeleccionadas);
+                            }
                         } else {
-                            $('#mensaje').hide();
-                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            /** Alerta */
                             programasSeleccionados = [];
                             facultadesSeleccionadas = [];
-                            checkboxesSeleccionados.each(function() {
-                                facultadesSeleccionadas.push($(this).val());
-                            });
-                            estadoUsuarioFacultad()
-                            graficosporFacultad(facultadesSeleccionadas);
+                            periodosSeleccionados = [];
+                            destruirGraficos();
+                            ocultarDivs();
+                            alertaFacultad();
                         }
-                    } else {
-                        /** Alerta */
-                        programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
-                        periodosSeleccionados = [];
-                        destruirGraficos();
-                        ocultarDivs();
-                        alertaFacultad();
                     }
+                } else {
+                    programasSeleccionados = [];
+                    facultadesSeleccionadas = [];
+                    periodosSeleccionados = [];
+                    destruirGraficos();
+                    ocultarDivs();
+                    alertaPeriodos();
                 }
-            });
+        });
 
             function alertaFacultad() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Debes seleccionar al menos una facultad',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
+
+            function alertaPeriodos() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un periodo',
                     confirmButtonColor: '#dfc14e',
                 })
             }
@@ -569,20 +598,20 @@
             }
 
             function limpiarTitulos() {
-            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
-            var parteEliminar = ': ';
-            elementosTitulos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-            });
-            var parteTituloEliminar = 'Periodo: ';
-            var titulosPeriodos = $('.tituloPeriodo').find("strong");
-            titulosPeriodos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-            });
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+                var parteEliminar = ': ';
+                elementosTitulos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
+                var parteTituloEliminar = 'Periodo: ';
+                var titulosPeriodos = $('.tituloPeriodo').find("strong");
+                titulosPeriodos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
             }
 
             function estadoUsuarioPrograma() {
@@ -591,9 +620,9 @@
                 $("#mensaje").empty();
 
                 var periodosArray = Object.values(periodos);
-                    var periodosFormateados = periodosArray.map(function(periodo) {
+                var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
-                    }).join(' - ');
+                }).join(' - ');
 
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
@@ -615,20 +644,20 @@
                 var periodos = getPeriodos();
                 $("#mensaje").empty();
                 var facultadesArray = Object.values(facultadesSeleccionadas);
-                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                var facultadesFormateadas = facultadesArray.map(function(facultad) {
                     return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                    }).join(' - ');
-                
+                }).join(' - ');
+
                 var periodosArray = Object.values(periodos);
-                    var periodosFormateados = periodosArray.map(function(periodo) {
+                var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
-                    }).join(' - ');    
+                }).join(' - ');
 
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 } else {
-                    
+
                     var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
                 }
@@ -636,8 +665,6 @@
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }
-
-
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -683,7 +710,7 @@
 
             var chartTipoEstudiante;
 
-            var chartOperadores;      
+            var chartOperadores;
 
             var chartProgramas;
 
@@ -692,19 +719,19 @@
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
              */
 
-             function graficosporFacultad(facultades) {
+            function graficosporFacultad(facultades) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
                 }
-                    graficoEstudiantesPorFacultades(facultades);
-                    graficoSelloFinancieroPorFacultad(facultades);
-                    graficoRetencionPorFacultad(facultades);
-                    graficoSelloPrimerIngresoPorFacultad(facultades);
-                    graficoTiposDeEstudiantesFacultad(facultades);
-                    graficoOperadoresFacultad(facultades);
-                    graficoProgramasFacultad(facultades);
+                graficoEstudiantesPorFacultades(facultades);
+                graficoSelloFinancieroPorFacultad(facultades);
+                graficoRetencionPorFacultad(facultades);
+                graficoSelloPrimerIngresoPorFacultad(facultades);
+                graficoTiposDeEstudiantesFacultad(facultades);
+                graficoOperadoresFacultad(facultades);
+                graficoProgramasFacultad(facultades);
             }
 
             /** 
@@ -1891,23 +1918,23 @@
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    }
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        data = {
-                            idfacultad: facultadesSeleccionadas,
-                            periodos: periodosSeleccionados
-                        }
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
                         var url = "{{ route('tiposEstudiantes.total.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        data = {
-                            idfacultad: facultadesSelect,
-                            periodos: periodosSeleccionados
-                        }
+                            data = {
+                                idfacultad: facultadesSelect,
+                                periodos: periodosSeleccionados
+                            }
                     }
                 }
                 $.ajax({
@@ -2003,23 +2030,23 @@
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    }
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        data = {
-                            idfacultad: facultadesSeleccionadas,
-                            periodos: periodosSeleccionados
-                        }
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
                         var url = "{{ route('operadoresTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        data = {
-                            idfacultad: facultadesSelect,
-                            periodos: periodosSeleccionados
-                        }
+                            data = {
+                                idfacultad: facultadesSelect,
+                                periodos: periodosSeleccionados
+                            }
                     }
                 }
                 $.ajax({
@@ -2030,10 +2057,9 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        try{
+                        try {
                             data = jQuery.parseJSON(data);
-                        }
-                        catch{
+                        } catch {
                             data = data;
                         }
                         var labels = data.data.map(function(elemento) {
@@ -2123,13 +2149,13 @@
             function graficoProgramasTotal() {
                 if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    data = {
-                        idfacultad: facultadesSeleccionadas,
-                        periodos: periodosSeleccionados
-                    }
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
                 } else {
                     var url = "{{ route('programasTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    data = '';
+                        data = '';
                 }
                 $.ajax({
                     headers: {

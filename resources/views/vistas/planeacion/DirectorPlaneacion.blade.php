@@ -386,7 +386,7 @@
          */
         function Contador() {
             totalSeleccionado = $('#programas input[type="checkbox"]').length;
-            totalPeriodos = $('periodos input[type="checkbox"]').length;
+            totalPeriodos = $('#periodos input[type="checkbox"]').length;
         }
 
         function limpiarTitulos() {

@@ -799,7 +799,7 @@ class InformeMafiController extends Controller
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
 
-        dd($tabla);
+       
         if ($tabla == "Mafi") {
             /**
              * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante
@@ -1095,6 +1095,7 @@ class InformeMafiController extends Controller
      */
     public function tiposEstudiantesTotal($tabla){
         $tabla = trim($tabla);
+        
         if ($tabla == "Mafi") {
             /**
              * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
@@ -1189,8 +1190,8 @@ class InformeMafiController extends Controller
             ->get();
         }
         
-        if($tabla == "estudiantes"){
-            $tipoEstudiantes = DB::table('datosMafi')
+        if($tabla == "planeacion"){
+            $tipoEstudiantes = DB::table('estudiantes')
             ->where('programado_ciclo1', 'OK')
             ->where('programado_ciclo2', 'OK')
             ->whereIn('marca_ingreso', $periodos)

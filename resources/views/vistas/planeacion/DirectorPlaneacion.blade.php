@@ -458,7 +458,8 @@
             e.preventDefault();
             Contador();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                
+                console.log(totalPeriodos);
+                console.log(totalSeleccionado);
                 if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
                     location.reload();
                 }

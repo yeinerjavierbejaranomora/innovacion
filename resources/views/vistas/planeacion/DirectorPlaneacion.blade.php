@@ -266,7 +266,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 <script>
     $(document).ready(function() {
@@ -467,34 +467,33 @@
             e.preventDefault();
             var periodosSeleccionados = getPeriodos();
             Contador();
-            if(periodosSeleccionados.length > 0){
-            if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
-                    location.reload();
+            if (periodosSeleccionados.length > 0) {
+                if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                    if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
+                        location.reload();
+                    }
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    console.log(programasSeleccionados);
+                    estadoUsuario();
+                    graficosporPrograma();
+                } else {
+                    programasSeleccionados = [];
+                    $("#mensaje").empty();
+                    destruirGraficos();
+                    ocultarDivs();
+                    alerta();
                 }
-                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                programasSeleccionados = [];
-                checkboxesProgramas.each(function() {
-                    programasSeleccionados.push($(this).val());
-                });
-                console.log(programasSeleccionados);
-                estadoUsuario();
-                graficosporPrograma();
             } else {
                 programasSeleccionados = [];
+                periodosSeleccionados = [];
                 $("#mensaje").empty();
                 destruirGraficos();
                 ocultarDivs();
-                alerta();
-            }
-            }
-         else{
-            programasSeleccionados = [];
-            periodosSeleccionados = [];
-            $("#mensaje").empty();
-            destruirGraficos();
-            ocultarDivs();
-            alertaPeriodo();
+                alertaPeriodo();
             }
         });
 

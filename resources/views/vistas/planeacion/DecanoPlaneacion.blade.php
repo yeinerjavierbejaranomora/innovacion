@@ -94,7 +94,6 @@
 
     <!-- Main Content -->
     <div id="content">
-        <?php dd($tabla);?>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -192,17 +191,6 @@
         </div>
 
         <div class="row justify-content-start mt-5">
-            <div class=" col-6 text-center" id="colEstudiantes">
-                <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                    <div class="card-header">
-                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="estudiantes"></canvas>
-                    </div>
-                </div>
-            </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -421,7 +409,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -699,7 +687,6 @@
                 }
             });
 
-            var chartEstudiantes;
 
             var chartEstudiantesActivos;
 
@@ -719,12 +706,12 @@
              */
 
             function graficosporFacultad(facultades) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+                if (chartProgramas ||  chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
                 }
-                graficoEstudiantesPorFacultades(facultades);
+                
                 graficoSelloFinancieroPorFacultad(facultades);
                 graficoRetencionPorFacultad(facultades);
                 graficoSelloPrimerIngresoPorFacultad(facultades);
@@ -733,85 +720,6 @@
                 graficoProgramasFacultad(facultades);
             }
 
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
-             */
-
-            function graficoEstudiantesPorFacultades(facultades) {
-
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodosSeleccionados
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-
-                                },
-
-                            },
-                            plugin: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
-            }
 
             /**
              * Método que genera el gráfico de sello financiero de alguna facultad en específico
@@ -1074,7 +982,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {
@@ -1272,7 +1180,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.codprograma;
+                            return elemento.programa;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -1355,95 +1263,18 @@
              * programas que seleccione el usuario
              */
             function graficosporPrograma(programas) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+                if (chartProgramas || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
 
                     $("#ocultarGraficoProgramas").hide();
 
-                    graficoEstudiantesPorPrograma(programas);
                     grafioSelloFinancieroPorPrograma(programas);
                     graficoRetencionPorPrograma(programas);
                     graficoSelloPrimerIngresoPorPrograma(programas);
                     graficoTiposDeEstudiantesPrograma(programas);
                     graficoOperadoresPrograma(programas);
                 }
-            }
-
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de algún programa en específico
-             */
-            function graficoEstudiantesPorPrograma(programas) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodosSeleccionados
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugin: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
             }
 
             /**
@@ -1708,7 +1539,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {
@@ -1946,7 +1777,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -2166,7 +1997,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.codprograma;
+                            return elemento.programa;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;

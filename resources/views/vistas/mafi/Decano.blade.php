@@ -361,7 +361,7 @@
             periodos();
             facultadesUsuario();
             vistaEntrada();
-            
+
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -1830,7 +1830,7 @@
              */
             var chartProgramasTotal;
 
-            function graficoProgramasTotalperiodosSeleccionados {
+            function graficoProgramasTotal() {
                 if (facultadesSeleccionadas.length > 0) {
                     var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla;
                     var data = {

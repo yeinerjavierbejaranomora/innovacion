@@ -459,11 +459,8 @@
             var periodosSeleccionados = getPeriodos();
             Contador();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                console.log(totalPeriodos);
-                console.log(totalSeleccionado);
-                console.log($('#programas input[type="checkbox"]:checked').length);
-                console.log(periodosSeleccionados.length);
-                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
+
+                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
                     location.reload();
                 }
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

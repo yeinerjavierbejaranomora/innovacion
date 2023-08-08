@@ -947,7 +947,6 @@
 
     function graficoOperadores() {
         var data;
-        url = "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla,
         data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -957,7 +956,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: url,
+                    url: "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla,
                     data: data,
                     success: function(data) {
                         data = jQuery.parseJSON(data);

@@ -488,8 +488,6 @@
         invocarGraficos();
     }
 
-
-
     /**
      * Método que genera el gráfico de sello financiero de algún programa en específico
      */
@@ -1182,3 +1180,7 @@
     }
 });
 </script>
+
+    <!-- incluimos el footer -->
+    @include('layout.footer')
+</div>

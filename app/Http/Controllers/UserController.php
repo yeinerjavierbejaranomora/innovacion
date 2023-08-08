@@ -142,7 +142,7 @@ class UserController extends Controller
                 $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
                 $data[$value] = $consulta;
             }
-            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data],);
+            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data], ['tabla' => $tabla]);
         }
         /** cargamos la vista predeterminada para cada rol con la data */
         return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['tabla' => $tabla]);

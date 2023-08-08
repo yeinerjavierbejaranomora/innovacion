@@ -234,9 +234,9 @@
                     <div class="card-header">
                     <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
-                        <div class="card-body">
-                            <canvas id="primerIngreso"></canvas>
-                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
             </div>

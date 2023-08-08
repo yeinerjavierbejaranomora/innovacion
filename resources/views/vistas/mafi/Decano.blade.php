@@ -1637,18 +1637,18 @@
 
             function tiposEstudiantesTotal() {
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
                     var data = {
                         programa: programasSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla;
                         var data = {
                             idfacultad: facultadesSeleccionadas
                         }
                     } else {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla;
                         var data = {
                             idfacultad: facultadesSelect
                         }

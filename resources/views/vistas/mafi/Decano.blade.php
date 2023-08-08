@@ -407,6 +407,24 @@
                 return periodosSeleccionados;
             }
 
+        function limpiarTitulos() {
+            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+            var parteEliminar = ': ';
+            elementosTitulos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+            var parteTituloEliminar = 'Periodo: ';
+            var titulosPeriodos = $('.tituloPeriodo').find("strong");
+            titulosPeriodos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+        }
+
+
             function estadoUsuarioPrograma() {
                 limpiarTitulos();
                 var periodos = getPeriodos();

@@ -437,7 +437,6 @@
             });
         }
 
-
         function estadoUsuario() {
             limpiarTitulos();
             var periodos = getPeriodos();

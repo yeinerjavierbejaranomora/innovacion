@@ -888,7 +888,7 @@ class InformeMafiController extends Controller
         
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
-
+        $tabla = trim($tabla);
         if($tabla == "Mafi"){
             /**
          * SELECT COUNT(operador) AS TOTAL, operador 
@@ -951,7 +951,7 @@ class InformeMafiController extends Controller
      * @return JSON retorna un JSON con los operadores, agrupados por operador
      */
     public function operadoresTotal($tabla){
-        
+        $tabla = trim($tabla);
         if($tabla == "Mafi"){
             /**
          * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
@@ -985,7 +985,7 @@ class InformeMafiController extends Controller
      */
 
     public function estudiantesProgramasTotal($tabla){
-
+        $tabla = trim($tabla);
         if($tabla == "Mafi"){
             /**
          * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
@@ -1051,7 +1051,7 @@ class InformeMafiController extends Controller
      * @return JSON retorna todos los tipos de estudiantes
      */
     public function tiposEstudiantesTotal($tabla){
-       
+        $tabla = trim($tabla);
          if($tabla == "Mafi"){
              /**
          * SELECT COUNT(tipoestudiante) AS 'TOTAL', 

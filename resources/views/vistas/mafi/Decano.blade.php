@@ -653,7 +653,7 @@
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
-
+                }
                     graficoEstudiantesPorFacultades(facultades, periodos);
                     graficoSelloFinancieroPorFacultad(facultades, periodos);
                     graficoRetencionPorFacultad(facultades, periodos);
@@ -661,7 +661,6 @@
                     graficoTiposDeEstudiantesFacultad(facultades, periodos);
                     graficoOperadoresFacultad(facultades, periodos);
                     graficoProgramasFacultad(facultades, periodos);
-                }
             }
 
 

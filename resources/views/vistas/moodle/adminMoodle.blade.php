@@ -114,7 +114,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <?php dd($tabla);?>
             <!-- Page Heading -->
             
             <br>

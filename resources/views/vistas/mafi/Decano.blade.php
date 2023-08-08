@@ -181,17 +181,6 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 class="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="estudiantes"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row text-center justify-content-center">
@@ -203,6 +192,17 @@
         </div>
 
         <div class="row justify-content-start mt-5">
+        <div class=" col-6 text-center" id="colEstudiantes">
+                    <div class="card shadow mb-5" id="chartEstudiantes">
+                        <div class="card-header">
+                            <h5 class="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="estudiantes"></canvas>
+                        </div>
+                    </div>
+                </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">

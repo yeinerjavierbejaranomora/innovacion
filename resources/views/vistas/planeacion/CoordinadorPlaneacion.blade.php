@@ -770,7 +770,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {

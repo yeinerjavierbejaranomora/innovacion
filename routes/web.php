@@ -36,13 +36,13 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/home', 'home')->middleware('auth')->name('home.index');
 
     /** Vista al pulsar el botón "Informe Mafi" */
-    Route::get('/home/mafi', 'vistasMafi')->middleware('auth')->name('home.mafi');
+    Route::get('/home/Mafi', 'vistasMafi')->middleware('auth')->name('home.mafi');
 
     /** Vista al pulsar el botón "Planeación" */
     Route::get('/home/Planeacion', 'vistasPlaneacion')->middleware('auth')->name('home.planeacion');
 
     /** Vista al pulsar el botón "Moodle" */
-    Route::get('/home/Planeacion', 'vistasMoodle')->middleware('auth')->name('home.moodle');
+    Route::get('/home/Moodle', 'vistasMoodle')->middleware('auth')->name('home.moodle');
 
     /** para cargar las vistas predefinidas en la facultad */
     Route::get('/home/facultad/', 'facultad')->middleware('auth')->name('facultad.index');

@@ -297,7 +297,6 @@
         var tabla = 'Mafi';
 
         programasUsuario();
-        Contador();
         vistaEntrada();
 
         var periodosSeleccionados = [];

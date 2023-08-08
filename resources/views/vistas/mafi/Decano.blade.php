@@ -366,12 +366,14 @@
             $(document).ajaxStart(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
                 $('div #programas input[type="checkbox"]').prop('disabled', true);
+                $('#generarReporte').prop("disabled", true);
             });
 
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
             $(document).ajaxStop(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', false);
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
+                $('#generarReporte').prop("disabled", false);
             });
 
             /**

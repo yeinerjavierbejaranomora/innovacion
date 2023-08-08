@@ -11,11 +11,6 @@
         font-size: 14px;
     }
 
-    #generarReporte {
-        margin-left: 260px;
-    }
-
-
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -26,6 +21,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+    }
+
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 12px;
     }
 
     #botonModalTiposEstudiantes,
@@ -42,14 +55,11 @@
         font-size: 14px;
     }
 
+    #cardProgramas,
+    #cardPeriodos,
     #cardFacultades {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #cardProgramas {
-        min-height: 405.6px;
-        max-height: 405.6px;
+        min-height: 250px;
+        max-height: 250px;
     }
 
     .card {
@@ -60,19 +70,15 @@
         display: none;
     }
 
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #centrar {
-        display: flex;
-        align-items: center;
-    }
 
     .graficos {
         min-height: 460px;
         max-height: 460px;
+    }
+
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
     }
 
     #tiposEstudiantesTotal,
@@ -155,19 +161,19 @@
                         <div class="card-body text-star" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
+                        <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                        </div>
                     </div>
                 </div>
                 <div class=" col-4 text-center" id="colEstudiantes">
                     <div class="card shadow mb-5" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
-                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
+                            <h5 class="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
                         <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
-                                <h5>No hay datos por mostrar</h5>
-                            </div>
                             <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
@@ -186,14 +192,12 @@
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                        <h5 class="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo">
+                            <strong< /strong>
+                        </h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -201,14 +205,12 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                        <h5 class="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 class="tituloPeriodo">
+                            <strong< /strong>
+                        </h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
@@ -216,29 +218,23 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
+                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 class="tituloPeriodo">
+                            <strong< /strong>
+                        </h5>
+                        <div class="card-body">
+                            <canvas id="primerIngreso"></canvas>
                         </div>
-                        <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -249,9 +245,8 @@
             <div class="col-6 text-center" id="colOperadores">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Operadores</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
                         <div id="vacioOperadores" class="text-center vacio" style="display: none;">
@@ -267,13 +262,10 @@
             <div class="col-6 text-center" id="colProgramas">
                 <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
+                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -281,8 +273,12 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal Todos los Tipos de estudiantes -->
-            <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
+            
+        </div>
+
+        <br>
+        <!-- Modal Todos los Tipos de estudiantes -->
+        <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -299,11 +295,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-
-        <br>
-
+        
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
@@ -350,7 +343,7 @@
 
     <script>
         $(document).ready(function() {
-
+            var tabla = 'Mafi';
             facultadesUsuario();
             vistaEntrada();
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -435,12 +428,12 @@
                 graficosporFacultad(facultadesSeleccionadas);
             }
 
-            
+
             function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSelect[key[0]];
-                
+
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     $('#colcardProgramas, #colEstudiantes').removeClass('col-4');
@@ -499,10 +492,9 @@
                 Contador();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
-                if(cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0)
-                {
+                if (cantidadFacultades === 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                     $('#mensaje').hide();
-                    alertaProgramas();   
+                    alertaProgramas();
                 }
 
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
@@ -592,35 +584,15 @@
 
             var chartEstudiantes;
 
-            /**
-             * Método que genera el gráfico de sello financiero
-             */
             var chartEstudiantesActivos;
 
-            /**
-             * Método que genera el gráfico de estudiantes con retención (ASP)
-             */
             var chartRetencion;
 
-            /**
-             * Método que genera el gráfico de estudiantes de primer ingreso
-             */
             var chartSelloPrimerIngreso;
 
-
-            /**
-             * Método que genera el gráfico con todos los tipos de estudiantes 
-             */
             var chartTipoEstudiante;
 
-            /**
-             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
-             */
-            var chartOperadores;
-
-            /**
-             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
-             */
+            var chartOperadores;      
 
             var chartProgramas;
 
@@ -661,7 +633,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.activos.facultad') }}",
+                    url: "{{ route('estudiantes.activos.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -738,7 +710,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.sello.facultad') }}",
+                    url: "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -817,7 +789,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.retencion.facultad') }}",
+                    url: "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -896,7 +868,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.primerIngreso.facultad') }}",
+                    url: "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -978,7 +950,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.tipo.facultad') }}",
+                    url: "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -1042,7 +1014,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.facultad') }}",
+                    url: "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -1108,7 +1080,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('programas.estudiantes.facultad') }}",
+                    url: "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
                         idfacultad: facultades
                     },
@@ -1199,7 +1171,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.activos.programa') }}",
+                    url: "{{ route('estudiantes.activos.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1274,7 +1246,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.sello.programa') }}",
+                    url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1353,7 +1325,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.retencion.programa') }}",
+                    url: "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1432,7 +1404,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.primerIngreso.programa') }}",
+                    url: "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1514,7 +1486,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.tipo.programa') }}",
+                    url: "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1578,7 +1550,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.programa') }}",
+                    url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                     data: {
                         programa: programas
                     },
@@ -1665,18 +1637,18 @@
 
             function tiposEstudiantesTotal() {
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+                    var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                     var data = {
                         programa: programasSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                         var data = {
                             idfacultad: facultadesSeleccionadas
                         }
                     } else {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes') }}";
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                         var data = {
                             idfacultad: facultadesSelect
                         }
@@ -1741,18 +1713,18 @@
 
             function graficoOperadoresTotal() {
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('operadores.programa.estudiantes') }}";
+                    var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
                     var data = {
                         programa: programasSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('operadores.facultad.estudiantes') }}";
+                        var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla;
                         var data = {
                             idfacultad: facultadesSeleccionadas
                         }
                     } else {
-                        var url = "{{ route('operadores.facultad.estudiantes') }}";
+                        var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla;
                         var data = {
                             idfacultad: facultadesSelect
                         }
@@ -1821,12 +1793,12 @@
 
             function graficoProgramasTotal() {
                 if (facultadesSeleccionadas.length > 0) {
-                    var url = "{{ route('FacultadTotal.estudiantes') }}";
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                     var data = {
                         idfacultad: facultadesSeleccionadas
                     }
                 } else {
-                    var url = "{{ route('FacultadTotal.estudiantes') }}";
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                     var data = {
                         idfacultad: facultadesSelect
                     }
@@ -1886,8 +1858,6 @@
 
         });
     </script>
-
-
 
     <!-- incluimos el footer -->
     @include('layout.footer')

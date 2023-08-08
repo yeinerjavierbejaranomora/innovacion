@@ -12,12 +12,6 @@
         font-size: 14px;
     }
 
-    #generarReporte {
-        width: 250px;
-        height: 45px;
-        font-size: 20px;
-    }
-
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -29,6 +23,24 @@
         place-items: center;
         font-size: 14px;
     }
+
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 12px;
+    } 
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
@@ -44,7 +56,7 @@
         font-size: 14px;
     }
 
-    #cardProgramas, #cardPeriodos {
+    #cardProgramas, #cardPeriodos,#cardFacultades {
         min-height: 250px;
         max-height: 250px;
     }
@@ -55,11 +67,6 @@
 
     .hidden {
         display: none;
-    }
-
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
     }
 
 

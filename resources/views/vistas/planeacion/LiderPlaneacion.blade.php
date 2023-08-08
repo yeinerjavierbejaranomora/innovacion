@@ -3,6 +3,11 @@
 @include('menus.menu_Lider')
 <!--  creamos el contenido principal body -->
 
+@include('layout.header')
+
+@include('menus.menu_Coordinador')
+<!--  creamos el contenido principal body -->
+
 <style>
     #facultades {
         font-size: 14px;
@@ -83,7 +88,6 @@
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
-
     <!-- Main Content -->
     <div id="content">
 
@@ -161,17 +165,6 @@
             </div>
 
         <div class="row justify-content-start mt-5">
-            <div class=" col-6 text-center" id="colEstudiantes">
-                <div class="card shadow mb-5 graficos">
-                    <div class="card-header">
-                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="estudiantes"></canvas>
-                    </div>
-                </div>
-            </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -280,6 +273,11 @@
 </div>
 
 <script>
+
+    $(document).ready(function() {
+
+    var tabla = <?php echo json_encode($tabla); ?>;
+    console.log (tabla);
     programasUsuario();
     Contador();
     vistaEntrada();
@@ -365,7 +363,6 @@
      * Método que trae los gráficos de la vista
      */
     function invocarGraficos() {
-        graficoEstudiantes();
         grafioSelloFinanciero();
         graficoRetencion();
         graficoSelloPrimerIngreso();
@@ -440,7 +437,7 @@
      * Método para destruir todos los gráficos
      */
     function destruirGraficos() {
-        [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+        [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
     }
 
     /**
@@ -485,7 +482,7 @@
     });
 
     function graficosporPrograma() {
-        if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
+        if (chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
             chartTipoEstudiante || chartOperadores) {
             destruirGraficos();
         }
@@ -496,94 +493,13 @@
         invocarGraficos();
     }
 
-    /** 
-     * Método que muestra los estudiantes activos e inactivos de algún programa en específico
-     */
-    var chartEstudiantes;
-
-    function graficoEstudiantes() {
-
-        var url = "{{ route('estudiantes.activos.programa') }}";
-        var data = {
-            programa: programasSeleccionados,
-            periodos: periodosSeleccionados
-        }
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: url,
-            data: data,
-            success: function(data) {
-                data = jQuery.parseJSON(data);
-                var labels = data.data.map(function(elemento) {
-                    return elemento.estado;
-                });
-                var valores = data.data.map(function(elemento) {
-                    return elemento.TOTAL;
-                });
-                // Crear el gráfico circular
-                var ctx = document.getElementById('estudiantes').getContext('2d');
-                chartEstudiantes = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels.map(function(label, index) {
-                            label = label.toUpperCase();
-                            return label + 'S: ' + valores[index];
-                        }),
-                        datasets: [{
-                            label: 'Gráfico Circular',
-                            data: valores,
-                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            datalabels: {
-                                formatter: function(value, context) {
-                                    return value;
-                                },
-                            },
-                            labels: {
-                                render: 'percenteaje',
-                                size: '14',
-                                fontStyle: 'bolder',
-                                position: 'outside',
-                                textMargin: 6
-                            },
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    usePointStyle: true,
-                                    padding: 20,
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            }
-                        },
-                    },
-                    plugin: [ChartDataLabels]
-                });
-                if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                    $('#colEstudiantes').addClass('hidden');
-                } else {
-                    $('#colEstudiantes').removeClass('hidden');
-                }
-            }
-        });
-    }
-
     /**
      * Método que genera el gráfico de sello financiero de algún programa en específico
      */
     var chartEstudiantesActivos;
 
     function grafioSelloFinanciero() {
-        var url = "{{ route('estudiantes.sello.programa') }}";
+        var url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla;
         var data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -667,7 +583,7 @@
 
     function graficoRetencion() {
 
-        var url = "{{ route('estudiantes.retencion.programa') }}";
+        var url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla;
         var data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -753,7 +669,7 @@
 
     function graficoSelloPrimerIngreso() {
 
-        var url = "{{ route('estudiantes.primerIngreso.programa') }}";
+        var url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla;
         var data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -841,7 +757,7 @@
 
     function graficoTiposDeEstudiantes() {
 
-        var url = "{{ route('estudiantes.tipo.programa') }}";
+        var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla;
         var data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -857,7 +773,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {
@@ -941,7 +857,7 @@
     var chartOperadores;
 
     function graficoOperadores() {
-        url = "{{ route('estudiantes.operador.programa') }}";
+        url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla;
         data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
@@ -1060,7 +976,7 @@
 
     function tiposEstudiantesTotal() {
         var data;
-        var url = "{{ route('tiposEstudiantes.programa.estudiantes') }}";
+        var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,
@@ -1082,7 +998,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
+                            return elemento.tipo_estudiante;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -1163,7 +1079,7 @@
 
     function graficoOperadoresTotal() {
         var data;
-        var url = "{{ route('operadores.programa.estudiantes') }}";
+        var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
         if (programasSeleccionados.length > 0) {
             data = {
                 programa: programasSeleccionados,
@@ -1267,4 +1183,9 @@
                 });
 
     }
+});
 </script>
+
+    <!-- incluimos el footer -->
+    @include('layout.footer')
+</div>

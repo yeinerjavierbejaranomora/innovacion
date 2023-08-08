@@ -281,8 +281,10 @@
 
 <script>
 
-    
+    $(document).ready(function() {
 
+    var tabla = <?php echo json_encode($tabla); ?>;
+    console.log (tabla);
     programasUsuario();
     Contador();
     vistaEntrada();
@@ -1270,4 +1272,5 @@
                 });
 
     }
+});
 </script>

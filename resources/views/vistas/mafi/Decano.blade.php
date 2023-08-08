@@ -514,7 +514,6 @@
                 getPeriodos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
-                console.log (totalProgramas);
                 console.log($('#programas input[type="checkbox"]:checked'));
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
@@ -590,6 +589,12 @@
                 limpiarTitulos();
                 var periodos = getPeriodos();
                 $("#mensaje").empty();
+
+                var periodosArray = Object.values(periodos);
+                    var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                    }).join(' - ');
+
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
@@ -599,7 +604,10 @@
                     var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
                     $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + programasSeleccionados);
                 }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
+
             }
 
             function estadoUsuarioFacultad() {
@@ -698,7 +706,6 @@
                     graficoOperadoresFacultad(facultades);
                     graficoProgramasFacultad(facultades);
             }
-
 
             /** 
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico

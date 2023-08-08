@@ -1275,3 +1275,6 @@
 
 });
 </script>
+
+@include('layout.footer')
+</div>

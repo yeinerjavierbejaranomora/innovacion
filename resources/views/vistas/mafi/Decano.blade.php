@@ -467,11 +467,8 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
                 console.log(facultadesSeleccionadas);
-                var periodosSeleccionados = {
-                    periodos: 202313
-                };
-                console.log (periodosSeleccionados);
-                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+
+                graficosporFacultad(facultadesSeleccionadas);
             }
 
             $('#deshacerProgramas').on('click', function(e) {
@@ -647,8 +644,9 @@
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
              */
 
-             function graficosporFacultad(facultades, periodos) {
-                console.log ('entra');
+             function graficosporFacultad(facultades) {
+                var periodos = getPeriodos();
+                console.log (periodos);
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                     chartTipoEstudiante || chartOperadores) {
                     destruirGraficos();

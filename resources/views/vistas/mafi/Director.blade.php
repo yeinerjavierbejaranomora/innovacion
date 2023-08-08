@@ -303,7 +303,8 @@
     invocarGraficos();
     getPeriodos();
 
-    var totalSeleccionado
+    var totalSeleccionado;
+    var totalPeriodos;
 
     var programasSeleccionados = [];
 
@@ -407,6 +408,7 @@
      */
     function Contador() {
         totalSeleccionado = $('#programas input[type="checkbox"]').length;
+        totalPeriodos = $('#periodos input[type="checkbox"]').length;
     }
 
     function limpiarTitulos() {
@@ -476,9 +478,10 @@
 
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();
+        Contador();
         getPeriodos();
         if ($('#programas input[type="checkbox"]:checked').length > 0) {
-            if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado) {
+            if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {
                 location.reload();
             }
             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

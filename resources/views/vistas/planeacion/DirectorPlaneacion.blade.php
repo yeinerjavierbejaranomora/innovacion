@@ -456,7 +456,6 @@
 
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
-            console.log('cambio');
             Contador();
             if ($('#programas input[type="checkbox"]:checked').length > 0) {
                 if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && $('#periodos input[type="checkbox"]:checked').lenght == totalPeriodos) {

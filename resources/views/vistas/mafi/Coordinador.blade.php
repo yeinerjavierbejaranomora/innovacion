@@ -850,7 +850,7 @@
         data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
-        }
+        };
         $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -947,11 +947,11 @@
 
     function graficoOperadores() {
         var data;
-        url = "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla;
+        url = "{{ route('estudiantes.operador.programa'['tabla' => ' ']) }}" + tabla,
         data = {
             programa: programasSeleccionados,
             periodos: periodosSeleccionados
-        }
+        };
         $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

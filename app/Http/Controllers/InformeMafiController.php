@@ -1212,21 +1212,15 @@ class InformeMafiController extends Controller
         $riesgoAlto = [];
         $riesgoMedio = [];
         $riesgoBajo = [];
-        $Test = [];
 
         $fecha = DB::table('datos_moodle')->select('FechaUltimoAcceso')->get();
 
         $fechaActual = new DateTime();
 
-        foreach ($fecha as $data)
-        {
-            $Test = $data;
-        }
-        
-        
-        dd($Test);
+
+        dd($fecha);
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $Test));
+        echo json_encode(array('data' => $fecha));
 
     }
 }

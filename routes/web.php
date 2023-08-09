@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\facultadController;
 use App\Http\Controllers\HistorialEstudianteController;
 use App\Http\Controllers\InformeMafiController;
+use App\Http\Controllers\InformeMoodleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,7 +160,7 @@ Route::controller(InformeMafiController::class)->group(function () {
 Route::controller(InformeMoodleController::class)->group(function () {
     
     /** Ruta para informe de ausentismo */
-    Route::get('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
+    Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
 
 });
 

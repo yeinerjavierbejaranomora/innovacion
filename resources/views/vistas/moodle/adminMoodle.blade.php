@@ -462,6 +462,9 @@
                         data: [50,30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                         backgroundColor: ['rgba(255, 99, 132, 0.5)','rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
                         borderWidth: 1,
+                        cutout: '90%',
+                        circumference: 180,
+                        rotatio: 270,
                     }, ],
                 },
                 options: {
@@ -469,12 +472,11 @@
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
                     plugins: {
                         legend: {
-                            display: true, 
+                            display: false, 
                         },
-                        title: {
-                            display: true,
-                            text: 'Semicircunferencia con Chart.js',
-                        },
+                        tooltip: {
+                            enabled: false
+                        }
                     },
                 },
             });     

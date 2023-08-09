@@ -482,7 +482,7 @@
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            weight: 'light',
+                                            weight: 'semibold',
                                             size: 20,
                                         },
                                     },

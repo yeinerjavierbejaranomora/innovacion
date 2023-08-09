@@ -159,7 +159,7 @@ Route::controller(InformeMafiController::class)->group(function () {
 Route::controller(InformeMoodleController::class)->group(function () {
     
     /** Ruta para informe de ausentismo */
-    Route::post('/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
+    Route::get('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
 
 });
 

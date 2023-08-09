@@ -435,8 +435,8 @@
                     url: "{{ route('moodle.riesgo') }}",
                     method: 'post',
                     success: function(data) {
-                        data.forEach(fechas => {
-                            console.log (fechas);
+                        data.forEach(riesgo => {
+                            console.log (riesgo);
                         });
                     }
                 });

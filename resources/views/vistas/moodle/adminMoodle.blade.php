@@ -41,7 +41,7 @@
         font-weight: 800;
         place-items: center;
         font-size: 12px;
-    } 
+    }
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
@@ -57,7 +57,9 @@
         font-size: 14px;
     }
 
-    #cardProgramas, #cardPeriodos,#cardFacultades {
+    #cardProgramas,
+    #cardPeriodos,
+    #cardFacultades {
         min-height: 250px;
         max-height: 250px;
     }
@@ -85,6 +87,7 @@
         min-height: 350px;
         max-height: 350px;
     }
+
     #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
@@ -112,14 +115,14 @@
                 </div>
             </div>
 
-            
+
         </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            
+
             <br>
             <div class="text-center" id="mensaje">
                 <h5>Por defecto se muestran los datos de todas las facultades,
@@ -135,8 +138,8 @@
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Periodos</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">  
-                        <div name="periodos" id="periodos">
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                            <div name="periodos" id="periodos">
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
@@ -201,13 +204,15 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo"><strong</strong></h5>
+                        <h5 class="tituloPeriodo">
+                            <strong< /strong>
+                        </h5>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
 
         <div class="row justify-content-start mt-3 columnas">
@@ -321,7 +326,7 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', true);
                 $('#generarReporte').prop("disabled", true);
             });
-            
+
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
             $(document).ajaxStop(function() {
                 $('div #facultades input[type="checkbox"]').prop('disabled', false);
@@ -374,8 +379,8 @@
              */
             function getPeriodos() {
                 var periodosSeleccionados = [];
-               var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-               checkboxesSeleccionados.each(function() {
+                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
@@ -424,9 +429,9 @@
                     text: 'Debes seleccionar al menos un periodo',
                     confirmButtonColor: '#dfc14e',
                 })
-            } 
+            }
 
-            function Riesgo(){
+            function Riesgo() {
 
                 var datos = $.ajax({
                     headers: {
@@ -436,7 +441,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(riesgo => {
-                            console.log (riesgo);
+                            console.log(riesgo);
                         });
                     }
                 });
@@ -444,6 +449,35 @@
 
         });
 
+        function grafico() {
+            const config = {
+                type: 'doughnut',
+                data: {
+                    labels: ['Semicircunferencia'],
+                    datasets: [{
+                        data: [50], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                        backgroundColor: ['rgba(255, 99, 132, 0.5)'], // Color de fondo para la semicircunferencia
+                        borderWidth: 0,
+                    }, ],
+                },
+                options: {
+                    responsive: true,
+                    cutout: '50%', // Esto cortará el centro para formar la semicircunferencia
+                    plugins: {
+                        legend: {
+                            display: false, // No mostrar la leyenda
+                        },
+                        title: {
+                            display: true,
+                            text: 'Semicircunferencia con Chart.js',
+                        },
+                    },
+                },
+            };
+
+            // Crear el gráfico en un elemento con el ID 'myChart'
+            var myChart = new Chart(document.getElementById('nuevo'), config);
+        }
     </script>
 
 

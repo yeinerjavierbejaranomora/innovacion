@@ -267,7 +267,7 @@
             <div class="card-body">
                 <!--Datatable-->
                 <div class="table">
-                    <table id="tabla" class="display" style="width:100%">
+                    <table id="datatable" class="display" style="width:100%">
                     </table>
                 </div>
             </div>
@@ -724,7 +724,7 @@
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
-                        var table = $('#tabla').DataTable({
+                        var table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 25,
                             "columns": [{

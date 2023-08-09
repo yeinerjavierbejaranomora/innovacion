@@ -454,6 +454,7 @@
 
         function grafico() {
             var ctx = document.getElementById('alto').getContext('2d');
+            var titulo = 'Estudiantes ' + data[0];
             chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -466,7 +467,8 @@
                         circumference: 180,
                         rotation: 270,
                     }, ],
-                },   
+                },
+                
                 options: {
                     responsive: true,
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
@@ -476,7 +478,7 @@
                         },
                         title: {
                             display: true,
-                            text: data[0],
+                            text: titulo,
                         },
                         tooltip: {
                             enabled: false

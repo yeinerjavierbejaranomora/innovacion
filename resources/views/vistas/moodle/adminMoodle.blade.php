@@ -210,7 +210,7 @@
             </div>    
         </div>
 
-        <div class="row justify-content-start mt-5 columnas">
+        <div class="row justify-content-start mt-3 columnas">
             <div class="col-4 text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-4">
                     <div class="card-header">

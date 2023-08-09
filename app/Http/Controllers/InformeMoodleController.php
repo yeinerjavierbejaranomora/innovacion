@@ -28,9 +28,11 @@ class InformeMoodleController extends Controller
     }
 
 
-    public function riesgo()
-    {
+    public function riesgo(){
 
+        $test = 'entra';
+        var_dump($test);
+        die();
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(riesgo) AS TOTAL, riesgo'))->groupBy('riesgo')->get();
 
         foreach ($riesgos as $riesgo) {
@@ -53,3 +55,5 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 }
+
+?>

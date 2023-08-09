@@ -586,7 +586,8 @@
                                     size: '14',
                                     fontStyle: 'bolder',
                                     position: 'outside',
-                                    textMargin: 6
+                                    textMargin: 6,
+                                    padding: 30,
                                 },
                                 legend: {
                                     position: 'right',

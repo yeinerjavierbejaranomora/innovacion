@@ -464,7 +464,7 @@
                         borderWidth: 1,
                         cutout: '90%',
                         circumference: 180,
-                        rotatio: 270,
+                        rotation: 270,
                     }, ],
                 },
                 options: {

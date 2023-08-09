@@ -718,7 +718,7 @@
             }
 
             $('#botonAlto').on('click', function(e) {
-                var riesgo = $('#botonAlto').data('value')
+                var riesgo = $(this).data('value')
                 console.log(riesgo);
                 
                 // dataTable();

@@ -11,6 +11,7 @@ use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
 use App\Http\Util\Constantes;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -1204,5 +1205,28 @@ class InformeMafiController extends Controller
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
+    }
+
+    public function informeAusentismo(){
+
+        $riesgoAlto = [];
+        $riesgoMedio = [];
+        $riesgoBajo = [];
+        $Test = [];
+
+        $fecha = DB::table('datos_moodle')->select('FechaUltimoAcceso')->get();
+
+        $fechaActual = new DateTime();
+
+        foreach ($fecha as $data)
+        {
+            $fechaDB = new DateTime($data);
+            $Test[] = $fechaDB;
+        }
+        
+        dd($Test);
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $Test));
+
     }
 }

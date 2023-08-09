@@ -13,6 +13,13 @@
         font-size: 14px;
     }
 
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
     .btn {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -222,7 +229,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body text-center justify-content-center">
+                    <div class="card-body text-center justify-content-center center-chart">
                         <canvas id="alto"></canvas>
                     </div>
                 </div>

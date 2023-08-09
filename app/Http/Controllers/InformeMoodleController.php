@@ -87,7 +87,7 @@ class InformeMoodleController extends Controller
     function estudiantesRiesgo($riesgo) {
         $estudiantes = DB:: table ('datos_moodle')
         ->where('Riesgo', $riesgo)
-        ->select('Id_Banner','Nombre', 'Apellidos','Facultad','Programa')
+        ->select('Id_Banner','Nombre', 'Apellido','Facultad','Programa')
         ->get();
 
         dd($estudiantes);

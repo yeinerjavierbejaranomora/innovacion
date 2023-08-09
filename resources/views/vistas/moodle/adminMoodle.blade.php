@@ -736,7 +736,7 @@
                                     title: 'Nombre'
                                 },
                                 {
-                                    data: 'Apellidos',
+                                    data: 'Apellido',
                                     title: 'Apellidos'
                                 },
                                 {

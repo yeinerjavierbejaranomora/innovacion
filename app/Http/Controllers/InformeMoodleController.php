@@ -73,13 +73,14 @@ class InformeMoodleController extends Controller
     }
 
     public function retencion(){
-            $retencion = DB::table('datos_moodle')
+            
+        $retencion = DB::table('datos_moodle')
                 ->where('Sello', 'NO EXISTE')
                 ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
                 ->groupBy('Autorizado_ASP')
                 ->get();
         
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $retencion));
     }
 }
-
-?>

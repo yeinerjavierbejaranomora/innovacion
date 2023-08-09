@@ -449,13 +449,15 @@
                     method: 'post',
                     success: function(data) {
                         var ctx = document.getElementById('alto').getContext('2d');
-                        var Total = data.total - data.alto;
+                        var TotalAlto = data.total - data.alto;
+                        var TotalMedio = data.total - data.medio;
+                        var TotalBajo = data.total - data.bajo;
                     chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
-                                    data: [data.alto, Total], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    data: [data.alto, Total]Alto, // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
                                     borderWidth: 1,
                                     cutout: '70%',
@@ -497,6 +499,106 @@
                             },
                             plugins: [ChartDataLabels]
                         });
+                    
+                    ctx = document.getElementById('medio').getContext('2d');
+                    chartRiesgoMedio = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Score', 'Gray Area'],
+                                datasets: [{
+                                    data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    backgroundColor: ['rgba(255, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: Total,
+                                        color: 'red',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                            weight: 'light',
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    
+                
+                    ctx = document.getElementById('bajo').getContext('2d');
+                    chartRiesgoBajo = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Score', 'Gray Area'],
+                                datasets: [{
+                                    data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: Total,
+                                        color: 'red',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                            weight: 'light',
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    
                     }
                 });
             }

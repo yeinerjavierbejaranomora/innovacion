@@ -583,11 +583,14 @@
                                 },
                                 labels: {
                                     render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
+                                    font:{
+                                        size: 14,
+                                        weight: 'bold',
+                                    },
                                     position: 'outside',
                                     textMargin: 6,
-                                    padding: 200,
+                                    padding: 10,
+                                    minMargin: 10,
                                 },
                                 legend: {
                                     position: 'right',

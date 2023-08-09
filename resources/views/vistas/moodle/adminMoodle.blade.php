@@ -579,8 +579,7 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 datalabels: {
-                                    display: false,
-                                    },
+                                    display:false,
                                 },
                                 labels: {
                                     render: 'percenteaje',

@@ -228,7 +228,7 @@
                         <canvas id="alto"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a class="btn botonModal"> Ver más </a>
+                        <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -242,7 +242,7 @@
                         <canvas id="medio"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a class="btn botonModal"> Ver más </a>
+                        <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -256,7 +256,7 @@
                         <canvas id="bajo"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a class="btn botonModal"> Ver más </a>
+                        <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
                     </div>
                 </div>
             </div>
@@ -717,7 +717,15 @@
                 });
             }
 
-            
+            $('#botonAlto').on('click', function(e) {
+                var riesgo = $('#botonAlto').data('value')
+                console.log(riesgo);
+                
+                // dataTable();
+            });
+
+
+
             function dataTable() {
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo'=>'ALTO']) }}";
@@ -728,7 +736,7 @@
                         var data = JSON.parse(this.responseText);
                         var table = $('#datatable').DataTable({
                             "data": data.data,
-                            'pageLength': 25,
+                            'pageLength': 10,
                             "columns": [{
                                     data: 'Id_Banner',
                                     title: 'Id Banner'
@@ -757,7 +765,7 @@
                     }
                 }
             }
-            
+
         });
     </script>
 

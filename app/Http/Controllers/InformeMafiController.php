@@ -21,8 +21,6 @@ use Illuminate\Support\Facades\Session;
 
 class InformeMafiController extends Controller
 {
-
-
     public function __construct()
     {
         $this->middleware('auth');

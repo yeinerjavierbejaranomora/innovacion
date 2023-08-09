@@ -203,57 +203,40 @@
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 text-center " id="colPrimerIngreso">
-                <div class="card shadow mb-6 graficos">
+            </div>    
+        </div>
+
+        <div class="row justify-content-start mt-5 columnas">
+            <div class="col-4 text-center " id="colSelloFinanciero">
+                <div class="card shadow mb-4 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="primerIngreso"></canvas>
+                        <canvas id="alto"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center " id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficosBarra">
+            <div class="col-4 text-center " id="colSelloFinanciero">
+                <div class="card shadow mb-4 graficos">
                     <div class="card-header">
-                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="tipoEstudiante"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalTiposEstudiantes" class="btn botonModal" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                        <canvas id="medio"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center " id="colOperadores">
-                <div class="card shadow mb-6 graficosBarra">
+            <div class="col-4 text-center " id="colSelloFinanciero">
+                <div class="card shadow mb-4 graficos">
                     <div class="card-header">
-                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="operadores" style="height: 400px;"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalOperador" class="btn botonModal" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colProgramas">
-                <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                    <div class="card-header">
-                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="estudiantesProgramas"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        <canvas id="bajo"></canvas>
                     </div>
                 </div>
             </div>

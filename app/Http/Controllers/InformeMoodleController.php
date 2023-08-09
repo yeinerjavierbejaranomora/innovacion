@@ -22,16 +22,11 @@ use Illuminate\Support\Facades\Session;
 class InformeMoodleController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Método que trae los periodos activos
-     * @return JSON Retorna un Json con los periodos activos
-     */
    
     public function riesgo(){
 

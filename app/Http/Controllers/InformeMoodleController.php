@@ -31,8 +31,12 @@ class InformeMoodleController extends Controller
 
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
 
+        $alto = [];
+        $medio = [];
+        $bajo = [];
+
         foreach ($riesgos as $riesgo) {
-            $tipo = $riesgo->riesgo;
+            $tipo = $riesgo->Riesgo;
             if ($tipo == 'alto') {
                 $alto[] = $tipo;
             } elseif ($tipo == 'medio') {

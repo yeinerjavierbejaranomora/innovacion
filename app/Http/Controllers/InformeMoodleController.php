@@ -58,8 +58,7 @@ class InformeMoodleController extends Controller
     }
 
 
-    public function sello()
-    {
+    public function sello(){
             /**
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
              *GROUP BY sello
@@ -71,6 +70,15 @@ class InformeMoodleController extends Controller
        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
+    }
+
+    public function retencion(){
+            $retencion = DB::table('datos_moodle')
+                ->where('Sello', 'NO EXISTE')
+                ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
+                ->groupBy('Autorizado_ASP')
+                ->get();
+        
     }
 }
 

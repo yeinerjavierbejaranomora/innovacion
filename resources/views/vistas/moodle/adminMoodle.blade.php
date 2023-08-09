@@ -290,7 +290,8 @@
             periodos();
             facultades();
             riesgo();
-            graficoSello()
+            graficoSello();
+            graficoRetencion();
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */
@@ -548,6 +549,7 @@
                 });
             }
 
+            var chartSello
             function graficoSello() {
                 var url = '/home/Moodle/sello';
                 $.getJSON(url, function(data) {
@@ -559,7 +561,7 @@
                     });
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
-                    chartEstudiantesActivos = new Chart(ctx, {
+                    chartSello = new Chart(ctx, {
                         type: 'pie',
                         data: {
                             labels: labels.map(function(label, index) {
@@ -615,6 +617,93 @@
                 });
             }
 
+            var chartRetencion;
+
+            function graficoRetencion() {
+                var url = '/home/Moodle/retencion';
+                $.getJSON(url, function(data) {
+
+                    var total = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+
+                    total = total.reduce((a, b) => a + b, 0);
+
+
+                    var labels = data.data.map(function(elemento) {
+
+                        return elemento.Autorizado_ASP;
+                    });
+                    var valores = data.data.map(function(elemento) {
+
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('retencion').getContext('2d');
+                    chartRetencion = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == '') {
+                                    label = 'SIN MARCACIÓN'
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            layout: {
+                                padding: {
+                                    left: 25,
+                                    right: 20,
+                                },
+                            },
+                            plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    display: 'auto',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        content: 'Total: ' + total,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugins: [ChartDataLabels]
+                    });
+                    if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                        $('#colRetencion').addClass('hidden');
+                    } else {
+                        $('#colRetencion').removeClass('hidden');
+                    }
+                });
+            }
         });
 
 

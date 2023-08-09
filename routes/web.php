@@ -161,9 +161,10 @@ Route::controller(InformeMoodleController::class)->group(function () {
     
     /** Ruta para informe de ausentismo */
     Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
-     /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
-     Route::get('/home/Moodle/sello', 'sello')->middleware('auth')->name('moodle.sello');
-
+    /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
+    Route::get('/home/Moodle/sello', 'sello')->middleware('auth')->name('moodle.sello');
+    /** Ruta para cargar gráfica de sello de retención */
+    Route::get('/home/Moodle/retencion', 'retencion')->middleware('auth')->name('moodle.retencion');
 });
 
 Route::controller(MafiController::class)->group(function () {

@@ -459,8 +459,8 @@
                 data: {
                     labels: ['Semicircunferencia'],
                     datasets: [{
-                        data: [50], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                        backgroundColor: ['rgba(255, 99, 132, 0.5)'], // Color de fondo para la semicircunferencia
+                        data: [50,18,20], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                        backgroundColor: ['rgba(255, 99, 132, 0.5)','rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
                         borderWidth: 0,
                     }, ],
                 },

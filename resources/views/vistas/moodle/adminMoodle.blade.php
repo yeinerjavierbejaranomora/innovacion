@@ -470,7 +470,7 @@
                                         color: 'black',
                                         font: {
                                             weight: 'semibold',
-                                            size: 18,
+                                            size: 18
                                         },
                                     },
                                     legend: {
@@ -483,7 +483,7 @@
                                         position: 'bottom',
                                         font: {
                                             weight: 'light',
-                                            size: 24,
+                                            size: 20
                                         },
                                     },
                                     tooltip: {

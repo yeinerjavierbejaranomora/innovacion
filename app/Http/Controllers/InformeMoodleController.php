@@ -27,26 +27,27 @@ class InformeMoodleController extends Controller
         $this->middleware('auth');
     }
 
-   
-    public function riesgo(){
+
+    public function riesgo()
+    {
 
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(riesgo) AS TOTAL, riesgo'))->groupBy('riesgo')->get();
 
-        foreach ($riesgos as $riesgo){
+        foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->riesgo;
-            if($tipo == 'alto'){
+            if ($tipo == 'alto') {
                 $alto[] = $tipo;
-            }elseif($tipo == 'medio'){
+            } elseif ($tipo == 'medio') {
                 $medio[] = $tipo;
-            }else{
+            } else {
                 $bajo[] = $tipo;
             }
         }
 
         $datos = array(
-          'alto'=>$alto,
-          'medio'=>$medio,
-          'bajo'=>$bajo  
+            'alto' => $alto,
+            'medio' => $medio,
+            'bajo' => $bajo
         );
 
         return $datos;

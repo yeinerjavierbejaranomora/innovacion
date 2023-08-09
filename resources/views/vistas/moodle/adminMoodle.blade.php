@@ -452,7 +452,7 @@
         var chartRiesgo;
 
         function grafico() {
-            var ctx = document.getElementById('nuevo').getContext('2d');
+            var ctx = document.getElementById('alto').getContext('2d');
             chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -478,7 +478,7 @@
                 },
             });     
         }
-        
+
     </script>
 
 

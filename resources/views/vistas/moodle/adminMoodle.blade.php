@@ -81,6 +81,10 @@
         max-height: 600px;
     }
 
+    .graficosRiesgo {
+        min-height: 300px;
+        max-height: 300px;
+    }
     #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
@@ -208,7 +212,7 @@
 
         <div class="row justify-content-start mt-5 columnas">
             <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-4">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -219,7 +223,7 @@
                 </div>
             </div>
             <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-4">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -230,7 +234,7 @@
                 </div>
             </div>
             <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4 graficos">
+                <div class="card shadow mb-4">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>

@@ -487,7 +487,6 @@
                                         position: 'bottom',
                                         font: {
                                             size: 20,
-                                            weight: 'light',
                                         },
                                     },
                                     tooltip: {
@@ -536,7 +535,6 @@
                                         position: 'bottom',
                                         font: {
                                             size: 20,
-                                            weight: 'light',
                                         },
                                     },
                                     tooltip: {
@@ -586,7 +584,6 @@
                                         position: 'bottom',
                                         font: {
                                             size: 20,
-                                            weight: 'light',
                                         },
                                     },
                                     tooltip: {

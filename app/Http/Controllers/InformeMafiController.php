@@ -1220,7 +1220,7 @@ class InformeMafiController extends Controller
 
         foreach ($fecha as $data)
         {
-            $Test = $fechaDB;
+            $Test = $data;
         }
         
         dd($Test);

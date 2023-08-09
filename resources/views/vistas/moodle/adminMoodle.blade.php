@@ -477,16 +477,16 @@
 
                 options: {
                     responsive: true,
-                    cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
+                    cutoutPercentage: 50,
                     plugins: {
                         legend: {
                             display: false
                         },
                         title: {
                             display: true,
-                            text: 'titulo',
+                            text: 'Estudiantes en riesgo',
                             position: 'bottom',
-                            fontSize: '14',
+                            fontSize: '18',
                         },
                         tooltip: {
                             enabled: false

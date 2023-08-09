@@ -550,6 +550,7 @@
             }
 
             var chartSello
+
             function graficoSello() {
                 var url = '/home/Moodle/sello';
                 $.getJSON(url, function(data) {
@@ -609,7 +610,7 @@
                         },
                         plugins: [ChartDataLabels]
                     });
-                    if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                    if (chartSello.data.labels.length == 0 && chartSello.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
                     } else {
                         $('#colSelloFinanciero').removeClass('hidden');

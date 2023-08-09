@@ -34,10 +34,13 @@ class InformeMoodleController extends Controller
         $alto = [];
         $medio = [];
         $bajo = [];
+        $total = [];
 
         foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->Riesgo;
             $cantidad = $riesgo->TOTAL;
+
+            $total = $cantidad;
             if ($tipo == 'ALTO') {
                 $alto[] = $cantidad;
             } elseif ($tipo == 'MEDIO') {
@@ -50,7 +53,8 @@ class InformeMoodleController extends Controller
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,
-            'bajo' => $bajo
+            'bajo' => $bajo,
+            'total' => $total,
         );
         return $datos;
     }

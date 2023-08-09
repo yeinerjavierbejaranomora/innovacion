@@ -83,4 +83,13 @@ class InformeMoodleController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
+
+    function estudiantesRiesgo($riesgo) {
+        $estudiantes = DB:: table ('datos_moodle')
+        ->where('Riesgo', $riesgo)
+        ->select('Id_Banner','Nombre', 'Apellidos','Facultad','Programa')
+        ->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
+    }
 }

@@ -50,7 +50,7 @@
         font-size: 12px;
     }
 
-    .botonModal{
+    .botonModal {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -95,7 +95,6 @@
         min-height: 350px;
         max-height: 350px;
     }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -292,6 +291,7 @@
             riesgo();
             graficoSello();
             graficoRetencion();
+            dataTable();
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */
@@ -388,7 +388,7 @@
             var chartRiesgoAlto;
             var chartRiesgoMedio;
             var chartRiesgoBajo;
-            
+
             function riesgo() {
                 var datos = $.ajax({
                     headers: {
@@ -401,7 +401,7 @@
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
-                    chartRiesgoAlto = new Chart(ctx, {
+                        chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
@@ -447,9 +447,9 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                    
-                    ctx = document.getElementById('medio').getContext('2d');
-                    chartRiesgoMedio = new Chart(ctx, {
+
+                        ctx = document.getElementById('medio').getContext('2d');
+                        chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
@@ -495,10 +495,10 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                    
-                
-                    ctx = document.getElementById('bajo').getContext('2d');
-                    chartRiesgoBajo = new Chart(ctx, {
+
+
+                        ctx = document.getElementById('bajo').getContext('2d');
+                        chartRiesgoBajo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
@@ -544,7 +544,7 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                    
+
                     }
                 });
             }
@@ -582,12 +582,12 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 datalabels: {
-                                    display:false,
+                                    display: false,
                                 },
                                 labels: {
                                     render: 'percenteaje',
                                     size: '14',
-                                    fontStyle: 'bolder',   
+                                    fontStyle: 'bolder',
                                     position: 'outside',
                                     textMargin: 10,
                                     padding: 10,
@@ -703,8 +703,47 @@
                     }
                 });
             }
+
+            function dataTable() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "{{ route('moodle.estudiantes', ['riesgo'=>'ALTO']) }}";
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        var table = $('#example').DataTable({
+                            "data": data.data,
+                            'pageLength': 25,
+                            "columns": [{
+                                    data: 'Id_Banner',
+                                    title: 'Id Banner'
+                                },
+                                {
+                                    data: 'Nombre',
+                                    title: 'Nombre'
+                                },
+                                {
+                                    data: 'Apellidos',
+                                    title: 'Apellidos'
+                                },
+                                {
+                                    data: 'Facultad',
+                                    title: 'Facultad'
+                                },
+                                {
+                                    data: 'Programa',
+                                    title: 'Programa'
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    }
+                }
+            }
         });
-  
     </script>
 
 

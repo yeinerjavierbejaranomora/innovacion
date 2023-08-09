@@ -479,7 +479,7 @@
                                     title: {
                                         display: true,
                                         text: Total,
-                                        color: 'black',
+                                        color: 'red',
                                         position: 'bottom',
                                         font: {
                                             weight: 'light',

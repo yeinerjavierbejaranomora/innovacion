@@ -479,7 +479,7 @@
                                     title: {
                                         display: true,
                                         text: TotalMedio,
-                                        color: 'yellow',
+                                        color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
                                             size: 20,

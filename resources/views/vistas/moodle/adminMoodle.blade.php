@@ -469,7 +469,8 @@
                                     datalabels: {
                                         color: 'black',
                                         font: {
-                                            weight: 'semibold'
+                                            weight: 'semibold',
+                                            size: 14,
                                         },
                                     },
                                     legend: {

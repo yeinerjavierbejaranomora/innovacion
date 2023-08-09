@@ -52,8 +52,6 @@ class InformeMoodleController extends Controller
             'medio' => $medio,
             'bajo' => $bajo
         );
-
-        dd($datos);
         return $datos;
     }
 }

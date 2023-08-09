@@ -471,8 +471,10 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Estudiantes en riesgo',
+                                        text: Total,
+                                        color: 'black',
                                         position: 'bottom',
+
                                     },
                                     tooltip: {
                                         enabled: false

@@ -166,7 +166,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para cargar gráfica de sello de retención */
     Route::get('/home/Moodle/retencion', 'retencion')->middleware('auth')->name('moodle.retencion');
     /** Ruta para cargar dataTable con los estudiantes */
-    Route::get('/home/Moodle/estudiantes', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
+    Route::get('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
 });
 
 Route::controller(MafiController::class)->group(function () {

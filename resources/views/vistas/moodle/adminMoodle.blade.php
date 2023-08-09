@@ -432,7 +432,6 @@
             }
 
             function riesgo() {
-
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -449,8 +448,12 @@
 
         });
 
+
+        var chartRiesgo;
+
         function grafico() {
-            var config = {
+            var ctx = document.getElementById('nuevo').getContext('2d');
+            chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Semicircunferencia'],
@@ -473,11 +476,9 @@
                         },
                     },
                 },
-            };
-
-            // Crear el gráfico en un elemento con el ID 'myChart'
-            var myChart = new Chart(document.getElementById('nuevo'), config);
+            });     
         }
+        
     </script>
 
 

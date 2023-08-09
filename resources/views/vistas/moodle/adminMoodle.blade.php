@@ -717,8 +717,8 @@
                 });
             }
 
-            $('#botonAlto').on('click', function(e) {
-                var riesgo = $(this).data('value')
+            $('#botonAlto','#botonMedio','#botonBajo').on('click', function(e) {
+                var riesgo = $(this).data('value');
                 console.log(riesgo);
                 
                 // dataTable();

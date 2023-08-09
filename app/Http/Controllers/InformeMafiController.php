@@ -1223,6 +1223,7 @@ class InformeMafiController extends Controller
             $Test = $data;
         }
         
+        
         dd($Test);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $Test));

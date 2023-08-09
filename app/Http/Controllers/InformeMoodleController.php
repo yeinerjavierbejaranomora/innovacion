@@ -89,8 +89,6 @@ class InformeMoodleController extends Controller
         ->where('Riesgo', $riesgo)
         ->select('Id_Banner','Nombre', 'Apellido','Facultad','Programa')
         ->get();
-
-        dd($estudiantes);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }

@@ -37,12 +37,13 @@ class InformeMoodleController extends Controller
 
         foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->Riesgo;
+            $cantidad = $riesgo->TOTAL;
             if ($tipo == 'ALTO') {
-                $alto[] = $tipo;
+                $alto[$riesgo] = $cantidad;
             } elseif ($tipo == 'MEDIO') {
-                $medio[] = $tipo;
+                $medio[$riesgo] = $cantidad;
             } elseif ($tipo == 'BAJO') {
-                $bajo[] = $tipo;
+                $bajo[$riesgo] = $cantidad;
             }
         }
 

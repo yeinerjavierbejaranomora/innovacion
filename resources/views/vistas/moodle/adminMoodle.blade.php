@@ -450,7 +450,7 @@
         });
 
         function grafico() {
-            const config = {
+            var config = {
                 type: 'doughnut',
                 data: {
                     labels: ['Semicircunferencia'],

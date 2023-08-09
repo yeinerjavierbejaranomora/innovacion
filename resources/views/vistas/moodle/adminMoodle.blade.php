@@ -239,7 +239,7 @@
                 </div>
             </div>
             <div class="col-4 text-center " id="colRiesgoBajo">
-                <div class="card shadow mb-4 graficosRiesgo" >
+                <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -317,7 +317,6 @@
 
 
     <script>
-
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -458,37 +457,41 @@
             chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Score','Gray Area'],
+                    labels: ['Score', 'Gray Area'],
                     datasets: [{
-                        data: [50,30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                        backgroundColor: ['rgba(255, 99, 132, 0.5)','rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
+                        data: [50, 30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                        backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
                         borderWidth: 1,
                         cutout: '70%',
                         circumference: 180,
                         rotation: 270,
                     }, ],
                 },
-                
+
                 options: {
                     responsive: true,
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
                     plugins: {
                         legend: {
-                            display: false 
+                            display: false
                         },
                         title: {
                             display: true,
-                            text: titulo,
+                            text: 'titulo',
                         },
                         tooltip: {
                             enabled: false
                         }
                     },
+                    layout: {
+                        padding: {
+                            top: 20,
+                        }
+                    }
                 },
                 plugins: [ChartDataLabels]
-            });     
+            });
         }
-
     </script>
 
 

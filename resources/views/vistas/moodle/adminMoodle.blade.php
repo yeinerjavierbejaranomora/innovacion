@@ -446,8 +446,42 @@
                     url: "{{ route('moodle.riesgo') }}",
                     method: 'post',
                     success: function(data) {
-                        data.forEach(riesgo => {
-                            console.log(riesgo);
+                        var ctx = document.getElementById('alto').getContext('2d');
+
+                        chartRiesgo = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Score', 'Gray Area'],
+                                datasets: [{
+                                    data: [data.alto, data.total], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Estudiantes en riesgo',
+                                        position: 'bottom',
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
                         });
                     }
                 });
@@ -459,45 +493,8 @@
         var chartRiesgo;
 
         function grafico() {
-            var ctx = document.getElementById('alto').getContext('2d');
 
-            chartRiesgo = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Score', 'Gray Area'],
-                    datasets: [{
-                        data: [50, 30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                        backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
-                        borderWidth: 1,
-                        cutout: '70%',
-                        circumference: 180,
-                        rotation: 270,
-                    }, ],
-                },
 
-                options: {
-                    responsive: true,
-                    cutoutPercentage: 50,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: 'Estudiantes en riesgo',
-                            position: 'bottom',
-                            fontSize: '18',
-                            offset: -50,
-                        },
-                        tooltip: {
-                            enabled: false
-                        },
-
-                    },
-
-                },
-                plugins: [ChartDataLabels]
-            });
         }
     </script>
 

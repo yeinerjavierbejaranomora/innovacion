@@ -52,8 +52,7 @@ class InformeMoodleController extends Controller
             'bajo' => $bajo
         );
 
-        var_dump($datos);
-        die();
+        dd($datos);
         return $datos;
     }
 }

@@ -274,8 +274,6 @@
             periodos();
             facultades();
             riesgo();
-            graficoSello();
-            graficoRetencion();
 
             dataTable();
             /**

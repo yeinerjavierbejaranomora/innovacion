@@ -470,7 +470,7 @@
                                         color: 'black',
                                         font: {
                                             weight: 'semibold',
-                                            size: 14,
+                                            size: 18,
                                         },
                                     },
                                     legend: {
@@ -481,7 +481,9 @@
                                         text: Total,
                                         color: 'black',
                                         position: 'bottom',
-
+                                        font: {
+                                            size: 24,
+                                        },
                                     },
                                     tooltip: {
                                         enabled: false

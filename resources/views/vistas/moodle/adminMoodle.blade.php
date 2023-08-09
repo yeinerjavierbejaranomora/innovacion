@@ -208,7 +208,7 @@
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                         <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                            <strong></strong>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -225,7 +225,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body text-center justify-content-center center-chart">
+                    <div class="card-body center-chart">
                         <canvas id="alto"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -239,7 +239,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart">
                         <canvas id="medio"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -253,7 +253,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart">
                         <canvas id="bajo"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

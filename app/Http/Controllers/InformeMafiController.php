@@ -11,8 +11,6 @@ use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
 use App\Http\Util\Constantes;
-use DateTime;
-use DateInterval;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;

@@ -216,8 +216,8 @@
         </div>
 
         <div class="row justify-content-start mt-3 columnas">
-            <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4">
+            <div class="col-4 text-center " id="colRiesgoAlto">
+                <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -227,8 +227,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4">
+            <div class="col-4 text-center " id="colRiesgoMedio">
+                <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -238,8 +238,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-4">
+            <div class="col-4 text-center " id="colRiesgoBajo">
+                <div class="card shadow mb-4 graficosRiesgo" >
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -474,6 +474,10 @@
                     plugins: {
                         legend: {
                             display: false 
+                        },
+                        title: {
+                            display: true,
+                            text: 'Estudiantes',
                         },
                         tooltip: {
                             enabled: false

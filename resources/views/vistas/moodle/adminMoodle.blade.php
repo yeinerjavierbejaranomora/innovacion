@@ -579,10 +579,7 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
+                                    display: false,
                                     },
                                 },
                                 labels: {

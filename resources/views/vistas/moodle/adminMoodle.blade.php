@@ -462,7 +462,7 @@
                         data: [50,30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                         backgroundColor: ['rgba(255, 99, 132, 0.5)','rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
                         borderWidth: 1,
-                        cutout: '90%',
+                        cutout: '70%',
                         circumference: 180,
                         rotation: 270,
                     }, ],

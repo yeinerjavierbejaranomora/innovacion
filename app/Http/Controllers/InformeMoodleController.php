@@ -27,9 +27,8 @@ class InformeMoodleController extends Controller
 
     public function riesgo(){
 
-        $test = 'entra';
-
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
+        $Total = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
 
         $alto = [];
         $medio = [];
@@ -40,7 +39,6 @@ class InformeMoodleController extends Controller
             $tipo = $riesgo->Riesgo;
             $cantidad = $riesgo->TOTAL;
 
-            $total[] = $cantidad;
             if ($tipo == 'ALTO') {
                 $alto[] = $cantidad;
             } elseif ($tipo == 'MEDIO') {
@@ -54,7 +52,7 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $total,
+            'total' => $Total->TOTAL,           
         );
         return $datos;
     }

@@ -344,7 +344,7 @@
 
             periodos();
             facultades();
-            informeAusentismo();
+            Riesgo();
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -385,7 +385,7 @@
             /**
              * Método para verificar los periodos seleccionados
              */
-            function Riesgo() {
+            function getPeriodos() {
                 var periodosSeleccionados = [];
                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
                checkboxesSeleccionados.each(function() {

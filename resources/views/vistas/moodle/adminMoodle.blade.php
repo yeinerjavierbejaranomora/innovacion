@@ -317,6 +317,8 @@
 
 
     <script>
+        import 'chartjs-plugin-doughnut-annotation';
+
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -465,7 +467,7 @@
                 },
                 options: {
                     responsive: true,
-                    cutout: '50%', // Esto cortará el centro para formar la semicircunferencia
+                    cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
                     plugins: {
                         legend: {
                             display: false, // No mostrar la leyenda

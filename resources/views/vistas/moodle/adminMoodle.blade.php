@@ -222,7 +222,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-center justify-content-center">
                         <canvas id="alto"></canvas>
                     </div>
                 </div>

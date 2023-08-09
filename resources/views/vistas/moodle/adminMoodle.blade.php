@@ -457,11 +457,11 @@
             chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Semicircunferencia'],
+                    labels: ['Score','Gray Area'],
                     datasets: [{
                         data: [50,30], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                         backgroundColor: ['rgba(255, 99, 132, 0.5)','rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
-                        borderWidth: 0,
+                        borderWidth: 1,
                     }, ],
                 },
                 options: {

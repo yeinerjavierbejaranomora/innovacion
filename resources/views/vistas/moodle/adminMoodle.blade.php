@@ -447,13 +447,13 @@
                     method: 'post',
                     success: function(data) {
                         var ctx = document.getElementById('alto').getContext('2d');
-                        console.log(data.total);
+                        var Total = data.total - data.alto;
                         chartRiesgo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
-                                    data: [data.alto, data.total], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    data: [data.alto, Total], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(0, 0, 0, 0.2)'], // Color de fondo para la semicircunferencia
                                     borderWidth: 1,
                                     cutout: '70%',

@@ -1226,7 +1226,7 @@ class InformeMafiController extends Controller
             $valorFecha = $fecha->FechaUltimoAcceso;
             if($valorFecha < $limiteFecha)
             {
-                $riesgoBajo = $valorFecha->format('Y-m-d');
+                $riesgoBajo = $valorFecha;
             }
         }
 

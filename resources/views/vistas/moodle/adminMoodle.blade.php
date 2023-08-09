@@ -466,8 +466,7 @@
                         circumference: 180,
                         rotation: 270,
                     }, ],
-                },
-
+                },   
                 options: {
                     responsive: true,
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
@@ -477,7 +476,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Estudiantes',
+                            text: data[0],
                         },
                         tooltip: {
                             enabled: false

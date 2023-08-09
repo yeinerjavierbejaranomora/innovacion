@@ -385,7 +385,7 @@
             /**
              * Método para verificar los periodos seleccionados
              */
-            function getPeriodos() {
+            function Riesgo() {
                 var periodosSeleccionados = [];
                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
                checkboxesSeleccionados.each(function() {
@@ -439,13 +439,13 @@
                 })
             } 
 
-            function informeAusentismo(){
+            function Riesgo(){
 
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('moodle.ausentismo') }}",
+                    url: "{{ route('moodle.riesgo') }}",
                     method: 'post',
                     success: function(data) {
                         data.forEach(fechas => {

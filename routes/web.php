@@ -154,8 +154,15 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
     Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
 
+
+
+});
+
+
+Route::controller(InformeMoodleController::class)->group(function () {
+
     /** Ruta para informe de ausentismo */
-    Route::post('/home/Moodle/Ausentismo', 'informeAusentismo')->name('moodle.ausentismo');
+    Route::post('/home/Moodle/riesgo', 'riesgo')->name('moodle.riesgo');
 
 });
 

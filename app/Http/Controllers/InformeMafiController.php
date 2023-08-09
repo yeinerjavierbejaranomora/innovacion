@@ -1209,30 +1209,4 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function informeAusentismo(){
-
-        $riesgoAlto = [];
-        $riesgoMedio = [];
-        $riesgoBajo = [];
-
-        $fechas = DB::table('datos_moodle')->select('FechaUltimoAcceso')->limit(10)->get();
-
-        $fechaActual = new DateTime();
-        $intervalo = new DateInterval('P15D');
-
-        $limiteFecha = $fechaActual->sub($intervalo);
-
-        foreach ($fechas as $fecha){
-            $valorFecha = $fecha->FechaUltimoAcceso;
-            if($valorFecha < $limiteFecha)
-            {
-                $riesgoBajo[] = $valorFecha;
-            }
-        }
-
-        dd($riesgoBajo);
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $fecha));
-
-    }
 }

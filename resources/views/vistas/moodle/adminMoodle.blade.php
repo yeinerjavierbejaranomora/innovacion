@@ -479,11 +479,11 @@
                                     title: {
                                         display: true,
                                         text: Total,
-                                        color: 'red',
+                                        color: 'black',
                                         position: 'bottom',
                                         font: {
-                                            weight: 'semibold',
-                                            size: 20,
+                                            weight: 'light',
+                                            size: 24,
                                         },
                                     },
                                     tooltip: {

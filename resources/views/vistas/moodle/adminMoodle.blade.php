@@ -466,6 +466,12 @@
                                 responsive: true,
                                 cutoutPercentage: 50,
                                 plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                    },
                                     legend: {
                                         display: false
                                     },

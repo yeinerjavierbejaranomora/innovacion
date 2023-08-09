@@ -48,6 +48,8 @@ class InformeMoodleController extends Controller
             }
         }
 
+        dd($Total);
+        
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,

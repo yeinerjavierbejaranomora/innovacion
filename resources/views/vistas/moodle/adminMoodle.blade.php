@@ -336,7 +336,7 @@
 
             periodos();
             facultades();
-            Riesgo();
+            grafico()
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -431,7 +431,7 @@
                 })
             }
 
-            function Riesgo() {
+            function riesgo() {
 
                 var datos = $.ajax({
                     headers: {

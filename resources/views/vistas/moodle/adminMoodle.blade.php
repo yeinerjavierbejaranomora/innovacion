@@ -82,8 +82,8 @@
     }
 
     .graficosRiesgo {
-        min-height: 300px;
-        max-height: 300px;
+        min-height: 350px;
+        max-height: 350px;
     }
     #tiposEstudiantesTotal,
     #operadoresTotal,

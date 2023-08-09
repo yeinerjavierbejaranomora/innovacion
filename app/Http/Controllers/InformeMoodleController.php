@@ -52,7 +52,7 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $Total,           
+            'total' => $Total->Total,           
         );
         return $datos;
     }

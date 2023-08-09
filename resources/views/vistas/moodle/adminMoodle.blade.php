@@ -447,7 +447,7 @@
                     method: 'post',
                     success: function(data) {
                         var ctx = document.getElementById('alto').getContext('2d');
-
+                        console.log(data.total);
                         chartRiesgo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

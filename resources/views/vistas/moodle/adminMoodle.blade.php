@@ -262,6 +262,18 @@
             </div>
         </div>
 
+        <div class="card shadow mt-4">
+            <!-- Card Body -->
+            <div class="card-body">
+                <!--Datatable-->
+                <div class="table">
+                    <table id="tabla" class="display" style="width:100%">
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+
         <br>
 
 
@@ -712,7 +724,7 @@
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
-                        var table = $('#example').DataTable({
+                        var table = $('#tabla').DataTable({
                             "data": data.data,
                             'pageLength': 25,
                             "columns": [{

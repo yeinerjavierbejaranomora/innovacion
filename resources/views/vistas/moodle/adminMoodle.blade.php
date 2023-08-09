@@ -586,10 +586,8 @@
                                 },
                                 labels: {
                                     render: 'percenteaje',
-                                    font:{
-                                        size: 14,
-                                        weight: 'bolder',
-                                    },
+                                    size: '14',
+                                    fontStyle: 'bolder',   
                                     position: 'outside',
                                     textMargin: 10,
                                     padding: 10,

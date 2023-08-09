@@ -469,7 +469,7 @@
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
                     plugins: {
                         legend: {
-                            display: false, // No mostrar la leyenda
+                            display: true, 
                         },
                         title: {
                             display: true,

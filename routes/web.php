@@ -84,8 +84,6 @@ Route::controller(UserController::class)->group(function () {
     /** Ruta para traer programas en la vista Usuarios */
     Route::post('/home/programasUsuarios', 'traerProgramasUsuarios')->name('traer.programas.usuarios');
      
-    /** Ruta para informe de ausentismo */
-    Route::post('/home/Moodle/Ausentismo', 'informeAusentismo')->name('moodle.ausentismo');
 
 });
 
@@ -155,6 +153,10 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/tiposEsudiantesTotal/{tabla}', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
     Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
+
+    /** Ruta para informe de ausentismo */
+    Route::post('/home/Moodle/Ausentismo', 'informeAusentismo')->name('moodle.ausentismo');
+
 });
 
 Route::controller(MafiController::class)->group(function () {

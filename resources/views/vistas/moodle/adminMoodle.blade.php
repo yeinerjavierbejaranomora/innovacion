@@ -532,7 +532,7 @@
                                     title: {
                                         display: true,
                                         text: TotalMedio,
-                                        color: 'red',
+                                        color: 'yellow',
                                         position: 'bottom',
                                         font: {
                                             size: 20,
@@ -582,7 +582,7 @@
                                     title: {
                                         display: true,
                                         text: TotalBajo,
-                                        color: 'red',
+                                        color: 'Green',
                                         position: 'bottom',
                                         font: {
                                             size: 20,

@@ -485,8 +485,8 @@
                         title: {
                             display: true,
                             text: 'titulo',
-                            positon: 'bottom',
-                            size: '14',
+                            position: 'bottom',
+                            fontSize: '14',
                         },
                         tooltip: {
                             enabled: false

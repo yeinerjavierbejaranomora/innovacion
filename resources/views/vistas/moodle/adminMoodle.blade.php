@@ -303,6 +303,7 @@
             riesgo();
             graficoSello();
             graficoRetencion();
+
             dataTable();
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -443,7 +444,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: TotalAlto,
+                                        text: data.alto,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -491,7 +492,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: TotalMedio,
+                                        text: data.medio,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -540,7 +541,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: TotalBajo,
+                                        text: data.bajo,
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
@@ -716,6 +717,7 @@
                 });
             }
 
+            
             function dataTable() {
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo'=>'ALTO']) }}";
@@ -755,10 +757,9 @@
                     }
                 }
             }
+            
         });
     </script>
-
-
 
     <!-- incluimos el footer -->
     @include('layout.footer')

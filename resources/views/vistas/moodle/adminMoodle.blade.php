@@ -317,7 +317,6 @@
 
 
     <script>
-        import 'chartjs-plugin-doughnut-annotation';
 
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;

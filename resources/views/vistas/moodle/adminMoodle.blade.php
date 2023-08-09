@@ -487,7 +487,7 @@
                             text: 'Estudiantes en riesgo',
                             position: 'bottom',
                             fontSize: '18',
-                            offset: -10,
+                            offset: -50,
                         },
                         tooltip: {
                             enabled: false

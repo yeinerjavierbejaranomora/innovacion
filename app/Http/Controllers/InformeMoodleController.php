@@ -48,7 +48,7 @@ class InformeMoodleController extends Controller
             }
         }
 
-        dd($Total['TOTAL']);
+        dd($Total->TOTAL);
 
         $datos = array(
             'alto' => $alto,

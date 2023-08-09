@@ -457,7 +457,7 @@
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
-                                    data: [data.alto, Total]Alto, // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    data: [data.alto, TotalAlto], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
                                     borderWidth: 1,
                                     cutout: '70%',

@@ -482,7 +482,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: Total,
+                                        text: TotalAlto,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -531,7 +531,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: Total,
+                                        text: TotalMedio,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -581,7 +581,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: Total,
+                                        text: TotalBajo,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {

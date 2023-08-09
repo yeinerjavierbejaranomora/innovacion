@@ -585,12 +585,12 @@
                                     render: 'percenteaje',
                                     font:{
                                         size: 14,
-                                        weight: 'bold',
+                                        weight: 'bolder',
                                     },
                                     position: 'outside',
-                                    textMargin: 6,
+                                    textMargin: 10,
                                     padding: 10,
-                                    minMargin: 10,
+                                    minMargin: 15,
                                 },
                                 legend: {
                                     position: 'right',

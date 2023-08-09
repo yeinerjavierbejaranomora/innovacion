@@ -344,7 +344,7 @@
             periodos();
             facultades();
             grafico()
-
+            function riesgo()
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */

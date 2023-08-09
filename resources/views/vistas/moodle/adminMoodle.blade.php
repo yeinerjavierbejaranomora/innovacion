@@ -467,6 +467,26 @@
                         rotation: 270,
                     }, ],
                 },
+
+                gaugeChartText: {
+                    id:'gaugeChartText',
+                    afterDatasetsDraw(chart,args, pluginOptions){
+                        const {ctx, data, chartArea:{ top, bottom, left, right, width, height}, scales: {r} } = chart;
+                        ctx.save();
+                        const xCoor = chart.getDatasetMeta(0).data[0].x;
+                        const yCoor = chart.getDatasetMeta(0).data[0].y;
+
+                        ctx.fillRect(xCoord, yCoor, 400, 1);
+                        
+                        ctx.font = '15px sans-serif';
+                        ctx.fillStyle = '#666',
+                        ctx.textBaseLine = 'bottom';
+                        ctx.FillText('300', left, yCoor);
+
+
+                    }
+                },
+
                 options: {
                     responsive: true,
                     cutoutPercentage: 50, // Esto cortará el centro para formar la semicircunferencia
@@ -479,6 +499,7 @@
                         }
                     },
                 },
+                plugins: [gaugeChartText]
             });     
         }
 

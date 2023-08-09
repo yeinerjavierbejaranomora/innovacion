@@ -490,6 +490,9 @@
                         },
                         tooltip: {
                             enabled: false
+                        },
+                        datalabels: {
+                            offset: -10, 
                         }
                     },
 

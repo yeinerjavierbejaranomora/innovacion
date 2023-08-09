@@ -29,7 +29,7 @@ class InformeMoodleController extends Controller
 
         $test = 'entra';
 
-        $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(riesgo) AS TOTAL, riesgo'))->groupBy('riesgo')->get();
+        $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
 
         foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->riesgo;
@@ -47,7 +47,7 @@ class InformeMoodleController extends Controller
             'medio' => $medio,
             'bajo' => $bajo
         );
-        
+
         var_dump($datos);
         die();
         return $datos;

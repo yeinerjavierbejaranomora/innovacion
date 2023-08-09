@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Usuario;
 use App\Http\Util\Constantes;
 use DateTime;
+use DateInterval;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Session;
 
 class InformeMafiController extends Controller
 {
+
 
     public function __construct()
     {
@@ -1216,9 +1218,12 @@ class InformeMafiController extends Controller
         $fecha = DB::table('datos_moodle')->select('FechaUltimoAcceso')->limit(10)->get();
 
         $fechaActual = new DateTime();
+        $intervalo = new DateInterval('P15D');
+
+        $limiteFecha = $fechaActual->sub($intervalo);
 
 
-        dd($fecha);
+        dd($limiteFecha);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $fecha));
 

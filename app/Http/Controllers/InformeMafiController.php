@@ -1213,7 +1213,7 @@ class InformeMafiController extends Controller
         $riesgoMedio = [];
         $riesgoBajo = [];
 
-        $fecha = DB::table('datos_moodle')->select('FechaUltimoAcceso')->get();
+        $fecha = DB::table('datos_moodle')->select('FechaUltimoAcceso')->limit(10)->get();
 
         $fechaActual = new DateTime();
 

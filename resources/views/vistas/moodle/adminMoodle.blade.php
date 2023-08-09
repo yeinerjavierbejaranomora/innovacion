@@ -587,7 +587,7 @@
                                     fontStyle: 'bolder',
                                     position: 'outside',
                                     textMargin: 6,
-                                    padding: 50,
+                                    padding: 200,
                                 },
                                 legend: {
                                     position: 'right',

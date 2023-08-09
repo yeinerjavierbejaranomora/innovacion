@@ -161,6 +161,8 @@ Route::controller(InformeMoodleController::class)->group(function () {
     
     /** Ruta para informe de ausentismo */
     Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
+     /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
+     Route::get('/home/Moodle/sello', 'sello')->middleware('auth')->name('moodle.sello');
 
 });
 
@@ -323,7 +325,7 @@ Route::controller(HistorialEstudianteController::class)->group(function () {
 
     /** Ruta para cargar informacion de los estudiantes */
     Route::get('/historial', [HistorialEstudianteController::class, 'historial']);
-
+    
     
 });
 

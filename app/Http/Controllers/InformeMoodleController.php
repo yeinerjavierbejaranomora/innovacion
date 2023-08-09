@@ -56,6 +56,22 @@ class InformeMoodleController extends Controller
         );
         return $datos;
     }
+
+
+    public function sello()
+    {
+            /**
+             * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
+             *GROUP BY sello
+             */
+            $sello = DB::table('datos_moodle')
+                ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
+                ->groupBy('Sello')
+                ->get();
+       
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $sello));
+    }
 }
 
 ?>

@@ -290,6 +290,7 @@
             periodos();
             facultades();
             riesgo();
+            graficoSello()
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */
@@ -386,6 +387,7 @@
             var chartRiesgoAlto;
             var chartRiesgoMedio;
             var chartRiesgoBajo;
+            
             function riesgo() {
                 var datos = $.ajax({
                     headers: {
@@ -542,6 +544,73 @@
                             plugins: [ChartDataLabels]
                         });
                     
+                    }
+                });
+            }
+
+            function graficoSello() {
+                var url = '/home/Moodle/sello';
+                $.getJSON(url, function(data) {
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.Sello;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('activos').getContext('2d');
+                    chartEstudiantesActivos = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                if (label == 'NO EXISTE') {
+                                    label = 'INACTIVO';
+                                }
+                                return label + ': ' + valores[index];
+                            }),
+                            datasets: [{
+                                label: 'Sello financiero',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 6
+                                },
+                                legend: {
+                                    position: 'right',
+                                    align: 'left',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugins: [ChartDataLabels]
+                    });
+                    if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                        $('#colSelloFinanciero').addClass('hidden');
+                    } else {
+                        $('#colSelloFinanciero').removeClass('hidden');
                     }
                 });
             }

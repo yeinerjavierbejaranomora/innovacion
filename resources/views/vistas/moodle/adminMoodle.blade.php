@@ -453,7 +453,6 @@
 
         function grafico() {
             var ctx = document.getElementById('alto').getContext('2d');
-            var titulo = 'Estudiantes ' + data[0];
             chartRiesgo = new Chart(ctx, {
                 type: 'doughnut',
                 data: {

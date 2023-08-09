@@ -1697,6 +1697,7 @@
                             $('#colTipoEstudiantes').removeClass('hidden');
                         }
                     }
+
                 });
             }
 

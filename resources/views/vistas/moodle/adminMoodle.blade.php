@@ -438,6 +438,9 @@
                 })
             }
 
+            var chartRiesgoAlto;
+            var chartRiesgoMedio;
+            var chartRiesgoBajo;
             function riesgo() {
                 var datos = $.ajax({
                     headers: {
@@ -448,7 +451,7 @@
                     success: function(data) {
                         var ctx = document.getElementById('alto').getContext('2d');
                         var Total = data.total - data.alto;
-                        chartRiesgo = new Chart(ctx, {
+                    chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
@@ -502,12 +505,9 @@
         });
 
 
-        var chartRiesgo;
+        
 
-        function grafico() {
-
-
-        }
+  
     </script>
 
 

@@ -275,7 +275,6 @@
             facultades();
             riesgo();
 
-            dataTable();
             /**
              * Método que trae las facultades y genera los checkbox en la vista
              */
@@ -538,14 +537,13 @@
                 var riesgo = $(this).data('value');
                 console.log(riesgo);
                 
-                // dataTable();
+                dataTable(riesgo);
             });
 
 
-
-            function dataTable() {
+            function dataTable(riesgo) {
                 var xmlhttp = new XMLHttpRequest();
-                var url = "{{ route('moodle.estudiantes', ['riesgo'=>'ALTO']) }}";
+                var url = "{{ route('moodle.estudiantes', ['tabla' => ' ']) }}" + riesgo,
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function() {
@@ -582,6 +580,7 @@
                     }
                 }
             }
+
 
         });
     </script>

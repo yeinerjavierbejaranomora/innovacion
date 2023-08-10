@@ -258,7 +258,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:600px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloEstudiante"><strong>Datos estudiante: </strong></h5>
+                        <h5 class="modal-title" id="tituloEstudiante"><strong></strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -269,7 +269,6 @@
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
                                         <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                        <h5 class="my-3"></h5>
                                         <p class="text-muted mb-1" id="nombreModal"></p>
                                         <p class="text-muted mb-1" id="idModal"></p>
                                         <p class="text-muted mb-1" id="facultadModal"></p>
@@ -278,6 +277,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-8">
+                                <div class="card mb-8">
+                                <p class="text-muted mb-1" id="nombreModal"></p>
+                                        <p class="text-muted mb-1" id="correoModal"></p>
+                                        <p class="text-muted mb-1" id="selloModal"></p>
+                                        <p class="text-muted mb-1" id="estadoModal"></p>
+                                        <p class="text-muted mb-1" id="tipoModal"></p>
+                                        <p class="text-muted mb-1" id="autorizadoModal"></p>
+                                        <p class="text-muted mb-1" id="operadorModal"></p>
+                                        <p class="text-muted mb-1" id="convenioModal"></p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -597,12 +609,23 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        var primerArray =data.data[0]
-                        $('#tituloEstudiante strong').append(primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
-                        $('#nombreModal').append(primerArray.Nombre + ' ' + primerArray.Apellido );
+                        var primerArray = data.data[0]
+                        /** Primera Card */
+                        $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
+                        $('#nombreModal').append(primerArray.Nombre + ' ' + primerArray.Apellido);
                         $('#idModal').append(primerArray.Id_Banner);
                         $('#facultadModal').append(primerArray.Facultad);
                         $('#programaModal').append(primerArray.Programa);
+
+                        /** Segunda Card */
+                        $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
+                        $('#selloModal').append('<strong>Sello financiero: </strong>' + primerArray.Sello);
+                        $('#estadoModal').append('<strong>Estado: </strong>' + primerArray.Estado_Banner);
+                        $('#tipoModal').append('<strong>Tipo estudiante: </strong>' + primerArray.Tipo_Estudiante);
+                        $('#autorizadoModal').append('<strong>Autorizado: </strong>' + primerArray.Autorizado_ASP);
+                        $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
+                        $('#convenioModal').append('<strong>Autorizado: </strong>' + primerArray.Convenio);
+                        
 
                     }
                 });

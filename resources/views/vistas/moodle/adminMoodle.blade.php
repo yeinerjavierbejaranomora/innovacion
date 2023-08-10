@@ -686,13 +686,15 @@
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         console.log(data);
-                        console.log(data.data.alto);
-                        console.log(data.data.medio);
-                        console.log(data.data.bajo);
+                        var alto = data.data.alto;
+                        var medio = data.data.medio;
+                        var bajo = data.data.bajo;
+
+                        console.log(data.data.total);
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
+                                labels: [alto, medio, bajo],
                                 datasets: [{
                                     data: [],
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(220, 205, 48, 1)', 'rgba(0, 255, 0, 1)'],

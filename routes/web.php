@@ -172,8 +172,8 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 
-   
-
+    /** Ruta para obtener los cursos en riesgo de un alumno */
+    Route::post('/home/Moodle/riesgoEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.riesgo.asistencia');
 });
 
 Route::controller(MafiController::class)->group(function () {

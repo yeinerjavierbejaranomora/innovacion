@@ -101,4 +101,36 @@ class InformeMoodleController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }
+
+    function riesgoAsistencia(Request $request){
+        $idBanner = $request->input('idBanner');  
+        $bajo = [];
+        $medio = [];
+        $alto = [];
+        $riesgos = DB::table('datos_moodle')->where('Id_banner',$idBanner)->select('Riesgo, Nombrecurso')->get();
+        $totalRiesgo = DB::table('datos_moodle')->where('Id_banner',$idBanner)->select(DB::raw('COUNT(Riesgo) AS TOTAL','Riesgo'))->groupBy('Riesgo')->get();
+        
+        foreach($riesgos as $riesgo){
+            $aux=$riesgo->Riesgo;
+            $nombreCurso= $riesgo->Nombrecurso;
+            if($aux == 'ALTO'){
+                $alto[]=$nombreCurso;
+            }elseif($aux == 'MEDIO'){
+                $medio[]= $nombreCurso;
+            }elseif($aux == 'BAJO'){
+                $bajo[] = $nombreCurso;
+            }
+        }
+
+        $datos = array(
+            'alto' => $alto,
+            'medio' => $medio,
+            'bajo' => $bajo,
+            'total' => $totalRiesgo,           
+        );
+        dd($datos);
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $datos));
+    }
 }

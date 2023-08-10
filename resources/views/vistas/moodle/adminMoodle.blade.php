@@ -721,6 +721,7 @@
                                     legend: {
                                         display: true,
                                         position: 'bottom',
+                                        align: 'start',
                                     },
                                     title: {
                                         display: true,

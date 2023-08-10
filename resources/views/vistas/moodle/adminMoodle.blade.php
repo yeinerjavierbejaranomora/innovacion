@@ -279,14 +279,16 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="card mb-8">
-                                    <p class="text-muted mb-1" id="nombreModal"></p>
-                                    <p class="text-muted mb-1" id="correoModal"></p>
-                                    <p class="text-muted mb-1" id="selloModal"></p>
-                                    <p class="text-muted mb-1" id="estadoModal"></p>
-                                    <p class="text-muted mb-1" id="tipoModal"></p>
-                                    <p class="text-muted mb-1" id="autorizadoModal"></p>
-                                    <p class="text-muted mb-1" id="operadorModal"></p>
-                                    <p class="text-muted mb-1" id="convenioModal"></p>
+                                    <div class="card-body text-start">
+                                        <p class="text-muted mb-1" id="nombreModal"></p>
+                                        <p class="text-muted mb-1" id="correoModal"></p>
+                                        <p class="text-muted mb-1" id="selloModal"></p>
+                                        <p class="text-muted mb-1" id="estadoModal"></p>
+                                        <p class="text-muted mb-1" id="tipoModal"></p>
+                                        <p class="text-muted mb-1" id="autorizadoModal"></p>
+                                        <p class="text-muted mb-1" id="operadorModal"></p>
+                                        <p class="text-muted mb-1" id="convenioModal"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -303,6 +305,8 @@
                                         <th scope="col">Nota Acumulada</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -640,7 +644,11 @@
                         $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
                         $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
 
-
+                        $('#tabla tbody').append('<tr>')
+                        data.forEach(periodo => {
+                            $("#tabla tbody").append(`<td>${data.data.Total_Actividades} </td>`)
+                        });
+                        $('#tabla tbody').append('</tr>')
                     }
                 });
             }

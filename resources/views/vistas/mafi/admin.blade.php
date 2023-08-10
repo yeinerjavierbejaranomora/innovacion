@@ -429,7 +429,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            $('div #periodos').append(`<label> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                         });
                     }
                 });

@@ -244,7 +244,6 @@
             <div class="card-body">
                 <!--Datatable-->
                 <div class="table">
-
                     <table id="datatable" class="display" style="width:100%">
                     </table>
                 </div>
@@ -330,6 +329,7 @@
     <script>
 
         var table;
+        var data;
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -748,7 +748,8 @@
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
+                        data = JSON.parse(this.responseText);
+                        console.log(data);
                         table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,

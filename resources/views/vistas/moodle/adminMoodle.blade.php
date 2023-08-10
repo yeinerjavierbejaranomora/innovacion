@@ -603,7 +603,7 @@
                         $('#idModal').append(data.Id_Banner);
                         $('#facultadModal').append(data.Facultad);
                         $('#programaModal').append(data.Programa);
-                        data.forEach(data => {});
+
                     }
                 });
             }

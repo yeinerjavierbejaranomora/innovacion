@@ -155,6 +155,8 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
     Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
 
+    Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
+
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {
@@ -170,7 +172,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 
-    Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
+   
 
 });
 

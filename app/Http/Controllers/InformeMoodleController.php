@@ -107,7 +107,7 @@ class InformeMoodleController extends Controller
         $bajo = [];
         $medio = [];
         $alto = [];
-        $riesgos = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Riesgo, Nombrecurso')->get();
+        $riesgos = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Riesgo', 'Nombrecurso')->get();
         $totalRiesgo = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
         
         foreach($riesgos as $riesgo){

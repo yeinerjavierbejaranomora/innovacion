@@ -741,7 +741,7 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    table.off('click', 'button.data'); // Desvincular el evento de clic
+                    table.off('click', 'button.data'); 
                     table.destroy();
                     $("#tituloTable").remove();
                 }
@@ -793,9 +793,10 @@
 
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
-                                const data = table.row($(this).parents("tr")).data();
-                                console.log(data);
-                                dataAlumno(data.Id_Banner);
+                                console.log(table.row($(this).parents("tr")).data());
+                                var datos = table.row($(this).parents("tr")).data();
+                                console.log(datos);
+                                dataAlumno(datos.Id_Banner);
                             })
                         }
 

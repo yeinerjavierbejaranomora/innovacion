@@ -709,7 +709,7 @@
                             options: {
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                width: 300,
+                                width: 450,
                                 height: 300,
                                 cutoutPercentage: 50,
                                 plugins: {

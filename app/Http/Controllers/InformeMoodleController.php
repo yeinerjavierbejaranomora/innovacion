@@ -124,7 +124,7 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $totalRiesgo[0],           
+            'total' => $totalRiesgo,           
         );
         dd($datos);
 

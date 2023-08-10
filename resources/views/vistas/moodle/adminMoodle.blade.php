@@ -800,7 +800,7 @@
 
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
-                                var data = table.row($(this).parents("tr")).data();
+                                const data = table.row($(this).parents("tr")).data();
                                 console.log(data);
                                 dataAlumno(data.Id_Banner);
                             })

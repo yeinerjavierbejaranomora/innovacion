@@ -1223,11 +1223,15 @@ class InformeMafiController extends Controller
         ->orderByDesc('TOTAL')
         ->get();
 
+        $campos='';
+
         foreach ($Total_estudiantes_Banner as $key => $value) {
-            dd($value->estado);
+            $campos.=$value->estado;
+            
         }
 
-
+        dd($campos);
+           
        /* $insert_historico_graficos = DB::table('historico_graficos')
         ->insert([
            

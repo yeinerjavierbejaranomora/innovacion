@@ -613,7 +613,6 @@
                 });
             }
 
-
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
                 console.log(riesgo);
@@ -738,7 +737,8 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    $('#datatable').DataTable().destroy();
+                    table.off('click', 'button.data'); // Desvincular el evento de clic
+                    table.destroy();
                     $("#tituloTable").remove();
                 }
 
@@ -748,6 +748,7 @@
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
+
                         data = JSON.parse(this.responseText);
                         console.log(data);
                         table = $('#datatable').DataTable({

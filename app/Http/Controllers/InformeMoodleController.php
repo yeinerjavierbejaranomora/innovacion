@@ -110,7 +110,6 @@ class InformeMoodleController extends Controller
         
         foreach($riesgos as $riesgo){
             $aux=$riesgo->Riesgo;
-            dd($aux);
             $nombreCurso= $riesgo->Nombrecurso;
             $nombreCursoFormateado = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             if($aux == 'ALTO'){

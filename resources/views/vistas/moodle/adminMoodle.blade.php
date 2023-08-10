@@ -738,8 +738,10 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    table.destroy();
+
                     $("#tituloTable").remove();
+                    $('#tituloTable tbody').DataTable().destroy();
+                    $('#tituloTable tbody').empty();
                 }
 
                 var xmlhttp = new XMLHttpRequest();

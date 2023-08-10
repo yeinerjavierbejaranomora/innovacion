@@ -90,8 +90,16 @@ class InformeMoodleController extends Controller
         $estudiantes = DB:: table ('datos_moodle')
         ->where('Riesgo', $riesgo)
         ->select('Id_Banner','Nombre', 'Apellido','Facultad','Programa')
+        ->groupBy('Id_Banner')
         ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
+    }
+
+    function dataAlumno(Request $request){
+        $idBanner = $request->input('idBanner');
+        $data = DB:: table('datos_moodle')->where('Id_Banner',$idBanner)->select('*')->first();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
     }
 }

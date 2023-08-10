@@ -32,7 +32,7 @@
         font-size: 14px;
     }
 
-    #btn-table{
+    #btn-table {
         width: 60px;
     }
 
@@ -379,6 +379,9 @@
             var chartRiesgoMedio;
             var chartRiesgoBajo;
 
+            /**
+             * Método para obtener gráficos de riesgo alto, medio y bajo 
+             * */    
             function riesgo() {
                 var datos = $.ajax({
                     headers: {
@@ -543,15 +546,38 @@
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
                 console.log(riesgo);
-                
+
                 dataTable(riesgo);
             });
 
+            /**
+             * Método para obtner los datos de un alumno según su id Banner
+             */
+            function dataAlumno(id)
+            {
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('moodle.data') }}",
+                    data: {
+                        idBanner:id
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        console.log(data);
+                        data.forEach(data => { 
+                        });
+                    }
+                });
+            }
+
+         
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').DataTable().destroy();
                     $("#tituloTable").remove();
-                    }
+                }
 
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
@@ -584,18 +610,26 @@
                                     title: 'Programa'
                                 },
                                 {
-                                    defaultContent: "<button type='button' id='btn-table' class='btn btn-warning'><i class='fa-solid fa-user'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning'><i class='fa-solid fa-user'></i></button>",
                                     title: 'Datos Estudiante',
-                                    className: "text-center",  
+                                    className: "text-center",
                                 }
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },                     
+                            },
                         });
                         riesgoaux = riesgo.toLowerCase();
                         var titulo = 'Estudiantes con riesgo ' + riesgoaux;
                         $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+
+                        function obtenerData(tbody, table) {
+                            $(tbody).on("click", "button.data", function() {
+                                var data = table.row($(this).parents("tr")).data();
+                                dataAlumno(data.Id_Banner);
+                            })
+                        }
+
                     }
                 }
             }

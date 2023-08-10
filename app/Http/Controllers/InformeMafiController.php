@@ -1228,7 +1228,7 @@ class InformeMafiController extends Controller
         }
 
 
-        $insert_historico_graficos = DB::table('historico_graficos')
+       /* $insert_historico_graficos = DB::table('historico_graficos')
         ->insert([
            
             'grafico'=>'Total estudiantes Banner',
@@ -1242,7 +1242,7 @@ class InformeMafiController extends Controller
            
         ]);
 
-        dd($Total_estudiantes_Banner);
+        dd($Total_estudiantes_Banner);*/
 
     }
 

@@ -253,7 +253,25 @@
         </div>
 
         <br>
-
+        <!--Modal Datos Alumno-->
+        <div class="modal fade" id="modaldataEstudiante" tabindex="-1" role="dialog" aria-labelledby="modaldataEstudiante" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:600px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloEstudiante"><strong>Datos estudiante: </strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="tiposEstudiantesTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
 
     </div>
 
@@ -609,7 +627,7 @@
                                     title: 'Programa'
                                 },
                                 {
-                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning'><i class='fa-solid fa-user'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
                                     title: 'Datos Estudiante',
                                     className: "text-center",
                                 }

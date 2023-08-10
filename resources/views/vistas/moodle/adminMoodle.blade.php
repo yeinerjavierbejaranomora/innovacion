@@ -328,6 +328,8 @@
 
 
     <script>
+
+        var table;
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -747,7 +749,7 @@
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
-                        var table = $('#datatable').DataTable({
+                        table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,
                             "columns": [{

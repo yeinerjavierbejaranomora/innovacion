@@ -541,6 +541,10 @@
             });
 
             function dataTable(riesgo) {
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $('#datatable').DataTable().destroy();
+                    }
+                    
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
                 xmlhttp.open("GET", url, true);

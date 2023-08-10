@@ -264,14 +264,28 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <canvas id="tiposEstudiantesTotal"></canvas>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card mb-4">
+                                    <div class="card-body text-center">
+                                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                        <h5 class="my-3"></h5>
+                                        <p class="text-muted mb-1" id="nombreModal"></p>
+                                        <p class="text-muted mb-1" id="idModal"></p>
+                                        <p class="text-muted mb-1" id="facultadModal"></p>
+                                        <p class="text-muted mb-1" id="programaModal"></p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
 
     </div>
 
@@ -399,7 +413,7 @@
 
             /**
              * Método para obtener gráficos de riesgo alto, medio y bajo 
-             * */    
+             * */
             function riesgo() {
                 var datos = $.ajax({
                     headers: {
@@ -571,24 +585,29 @@
             /**
              * Método para obtner los datos de un alumno según su id Banner
              */
-            function dataAlumno(id){
+            function dataAlumno(id) {
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     url: "{{ route('moodle.data') }}",
                     data: {
-                        idBanner:id
+                        idBanner: id
                     },
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        
+                        $('#tituloEstudiante strong').append(data.Nombre + ' ' + data.Apellido + ' - ' + data.Id_Banner);
+                        $('#nombreModal').append(data.Nombre + ' ' + data.Apellido );
+                        $('#idModal').append(data.Id_Banner);
+                        $('#facultadModal').append(data.Facultad);
+                        $('#programaModal').append(data.Programa);
+                        data.forEach(data => {});
                     }
                 });
             }
 
-         
+
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').DataTable().destroy();
@@ -642,7 +661,7 @@
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
                                 var data = table.row($(this).parents("tr")).data();
-                                console.log (data);
+                                console.log(data);
                                 dataAlumno(data.Id_Banner);
                             })
                         }

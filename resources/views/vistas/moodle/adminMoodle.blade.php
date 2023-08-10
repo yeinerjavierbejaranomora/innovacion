@@ -579,6 +579,10 @@
                                     data: 'Programa',
                                     title: 'Programa'
                                 },
+                                {
+                                    defaultContent: "<button type='button' class='btn btn-warning'><i class='fa-solid fa-user'></i></button>",
+                                    title: 'Datos Estudiante',  
+                                }
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

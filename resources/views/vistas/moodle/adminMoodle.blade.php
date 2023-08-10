@@ -629,6 +629,7 @@
                             })
                         }
 
+                        obtenerData("#datatable tbody", table);
                     }
                 }
             }

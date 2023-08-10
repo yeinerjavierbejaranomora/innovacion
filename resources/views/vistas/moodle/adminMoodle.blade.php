@@ -795,7 +795,6 @@
                                 dataAlumno(datos.Id_Banner);
                             })
                         }
-
                         obtenerData("#datatable tbody", table);
                     }
                 }

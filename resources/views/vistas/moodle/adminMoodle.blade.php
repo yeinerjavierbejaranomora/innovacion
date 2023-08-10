@@ -597,7 +597,7 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        console.log(data.data);
+                        console.log(data.data[0]);
                         $('#tituloEstudiante strong').append(data.Nombre + ' ' + data.Apellido + ' - ' + data.Id_Banner);
                         $('#nombreModal').append(data.Nombre + ' ' + data.Apellido );
                         $('#idModal').append(data.Id_Banner);

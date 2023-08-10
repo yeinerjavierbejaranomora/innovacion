@@ -543,7 +543,7 @@
 
             function dataTable(riesgo) {
                 var xmlhttp = new XMLHttpRequest();
-                var url = "{{ route('moodle.estudiantes', ['tabla' => ' ']) }}" + riesgo,
+                var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo,
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function() {

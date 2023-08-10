@@ -789,7 +789,7 @@
 
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
-                                console.log(table.row($(this).parents("tr")).data());
+                                console.log(tbody);
                                 var datos = table.row($(this).parents("tr")).data();
                                 dataAlumno(datos.Id_Banner);
                             })

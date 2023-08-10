@@ -331,7 +331,7 @@
         var table;
         var data;
         $(document).ready(function() {
-            
+
             console.log('cambio');
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -685,9 +685,18 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        console.log(data);
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.sello;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
                         console.log(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         chartRiesgoIngreso = new Chart(ctx, {
+                            
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],

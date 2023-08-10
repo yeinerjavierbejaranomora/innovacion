@@ -252,6 +252,7 @@
         </div>
 
         <br>
+
         <!--Modal Datos Alumno-->
         <div class="modal fade" id="modaldataEstudiante" tabindex="-1" role="dialog" aria-labelledby="modaldataEstudiante" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:600px;">
@@ -323,6 +324,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
@@ -616,8 +618,6 @@
 
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
-
-
                 dataTable(riesgo);
             });
 
@@ -685,8 +685,8 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
+                        console.log(data);
                         chartRiesgoIngreso = new Chart(ctx, {
-                            
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],

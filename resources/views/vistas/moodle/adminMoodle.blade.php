@@ -597,12 +597,12 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        console.log(data.data[0]);
-                        $('#tituloEstudiante strong').append(data.Nombre + ' ' + data.Apellido + ' - ' + data.Id_Banner);
-                        $('#nombreModal').append(data.Nombre + ' ' + data.Apellido );
-                        $('#idModal').append(data.Id_Banner);
-                        $('#facultadModal').append(data.Facultad);
-                        $('#programaModal').append(data.Programa);
+                        var primerArray =data.data[0]
+                        $('#tituloEstudiante strong').append(primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
+                        $('#nombreModal').append(primerArray.Nombre + ' ' + primerArray.Apellido );
+                        $('#idModal').append(primerArray.Id_Banner);
+                        $('#facultadModal').append(primerArray.Facultad);
+                        $('#programaModal').append(primerArray.Programa);
 
                     }
                 });

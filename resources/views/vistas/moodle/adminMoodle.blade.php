@@ -584,7 +584,7 @@
                                     title: 'Programa'
                                 },
                                 {
-                                    defaultContent: "<button type='button' id='btn-table'class='btn btn-warning'><i class='fa-solid fa-user'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='btn btn-warning text-center'><i class='fa-solid fa-user'></i></button>",
                                     title: 'Datos Estudiante',  
                                 }
                             ],

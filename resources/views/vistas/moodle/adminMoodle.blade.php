@@ -540,7 +540,6 @@
                 dataTable(riesgo);
             });
 
-
             function dataTable(riesgo) {
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo,

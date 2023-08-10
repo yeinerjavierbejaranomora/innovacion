@@ -664,15 +664,14 @@
                             <td>${dato.Tercer_Corte} </td>
                             <td>${dato.Nota_Acumulada} </td>
                             <tr>`)
-                        });    
+                        });
                     }
                 });
 
                 graficosModal(id);
             }
 
-            function graficosModal(id){
-
+            function graficosModal(id) {
                 var charts = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -684,14 +683,14 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                    var ctx = document.getElementById('riesgoIngreso').getContext('2d');    
-                    chartRiesgoIngreso = new Chart(ctx, {
+                        var ctx = document.getElementById('riesgoIngreso').getContext('2d');
+                        chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [],
-                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(220, 205, 48, 1)','rgba(0, 255, 0, 1)'],
+                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(220, 205, 48, 1)', 'rgba(0, 255, 0, 1)'],
                                     borderWidth: 1,
                                     cutout: '70%',
                                     circumference: 180,
@@ -732,7 +731,7 @@
                             plugins: [ChartDataLabels]
                         });
                     }
-                    });
+                });
             }
 
             function dataTable(riesgo) {

@@ -1222,31 +1222,27 @@ class InformeMafiController extends Controller
         ->groupBy('estado')
         ->orderByDesc('TOTAL')
         ->get();
-
-        $campos='';
-
-        foreach ($Total_estudiantes_Banner as $key => $value) {
-            $campos.=$value->estado.",";
-            
-        }
-
-        dd($Total_estudiantes_Banner);
-           
-       /* $insert_historico_graficos = DB::table('historico_graficos')
+        //--- insertamos los datos  del total estudiantes banner
+        $insert_historico_graficos = DB::table('historico_graficos')
         ->insert([
-           
             'grafico'=>'Total estudiantes Banner',
-            'campos'=>$campos,
-            'numeros'=>,
-            'periodo'=>,
-            'facultad'=>,
-            'programa'=>,
-            'fecha'=>,
+            'numeros'=>json_encode($Total_estudiantes_Banner),
+            'periodo'=>'todos',
+            'facultad'=>'todos',
+            'programa'=>'todos',
+            'fecha'=>date("d-m-Y"),
           
            
         ]);
 
-        dd($Total_estudiantes_Banner);*/
+        //--- insertamos los datos  del Estado_Financiero
+        $Estado_Financiero= DB::table('datosMafi')
+        ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+        ->groupBy('sello')
+        ->orderByDesc('TOTAL')
+        ->get();
+
+        dd($Total_estudiantes_Banner);
 
     }
 

@@ -1214,7 +1214,7 @@ class InformeMafiController extends Controller
 
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
-         * 
+         id	grafico	campos	numeros	periodo	facultad	programa	fecha	* 
         */
 
         $Total_estudiantes_Banner = DB::table('datosMafi')
@@ -1222,6 +1222,25 @@ class InformeMafiController extends Controller
         ->groupBy('estado')
         ->orderByDesc('TOTAL')
         ->get();
+
+        foreach ($Total_estudiantes_Banner as $key => $value) {
+            dd($value);
+        }
+
+
+        $insert_historico_graficos = DB::table('historico_graficos')
+        ->insert([
+           
+            'grafico'=>'Total estudiantes Banner',
+            'campos'=>'Activos,Inactivos',
+            'numeros'=>,
+            'periodo'=>,
+            'facultad'=>,
+            'programa'=>,
+            'fecha'=>,
+          
+           
+        ]);
 
         dd($Total_estudiantes_Banner);
 

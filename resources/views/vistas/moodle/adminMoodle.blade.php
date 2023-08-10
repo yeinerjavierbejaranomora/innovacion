@@ -644,11 +644,18 @@
                         $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
                         $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
 
-                        $('#tabla tbody').append('<tr>')
-                        data.data.forEach(periodo => {
-                            $("#tabla tbody").append(`<td>${data.Total_Actividades} </td>`)
+                        data.data.forEach(dato => {
+                            $("#tabla tbody").append(`<tr>
+                            <td>${dato.Total_Actividades} </td>
+                            <td>${dato.Actividades_Por_Calificar} </td>
+                            <td>${dato.Cuestionarios_Intentos_Realizados} </td>
+                            <td>${dato.Primer_Corte} </td>
+                            <td>${dato.Segundo_Corte} </td>
+                            <td>${dato.Tercer_Corte} </td>
+                            <td>${dato.Nota_Acumulada} </td>
+                            <tr>`)
                         });
-                        $('#tabla tbody').append('</tr>')
+                        
                     }
                 });
             }

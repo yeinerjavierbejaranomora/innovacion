@@ -738,11 +738,11 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-
                     $("#tituloTable").remove();
                     table.destroy();
-                    $('#tituloTable tbody').DataTable().destroy();
-                    $('#tituloTable tbody').empty();
+                    $('#datatable tbody').DataTable().destroy();
+                    $('#datatable tbody').empty();
+                    $("#datatable tbody").off("click", "button.data");
                 }
 
                 var xmlhttp = new XMLHttpRequest();

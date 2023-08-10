@@ -698,7 +698,7 @@
                                 labels: [alto, medio, bajo],
                                 datasets: [{
                                     data: valores,
-                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(220, 205, 48, 1)', 'rgba(0, 255, 0, 1)'],
+                                    backgroundColor: ['rgba(0, 255, 0, 1), rgba(220, 205, 48, 1), rgba(255, 0, 0, 1)'],
                                     borderWidth: 1,
                                     cutout: '70%',
                                     circumference: 180,

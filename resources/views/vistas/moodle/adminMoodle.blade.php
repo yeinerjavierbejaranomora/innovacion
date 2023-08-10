@@ -292,7 +292,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row text-center">
                             <table class="table" id="tabla">
                                 <thead>
                                     <tr>

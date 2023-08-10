@@ -240,6 +240,9 @@
             <div class="card-body">
                 <!--Datatable-->
                 <div class="table">
+                    <div>
+                        <h5 id="tituloTable" class="hidden"> </h5>
+                    </div>
                     <table id="datatable" class="display" style="width:100%">
                     </table>
                 </div>
@@ -262,6 +265,7 @@
                 $('div #facultades input[type="checkbox"]').prop('disabled', true);
                 $('div #programas input[type="checkbox"]').prop('disabled', true);
                 $('#generarReporte').prop("disabled", true);
+                $('.botonModal').prop("disabled", true);
             });
 
             // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
@@ -269,6 +273,7 @@
                 $('div #facultades input[type="checkbox"]').prop('disabled', false);
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
                 $('#generarReporte').prop("disabled", false);
+                $('.botonModal').prop("disabled", false);
             });
 
             periodos();
@@ -544,7 +549,7 @@
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').DataTable().destroy();
                     }
-                    
+
                 var xmlhttp = new XMLHttpRequest();
                 var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
                 xmlhttp.open("GET", url, true);
@@ -578,8 +583,10 @@
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
+                            },                     
                         });
+                        var titulo = 'Estudiantes con riesto' + riesgo;
+                        $('<div class="dataTables_title"> <h5>' + titulo + '</h5></div>').insertBefore('#datatable');
                     }
                 }
             }

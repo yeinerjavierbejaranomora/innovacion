@@ -686,6 +686,9 @@
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         console.log(data);
+                        console.log(data.data.alto);
+                        console.log(data.data.medio);
+                        console.log(data.data.bajo);
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

@@ -97,7 +97,7 @@ class InformeMoodleController extends Controller
 
     function dataAlumno(Request $request){
         $idBanner = $request->input('idBanner');
-        $data = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('*')->first();
+        $data = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('*')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }

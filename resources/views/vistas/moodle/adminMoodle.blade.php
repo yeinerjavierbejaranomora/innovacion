@@ -583,8 +583,7 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        data.forEach(data => { 
-                        });
+                        
                     }
                 });
             }

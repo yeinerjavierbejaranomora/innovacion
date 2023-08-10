@@ -654,7 +654,7 @@
                             <td>${dato.Nota_Acumulada} </td>
                             <tr>`)
                         });
-                        
+
                     }
                 });
             }
@@ -681,8 +681,11 @@
                                     title: 'Id Banner'
                                 },
                                 {
-                                    data: 'Nombre' + ' ' + 'Apellido',
-                                    title: 'Nombre Completo'
+                                    data: null,
+                                    title: 'Nombre Completo',
+                                    render: function(data, type, row) {
+                                        return data.Nombre + ' ' + data.Apellido;
+                                    }
                                 },
                                 {
                                     data: 'Facultad',

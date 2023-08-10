@@ -264,7 +264,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
@@ -279,17 +279,31 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="card mb-8">
-                                <p class="text-muted mb-1" id="nombreModal"></p>
-                                        <p class="text-muted mb-1" id="correoModal"></p>
-                                        <p class="text-muted mb-1" id="selloModal"></p>
-                                        <p class="text-muted mb-1" id="estadoModal"></p>
-                                        <p class="text-muted mb-1" id="tipoModal"></p>
-                                        <p class="text-muted mb-1" id="autorizadoModal"></p>
-                                        <p class="text-muted mb-1" id="operadorModal"></p>
-                                        <p class="text-muted mb-1" id="convenioModal"></p>
+                                    <p class="text-muted mb-1" id="nombreModal"></p>
+                                    <p class="text-muted mb-1" id="correoModal"></p>
+                                    <p class="text-muted mb-1" id="selloModal"></p>
+                                    <p class="text-muted mb-1" id="estadoModal"></p>
+                                    <p class="text-muted mb-1" id="tipoModal"></p>
+                                    <p class="text-muted mb-1" id="autorizadoModal"></p>
+                                    <p class="text-muted mb-1" id="operadorModal"></p>
+                                    <p class="text-muted mb-1" id="convenioModal"></p>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row">
+                            <table class="table" id="tabla">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Total Actividades</th>
+                                        <th scope="col">Actividades por calificar</th>
+                                        <th scope="col">Cuestionarios realizados</th>
+                                        <th scope="col">Primer Corte</th>
+                                        <th scope="col">Segundo Corte</th>
+                                        <th scope="col">Tercer Corte</th>
+                                        <th scope="col">Nota Acumulada</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -595,7 +609,7 @@
             });
 
             /**
-             * Método para obtner los datos de un alumno según su id Banner
+             * Método para obtner los datos de un alumno según su id Banner y llena el Modal
              */
             function dataAlumno(id) {
                 var datos = $.ajax({
@@ -612,10 +626,10 @@
                         var primerArray = data.data[0]
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
-                        $('#nombreModal').append(primerArray.Nombre + ' ' + primerArray.Apellido);
-                        $('#idModal').append(primerArray.Id_Banner);
-                        $('#facultadModal').append(primerArray.Facultad);
-                        $('#programaModal').append(primerArray.Programa);
+                        $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');
+                        $('#idModal').append('<strong>' + primerArray.Id_Banner + '</strong>');
+                        $('#facultadModal').append('<strong>' + primerArray.Facultad + '</strong>');
+                        $('#programaModal').append('<strong>' + primerArray.Programa + '</strong>');
 
                         /** Segunda Card */
                         $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
@@ -624,8 +638,8 @@
                         $('#tipoModal').append('<strong>Tipo estudiante: </strong>' + primerArray.Tipo_Estudiante);
                         $('#autorizadoModal').append('<strong>Autorizado: </strong>' + primerArray.Autorizado_ASP);
                         $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
-                        $('#convenioModal').append('<strong>Autorizado: </strong>' + primerArray.Convenio);
-                        
+                        $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
+
 
                     }
                 });

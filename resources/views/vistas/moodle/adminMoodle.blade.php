@@ -738,7 +738,6 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    table.off('click', 'button.data'); 
                     table.destroy();
                     $("#tituloTable").remove();
                 }

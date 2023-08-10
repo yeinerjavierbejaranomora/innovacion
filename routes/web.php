@@ -179,6 +179,9 @@ Route::controller(MafiController::class)->group(function () {
     Route::get('/home/admin/periodo', 'periodo')->middleware('auth', 'admin')->name('admin.periodo');
     Route::get('/home/admin/Generar_faltantes', 'materiasPorVer')->middleware('auth', 'admin')->name('admin.Generar_faltantes');
     Route::get('/home/admin/probarfunciones', 'probarfunciones')->middleware('auth', 'admin')->name('admin.probarfunciones');
+    Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
+
+    
 });
 
 /** definimos las rutas para el registro de usuarios */
@@ -322,6 +325,9 @@ Route::controller(facultadController::class)->group(function () {
     Route::get('/home/getplaneacion', 'get_planeacion')->middleware('auth')->name('programas.planeacion');
     /** Ruta para visualizar la planeación de cada programa */
     Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
+
+   
+
     
 });
 

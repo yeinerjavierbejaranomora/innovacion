@@ -168,7 +168,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para cargar dataTable con los estudiantes */
     Route::get('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
     /** Ruta para obtener la data de un alumno según su idBanner */
-    Route::get('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
+    Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 });
 
 Route::controller(MafiController::class)->group(function () {

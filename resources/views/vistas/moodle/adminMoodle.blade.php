@@ -586,8 +586,9 @@
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },                     
                         });
+                        riesgoaux = riesgo.toLowerCase();
                         var titulo = 'Estudiantes con riesgo' + riesgo;
-                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4> ' + titulo + '</h4></div>').insertBefore('#datatable');
                     }
                 }
             }

@@ -1226,7 +1226,7 @@ class InformeMafiController extends Controller
         $campos='';
 
         foreach ($Total_estudiantes_Banner as $key => $value) {
-            $campos.=$value->estado;
+            $campos.=$value->estado.",";
             
         }
 

@@ -548,7 +548,7 @@
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').DataTable().destroy();
-                    $("#tituloTable").empty();
+                    $("#tituloTable").remove();
                     }
 
                 var xmlhttp = new XMLHttpRequest();

@@ -268,29 +268,30 @@
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid mb-2" style="width: 150px;">
                                         <p class="text-muted mb-1" id="nombreModal"></p>
                                         <p class="text-muted mb-1" id="idModal"></p>
                                         <p class="text-muted mb-1" id="facultadModal"></p>
                                         <p class="text-muted mb-1" id="programaModal"></p>
-                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="card mb-8">
-                                    <p class="text-muted mb-1" id="nombreModal"></p>
-                                    <p class="text-muted mb-1" id="correoModal"></p>
-                                    <p class="text-muted mb-1" id="selloModal"></p>
-                                    <p class="text-muted mb-1" id="estadoModal"></p>
-                                    <p class="text-muted mb-1" id="tipoModal"></p>
-                                    <p class="text-muted mb-1" id="autorizadoModal"></p>
-                                    <p class="text-muted mb-1" id="operadorModal"></p>
-                                    <p class="text-muted mb-1" id="convenioModal"></p>
+                                    <div class="card-body text-start">
+                                        <p class="text-muted mb-1" id="nombreModal"></p>
+                                        <p class="text-muted mb-1" id="correoModal"></p>
+                                        <p class="text-muted mb-1" id="selloModal"></p>
+                                        <p class="text-muted mb-1" id="estadoModal"></p>
+                                        <p class="text-muted mb-1" id="tipoModal"></p>
+                                        <p class="text-muted mb-1" id="autorizadoModal"></p>
+                                        <p class="text-muted mb-1" id="operadorModal"></p>
+                                        <p class="text-muted mb-1" id="convenioModal"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row text-center">
                             <table class="table" id="tabla">
                                 <thead>
                                     <tr>
@@ -303,6 +304,8 @@
                                         <th scope="col">Nota Acumulada</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -640,6 +643,17 @@
                         $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
                         $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
 
+                        data.data.forEach(dato => {
+                            $("#tabla tbody").append(`<tr>
+                            <td>${dato.Total_Actividades} </td>
+                            <td>${dato.Actividades_Por_Calificar} </td>
+                            <td>${dato.Cuestionarios_Intentos_Realizados} </td>
+                            <td>${dato.Primer_Corte} </td>
+                            <td>${dato.Segundo_Corte} </td>
+                            <td>${dato.Tercer_Corte} </td>
+                            <td>${dato.Nota_Acumulada} </td>
+                            <tr>`)
+                        });
 
                     }
                 });
@@ -667,12 +681,11 @@
                                     title: 'Id Banner'
                                 },
                                 {
-                                    data: 'Nombre',
-                                    title: 'Nombre'
-                                },
-                                {
-                                    data: 'Apellido',
-                                    title: 'Apellidos'
+                                    data: null,
+                                    title: 'Nombre Completo',
+                                    render: function(data, type, row) {
+                                        return data.Nombre + ' ' + data.Apellido;
+                                    }
                                 },
                                 {
                                     data: 'Facultad',

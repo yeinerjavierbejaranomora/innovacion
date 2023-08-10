@@ -645,8 +645,8 @@
                         $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
 
                         $('#tabla tbody').append('<tr>')
-                        data.forEach(periodo => {
-                            $("#tabla tbody").append(`<td>${data.data.Total_Actividades} </td>`)
+                        data.data.forEach(periodo => {
+                            $("#tabla tbody").append(`<td>${data.Total_Actividades} </td>`)
                         });
                         $('#tabla tbody').append('</tr>')
                     }

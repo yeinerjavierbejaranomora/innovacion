@@ -279,7 +279,7 @@
                             <div class="col-lg-8">
                                 <div class="card mb-8">
                                     <div class="card-body text-start">
-                                        <p class="text-muted mb-1" id="nombreModal"></p>
+                                        <p class="text-muted mb-1" id="documentoModal"></p>
                                         <p class="text-muted mb-1" id="correoModal"></p>
                                         <p class="text-muted mb-1" id="selloModal"></p>
                                         <p class="text-muted mb-1" id="estadoModal"></p>
@@ -308,6 +308,14 @@
                                 <tbody>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-lg-6">
+                                <canvas id="riesgoIngreso"></canvas>
+                            </div>
+                            <div class="col-lg-6">
+                                <canvas id="riesgoNotas"></canvas>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -611,6 +619,7 @@
                 dataTable(riesgo);
             });
 
+            var chartRiesgoIngreso;
             /**
              * Método para obtner los datos de un alumno según su id Banner y llena el Modal
              */
@@ -635,6 +644,7 @@
                         $('#programaModal').append('<strong>' + primerArray.Programa + '</strong>');
 
                         /** Segunda Card */
+                        $('#documentoModal').append('<strong>Documento de identidad: </strong>' + primerArray.No_Documento);
                         $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
                         $('#selloModal').append('<strong>Sello financiero: </strong>' + primerArray.Sello);
                         $('#estadoModal').append('<strong>Estado: </strong>' + primerArray.Estado_Banner);
@@ -647,7 +657,6 @@
                             $("#tabla tbody").append(`<tr>
                             <td>${dato.Nombrecurso} </td>
                             <td>${dato.Total_Actividades} </td>
-                            <td>${dato.Total_Actividades} </td>
                             <td>${dato.Actividades_Por_Calificar} </td>
                             <td>${dato.Cuestionarios_Intentos_Realizados} </td>
                             <td>${dato.Primer_Corte} </td>
@@ -656,11 +665,74 @@
                             <td>${dato.Nota_Acumulada} </td>
                             <tr>`)
                         });
+                    }
+                });
 
+                graficosModal(id);
+            }
+
+            function graficosModal(id) {
+                var charts = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('moodle.riesgo.asistencia') }}",
+                    data: {
+                        idBanner: id
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        console.log(data);
+                        var ctx = document.getElementById('riesgoIngreso').getContext('2d');
+                        chartRiesgoIngreso = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Score', 'Gray Area'],
+                                datasets: [{
+                                    data: [],
+                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(220, 205, 48, 1)', 'rgba(0, 255, 0, 1)'],
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: data.alto,
+                                        color: 'red',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
                     }
                 });
             }
-
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {

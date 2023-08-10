@@ -240,9 +240,7 @@
             <div class="card-body">
                 <!--Datatable-->
                 <div class="table">
-                    <div>
-                        <h5 id="tituloTable" class="hidden"> </h5>
-                    </div>
+
                     <table id="datatable" class="display" style="width:100%">
                     </table>
                 </div>

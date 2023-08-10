@@ -332,7 +332,6 @@
         var data;
         $(document).ready(function() {
 
-            console.log('cambio');
             var tabla = <?php echo json_encode($tabla); ?>;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -617,7 +616,7 @@
 
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
-                console.log(riesgo);
+
 
                 dataTable(riesgo);
             });
@@ -637,7 +636,6 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
                         var primerArray = data.data[0]
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
@@ -686,7 +684,6 @@
                     method: 'post',
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         chartRiesgoIngreso = new Chart(ctx, {
                             
@@ -795,7 +792,6 @@
                             $(tbody).on("click", "button.data", function() {
                                 console.log(table.row($(this).parents("tr")).data());
                                 var datos = table.row($(this).parents("tr")).data();
-                                console.log(datos);
                                 dataAlumno(datos.Id_Banner);
                             })
                         }

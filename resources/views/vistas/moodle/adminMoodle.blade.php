@@ -668,6 +668,10 @@
                     }
                 });
 
+                graficosModal(id);
+            }
+
+            function graficosModal(id){
 
                 var charts = $.ajax({
                     headers: {
@@ -730,7 +734,6 @@
                     }
                     });
             }
-
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {

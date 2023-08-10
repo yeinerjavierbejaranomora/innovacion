@@ -587,8 +587,8 @@
                             },                     
                         });
                         riesgoaux = riesgo.toLowerCase();
-                        var titulo = 'Estudiantes con riesgo' + riesgo;
-                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4> ' + titulo + '</h4></div>').insertBefore('#datatable');
+                        var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
                     }
                 }
             }

@@ -553,8 +553,7 @@
             /**
              * Método para obtner los datos de un alumno según su id Banner
              */
-            function dataAlumno(id)
-            {
+            function dataAlumno(id){
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

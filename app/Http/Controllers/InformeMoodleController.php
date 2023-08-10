@@ -113,11 +113,11 @@ class InformeMoodleController extends Controller
             $aux=$riesgo->Riesgo;
             $nombreCurso= $riesgo->Nombrecurso;
             if($aux == 'ALTO'){
-                $alto[]=$nombreCurso;
+                $alto[] = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             }elseif($aux == 'MEDIO'){
-                $medio[]= $nombreCurso;
+                $alto[] = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             }elseif($aux == 'BAJO'){
-                $bajo[] = $nombreCurso;
+                $alto[] = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             }
         }
 

@@ -694,7 +694,7 @@
                         });
 
                         var colores = data.data.total.map(function(elemento) {
-                            if(elemento.Riesgo =="Alto")
+                            if(elemento.Riesgo =="ALTO")
                             {
                                 console.log('entra');
                             }

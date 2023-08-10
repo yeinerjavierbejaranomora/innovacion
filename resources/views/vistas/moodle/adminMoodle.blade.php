@@ -692,7 +692,7 @@
                         var valores = data.data.total.map(function(elemento) {
                             return elemento.TOTAL;
                         });
-                        console.log(data.data.total);
+
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -719,12 +719,12 @@
                                         },
                                     },
                                     legend: {
-                                        display: false
+                                        display: true
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto,
-                                        color: 'red',
+                                        text: 'Riesgo por ingreso',
+                                        color: 'black',
                                         position: 'bottom',
                                         font: {
                                             size: 20,

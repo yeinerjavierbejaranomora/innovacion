@@ -331,6 +331,7 @@
         var table;
         var data;
         $(document).ready(function() {
+            
             console.log('cambio');
             var tabla = <?php echo json_encode($tabla); ?>;
 

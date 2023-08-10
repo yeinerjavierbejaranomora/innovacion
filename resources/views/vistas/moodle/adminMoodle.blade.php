@@ -32,6 +32,10 @@
         font-size: 14px;
     }
 
+    #btn-table{
+        width: 60px;
+    }
+
     #generarReporte {
         width: 250px;
         height: 45px;
@@ -580,7 +584,7 @@
                                     title: 'Programa'
                                 },
                                 {
-                                    defaultContent: "<button type='button' class='btn btn-warning'><i class='fa-solid fa-user'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table'class='btn btn-warning'><i class='fa-solid fa-user'></i></button>",
                                     title: 'Datos Estudiante',  
                                 }
                             ],

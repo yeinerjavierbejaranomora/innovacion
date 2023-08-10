@@ -295,6 +295,7 @@
                             <table class="table" id="tabla">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Curso</th>
                                         <th scope="col">Total Actividades</th>
                                         <th scope="col">Actividades por calificar</th>
                                         <th scope="col">Cuestionarios realizados</th>
@@ -645,6 +646,8 @@
 
                         data.data.forEach(dato => {
                             $("#tabla tbody").append(`<tr>
+                            <td>${dato.Nombrecurso} </td>
+                            <td>${dato.Total_Actividades} </td>
                             <td>${dato.Total_Actividades} </td>
                             <td>${dato.Actividades_Por_Calificar} </td>
                             <td>${dato.Cuestionarios_Intentos_Realizados} </td>

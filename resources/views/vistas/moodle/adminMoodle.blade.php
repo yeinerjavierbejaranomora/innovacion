@@ -244,7 +244,6 @@
             <div class="card-body">
                 <!--Datatable-->
                 <div class="table">
-
                     <table id="datatable" class="display" style="width:100%">
                     </table>
                 </div>
@@ -328,6 +327,9 @@
 
 
     <script>
+
+        var table;
+        var data;
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
 
@@ -611,7 +613,6 @@
                 });
             }
 
-
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
                 console.log(riesgo);
@@ -736,7 +737,8 @@
 
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    $('#datatable').DataTable().destroy();
+                    table.off('click', 'button.data'); // Desvincular el evento de clic
+                    table.destroy();
                     $("#tituloTable").remove();
                 }
 
@@ -746,8 +748,10 @@
                 xmlhttp.send();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
-                        var table = $('#datatable').DataTable({
+
+                        data = JSON.parse(this.responseText);
+                        console.log(data);
+                        table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,
                             "columns": [{

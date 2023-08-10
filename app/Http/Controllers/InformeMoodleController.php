@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Session;
 
 class InformeMoodleController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -56,7 +55,6 @@ class InformeMoodleController extends Controller
         );
         return $datos;
     }
-
 
     public function sello(){
             /**
@@ -107,18 +105,19 @@ class InformeMoodleController extends Controller
         $bajo = [];
         $medio = [];
         $alto = [];
-        $riesgos = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Riesgo, Nombrecurso')->get();
+        $riesgos = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Riesgo', 'Nombrecurso')->get();
         $totalRiesgo = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
         
         foreach($riesgos as $riesgo){
             $aux=$riesgo->Riesgo;
             $nombreCurso= $riesgo->Nombrecurso;
+            $nombreCursoFormateado = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             if($aux == 'ALTO'){
-                $alto[]=$nombreCurso;
+                $alto[] = $nombreCursoFormateado;
             }elseif($aux == 'MEDIO'){
-                $medio[]= $nombreCurso;
+                $medio[] = $nombreCursoFormateado;
             }elseif($aux == 'BAJO'){
-                $bajo[] = $nombreCurso;
+                $bajo[] = $nombreCursoFormateado;
             }
         }
 
@@ -128,7 +127,6 @@ class InformeMoodleController extends Controller
             'bajo' => $bajo,
             'total' => $totalRiesgo,           
         );
-        dd($datos);
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));

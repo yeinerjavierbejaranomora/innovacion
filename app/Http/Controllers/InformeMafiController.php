@@ -1205,4 +1205,26 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
+    /**
+     * Método para guardar todo los historicos de los graficos
+     * @return JSON retorna los historicos dacada grafico mafi
+     */
+
+    public function historial_graficos(){
+
+        /**traemos los datos Total estudiantes Banner 
+        SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
+         * 
+        */
+
+        $Total_estudiantes_Banner = DB::table('datosMafi')
+        ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
+        ->groupBy('estado')
+        ->orderByDesc('TOTAL')
+        ->get();
+
+        dd($Total_estudiantes_Banner);
+
+    }
+
 }

@@ -1218,15 +1218,31 @@ class InformeMafiController extends Controller
         */
 
         $Total_estudiantes_Banner = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
-        ->groupBy('estado')
-        ->orderByDesc('TOTAL')
+            ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
+            ->groupBy('estado')
+            ->orderByDesc('TOTAL')
         ->get();
         //--- insertamos los datos  del total estudiantes banner
-        $insert_historico_graficos = DB::table('historico_graficos')
-        ->insert([
+        DB::table('historico_graficos')->insert([
             'grafico'=>'Total estudiantes Banner',
             'numeros'=>json_encode($Total_estudiantes_Banner),
+            'periodo'=>'todos',
+            'facultad'=>'todos',
+            'programa'=>'todos',
+            'fecha'=>date("d-m-Y"),
+        ]);
+
+      
+        $Estado_Financiero= DB::table('datosMafi')
+            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            ->groupBy('sello')
+            ->orderByDesc('TOTAL')
+        ->get();
+        
+        //--- insertamos los datos  del Estado_Financiero todos
+        DB::table('historico_graficos')->insert([
+            'grafico'=>'Estado Financiero',
+            'numeros'=>json_encode($Estado_Financiero),
             'periodo'=>'todos',
             'facultad'=>'todos',
             'programa'=>'todos',
@@ -1235,14 +1251,24 @@ class InformeMafiController extends Controller
            
         ]);
 
-        //--- insertamos los datos  del Estado_Financiero
-        $Estado_Financiero= DB::table('datosMafi')
-        ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-        ->groupBy('sello')
+        $Estado_Financiero_Retención= DB::table('datosMafi')
+        ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+        ->groupBy('autorizado_asistir')
         ->orderByDesc('TOTAL')
         ->get();
 
-        dd($Total_estudiantes_Banner);
+         //--- insertamos los datos  del Estado_Financiero todos
+         DB::table('historico_graficos')->insert([
+            'grafico'=>'Estado Financiero',
+            'numeros'=>json_encode($Estado_Financiero),
+            'periodo'=>'todos',
+            'facultad'=>'todos',
+            'programa'=>'todos',
+            'fecha'=>date("d-m-Y"),
+          
+           
+        ]);
+        dd($Estado_Financiero_Retención);
 
     }
 

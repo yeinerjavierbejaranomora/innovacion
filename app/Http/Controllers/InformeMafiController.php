@@ -91,9 +91,9 @@ class InformeMafiController extends Controller
     public function estudiantesRetencion($tabla)
     {
         /**
-        SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-        WHERE sello = 'TIENE RETENCION' 
-        GROUP BY autorizado_asistir
+        **SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir **FROM datosMafi 
+        **WHERE sello = 'TIENE RETENCION' 
+        **GROUP BY autorizado_asistir
          */
         if ($tabla == "Mafi") {
             $retencion = DB::table('datosMafi')
@@ -135,9 +135,9 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
-        GROUP BY sello;
+        **SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+        **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+        **GROUP BY sello;
              */
             $primerIngreso = DB::table('datosMafi')
                 ->whereIn('tipoestudiante', $tiposEstudiante)
@@ -148,9 +148,9 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-            SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
-            WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
-            GROUP BY sello;
+           **SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
+           **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
+           **GROUP BY sello;
              */
             $primerIngreso = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')
@@ -208,10 +208,10 @@ class InformeMafiController extends Controller
     {
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador
-        ORDER BY TOTAL DESC
-        LIMIT 5
+       **SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
+       **GROUP BY operador
+       **ORDER BY TOTAL DESC
+       **LIMIT 5
              */
             $operadores = DB::table('datosMafi')
 
@@ -251,10 +251,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == 'Mafi') {
             /**
-        SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-        GROUP BY codprograma
-        ORDER BY TOTAL DESC
-        LIMIT 5
+       **SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
+       **GROUP BY codprograma
+       **ORDER BY TOTAL DESC
+       **LIMIT 5
              */
             $programas = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
@@ -266,10 +266,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == 'planeacion') {
             /**  
-         SELECT COUNT(programa) AS TOTAL, programa FROM `estudiantes`
-         GROUP BY programa
-         ORDER BY TOTAL DESC
-         LIMIT 5
+         **SELECT COUNT(programa) AS TOTAL, programa FROM `estudiantes`
+         **GROUP BY programa
+         **ORDER BY TOTAL DESC
+         **LIMIT 5
              */
             $programas = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')
@@ -323,10 +323,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.sello
+       **SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
+       **INNER JOIN programas p ON p.codprograma = dm.programa
+       **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+       **GROUP BY dm.sello
              */
             $sello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -339,10 +339,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-        SELECT COUNT(e.sello) AS TOTAL, e.sello FROM `estudiantes` e
-        INNER JOIN programas p ON p.codprograma = e.programa
-        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
-        GROUP BY e.sello */
+       **SELECT COUNT(e.sello) AS TOTAL, e.sello FROM `estudiantes` e
+       **INNER JOIN programas p ON p.codprograma = e.programa
+       **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+       **GROUP BY e.sello */
             $sello = DB::table('estudiantes AS e')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
                 ->where('e.programado_ciclo1', 'OK')
@@ -371,11 +371,11 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
-        INNER JOIN programas p ON p.codprograma = dm.codprograma
-        WHERE p.Facultad IN ('') AND dm.periodo IN ('')
-        WHERE dm.sello = 'TIENE RETENCION' 
-        GROUP BY dm.autorizado_asistir
+       ** SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.**autorizado_asistir FROM datosMafi dm
+       ** INNER JOIN programas p ON p.codprograma = dm.codprograma
+       ** WHERE p.Facultad IN ('') AND dm.periodo IN ('')
+       ** WHERE dm.sello = 'TIENE RETENCION' 
+       ** GROUP BY dm.autorizado_asistir
              */
             $retencion = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -425,12 +425,12 @@ class InformeMafiController extends Controller
         ];
         if ($tabla == "Mafi") {
             /**
-            SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-            FROM datosMafi AS dm
-            JOIN programas AS p ON p.codprograma = dm.programa
-            WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-            AND dm.tipoestudiante = 'PRIMER INGRESO'
-            GROUP BY dm.sello;
+           **SELECT COUNT(dm.sello) AS TOTAL, dm.sello
+           **FROM datosMafi AS dm
+           **JOIN programas AS p ON p.codprograma = dm.programa
+           **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+           **AND dm.tipoestudiante = 'PRIMER INGRESO'
+           **GROUP BY dm.sello;
              */
             $primerIngreso = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -469,11 +469,11 @@ class InformeMafiController extends Controller
         $tabla = trim($tabla);
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
-        FROM datosMafi AS dm
-        JOIN programas AS p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.tipoestudiante
+        **SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
+        **FROM datosMafi AS dm
+        **JOIN programas AS p ON p.codprograma = dm.programa
+        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+        **GROUP BY dm.tipoestudiante
              */
             $tipoEstudiantes = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -488,11 +488,11 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-        SELECT COUNT(e.tipo_estudiante) AS 'TOTAL', e.tipo_estudiante
-        FROM estudiantes e
-        JOIN programas p ON p.codprograma = e.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY e.tipo_estudiante
+        **SELECT COUNT(e.tipo_estudiante) AS 'TOTAL', e.tipo_estudiante
+        **FROM estudiantes e
+        **JOIN programas p ON p.codprograma = e.programa
+        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+        **GROUP BY e.tipo_estudiante
              */
             $tipoEstudiantes = DB::table('estudiantes AS e')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
@@ -523,13 +523,13 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
-        FROM datosMafi AS dm
-        JOIN programas AS p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.operador
-        ORDER BY TOTAL DESC
-        LIMIT 5
+        **SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
+        **FROM datosMafi AS dm
+        **JOIN programas AS p ON p.codprograma = dm.programa
+        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+        **GROUP BY dm.operador
+        **ORDER BY TOTAL DESC
+        **LIMIT 5
              */
             $operadores = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -545,13 +545,13 @@ class InformeMafiController extends Controller
         if ($tabla == "planeacion") {
 
             /**
-        SELECT COUNT(e.operador) AS TOTAL, e.operador 
-        FROM estudiantes e
-        JOIN programas AS p ON p.codprograma = e.programa
-        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
-        GROUP BY e.operador
-        ORDER BY TOTAL DESC
-        LIMIT 5
+        **SELECT COUNT(e.operador) AS TOTAL, e.operador 
+        **FROM estudiantes e
+        **JOIN programas AS p ON p.codprograma = e.programa
+        **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+        **GROUP BY e.operador
+        **ORDER BY TOTAL DESC
+        **LIMIT 5
              */
             $operadores = DB::table('estudiantes AS e')
                 ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
@@ -583,13 +583,13 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-        FROM datosMafi AS dm
-        JOIN programas AS p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.codprograma
-        ORDER BY TOTAL DESC
-        LIMIT 5
+        **SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+        **FROM datosMafi AS dm
+        **JOIN programas AS p ON p.codprograma = dm.programa
+        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+        **GROUP BY dm.codprograma
+        **ORDER BY TOTAL DESC
+        **LIMIT 5
              */
             $programas = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -605,12 +605,12 @@ class InformeMafiController extends Controller
         if ($tabla == "planeacion") {
             /**
              * SELECT COUNT(e.programa) AS TOTAL, e.programa 
-        FROM estudiantes e
-        JOIN programas p ON p.codprograma = e.programa
-        WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza con las facultades específicas
-        GROUP BY e.programa
-        ORDER BY TOTAL DESC
-        LIMIT 5 */
+       ** FROM estudiantes e
+       ** JOIN programas p ON p.codprograma = e.programa
+       ** WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+       ** GROUP BY e.programa
+       ** ORDER BY TOTAL DESC
+       ** LIMIT 5 */
             $programas = DB::table('estudiantes AS e')
                 ->select(DB::raw('COUNT(e.programa) AS TOTAL'), 'e.programa')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')

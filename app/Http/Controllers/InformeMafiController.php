@@ -1224,7 +1224,7 @@ class InformeMafiController extends Controller
         ->get();
 
         foreach ($Total_estudiantes_Banner as $key => $value) {
-            dd($value);
+            dd($value->estado);
         }
 
 

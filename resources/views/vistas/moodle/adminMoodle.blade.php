@@ -548,6 +548,7 @@
             function dataTable(riesgo) {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').DataTable().destroy();
+                    $("#tituloTable").empty();
                     }
 
                 var xmlhttp = new XMLHttpRequest();
@@ -585,8 +586,8 @@
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },                     
                         });
-                        var titulo = 'Estudiantes con riesto' + riesgo;
-                        $('<div class="dataTables_title"> <h5>' + titulo + '</h5></div>').insertBefore('#datatable');
+                        var titulo = 'Estudiantes con riesgo' + riesgo;
+                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
                     }
                 }
             }

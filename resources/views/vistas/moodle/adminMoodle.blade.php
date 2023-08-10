@@ -694,7 +694,7 @@
                         });
 
                         var colores = data.data.total.map(function(elemento) {
-                            if(elemento.Riesgo =="ALTO")
+                            if(elemento.Riesgo =="ALTO" && elemento.Riesgo =="BAJO")
                             {
                                 console.log('entra');
                             }
@@ -766,7 +766,7 @@
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
-                    $('#datatable tbody').DataTable().destroy();
+                    $('#datatable').DataTable().destroy();
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }

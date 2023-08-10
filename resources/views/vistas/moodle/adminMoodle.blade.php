@@ -597,6 +597,7 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
+                        console.log(data[0]);
                         $('#tituloEstudiante strong').append(data.Nombre + ' ' + data.Apellido + ' - ' + data.Id_Banner);
                         $('#nombreModal').append(data.Nombre + ' ' + data.Apellido );
                         $('#idModal').append(data.Id_Banner);
@@ -661,7 +662,6 @@
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
                                 var data = table.row($(this).parents("tr")).data();
-                                console.log(data);
                                 dataAlumno(data.Id_Banner);
                             })
                         }

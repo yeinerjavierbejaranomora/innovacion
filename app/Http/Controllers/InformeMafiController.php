@@ -1230,13 +1230,13 @@ class InformeMafiController extends Controller
             
         }
 
-        dd($campos);
+        dd($Total_estudiantes_Banner);
            
        /* $insert_historico_graficos = DB::table('historico_graficos')
         ->insert([
            
             'grafico'=>'Total estudiantes Banner',
-            'campos'=>'Activos,Inactivos',
+            'campos'=>$campos,
             'numeros'=>,
             'periodo'=>,
             'facultad'=>,

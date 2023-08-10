@@ -128,7 +128,6 @@ class InformeMoodleController extends Controller
             'bajo' => $bajo,
             'total' => $totalRiesgo,           
         );
-        dd($datos);
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));

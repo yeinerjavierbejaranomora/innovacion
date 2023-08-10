@@ -740,6 +740,7 @@
                 if ($.fn.DataTable.isDataTable('#datatable')) {
 
                     $("#tituloTable").remove();
+                    table.destroy();
                     $('#tituloTable tbody').DataTable().destroy();
                     $('#tituloTable tbody').empty();
                 }

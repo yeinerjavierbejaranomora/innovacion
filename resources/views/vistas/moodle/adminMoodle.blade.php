@@ -688,6 +688,8 @@
                         var alto = data.data.alto;
                         var medio = data.data.medio;
                         var bajo = data.data.bajo;
+                        
+                        console.log(data.data.total);
                         var valores = data.data.total.map(function(elemento) {
                             return elemento.TOTAL;
                         });

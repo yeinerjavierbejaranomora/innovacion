@@ -116,9 +116,9 @@ class InformeMoodleController extends Controller
             if($aux == 'ALTO'){
                 $alto[] = $nombreCursoFormateado;
             }elseif($aux == 'MEDIO'){
-                $alto[] = $nombreCursoFormateado;
+                $medio[] = $nombreCursoFormateado;
             }elseif($aux == 'BAJO'){
-                $alto[] = $nombreCursoFormateado;
+                $bajo[] = $nombreCursoFormateado;
             }
         }
 

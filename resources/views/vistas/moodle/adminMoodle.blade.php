@@ -329,7 +329,6 @@
 
 
     <script>
-
         var table;
         var data;
         $(document).ready(function() {
@@ -735,7 +734,14 @@
                                     tooltip: {
                                         enabled: false
                                     },
-
+                                    layout: {
+                                        padding: {
+                                            bottom: 10,
+                                        },
+                                        margin: {
+                                            bottom: 10,
+                                        },
+                                    },
                                 },
 
                             },

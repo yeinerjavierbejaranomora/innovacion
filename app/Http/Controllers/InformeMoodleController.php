@@ -57,7 +57,6 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-
     public function sello(){
             /**
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`

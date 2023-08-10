@@ -25,8 +25,7 @@ class InformeMoodleController extends Controller
         $this->middleware('auth');
     }
 
-    public function riesgo()
-    {
+    public function riesgo(){
 
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
         $Total = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
@@ -53,56 +52,52 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $Total[0]->TOTAL
+            'total' => $Total[0]->TOTAL           
         );
         return $datos;
     }
 
 
-    public function sello()
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
-         *GROUP BY sello
-         */
-        $sello = DB::table('datos_moodle')
-            ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
-            ->groupBy('Sello')
-            ->get();
-
+    public function sello(){
+            /**
+             * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
+             *GROUP BY sello
+             */
+            $sello = DB::table('datos_moodle')
+                ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
+                ->groupBy('Sello')
+                ->get();
+       
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
 
-    public function retencion()
-    {
-
+    public function retencion(){
+            
         $retencion = DB::table('datos_moodle')
-            ->where('Sello', 'NO EXISTE')
-            ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
-            ->groupBy('Autorizado_ASP')
-            ->get();
-
+                ->where('Sello', 'NO EXISTE')
+                ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
+                ->groupBy('Autorizado_ASP')
+                ->get();
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
 
-    function estudiantesRiesgo($riesgo)
-    {
+    function estudiantesRiesgo($riesgo){
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
-            ->where('Riesgo', $riesgo)
-            ->selectRaw('Id_Banner, MAX(Nombre) AS Nombre, Apellido, Facultad, Programa')
-            ->groupBy('Id_Banner')
-            ->get();
+        ->where('Riesgo', $riesgo)
+        ->select('Id_Banner','Nombre','Apellido','Facultad','Programa')
+        ->groupBy('Id_Banner','Nombre','Apellido','Facultad','Programa')
+        ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function dataAlumno(Request $request)
-    {
+    function dataAlumno(Request $request){
         $idBanner = $request->input('idBanner');
-        $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->first();
+        $data = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('*')->first();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }

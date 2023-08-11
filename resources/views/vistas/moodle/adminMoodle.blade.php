@@ -309,7 +309,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row text-center">
+                        <div class="row text-center mt-3">
                             <div class="col-lg-6">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
@@ -738,7 +738,14 @@
                                     tooltip: {
                                         enabled: false
                                     },
-
+                                    layout: {
+                                        padding: {
+                                            bottom: 10,
+                                        },
+                                        margin: {
+                                            bottom: 10,
+                                        },
+                                    },
                                 },
 
                             },

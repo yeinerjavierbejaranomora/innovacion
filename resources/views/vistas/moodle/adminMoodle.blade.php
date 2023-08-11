@@ -765,7 +765,6 @@
                         });
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
-                        console.log(data.data.notas);
                         const dataArray = Object.values(data.data.notas);
 
                         var labels = data.data.notas.map(function(elemento) {
@@ -891,7 +890,6 @@
 
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.data", function() {
-                                console.log(tbody);
                                 var datos = table.row($(this).parents("tr")).data();
                                 dataAlumno(datos.Id_Banner);
                             })

@@ -714,7 +714,7 @@
                             },
 
                             options: {
-                                responsive: true,
+                                responsive: false,
                                 maintainAspectRatio: false,
                                 height: 300,
                                 cutoutPercentage: 50,

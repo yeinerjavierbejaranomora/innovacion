@@ -310,7 +310,7 @@
                             </table>
                         </div>
                         <div class="row text-center">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" style="height: 450px;">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
                             <div class="col-lg-6">

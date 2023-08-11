@@ -310,10 +310,13 @@
                             </table>
                         </div>
                         <div class="row text-center mt-3">
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
-                            <div class="col-lg-6">
+
+                        </div>
+                        <div class="row text-center mt-3">
+                            <div class="col-lg-8">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>
@@ -894,15 +897,12 @@
             function limpiarModal() {
                 $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 
-                if (chartRiesgoAlto && chartRiesgoNotas){
-                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart =>chart.destroy());
+                if (chartRiesgoAlto && chartRiesgoNotas) {
+                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
                 }
-    
+
             }
         });
-
-            
-        
     </script>
 
     <!-- incluimos el footer -->

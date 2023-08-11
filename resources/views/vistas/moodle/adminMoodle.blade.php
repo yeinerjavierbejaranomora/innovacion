@@ -735,7 +735,7 @@
                                         }
                                     },
                                     title: {
-                                        display: true,
+                                        display: false,
                                         text: 'Riesgo por ingreso',
                                         color: 'black',
                                         position: 'top',

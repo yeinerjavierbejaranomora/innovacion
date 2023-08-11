@@ -731,14 +731,14 @@
                                         position: 'bottom',
                                         align: 'start',
                                         labels: {
-                                            padding: 20,
+                                            padding: 10,
                                         }
                                     },
                                     title: {
                                         display: true,
                                         text: 'Riesgo por ingreso',
                                         color: 'black',
-                                        position: 'bottom',
+                                        position: 'top',
                                         font: {
                                             size: 20,
                                         },

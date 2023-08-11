@@ -635,7 +635,6 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
                         var primerArray = data.data[0]
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);

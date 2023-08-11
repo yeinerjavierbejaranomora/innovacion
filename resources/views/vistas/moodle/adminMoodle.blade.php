@@ -696,7 +696,7 @@
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: [alto, medio],
+                                labels: [alto, medio, bajo],
                                 datasets: [{
                                     data: valores,
                                     backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
@@ -738,14 +738,7 @@
                                     tooltip: {
                                         enabled: false
                                     },
-                                    layout: {
-                                        padding: {
-                                            bottom: 10,
-                                        },
-                                        margin: {
-                                            bottom: 10,
-                                        },
-                                    },
+
                                 },
 
                             },

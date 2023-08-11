@@ -621,6 +621,7 @@
             });
 
             var chartRiesgoIngreso;
+            var chartRiesgoNotas;
             /**
              * Método para obtner los datos de un alumno según su id Banner y llena el Modal
              */
@@ -750,6 +751,62 @@
                                     },
                                 },
 
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+
+                        ctx = document.getElementById('riesgoNotas').getContext('2d');
+                        data = jQuery.parseJSON(data);
+                        var labels = data.data.Notas(function(elemento) {
+                            return elemento.Nombrecurso;
+                        });
+
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.Nota_Acumulada;
+                        });
+                        
+                        chartRiesgoNotas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: '',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: 5,
+                                        
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
                             },
                             plugins: [ChartDataLabels]
                         });

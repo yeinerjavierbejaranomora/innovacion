@@ -136,22 +136,14 @@ class InformeMoodleController extends Controller
             $bajo[] = 'Ninguno';
         }
 
-        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Nombrecurso', 'Primer_Corte', 'Segundo_Corte', 'Tercer_Corte')->get();
-
-        foreach($Notas as $key => $nota ){
-            $nota1 = $nota->Primer_Corte;
-            $nota2 = $nota->Segundo_Corte;
-            $nota3 = $nota->Tercer_Corte;
-
-            $promedio[$nota] = ($nota1 + $nota2 + $nota3)/3;
-        }
-        dd($promedio);
+        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Nombrecurso', 'Nota_Acumulada')->get();
 
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $totalRiesgo,           
+            'total' => $totalRiesgo,
+            'notas' =>$Notas          
         );
 
 

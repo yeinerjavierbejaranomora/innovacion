@@ -892,9 +892,7 @@
             }
 
             function limpiarModal() {
-                $('#tituloEstudiante strong', '#nombreModal', '#idModal', '#facultadModal', '#programaModal',
-                    '#documentoModal', '#correoModal', '#selloModal', '#estadoModal', '#tipoModal', '#autorizadoModal',
-                    '#operadorModal', '#convenioModal', "#tabla tbody").empty();
+                $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 
                 if (chartRiesgoAlto && chartRiesgoNotas){
                     [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart =>chart.destroy());

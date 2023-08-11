@@ -715,8 +715,6 @@
                             options: {
                                 responsive: false,
                                 maintainAspectRatio: false,
-                                height: 350,
-                                width: 400,
                                 cutoutPercentage: 50,
                                 plugins: {
                                     datalabels: {

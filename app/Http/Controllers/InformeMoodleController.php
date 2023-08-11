@@ -126,6 +126,16 @@ class InformeMoodleController extends Controller
             }
         }
 
+        if (empty($alto)) {
+            $alto[] = 'ninguno';
+        }
+        if (empty($medio)) {
+            $medio[] = 'ninguno';
+        }
+        if (empty($bajo)) {
+            $bajo[] = 'ninguno';
+        }
+
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,

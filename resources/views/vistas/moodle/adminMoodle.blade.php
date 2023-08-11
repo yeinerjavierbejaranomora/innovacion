@@ -756,11 +756,11 @@
                         });
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
-                        var labels = data.data.Notas(function(elemento) {
+                        var labels = data.data.notas(function(elemento) {
                             return elemento.Nombrecurso;
                         });
 
-                        var valores = data.data.map(function(elemento) {
+                        var valores = data.data.notas(function(elemento) {
                             return elemento.Nota_Acumulada;
                         });
                         

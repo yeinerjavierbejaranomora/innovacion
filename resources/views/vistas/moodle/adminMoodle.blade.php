@@ -890,20 +890,21 @@
                     }
                 }
             }
-        });
 
-        function limpiarModal() {
+            function limpiarModal() {
                 $('#tituloEstudiante strong', '#nombreModal', '#idModal', '#facultadModal', '#programaModal',
                     '#documentoModal', '#correoModal', '#selloModal', '#estadoModal', '#tipoModal', '#autorizadoModal',
                     '#operadorModal', '#convenioModal', "#tabla tbody").empty();
 
-
-                [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => {
-                    if (chart && typeof chart.destroy === 'function') {
-                        chart.destroy();
-                    }
-                });
+                if (chartRiesgoAlto && chartRiesgoNotas){
+                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart =>destroy());
+                }
+    
             }
+        });
+
+            
+        
     </script>
 
     <!-- incluimos el footer -->

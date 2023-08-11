@@ -783,7 +783,13 @@
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
-                                        formatter: value => value.toFixed(1),
+                                        formatter: value => {
+                                            if (value === "Sin Actividad") {
+                                                return value;
+                                            } else {
+                                                return value.toFixed(1);
+                                            }
+                                        }
                                     }
                                 }]
                             },

@@ -735,7 +735,7 @@
                                         color: 'black',
                                         position: 'top',
                                         font: {
-                                            size: 20,
+                                            size: 15,
                                         },
                                     },
                                     tooltip: {
@@ -807,7 +807,17 @@
                                                 size: 12
                                             }
                                         }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Riesgo por nota acumulada',
+                                        color: 'black',
+                                        position: 'top',
+                                        font: {
+                                            size: 15,
+                                        },
                                     }
+
                                 },
                             },
                             plugins: [ChartDataLabels]

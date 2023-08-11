@@ -24,7 +24,8 @@ class InformeMoodleController extends Controller
         $this->middleware('auth');
     }
 
-    public function riesgo(){
+    public function riesgo()
+    {
 
         $riesgos = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
         $Total = DB::table('datos_moodle')->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
@@ -51,77 +52,82 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $Total[0]->TOTAL           
+            'total' => $Total[0]->TOTAL
         );
         return $datos;
     }
 
-    public function sello(){
-            /**
-             * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
-             *GROUP BY sello
-             */
-            $sello = DB::table('datos_moodle')
-                ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
-                ->groupBy('Sello')
-                ->get();
-       
+    public function sello()
+    {
+        /**
+         * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
+         *GROUP BY sello
+         */
+        $sello = DB::table('datos_moodle')
+            ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
+            ->groupBy('Sello')
+            ->get();
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $sello));
     }
 
-    public function retencion(){
-            
+    public function retencion()
+    {
+
         $retencion = DB::table('datos_moodle')
-                ->where('Sello', 'NO EXISTE')
-                ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
-                ->groupBy('Autorizado_ASP')
-                ->get();
-        
+            ->where('Sello', 'NO EXISTE')
+            ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
+            ->groupBy('Autorizado_ASP')
+            ->get();
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $retencion));
     }
 
-    function estudiantesRiesgo($riesgo){
+    function estudiantesRiesgo($riesgo)
+    {
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
-        ->where('Riesgo', $riesgo)
-        ->select('Id_Banner','Nombre','Apellido','Facultad','Programa')
-        ->groupBy('Id_Banner','Nombre','Apellido','Facultad','Programa')
-        ->get();
+            ->where('Riesgo', $riesgo)
+            ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function dataAlumno(Request $request){
+    function dataAlumno(Request $request)
+    {
         $idBanner = $request->input('idBanner');
-        $data = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('*')->get();
+        $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }
 
-    function riesgoAsistencia(Request $request){
-        $idBanner = $request->input('idBanner');  
+    function riesgoAsistencia(Request $request)
+    {
+        $idBanner = $request->input('idBanner');
         $bajo = [];
         $medio = [];
         $alto = [];
-        $riesgos = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Riesgo', 'Nombrecurso')->get();
+        $riesgos = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('Riesgo', 'Nombrecurso')->get();
         $totalRiesgo = DB::table('datos_moodle')
-        ->where('Id_Banner', $idBanner)
-        ->select(DB::raw("COALESCE(SUM(CASE WHEN Riesgo = 'ALTO' THEN 1 ELSE 0 END), 0) AS ALTO,
+            ->where('Id_Banner', $idBanner)
+            ->select(DB::raw("COALESCE(SUM(CASE WHEN Riesgo = 'ALTO' THEN 1 ELSE 0 END), 0) AS ALTO,
                       COALESCE(SUM(CASE WHEN Riesgo = 'BAJO' THEN 1 ELSE 0 END), 0) AS BAJO,
                       COALESCE(SUM(CASE WHEN Riesgo = 'MEDIO' THEN 1 ELSE 0 END), 0) AS MEDIO"))
-        ->first();
+            ->first();
 
-        foreach($riesgos as $riesgo){
-            $aux=$riesgo->Riesgo;
-            $nombreCurso= $riesgo->Nombrecurso;
+        foreach ($riesgos as $riesgo) {
+            $aux = $riesgo->Riesgo;
+            $nombreCurso = $riesgo->Nombrecurso;
             $nombreCursoFormateado = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
-            if($aux == 'ALTO'){
+            if ($aux == 'ALTO') {
                 $alto[] = $nombreCursoFormateado;
-            }elseif($aux == 'MEDIO'){
+            } elseif ($aux == 'MEDIO') {
                 $medio[] = $nombreCursoFormateado;
-            }elseif($aux == 'BAJO'){
+            } elseif ($aux == 'BAJO') {
                 $bajo[] = $nombreCursoFormateado;
             }
         }
@@ -136,14 +142,17 @@ class InformeMoodleController extends Controller
             $bajo[] = 'Ninguno';
         }
 
-        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Nombrecurso', 'Nota_Acumulada')->get();
+        $Notas = DB::table('datos_moodle')
+            ->where('Id_Banner', $idBanner)
+            ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, Nota_Acumulada"))
+            ->get();
 
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
             'total' => $totalRiesgo,
-            'notas' =>$Notas          
+            'notas' => $Notas
         );
 
 

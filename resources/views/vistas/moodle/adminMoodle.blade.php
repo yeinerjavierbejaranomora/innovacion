@@ -760,7 +760,7 @@
                         const dataArray = Object.values(data.data.notas);
 
                         var labels = data.data.notas.map(function(elemento) {
-                            return elemento.Nombrecurso;
+                            return elemento.nombreCurso;
                         });
 
                         var valores = data.data.notas.map(function(elemento) {

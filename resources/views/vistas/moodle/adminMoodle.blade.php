@@ -620,12 +620,21 @@
                 dataTable(riesgo);
             });
 
+            function limpiarModal() {
+                $('#tituloEstudiante strong', '#nombreModal', '#idModal', '#facultadModal','#programaModal',
+                '#documentoModal', '#correoModal', '#selloModal','#estadoModal', '#tipoModal', '#autorizadoModal',
+                '#operadorModal', '#convenioModal', "#tabla tbody").empty();   
+
+                [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
+            }
+
             var chartRiesgoIngreso;
             var chartRiesgoNotas;
             /**
              * Método para obtner los datos de un alumno según su id Banner y llena el Modal
              */
             function dataAlumno(id) {
+                limpiarModal();
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

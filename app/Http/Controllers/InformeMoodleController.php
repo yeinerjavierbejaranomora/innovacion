@@ -124,7 +124,7 @@ class InformeMoodleController extends Controller
             $nombreCurso = $riesgo->Nombrecurso;
             $nombreCursoFormateado = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
             if (strlen($nombreCursoFormateado) > 35) {
-                $nombreCursoFormateado = substr($nombreCursoFormateado, 0, 35);
+                $nombreCursoFormateado = substr($nombreCursoFormateado, 0, 35) . '...';
             }
             if ($aux == 'ALTO') {
                 $alto[] = $nombreCursoFormateado;

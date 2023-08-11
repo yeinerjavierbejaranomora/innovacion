@@ -310,7 +310,7 @@
                             </table>
                         </div>
                         <div class="row text-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-6">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
                             <div class="col-lg-4">
@@ -732,7 +732,7 @@
                                         }
                                     },
                                     title: {
-                                        display: false,
+                                        display: true,
                                         text: 'Riesgo por ingreso',
                                         color: 'black',
                                         position: 'top',

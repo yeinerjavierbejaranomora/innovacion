@@ -693,11 +693,6 @@
                             return elemento.TOTAL;
                         });
 
-                        var colores = data.data.total.map(function(elemento) {
-                            if (elemento.Riesgo == "ALTO" && elemento.Riesgo == "BAJO") {
-                            }
-                        });
-
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

@@ -311,7 +311,7 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-lg-6" style="height: 450px;">
-                                <canvas id="riesgoIngreso"></canvas>
+                                <canvas id="riesgoIngreso" style="height: 300px;"></canvas>
                             </div>
                             <div class="col-lg-6">
                                 <canvas id="riesgoNotas"></canvas>

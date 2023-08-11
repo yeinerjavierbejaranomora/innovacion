@@ -719,8 +719,8 @@
                                             size: 18,
                                         },
                                         formatter: (value, ctx) => {
-                                            let label = ctx.chart.data.labels[ctx.dataIndex];
-                                            return value !== 0 ? `${label}\n${value}` : '';
+                                            let label = ctx.chart.data.DATA[ctx.dataIndex];
+                                            return value !== 0 ? `${data}\n${value}` : '';
                                         },
                                     },
                                     legend: {

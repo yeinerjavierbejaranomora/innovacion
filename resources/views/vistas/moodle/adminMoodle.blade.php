@@ -311,7 +311,7 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-lg-6" style="height: 450px;">
-                                <canvas id="riesgoIngreso" style="height: 300px;"></canvas>
+                                <canvas id="riesgoIngreso" style="height: 100%;"></canvas>
                             </div>
                             <div class="col-lg-6">
                                 <canvas id="riesgoNotas"></canvas>
@@ -687,15 +687,14 @@
                         console.log(data);
                         var alto = data.data.alto;
                         var medio = data.data.medio;
-                        var bajo = data.data.bajo;     
+                        var bajo = data.data.bajo;
                         console.log(data.data.total);
                         var valores = data.data.total.map(function(elemento) {
                             return elemento.TOTAL;
                         });
 
                         var colores = data.data.total.map(function(elemento) {
-                            if(elemento.Riesgo =="ALTO" && elemento.Riesgo =="BAJO")
-                            {
+                            if (elemento.Riesgo == "ALTO" && elemento.Riesgo == "BAJO") {
                                 console.log('entra');
                             }
                         });
@@ -717,7 +716,6 @@
                             options: {
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                width: 450,
                                 height: 300,
                                 cutoutPercentage: 50,
                                 plugins: {
@@ -732,6 +730,9 @@
                                         display: true,
                                         position: 'bottom',
                                         align: 'start',
+                                        labels: {
+                                            padding: 20,
+                                        }
                                     },
                                     title: {
                                         display: true,

@@ -756,6 +756,8 @@
                         });
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
+                        console.log(data.data.notas);
+
                         var labels = data.data.notas(function(elemento) {
                             return elemento.Nombrecurso;
                         });

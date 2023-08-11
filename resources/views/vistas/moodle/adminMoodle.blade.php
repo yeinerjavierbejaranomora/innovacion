@@ -313,7 +313,7 @@
                             <div class="col-lg-6">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>

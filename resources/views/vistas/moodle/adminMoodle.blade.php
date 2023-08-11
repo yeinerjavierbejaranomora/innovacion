@@ -689,7 +689,7 @@
                         var medio = data.data.medio;
                         var bajo = data.data.bajo;
                         console.log(data.data.total);
-                        
+
                         var valoralto = data.data.total.ALTO;
                         var valorbajo = data.data.total.BAJO;
                         var valormedio = data.data.total.MEDIO;
@@ -717,6 +717,10 @@
                                         font: {
                                             weight: 'semibold',
                                             size: 18,
+                                        },
+                                        formatter: (value, ctx) => {
+                                            let label = ctx.chart.data.labels[ctx.dataIndex];
+                                            return value !== 0 ? `${label}\n${value}` : '';
                                         },
                                     },
                                     legend: {

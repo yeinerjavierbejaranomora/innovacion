@@ -712,7 +712,6 @@
                                     rotation: 270,
                                 }, ],
                             },
-
                             options: {
                                 responsive: false,
                                 maintainAspectRatio: false,

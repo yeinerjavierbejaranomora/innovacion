@@ -713,7 +713,7 @@
                                 }, ],
                             },
                             options: {
-                                responsive: false,
+                                responsive: true,
                                 maintainAspectRatio: false,
                                 cutoutPercentage: 50,
                                 plugins: {

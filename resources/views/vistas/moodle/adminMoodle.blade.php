@@ -635,6 +635,7 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        console.log(data);
                         var primerArray = data.data[0]
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
@@ -684,11 +685,9 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
-                        console.log(data);
                         var alto = data.data.alto;
                         var medio = data.data.medio;
                         var bajo = data.data.bajo;
-                        console.log(data.data.total);
 
                         var valoralto = data.data.total.ALTO;
                         var valorbajo = data.data.total.BAJO;
@@ -757,6 +756,7 @@
                         });
                     }
                 });
+
             }
 
             function dataTable(riesgo) {
@@ -776,7 +776,6 @@
                     if (this.readyState == 4 && this.status == 200) {
 
                         data = JSON.parse(this.responseText);
-                        console.log(data);
                         table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,

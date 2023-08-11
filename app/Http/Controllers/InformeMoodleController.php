@@ -136,12 +136,21 @@ class InformeMoodleController extends Controller
             $bajo[] = 'Ninguno';
         }
 
+        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('', 'Nombrecurso')->get();
+
+
+
+
+
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
             'total' => $totalRiesgo,           
         );
+
+
+
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));

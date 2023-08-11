@@ -897,7 +897,7 @@
                     '#operadorModal', '#convenioModal', "#tabla tbody").empty();
 
                 if (chartRiesgoAlto && chartRiesgoNotas){
-                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart =>destroy());
+                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart =>chart.destroy());
                 }
     
             }

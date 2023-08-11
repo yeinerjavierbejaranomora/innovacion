@@ -620,14 +620,6 @@
                 dataTable(riesgo);
             });
 
-            function limpiarModal() {
-                $('#tituloEstudiante strong', '#nombreModal', '#idModal', '#facultadModal','#programaModal',
-                '#documentoModal', '#correoModal', '#selloModal','#estadoModal', '#tipoModal', '#autorizadoModal',
-                '#operadorModal', '#convenioModal', "#tabla tbody").empty();   
-
-                [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
-            }
-
             var chartRiesgoIngreso;
             var chartRiesgoNotas;
             /**
@@ -774,7 +766,7 @@
                         var valores = data.data.notas.map(function(elemento) {
                             return elemento.Nota_Acumulada;
                         });
-                        
+
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',
                             data: {
@@ -795,7 +787,7 @@
                                 scales: {
                                     y: {
                                         max: 5,
-                                        
+
                                     }
                                 },
                                 maintainAspectRatio: false,
@@ -899,6 +891,19 @@
                 }
             }
         });
+
+        function limpiarModal() {
+                $('#tituloEstudiante strong', '#nombreModal', '#idModal', '#facultadModal', '#programaModal',
+                    '#documentoModal', '#correoModal', '#selloModal', '#estadoModal', '#tipoModal', '#autorizadoModal',
+                    '#operadorModal', '#convenioModal', "#tabla tbody").empty();
+
+
+                [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => {
+                    if (chart && typeof chart.destroy === 'function') {
+                        chart.destroy();
+                    }
+                });
+            }
     </script>
 
     <!-- incluimos el footer -->

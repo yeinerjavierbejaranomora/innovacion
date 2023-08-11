@@ -309,14 +309,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row text-center mt-3">
-                            <div class="col-lg-8">
+                        <div class="row text-center mt-3 mb-3">
+                            <div class="col-lg-8 center-chart">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
                         <div class="row text-center mt-3">
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 center-chart" style="height: 500px;">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>

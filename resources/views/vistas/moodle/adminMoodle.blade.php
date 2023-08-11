@@ -783,6 +783,7 @@
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
+                                        formatter: value => value.toFixed(1),
                                     }
                                 }]
                             },

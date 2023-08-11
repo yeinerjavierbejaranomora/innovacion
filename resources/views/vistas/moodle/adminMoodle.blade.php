@@ -689,16 +689,17 @@
                         var medio = data.data.medio;
                         var bajo = data.data.bajo;
                         console.log(data.data.total);
-                        var valores = data.data.total.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        
+                        var valoralto = data.data.total.ALTO;
+                        var valorbajo = data.data.total.BAJO;
+                        var valormedio = data.data.total.MEDIO;
 
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: [alto, medio, bajo],
+                                labels: [alto, bajo, medio],
                                 datasets: [{
-                                    data: valores,
+                                    data: [valoralto, valorbajo, valormedio],
                                     backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
                                     borderWidth: 1,
                                     cutout: '70%',

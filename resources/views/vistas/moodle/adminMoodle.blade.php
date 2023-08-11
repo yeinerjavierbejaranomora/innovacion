@@ -311,7 +311,7 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-lg-6" style="height: 450px;">
-                                <canvas id="riesgoIngreso" style="height: 100%;"></canvas>
+                                <canvas id="riesgoIngreso"></canvas>
                             </div>
                             <div class="col-lg-6">
                                 <canvas id="riesgoNotas"></canvas>
@@ -717,6 +717,7 @@
                                 responsive: false,
                                 maintainAspectRatio: false,
                                 height: 300,
+                                width: 450,
                                 cutoutPercentage: 50,
                                 plugins: {
                                     datalabels: {

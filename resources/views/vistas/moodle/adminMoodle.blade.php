@@ -757,12 +757,13 @@
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         console.log(data.data.notas);
+                        const dataArray = Object.values(data.data.notas);
 
-                        var labels = data.data.notas(function(elemento) {
+                        var labels = data.data.notas.map(function(elemento) {
                             return elemento.Nombrecurso;
                         });
 
-                        var valores = data.data.notas(function(elemento) {
+                        var valores = data.data.notas.map(function(elemento) {
                             return elemento.Nota_Acumulada;
                         });
                         

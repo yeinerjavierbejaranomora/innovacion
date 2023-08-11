@@ -726,7 +726,7 @@
                                     legend: {
                                         display: true,
                                         position: 'right',
-                                        align: 'start',
+                                        align: 'center',
                                         labels: {
                                             padding: 10,
                                         }

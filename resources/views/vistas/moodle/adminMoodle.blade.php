@@ -719,7 +719,7 @@
                                             size: 18,
                                         },
                                         formatter: (value, ctx) => {
-                                            return value !== 0 ? value.toString() : '';
+                                            return value == 0 ? value.toString() : '';
                                         },
                                     },
                                     legend: {

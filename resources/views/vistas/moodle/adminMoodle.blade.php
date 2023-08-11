@@ -310,10 +310,10 @@
                             </table>
                         </div>
                         <div class="row text-center">
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>
@@ -695,7 +695,6 @@
 
                         var colores = data.data.total.map(function(elemento) {
                             if (elemento.Riesgo == "ALTO" && elemento.Riesgo == "BAJO") {
-                                console.log('entra');
                             }
                         });
 

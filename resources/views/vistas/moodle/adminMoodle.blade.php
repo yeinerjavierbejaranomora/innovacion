@@ -728,7 +728,7 @@
                                     },
                                     legend: {
                                         display: true,
-                                        position: 'bottom',
+                                        position: 'right',
                                         align: 'start',
                                         labels: {
                                             padding: 10,

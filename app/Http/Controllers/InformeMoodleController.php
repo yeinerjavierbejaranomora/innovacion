@@ -136,7 +136,7 @@ class InformeMoodleController extends Controller
             $bajo[] = 'Ninguno';
         }
 
-        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Nombrecurso', 'Primer_Corte', 'Segun_Corte', 'Tercer_Corte')->get();
+        $Notas = DB::table('datos_moodle')->where('Id_Banner',$idBanner)->select('Nombrecurso', 'Primer_Corte', 'Segundo_Corte', 'Tercer_Corte')->get();
 
         foreach($Notas as $key => $nota ){
             $nota1 = $nota->Primer_Corte;

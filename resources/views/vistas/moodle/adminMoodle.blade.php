@@ -741,7 +741,7 @@
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: [alto, medio, bajo],
+                                labels: ['alto', 'medio', 'bajo'],
                                 datasets: [{
                                     data: [valoralto, valormedio, valorbajo],
                                     backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
@@ -803,11 +803,9 @@
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 
-                        // var labels = data.data.notas.map(function(elemento) {
-                        //     return elemento.nombreCurso;
-                        // });
-
-                        var labels = ['alto', 'medio', 'bajo'];
+                        var labels = data.data.notas.map(function(elemento) {
+                            return elemento.nombreCurso;
+                        });
 
                         var valores = data.data.notas.map(function(elemento) {
                             return elemento.Nota_Acumulada;

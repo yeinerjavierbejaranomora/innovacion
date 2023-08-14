@@ -74,7 +74,6 @@ class InformeMoodleController extends Controller
 
     public function retencion()
     {
-
         $retencion = DB::table('datos_moodle')
             ->where('Sello', 'NO EXISTE')
             ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))

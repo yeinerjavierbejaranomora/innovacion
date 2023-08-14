@@ -788,7 +788,8 @@
                             primerArray = data.data[0];
                         }
                         else{
-                            primerArray = jQuery.parseJSON(data);
+                            var data = jQuery.parseJSON(data);
+                            primerArray = data.data[0];
                             console.log (primerArray);
                         }
                         /** Primera Card */

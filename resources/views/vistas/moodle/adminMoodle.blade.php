@@ -96,8 +96,8 @@
     }
 
     .graficosRiesgo {
-        min-height: 350px;
-        max-height: 350px;
+        min-height: 450px;
+        max-height: 450px;
     }
 </style>
 

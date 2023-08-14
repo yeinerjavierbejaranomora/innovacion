@@ -574,11 +574,13 @@
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
+                        console.log('entra');
                         var url = "{{ route('moodle.riesgo.facultad') }}",
                         data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
+                        console.log(data);
                     } else {
                         var url = "{{ route('moodle.riesgo') }}",
                         data = '';

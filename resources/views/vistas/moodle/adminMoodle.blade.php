@@ -566,14 +566,14 @@
 
                 var data;
                 if (programasSeleccionados.length > 0) {
-                    var url = "{{ route(moodle.riesgo.programa') }}",
+                    var url = "{{ route('moodle.riesgo.programa') }}",
                     data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route(moodle.riesgo.facultad') }}",
+                        var url = "{{ route('moodle.riesgo.facultad') }}",
                         data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados

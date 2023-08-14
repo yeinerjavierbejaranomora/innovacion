@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <div class="card shadow mt-4">
+        <div class="card shadow mt-4 hidden" id="colTabla">
             <!-- Card Body -->
             <div class="card-body">
                 <!--Datatable-->
@@ -980,6 +980,7 @@
             }
 
             function destruirTabla(){
+                $('#colTabla').addClass("hidden")
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
@@ -992,6 +993,7 @@
             function dataTable(riesgo) {
                 console.log(riesgo);
                 destruirTabla();
+                $('#colTabla').removeClass("hidden");
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;

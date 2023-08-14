@@ -198,7 +198,7 @@
             <div class="col-4 text-center " id="colRiesgoAlto">
                 <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo alto</strong></h5>
+                        <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
@@ -212,7 +212,7 @@
             <div class="col-4 text-center " id="colRiesgoMedio">
                 <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo medio</strong></h5>
+                        <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
@@ -226,7 +226,7 @@
             <div class="col-4 text-center " id="colRiesgoBajo">
                 <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Riesgo bajo</strong></h5>
+                        <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
@@ -528,6 +528,7 @@
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
+                        estadoUsuarioPrograma();
                         riesgo();
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -537,6 +538,7 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
+                            estadoUsuarioFacultad();
                             riesgo();
                         } else {
                             /** Alerta */
@@ -552,6 +554,75 @@
                     ocultarDivs();
                 }
             });
+
+            function limpiarTitulos(){
+                var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').find("strong");
+                var parteEliminar = ': ';
+                elementosTitulos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
+                var parteTituloEliminar = 'Periodo: ';
+                var titulosPeriodos = $('.tituloPeriodo').find("strong");
+                titulosPeriodos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
+            }
+
+            function estadoUsuarioPrograma() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
+                $("#mensaje").empty();
+
+                var periodosArray = Object.values(periodos);
+                    var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                    }).join(' - ');
+
+                if (programasSeleccionados.length > 1) {
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + programasFormateados);
+                } else {
+                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + programasSeleccionados);
+                }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+
+            }
+
+            function estadoUsuarioFacultad() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
+                    }).join(' - ');
+                
+                var periodosArray = Object.values(periodos);
+                    var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                    }).join(' - ');    
+
+                if (facultadesSeleccionadas.length > 1) {
+                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
+                } else {
+                    
+                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
+                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
+                }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+            }
 
             var chartRiesgoAlto;
             var chartRiesgoMedio;
@@ -790,7 +861,6 @@
                         else{
                             var data = jQuery.parseJSON(data);
                             primerArray = data.data[0];
-                            console.log (primerArray);
                         }
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);

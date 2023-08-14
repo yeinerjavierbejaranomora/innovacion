@@ -413,7 +413,6 @@
                         });
                     }
                 });
-                console.log(periodosSeleccionados);
             }
 
             /**
@@ -529,7 +528,6 @@
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
-                        console.log(programasSeleccionados);
                         riesgo();
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -539,7 +537,6 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
-                            console.log(facultadesSeleccionadas);
                             riesgo();
                         } else {
                             /** Alerta */
@@ -577,13 +574,11 @@
                         }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        console.log('entra');
                         var url = "{{ route('moodle.riesgo.facultad') }}",
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
-                        console.log(data);
                     } else {
                         var url = "{{ route('moodle.riesgo') }}",
                             data = '';
@@ -997,7 +992,6 @@
             }
 
             function dataTable(riesgo) {
-                console.log(riesgo);
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");
                 var data;
@@ -1009,13 +1003,11 @@
                         }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        console.log('entra');
                         var url = "{{ route('moodle.estudiantes.facultad', ['riesgo' => ' ']) }}" + riesgo;
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
-                        console.log(data);
                     } else {
                         var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
                         data = '';

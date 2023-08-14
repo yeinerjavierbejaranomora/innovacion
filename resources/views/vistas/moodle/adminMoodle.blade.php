@@ -788,6 +788,7 @@
                             primerArray = data.data[0];
                         }
                         else{
+                            console.log (data);
                             primerArray = data[0];
                         }
                             console.log(data.data);

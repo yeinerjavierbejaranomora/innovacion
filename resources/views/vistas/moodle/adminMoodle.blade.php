@@ -750,7 +750,6 @@
              * Botones de Riesgo 
              */
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
-                console.log('entra');
                 var riesgo = $(this).data('value');
                 dataTable(riesgo);
             });
@@ -970,8 +969,7 @@
             }
 
             function dataTable(riesgo) {
-                console.log('entra');
-                console.log('riesgo');
+                console.log(riesgo);
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
@@ -1009,6 +1007,7 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        console.log('entra');
                     if (this.readyState == 4 && this.status == 200) {
                         data = JSON.parse(this.responseText);
                         table = $('#datatable').DataTable({

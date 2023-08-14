@@ -1212,9 +1212,15 @@ class InformeMafiController extends Controller
 
     public function historial_graficos(){
 
+        //**/ traemos los periodos activos */
+
+        $periodo=periodosActivos();
+        dd($periodo);
+        
+
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
-         id	grafico	campos	numeros	periodo	facultad	programa	fecha	* 
+         id	periodo	facultad	programa	grafico	data	fecha	* 
         */
 
       

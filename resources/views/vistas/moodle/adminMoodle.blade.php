@@ -1004,7 +1004,7 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = JSON.parse(this.responseText);
+                        
                         table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,

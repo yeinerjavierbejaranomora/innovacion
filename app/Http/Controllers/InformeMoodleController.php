@@ -100,8 +100,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $data));
     }
 
-    function riesgoAsistencia(Request $request, $periodos){
-        $periodos = 
+    function riesgoAsistencia(Request $request){
+
         $idBanner = $request->input('idBanner');
         $bajo = [];
         $medio = [];

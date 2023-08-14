@@ -976,14 +976,37 @@
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
+                var data;
+                if (programasSeleccionados.length > 0) {
+                    var url = "{{ route('moodle.riesgo.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        console.log('entra');
+                        var url = "{{ route('moodle.riesgo.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                        console.log(data);
+                    } else {
+                        var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
+                        data = '';
+                    }
+                }
 
-                var xmlhttp = new XMLHttpRequest();
-                var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function() {
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
                     if (this.readyState == 4 && this.status == 200) {
-
                         data = JSON.parse(this.responseText);
                         table = $('#datatable').DataTable({
                             "data": data.data,
@@ -1030,8 +1053,8 @@
                         obtenerData("#datatable tbody", table);
                     }
                 }
-            }
-
+            });
+        }
             function limpiarModal() {
                 $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 

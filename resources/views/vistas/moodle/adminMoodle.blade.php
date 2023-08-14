@@ -512,6 +512,10 @@
                     confirmButtonColor: '#dfc14e',
                 })
             }
+        
+            function ocultarDivs() {
+                $('#colRiesgoAlto, #colRiesgoMedio, #colRiesgoBajo').addClass('hidden');
+            }
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
@@ -542,11 +546,13 @@
                             programasSeleccionados = [];
                             facultadesSeleccionadas = [];
                             alerta();
+                            ocultarDivs();
                         }
                     }
 
                 } else {
                     alertaPeriodos();
+                    ocultarDivs();
                 }
             });
 

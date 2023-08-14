@@ -1214,8 +1214,8 @@ class InformeMafiController extends Controller
 
         //**/ traemos los periodos activos */
 
-        $periodo=periodosActivos();
-        dd($periodo);
+         $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
+        dd($periodos);
         
 
         /**traemos los datos Total estudiantes Banner 

@@ -336,461 +336,458 @@
         var data;
         $(document).ready(function() {
 
-            var tabla = <?php echo json_encode($tabla); ?>;
+                    var tabla = <?php echo json_encode($tabla); ?>;
 
-            // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
-            $(document).ajaxStart(function() {
-                $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                $('div #programas input[type="checkbox"]').prop('disabled', true);
-                $('#generarReporte').prop("disabled", true);
-                $('.botonModal').prop("disabled", true);
-            });
-
-            // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
-            $(document).ajaxStop(function() {
-                $('div #facultades input[type="checkbox"]').prop('disabled', false);
-                $('div #programas input[type="checkbox"]').prop('disabled', false);
-                $('#generarReporte').prop("disabled", false);
-                $('.botonModal').prop("disabled", false);
-            });
-
-            var periodosSeleccionados = [];
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            periodos();
-            facultades();
-            riesgo();
-
-
-            function Contador() {
-                totalFacultades = $('#facultades input[type="checkbox"]').length;
-                totalProgramas = $('#programas input[type="checkbox"]').length;
-                totalPeriodos = $('#programas input[type="checkbox"]').length;
-            }
-
-            function getPeriodos() {
-                periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-                checkboxesSeleccionados.each(function() {
-                    periodosSeleccionados.push($(this).val());
-                });
-                return periodosSeleccionados;
-            }    
-
-            /**
-             * Método que trae las facultades y genera los checkbox en la vista
-             */
-            function facultades() {
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('registro.facultades') }}",
-                    method: 'post',
-                    success: function(data) {
-                        data.forEach(facultad => {
-                            $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
-                        });
-                    }
-                });
-            }
-
-            /**
-             * Método que trae los periodos activos
-             */
-            function periodos() {
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('periodos.activos') }}",
-                    method: 'post',
-                    async: false,
-                    success: function(data) {
-                        data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                        });
-                    }
-                });
-                console.log(periodosSeleccionados);
-            }
-
-            /**
-             * Método para verificar los periodos seleccionados
-             */
-            function getPeriodos() {
-                var periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-                checkboxesSeleccionados.each(function() {
-                    periodosSeleccionados.push($(this).val());
-                });
-                return periodosSeleccionados;
-            }
-            
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
-
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                    $('#programas').empty();
-                    var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
+                    // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
+                    $(document).ajaxStart(function() {
+                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+                        $('div #programas input[type="checkbox"]').prop('disabled', true);
+                        $('#generarReporte').prop("disabled", true);
+                        $('.botonModal').prop("disabled", true);
                     });
 
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
+                    // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+                    $(document).ajaxStop(function() {
+                        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+                        $('div #programas input[type="checkbox"]').prop('disabled', false);
+                        $('#generarReporte').prop("disabled", false);
+                        $('.botonModal').prop("disabled", false);
+                    });
+
+                    var periodosSeleccionados = [];
+                    var programasSeleccionados = [];
+                    var facultadesSeleccionadas = [];
+                    periodos();
+                    facultades();
+                    riesgo();
+
+
+                    function Contador() {
+                        totalFacultades = $('#facultades input[type="checkbox"]').length;
+                        totalProgramas = $('#programas input[type="checkbox"]').length;
+                        totalPeriodos = $('#programas input[type="checkbox"]').length;
+                    }
+
+                    function getPeriodos() {
+                        periodosSeleccionados = [];
+                        var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            periodosSeleccionados.push($(this).val());
+                        });
+                        return periodosSeleccionados;
+                    }
+
+                    /**
+                     * Método que trae las facultades y genera los checkbox en la vista
+                     */
+                    function facultades() {
+                        var datos = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('registro.facultades') }}",
+                            method: 'post',
+                            success: function(data) {
+                                data.forEach(facultad => {
+                                    $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                                });
+                            }
+                        });
+                    }
+
+                    /**
+                     * Método que trae los periodos activos
+                     */
+                    function periodos() {
+                        var datos = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('periodos.activos') }}",
+                            method: 'post',
+                            async: false,
+                            success: function(data) {
+                                data.forEach(periodo => {
+                                    periodosSeleccionados.push(periodo.periodos);
+                                    $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                                });
+                            }
+                        });
+                        console.log(periodosSeleccionados);
+                    }
+
+                    /**
+                     * Método para verificar los periodos seleccionados
+                     */
+                    function getPeriodos() {
+                        var periodosSeleccionados = [];
+                        var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                        checkboxesSeleccionados.each(function() {
+                            periodosSeleccionados.push($(this).val());
+                        });
+                        return periodosSeleccionados;
+                    }
+
+                    var programasSeleccionados = [];
+                    var facultadesSeleccionadas = [];
+                    var periodosSeleccionados = [];
+
+                    $('body').on('change', '#facultades input[type="checkbox"]', function() {
+                        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                            $('#programas').empty();
+                            var formData = new FormData();
+                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            checkboxesSeleccionados.each(function() {
+                                formData.append('idfacultad[]', $(this).val());
+                            });
+
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                type: 'post',
+                                url: "{{ route('traer.programas') }}",
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function(datos) {
+                                    try {
+                                        datos = jQuery.parseJSON(datos);
+                                    } catch {
+                                        datos = datos;
+                                    }
+
+                                    $.each(datos, function(key, value) {
+                                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    });
+                                }
+                            })
+                        } else {
+                            $('#programas').empty();
+                        }
+                    });
+
+                    /**
+                     * Botones
+                     */
+                    $('#deshacerProgramas').on('click', function(e) {
+                        $('#programas input[type="checkbox"]').prop('checked', false);
+                    });
+
+                    $('#seleccionarProgramas').on('click', function(e) {
+                        $('#programas input[type="checkbox"]').prop('checked', true);
+                    });
+
+                    $('#deshacerPeriodos').on('click', function(e) {
+                        $('#periodos input[type="checkbox"]').prop('checked', false);
+                    });
+
+                    $('#seleccionarPeriodos').on('click', function(e) {
+                        $('#periodos input[type="checkbox"]').prop('checked', true);
+                    });
+
+                    $('#deshacerFacultades').on('click', function(e) {
+                        $('#facultades input[type="checkbox"]').prop('checked', false);
+                    });
+
+                    $('#seleccionarFacultades').on('click', function(e) {
+                        $('#facultades input[type="checkbox"]').prop('checked', true);
+                    });
+
+                    function alerta() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Debes seleccionar al menos una facultad',
+                            confirmButtonColor: '#dfc14e',
+                        })
+                    }
+
+                    function alertaPeriodos() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Debes seleccionar al menos un periodo',
+                            confirmButtonColor: '#dfc14e',
+                        })
+                    }
+
+                    $('#generarReporte').on('click', function(e) {
+                        e.preventDefault();
+                        Contador();
+                        periodosSeleccionados = getPeriodos()
+                        if (periodosSeleccionados.length > 0) {
+                            if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                                programasSeleccionados = [];
+                                checkboxesProgramas.each(function() {
+                                    programasSeleccionados.push($(this).val());
+                                });
+                                console.log(programasSeleccionados);
+                                riesgo();
+                            } else {
+                                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                                    programasSeleccionados = [];
+                                    facultadesSeleccionadas = [];
+                                    checkboxesSeleccionados.each(function() {
+                                        facultadesSeleccionadas.push($(this).val());
+                                    });
+                                    console.log(facultadesSeleccionadas);
+                                    riesgo();
+                                } else {
+                                    /** Alerta */
+                                    programasSeleccionados = [];
+                                    facultadesSeleccionadas = [];
+                                    alerta();
+                                }
                             }
 
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
+                        } else {
+                            alertaPeriodos();
                         }
-                    })
-                } else {
-                    $('#programas').empty();
-                }
-            });
-
-            /**
-             * Botones
-             */
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
-            });
-
-            function alerta() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Debes seleccionar al menos una facultad',
-                    confirmButtonColor: '#dfc14e',
-                })
-            }
-
-            function alertaPeriodos() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Debes seleccionar al menos un periodo',
-                    confirmButtonColor: '#dfc14e',
-                })
-            }
-
-            $('#generarReporte').on('click', function(e) {
-                e.preventDefault();
-                Contador();
-                periodosSeleccionados = getPeriodos()
-                if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    programasSeleccionados = [];
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
                     });
-                    console.log(programasSeleccionados);
-                    riesgo();
-                    }
-                    else{
-                        if ($('#facultades input[type="checkbox"]:checked').length > 0) { 
-                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                            programasSeleccionados = [];
-                            facultadesSeleccionadas = [];
-                            checkboxesSeleccionados.each(function() {
-                                facultadesSeleccionadas.push($(this).val());
-                            });
-                            console.log(facultadesSeleccionadas);
-                            riesgo();
+
+                    var chartRiesgoAlto;
+                    var chartRiesgoMedio;
+                    var chartRiesgoBajo;
+
+                    /**
+                     * Método para obtener gráficos de riesgo alto, medio y bajo 
+                     * */
+                    function riesgo() {
+                        if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
+                            [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                         }
-                        else {
-                        /** Alerta */
-                        programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
-                        alerta();
-                    }
-                    }
-                
-                }
-                else{
-                    alertaPeriodos();
-                }
-            });
 
-            var chartRiesgoAlto;
-            var chartRiesgoMedio;
-            var chartRiesgoBajo;
-
-            /**
-             * Método para obtener gráficos de riesgo alto, medio y bajo 
-             * */
-            function riesgo() {
-                if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
-                    [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
-                }
-
-                var data;
-                if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('moodle.riesgo.programa') }}",
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    }
-                } else {
-                    if (facultadesSeleccionadas.length > 0) {
-                        console.log('entra');
-                        var url = "{{ route('moodle.riesgo.facultad') }}",
-                        data = {
-                            idfacultad: facultadesSeleccionadas,
-                            periodos: periodosSeleccionados
+                        var data;
+                        if (programasSeleccionados.length > 0) {
+                            var url = "{{ route('moodle.riesgo.programa') }}",
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                console.log('entra');
+                                var url = "{{ route('moodle.riesgo.facultad') }}",
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                                console.log(data);
+                            } else {
+                                var url = "{{ route('moodle.riesgo') }}",
+                                    data = '';
+                            }
                         }
-                        console.log(data);
-                    } else {
-                        var url = "{{ route('moodle.riesgo') }}",
-                        data = '';
+
+                        var datos = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
+                                var ctx = document.getElementById('alto').getContext('2d');
+                                var TotalAlto = data.total - data.alto;
+                                var TotalMedio = data.total - data.medio;
+                                var TotalBajo = data.total - data.bajo;
+                                chartRiesgoAlto = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Score', 'Gray Area'],
+                                        datasets: [{
+                                            data: [data.alto, TotalAlto],
+                                            backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],
+                                            borderWidth: 1,
+                                            cutout: '70%',
+                                            circumference: 180,
+                                            rotation: 270,
+                                        }, ],
+                                    },
+
+                                    options: {
+                                        responsive: true,
+                                        cutoutPercentage: 50,
+                                        plugins: {
+                                            datalabels: {
+                                                color: 'black',
+                                                font: {
+                                                    weight: 'semibold',
+                                                    size: 18,
+                                                },
+                                            },
+                                            legend: {
+                                                display: false
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: data.alto,
+                                                color: 'red',
+                                                position: 'bottom',
+                                                font: {
+                                                    size: 20,
+                                                },
+                                            },
+                                            tooltip: {
+                                                enabled: false
+                                            },
+
+                                        },
+
+                                    },
+                                    plugins: [ChartDataLabels]
+                                });
+
+                                ctx = document.getElementById('medio').getContext('2d');
+                                chartRiesgoMedio = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Score', 'Gray Area'],
+                                        datasets: [{
+                                            data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                            backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                            borderWidth: 1,
+                                            cutout: '70%',
+                                            circumference: 180,
+                                            rotation: 270,
+                                        }, ],
+                                    },
+
+                                    options: {
+                                        responsive: true,
+                                        cutoutPercentage: 50,
+                                        plugins: {
+                                            datalabels: {
+                                                color: 'black',
+                                                font: {
+                                                    weight: 'semibold',
+                                                    size: 18,
+                                                },
+                                            },
+                                            legend: {
+                                                display: false
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: data.medio,
+                                                color: '#DCCD30',
+                                                position: 'bottom',
+                                                font: {
+                                                    size: 20,
+                                                },
+                                            },
+                                            tooltip: {
+                                                enabled: false
+                                            },
+
+                                        },
+
+                                    },
+                                    plugins: [ChartDataLabels]
+                                });
+
+
+                                ctx = document.getElementById('bajo').getContext('2d');
+                                chartRiesgoBajo = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Score', 'Gray Area'],
+                                        datasets: [{
+                                            data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                            backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                            borderWidth: 1,
+                                            cutout: '70%',
+                                            circumference: 180,
+                                            rotation: 270,
+                                        }, ],
+                                    },
+
+                                    options: {
+                                        responsive: true,
+                                        cutoutPercentage: 50,
+                                        plugins: {
+                                            datalabels: {
+                                                color: 'black',
+                                                font: {
+                                                    weight: 'semibold',
+                                                    size: 18,
+                                                },
+                                            },
+                                            legend: {
+                                                display: false
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: data.bajo,
+                                                color: 'Green',
+                                                position: 'bottom',
+                                                font: {
+                                                    size: 20,
+                                                },
+                                            },
+                                            tooltip: {
+                                                enabled: false
+                                            },
+
+                                        },
+
+                                    },
+                                    plugins: [ChartDataLabels]
+                                });
+
+                            }
+                        });
                     }
-                }
 
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                        var ctx = document.getElementById('alto').getContext('2d');
-                        var TotalAlto = data.total - data.alto;
-                        var TotalMedio = data.total - data.medio;
-                        var TotalBajo = data.total - data.bajo;
-                        chartRiesgoAlto = new Chart(ctx, {
-                            type: 'doughnut',
+                    /** 
+                     * Botones de Riesgo 
+                     */
+                    $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
+                        var riesgo = $(this).data('value');
+                        dataTable(riesgo);
+                    });
+
+                    var chartRiesgoIngreso;
+                    var chartRiesgoNotas;
+                    /**
+                     * Método para obtner los datos de un alumno según su id Banner y llena el Modal
+                     */
+                    function dataAlumno(id) {
+                        limpiarModal();
+                        var datos = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('moodle.data') }}",
                             data: {
-                                labels: ['Score', 'Gray Area'],
-                                datasets: [{
-                                    data: [data.alto, TotalAlto], 
-                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], 
-                                    borderWidth: 1,
-                                    cutout: '70%',
-                                    circumference: 180,
-                                    rotation: 270,
-                                }, ],
+                                idBanner: id
                             },
+                            method: 'post',
+                            success: function(data) {
+                                var primerArray = data.data[0]
+                                /** Primera Card */
+                                $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
+                                $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');
+                                $('#idModal').append('<strong>' + primerArray.Id_Banner + '</strong>');
+                                $('#facultadModal').append('<strong>' + primerArray.Facultad + '</strong>');
+                                $('#programaModal').append('<strong>' + primerArray.Programa + '</strong>');
 
-                            options: {
-                                responsive: true,
-                                cutoutPercentage: 50,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
-                                    },
-                                    legend: {
-                                        display: false
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: data.alto,
-                                        color: 'red',
-                                        position: 'bottom',
-                                        font: {
-                                            size: 20,
-                                        },
-                                    },
-                                    tooltip: {
-                                        enabled: false
-                                    },
+                                /** Segunda Card */
+                                $('#documentoModal').append('<strong>Documento de identidad: </strong>' + primerArray.No_Documento);
+                                $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
+                                $('#selloModal').append('<strong>Sello financiero: </strong>' + primerArray.Sello);
+                                $('#estadoModal').append('<strong>Estado: </strong>' + primerArray.Estado_Banner);
+                                $('#tipoModal').append('<strong>Tipo estudiante: </strong>' + primerArray.Tipo_Estudiante);
+                                $('#autorizadoModal').append('<strong>Autorizado: </strong>' + primerArray.Autorizado_ASP);
+                                $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
+                                $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
 
-                                },
-
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-
-                        ctx = document.getElementById('medio').getContext('2d');
-                        chartRiesgoMedio = new Chart(ctx, {
-                            type: 'doughnut',
-                            data: {
-                                labels: ['Score', 'Gray Area'],
-                                datasets: [{
-                                    data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                                    backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
-                                    borderWidth: 1,
-                                    cutout: '70%',
-                                    circumference: 180,
-                                    rotation: 270,
-                                }, ],
-                            },
-
-                            options: {
-                                responsive: true,
-                                cutoutPercentage: 50,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
-                                    },
-                                    legend: {
-                                        display: false
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: data.medio,
-                                        color: '#DCCD30',
-                                        position: 'bottom',
-                                        font: {
-                                            size: 20,
-                                        },
-                                    },
-                                    tooltip: {
-                                        enabled: false
-                                    },
-
-                                },
-
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-
-
-                        ctx = document.getElementById('bajo').getContext('2d');
-                        chartRiesgoBajo = new Chart(ctx, {
-                            type: 'doughnut',
-                            data: {
-                                labels: ['Score', 'Gray Area'],
-                                datasets: [{
-                                    data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                                    backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
-                                    borderWidth: 1,
-                                    cutout: '70%',
-                                    circumference: 180,
-                                    rotation: 270,
-                                }, ],
-                            },
-
-                            options: {
-                                responsive: true,
-                                cutoutPercentage: 50,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
-                                    },
-                                    legend: {
-                                        display: false
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: data.bajo,
-                                        color: 'Green',
-                                        position: 'bottom',
-                                        font: {
-                                            size: 20,
-                                        },
-                                    },
-                                    tooltip: {
-                                        enabled: false
-                                    },
-
-                                },
-
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-
-                    }
-                });
-            }
-
-            /** 
-             * Botones de Riesgo 
-             */
-            $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
-                var riesgo = $(this).data('value');
-                dataTable(riesgo);
-            });
-
-            var chartRiesgoIngreso;
-            var chartRiesgoNotas;
-            /**
-             * Método para obtner los datos de un alumno según su id Banner y llena el Modal
-             */
-            function dataAlumno(id) {
-                limpiarModal();
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('moodle.data') }}",
-                    data: {
-                        idBanner: id
-                    },
-                    method: 'post',
-                    success: function(data) {
-                        var primerArray = data.data[0]
-                        /** Primera Card */
-                        $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
-                        $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');
-                        $('#idModal').append('<strong>' + primerArray.Id_Banner + '</strong>');
-                        $('#facultadModal').append('<strong>' + primerArray.Facultad + '</strong>');
-                        $('#programaModal').append('<strong>' + primerArray.Programa + '</strong>');
-
-                        /** Segunda Card */
-                        $('#documentoModal').append('<strong>Documento de identidad: </strong>' + primerArray.No_Documento);
-                        $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
-                        $('#selloModal').append('<strong>Sello financiero: </strong>' + primerArray.Sello);
-                        $('#estadoModal').append('<strong>Estado: </strong>' + primerArray.Estado_Banner);
-                        $('#tipoModal').append('<strong>Tipo estudiante: </strong>' + primerArray.Tipo_Estudiante);
-                        $('#autorizadoModal').append('<strong>Autorizado: </strong>' + primerArray.Autorizado_ASP);
-                        $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
-                        $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
-
-                        data.data.forEach(dato => {
-                            $("#tabla tbody").append(`<tr>
+                                data.data.forEach(dato => {
+                                    $("#tabla tbody").append(`<tr>
                             <td>${dato.Nombrecurso} </td>
                             <td>${dato.Total_Actividades} </td>
                             <td>${dato.Actividades_Por_Calificar} </td>
@@ -800,272 +797,276 @@
                             <td>${dato.Tercer_Corte} </td>
                             <td>${dato.Nota_Acumulada} </td>
                             <tr>`)
+                                });
+                            }
                         });
+
+                        graficosModal(id);
                     }
-                });
 
-                graficosModal(id);
-            }
-
-            function graficosModal(id) {
-                var charts = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('moodle.riesgo.asistencia') }}",
-                    data: {
-                        idBanner: id
-                    },
-                    method: 'post',
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var ctx = document.getElementById('riesgoIngreso').getContext('2d');
-                        var alto = data.data.alto;
-                        var medio = data.data.medio;
-                        var bajo = data.data.bajo;
-
-                        var valoralto = data.data.total.ALTO;
-                        var valorbajo = data.data.total.BAJO;
-                        var valormedio = data.data.total.MEDIO;
-
-                        chartRiesgoIngreso = new Chart(ctx, {
-                            type: 'doughnut',
+                    function graficosModal(id) {
+                        var charts = $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "{{ route('moodle.riesgo.asistencia') }}",
                             data: {
-                                labels: ['Alto', 'Medio', 'Bajo'],
-                                datasets: [{
-                                    data: [valoralto, valormedio, valorbajo],
-                                    backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
-                                    borderWidth: 1,
-                                    cutout: '70%',
-                                    circumference: 180,
-                                    rotation: 270,
-                                }, ],
+                                idBanner: id
                             },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                cutoutPercentage: 50,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
-                                        formatter: (value, ctx) => {
-                                            return value != 0 ? value.toString() : '';
-                                        },
-                                    },
-                                    legend: {
-                                        display: true,
-                                        position: 'right',
-                                        align: 'center',
-                                        labels: {
-                                            padding: 10,
-                                        }
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Riesgo por ingreso',
-                                        color: 'black',
-                                        position: 'top',
-                                        font: {
-                                            size: 15,
-                                        },
-                                    },
-                                    tooltip: {
-                                        enabled: false
-                                    },
-                                    layout: {
-                                        padding: {
-                                            bottom: 10,
-                                        },
-                                        margin: {
-                                            bottom: 10,
-                                        },
-                                    },
-                                },
+                            method: 'post',
+                            success: function(data) {
+                                data = jQuery.parseJSON(data);
+                                var ctx = document.getElementById('riesgoIngreso').getContext('2d');
+                                var alto = data.data.alto;
+                                var medio = data.data.medio;
+                                var bajo = data.data.bajo;
 
-                            },
-                            plugins: [ChartDataLabels]
-                        });
+                                var valoralto = data.data.total.ALTO;
+                                var valorbajo = data.data.total.BAJO;
+                                var valormedio = data.data.total.MEDIO;
 
-                        ctx = document.getElementById('riesgoNotas').getContext('2d');
-                        const dataArray = Object.values(data.data.notas);
+                                chartRiesgoIngreso = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Alto', 'Medio', 'Bajo'],
+                                        datasets: [{
+                                            data: [valoralto, valormedio, valorbajo],
+                                            backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
+                                            borderWidth: 1,
+                                            cutout: '70%',
+                                            circumference: 180,
+                                            rotation: 270,
+                                        }, ],
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        cutoutPercentage: 50,
+                                        plugins: {
+                                            datalabels: {
+                                                color: 'black',
+                                                font: {
+                                                    weight: 'semibold',
+                                                    size: 18,
+                                                },
+                                                formatter: (value, ctx) => {
+                                                    return value != 0 ? value.toString() : '';
+                                                },
+                                            },
+                                            legend: {
+                                                display: true,
+                                                position: 'right',
+                                                align: 'center',
+                                                labels: {
+                                                    padding: 10,
+                                                }
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Riesgo por ingreso',
+                                                color: 'black',
+                                                position: 'top',
+                                                font: {
+                                                    size: 15,
+                                                },
+                                            },
+                                            tooltip: {
+                                                enabled: false
+                                            },
+                                            layout: {
+                                                padding: {
+                                                    bottom: 10,
+                                                },
+                                                margin: {
+                                                    bottom: 10,
+                                                },
+                                            },
+                                        },
 
-                        var labels = data.data.notas.map(function(elemento) {
-                            return elemento.nombreCurso;
-                        });
+                                    },
+                                    plugins: [ChartDataLabels]
+                                });
 
-                        var valores = data.data.notas.map(function(elemento) {
-                            return elemento.Nota_Acumulada;
-                        });
+                                ctx = document.getElementById('riesgoNotas').getContext('2d');
+                                const dataArray = Object.values(data.data.notas);
 
-                        chartRiesgoNotas = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: '',
-                                    data: valores.map(value => value == "Sin Actividad" ? value : parseFloat(value)),
-                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                        formatter: value => {
-                                            if (value === "Sin Actividad") {
-                                                return value;
-                                            } else {
-                                                return value.toFixed(1);
+                                var labels = data.data.notas.map(function(elemento) {
+                                    return elemento.nombreCurso;
+                                });
+
+                                var valores = data.data.notas.map(function(elemento) {
+                                    return elemento.Nota_Acumulada;
+                                });
+
+                                chartRiesgoNotas = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: '',
+                                            data: valores.map(value => value == "Sin Actividad" ? value : parseFloat(value)),
+                                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                            ],
+                                            datalabels: {
+                                                anchor: 'end',
+                                                align: 'top',
+                                                formatter: value => {
+                                                    if (value === "Sin Actividad") {
+                                                        return value;
+                                                    } else {
+                                                        return value.toFixed(1);
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        max: 5,
-
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold'
-                                        },
-                                        formatter: Math.round
+                                        }]
                                     },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                max: 5,
+
                                             }
-                                        }
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Riesgo por nota acumulada',
-                                        color: 'black',
-                                        position: 'top',
-                                        font: {
-                                            size: 15,
                                         },
-                                    }
+                                        maintainAspectRatio: false,
+                                        responsive: true,
+                                        plugins: {
+                                            datalabels: {
+                                                color: 'black',
+                                                font: {
+                                                    weight: 'semibold'
+                                                },
+                                                formatter: Math.round
+                                            },
+                                            legend: {
+                                                position: 'bottom',
+                                                labels: {
+                                                    font: {
+                                                        size: 12
+                                                    }
+                                                }
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Riesgo por nota acumulada',
+                                                color: 'black',
+                                                position: 'top',
+                                                font: {
+                                                    size: 15,
+                                                },
+                                            }
 
-                                },
-                            },
-                            plugins: [ChartDataLabels]
+                                        },
+                                    },
+                                    plugins: [ChartDataLabels]
+                                });
+                            }
                         });
-                    }
-                });
 
-            }
-
-            function dataTable(riesgo) {
-                console.log(riesgo);
-                if ($.fn.DataTable.isDataTable('#datatable')) {
-                    $("#tituloTable").remove();
-                    table.destroy();
-                    $('#datatable').DataTable().destroy();
-                    $('#datatable tbody').empty();
-                    $("#datatable tbody").off("click", "button.data");
-                }
-                var data;
-                if (programasSeleccionados.length > 0) {
-                    var url = "{{ route('moodle.riesgo.programa') }}",
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
                     }
-                } else {
-                    if (facultadesSeleccionadas.length > 0) {
-                        console.log('entra');
-                        var url = "{{ route('moodle.riesgo.facultad') }}",
-                        data = {
-                            idfacultad: facultadesSeleccionadas,
-                            periodos: periodosSeleccionados
+
+                    function dataTable(riesgo) {
+                        console.log(riesgo);
+                        if ($.fn.DataTable.isDataTable('#datatable')) {
+                            $("#tituloTable").remove();
+                            table.destroy();
+                            $('#datatable').DataTable().destroy();
+                            $('#datatable tbody').empty();
+                            $("#datatable tbody").off("click", "button.data");
                         }
-                        console.log(data);
-                    } else {
-                        var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
-                        data = '';
-                    }
-                }
-
-                var datos = $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                    if (this.readyState == 4 && this.status == 200) {
-                        data = JSON.parse(this.responseText);
-                        table = $('#datatable').DataTable({
-                            "data": data.data,
-                            'pageLength': 10,
-                            "columns": [{
-                                    data: 'Id_Banner',
-                                    title: 'Id Banner'
-                                },
-                                {
-                                    data: null,
-                                    title: 'Nombre Completo',
-                                    render: function(data, type, row) {
-                                        return data.Nombre + ' ' + data.Apellido;
-                                    }
-                                },
-                                {
-                                    data: 'Facultad',
-                                    title: 'Facultad'
-                                },
-                                {
-                                    data: 'Programa',
-                                    title: 'Programa'
-                                },
-                                {
-                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
-                                    title: 'Datos Estudiante',
-                                    className: "text-center",
+                        var data;
+                        if (programasSeleccionados.length > 0) {
+                            var url = "{{ route('moodle.riesgo.programa') }}",
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
                                 }
-                            ],
-                            "language": {
-                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
-                        });
-                        riesgoaux = riesgo.toLowerCase();
-                        var titulo = 'Estudiantes con riesgo ' + riesgoaux;
-                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
-
-                        function obtenerData(tbody, table) {
-                            $(tbody).on("click", "button.data", function() {
-                                var datos = table.row($(this).parents("tr")).data();
-                                dataAlumno(datos.Id_Banner);
-                            })
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                console.log('entra');
+                                var url = "{{ route('moodle.riesgo.facultad') }}",
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                                console.log(data);
+                            } else {
+                                var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
+                                data = '';
+                            }
                         }
-                        obtenerData("#datatable tbody", table);
-                    }
-                    console.log(table);
-                }
-            });
-        }
-            function limpiarModal() {
-                $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 
-                if (chartRiesgoIngreso && chartRiesgoNotas) {
-                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
-                }
+                        var datos = $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                type: 'post',
+                                url: url,
+                                data: data,
+                                success: function(data) {
+                                    xmlhttp.open("GET", url, true);
+                                    xmlhttp.send();
+                                    xmlhttp.onreadystatechange = function() {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            data = JSON.parse(this.responseText);
+                                            table = $('#datatable').DataTable({
+                                                "data": data.data,
+                                                'pageLength': 10,
+                                                "columns": [{
+                                                        data: 'Id_Banner',
+                                                        title: 'Id Banner'
+                                                    },
+                                                    {
+                                                        data: null,
+                                                        title: 'Nombre Completo',
+                                                        render: function(data, type, row) {
+                                                            return data.Nombre + ' ' + data.Apellido;
+                                                        }
+                                                    },
+                                                    {
+                                                        data: 'Facultad',
+                                                        title: 'Facultad'
+                                                    },
+                                                    {
+                                                        data: 'Programa',
+                                                        title: 'Programa'
+                                                    },
+                                                    {
+                                                        defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
+                                                        title: 'Datos Estudiante',
+                                                        className: "text-center",
+                                                    }
+                                                ],
+                                                "language": {
+                                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                                },
+                                            });
+                                            riesgoaux = riesgo.toLowerCase();
+                                            var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                                            $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
 
-            }
-        });
+                                            function obtenerData(tbody, table) {
+                                                $(tbody).on("click", "button.data", function() {
+                                                    var datos = table.row($(this).parents("tr")).data();
+                                                    dataAlumno(datos.Id_Banner);
+                                                })
+                                            }
+                                            obtenerData("#datatable tbody", table);
+                                        }
+                                    }
+                                }
+                                });
+                        }
+
+                        function limpiarModal() {
+                            $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
+
+                            if (chartRiesgoIngreso && chartRiesgoNotas) {
+                                [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
+                            }
+
+                        }
+                    });
     </script>
 
     <!-- incluimos el footer -->

@@ -164,7 +164,9 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para informe de ausentismo */
     Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
     /** Informe de ausentismo por facultad */
-    Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo.facultad');
+    Route::post('/home/Moodle/riesgoFacultad', 'riesgoFacultad')->middleware('auth')->name('moodle.riesgo.facultad');
+    /** Informe de ausentismo por programa*/
+    Route::post('/home/Moodle/riesgoPrograma', 'riesgoPrograma')->middleware('auth')->name('moodle.riesgo.programa');
     /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
     Route::get('/home/Moodle/sello', 'sello')->middleware('auth')->name('moodle.sello');
     /** Ruta para cargar gráfica de sello de retención */

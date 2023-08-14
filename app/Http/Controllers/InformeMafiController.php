@@ -1219,7 +1219,7 @@ class InformeMafiController extends Controller
 
       
     
-
+        // total estudiantes banner
         $Total_estudiantes_Banner = DB::table('datosMafi')
             ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
             ->groupBy('estado')
@@ -1236,7 +1236,7 @@ class InformeMafiController extends Controller
         // ]);
         
         
-      
+      //-- estado financiero
         $Estado_Financiero= DB::table('datosMafi')
             ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
             ->groupBy('sello')
@@ -1257,12 +1257,12 @@ class InformeMafiController extends Controller
 
 
             
-        
+        // estado financiero retencion
         $Estado_Financiero_Retencion= DB::table('datosMafi')
         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
         ->groupBy('autorizado_asistir')
         ->orderByDesc('TOTAL')
-        ->get();
+    ->get();
 
             // //--- insertamos los datos  del Estado_Financiero todos
             // DB::table('historico_graficos')->insert([
@@ -1384,7 +1384,7 @@ class InformeMafiController extends Controller
            dd(
             $Total_estudiantes_Banner ,
             $Estado_Financiero,
-            $Estado_Financiero_Retención,
+            $Estado_Financiero_Retencion,
             $Estudiantes_nuevos_Estado_Financiero,
             $Tipos_de_estudiantes,
             $Operadores,

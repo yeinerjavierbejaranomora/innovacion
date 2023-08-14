@@ -522,6 +522,7 @@
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
+                    console.log(programasSeleccionados);
                     riesgo();
                     }
                     else{
@@ -532,8 +533,17 @@
                             checkboxesSeleccionados.each(function() {
                                 facultadesSeleccionadas.push($(this).val());
                             });
+                            console.log(facultadesSeleccionadas);
                             riesgo();
                         }
+                        else {
+                        /** Alerta */
+                        programasSeleccionados = [];
+                        facultadesSeleccionadas = [];
+                        destruirGraficos();
+                        ocultarDivs();
+                        alerta();
+                    }
                     }
                 
                 }

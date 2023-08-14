@@ -173,11 +173,16 @@ Route::controller(InformeMoodleController::class)->group(function () {
     Route::get('/home/Moodle/retencion', 'retencion')->middleware('auth')->name('moodle.retencion');
     /** Ruta para cargar dataTable con los estudiantes */
     Route::post('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
+    
+    Route::post('/home/Moodle/estudiantesFacultad/{riesgo}', 'estudiantesRiesgoFacultad')->middleware('auth')->name('moodle.estudiantes.facultad');
+    
+    Route::post('/home/Moodle/estudiantesPrograma/{riesgo}', 'estudiantesRiesgoPrograma')->middleware('auth')->name('moodle.estudiantes.programa');
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 
     /** Ruta para obtener los cursos en riesgo de un alumno */
     Route::post('/home/Moodle/riesgoAsistencia', 'riesgoAsistencia')->middleware('auth')->name('moodle.riesgo.asistencia');
+    
 });
 
 Route::controller(MafiController::class)->group(function () {

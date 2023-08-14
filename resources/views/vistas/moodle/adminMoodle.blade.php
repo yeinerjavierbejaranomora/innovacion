@@ -354,9 +354,26 @@
                 $('.botonModal').prop("disabled", false);
             });
 
+            var periodosSeleccionados = [];
             periodos();
             facultades();
             riesgo();
+
+
+            function Contador() {
+                totalFacultades = $('#facultades input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
+                totalPeriodos = $('#programas input[type="checkbox"]').length;
+            }
+
+            function getPeriodos() {
+                periodosSeleccionados = [];
+                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
+                });
+                return periodosSeleccionados;
+            }    
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -386,12 +403,15 @@
                     },
                     url: "{{ route('periodos.activos') }}",
                     method: 'post',
+                    async: false,
                     success: function(data) {
                         data.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodos);
                             $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
                         });
                     }
                 });
+                console.log(periodosSeleccionados);
             }
 
             /**
@@ -658,6 +678,9 @@
                     }
                 });
             }
+
+
+
 
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');

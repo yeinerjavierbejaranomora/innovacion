@@ -552,7 +552,7 @@
              * Método para obtener gráficos de riesgo alto, medio y bajo 
              * */
             function riesgo() {
-                if (chartRiesgoAlto && chartRiesgoMedio && chartTiesgoBajo) {
+                if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
                 var datos = $.ajax({

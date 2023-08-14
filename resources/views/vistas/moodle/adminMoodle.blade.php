@@ -803,9 +803,11 @@
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 
-                        var labels = data.data.notas.map(function(elemento) {
-                            return elemento.nombreCurso;
-                        });
+                        // var labels = data.data.notas.map(function(elemento) {
+                        //     return elemento.nombreCurso;
+                        // });
+
+                        var labels = ['alto', 'medio', 'bajo'];
 
                         var valores = data.data.notas.map(function(elemento) {
                             return elemento.Nota_Acumulada;

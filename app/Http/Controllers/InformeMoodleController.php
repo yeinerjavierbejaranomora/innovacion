@@ -57,8 +57,7 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-    public function sello()
-    {
+    public function sello(){
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
          *GROUP BY sello
@@ -72,8 +71,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
-    public function retencion()
-    {
+    public function retencion(){
         $retencion = DB::table('datos_moodle')
             ->where('Sello', 'NO EXISTE')
             ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
@@ -84,8 +82,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $retencion));
     }
 
-    function estudiantesRiesgo($riesgo)
-    {
+    function estudiantesRiesgo($riesgo){
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
             ->where('Riesgo', $riesgo)
@@ -96,16 +93,15 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function dataAlumno(Request $request)
-    {
+    function dataAlumno(Request $request){
         $idBanner = $request->input('idBanner');
         $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }
 
-    function riesgoAsistencia(Request $request)
-    {
+    function riesgoAsistencia(Request $request, $periodos){
+        $periodos = 
         $idBanner = $request->input('idBanner');
         $bajo = [];
         $medio = [];
@@ -157,10 +153,9 @@ class InformeMoodleController extends Controller
             'notas' => $Notas
         );
 
-
-
-
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));
     }
+
+    
 }

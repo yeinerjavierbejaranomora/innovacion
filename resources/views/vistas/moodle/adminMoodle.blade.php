@@ -466,7 +466,6 @@
                 }
             });
 
-
             /**
              * Botones
              */
@@ -512,6 +511,39 @@
                 })
             }
 
+            $('#generarReporte').on('click', function(e) {
+                e.preventDefault();
+                Contador();
+                var periodosSeleccionados = getPeriodos()
+                if (periodosSeleccionados.length > 0) {
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    riesgo();
+                    }
+                    else{
+                        if ($('#facultades input[type="checkbox"]:checked').length > 0) { 
+                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            programasSeleccionados = [];
+                            facultadesSeleccionadas = [];
+                            checkboxesSeleccionados.each(function() {
+                                facultadesSeleccionadas.push($(this).val());
+                            });
+                            riesgo();
+                        }
+                    }
+                
+                }
+                else{
+                    alertaPeriodos();
+                }
+            });
+
+
+
             var chartRiesgoAlto;
             var chartRiesgoMedio;
             var chartRiesgoBajo;
@@ -520,6 +552,9 @@
              * Método para obtener gráficos de riesgo alto, medio y bajo 
              * */
             function riesgo() {
+                if (chartRiesgoAlto && chartRiesgoMedio && chartTiesgoBajo) {
+                    [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
+                }
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -679,9 +714,9 @@
                 });
             }
 
-
-
-
+            /** 
+             * Botones de Riesgo 
+             */
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
                 dataTable(riesgo);
@@ -968,7 +1003,7 @@
             function limpiarModal() {
                 $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 
-                if (chartRiesgoAlto && chartRiesgoNotas) {
+                if (chartRiesgoIngreso && chartRiesgoNotas) {
                     [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
                 }
 

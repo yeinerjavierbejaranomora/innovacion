@@ -540,8 +540,6 @@
                         /** Alerta */
                         programasSeleccionados = [];
                         facultadesSeleccionadas = [];
-                        destruirGraficos();
-                        ocultarDivs();
                         alerta();
                     }
                     }

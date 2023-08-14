@@ -355,6 +355,8 @@
             });
 
             var periodosSeleccionados = [];
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
             periodos();
             facultades();
             riesgo();
@@ -373,7 +375,7 @@
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
-            }    
+            }
 
             /**
              * Método que trae las facultades y genera los checkbox en la vista
@@ -425,7 +427,7 @@
                 });
                 return periodosSeleccionados;
             }
-            
+
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
@@ -514,19 +516,18 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos()
+                periodosSeleccionados = getPeriodos()
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
-                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                    programasSeleccionados = [];
-                    checkboxesProgramas.each(function() {
-                        programasSeleccionados.push($(this).val());
-                    });
-                    console.log(programasSeleccionados);
-                    riesgo();
-                    }
-                    else{
-                        if ($('#facultades input[type="checkbox"]:checked').length > 0) { 
+                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                        programasSeleccionados = [];
+                        checkboxesProgramas.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
+                        console.log(programasSeleccionados);
+                        riesgo();
+                    } else {
+                        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                             programasSeleccionados = [];
                             facultadesSeleccionadas = [];
@@ -535,22 +536,18 @@
                             });
                             console.log(facultadesSeleccionadas);
                             riesgo();
+                        } else {
+                            /** Alerta */
+                            programasSeleccionados = [];
+                            facultadesSeleccionadas = [];
+                            alerta();
                         }
-                        else {
-                        /** Alerta */
-                        programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
-                        alerta();
                     }
-                    }
-                
-                }
-                else{
+
+                } else {
                     alertaPeriodos();
                 }
             });
-
-
 
             var chartRiesgoAlto;
             var chartRiesgoMedio;
@@ -567,20 +564,22 @@
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.riesgo.programa') }}",
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    }
-                } else {
-                    if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('moodle.riesgo.facultad') }}",
                         data = {
-                            idfacultad: facultadesSeleccionadas,
+                            programa: programasSeleccionados,
                             periodos: periodosSeleccionados
                         }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        console.log('entra');
+                        var url = "{{ route('moodle.riesgo.facultad') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                        console.log(data);
                     } else {
                         var url = "{{ route('moodle.riesgo') }}",
-                        data = '';
+                            data = '';
                     }
                 }
 
@@ -601,8 +600,8 @@
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
-                                    data: [data.alto, TotalAlto], 
-                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], 
+                                    data: [data.alto, TotalAlto],
+                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],
                                     borderWidth: 1,
                                     cutout: '70%',
                                     circumference: 180,
@@ -967,6 +966,7 @@
             }
 
             function dataTable(riesgo) {
+                console.log(riesgo);
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
@@ -974,15 +974,37 @@
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
+                var data;
+                if (programasSeleccionados.length > 0) {
+                    var url = "{{ route('moodle.riesgo.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        console.log('entra');
+                        var url = "{{ route('moodle.riesgo.facultad') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                        console.log(data);
+                    } else {
+                        var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
+                        data = '';
+                    }
+                }
 
-                var xmlhttp = new XMLHttpRequest();
-                var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-
-                        data = JSON.parse(this.responseText);
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        
                         table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,
@@ -1027,7 +1049,9 @@
                         }
                         obtenerData("#datatable tbody", table);
                     }
-                }
+
+
+                });
             }
 
             function limpiarModal() {

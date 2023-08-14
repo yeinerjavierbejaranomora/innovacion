@@ -172,7 +172,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para cargar gráfica de sello de retención */
     Route::get('/home/Moodle/retencion', 'retencion')->middleware('auth')->name('moodle.retencion');
     /** Ruta para cargar dataTable con los estudiantes */
-    Route::get('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
+    Route::post('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 

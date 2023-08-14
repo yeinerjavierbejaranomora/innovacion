@@ -783,7 +783,8 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        var primerArray = data.data[0]
+                            var primerArray = data.data[0];
+                            console.log(data.data);
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
                         $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');

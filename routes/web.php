@@ -175,6 +175,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     Route::post('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
     
     Route::post('/home/Moodle/estudiantesFacultad/{riesgo}', 'estudiantesRiesgoFacultad')->middleware('auth')->name('moodle.estudiantes.facultad');
+    
     Route::post('/home/Moodle/estudiantesPrograma/{riesgo}', 'estudiantesRiesgoPrograma')->middleware('auth')->name('moodle.estudiantes.programa');
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');

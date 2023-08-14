@@ -181,7 +181,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function estudianteRiesgoFacultad(Request $request,$riesgo){
+    function estudiantesRiesgoFacultad(Request $request,$riesgo){
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);
@@ -196,7 +196,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function estudianteRiesgoPrograma(Request $request,$riesgo){
+    function estudiantesRiesgoPrograma(Request $request,$riesgo){
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);

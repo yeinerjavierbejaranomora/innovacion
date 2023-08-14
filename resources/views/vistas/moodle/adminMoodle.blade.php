@@ -563,12 +563,34 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
+
+                var data;
+                if (programasSeleccionados.length > 0) {
+                    var url = "{{ route(moodle.riesgo.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        var url = "{{ route(moodle.riesgo.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                    } else {
+                        var url = "{{ route('moodle.riesgo') }}",
+                        data = '';
+                    }
+                }
+
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('moodle.riesgo') }}",
-                    method: 'post',
+                    type: 'post',
+                    url: url,
+                    data: data,
                     success: function(data) {
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
@@ -579,8 +601,8 @@
                             data: {
                                 labels: ['Score', 'Gray Area'],
                                 datasets: [{
-                                    data: [data.alto, TotalAlto], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
-                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                    data: [data.alto, TotalAlto], 
+                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'], 
                                     borderWidth: 1,
                                     cutout: '70%',
                                     circumference: 180,

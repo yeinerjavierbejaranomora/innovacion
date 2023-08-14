@@ -789,9 +789,8 @@
                         }
                         else{
                             console.log (data);
-                            primerArray = data[0];
+                            primerArray = jQuery.parseJSON(data);
                         }
-                            console.log(data.data);
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
                         $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');

@@ -516,6 +516,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
+                destruirTabla();
                 periodosSeleccionados = getPeriodos()
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
@@ -690,7 +691,6 @@
                             plugins: [ChartDataLabels]
                         });
 
-
                         ctx = document.getElementById('bajo').getContext('2d');
                         chartRiesgoBajo = new Chart(ctx, {
                             type: 'doughnut',
@@ -738,7 +738,21 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-
+                        if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
+                        $('#colRiesgoAlto').addClass('hidden');
+                        } else {
+                        $('#colRiesgoAlto').removeClass('hidden');
+                        }
+                        if (chartRiesgoMedio.data.labels.length == 0 && chartRiesgoMedio.data.datasets[0].data.length == 0) {
+                        $('#colRiesgoMedio').addClass('hidden');
+                        } else {
+                        $('#colRiesgoMedio').removeClass('hidden');
+                        }
+                        if (chartRiesgoBajo.data.labels.length == 0 && chartRiesgoBajo.data.datasets[0].data.length == 0) {
+                        $('#colRiesgoBajo').addClass('hidden');
+                        } else {
+                        $('#colRiesgoBajo').removeClass('hidden');
+                        }
                     }
                 });
             }
@@ -965,8 +979,7 @@
 
             }
 
-            function dataTable(riesgo) {
-                console.log(riesgo);
+            function destruirTabla(){
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
@@ -974,6 +987,11 @@
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
+            }
+
+            function dataTable(riesgo) {
+                console.log(riesgo);
+                destruirTabla();
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;

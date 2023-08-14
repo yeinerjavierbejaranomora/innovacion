@@ -788,7 +788,7 @@
                             primerArray = data.data[0];
                         }
                         else{
-                            primerArray = data;
+                            primerArray = data[0];
                         }
                             console.log(data.data);
                         /** Primera Card */

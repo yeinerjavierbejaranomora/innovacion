@@ -181,6 +181,37 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
+    function estudianteRiesgoFacultad(Request $request,$riesgo){
+        $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
+        $riesgo = trim($riesgo);
+        $estudiantes = DB::table('datos_moodle')
+            ->where('Riesgo', $riesgo)
+            ->whereIn('Facultad', $facultades)
+            ->whereIn('Periodo_Rev', $periodos)
+            ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
+    }
+
+    function estudianteRiesgoPrograma(Request $request,$riesgo){
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $riesgo = trim($riesgo);
+        $estudiantes = DB::table('datos_moodle')
+            ->where('Riesgo', $riesgo)
+            ->whereIn('Programa', $programas)
+            ->whereIn('Periodo_Rev', $periodos)
+            ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->get();
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
+    }
+
+
     function dataAlumno(Request $request)
     {
         $idBanner = $request->input('idBanner');
@@ -189,8 +220,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $data));
     }
 
-    function riesgoAsistencia(Request $request)
-    {
+    function riesgoAsistencia(Request $request){
 
         $idBanner = $request->input('idBanner');
         $bajo = [];
@@ -247,65 +277,4 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $datos));
     }
 
-    function riesgoAsistenciaFacultad(Request $request)
-    {
-
-        $facultades = $request->input('idfacultad');
-        $periodos = $request->input('periodos');
-        $idBanner = $request->input('idBanner');
-        $bajo = [];
-        $medio = [];
-        $alto = [];
-        $riesgos = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('Riesgo', 'Nombrecurso')->get();
-        $totalRiesgo = DB::table('datos_moodle')
-            ->where('Id_Banner', $idBanner)
-            ->whereIn('Facultad', $facultades)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->select(DB::raw("COALESCE(SUM(CASE WHEN Riesgo = 'ALTO' THEN 1 ELSE 0 END), 0) AS ALTO,
-                      COALESCE(SUM(CASE WHEN Riesgo = 'BAJO' THEN 1 ELSE 0 END), 0) AS BAJO,
-                      COALESCE(SUM(CASE WHEN Riesgo = 'MEDIO' THEN 1 ELSE 0 END), 0) AS MEDIO"))
-            ->first();
-
-        foreach ($riesgos as $riesgo) {
-            $aux = $riesgo->Riesgo;
-            $nombreCurso = $riesgo->Nombrecurso;
-            $nombreCursoFormateado = trim(substr($nombreCurso, 0, strpos($nombreCurso, '(')));
-            if (strlen($nombreCursoFormateado) > 35) {
-                $nombreCursoFormateado = substr($nombreCursoFormateado, 0, 35) . '...';
-            }
-            if ($aux == 'ALTO') {
-                $alto[] = $nombreCursoFormateado;
-            } elseif ($aux == 'MEDIO') {
-                $medio[] = $nombreCursoFormateado;
-            } elseif ($aux == 'BAJO') {
-                $bajo[] = $nombreCursoFormateado;
-            }
-        }
-
-        if (empty($alto)) {
-            $alto[] = 'Ninguno';
-        }
-        if (empty($medio)) {
-            $medio[] = 'Ninguno';
-        }
-        if (empty($bajo)) {
-            $bajo[] = 'Ninguno';
-        }
-
-        $Notas = DB::table('datos_moodle')
-            ->where('Id_Banner', $idBanner)
-            ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, Nota_Acumulada"))
-            ->get();
-
-        $datos = array(
-            'alto' => $alto,
-            'medio' => $medio,
-            'bajo' => $bajo,
-            'total' => $totalRiesgo,
-            'notas' => $Notas
-        );
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $datos));
-    }
 }

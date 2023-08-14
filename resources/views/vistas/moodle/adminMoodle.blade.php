@@ -545,12 +545,14 @@
                             programasSeleccionados = [];
                             facultadesSeleccionadas = [];
                             alerta();
+                            limpiarTitulos();
                             ocultarDivs();
                         }
                     }
 
                 } else {
                     alertaPeriodos();
+                    limpiarTitulos();
                     ocultarDivs();
                 }
             });

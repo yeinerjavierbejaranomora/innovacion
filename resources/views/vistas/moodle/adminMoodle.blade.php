@@ -516,8 +516,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos()
-                console.log(periodosSeleccionados);
+                periodosSeleccionados = getPeriodos()
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

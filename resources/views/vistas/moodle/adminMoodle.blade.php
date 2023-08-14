@@ -969,6 +969,8 @@
             }
 
             function dataTable(riesgo) {
+                console.log('entra');
+                console.log('riesgo');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();

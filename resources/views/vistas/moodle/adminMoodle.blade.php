@@ -787,7 +787,7 @@
                             var primerArray = data.data[0];
                         }
                         catch {
-                            var primerArray = data[0];
+                            var primerArray = data;
                         }
                         /** Primera Card */
                         $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);

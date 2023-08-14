@@ -1005,7 +1005,7 @@
                                 data: data,
                                 success: function(data) {
                                     var xmlhttp = new XMLHttpRequest();
-                                    xmlhttp.open("GET", url, true);
+                                    xmlhttp.open("POST", url, true);
                                     xmlhttp.send();
                                     xmlhttp.onreadystatechange = function() {
                                         if (this.readyState == 4 && this.status == 200) {

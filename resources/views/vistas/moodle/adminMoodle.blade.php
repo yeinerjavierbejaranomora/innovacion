@@ -750,6 +750,7 @@
              * Botones de Riesgo 
              */
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
+                console.log('entra');
                 var riesgo = $(this).data('value');
                 dataTable(riesgo);
             });

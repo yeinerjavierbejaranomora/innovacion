@@ -355,6 +355,8 @@
             });
 
             var periodosSeleccionados = [];
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
             periodos();
             facultades();
             riesgo();

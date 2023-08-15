@@ -511,7 +511,7 @@
                     confirmButtonColor: '#dfc14e',
                 })
             }
-        
+
             function ocultarDivs() {
                 $('#colRiesgoAlto, #colRiesgoMedio, #colRiesgoBajo').addClass('hidden');
             }
@@ -557,7 +557,7 @@
                 }
             });
 
-            function limpiarTitulos(){
+            function limpiarTitulos() {
                 var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo');
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
@@ -580,9 +580,9 @@
                 $("#mensaje").empty();
 
                 var periodosArray = Object.values(periodos);
-                    var periodosFormateados = periodosArray.map(function(periodo) {
+                var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
-                    }).join(' - ');
+                }).join(' - ');
 
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
@@ -604,20 +604,20 @@
                 var periodos = getPeriodos();
                 $("#mensaje").empty();
                 var facultadesArray = Object.values(facultadesSeleccionadas);
-                    var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                var facultadesFormateadas = facultadesArray.map(function(facultad) {
                     return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                    }).join(' - ');
-                
+                }).join(' - ');
+
                 var periodosArray = Object.values(periodos);
-                    var periodosFormateados = periodosArray.map(function(periodo) {
+                var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
-                    }).join(' - ');    
+                }).join(' - ');
 
                 if (facultadesSeleccionadas.length > 1) {
                     var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
                     $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
                 } else {
-                    
+
                     var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
                     $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
                 }
@@ -813,19 +813,19 @@
                             plugins: [ChartDataLabels]
                         });
                         if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
-                        $('#colRiesgoAlto').addClass('hidden');
+                            $('#colRiesgoAlto').addClass('hidden');
                         } else {
-                        $('#colRiesgoAlto').removeClass('hidden');
+                            $('#colRiesgoAlto').removeClass('hidden');
                         }
                         if (chartRiesgoMedio.data.labels.length == 0 && chartRiesgoMedio.data.datasets[0].data.length == 0) {
-                        $('#colRiesgoMedio').addClass('hidden');
+                            $('#colRiesgoMedio').addClass('hidden');
                         } else {
-                        $('#colRiesgoMedio').removeClass('hidden');
+                            $('#colRiesgoMedio').removeClass('hidden');
                         }
                         if (chartRiesgoBajo.data.labels.length == 0 && chartRiesgoBajo.data.datasets[0].data.length == 0) {
-                        $('#colRiesgoBajo').addClass('hidden');
+                            $('#colRiesgoBajo').addClass('hidden');
                         } else {
-                        $('#colRiesgoBajo').removeClass('hidden');
+                            $('#colRiesgoBajo').removeClass('hidden');
                         }
                     }
                 });
@@ -857,10 +857,9 @@
                     method: 'post',
                     success: function(data) {
                         var primerArray;
-                        if (data.data){
+                        if (data.data) {
                             primerArray = data.data[0];
-                        }
-                        else{
+                        } else {
                             var data = jQuery.parseJSON(data);
                             primerArray = data.data[0];
                         }
@@ -899,6 +898,9 @@
                 graficosModal(id);
             }
 
+            /**
+             * Método que grafica los datos en el Modal
+             */
             function graficosModal(id) {
                 var charts = $.ajax({
                     headers: {
@@ -1060,7 +1062,10 @@
 
             }
 
-            function destruirTabla(){
+            /**
+             * Método para destruir DataTable
+             */
+            function destruirTabla() {
                 $('#colTabla').addClass("hidden")
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
@@ -1071,23 +1076,26 @@
                 }
             }
 
+            /**
+             * Método para construir dataTable, según el tipo de riesgo
+             */
             function dataTable(riesgo) {
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;
-                        data = {
-                            programa: programasSeleccionados,
-                            periodos: periodosSeleccionados
-                        }
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('moodle.estudiantes.facultad', ['riesgo' => ' ']) }}" + riesgo;
-                            data = {
-                                idfacultad: facultadesSeleccionadas,
-                                periodos: periodosSeleccionados
-                            }
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
                     } else {
                         var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
                         data = '';
@@ -1102,56 +1110,60 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        
-                        table = $('#datatable').DataTable({
-                            "data": data.data,
-                            'pageLength': 10,
-                            "columns": [{
-                                    data: 'Id_Banner',
-                                    title: 'Id Banner'
-                                },
-                                {
-                                    data: null,
-                                    title: 'Nombre Completo',
-                                    render: function(data, type, row) {
-                                        return data.Nombre + ' ' + data.Apellido;
+                        try {
+                            table = $('#datatable').DataTable({
+                                "data": data.data,
+                                'pageLength': 10,
+                                "columns": [{
+                                        data: 'Id_Banner',
+                                        title: 'Id Banner'
+                                    },
+                                    {
+                                        data: null,
+                                        title: 'Nombre Completo',
+                                        render: function(data, type, row) {
+                                            return data.Nombre + ' ' + data.Apellido;
+                                        }
+                                    },
+                                    {
+                                        data: 'Facultad',
+                                        title: 'Facultad'
+                                    },
+                                    {
+                                        data: 'Programa',
+                                        title: 'Programa'
+                                    },
+                                    {
+                                        defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
+                                        title: 'Datos Estudiante',
+                                        className: "text-center",
                                     }
+                                ],
+                                "language": {
+                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                 },
-                                {
-                                    data: 'Facultad',
-                                    title: 'Facultad'
-                                },
-                                {
-                                    data: 'Programa',
-                                    title: 'Programa'
-                                },
-                                {
-                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
-                                    title: 'Datos Estudiante',
-                                    className: "text-center",
-                                }
-                            ],
-                            "language": {
-                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                            },
-                        });
-                        riesgoaux = riesgo.toLowerCase();
-                        var titulo = 'Estudiantes con riesgo ' + riesgoaux;
-                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+                            });
+                            riesgoaux = riesgo.toLowerCase();
+                            var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                            $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
 
-                        function obtenerData(tbody, table) {
-                            $(tbody).on("click", "button.data", function() {
-                                var datos = table.row($(this).parents("tr")).data();
-                                dataAlumno(datos.Id_Banner);
-                            })
+                            function obtenerData(tbody, table) {
+                                $(tbody).on("click", "button.data", function() {
+                                    var datos = table.row($(this).parents("tr")).data();
+                                    dataAlumno(datos.Id_Banner);
+                                })
+                            }
+                            obtenerData("#datatable tbody", table);
+                        } catch (error) {
+                            console.error("Error al dibujar la DataTable:", error);
                         }
-                        obtenerData("#datatable tbody", table);
                     }
-
 
                 });
             }
-
+            /**
+             * Método para limpiar información del Modal
+             */
             function limpiarModal() {
                 $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
 

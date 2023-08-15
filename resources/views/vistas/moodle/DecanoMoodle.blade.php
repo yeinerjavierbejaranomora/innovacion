@@ -1130,6 +1130,7 @@
              * Método para construir dataTable, según el tipo de riesgo
              */
             function dataTable(riesgo) {
+                
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");
                 var data;
@@ -1160,7 +1161,7 @@
                     url: url,
                     data: data,
                     success: function(data) {
-
+                        console.log(data.data);
                         table = $('#datatable').DataTable({
                             "data": data.data,
                             'pageLength': 10,

@@ -1166,7 +1166,8 @@
                         if (data.data) {
                             datos = data.data;
                         } else {
-                            datos = jQuery.parseJSON(data);
+                            var data = jQuery.parseJSON(data);
+                            datos = data.data;
                         }
                         console.log(datos);
                         table = $('#datatable').DataTable({

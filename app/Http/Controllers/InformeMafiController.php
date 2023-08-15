@@ -1215,9 +1215,11 @@ class InformeMafiController extends Controller
         //**/ traemos los periodos activos */
 
          $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
-         $facultades=DB::table('facultad')->get();
+       
+         /// traemos todos los programas
+         $programas=DB::table('programas')->get();
         
-        dd( $facultades);
+        dd($programas);
         
         $facultades=DB::table('periodo')->where('periodoActivo', 1)->get();
         dd($periodos);

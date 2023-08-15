@@ -522,7 +522,7 @@
                     $('#colCardFacultades').hide();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
-                    var idFacultadesArray = Object.values(facultadesSelect);
+                    var idFacultadesArray = Object.values(facultadesSeleccionadas);
                     var formData = new FormData();
                     idFacultadesArray.forEach((facultad) => {
                         formData.append('idfacultad[]', facultad);

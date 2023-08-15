@@ -1125,9 +1125,14 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        console.log(data.data);
+                        var datos
+                        if (data.data) {
+                            datos = data.data;
+                        } else {
+                            datos = data;
+                        }
                         table = $('#datatable').DataTable({
-                            "data": data.data,
+                            "data": datos,
                             'pageLength': 10,
                             "columns": [{
                                     data: 'Id_Banner',

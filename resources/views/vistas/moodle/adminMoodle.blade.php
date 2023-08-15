@@ -1157,7 +1157,11 @@
                         } catch (error) {
                             console.error("Error al dibujar la DataTable:", error);
                         }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.error("Error en la petición AJAX:", errorThrown);
                     }
+
 
                 });
             }

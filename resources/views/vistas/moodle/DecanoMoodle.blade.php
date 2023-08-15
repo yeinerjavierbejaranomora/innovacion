@@ -508,7 +508,7 @@
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                console.log(facultadesSeleccionadas);
+                
             }
 
             function vistaEntrada() {
@@ -684,6 +684,7 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
+                console.log(facultadesSeleccionadas);
                 console.log(facultadesSeleccionadas.length);
                 var data;
                 if (programasSeleccionados.length > 0) {

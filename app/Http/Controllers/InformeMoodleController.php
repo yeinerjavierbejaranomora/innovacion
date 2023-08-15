@@ -61,7 +61,7 @@ class InformeMoodleController extends Controller
 
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-
+        dd($facultades);
         $riesgos = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)

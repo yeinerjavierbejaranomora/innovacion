@@ -717,7 +717,6 @@
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
-                        console.log(data.total);
                         if (TotalAlto <= 0) {
                             TotalAlto = 0;
                         }
@@ -727,10 +726,6 @@
                         if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
-
-                        console.log(TotalAlto);
-                        console.log(TotalMedio);
-                        console.log(TotalBajo);
 
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
@@ -1173,7 +1168,6 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        console.log(data);
                         var datos
                         if (data.data) {
                             datos = data.data;
@@ -1181,7 +1175,6 @@
                             var data = jQuery.parseJSON(data);
                             datos = data.data;
                         }
-                        console.log(datos);
                         table = $('#datatable').DataTable({
                             "data": datos,
                             'pageLength': 10,

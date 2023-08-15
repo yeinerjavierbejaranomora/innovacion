@@ -702,6 +702,7 @@
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
+                        console.log(data.total);
                         if (TotalAlto <= 0)
                         {
                             TotalAlto = 0;

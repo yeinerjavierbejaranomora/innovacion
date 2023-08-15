@@ -114,9 +114,10 @@ class InformeMoodleController extends Controller
 
         $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
-            ->whereIn('dm.Programa', $programas)
+            ->whereIn('p.codrograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
             ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
+
 
         $alto = [];
         $medio = [];

@@ -362,7 +362,6 @@
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             periodos();
-            facultades();
             facultadesUsuario();
             riesgo();
 

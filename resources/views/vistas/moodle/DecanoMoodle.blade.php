@@ -704,16 +704,21 @@
                         var TotalBajo = data.total - data.bajo;
                         if (TotalAlto <= 0)
                         {
-                            TotalAlto == 0;
+                            TotalAlto = 0;
                         }
                         if (TotalMedio <= 0)
                         {
-                            TotalMedio == 0;
+                            TotalMedio = 0;
                         }
                         if (TotalBajo <= 0)
                         {
-                            TotalBajo == 0;
+                            TotalBajo = 0;
                         }
+
+                        console.log(TotalAlto);
+                        console.log(TotalMedio);
+                        console.log(TotalBajo);
+
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

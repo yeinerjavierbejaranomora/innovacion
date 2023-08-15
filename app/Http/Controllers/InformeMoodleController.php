@@ -106,7 +106,7 @@ class InformeMoodleController extends Controller
 
         $riesgos = DB::table('datos_moodle AS dm')
         ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
-        ->whereIn('dm.Programa', $programas)
+        ->whereIn('p.codprograma', $programas)
         ->whereIn('dm.Periodo_Rev', $periodos)
         ->select(DB::raw('COUNT(dm.Riesgo) AS TOTAL, dm.Riesgo'))
         ->groupBy('dm.Riesgo')
@@ -200,9 +200,9 @@ class InformeMoodleController extends Controller
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);
-        $estudiantes = DB::table('datos_moodle')
+        $estudiantes = DB::table('datos_moodle AS dm')
         ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
-        ->whereIn('dm.Programa', $programas)
+        ->whereIn('p.codprograma', $programas)
         ->whereIn('dm.Periodo_Rev', $periodos)    
         ->where('dm.Riesgo', $riesgo)
         ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
@@ -211,7 +211,6 @@ class InformeMoodleController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }
-
 
     function dataAlumno(Request $request){
         $idBanner = $request->input('idBanner');

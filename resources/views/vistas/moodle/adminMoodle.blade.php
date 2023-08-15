@@ -683,9 +683,6 @@
                         {
                             TotalBajo == 0;
                         }
-                        console.log(TotalAlto);
-                        console.log(TotalMedio);
-                        console.log(TotalBajo);
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

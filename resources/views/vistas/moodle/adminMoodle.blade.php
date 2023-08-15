@@ -1110,59 +1110,52 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        try {
-                            table = $('#datatable').DataTable({
-                                "data": data.data,
-                                'pageLength': 10,
-                                "columns": [{
-                                        data: 'Id_Banner',
-                                        title: 'Id Banner'
-                                    },
-                                    {
-                                        data: null,
-                                        title: 'Nombre Completo',
-                                        render: function(data, type, row) {
-                                            return data.Nombre + ' ' + data.Apellido;
-                                        }
-                                    },
-                                    {
-                                        data: 'Facultad',
-                                        title: 'Facultad'
-                                    },
-                                    {
-                                        data: 'Programa',
-                                        title: 'Programa'
-                                    },
-                                    {
-                                        defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
-                                        title: 'Datos Estudiante',
-                                        className: "text-center",
-                                    }
-                                ],
-                                "language": {
-                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+
+                        table = $('#datatable').DataTable({
+                            "data": data.data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'Id_Banner',
+                                    title: 'Id Banner'
                                 },
-                            });
-                            riesgoaux = riesgo.toLowerCase();
-                            var titulo = 'Estudiantes con riesgo ' + riesgoaux;
-                            $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+                                {
+                                    data: null,
+                                    title: 'Nombre Completo',
+                                    render: function(data, type, row) {
+                                        return data.Nombre + ' ' + data.Apellido;
+                                    }
+                                },
+                                {
+                                    data: 'Facultad',
+                                    title: 'Facultad'
+                                },
+                                {
+                                    data: 'Programa',
+                                    title: 'Programa'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
+                                    title: 'Datos Estudiante',
+                                    className: "text-center",
+                                }
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                        riesgoaux = riesgo.toLowerCase();
+                        var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
 
-                            function obtenerData(tbody, table) {
-                                $(tbody).on("click", "button.data", function() {
-                                    var datos = table.row($(this).parents("tr")).data();
-                                    dataAlumno(datos.Id_Banner);
-                                })
-                            }
-                            obtenerData("#datatable tbody", table);
-                        } catch (error) {
-                            console.error("Error al dibujar la DataTable:", error);
+                        function obtenerData(tbody, table) {
+                            $(tbody).on("click", "button.data", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                dataAlumno(datos.Id_Banner);
+                            })
                         }
+                        obtenerData("#datatable tbody", table);
                     },
-                    error: function(xhr, textStatus, errorThrown) {
-                        console.error("Error en la petición AJAX:", errorThrown);
-                    }
-
-
+                    
                 });
             }
             /**

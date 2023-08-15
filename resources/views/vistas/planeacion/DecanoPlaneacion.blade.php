@@ -395,7 +395,6 @@
                 return periodosSeleccionados;
             }
 
-
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;

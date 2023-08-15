@@ -365,6 +365,7 @@
             facultadesUsuario();
             riesgo();
             vistaEntrada();
+
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
@@ -513,8 +514,10 @@
             }
 
             function vistaEntrada() {
-                var cantidadFacultades = facultadesSeleccionadas.length;
-                console.log(cantidadFacultades);
+                var key = Object.keys(facultadesSelect);
+                var cantidadFacultades = key.length;
+                var valorFacultad = facultadesSelect[key[0]];
+
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";

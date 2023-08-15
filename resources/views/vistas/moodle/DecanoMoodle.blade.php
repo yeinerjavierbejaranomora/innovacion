@@ -1161,12 +1161,14 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        console.log(data);
                         var datos
                         if (data.data) {
                             datos = data.data;
                         } else {
                             datos = data;
                         }
+                        console.log(datos);
                         table = $('#datatable').DataTable({
                             "data": datos,
                             'pageLength': 10,

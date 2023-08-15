@@ -513,9 +513,7 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(facultadesSelect);
-                var cantidadFacultades = key.length;
-                var valorFacultad = facultadesSelect[key[0]];
+                var cantidadFacultades = facultadesSeleccionadas.length;
 
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();

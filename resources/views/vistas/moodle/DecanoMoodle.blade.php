@@ -364,7 +364,7 @@
             periodos();
             facultadesUsuario();
             riesgo();
-
+            vistaEntrada();
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;

@@ -108,8 +108,8 @@ class InformeMoodleController extends Controller
         ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
         ->whereIn('p.codprograma', $programas)
         ->whereIn('dm.Periodo_Rev', $periodos)
-        ->select(DB::raw('COUNT(dm.Riesgo) AS TOTAL, dm.Riesgo'))
-        ->groupBy('dm.Riesgo')
+        ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))
+        ->groupBy('Riesgo')
         ->get();
 
         $Total = DB::table('datos_moodle')
@@ -204,7 +204,7 @@ class InformeMoodleController extends Controller
         ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
         ->whereIn('p.codprograma', $programas)
         ->whereIn('dm.Periodo_Rev', $periodos)    
-        ->where('dm.Riesgo', $riesgo)
+        ->where('Riesgo', $riesgo)
         ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
         ->groupBy('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
         ->get();

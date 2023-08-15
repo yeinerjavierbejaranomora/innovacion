@@ -558,7 +558,7 @@
             });
 
             function limpiarTitulos(){
-                var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').find("strong");
+                var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo');
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();

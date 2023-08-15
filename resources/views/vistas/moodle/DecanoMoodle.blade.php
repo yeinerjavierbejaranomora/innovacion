@@ -510,7 +510,7 @@
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                facultadesSelect = facultadesSeleccionadas;
+                console.log(facultadesSeleccionadas);
             }
 
             function vistaEntrada() {

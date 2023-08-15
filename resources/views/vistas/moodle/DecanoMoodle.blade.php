@@ -684,7 +684,7 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
-                console.log(facultadesSeleccionadas);
+                console.log(facultadesSeleccionadas.length);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.riesgo.programa') }}",

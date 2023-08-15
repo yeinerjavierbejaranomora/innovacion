@@ -57,7 +57,8 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-    public function riesgoFacultad(Request $request){
+    public function riesgoFacultad(Request $request)
+    {
 
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
@@ -70,6 +71,8 @@ class InformeMoodleController extends Controller
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
+
+
 
         $alto = [];
         $medio = [];
@@ -98,25 +101,26 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-    public function riesgoPrograma(Request $request){
+    public function riesgoPrograma(Request $request)
+    {
 
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
 
         $riesgos = DB::table('datos_moodle AS dm')
-        ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
-        ->whereIn('p.codprograma', $programas)
-        ->whereIn('dm.Periodo_Rev', $periodos)
-        ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))
-        ->groupBy('Riesgo')
-        ->get();
+            ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+            ->whereIn('p.codprograma', $programas)
+            ->whereIn('dm.Periodo_Rev', $periodos)
+            ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))
+            ->groupBy('Riesgo')
+            ->get();
 
         $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
             ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
-        
+
         $alto = [];
         $medio = [];
         $bajo = [];
@@ -143,7 +147,8 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-    public function sello(){
+    public function sello()
+    {
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
          *GROUP BY sello
@@ -157,7 +162,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
-    public function retencion(){
+    public function retencion()
+    {
         $retencion = DB::table('datos_moodle')
             ->where('Sello', 'NO EXISTE')
             ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
@@ -168,7 +174,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $retencion));
     }
 
-    function estudiantesRiesgo($riesgo){
+    function estudiantesRiesgo($riesgo)
+    {
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
             ->where('Riesgo', $riesgo)
@@ -179,7 +186,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function estudiantesRiesgoFacultad(Request $request,$riesgo){
+    function estudiantesRiesgoFacultad(Request $request, $riesgo)
+    {
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);
@@ -194,23 +202,25 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function estudiantesRiesgoPrograma(Request $request,$riesgo){
+    function estudiantesRiesgoPrograma(Request $request, $riesgo)
+    {
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle AS dm')
-        ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
-        ->whereIn('p.codprograma', $programas)
-        ->whereIn('dm.Periodo_Rev', $periodos)    
-        ->where('Riesgo', $riesgo)
-        ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
-        ->groupBy('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
-        ->get();
+            ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+            ->whereIn('p.codprograma', $programas)
+            ->whereIn('dm.Periodo_Rev', $periodos)
+            ->where('Riesgo', $riesgo)
+            ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
+            ->groupBy('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
+            ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }
 
-    function dataAlumno(Request $request){
+    function dataAlumno(Request $request)
+    {
         $idBanner = $request->input('idBanner');
         $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->get();
         header("Content-Type: application/json");
@@ -259,19 +269,60 @@ class InformeMoodleController extends Controller
 
         $Notas = DB::table('datos_moodle')
             ->where('Id_Banner', $idBanner)
-            ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, Nota_Acumulada"))
+            ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, 
+            Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
             ->get();
+
+        $fechaActual = date("d-m-Y h:i:s");
+        $definitivas = [];
+
+        dd($Notas);
+        foreach ($Notas as $nota) {
+
+            $nota1 = $nota->Primer_Corte;
+            $nota2 = $nota->Segundo_Corte;
+            $nota3 = $nota->Tercer_Corte;
+            $fechaInicio = $nota->FechaInicio;
+            $nombre = $nota->nombreCurso;
+            $duracion = $nota->Duracion_8_16_Semanas;
+
+            /** Validación Notas */
+            if ($duracion) {
+                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
+                    if ($nota3 != 0) {
+                        $definitivas[$nombre] = $nota->Nota_Acumulada;
+                    } else {
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
+                    }
+                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 42) {
+                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
+                } elseif ($nota1 != 0) {
+                    $definitivas[$nota->nombreCurso] = $nota1;
+                }
+            } else {
+                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 110) {
+                    if ($nota3 != 0) {
+                        $definitivas[$nombre] = $nota->Nota_Acumulada;
+                    } else {
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
+                    }
+                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
+                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
+                } elseif ($nota1 != 0) {
+                    $definitivas[$nota->nombreCurso] = $nota1;
+                }
+            }
+        }
 
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
             'total' => $totalRiesgo,
-            'notas' => $Notas
+            'notas' => $definitivas
         );
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));
     }
-
 }

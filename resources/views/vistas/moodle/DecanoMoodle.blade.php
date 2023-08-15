@@ -506,9 +506,10 @@
             }
 
             function facultadesUsuario() {
+                var objeto;
                 periodosSeleccionados = getPeriodos();
-                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                
+                objeto = <?php echo json_encode($facultades); ?>;
+                Object.keys(objeto).map(clave => objeto[clave]);
             }
 
             function vistaEntrada() {

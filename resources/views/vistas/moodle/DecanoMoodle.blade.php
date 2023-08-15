@@ -509,7 +509,7 @@
                 var objeto;
                 periodosSeleccionados = getPeriodos();
                 objeto = <?php echo json_encode($facultades); ?>;
-                Object.keys(objeto).map(clave => objeto[clave]);
+               facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
             }
 
             function vistaEntrada() {

@@ -505,8 +505,6 @@
                 $('#colRiesgoAlto, #colRiesgoMedio, #colRiesgoBajo').addClass('hidden');
             }
 
-
-
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
@@ -686,7 +684,7 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
-
+                console.log(facultadesSeleccionadas);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.riesgo.programa') }}",

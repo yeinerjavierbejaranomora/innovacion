@@ -112,7 +112,7 @@ class InformeMoodleController extends Controller
         ->groupBy('Riesgo')
         ->get();
 
-        $Total = DB::table('datos_moodle')
+        $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('dm.Programa', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)

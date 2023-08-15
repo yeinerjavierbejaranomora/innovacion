@@ -514,7 +514,7 @@
 
             function vistaEntrada() {
                 var cantidadFacultades = facultadesSeleccionadas.length;
-
+                console.log(cantidadFacultades);
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').hide();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";

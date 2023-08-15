@@ -1219,11 +1219,7 @@ class InformeMafiController extends Controller
          /// traemos todos los programas
          $programas=DB::table('programas')->get();
         
-        dd($programas);
-        
-        $facultades=DB::table('periodo')->where('periodoActivo', 1)->get();
-        dd($periodos);
-
+     
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 

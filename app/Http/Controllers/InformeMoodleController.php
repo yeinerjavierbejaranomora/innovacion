@@ -117,12 +117,10 @@ class InformeMoodleController extends Controller
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
             ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
-
-
+        
         $alto = [];
         $medio = [];
         $bajo = [];
-
 
         foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->Riesgo;

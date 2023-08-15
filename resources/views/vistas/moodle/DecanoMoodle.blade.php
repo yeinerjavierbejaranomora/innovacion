@@ -163,9 +163,9 @@
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
                             <div class="facultades" name="facultades" id="facultades">
-                            @foreach ($facultades as $facultad)
+                                @foreach ($facultades as $facultad)
                                 <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
-                            @endforeach
+                                @endforeach
                             </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
@@ -365,6 +365,9 @@
             facultadesUsuario();
             riesgo();
 
+            var totalFacultades;
+            var totalProgramas;
+            var totalPeriodos;
 
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
@@ -502,7 +505,7 @@
                 $('#colRiesgoAlto, #colRiesgoMedio, #colRiesgoBajo').addClass('hidden');
             }
 
-            
+
 
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
@@ -552,36 +555,50 @@
                 e.preventDefault();
                 Contador();
                 destruirTabla();
+                var key = Object.keys(facultadesSeleccionadas);
+                var cantidadFacultades = key.length;
                 periodosSeleccionados = getPeriodos()
                 if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
-                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        checkboxesProgramas.each(function() {
-                            programasSeleccionados.push($(this).val());
-                        });
-                        estadoUsuarioPrograma();
-                        riesgo();
+                        facultadesSeleccionadas = [];
+                        periodosSeleccionados = [];
+                        destruirGraficos();
+                        ocultarDivs();
+                        alertaProgramas();
                     } else {
-                        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                        if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                            var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                             programasSeleccionados = [];
-                            facultadesSeleccionadas = [];
-                            checkboxesSeleccionados.each(function() {
-                                facultadesSeleccionadas.push($(this).val());
+                            checkboxesProgramas.each(function() {
+                                programasSeleccionados.push($(this).val());
                             });
-                            estadoUsuarioFacultad();
+                            estadoUsuarioPrograma();
                             riesgo();
                         } else {
-                            /** Alerta */
-                            programasSeleccionados = [];
-                            facultadesSeleccionadas = [];
-                            alerta();
-                            limpiarTitulos();
-                            ocultarDivs();
+                            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                                if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
+                                    location.reload();
+                                } else {
+                                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                                    programasSeleccionados = [];
+                                    facultadesSeleccionadas = [];
+                                    checkboxesSeleccionados.each(function() {
+                                        facultadesSeleccionadas.push($(this).val());
+                                    });
+                                    estadoUsuarioFacultad();
+                                    riesgo();
+                                }
+                            } else {
+                                /** Alerta */
+                                programasSeleccionados = [];
+                                facultadesSeleccionadas = [];
+                                alerta();
+                                limpiarTitulos();
+                                ocultarDivs();
+                            }
                         }
                     }
-
                 } else {
                     alertaPeriodos();
                     limpiarTitulos();
@@ -703,16 +720,13 @@
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
                         console.log(data.total);
-                        if (TotalAlto <= 0)
-                        {
+                        if (TotalAlto <= 0) {
                             TotalAlto = 0;
                         }
-                        if (TotalMedio <= 0)
-                        {
+                        if (TotalMedio <= 0) {
                             TotalMedio = 0;
                         }
-                        if (TotalBajo <= 0)
-                        {
+                        if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
 
@@ -1130,7 +1144,7 @@
              * Método para construir dataTable, según el tipo de riesgo
              */
             function dataTable(riesgo) {
-                
+
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");
                 var data;
@@ -1214,7 +1228,7 @@
                         }
                         obtenerData("#datatable tbody", table);
                     },
-                    
+
                 });
             }
             /**

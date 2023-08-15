@@ -1129,7 +1129,7 @@
                         if (data.data) {
                             datos = data.data;
                         } else {
-                            datos = data;
+                            datos = jQuery.parseJSON(data);
                         }
                         table = $('#datatable').DataTable({
                             "data": datos,

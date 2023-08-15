@@ -104,20 +104,24 @@ class InformeMoodleController extends Controller
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
 
-        $riesgos = DB::table('datos_moodle')
-            ->whereIn('Programa', $programas)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
+        $riesgos = DB::table('datos_moodle AS dm')
+        ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+        ->whereIn('dm.Programa', $programas)
+        ->whereIn('dm.Periodo_Rev', $periodos)
+        ->select(DB::raw('COUNT(dm.Riesgo) AS TOTAL, dm.Riesgo'))
+        ->groupBy('dm.Riesgo')
+        ->get();
 
         $Total = DB::table('datos_moodle')
-            ->whereIn('Facultad', $programas)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
+            ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+            ->whereIn('dm.Programa', $programas)
+            ->whereIn('dm.Periodo_Rev', $periodos)
+            ->select(DB::raw('COUNT(dm.Riesgo) AS TOTAL'))->get();
 
         $alto = [];
         $medio = [];
         $bajo = [];
-        $total = [];
+
 
         foreach ($riesgos as $riesgo) {
             $tipo = $riesgo->Riesgo;
@@ -141,9 +145,7 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-
-    public function sello()
-    {
+    public function sello(){
         /**
          * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
          *GROUP BY sello
@@ -157,8 +159,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $sello));
     }
 
-    public function retencion()
-    {
+    public function retencion(){
         $retencion = DB::table('datos_moodle')
             ->where('Sello', 'NO EXISTE')
             ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
@@ -169,8 +170,7 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $retencion));
     }
 
-    function estudiantesRiesgo($riesgo)
-    {
+    function estudiantesRiesgo($riesgo){
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
             ->where('Riesgo', $riesgo)
@@ -201,19 +201,19 @@ class InformeMoodleController extends Controller
         $periodos = $request->input('periodos');
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
-            ->where('Riesgo', $riesgo)
-            ->whereIn('Programa', $programas)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-            ->get();
+        ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+        ->whereIn('dm.Programa', $programas)
+        ->whereIn('dm.Periodo_Rev', $periodos)    
+        ->where('dm.Riesgo', $riesgo)
+        ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
+        ->groupBy('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
+        ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }
 
 
-    function dataAlumno(Request $request)
-    {
+    function dataAlumno(Request $request){
         $idBanner = $request->input('idBanner');
         $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->get();
         header("Content-Type: application/json");

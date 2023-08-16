@@ -921,7 +921,6 @@
                     method: 'post',
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log (data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;
                         var medio = data.data.medio;
@@ -1002,15 +1001,16 @@
                             const valor = parseFloat(data.data.notas[curso]);
                             valores.push(valor);
                             if (valor < 3) {
-                                colores.push('rgba(255, 0, 0, 1)');
+                                colores.push('rgba(255, 0, 0, 0.8)');
                             }
                             if (valor >= 3 && valor <= 3.5) {
                                 colores.push('rgba(220, 205, 48, 1)');
                             }
                             if (valor > 3.5) {
-                                colores.push('rgba(0, 255, 0, 1)');
+                                colores.push('rgba(0, 255, 0, 0.8)');
                             }
                         });
+                        console.log(labels, valores, colores);
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
@@ -1022,6 +1022,7 @@
                             data: {
                                 labels: labels,
                                 datasets: [{
+                                    label: 'Riesgo según notas',
                                     data: valores.map(value => value == "Sin Actividad" ? value : parseFloat(value)),
                                     backgroundColor: colores,
                                     datalabels: {

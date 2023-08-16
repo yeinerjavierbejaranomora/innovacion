@@ -370,14 +370,13 @@ class UserController extends Controller
     {
         $id = decrypt($id);
         $informacionOriginal = $this->obtenerUsuario($id);
-        dd($informacionOriginal);
-        $idRol = $informacionOriginal->id_rol;
+        $idRol = $informacionOriginal[0]->id_rol;
         if($idRol!= '9')
         {
 
             $nombre = $request->nombre;
 
-            if($nombre != $informacionOriginal->nombre){
+            if($nombre != $informacionOriginal[0]->nombre){
                 $actualizar = DB::table('users')->where('id', $id)
                 ->update([
                     'nombre' => $nombre]);

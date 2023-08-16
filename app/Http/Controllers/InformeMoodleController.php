@@ -284,7 +284,7 @@ class InformeMoodleController extends Controller
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
 
-            dd($nota1);
+            dd(typeOf($nota1));
 
             /** Validación Notas */
             if ($duracion) {

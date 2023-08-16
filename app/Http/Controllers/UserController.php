@@ -371,7 +371,7 @@ class UserController extends Controller
         $id = decrypt($id);
         $idRol = DB::table('users')->where('id',$id)->select('id_rol')->first();
 
-        if($idRol!=9)
+        if($idRol!= '9')
         {
             $nombre = $request->nombre;
             dd($nombre);  

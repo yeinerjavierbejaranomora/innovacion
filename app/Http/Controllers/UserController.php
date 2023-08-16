@@ -382,7 +382,7 @@ class UserController extends Controller
                     'nombre' => $nombre]);
                     if($actualizar){
                         $this->registrarLog($id, $informacionOriginal, $request);
-                        return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('sucess', 'Actualizacion exitosa!');
+                        return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
                     }
             }
             else{
@@ -443,14 +443,14 @@ class UserController extends Controller
         if ($id === auth()->user()->id) :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;
         else :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('admin.users')->with('sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('admin.users')->with('success', 'Actualizacion exitosa!');
             else :
                 return redirect()->route('admin.users')->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;

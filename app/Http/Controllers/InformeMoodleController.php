@@ -280,9 +280,29 @@ class InformeMoodleController extends Controller
         $definitivas = [];
 
         foreach ($Notas as $nota) {
-            $nota1 = floatval($nota->Primer_Corte);
+           
             $nota2 = floatval($nota->Segundo_Corte);
             $nota3 = floatval($nota->Tercer_Corte);
+            
+
+            if($nota->Primer_Corte != "Sin Actividad"){    
+                $nota1 = floatval($nota->Primer_Corte);
+            }else{
+                $nota1 = $nota->Primer_Corte;
+            }
+
+            if($nota->Segundo_Corte != "Sin Actividad"){    
+                $nota2 = floatval($nota->Segundo_Corte);
+            }else{
+                $nota2 = $nota->Segundo_Corte;
+            }
+
+            if($nota->Tercer_Corte != "Sin Actividad"){
+                $nota3 = floatval($nota->Tercer_Corte);
+            }else{
+                $nota3 = $nota->Tercer_Corte;
+            }
+
             $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
@@ -291,9 +311,20 @@ class InformeMoodleController extends Controller
             $diasdif = $diferencia->days;
 
             /** Validación Notas */
-            if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0) {
+            if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
                 $definitivas[$nombre] = $nota->Nota_Acumulada;
-            } else {
+            } else{
+                if($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])){
+                    if ($nota3 != "Sin Actividad"){
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;                        
+                    }
+                    else {
+                        $definitivas[$nombre] =  $nota->Nota_Acumulada;                        
+                    }
+                }
+                else
+            }
+             else {
                 if ($duracion = "8 SEMANAS") {
                     if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) { {
                             $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;

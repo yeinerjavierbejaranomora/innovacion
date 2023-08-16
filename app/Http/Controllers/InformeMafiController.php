@@ -1220,81 +1220,91 @@ class InformeMafiController extends Controller
         
          $periodos = DB::table('periodo')->get();
 
-         $fcontinua=array(202304,202305,202306,202307,202308);
-         $pregrado=array(202311,202312,202313,202316,202317,202331,202332,202333,202334,202335);
-         $especializacion=array(202341,202342,202343,202344,202345);
-         $maestria=array(202351,202352,202353,202354,202355);
+         $fcontinua=array("04","05","06","07","08");
+         $pregrado=array(11,12,13,16,17,31,32,33,34,35);
+         $especializacion=array(41,42,43,44,45);
+         $maestria=array(51,52,53,54,55);
 
-         foreach ($periodos as $key_periodos => $val_periodos) {
+       
 
             foreach ( $programas as $key_programas => $val_programas) {
 
                if($val_programas->nivelFormacion=="EDUCACION CONTINUA"){
 
-                
-                if(in_array($val_periodos->periodos,$fcontinua)){
+                foreach ($fcontinua as $key => $value) {
+                  
+             
+                 
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$val_periodos->periodos,
-                        'estado'=>1,
-                        'fecha_inicio'=>$val_periodos->fechaInicioPeriodo
+                        'periodo'=>$value,
+                        'estado'=>1
                         ]);
-                }
                 
+                    }
 
                }elseif ($val_programas->nivelFormacion=="ESPECIALISTA") {
                    
-                if(in_array($val_periodos->periodos,$especializacion)){
+                foreach ($especializacion as $key => $value) {
+                  
+             
+                 
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$val_periodos->periodos,
-                        'estado'=>1,
-                        'fecha_inicio'=>$val_periodos->fechaInicioPeriodo
+                        'periodo'=>$value,
+                        'estado'=>1
                         ]);
-                }
+                    }
+                
                 # code...
                }elseif ($val_programas->nivelFormacion=="MAESTRIA") {
                    
-                if(in_array($val_periodos->periodos,$maestria)){
+                foreach ($maestria as $key => $value) {
+                  
+             
+                 
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$val_periodos->periodos,
-                        'estado'=>1,
-                        'fecha_inicio'=>$val_periodos->fechaInicioPeriodo
+                        'periodo'=>$value,
+                        'estado'=>1
                         ]);
-                }
+                
+                    }
                 # code...
                }elseif ($val_programas->nivelFormacion=="PROFESIONAL") {
                 # code...
                    
-                if(in_array($val_periodos->periodos, $pregrado)){
+                foreach ($pregrado as $key => $value) {
+                  
+             
+                 
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$val_periodos->periodos,
-                        'estado'=>1,
-                        'fecha_inicio'=>$val_periodos->fechaInicioPeriodo
+                        'periodo'=>$value,
+                        'estado'=>1
                         ]);
-                }
+                
+                    }
 
                }elseif ($val_programas->nivelFormacion=="TECNOLOGICO") {
                 # code...TECNOLOGICO
-                   
-                if(in_array($val_periodos->periodos, $pregrado)){
-                    DB::table('programasPeriodos')->insert([
-                        'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$val_periodos->periodos,
-                        'estado'=>1,
-                        'fecha_inicio'=>$val_periodos->fechaInicioPeriodo
-                        ]);
+                    
+                    foreach ($pregrado as $key => $value) {
+                    
+                
+                    
+                        DB::table('programasPeriodos')->insert([
+                            'codPrograma'=>$val_programas->codprograma,
+                            'periodo'=>$value,
+                            'estado'=>1
+                            ]);
+                    }
+                
+
                 }
-
-               }
-
-            }
             # code...
-         }
-     
-
+       
+            }
 
          die;
 

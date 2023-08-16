@@ -734,7 +734,6 @@
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -782,7 +781,6 @@
                         chartRiesgoBajo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -825,8 +823,6 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                        console.log (chartRiesgoAlto.data.labels.length);
-                        console.log (chartRiesgoAlto.data.datasets[0].data.length);
                         if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
                             $('#colRiesgoAlto').addClass('hidden');
                         } else {

@@ -94,7 +94,7 @@ class facultadController extends Controller
      */
     public function get_programas()
     {
-        $programas = DB::table('programas')->where('programas.tabla', '=', 'PROFESIONAL')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'PROFESIONAL')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }

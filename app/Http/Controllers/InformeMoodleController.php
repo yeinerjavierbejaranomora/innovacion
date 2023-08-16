@@ -287,8 +287,6 @@ class InformeMoodleController extends Controller
             $fechaObj1 = DateTime::createFromFormat("d-m-Y", $fechaActual);
             $fechaObj2 = DateTime::createFromFormat("d-m-Y", $fechaInicio);
             $diferencia = $fechaObj1->diff($fechaObj2);
-            var_dump($fechaObj1);
-            var_dump($fechaObj2);
             var_dump($diferencia);
             die();
            $fechadif = 1;

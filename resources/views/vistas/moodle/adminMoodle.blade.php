@@ -687,7 +687,6 @@
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.alto, TotalAlto],
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],

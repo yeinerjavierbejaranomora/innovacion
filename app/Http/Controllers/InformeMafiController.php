@@ -1229,27 +1229,28 @@ class InformeMafiController extends Controller
                
                if($val_programas->nivelFormacion=="EDUCACION CONTINUA"){
 
-                foreach ($fcontinua as $key => $value) {
-                    DB::table('programasPeriodos')->insert([
-                        'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$value,
-                        'estado'=>1
-                        ]);
+                    foreach ($fcontinua as $key => $value) {
+                        DB::table('programasPeriodos')->insert([
+                            'codPrograma'=>$val_programas->codprograma,
+                            'periodo'=>$value,
+                            'estado'=>1
+                            ]);
                     }
 
-               }elseif ($val_programas->nivelFormacion=="ESPECIALISTA") {
+
+               }
+               if ($val_programas->nivelFormacion=="ESPECIALISTA"){
                    
-                foreach ($especializacion as $key => $value) {
+                    foreach ($especializacion as $key => $value) {
 
-                    DB::table('programasPeriodos')->insert([
-                        'codPrograma'=>$val_programas->codprograma,
-                        'periodo'=>$value,
-                        'estado'=>1
-                        ]);
+                        DB::table('programasPeriodos')->insert([
+                            'codPrograma'=>$val_programas->codprograma,
+                            'periodo'=>$value,
+                            'estado'=>1
+                            ]);
                     }
-                
-                # code...
-               }elseif ($val_programas->nivelFormacion=="MAESTRIA") {
+               }
+               if ($val_programas->nivelFormacion=="MAESTRIA") {
                    
                 foreach ($maestria as $key => $value) {
                   
@@ -1261,24 +1262,25 @@ class InformeMafiController extends Controller
                         'estado'=>1
                         ]);
                 
-                    }
+                }
                 # code...
-               }elseif ($val_programas->nivelFormacion=="PROFESIONAL") {
+               }
+
+               if ($val_programas->nivelFormacion=="PROFESIONAL") {
                 # code...
                    
                 foreach ($pregrado as $key => $value) {
-                  
-             
-                 
+
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
                         'periodo'=>$value,
                         'estado'=>1
                         ]);
                 
-                    }
+                }
+               }
 
-               }elseif ($val_programas->nivelFormacion=="TECNOLOGICO") {
+               if ($val_programas->nivelFormacion=="TECNOLOGICO") {
                 # code...TECNOLOGICO
                     
                     foreach ($pregrado as $key => $value) {
@@ -1294,6 +1296,7 @@ class InformeMafiController extends Controller
        
             
             }
+            
             dd("termino");
        exit;
 

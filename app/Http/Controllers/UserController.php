@@ -370,7 +370,14 @@ class UserController extends Controller
     {
         $id = decrypt($id);
         $idRol = DB::table('users')->where('id',$id)->select('id_rol')->first();
-        dd($idRol);
+
+        if($idRol!=9)
+        {
+            $nombre = $request->nombre;
+            dd($nombre);  
+
+        }
+        else{
         $id_banner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;
@@ -437,6 +444,7 @@ class UserController extends Controller
                 return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
             endif;
         endif;
+        }
     }
 
     /** Funcion para activar o inactivar usuario */

@@ -314,33 +314,67 @@ class InformeMoodleController extends Controller
             if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
                 $definitivas[$nombre] = $nota->Nota_Acumulada;
             } else {
-                if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
-                    if ($diasdif >= 56) {
-                        if ($nota3 != "Sin Actividad") {
-                            $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
-                        } else {
-                            $definitivas[$nombre] =  $nota->Nota_Acumulada;
-                        }
-                    } else {
-                        $definitivas[$nombre] = $nota->Nota_Acumulada * (10 / 6);
-                    }
-                } else {
-                    if ($nota1 != 0 && $nota1 != "Sin Actividad") {
-                        if ($diasdif >= 42) {
-                            if ($nota2 != "Sin Actividad") {
-                                $definitivas[$nombre] =  $nota->Primer_Corte;
+                if($duracion == "8 SEMANAS"){
+                    if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
+                        if ($diasdif >= 56) {
+                            if ($nota3 != "Sin Actividad") {
+                                $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                             } else {
                                 $definitivas[$nombre] =  $nota->Nota_Acumulada;
                             }
+                        } else {
+                            $definitivas[$nombre] = $nota->Nota_Acumulada * (10 / 6);
                         }
-                        else{
-                            $definitivas[$nombre] =  $nota1;
+                    } else {
+                        if ($nota1 != 0 && $nota1 != "Sin Actividad") {
+                            if ($diasdif >= 42) {
+                                if ($nota2 != "Sin Actividad") {
+                                    $definitivas[$nombre] =  $nota->Primer_Corte;
+                                } else {
+                                    $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                }
+                            }
+                            else{
+                                $definitivas[$nombre] =  $nota1;
+                            }
+                        }
+                        else
+                        {
+                            if($nota1 == "Sin Actividad"){
+                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                            }
                         }
                     }
-                    else
-                    {
-                        if($nota1 == "Sin Actividad"){
-                            $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                }
+                else {
+                    if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
+                        if ($diasdif >= 112) {
+                            if ($nota3 != "Sin Actividad") {
+                                $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                            } else {
+                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                            }
+                        } else {
+                            $definitivas[$nombre] = $nota->Nota_Acumulada * (10 / 6);
+                        }
+                    } else {
+                        if ($nota1 != 0 && $nota1 != "Sin Actividad") {
+                            if ($diasdif >= 77) {
+                                if ($nota2 != "Sin Actividad") {
+                                    $definitivas[$nombre] =  $nota->Primer_Corte;
+                                } else {
+                                    $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                }
+                            }
+                            else{
+                                $definitivas[$nombre] =  $nota1;
+                            }
+                        }
+                        else
+                        {
+                            if($nota1 == "Sin Actividad"){
+                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                            }
                         }
                     }
                 }

@@ -281,10 +281,6 @@ class InformeMoodleController extends Controller
 
         foreach ($Notas as $nota) {
 
-            $nota2 = floatval($nota->Segundo_Corte);
-            $nota3 = floatval($nota->Tercer_Corte);
-
-
             if ($nota->Primer_Corte != "Sin Actividad") {
                 $nota1 = floatval($nota->Primer_Corte);
             } else {
@@ -302,6 +298,8 @@ class InformeMoodleController extends Controller
             } else {
                 $nota3 = $nota->Tercer_Corte;
             }
+            
+            $notaAcum = floatval($nota->Nota_Acumulada);
 
             $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
@@ -312,7 +310,7 @@ class InformeMoodleController extends Controller
 
             /** Validación Notas */
             if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
-                $definitivas[$nombre] = $nota->Nota_Acumulada;
+                $definitivas[$nombre] = $notaAcum;
             } else {
                 if($duracion == "8 SEMANAS"){
                     if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
@@ -320,10 +318,10 @@ class InformeMoodleController extends Controller
                             if ($nota3 != "Sin Actividad") {
                                 $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                             } else {
-                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                $definitivas[$nombre] =  $notaAcum;
                             }
                         } else {
-                            $definitivas[$nombre] = $nota->Nota_Acumulada * (10 / 6);
+                            $definitivas[$nombre] = $notaAcum * (10 / 6);
                         }
                     } else {
                         if ($nota1 != 0 && $nota1 != "Sin Actividad") {
@@ -331,7 +329,7 @@ class InformeMoodleController extends Controller
                                 if ($nota2 != "Sin Actividad") {
                                     $definitivas[$nombre] =  $nota->Primer_Corte;
                                 } else {
-                                    $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                    $definitivas[$nombre] =  $notaAcum;
                                 }
                             }
                             else{
@@ -341,7 +339,7 @@ class InformeMoodleController extends Controller
                         else
                         {
                             if($nota1 == "Sin Actividad"){
-                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                $definitivas[$nombre] =  $notaAcum;
                             }
                         }
                     }
@@ -352,10 +350,10 @@ class InformeMoodleController extends Controller
                             if ($nota3 != "Sin Actividad") {
                                 $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                             } else {
-                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                $definitivas[$nombre] =  $notaAcum;
                             }
                         } else {
-                            $definitivas[$nombre] = $nota->Nota_Acumulada * (10 / 6);
+                            $definitivas[$nombre] = $notaAcum * (10 / 6);
                         }
                     } else {
                         if ($nota1 != 0 && $nota1 != "Sin Actividad") {
@@ -363,7 +361,7 @@ class InformeMoodleController extends Controller
                                 if ($nota2 != "Sin Actividad") {
                                     $definitivas[$nombre] =  $nota->Primer_Corte;
                                 } else {
-                                    $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                    $definitivas[$nombre] =  $notaAcum;
                                 }
                             }
                             else{
@@ -373,7 +371,7 @@ class InformeMoodleController extends Controller
                         else
                         {
                             if($nota1 == "Sin Actividad"){
-                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                                $definitivas[$nombre] =  $notaAcum;
                             }
                         }
                     }

@@ -250,6 +250,7 @@
                     }
                 });
             }
+            obtener_data_inactivar("#example tbody", table);
         }
     };
 });

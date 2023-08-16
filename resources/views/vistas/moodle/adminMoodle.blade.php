@@ -679,8 +679,6 @@
                         if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
-
-
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -920,7 +918,6 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;

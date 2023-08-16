@@ -283,9 +283,9 @@ class InformeMoodleController extends Controller
             $fechaInicio = $nota->FechaInicio;
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
-            $fechadif = $fechaInicio - $fechaActual;
             var_dump($fechaInicio);
             die();
+            $fechadif = $fechaInicio - $fechaActual;
 
             /** Validación Notas */
             if ($duracion) {

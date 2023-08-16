@@ -1226,7 +1226,7 @@ class InformeMafiController extends Controller
             $maestria=array("51","52","53","54","55");
 
             foreach ( $programas as $key_programas => $val_programas) {
-                dd($val_programas);
+               
                if($val_programas->nivelFormacion=="EDUCACION CONTINUA"){
 
                 foreach ($fcontinua as $key => $value) {

@@ -389,6 +389,7 @@ class InformeMoodleController extends Controller
             'notas' => $definitivas
         );
 
+        dd($datos);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));
     }

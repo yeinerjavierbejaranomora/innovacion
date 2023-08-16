@@ -992,20 +992,29 @@
                             plugins: [ChartDataLabels]
                         });
 
-
                         var labels = [];
                         var valores = [];
-
+                        var colores = [];
+                        var valor;
                         Object.keys(data.data.notas).forEach(curso => {
                             labels.push(curso);
-                            valores.push(data.data.notas[curso]);
+                            valor = valores.push(data.data.notas[curso]);
+                            if(valor >= 3.5){
+                                colores.push('rgba(0, 255, 0, 1)');
+                            }else{
+                                if(valor < 3){
+                                colores.push('rgba(255, 0, 0, 1)');
+                                }else{
+                                    colores.push('rgba(220, 205, 48, 1)');
+                                }
+                            }
                         });
-                        console.log(labels, valores);
+                        console.log(labels, valores, colores);
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 
-                        var colores = new Array();
+                        
 
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',

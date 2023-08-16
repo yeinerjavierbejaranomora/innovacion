@@ -337,6 +337,12 @@ class InformeMoodleController extends Controller
                             $definitivas[$nombre] =  $nota1;
                         }
                     }
+                    else
+                    {
+                        if($nota1 == "Sin Actividad"){
+                            $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                        }
+                    }
                 }
             }
         }

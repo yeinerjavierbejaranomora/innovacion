@@ -268,7 +268,6 @@
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid mb-2" style="width: 150px;">
                                         <p class="text-muted mb-1" id="nombreModal"></p>
                                         <p class="text-muted mb-1" id="idModal"></p>
                                         <p class="text-muted mb-1" id="facultadModal"></p>

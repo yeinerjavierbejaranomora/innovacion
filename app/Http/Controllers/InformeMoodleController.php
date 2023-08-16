@@ -276,9 +276,7 @@ class InformeMoodleController extends Controller
         $fechaActual = date("d-m-Y h:i:s");
         $definitivas = [];
 
-        dd($Notas);
         foreach ($Notas as $nota) {
-
             $nota1 = $nota->Primer_Corte;
             $nota2 = $nota->Segundo_Corte;
             $nota3 = $nota->Tercer_Corte;
@@ -313,7 +311,7 @@ class InformeMoodleController extends Controller
                 }
             }
         }
-
+        dd($definitivas);
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,

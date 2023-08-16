@@ -291,17 +291,24 @@ class InformeMoodleController extends Controller
 
             /** Validación Notas */
             if ($duracion = "8 SEMANAS") {
-                if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) {
-                    if ($nota3 != 0) {
-                        $definitivas[$nombre] = $nota->Nota_Acumulada;
-                    } else {
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
-                    }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 42) {
-                    $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
-                } elseif ($nota1 != 0) {
-                    $definitivas[$nota->nombreCurso] = $nota1;
+                if($nota1 != 0 && $nota2 != 0 && $nota3 != 0)
+                {
+                    $definitivas[$nombre] = $nota->Nota_Acumulada;
                 }
+                else{
+                    if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) {
+                        {
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                        }} elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 42) {
+                            if($nota3 = 0)
+                            {
+                                $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
+                            }
+                        } elseif ($nota1 != 0) {
+                            $definitivas[$nota->nombreCurso] = $nota1;
+                        }
+                }
+               
             } else {
                 if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 110) {
                     if ($nota3 != 0) {

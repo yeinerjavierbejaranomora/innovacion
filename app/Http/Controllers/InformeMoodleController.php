@@ -283,19 +283,19 @@ class InformeMoodleController extends Controller
             $fechaInicio = $nota->FechaInicio;
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
-
-            var_dump($nota1);
+            $fechadif = $fechaInicio - $fechaActual;
+            var_dump($fechadif);
             die();
 
             /** Validación Notas */
             if ($duracion) {
-                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
+                if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {
                     if ($nota3 != 0) {
                         $definitivas[$nombre] = $nota->Nota_Acumulada;
                     } else {
                         $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
                     }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 42) {
+                } elseif ($nota1 != 0 && $nota2 != 0 && $fechadif >= 42) {
                     $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;

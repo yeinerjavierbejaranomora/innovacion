@@ -10,6 +10,7 @@ use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
+use DateTime;
 use App\Http\Util\Constantes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -273,20 +274,19 @@ class InformeMoodleController extends Controller
             Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
             ->get();
 
-        $fechaActual = date("d-m-Y h:i:s");
+        $fechaActual = date("d-m-Y");
         $definitivas = [];
 
         foreach ($Notas as $nota) {
             $nota1 = floatval($nota->Primer_Corte);
             $nota2 = floatval($nota->Segundo_Corte);
             $nota3 = floatval($nota->Tercer_Corte);
-            $fechaInicio = $nota->FechaInicio;
+            $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
             var_dump($fechaInicio);
             die();
-            $fechadif = $fechaInicio - $fechaActual;
-
+           
             /** Validación Notas */
             if ($duracion) {
                 if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {

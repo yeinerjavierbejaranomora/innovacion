@@ -1218,7 +1218,7 @@ class InformeMafiController extends Controller
          /// traemos todos los programas
          $programas=DB::table('programas')->get();
         
-      
+      dd($programas);
 
             $fcontinua=array("04","05","06","07","08");
             $pregrado=array("11","12","13","16","17","31","32","33","34","35");

@@ -670,20 +670,17 @@
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
 
-                        if (TotalAlto <= 0)
-                        {
+                        if (TotalAlto <= 0) {
                             TotalAlto = 0;
                         }
-                        if (TotalMedio <= 0)
-                        {
+                        if (TotalMedio <= 0) {
                             TotalMedio = 0;
                         }
-                        if (TotalBajo <= 0)
-                        {
+                        if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
 
-                        
+
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -995,11 +992,15 @@
                             plugins: [ChartDataLabels]
                         });
 
-                        console.log(data);
-                        labels = Object.keys(data.data.notas);
-                        console.log(labels);
 
-                        valores = Object.values(data.data.notas);
+                        var labels = [];
+                        var valores = [];
+
+                        Object.keys(data.data.notas).forEach(curso => {
+                            labels.push(curso);
+                            valores.push(data.data.notas[curso]);
+                        });
+                        console.log(labels, valores);
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);

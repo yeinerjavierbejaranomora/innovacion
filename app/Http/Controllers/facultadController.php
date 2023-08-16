@@ -779,8 +779,7 @@ class facultadController extends Controller
     }
 
     /** Función para desactivar los periodos */
-    public function inactivarProgramaPeriodo()
-    {
+    public function inactivarProgramaPeriodo(){
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -796,10 +795,9 @@ class facultadController extends Controller
             return "false";
         endif;
     }
-
+    
     /** Función para activar los periodos */
-    public function activarProgramaPeriodo()
-    {
+    public function activarProgramaPeriodo(){
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {

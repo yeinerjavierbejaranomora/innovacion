@@ -341,7 +341,10 @@ Route::controller(facultadController::class)->group(function () {
     /** Ruta para visualizar la planeación de cada programa */
     Route::get('/home/facultades/planeacion/{id}', 'planeacionPrograma')->middleware('auth')->name('planeacion.programa');
 
-   
+    /** Ruta para cargar la vista de planeación*/
+    Route::get('/home/programasPeriodos', 'vistaProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.view');
+    /** Ruta para cargar tabla programasPeriodos */
+    Route::get('/home/tablaProgramasPeriodos', 'getProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.tabla');
 
     
 });

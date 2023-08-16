@@ -369,6 +369,28 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
+        $informacionOriginal = $this->obtenerUsuario($id);
+        $idRol = $informacionOriginal[0]->id_rol;
+        if($idRol!= '9')
+        {
+
+            $nombre = $request->nombre;
+
+            if($nombre != $informacionOriginal[0]->nombre){
+                $actualizar = DB::table('users')->where('id', $id)
+                ->update([
+                    'nombre' => $nombre]);
+                    if($actualizar){
+                        $this->registrarLog($id, $informacionOriginal, $request);
+                        return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
+                    }
+            }
+            else{
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors(['errors' => 'No realizaste ningún cambio']);    
+            }
+
+        }
+        else{
         $id_banner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;
@@ -406,8 +428,6 @@ class UserController extends Controller
             $activo = 1;
         }
 
-        $informacionOriginal = $this->obtenerUsuario($id);
-
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
                 'id_banner' => $id_banner,
@@ -423,18 +443,19 @@ class UserController extends Controller
         if ($id === auth()->user()->id) :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
             else :
-                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;
         else :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('admin.users')->with('success', 'Actualizacion exitosa!');
             else :
-                return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
+                return redirect()->route('admin.users')->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;
         endif;
+        }
     }
 
     /** Funcion para activar o inactivar usuario */

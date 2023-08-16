@@ -10,6 +10,7 @@ use App\Models\Facultad;
 use App\Models\Roles;
 use App\Models\User;
 use App\Models\Usuario;
+use DateTime;
 use App\Http\Util\Constantes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -227,7 +228,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $data));
     }
 
-    function riesgoAsistencia(Request $request){
+    function riesgoAsistencia(Request $request)
+    {
 
         $idBanner = $request->input('idBanner');
         $bajo = [];
@@ -273,43 +275,106 @@ class InformeMoodleController extends Controller
             Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
             ->get();
 
-        $fechaActual = date("d-m-Y h:i:s");
+        $fechaActual = date("d-m-Y");
+        $fechaObj1 = DateTime::createFromFormat("d-m-Y", $fechaActual);
         $definitivas = [];
 
-        dd($Notas);
         foreach ($Notas as $nota) {
 
-            $nota1 = $nota->Primer_Corte;
-            $nota2 = $nota->Segundo_Corte;
-            $nota3 = $nota->Tercer_Corte;
-            $fechaInicio = $nota->FechaInicio;
+            if ($nota->Primer_Corte != "Sin Actividad") {
+                $nota1 = floatval($nota->Primer_Corte);
+            } else {
+                $nota1 = $nota->Primer_Corte;
+            }
+
+            if ($nota->Segundo_Corte != "Sin Actividad") {
+                $nota2 = floatval($nota->Segundo_Corte);
+            } else {
+                $nota2 = $nota->Segundo_Corte;
+            }
+
+            if ($nota->Tercer_Corte != "Sin Actividad") {
+                $nota3 = floatval($nota->Tercer_Corte);
+            } else {
+                $nota3 = $nota->Tercer_Corte;
+            }
+
+            $notaAcum = floatval($nota->Nota_Acumulada);
+
+            $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
+            $fechaObj2 = DateTime::createFromFormat("d-m-Y", $fechaInicio);
+            $diferencia = $fechaObj1->diff($fechaObj2);
+            $diasdif = $diferencia->days;
 
             /** Validación Notas */
-            if ($duracion) {
-                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
-                    if ($nota3 != 0) {
-                        $definitivas[$nombre] = $nota->Nota_Acumulada;
-                    } else {
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
-                    }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 42) {
-                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
-                } elseif ($nota1 != 0) {
-                    $definitivas[$nota->nombreCurso] = $nota1;
-                }
+            if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
+                $definitivas[$nombre] = $notaAcum;
             } else {
-                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 110) {
-                    if ($nota3 != 0) {
-                        $definitivas[$nombre] = $nota->Nota_Acumulada;
+                if($duracion == "8 SEMANAS"){
+                    if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
+                        if ($diasdif >= 56) {
+                            if ($nota3 != "Sin Actividad") {
+                                $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                            } else {
+                                $definitivas[$nombre] =  $notaAcum;
+                            }
+                        } else {
+                            $definitivas[$nombre] = $notaAcum * (10 / 6);
+                        }
                     } else {
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
+                        if ($nota1 != 0 && $nota1 != "Sin Actividad") {
+                            if ($diasdif >= 42) {
+                                if ($nota2 != "Sin Actividad") {
+                                    $definitivas[$nombre] =  $nota->Primer_Corte;
+                                } else {
+                                    $definitivas[$nombre] =  $notaAcum;
+                                }
+                            }
+                            else{
+                                $definitivas[$nombre] =  $nota1;
+                            }
+                        }
+                        else
+                        {
+                            if($nota1 == "Sin Actividad"){
+                                $definitivas[$nombre] =  $notaAcum;
+                            }
+                        }
                     }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
-                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
-                } elseif ($nota1 != 0) {
-                    $definitivas[$nota->nombreCurso] = $nota1;
+                }
+                else {
+                    if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
+                        if ($diasdif >= 112) {
+                            if ($nota3 != "Sin Actividad") {
+                                $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                            } else {
+                                $definitivas[$nombre] =  $notaAcum;
+                            }
+                        } else {
+                            $definitivas[$nombre] = $notaAcum * (10 / 6);
+                        }
+                    } else {
+                        if ($nota1 != 0 && $nota1 != "Sin Actividad") {
+                            if ($diasdif >= 77) {
+                                if ($nota2 != "Sin Actividad") {
+                                    $definitivas[$nombre] =  $nota->Primer_Corte;
+                                } else {
+                                    $definitivas[$nombre] =  $notaAcum;
+                                }
+                            }
+                            else{
+                                $definitivas[$nombre] =  $nota1;
+                            }
+                        }
+                        else
+                        {
+                            if($nota1 == "Sin Actividad"){
+                                $definitivas[$nombre] =  $notaAcum;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -319,7 +384,7 @@ class InformeMoodleController extends Controller
             'medio' => $medio,
             'bajo' => $bajo,
             'total' => $totalRiesgo,
-            'notas' => $definitivas
+            'notas' => $definitivas,
         );
 
         header("Content-Type: application/json");

@@ -128,6 +128,19 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
+            <div class="row">
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
+                        Banner
+                    </a>
+                </div>
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
+                        Planeación
+                    </a>
+                </div>
+            </div>
+
 
             <br>
             <div class="text-center" id="mensaje">
@@ -268,7 +281,6 @@
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" alt="avatar" class="rounded-circle img-fluid mb-2" style="width: 150px;">
                                         <p class="text-muted mb-1" id="nombreModal"></p>
                                         <p class="text-muted mb-1" id="idModal"></p>
                                         <p class="text-muted mb-1" id="facultadModal"></p>
@@ -309,13 +321,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row text-center mt-3 mb-3 center-chart">
+                        <div class="row text-center mt-4 mb-4 center-chart">
                             <div class="col-lg-8">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
-                        <div class="row text-center mt-3 center-chart">
+                        <div class="row text-center mt-4 center-chart">
                             <div class="col-lg-8" style="height: 500px;">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
@@ -671,24 +683,18 @@
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
 
-                        if (TotalAlto <= 0)
-                        {
+                        if (TotalAlto <= 0) {
                             TotalAlto = 0;
                         }
-                        if (TotalMedio <= 0)
-                        {
+                        if (TotalMedio <= 0) {
                             TotalMedio = 0;
                         }
-                        if (TotalBajo <= 0)
-                        {
+                        if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
-
-                        
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.alto, TotalAlto],
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],
@@ -736,7 +742,6 @@
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -784,7 +789,6 @@
                         chartRiesgoBajo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -999,27 +1003,36 @@
                             plugins: [ChartDataLabels]
                         });
 
+                        var labels = [];
+                        var valores = [];
+                        var colores = [];
+                        var valor;
+                        Object.keys(data.data.notas).forEach(curso => {
+                            labels.push(curso);
+                            const valor = parseFloat(data.data.notas[curso]);
+                            valores.push(valor);
+                            if (valor < 3) {
+                                colores.push('rgba(255, 0, 0, 0.8)');
+                            }
+                            if (valor >= 3 && valor <= 3.5) {
+                                colores.push('rgba(220, 205, 48, 1)');
+                            }
+                            if (valor > 3.5) {
+                                colores.push('rgba(0, 255, 0, 0.8)');
+                            }
+                        });
+
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
-
-                        var labels = data.data.notas.map(function(elemento) {
-                            return elemento.nombreCurso;
-                        });
-
-                        var valores = data.data.notas.map(function(elemento) {
-                            return elemento.Nota_Acumulada;
-                        });
 
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,
                                 datasets: [{
-                                    label: '',
+                                    label: 'Riesgo según notas',
                                     data: valores.map(value => value == "Sin Actividad" ? value : parseFloat(value)),
-                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ],
+                                    backgroundColor: colores,
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',

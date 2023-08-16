@@ -275,6 +275,7 @@ class InformeMoodleController extends Controller
             ->get();
 
         $fechaActual = date("d-m-Y");
+        $fechaObj1 = DateTime::createFromFormat("d-m-Y", $fechaActual);
         $definitivas = [];
 
         foreach ($Notas as $nota) {
@@ -284,34 +285,31 @@ class InformeMoodleController extends Controller
             $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
-            $fechaObj1 = DateTime::createFromFormat("d-m-Y", $fechaActual);
             $fechaObj2 = DateTime::createFromFormat("d-m-Y", $fechaInicio);
             $diferencia = $fechaObj1->diff($fechaObj2);
             $diasdif = $diferencia->days;
-            var_dump($diasdif);
-            die();
-           $fechadif = 1;
+
             /** Validación Notas */
-            if ($duracion) {
-                if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {
+            if ($duracion = "8 SEMANAS") {
+                if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) {
                     if ($nota3 != 0) {
                         $definitivas[$nombre] = $nota->Nota_Acumulada;
                     } else {
                         $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechadif >= 42) {
+                } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 42) {
                     $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;
                 }
             } else {
-                if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 110) {
+                if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 110) {
                     if ($nota3 != 0) {
                         $definitivas[$nombre] = $nota->Nota_Acumulada;
                     } else {
                         $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {
+                } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) {
                     $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;

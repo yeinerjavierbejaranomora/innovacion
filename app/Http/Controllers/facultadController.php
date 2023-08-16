@@ -789,7 +789,7 @@ class facultadController extends Controller
         $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($inactivarPeriodo) :
-            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
@@ -807,7 +807,7 @@ class facultadController extends Controller
         $activarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 1]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($activarPeriodo) :
-            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";

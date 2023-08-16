@@ -233,7 +233,7 @@
                                         if (result == "habilitado") {
                                             Swal.fire({
                                                 title: "Periodo habilitado",
-                                                html: "La regla <strong>" + data.periodo + ' - '+ data.codPrograma +
+                                                html: "El periodo <strong>" + data.periodo + ' - '+ data.codPrograma +
                                                     "</strong> ha sido habilitado",
                                                 icon: 'info',
                                                 showCancelButton: true,

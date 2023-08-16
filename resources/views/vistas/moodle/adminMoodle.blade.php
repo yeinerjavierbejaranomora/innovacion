@@ -998,14 +998,15 @@
                         var valor;
                         Object.keys(data.data.notas).forEach(curso => {
                             labels.push(curso);
-                            valor = valores.push(data.data.notas[curso]);
-                            if(valor < 3){
-                                colores.push('rgba(255, 0, 0, 1)');    
+                            const valor = parseFloat(data.data.notas[curso]);
+                            valores.push(valor);
+                            if (valor < 3) {
+                                colores.push('rgba(255, 0, 0, 1)');
                             }
-                            if(valor>=3 && valor<=3.5){
+                            if (valor >= 3 && valor <= 3.5) {
                                 colores.push('rgba(220, 205, 48, 1))');
                             }
-                            if(valor> 3.5){
+                            if (valor > 3.5) {
                                 colores.push('rgba(0, 255, 0, 1)');
                             }
                         });
@@ -1014,7 +1015,7 @@
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 
-                        
+
 
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',

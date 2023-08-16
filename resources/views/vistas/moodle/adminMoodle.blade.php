@@ -999,16 +999,12 @@
                         labels = Object.keys(data.data.notas);
                         console.log(labels);
 
+                        valores = Object.values(data.data.notas);
+
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 
                         var colores = new Array();
-
-
-                        var valores = data.data.notas.map(function(elemento) {
-                            return elemento.Nota_Acumulada;
-                        });
-
 
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',

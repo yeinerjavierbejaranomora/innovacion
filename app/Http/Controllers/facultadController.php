@@ -94,7 +94,7 @@ class facultadController extends Controller
      */
     public function get_programas()
     {
-        $programas = DB::table('programas')->where('programas.tabla', '=', 'PROFESIONAL')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'PROFESIONAL')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -105,13 +105,10 @@ class facultadController extends Controller
      * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
      */
-    public function get_especializacion()
-    {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'especializacion')->get();
+    public function get_especializacion(){
+        $especializacion = DB::table('programas')->where('nivelFormacion', '=', 'ESPECIALISTA')->get();
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
+        echo json_encode(array('data' => $especializacion));
     }
 
     /** 
@@ -122,9 +119,7 @@ class facultadController extends Controller
      */
     public function get_maestria()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'MAESTRIA')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'MAESTRIA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -137,9 +132,7 @@ class facultadController extends Controller
      */
     public function get_continua()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'EDUCACION CONTINUA')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'EDUCACION CONTINUA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -406,14 +399,17 @@ class facultadController extends Controller
         endif;
     }
 
-    /** Función para visualizar la vista de los programas del usuario */
-
+    /** 
+     * Función para visualizar la vista de los programas del usuario 
+     * */
     public function programasUsuario($nombre)
     {
         return view('vistas.admin.facultades', ['nombre'=>$nombre]);
     }
 
-    /**Función para visualizar los estudiantes de cada facultad */
+    /**
+     * Función para visualizar los estudiantes de cada facultad 
+     * */
     public function estudiantesFacultad($id)
     {
         $consulta = DB::table('programas')->where('id', '=', $id)->get();

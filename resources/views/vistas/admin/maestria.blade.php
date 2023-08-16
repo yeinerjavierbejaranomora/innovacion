@@ -67,9 +67,9 @@
                         <br>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <!--Modal para agragar un programa nuevo-->  
+            <!--Modal para agragar un programa nuevo-->
             <div class="modal fade" id="nuevaMaestria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -135,7 +135,7 @@
 <script>
     facultades();
 
-function facultades() {
+    function facultades() {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -163,55 +163,25 @@ function facultades() {
                 "data": data.data,
                 "columns": [{
                         data: 'codprograma',
-                        title: 'Codigo de programa' ,
+                        title: 'Codigo de programa'
                     },
                     {
                         data: 'programa',
-                        title: 'Maestría'
+                        title: 'Programa'
                     },
                     {
-                        data: 'nombre',
+                        data: 'Facultad',
                         title: 'Facultad'
                     },
-                    {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar'
-                    },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: "Estado",
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return 'Activo';
-                            } else if (data == '0') {
-                                return 'Inactivo';
-                            }
-                        }
-                    },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: 'Inactivar / Activar',
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                            } else if (data == '0') {
-                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
-                            }
-                        }
-                    }
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             });
-            
-             /** Función para activar o desactivar la maestría */
-             function obtener_data_inactivar(tbody, table) {
+
+            /** Función para activar o desactivar la maestría */
+            function obtener_data_inactivar(tbody, table) {
                 $(tbody).on("click", "button.inactivar", function(event) {
                     var data = table.row($(this).parents("tr")).data();
                     if (data.activo == 1) {
@@ -355,10 +325,9 @@ function facultades() {
             obtener_data_editar("#example tbody", table);
             obtener_data_inactivar("#example tbody", table);
             console.log(table);
-       
+
         }
 
     }
-
 </script>
 @include('layout.footer')

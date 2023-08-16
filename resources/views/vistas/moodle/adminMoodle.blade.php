@@ -196,7 +196,7 @@
 
         <div class="row justify-content-start mt-3 columnas">
             <div class="col-4 text-center " id="colRiesgoAlto">
-                <div class="card shadow mt-4 mb-4 graficosRiesgo">
+                <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -210,7 +210,7 @@
                 </div>
             </div>
             <div class="col-4 text-center " id="colRiesgoMedio">
-                <div class="card shadow mt-4 mb-4 graficosRiesgo">
+                <div class="card shadow mb-4 graficosRiesgo">
                     <div class="card-header">
                         <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -308,13 +308,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row text-center mt-3 mb-3 center-chart">
+                        <div class="row text-center mt-4 mb-4 center-chart">
                             <div class="col-lg-8">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
-                        <div class="row text-center mt-3 center-chart">
+                        <div class="row text-center mt-4 center-chart">
                             <div class="col-lg-8" style="height: 500px;">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>

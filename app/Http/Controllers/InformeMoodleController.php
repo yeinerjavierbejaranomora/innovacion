@@ -298,7 +298,7 @@ class InformeMoodleController extends Controller
                     if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) { {
                             $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                         }
-                    } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 42) {
+                    } elseif ($nota1 != 0 && $nota2 != 0 || $diasdif >= 42) {
                         if ($nota3 = 0) {
                             $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
                         }
@@ -320,7 +320,7 @@ class InformeMoodleController extends Controller
                 }
             }
         }
-        
+
         dd($definitivas);
         $datos = array(
             'alto' => $alto,

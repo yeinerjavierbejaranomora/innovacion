@@ -370,6 +370,7 @@ class UserController extends Controller
     {
         $id = decrypt($id);
         $informacionOriginal = $this->obtenerUsuario($id);
+        dd($informacionOriginal);
         $idRol = $informacionOriginal->id_rol;
         if($idRol!= '9')
         {

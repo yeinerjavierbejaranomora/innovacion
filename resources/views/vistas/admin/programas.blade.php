@@ -157,7 +157,7 @@
                     title: 'Programa'
                     },
                     {
-                        data: 'nombre',
+                        data: 'Facultad',
                         title: 'Facultad'
                     },
                 ],

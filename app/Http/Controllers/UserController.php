@@ -369,12 +369,25 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
-        $idRol = DB::table('users')->where('id',$id)->select('id_rol')->first();
-
+        $informacionOriginal = $this->obtenerUsuario($id);
+        $idRol = $informacionOriginal->id_rol;
         if($idRol!= '9')
         {
+
             $nombre = $request->nombre;
-            dd($nombre);  
+
+            if($nombre != $informacionOriginal->nombre){
+                $actualizar = DB::table('users')->where('id', $id)
+                ->update([
+                    'nombre' => $nombre]);
+                    if($actualizar){
+                        $this->registrarLog($id, $informacionOriginal, $request);
+                        return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+                    }
+            }
+            else{
+                return redirect()->route('admin.users')->withErrors('Error', 'No realizaste ningún cambio');    
+            }
 
         }
         else{
@@ -414,8 +427,6 @@ class UserController extends Controller
         } else {
             $activo = 1;
         }
-
-        $informacionOriginal = $this->obtenerUsuario($id);
 
         $actualizar = DB::table('users')->where('id', $id)
             ->update([

@@ -788,6 +788,7 @@ class facultadController extends Controller
         }
         $informacionOriginal = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
+        dd($id,$inactivarPeriodo);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($inactivarPeriodo) :
             $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);

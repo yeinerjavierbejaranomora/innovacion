@@ -287,14 +287,14 @@ class InformeMoodleController extends Controller
             var_dump($fechaInicio);
             var_dump($fechaActual);
             die();
-           
+           $fechadif = 1;
             /** Validación Notas */
             if ($duracion) {
                 if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {
                     if ($nota3 != 0) {
                         $definitivas[$nombre] = $nota->Nota_Acumulada;
                     } else {
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
                 } elseif ($nota1 != 0 && $nota2 != 0 && $fechadif >= 42) {
                     $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
@@ -302,13 +302,13 @@ class InformeMoodleController extends Controller
                     $definitivas[$nota->nombreCurso] = $nota1;
                 }
             } else {
-                if ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 110) {
+                if ($nota1 != 0 && $nota2 != 0 && $fechadif >= 110) {
                     if ($nota3 != 0) {
                         $definitivas[$nombre] = $nota->Nota_Acumulada;
                     } else {
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.4;
+                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
-                } elseif ($nota1 != 0 && $nota2 != 0 && $fechaInicio - $fechaActual >= 56) {
+                } elseif ($nota1 != 0 && $nota2 != 0 && $fechadif >= 56) {
                     $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;

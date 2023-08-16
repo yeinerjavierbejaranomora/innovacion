@@ -92,6 +92,7 @@
                 <a class="collapse-item" href="{{ route('facultad.continua') }}">Educación continua</a>
                 <a class="collapse-item" href="{{ route('facultad.periodos') }}">Periodos</a>
                 <a class="collapse-item" href="{{ route('facultad.reglas') }}">Reglas de negocio</a>
+                <a class="collapse-item" href="{{ route('programasPeriodos.view') }}">Periodos - Programas</a>
 
 
             </div>

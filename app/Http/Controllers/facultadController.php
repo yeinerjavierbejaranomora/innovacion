@@ -771,4 +771,16 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
 
+    public function vistaProgramasPeriodos()
+    {
+        return view('vistas.admin.programasPeriodos');
+    }
+
+    public function getProgramasPeriodos(){
+
+        $data = DB::table('programasPeriodos')->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data)); 
+    }
 }

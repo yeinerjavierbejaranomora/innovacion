@@ -920,6 +920,7 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        console.log(data);
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;
@@ -1010,12 +1011,9 @@
                                 colores.push('rgba(0, 255, 0, 0.8)');
                             }
                         });
-                        console.log(labels, valores, colores);
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
-
-
 
                         chartRiesgoNotas = new Chart(ctx, {
                             type: 'bar',

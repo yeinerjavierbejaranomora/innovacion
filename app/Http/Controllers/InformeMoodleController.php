@@ -298,7 +298,7 @@ class InformeMoodleController extends Controller
             } else {
                 $nota3 = $nota->Tercer_Corte;
             }
-            
+
             $notaAcum = floatval($nota->Nota_Acumulada);
 
             $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
@@ -386,8 +386,6 @@ class InformeMoodleController extends Controller
             'total' => $totalRiesgo,
             'notas' => $definitivas,
         );
-
-        dd($datos);
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));
     }

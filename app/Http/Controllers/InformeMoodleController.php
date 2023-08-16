@@ -280,26 +280,26 @@ class InformeMoodleController extends Controller
         $definitivas = [];
 
         foreach ($Notas as $nota) {
-           
+
             $nota2 = floatval($nota->Segundo_Corte);
             $nota3 = floatval($nota->Tercer_Corte);
-            
 
-            if($nota->Primer_Corte != "Sin Actividad"){    
+
+            if ($nota->Primer_Corte != "Sin Actividad") {
                 $nota1 = floatval($nota->Primer_Corte);
-            }else{
+            } else {
                 $nota1 = $nota->Primer_Corte;
             }
 
-            if($nota->Segundo_Corte != "Sin Actividad"){    
+            if ($nota->Segundo_Corte != "Sin Actividad") {
                 $nota2 = floatval($nota->Segundo_Corte);
-            }else{
+            } else {
                 $nota2 = $nota->Segundo_Corte;
             }
 
-            if($nota->Tercer_Corte != "Sin Actividad"){
+            if ($nota->Tercer_Corte != "Sin Actividad") {
                 $nota3 = floatval($nota->Tercer_Corte);
-            }else{
+            } else {
                 $nota3 = $nota->Tercer_Corte;
             }
 
@@ -313,39 +313,29 @@ class InformeMoodleController extends Controller
             /** Validación Notas */
             if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
                 $definitivas[$nombre] = $nota->Nota_Acumulada;
-            } else{
-                if($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])){
-                    if ($nota3 != "Sin Actividad"){
-                        $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;                        
-                    }
-                    else {
-                        $definitivas[$nombre] =  $nota->Nota_Acumulada;                        
-                    }
-                }
-                else
-            }
-             else {
-                if ($duracion = "8 SEMANAS") {
-                    if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) { {
+            } else {
+                if ($nota1 != 0 && $nota2 != 0 && !in_array("Sin Actividad", [$nota1, $nota2])) {
+                    if ($diasdif >= 56) {
+                        if ($nota3 != "Sin Actividad") {
                             $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                        } else {
+                            $definitivas[$nombre] =  $nota->Nota_Acumulada;
                         }
-                    } elseif ($nota1 != 0 && $nota2 != 0 || $diasdif >= 42) {
-                        if ($nota3 = 0) {
-                            $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
-                        }
-                    } elseif ($nota1 != 0) {
-                        $definitivas[$nota->nombreCurso] = $nota1;
+                    } else {
+                        $definitivas[$nombre] = ($nota1 + $nota2) * (10 / 6);
                     }
                 } else {
-                    if ($nota1 != 0 && $nota2 != 0 && $diasdif >= 110) { {
-                            $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
+                    if ($nota1 != 0 && $nota1 != "Sin Actividad") {
+                        if ($diasdif >= 42) {
+                            if ($nota2 != "Sin Actividad") {
+                                $definitivas[$nombre] =  $nota->Primer_Corte;
+                            } else {
+                                $definitivas[$nombre] =  $nota->Nota_Acumulada;
+                            }
                         }
-                    } elseif ($nota1 != 0 && $nota2 != 0 || $diasdif >= 56) {
-                        if ($nota3 = 0) {
-                            $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
+                        else{
+                            $definitivas[$nombre] =  $nota1;
                         }
-                    } elseif ($nota1 != 0) {
-                        $definitivas[$nota->nombreCurso] = $nota1;
                     }
                 }
             }

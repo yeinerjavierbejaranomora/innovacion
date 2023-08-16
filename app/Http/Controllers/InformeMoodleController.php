@@ -277,9 +277,9 @@ class InformeMoodleController extends Controller
         $definitivas = [];
 
         foreach ($Notas as $nota) {
-            $nota1 = $nota->Primer_Corte;
-            $nota2 = $nota->Segundo_Corte;
-            $nota3 = $nota->Tercer_Corte;
+            $nota1 = floatval($nota->Primer_Corte);
+            $nota2 = floatval($nota->Segundo_Corte);
+            $nota3 = floatval($nota->Tercer_Corte);
             $fechaInicio = $nota->FechaInicio;
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;

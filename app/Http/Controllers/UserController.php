@@ -382,11 +382,11 @@ class UserController extends Controller
                     'nombre' => $nombre]);
                     if($actualizar){
                         $this->registrarLog($id, $informacionOriginal, $request);
-                        return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+                        return  redirect()->route('user.perfil')->with('Sucess', 'Actualizacion exitosa!');
                     }
             }
             else{
-                return redirect()->route('admin.users')->withErrors('Error', 'No realizaste ningún cambio');    
+                return redirect()->route('user.perfil')->withErrors('Error', 'No realizaste ningún cambio');    
             }
 
         }

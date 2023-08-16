@@ -298,7 +298,7 @@ class InformeMoodleController extends Controller
                         $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
                 } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 42) {
-                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
+                    $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;
                 }
@@ -310,7 +310,7 @@ class InformeMoodleController extends Controller
                         $definitivas[$nombre] =  1.48 + $nota1 * 0.3 + $nota2 * 0.3;
                     }
                 } elseif ($nota1 != 0 && $nota2 != 0 && $diasdif >= 56) {
-                    $definitivas[$nota->nombreCurso] = ($nota->acumulada) * (10 / 6);
+                    $definitivas[$nota->nombreCurso] = ($nota->Nota_Acumulada) * (10 / 6);
                 } elseif ($nota1 != 0) {
                     $definitivas[$nota->nombreCurso] = $nota1;
                 }

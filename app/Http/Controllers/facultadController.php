@@ -777,4 +777,40 @@ class facultadController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data)); 
     }
+
+    /** Función para desactivar los periodos */
+    public function inactivarProgramaPeriodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
+        $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        if ($inactivarPeriodo) :
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+    
+    /** Función para activar los periodos */
+    public function activarProgramaPeriodo(){
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        $activarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 1]);
+        $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        if ($activarPeriodo) :
+            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
 }

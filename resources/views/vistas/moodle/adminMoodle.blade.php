@@ -1001,12 +1001,12 @@
                             valor = valores.push(data.data.notas[curso]);
                             if(valor < 3){
                                 colores.push('rgba(255, 0, 0, 1)');    
-                            }else{
-                                if(valor < 3.5){
-                                    colores.push('rgba(220, 205, 48, 1)');
-                                }else{
-                                    colores.push('rgba(0, 255, 0, 1)');
-                                }
+                            }
+                            if(valor>=3 && valor<=3.5){
+                                colores.push('rgba(220, 205, 48, 1))');
+                            }
+                            if(valor> 3.5){
+                                colores.push('rgba(0, 255, 0, 1)');
                             }
                         });
                         console.log(labels, valores, colores);

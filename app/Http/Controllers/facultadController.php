@@ -406,14 +406,17 @@ class facultadController extends Controller
         endif;
     }
 
-    /** Función para visualizar la vista de los programas del usuario */
-
+    /** 
+     * Función para visualizar la vista de los programas del usuario 
+     * */
     public function programasUsuario($nombre)
     {
         return view('vistas.admin.facultades', ['nombre'=>$nombre]);
     }
 
-    /**Función para visualizar los estudiantes de cada facultad */
+    /**
+     * Función para visualizar los estudiantes de cada facultad 
+     * */
     public function estudiantesFacultad($id)
     {
         $consulta = DB::table('programas')->where('id', '=', $id)->get();

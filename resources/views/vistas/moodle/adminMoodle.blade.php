@@ -995,6 +995,7 @@
                             plugins: [ChartDataLabels]
                         });
 
+                        console.log(data);
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 

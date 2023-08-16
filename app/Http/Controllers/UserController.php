@@ -369,7 +369,8 @@ class UserController extends Controller
     public function actualizar($id, Request $request)
     {
         $id = decrypt($id);
-        dd($request);
+        $idRol = DB::table('users')->where('id',$id)->select('id_rol')->first();
+        dd($idRol);
         $id_banner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;

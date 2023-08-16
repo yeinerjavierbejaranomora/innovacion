@@ -284,8 +284,12 @@ class InformeMoodleController extends Controller
             $fechaInicio = (new DateTime($nota->FechaInicio))->format("d-m-Y");
             $nombre = $nota->nombreCurso;
             $duracion = $nota->Duracion_8_16_Semanas;
-            var_dump($fechaInicio);
-            var_dump($fechaActual);
+            $fechaObj1 = DateTime::createFromFormat("d-m-Y", $fechaActual);
+            $fechaObj2 = DateTime::createFromFormat("d-m-Y", $fechaInicio);
+            $diferencia = $fechaObj1->diff($fechaObj2);
+            var_dump($fechaObj1);
+            var_dump($fechaObj2);
+            var_dump($diferencia);
             die();
            $fechadif = 1;
             /** Validación Notas */

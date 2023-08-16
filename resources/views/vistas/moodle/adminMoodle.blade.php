@@ -826,6 +826,7 @@
                             plugins: [ChartDataLabels]
                         });
                         console.log (chartRiesgoAlto.data.labels.length);
+                        console.log (chartRiesgoAlto.data.datasets[0].data.length);
                         if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
                             $('#colRiesgoAlto').addClass('hidden');
                         } else {

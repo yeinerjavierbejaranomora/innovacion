@@ -1221,9 +1221,9 @@ class InformeMafiController extends Controller
          $periodos = DB::table('periodo')->get();
 
          $fcontinua=array("04","05","06","07","08");
-         $pregrado=array(11,12,13,16,17,31,32,33,34,35);
-         $especializacion=array(41,42,43,44,45);
-         $maestria=array(51,52,53,54,55);
+         $pregrado=array("11","12","13","16","17","31","32","33","34","35");
+         $especializacion=array("41","42","43","44","45");
+         $maestria=array("51","52","53","54","55");
 
        
 
@@ -1246,9 +1246,7 @@ class InformeMafiController extends Controller
                }elseif ($val_programas->nivelFormacion=="ESPECIALISTA") {
                    
                 foreach ($especializacion as $key => $value) {
-                  
-             
-                 
+
                     DB::table('programasPeriodos')->insert([
                         'codPrograma'=>$val_programas->codprograma,
                         'periodo'=>$value,

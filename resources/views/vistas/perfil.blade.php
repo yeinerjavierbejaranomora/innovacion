@@ -307,3 +307,8 @@
     Swal.fire("Éxito", "{{ session('success') }}", "success");
 </script>
 @endif
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif

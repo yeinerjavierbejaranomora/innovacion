@@ -921,6 +921,7 @@
                     method: 'post',
                     success: function(data) {
                         data = jQuery.parseJSON(data);
+                        console.log (data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;
                         var medio = data.data.medio;
@@ -1010,7 +1011,6 @@
                                 colores.push('rgba(0, 255, 0, 1)');
                             }
                         });
-                        console.log(labels, valores, colores);
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);

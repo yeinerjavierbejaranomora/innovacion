@@ -381,7 +381,7 @@ class InformeMoodleController extends Controller
             }
         }
 
-        dd($definitivas);
+        dd($definitivas, $diasdif);
         $datos = array(
             'alto' => $alto,
             'medio' => $medio,

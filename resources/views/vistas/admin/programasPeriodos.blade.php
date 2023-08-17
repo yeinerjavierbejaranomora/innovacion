@@ -349,6 +349,7 @@
             facultadesSeleccionadas = [];
             programasActivos();
             facultades();
+            dataTable();
 
             function programasActivos() {
                 var datos = $.ajax({
@@ -462,144 +463,175 @@
                 getPeriodos();
                 getFacultades();
                 console.log(facultadesSeleccionadas);
+
+                dataTable();
             });
-
-
-            var xmlhttp = new XMLHttpRequest();
-            var url = "{{ route('programasPeriodos.tabla') }}";
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = JSON.parse(this.responseText);
-                    var table = $('#example').DataTable({
-                        "data": data.data,
-                        "columns": [{
-                                data: 'codPrograma',
-                                title: 'Codigo de programa'
-                            },
-                            {
-                                data: 'periodo',
-                                title: 'Periodo'
-                            },
-                            {
-                                data: 'estado',
-                                title: 'Estado'
-                            },
-                            {
-                                data: 'fecha_inicio',
-                                title: 'Fecha de inicio'
-                            },
-                            {
-                                data: 'estado',
-                                defaultContent: "",
-                                title: "Estado",
-                                className: "text-center",
-                                render: function(data, type, row) {
-                                    if (data == '1') {
-                                        return 'Activo';
-                                    } else if (data == '0') {
-                                        return 'Inactivo';
-                                    }
-                                }
-                            },
-                            {
-                                data: 'estado',
-                                defaultContent: "",
-                                title: 'Inactivar / Activar',
-                                className: "text-center",
-                                render: function(data, type, row) {
-                                    if (data == '1') {
-                                        return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                                    } else if (data == '0') {
-                                        return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
-                                    }
-                                }
-                            }
-                        ],
-
-                        "language": {
-                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                        },
-
-                    });
-
-                    function obtener_data_inactivar(tbody, table) {
-                        $(tbody).on("click", "button.inactivar", function(event) {
-                            var data = table.row($(this).parents("tr")).data();
-                            if (data.estado == 1) {
-                                Swal.fire({
-                                    title: "¿Desea inactivar el perido " + data.periodo + ' - ' + data.codPrograma + "?",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    showCloseButton: true,
-                                    cancelButtonColor: '#DC3545',
-                                    cancelButtonText: "No, Cancelar",
-                                    confirmButtonText: "Si"
-                                }).then(result => {
-                                    if (result.value) {
-                                        $.post("{{ route('programasPeriodos.inactivar') }}", {
-                                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                                id: encodeURIComponent(window.btoa(data.id)),
-                                            },
-                                            function(result) {
-                                                if (result == "deshabilitado") {
-                                                    Swal.fire({
-                                                        title: "Periodo desactivado",
-                                                        html: "El periodo <strong>" + data.periodo + ' - ' + data.codPrograma +
-                                                            "</strong> ha sido inactivado",
-                                                        icon: 'info',
-                                                        showCancelButton: true,
-                                                        confirmButtonText: "Aceptar",
-                                                    }).then(result => {
-                                                        if (result.value) {
-                                                            location.reload();
-                                                        };
-                                                    })
-                                                }
-                                            })
-                                    }
-                                });
-
-                            } else {
-                                Swal.fire({
-                                    title: "¿Desea activar el perido " + data.periodo + ' - ' + data.codPrograma + "?",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    showCloseButton: true,
-                                    cancelButtonColor: '#DC3545',
-                                    cancelButtonText: "No, Cancelar",
-                                    confirmButtonText: "Si"
-                                }).then(result => {
-                                    if (result.value) {
-                                        $.post("{{ route('programasPeriodos.activar') }}", {
-                                                '_token': $('meta[name=csrf-token]').attr('content'),
-                                                id: encodeURIComponent(window.btoa(data.id)),
-                                            },
-                                            function(result) {
-                                                if (result == "habilitado") {
-                                                    Swal.fire({
-                                                        title: "Periodo habilitado",
-                                                        html: "El periodo <strong>" + data.periodo + ' - ' + data.codPrograma +
-                                                            "</strong> ha sido habilitado",
-                                                        icon: 'info',
-                                                        showCancelButton: true,
-                                                        confirmButtonText: "Aceptar",
-                                                    }).then(result => {
-                                                        if (result.value) {
-                                                            location.reload();
-                                                        };
-                                                    })
-                                                }
-                                            })
-                                    }
-                                });
-                            }
-                        });
-                    }
-                    obtener_data_inactivar("#example tbody", table);
+        
+            function destruirTabla(){
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    table.destroy();
+                    $('#datatable').DataTable().destroy();
+                    $('#datatable tbody').empty();
                 }
-            };
+            }
+
+            function dataTable() {
+                destruirTabla();
+                if (facultadesSeleccionadas.length > 0) {
+                        var url = "{{ route('programaPeriodos.tabla.facultad') }}";
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                    } else {
+                        var url = "{{ route('programaPeriodos.tabla') }}";
+                        data = periodosSeleccionados;
+                    }
+                    var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var datos
+                        if (data.data) {
+                            datos = data.data;
+                        } else {
+                            var data = jQuery.parseJSON(data);
+                            datos = data.data;
+                        }
+                        table = $('#datatable').DataTable({
+                            "data": datos,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'codPrograma',
+                                    title: 'Codigo de programa'
+                                },
+                                {
+                                    data: 'periodo',
+                                    title: 'Periodo'
+                                },
+                                {
+                                    data: 'estado',
+                                    title: 'Estado'
+                                },
+                                {
+                                    data: 'fecha_inicio',
+                                    title: 'Fecha de inicio'
+                                },
+                                {
+                                    data: 'estado',
+                                    defaultContent: "",
+                                    title: "Estado",
+                                    className: "text-center",
+                                    render: function(data, type, row) {
+                                        if (data == '1') {
+                                            return 'Activo';
+                                        } else if (data == '0') {
+                                            return 'Inactivo';
+                                        }
+                                    }
+                                },
+                                {
+                                    data: 'estado',
+                                    defaultContent: "",
+                                    title: 'Inactivar / Activar',
+                                    className: "text-center",
+                                    render: function(data, type, row) {
+                                        if (data == '1') {
+                                            return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                                        } else if (data == '0') {
+                                            return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                                        }
+                                    }
+                                }
+                            ],
+
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+
+                        });
+
+                        function obtener_data_inactivar(tbody, table) {
+                            $(tbody).on("click", "button.inactivar", function(event) {
+                                var data = table.row($(this).parents("tr")).data();
+                                if (data.estado == 1) {
+                                    Swal.fire({
+                                        title: "¿Desea inactivar el perido " + data.periodo + ' - ' + data.codPrograma + "?",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        showCloseButton: true,
+                                        cancelButtonColor: '#DC3545',
+                                        cancelButtonText: "No, Cancelar",
+                                        confirmButtonText: "Si"
+                                    }).then(result => {
+                                        if (result.value) {
+                                            $.post("{{ route('programasPeriodos.inactivar') }}", {
+                                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                                    id: encodeURIComponent(window.btoa(data.id)),
+                                                },
+                                                function(result) {
+                                                    if (result == "deshabilitado") {
+                                                        Swal.fire({
+                                                            title: "Periodo desactivado",
+                                                            html: "El periodo <strong>" + data.periodo + ' - ' + data.codPrograma +
+                                                                "</strong> ha sido inactivado",
+                                                            icon: 'info',
+                                                            showCancelButton: true,
+                                                            confirmButtonText: "Aceptar",
+                                                        }).then(result => {
+                                                            if (result.value) {
+                                                                location.reload();
+                                                            };
+                                                        })
+                                                    }
+                                                })
+                                        }
+                                    });
+
+                                } else {
+                                    Swal.fire({
+                                        title: "¿Desea activar el perido " + data.periodo + ' - ' + data.codPrograma + "?",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        showCloseButton: true,
+                                        cancelButtonColor: '#DC3545',
+                                        cancelButtonText: "No, Cancelar",
+                                        confirmButtonText: "Si"
+                                    }).then(result => {
+                                        if (result.value) {
+                                            $.post("{{ route('programasPeriodos.activar') }}", {
+                                                    '_token': $('meta[name=csrf-token]').attr('content'),
+                                                    id: encodeURIComponent(window.btoa(data.id)),
+                                                },
+                                                function(result) {
+                                                    if (result == "habilitado") {
+                                                        Swal.fire({
+                                                            title: "Periodo habilitado",
+                                                            html: "El periodo <strong>" + data.periodo + ' - ' + data.codPrograma +
+                                                                "</strong> ha sido habilitado",
+                                                            icon: 'info',
+                                                            showCancelButton: true,
+                                                            confirmButtonText: "Aceptar",
+                                                        }).then(result => {
+                                                            if (result.value) {
+                                                                location.reload();
+                                                            };
+                                                        })
+                                                    }
+                                                })
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                        obtener_data_inactivar("#example tbody", table);
+                    }
+                });
+            }
         });
     </script>
 

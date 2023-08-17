@@ -771,9 +771,9 @@ class facultadController extends Controller
         return view('vistas.admin.programasPeriodos');
     }
 
-    public function getProgramasPeriodos()
+    public function getProgramasPeriodos(Request $request)
     {
-
+        $periodos = $request->input('periodos');
         $data = DB::table('programasPeriodos')->get();
 
         header("Content-Type: application/json");

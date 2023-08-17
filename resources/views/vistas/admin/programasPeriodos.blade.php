@@ -146,12 +146,12 @@
             <div class="row justify-content-around mt-3 columnas">
                 <!--Columna Niveles de Formación-->
                 <div class="col-5 text-start">
-                    <div class="card-body" id="cardNivel">
+                    <div class="card-body" id="cardNivel" style="overflow: auto;">
                         <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
-                        <div style="overflow: auto;">
+                        <div>
                             <!--Accordion-->
                             <div id="accordion">
 

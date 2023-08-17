@@ -506,6 +506,7 @@
                             var data = jQuery.parseJSON(data);
                             datos = data.data;
                         }
+                        console.log(datos);
                         table = $('#datatable').DataTable({
                             "data": datos,
                             'pageLength': 10,

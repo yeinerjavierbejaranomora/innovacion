@@ -141,13 +141,13 @@
 
             <div class="row justify-content-around mt-3 columnas">
                 <!--Columna Niveles de Formación-->
-                <div class="col-4 text-start">
-                    <div class="card shadow mb-4" id="cardNivel">
-                        <div class="card-header text-center">
+                <div class="col-5 text-start">
+                    <div id="cardNivel">
+                        <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
-                        <div class="card-body" style="overflow: auto;">
+                        <div style="overflow: auto;">
                             <!--Accordion-->
                             <div id="accordion">
                                
@@ -220,7 +220,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
+                        <div class="text-center" style="height: 55px;">
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>

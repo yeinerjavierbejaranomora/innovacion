@@ -359,8 +359,8 @@
                     url: "{{ route('programas.activos') }}",
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
                         data.forEach(periodo => {
+                            console.log(periodo.periodo)
                             periodosSeleccionados.push(periodo.periodo);
 
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {

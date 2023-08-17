@@ -377,8 +377,8 @@
                             }
                         });
                     }
-                    console.log(periodosSeleccionados);
                 });
+                console.log(periodosSeleccionados);
             }
 
             function facultades() {

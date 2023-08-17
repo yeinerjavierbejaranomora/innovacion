@@ -153,7 +153,7 @@
                                 <div class="card">
                                     <div class="card-header" id="heading1" style="width:100%;">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapse1">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 Pregrado
                                             </button>
                                         </h5>
@@ -177,6 +177,23 @@
                                     </div>
 
                                     <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#accordion">
+                                        <div class="card-body" style="width:100%;">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Especialización-->
+                                <div class="card">
+                                    <div class="card-header" id="heading3" style="width:100%;">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            Especialización
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
                                         <div class="card-body" style="width:100%;">
 
                                         </div>

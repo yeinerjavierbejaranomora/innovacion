@@ -825,11 +825,11 @@ class facultadController extends Controller
      */
     public function programasActivos()
     {
-        $programasActivos = DB::table('programasPeriodos as pP')
-            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
-            ->select('p.nivelFormacion', 'pP.periodo')
-            ->where('pP.estado', '1')
-            ->groupBy('pP.periodo')
+        $programasActivos = DB::table('programasPeriodos as P')
+            ->join('programas as a', 'P.codPrograma', '=', 'a.codprograma')
+            ->select('a.nivelFormacion', 'P.periodo')
+            ->where('P.estado', '1')
+            ->groupBy('P.periodo')
             ->get();
 
         return $programasActivos;

@@ -146,7 +146,7 @@
             <div class="row justify-content-around mt-3 columnas">
                 <!--Columna Niveles de Formación-->
                 <div class="col-5 text-start">
-                    <section id="cardNivel">
+                    <div class="card-body" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -228,7 +228,7 @@
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>
-                    </section>
+                </div>
                 </div>
                 <!--Columna Facultades-->
                 <div class="col-4 text-star">

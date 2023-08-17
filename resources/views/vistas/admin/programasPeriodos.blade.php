@@ -490,7 +490,6 @@
                             periodos: periodosSeleccionados
                         }
                     }
-                    console.log(periodosSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

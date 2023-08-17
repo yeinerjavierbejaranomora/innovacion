@@ -254,7 +254,7 @@
 
         $(document).ready(function() {
 
-            $('.collapse').collapse();
+            $('.acordion').collapse();
 
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programasPeriodos.tabla') }}";

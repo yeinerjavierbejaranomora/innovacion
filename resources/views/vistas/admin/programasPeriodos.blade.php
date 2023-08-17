@@ -145,91 +145,93 @@
 
             <div class="row justify-content-around mt-3 mb-3 columnas">
                 <!--Columna Niveles de Formación-->
-                <div class="col-5 text-start">
+                <div class="col-7 text-start">
                     <div class="card-body" id="cardNivel" style="overflow: auto;">
                         <div class="text-center">
-                            <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
+                            <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
                         <div>
                             <!--Accordion-->
                             <div id="accordion">
+                                <div class="row">
+                                    <!--Formación continua-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading2" style="width:100%;">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                    Formación continua
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="todosContinua" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
 
-                                <!--Formación continua-->
-                                <div class="card">
-                                    <div class="card-header" id="heading2" style="width:100%;">
-                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                                Formación continua
-                                            </button>
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosContinua" checked>
+                                        <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Continua">
+
                                             </div>
-                                        </h5>
+                                        </div>
                                     </div>
 
-                                    <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;" id="Continua">
+                                    <!--Pregrado-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading1" style="width:100%;">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                    Pregrado
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="todosPregrado" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
 
+                                        <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Pregrado">
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <!--Especialización-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading3" style="width:100%;">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                    Especialización
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="todosEsp" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
 
-                                <!--Pregrado-->
-                                <div class="card">
-                                    <div class="card-header" id="heading1" style="width:100%;">
-                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                Pregrado
-                                            </button>
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosPregrado" checked>
+                                        <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Esp">
+
                                             </div>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;" id="Pregrado">
-
                                         </div>
                                     </div>
-                                </div>
 
-                                <!--Especialización-->
-                                <div class="card">
-                                    <div class="card-header" id="heading3" style="width:100%;">
-                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                                Especialización
-                                            </button>
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosEsp" checked>
-                                            </div>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;" id="Esp">
-
+                                    <!--Maestría-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading4" style="width:100%;">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                    Maestría
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="todosMaestria" checked>
+                                                </div>
+                                            </h5>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <!--Maestría-->
-                                <div class="card">
-                                    <div class="card-header" id="heading4" style="width:100%;">
-                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                                                Maestría
-                                            </button>
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosMaestria" checked>
+                                        <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Maestria">
+
                                             </div>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;" id="Maestria">
-
                                         </div>
                                     </div>
                                 </div>

@@ -139,7 +139,7 @@
 
             <!-- Content Row -->
 
-            <div class="row justify-content-start mt-3 columnas">
+            <div class="row justify-content-between mt-3 columnas">
                 <!--Columna Niveles de Formación-->
                 <div class="col-4 text-start">
                     <div class="card shadow mb-4" id="cardNivel">

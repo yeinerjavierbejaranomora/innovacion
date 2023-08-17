@@ -158,7 +158,7 @@
                                 <!--Formación continua-->
                                 <div class="card">
                                     <div class="card-header" id="heading2" style="width:100%;">
-                                        <h5 class="mb-0" class="mb-0 d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 Formación continua
                                             </button>

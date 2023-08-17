@@ -345,6 +345,8 @@ Route::controller(facultadController::class)->group(function () {
     Route::get('/home/programasPeriodos', 'vistaProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.view');
     /** Ruta para cargar tabla programasPeriodos */
     Route::post('/home/tablaProgramasPeriodos', 'getProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.tabla');
+    /** Ruta para cargar tabla programasPeriodos por Facultad*/
+    Route::post('/home/tablaProgramasPeriodosFacultad', 'getProgramasPeriodosFacultad')->middleware('auth', 'admin')->name('programasPeriodos.tabla.facultad');
     /** Ruta para inactivar periodo */
     Route::post('/home/inactivarProgramaPeriodo', 'inactivarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.inactivar');
     /** Ruta para activar periodo */

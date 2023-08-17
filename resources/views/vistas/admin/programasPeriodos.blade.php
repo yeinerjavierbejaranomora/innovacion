@@ -478,13 +478,13 @@
             function dataTable() {
                 destruirTabla();
                 if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('programaPeriodos.tabla.facultad') }}";
+                        var url = "{{ route('programasPeriodos.tabla.facultad') }}";
                         data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
                         }
                     } else {
-                        var url = "{{ route('programaPeriodos.tabla') }}";
+                        var url = "{{ route('programasPeriodos.tabla') }}";
                         data = periodosSeleccionados;
                     }
                     var datos = $.ajax({

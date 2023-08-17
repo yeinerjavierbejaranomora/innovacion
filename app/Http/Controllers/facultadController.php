@@ -774,11 +774,25 @@ class facultadController extends Controller
     public function getProgramasPeriodos(Request $request)
     {
         $periodos = $request->input('periodos');
-        $data = DB::table('programasPeriodos')->get();
+        $data = DB::table('programasPeriodos')->whereIn('periodo',$periodos)->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }
+
+    public function getProgramasPeriodosFacultad(Request $request)
+    {
+        $periodos = $request->input('periodos');
+        $facultades = $request->input('idfacultad');
+        $data = DB::table('programasPeriodos as Pp')
+        ->join('programas as p', 'Pp.codPrograma', '=', 'p.codprograma')
+        ->whereIn('Pp.periodo',$periodos)
+        ->whereIn('p.Facultad', $facultades)
+        ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
+    }   
 
     /** Función para desactivar los periodos */
     public function inactivarProgramaPeriodo()

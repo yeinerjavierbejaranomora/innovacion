@@ -360,9 +360,9 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
-                            console.log(periodo.periodo)
-                            periodosSeleccionados.push(periodo.periodo);
 
+                            periodosSeleccionados.push(periodo.periodo);
+                            console.log(periodosSeleccionados);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -378,7 +378,6 @@
                         });
                     }
                 });
-                console.log(periodosSeleccionados);
             }
 
             function facultades() {
@@ -465,7 +464,6 @@
             $('#generarReporte').on('click', function(e) {
                 getPeriodos();
                 getFacultades();
-                console.log(facultadesSeleccionadas);
 
                 dataTable();
             });
@@ -493,7 +491,6 @@
                             periodos: periodosSeleccionados
                         }
                     }
-                    console.log(periodosSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

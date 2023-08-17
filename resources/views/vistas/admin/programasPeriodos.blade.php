@@ -140,6 +140,7 @@
             <!-- Content Row -->
 
             <div class="row justify-content-start mt-3 columnas">
+                <!--Columna Niveles de Formación-->
                 <div class="col-4 text-start">
                     <div class="card shadow mb-4" id="cardNivel">
                         <div class="card-header text-center">
@@ -221,6 +222,22 @@
                         <div class="card-footer text-center" style="height: 55px;">
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Columna Facultades-->
+                <div class="col-4 text-star">
+                    <div class="card shadow mb-5" id="cardFacultades">
+                        <div class="card-header text-center">
+                            <h5><strong>Seleccionar Facultades</strong></h5>
+                        </div>
+                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                            <div class="facultades" name="facultades" id="facultades">
+                            </div>
+                        </div>
+                        <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
+                            <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
                         </div>
                     </div>
                 </div>

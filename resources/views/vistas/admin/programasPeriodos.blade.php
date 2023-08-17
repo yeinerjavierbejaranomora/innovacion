@@ -162,6 +162,7 @@
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 Formación continua
                                             </button>
+                                            <input type="checkbox">
                                         </h5>
                                     </div>
 

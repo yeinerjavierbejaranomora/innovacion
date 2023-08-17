@@ -334,16 +334,16 @@
                     success: function(data) {
                         data.forEach(periodo => {
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA"){
-                                $('.acordion #Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('.acordion card #Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "PROFESIONAL"){
-                                $('.acordion #Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('.acordion card #Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "ESPECIALISTA"){
-                                $('.acordion #Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('.acordion card  #Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "MAESTRIA"){
-                                $('.acordion #Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('.acordion card #Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                         });
                     }

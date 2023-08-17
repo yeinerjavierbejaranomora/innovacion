@@ -237,8 +237,8 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -431,6 +431,22 @@
                 } else {
                     $("#Maestria input[type='checkbox']").prop("checked", false);
                 }
+            });
+
+            $('#deshacerPeriodos').on('click', function(e) {
+                $('#accordion input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarPeriodos').on('click', function(e) {
+                $('#accordion input[type="checkbox"]').prop('checked', true);
+            });
+
+            $('#deshacerFacultades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarFacultades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', true);
             });
 
             $('#generarReporte').on('click', function(e) {

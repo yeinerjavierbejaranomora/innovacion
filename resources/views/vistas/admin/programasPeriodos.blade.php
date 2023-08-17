@@ -4,6 +4,17 @@
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-body {
+        flex: 1;
+        overflow: auto;
+    }
+
     #facultades {
         font-size: 14px;
     }
@@ -148,7 +159,7 @@
 
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
-                                        
+
                                     </div>
                                 </div>
                             </div>

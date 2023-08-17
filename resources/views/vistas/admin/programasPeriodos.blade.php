@@ -244,7 +244,11 @@
                 </div>
             </div>
 
-
+            <div class="row text-center justify-content-center">
+                <button class="btn button-informe" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
+            </div>         
 
             <div class="row">
                 <!-- Area Chart -->
@@ -262,11 +266,7 @@
                 </div>
             </div>
             
-            <div class="row text-center justify-content-center">
-                <button class="btn button-informe" type="button" id="generarReporte">
-                    Generar Reporte
-                </button>
-            </div>
+            
 
             <!--Modal para agregar un programa nuevo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

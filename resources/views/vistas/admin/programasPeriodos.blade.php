@@ -30,7 +30,7 @@
         height: 100%;
     }
 
-    .button-card {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -260,6 +260,12 @@
                         <br>
                     </div>
                 </div>
+            </div>
+            
+            <div class="row text-center justify-content-center">
+                <button class="btn button-informe" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
             </div>
 
             <!--Modal para agregar un programa nuevo-->

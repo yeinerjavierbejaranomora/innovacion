@@ -268,6 +268,10 @@
 
             <div class="row mt-3">
                 <!-- Area Chart -->
+                <div class="text-center" >
+                    <h4 id="tituloTabla"></h4>
+                    <h4 id="tituloPeriodos"><strong></strong></h4>
+                </div>
                 <div class="col-xl-12 col-lg-12 hidden" id="colTabla">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
@@ -468,10 +472,12 @@
                 if (periodosSeleccionados.length > 0){
                     if(facultadesSeleccionadas.length>0){
                         dataTable();
+                        estadoUsuarioFacultad();
                     }
                     else{
                         alertaFacultad();
                         destruirTabla();
+                        
                     }
                 }
                 else{
@@ -505,6 +511,43 @@
                     text: 'Debes seleccionar al menos una facultad',
                     confirmButtonColor: '#dfc14e',
                 })
+            }
+
+            function limpiarTitulos() {
+                
+                $("#tituloTabla").empty();
+
+                var parteTituloEliminar = 'Periodo: ';
+                var titulosPeriodos = $('#tituloPeriodo').find("strong");
+                titulosPeriodos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
+            }
+
+            function estadoUsuarioFacultad() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                var facultadesFormateadas = facultadesArray.map(function(facultad) {
+                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
+                }).join(' - ');
+
+                var periodosArray = Object.values(periodos);
+                var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                }).join(' - ');
+
+                if (facultadesSeleccionadas.length > 1) {
+                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
+                } else {
+                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
+                }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#tituloTabla").show();
+                $("#tituloTabla").html(textoNuevo);
             }
 
             function dataTable() {

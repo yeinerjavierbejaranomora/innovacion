@@ -487,7 +487,7 @@
                     } else {
                         var url = "{{ route('programasPeriodos.tabla') }}";
                         data = {
-                            periodos: periodosSeleccionados,
+                            periodos: JSON.stringify(periodosSeleccionados)
                         }
                     }
                     var datos = $.ajax({

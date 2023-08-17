@@ -394,7 +394,7 @@
 
             function getPeriodos() {
                 periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#accordion input[type="checkbox"]:checked');
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });

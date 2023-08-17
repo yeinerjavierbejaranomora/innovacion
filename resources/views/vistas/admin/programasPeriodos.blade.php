@@ -19,7 +19,7 @@
         height: 100%;
     }
 
-    .btn {
+    .button-card{
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;

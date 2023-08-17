@@ -350,7 +350,7 @@ Route::controller(facultadController::class)->group(function () {
     /** Ruta para activar periodo */
     Route::post('/home/activarProgramaPeriodo', 'activarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.activar');
     /** Ruta para traer periodos activos*/  
-    Route::get('/home/programasActivos', 'programasActivos')->middleware('auth', 'admin')->name('programas.activos');
+    Route::post('/home/programasActivos', 'programasActivos')->middleware('auth', 'admin')->name('programas.activos');
 });
 
 /** Controlador para el menú desplegable de facultades */

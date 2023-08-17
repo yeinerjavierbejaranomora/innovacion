@@ -345,6 +345,7 @@
 
             $('.acordion').collapse();
 
+            periodosSeleccionados = [];
             programasActivos();
             facultades();
 
@@ -357,6 +358,7 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -370,10 +372,11 @@
                                 $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                         });
+
                     }
                 });
+                console.log(periodosSeleccionados);
             }
-
 
             function facultades() {
                 var datos = $.ajax({
@@ -389,6 +392,8 @@
                     }
                 });
             }
+
+
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {

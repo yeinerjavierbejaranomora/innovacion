@@ -366,6 +366,10 @@
             programasActivos();
             facultades();
             dataTable();
+            
+            $('#heading2').on('click', function() {
+                $(this).find('[data-toggle="collapse"]').click(); 
+            });
 
             function programasActivos() {
                 var datos = $.ajax({

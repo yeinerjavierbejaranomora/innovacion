@@ -377,6 +377,7 @@
                             }
                         });
                     }
+                    console.log(periodosSeleccionados);
                 });
             }
 

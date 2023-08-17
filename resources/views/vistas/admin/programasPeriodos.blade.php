@@ -268,14 +268,15 @@
 
             <div class="row mt-3">
                 <!-- Area Chart -->
-                <div class="text-center" >
-                    <h4 id="tituloTabla"></h4>
-                    <h4 id="tituloPeriodos"><strong></strong></h4>
-                </div>
                 <div class="col-xl-12 col-lg-12 hidden" id="colTabla">
                     <div class="card shadow mb-4">
+
                         <!-- Card Body -->
                         <div class="card-body">
+                            <div class="text-center">
+                                <h4 id="tituloTabla">Informe General</h4>
+                                <h4 id="tituloPeriodo"><strong></strong></h4>
+                            </div>
                             <div class="table">
                                 <table id="datatable" class="display" style="width:100%">
                                 </table>
@@ -469,24 +470,22 @@
                 getPeriodos();
                 getFacultades();
 
-                if (periodosSeleccionados.length > 0){
-                    if(facultadesSeleccionadas.length>0){
+                if (periodosSeleccionados.length > 0) {
+                    if (facultadesSeleccionadas.length > 0) {
                         dataTable();
                         estadoUsuarioFacultad();
-                    }
-                    else{
+                    } else {
                         alertaFacultad();
                         destruirTabla();
-                        
+
                     }
-                }
-                else{
+                } else {
                     alertaPeriodos();
                     destruirTabla();
                 }
             });
-        
-            function destruirTabla(){
+
+            function destruirTabla() {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     table.destroy();
                     $('#datatable').DataTable().destroy();
@@ -514,7 +513,7 @@
             }
 
             function limpiarTitulos() {
-                
+
                 $("#tituloTabla").empty();
 
                 var parteTituloEliminar = 'Periodo: ';
@@ -555,17 +554,17 @@
                 $('#colTabla').removeClass("hidden")
                 var data;
                 if (facultadesSeleccionadas.length > 0) {
-                        var url = "{{ route('programasPeriodos.tabla.facultad') }}";
-                        data = {
-                            idfacultad: facultadesSeleccionadas,
-                            periodos: periodosSeleccionados
-                        }
-                    } else {
-                        var url = "{{ route('programasPeriodos.tabla') }}";
-                        data = {
-                            periodos: periodosSeleccionados
-                        }
+                    var url = "{{ route('programasPeriodos.tabla.facultad') }}";
+                    data = {
+                        idfacultad: facultadesSeleccionadas,
+                        periodos: periodosSeleccionados
                     }
+                } else {
+                    var url = "{{ route('programasPeriodos.tabla') }}";
+                    data = {
+                        periodos: periodosSeleccionados
+                    }
+                }
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

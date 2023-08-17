@@ -145,7 +145,7 @@
 
             <div class="row justify-content-around mt-3 mb-3 columnas">
                 <!--Columna Niveles de Formación-->
-                <div class="col-7 text-start">
+                <div class="col-8 text-start">
                     <div class="card-body" id="cardNivel" style="overflow: auto;">
                         <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>

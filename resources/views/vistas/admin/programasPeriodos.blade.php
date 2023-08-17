@@ -346,6 +346,7 @@
             $('.acordion').collapse();
 
             periodosSeleccionados = [];
+            facultadesSeleccionadas = [];
             programasActivos();
             facultades();
 
@@ -372,7 +373,6 @@
                                 $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                         });
-
                     }
                 });
             }
@@ -399,6 +399,15 @@
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
+            }
+
+            function getFacultades() {
+                facultadesSeleccionadas = [];
+                var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    facultadesSeleccionadas.push($(this).val());
+                });
+                return facultadesSeleccionadas;
             }
 
             $("#todosContinua").change(function() {
@@ -451,7 +460,8 @@
 
             $('#generarReporte').on('click', function(e) {
                 getPeriodos();
-                console.log(periodosSeleccionados);
+                getFacultades();
+                console.log(facultadesSeleccionadas);
             });
 
 

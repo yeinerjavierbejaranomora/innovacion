@@ -42,6 +42,25 @@
             </div>
 
             <!-- Content Row -->
+            
+            <div class="row justify-content-start mt-3 columnas">
+            <div class="col-4 text-center " id="">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body center-chart">
+                        <canvas id="alto"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
 
             <div class="row">
                 <!-- Area Chart -->

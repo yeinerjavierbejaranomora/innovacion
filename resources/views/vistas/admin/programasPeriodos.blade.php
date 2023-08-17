@@ -476,6 +476,7 @@
             }
 
             function dataTable() {
+                console.log(periodosSeleccionados);
                 destruirTabla();
                 if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('programasPeriodos.tabla.facultad') }}";

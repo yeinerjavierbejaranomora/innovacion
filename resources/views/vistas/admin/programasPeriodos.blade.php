@@ -359,7 +359,7 @@
                     url: "{{ route('programas.activos') }}",
                     method: 'post',
                     success: function(data) {
-                        console.log(data.periodo);
+                        console.log(data);
                         data.forEach(periodo => {
                             periodosSeleccionados.push(periodo.periodo);
 

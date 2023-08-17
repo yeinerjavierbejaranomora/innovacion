@@ -87,6 +87,8 @@
 
     #cardNivel {
         background: #FFFFFF;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     .card {

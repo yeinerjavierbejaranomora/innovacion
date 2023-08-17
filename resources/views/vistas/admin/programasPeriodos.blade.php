@@ -163,7 +163,7 @@
                                                 Formación continua
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosContinua">
+                                                <input type="checkbox" id="todosContinua" checked>
                                             </div>
                                         </h5>
                                     </div>
@@ -183,7 +183,7 @@
                                                 Pregrado
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosPregrado">
+                                                <input type="checkbox" id="todosPregrado" checked>
                                             </div>
                                         </h5>
                                     </div>
@@ -203,7 +203,7 @@
                                                 Especialización
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosEsp">
+                                                <input type="checkbox" id="todosEsp" checked>
                                             </div>
                                         </h5>
                                     </div>
@@ -223,7 +223,7 @@
                                                 Maestría
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" id="todosMaestria">
+                                                <input type="checkbox" id="todosMaestria" checked>
                                             </div>
                                         </h5>
                                     </div>

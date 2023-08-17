@@ -105,7 +105,8 @@ class facultadController extends Controller
      * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
      */
-    public function get_especializacion(){
+    public function get_especializacion()
+    {
         $especializacion = DB::table('programas')->where('nivelFormacion', '=', 'ESPECIALISTA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $especializacion));
@@ -404,7 +405,7 @@ class facultadController extends Controller
      * */
     public function programasUsuario($nombre)
     {
-        return view('vistas.admin.facultades', ['nombre'=>$nombre]);
+        return view('vistas.admin.facultades', ['nombre' => $nombre]);
     }
 
     /**
@@ -770,16 +771,18 @@ class facultadController extends Controller
         return view('vistas.admin.programasPeriodos');
     }
 
-    public function getProgramasPeriodos(){
+    public function getProgramasPeriodos()
+    {
 
         $data = DB::table('programasPeriodos')->get();
 
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $data)); 
+        echo json_encode(array('data' => $data));
     }
 
     /** Función para desactivar los periodos */
-    public function inactivarProgramaPeriodo(){
+    public function inactivarProgramaPeriodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -789,15 +792,18 @@ class facultadController extends Controller
         $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($inactivarPeriodo) :
-            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
         endif;
     }
-    
-    /** Función para activar los periodos */
-    public function activarProgramaPeriodo(){
+
+    /** 
+     * Función para activar los periodos 
+     * */
+    public function activarProgramaPeriodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -807,10 +813,25 @@ class facultadController extends Controller
         $activarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 1]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($activarPeriodo) :
-            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
             return "false";
         endif;
+    }
+
+    /**
+     * Método que trae los periodos activos de cada programas
+     */
+    public function programasActivos()
+    {
+        $programasActivos = DB::table('programasPeriodos as pP')
+            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
+            ->select('p.nivelFormacion', 'pP.periodo')
+            ->where('pP.estado', '1')
+            ->groupBy('pP.periodo')
+            ->get();
+
+        return $programasActivos;
     }
 }

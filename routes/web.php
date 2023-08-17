@@ -345,11 +345,12 @@ Route::controller(facultadController::class)->group(function () {
     Route::get('/home/programasPeriodos', 'vistaProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.view');
     /** Ruta para cargar tabla programasPeriodos */
     Route::get('/home/tablaProgramasPeriodos', 'getProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.tabla');
-    //** Ruta para inactivar periodo */
+    /** Ruta para inactivar periodo */
     Route::post('/home/inactivarProgramaPeriodo', 'inactivarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.inactivar');
-    //** Ruta para activar periodo */
+    /** Ruta para activar periodo */
     Route::post('/home/activarProgramaPeriodo', 'activarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.activar');
-    
+    /** Ruta para traer periodos activos*/  
+    Route::get('/home/programasActivos', 'programasActivos')->middleware('auth', 'admin')->name('programas.activos');
 });
 
 /** Controlador para el menú desplegable de facultades */

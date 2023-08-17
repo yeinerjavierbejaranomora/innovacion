@@ -161,7 +161,7 @@
                                     </div>
 
                                     <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;">
+                                        <div class="card-body" style="width:100%;" id="Pregrado">
 
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                     </div>
 
                                     <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;">
+                                        <div class="card-body" style="width:100%;" id="Continua">
 
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                     </div>
 
                                     <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;">
+                                        <div class="card-body" style="width:100%;" id="Esp">
 
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
                                     </div>
 
                                     <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;">
+                                        <div class="card-body" style="width:100%;" id="Maestria">
 
                                         </div>
                                     </div>
@@ -321,6 +321,26 @@
         $(document).ready(function() {
 
             $('.acordion').collapse();
+
+            programasActivos();
+
+            function programasActivos(){
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('programas.activos') }}",
+                    method: 'post',
+                    success: function(data) {
+                        console.log(data);
+                        // data.forEach(periodo => {
+                            
+                        // });
+                    }
+                });
+            }
+
+
 
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programasPeriodos.tabla') }}";

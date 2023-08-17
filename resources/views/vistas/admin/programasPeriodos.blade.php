@@ -158,11 +158,13 @@
                                 <!--Formación continua-->
                                 <div class="card">
                                     <div class="card-header" id="heading2" style="width:100%;">
-                                        <h5 class="mb-0">
+                                        <h5 class="mb-0" class="mb-0 d-flex justify-content-between align-items-center">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 Formación continua
                                             </button>
-                                            <input type="checkbox">
+                                            <div class="custom-checkbox">
+                                                <input type="checkbox">
+                                            </div>
                                         </h5>
                                     </div>
 
@@ -229,7 +231,7 @@
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>
-                </div>
+                    </div>
                 </div>
                 <!--Columna Facultades-->
                 <div class="col-4 text-star">

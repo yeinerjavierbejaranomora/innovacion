@@ -358,10 +358,11 @@
                     },
                     url: "{{ route('programas.activos') }}",
                     method: 'post',
+                    async: false,
                     success: function(data) {
                         data.forEach(periodo => {
 
-                            periodosSeleccionados[0].push(periodo.periodo);
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }

@@ -345,8 +345,8 @@
 
             $('.acordion').collapse();
 
-            periodosSeleccionados = [];
-            facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
+            var facultadesSeleccionadas = [];
             programasActivos();
             facultades();
             dataTable();

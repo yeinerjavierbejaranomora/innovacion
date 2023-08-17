@@ -149,24 +149,8 @@
                         </div>
                         <div class="card-body" style="overflow: auto;">
                             <!--Accordion-->
-                            <!--Pregrado-->
                             <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header" id="heading1" style="width:100%;">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                Pregrado
-                                            </button>
-                                        </h5>
-                                    </div>
-
-                                    <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                        <div class="card-body" style="width:100%;" id="Pregrado">
-
-                                        </div>
-                                    </div>
-                                </div>
-
+                               
                                 <!--Formación continua-->
                                 <div class="card">
                                     <div class="card-header" id="heading2" style="width:100%;">
@@ -177,8 +161,25 @@
                                         </h5>
                                     </div>
 
-                                    <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#accordion">
+                                    <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
                                         <div class="card-body" style="width:100%;" id="Continua">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <!--Pregrado-->
+                                 <div class="card">
+                                    <div class="card-header" id="heading1" style="width:100%;">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                Pregrado
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                        <div class="card-body" style="width:100%;" id="Pregrado">
 
                                         </div>
                                     </div>
@@ -323,6 +324,7 @@
             $('.acordion').collapse();
 
             programasActivos();
+            facultades();
 
             function programasActivos(){
                 var datos = $.ajax({
@@ -350,6 +352,21 @@
                 });
             }
 
+
+            function facultades() {
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('registro.facultades') }}",
+                    method: 'post',
+                    success: function(data) {
+                        data.forEach(facultad => {
+                            $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                        });
+                    }
+                });
+            }
 
 
             var xmlhttp = new XMLHttpRequest();

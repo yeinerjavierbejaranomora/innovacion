@@ -148,8 +148,6 @@
                 <div class="col-5 text-start">
                     <div class="card-body" id="cardNivel" style="overflow: auto;">
                         <div class="text-center">
-                            <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
                         <div>
                             <!--Accordion-->
@@ -544,7 +542,7 @@
                 } else {
                     var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
                 }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $('#tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#tituloTabla").show();
                 $("#tituloTabla").html(textoNuevo);
             }

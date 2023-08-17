@@ -477,6 +477,7 @@
 
             function dataTable() {
                 destruirTabla();
+                var data;
                 if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('programasPeriodos.tabla.facultad') }}";
                         data = {

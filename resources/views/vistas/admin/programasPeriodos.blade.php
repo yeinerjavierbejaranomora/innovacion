@@ -7,12 +7,12 @@
     .card {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        width: 100%;
     }
 
     .card-body {
         flex: 1;
-        overflow: auto;
+        width: 100%;
     }
 
     #facultades {

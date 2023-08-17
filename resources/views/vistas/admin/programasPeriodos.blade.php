@@ -375,7 +375,6 @@
 
                     }
                 });
-                console.log(periodosSeleccionados);
             }
 
             function facultades() {
@@ -393,7 +392,14 @@
                 });
             }
 
-
+            function getPeriodos() {
+                periodosSeleccionados = [];
+                var checkboxesSeleccionados = $('#accordion input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
+                });
+                return periodosSeleccionados;
+            }
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
@@ -426,6 +432,12 @@
                     $("#Maestria input[type='checkbox']").prop("checked", false);
                 }
             });
+
+            $('#generarReporte').on('click', function(e) {
+                getPeriodos();
+                console.log(periodosSeleccionados);
+            });
+
 
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programasPeriodos.tabla') }}";

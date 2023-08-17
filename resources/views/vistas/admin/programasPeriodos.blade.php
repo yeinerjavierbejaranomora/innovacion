@@ -487,10 +487,11 @@
                     } else {
                         var url = "{{ route('programasPeriodos.tabla') }}";
                         data = {
-                            periodos: JSON.stringify(periodosSeleccionados)
+                            periodos: periodosSeleccionados
                         }
                     }
-                    var datos = $.ajax({
+                    console.log(periodosSeleccionados);
+                var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },

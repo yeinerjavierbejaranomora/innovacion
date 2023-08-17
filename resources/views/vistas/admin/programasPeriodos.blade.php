@@ -140,13 +140,13 @@
             <!-- Content Row -->
 
             <div class="row justify-content-start mt-3 columnas">
-                <div class="col-4 text-start" id="">
+                <div class="col-4 text-start">
                     <div class="card shadow mb-4" id="cardNivel">
                         <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
-                        <div class="card-body center-chart" style="overflow: auto;">
+                        <div class="card-body" style="overflow: auto;">
                             <!--Accordion-->
                             <!--Pregrado-->
                             <div id="accordion">
@@ -218,8 +218,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
+                        <div class="card-footer text-center" style="height: 55px;">
+                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>

@@ -165,9 +165,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Formación continua-->
-                            <div id="accordion">
+
+                                <!--Formación continua-->
                                 <div class="card">
                                     <div class="card-header" id="heading2" style="width:100%;">
                                         <h5 class="mb-0">
@@ -267,9 +266,6 @@
     @endif
 
     <script>
-
-
-
         $(document).ready(function() {
 
             $('.acordion').collapse();

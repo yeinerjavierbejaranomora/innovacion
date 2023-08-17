@@ -79,10 +79,13 @@
         font-size: 14px;
     }
 
-    #cardNivel,
+    
     #cardFacultades {
         min-height: 350px;
         max-height: 350px;
+    }
+    #cardNivel {
+        background: #FFFFFF;
     }
 
     .card {

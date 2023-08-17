@@ -142,7 +142,7 @@
             <div class="row justify-content-start mt-3 columnas">
                 <div class="col-4 text-start" id="">
                     <div class="card shadow mb-4">
-                        <div class="card-header">
+                        <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
@@ -194,6 +194,23 @@
                                     </div>
 
                                     <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                        <div class="card-body" style="width:100%;">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Maestría-->
+                                <div class="card">
+                                    <div class="card-header" id="heading4" style="width:100%;">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            Maestría
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
                                         <div class="card-body" style="width:100%;">
 
                                         </div>

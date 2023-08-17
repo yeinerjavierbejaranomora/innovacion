@@ -268,12 +268,12 @@
 
             <div class="row mt-3">
                 <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
+                <div class="col-xl-12 col-lg-12" id="colTabla">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="datatable" class="display" style="width:100%">
+                                <table id="datatable" class="display hidden" style="width:100%">
                                 </table>
                             </div>
                         </div>
@@ -465,7 +465,19 @@
                 getPeriodos();
                 getFacultades();
 
-                dataTable();
+                if (periodosSeleccionados.length > 0){
+                    if(facultadesSeleccionadas.length>0){
+                        dataTable();
+                    }
+                    else{
+                        alertaFacultad();
+                        destruirTabla();
+                    }
+                }
+                else{
+                    alertaPeriodos();
+                    destruirTabla();
+                }
             });
         
             function destruirTabla(){
@@ -473,11 +485,31 @@
                     table.destroy();
                     $('#datatable').DataTable().destroy();
                     $('#datatable tbody').empty();
+                    $('#colTabla').addClass("hidden")
                 }
+            }
+
+            function alertaPeriodos() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un periodo',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
+
+            function alertaFacultad() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos una facultad',
+                    confirmButtonColor: '#dfc14e',
+                })
             }
 
             function dataTable() {
                 destruirTabla();
+                $('#colTabla').removeClass("hidden")
                 var data;
                 if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('programasPeriodos.tabla.facultad') }}";

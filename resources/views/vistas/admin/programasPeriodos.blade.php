@@ -163,7 +163,7 @@
                                                         Formación continua
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Seleccionar Todos</label>
+                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>

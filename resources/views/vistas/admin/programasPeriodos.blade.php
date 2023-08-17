@@ -79,11 +79,12 @@
         font-size: 14px;
     }
 
-    
+
     #cardFacultades {
         min-height: 350px;
         max-height: 350px;
     }
+
     #cardNivel {
         background: #FFFFFF;
     }
@@ -145,7 +146,7 @@
             <div class="row justify-content-around mt-3 columnas">
                 <!--Columna Niveles de Formación-->
                 <div class="col-5 text-start">
-                    <div id="cardNivel">
+                    <section id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -153,7 +154,7 @@
                         <div style="overflow: auto;">
                             <!--Accordion-->
                             <div id="accordion">
-                               
+
                                 <!--Formación continua-->
                                 <div class="card">
                                     <div class="card-header" id="heading2" style="width:100%;">
@@ -171,8 +172,8 @@
                                     </div>
                                 </div>
 
-                                 <!--Pregrado-->
-                                 <div class="card">
+                                <!--Pregrado-->
+                                <div class="card">
                                     <div class="card-header" id="heading1" style="width:100%;">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -227,7 +228,7 @@
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                         </div>
-                    </div>
+                    </section>
                 </div>
                 <!--Columna Facultades-->
                 <div class="col-4 text-star">
@@ -251,7 +252,7 @@
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
-            </div>         
+            </div>
 
             <div class="row mt-3">
                 <!-- Area Chart -->
@@ -268,8 +269,8 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
 
             <!--Modal para agregar un programa nuevo-->
             <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -335,7 +336,7 @@
             programasActivos();
             facultades();
 
-            function programasActivos(){
+            function programasActivos() {
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -344,16 +345,16 @@
                     method: 'post',
                     success: function(data) {
                         data.forEach(periodo => {
-                            if (periodo.nivelFormacion == "EDUCACION CONTINUA"){
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
-                            if (periodo.nivelFormacion == "PROFESIONAL"){
+                            if (periodo.nivelFormacion == "PROFESIONAL") {
                                 $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
-                            if (periodo.nivelFormacion == "ESPECIALISTA"){
+                            if (periodo.nivelFormacion == "ESPECIALISTA") {
                                 $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
-                            if (periodo.nivelFormacion == "MAESTRIA"){
+                            if (periodo.nivelFormacion == "MAESTRIA") {
                                 $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                         });

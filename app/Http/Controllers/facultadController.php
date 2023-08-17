@@ -777,7 +777,8 @@ class facultadController extends Controller
 
         $data = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->get();
 
-        return $data;
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
     }
 
     public function getProgramasPeriodosFacultad(Request $request)

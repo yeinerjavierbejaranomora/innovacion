@@ -362,7 +362,6 @@
                         data.forEach(periodo => {
 
                             periodosSeleccionados.push(periodo.periodo);
-                            console.log(periodosSeleccionados);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -378,6 +377,7 @@
                         });
                     }
                 });
+                console.log(periodosSeleccionados);
             }
 
             function facultades() {

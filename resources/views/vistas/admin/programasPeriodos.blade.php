@@ -157,7 +157,7 @@
                                     <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%;">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                         Formación continua
@@ -600,10 +600,6 @@
                                 {
                                     data: 'periodo',
                                     title: 'Periodo'
-                                },
-                                {
-                                    data: 'estado',
-                                    title: 'Estado'
                                 },
                                 {
                                     data: 'fecha_inicio',

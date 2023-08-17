@@ -154,83 +154,89 @@
                             <!--Accordion-->
                             <div id="accordion">
                                 <div class="row">
-                                    <!--Formación continua-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading2" style="width:100%;">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                                    Formación continua
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="todosContinua" checked>
+                                    <div class="col-6">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading2" style="width:100%;">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                        Formación continua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <input type="checkbox" id="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Continua">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Continua">
-
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading1" style="width:100%;">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <input type="checkbox" id="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
 
-                                    <!--Pregrado-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading1" style="width:100%;">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                    Pregrado
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="todosPregrado" checked>
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Pregrado">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Pregrado">
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!--Especialización-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading3" style="width:100%;">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                                    Especialización
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="todosEsp" checked>
+                                    <div class="col-6">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading3" style="width:100%;">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <input type="checkbox" id="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Esp">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Esp">
-
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading4" style="width:100%;">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <input type="checkbox" id="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
 
-                                    <!--Maestría-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading4" style="width:100%;">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                                                    Maestría
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="todosMaestria" checked>
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Maestria">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Maestria">
-
                                             </div>
                                         </div>
                                     </div>
@@ -383,7 +389,6 @@
                         });
                     }
                 });
-                console.log(periodosSeleccionados);
             }
 
             function facultades() {
@@ -517,7 +522,7 @@
 
                 $("#tituloTabla").empty();
 
-                var parteTituloEliminar = 'Periodo: ';
+                var parteTituloEliminar = 'Periodos: ';
                 var titulosPeriodos = $('#tituloPeriodo').find("strong");
                 titulosPeriodos.each(function() {
                     var contenidoActual = $(this).text();
@@ -541,11 +546,11 @@
                 }).join(' - ');
 
                 if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
+                    var textoNuevo = "<h4><strong>Programas activos facultades: " + facultadesFormateadas + "</strong></h4>";
                 } else {
-                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
+                    var textoNuevo = "<h4><strong>Programas activos facultad: " + facultadesFormateadas + "</strong></h4>";
                 }
-                $('#tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $('#tituloPeriodo strong').append('Periodos: ' + periodosFormateados);
                 $("#tituloTabla").show();
                 $("#tituloTabla").html(textoNuevo);
             }
@@ -581,7 +586,6 @@
                             var data = jQuery.parseJSON(data);
                             datos = data.data;
                         }
-                        console.log(datos);
                         table = $('#datatable').DataTable({
                             "data": datos,
                             'pageLength': 10,

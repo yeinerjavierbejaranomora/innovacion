@@ -361,7 +361,7 @@
                     success: function(data) {
                         data.forEach(periodo => {
 
-                            periodosSeleccionados.push(periodo.periodo);
+                            periodosSeleccionados[0].push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }

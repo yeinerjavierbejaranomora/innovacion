@@ -244,13 +244,13 @@
                 </div>
             </div>
 
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center mb-4">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>         
 
-            <div class="row">
+            <div class="row mt-3">
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
                     <div class="card shadow mb-4">

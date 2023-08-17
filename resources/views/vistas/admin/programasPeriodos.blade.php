@@ -332,10 +332,20 @@
                     url: "{{ route('programas.activos') }}",
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
-                        // data.forEach(periodo => {
-                            
-                        // });
+                        data.forEach(periodo => {
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA"){
+                                $('.acordion #Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "PROFESIONAL"){
+                                $('.acordion #Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "ESPECIALISTA"){
+                                $('.acordion #Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "MAESTRIA"){
+                                $('.acordion #Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                        });
                     }
                 });
             }

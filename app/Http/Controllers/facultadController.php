@@ -773,8 +773,8 @@ class facultadController extends Controller
 
     public function getProgramasPeriodos(Request $request)
     {
-        $periodos = $_POST['periodos'];
-        dd($periodos);
+        $periodos = $_POST;
+        dd($_POST);
         $data = DB::table('programasPeriodos')->whereIn('periodo',$periodos)->get();
 
         header("Content-Type: application/json");

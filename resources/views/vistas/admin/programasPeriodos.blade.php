@@ -157,9 +157,9 @@
                                     <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                    <button class="btn btn-link">
                                                         Formación continua
                                                     </button>
                                                     <div class="custom-checkbox">
@@ -366,7 +366,7 @@
             programasActivos();
             facultades();
             dataTable();
-            
+
             $('#heading2').on('click', function() {
                 $(this).find('[data-toggle="collapse"]').click(); 
             });

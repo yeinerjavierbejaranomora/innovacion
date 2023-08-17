@@ -143,7 +143,7 @@
 
             <!-- Content Row -->
 
-            <div class="row justify-content-around mt-3 columnas">
+            <div class="row justify-content-around mt-3 mb-3 columnas">
                 <!--Columna Niveles de Formación-->
                 <div class="col-5 text-start">
                     <div class="card-body" id="cardNivel" style="overflow: auto;">
@@ -248,7 +248,7 @@
                 </div>
             </div>
 
-            <div class="row text-center justify-content-center mb-4">
+            <div class="row text-center justify-content-center mt-3 mb-4">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

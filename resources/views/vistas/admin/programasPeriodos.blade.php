@@ -185,7 +185,8 @@
                                                         Pregrado
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <input type="checkbox" id="todosPregrado" checked>
+                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -208,7 +209,8 @@
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <input type="checkbox" id="todosEsp" checked>
+                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -229,7 +231,8 @@
                                                         Maestría
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <input type="checkbox" id="todosMaestria" checked>
+                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>

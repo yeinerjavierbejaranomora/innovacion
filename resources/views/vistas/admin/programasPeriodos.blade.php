@@ -163,7 +163,7 @@
                                                 Formación continua
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="todosContinua">
                                             </div>
                                         </h5>
                                     </div>
@@ -183,7 +183,7 @@
                                                 Pregrado
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="todosPregrado">
                                             </div>
                                         </h5>
                                     </div>
@@ -203,7 +203,7 @@
                                                 Especialización
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="todosEsp">
                                             </div>
                                         </h5>
                                     </div>
@@ -223,7 +223,7 @@
                                                 Maestría
                                             </button>
                                             <div class="custom-checkbox">
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="todosMaestria">
                                             </div>
                                         </h5>
                                     </div>
@@ -390,6 +390,37 @@
                 });
             }
 
+            $("#todosContinua").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Continua input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Continua input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPregrado").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Pregrado input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Pregrado input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosEsp").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Esp input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Esp input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosMaestria").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Maestria input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+            });
 
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programasPeriodos.tabla') }}";

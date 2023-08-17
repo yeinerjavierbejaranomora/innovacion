@@ -146,7 +146,7 @@
                             <h5 id="tituloNiveldes"><strong>Niveles de Formación</strong></h5>
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
-                        <div class="card-body center-chart">
+                        <div class="card-body center-chart" style="overflow: auto;">
                             <!--Accordion-->
                             <!--Pregrado-->
                             <div id="accordion">
@@ -188,7 +188,7 @@
                                     <div class="card-header" id="heading3" style="width:100%;">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                            Especialización
+                                                Especialización
                                             </button>
                                         </h5>
                                     </div>
@@ -205,7 +205,7 @@
                                     <div class="card-header" id="heading4" style="width:100%;">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                                            Maestría
+                                                Maestría
                                             </button>
                                         </h5>
                                     </div>

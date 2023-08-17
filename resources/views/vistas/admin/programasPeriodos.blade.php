@@ -148,24 +148,42 @@
                         </div>
                         <div class="card-body center-chart">
                             <!--Accordion-->
+                            <!--Pregrado-->
                             <div id="accordion">
                                 <div class="card">
-                                    <div class="card-header" id="headingOne" style="width:100%;">
+                                    <div class="card-header" id="heading1" style="width:100%;">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapse1">
                                                 Pregrado
                                             </button>
                                         </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
                                         <div class="card-body" style="width:100%;">
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--Formación continua-->
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="heading2" style="width:100%;">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                Formación continua
+                                            </button>
+                                        </h5>
+                                    </div>
 
+                                    <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#accordion">
+                                        <div class="card-body" style="width:100%;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer d-flex justify-content-end">
                             <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>

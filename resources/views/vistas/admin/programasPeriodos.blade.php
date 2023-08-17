@@ -268,12 +268,12 @@
 
             <div class="row mt-3">
                 <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12" id="colTabla">
+                <div class="col-xl-12 col-lg-12 hidden" id="colTabla">
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="table">
-                                <table id="datatable" class="display hidden" style="width:100%">
+                                <table id="datatable" class="display" style="width:100%">
                                 </table>
                             </div>
                         </div>

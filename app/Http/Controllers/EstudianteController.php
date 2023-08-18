@@ -16,7 +16,7 @@ class EstudianteController extends Controller
     public function consultaEstudiante(){
         $estudiante = $_POST['codBanner'];
 
-        $consultaEstudiante = DB::table('estudiantes')->where('homologante',$estudiante)->get();
+        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->get();
         var_dump($consultaEstudiante);die();
     }
 }

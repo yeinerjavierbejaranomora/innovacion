@@ -244,8 +244,8 @@
 
                 consultaEstudiante(codBanner.val());
 
-                consultaHistorial(codBanner.val());
-                consultaProgramacion(codBanner.val());
+                //consultaHistorial(codBanner.val());
+                //consultaProgramacion(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");

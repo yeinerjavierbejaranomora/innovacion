@@ -858,7 +858,7 @@ class facultadController extends Controller
 
         $data = [
             'periodo' => $periodos,
-            'nivelFormacion' => $nivelFormacion[0]
+            'nivelFormacion' => $nivelFormacion
         ];    
         dd($data);
         return $data;

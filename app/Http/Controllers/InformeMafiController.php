@@ -1254,7 +1254,6 @@ class InformeMafiController extends Controller
         $matriculasSello = [];
 
         foreach ($programasConsulta as $programa) {
-
             $consulta = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE SELLO FINANCIERO')
@@ -1270,6 +1269,8 @@ class InformeMafiController extends Controller
                 $matriculasSello[$programa->programa] = 0;
             }
         }
+
+        dd($consulta);
 
         dd($matriculasSello);
 

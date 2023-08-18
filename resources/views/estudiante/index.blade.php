@@ -123,80 +123,35 @@
             </div>
             <br>
 
-            <!-- Checkbox Facultades -->
-            {{-- <div class="row justify-content-center" id="">
-                <div class="col-6 text-center">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center">
-                            <h5><strong>Datos estudiante</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Código estudiante: </p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Apellido: </p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Programa: </p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p></p>
-                                </div>
-                            </div>
-                            <br>
-                            </div>
-                        </div>
+            <div class="container-fluid">
 
+                <!-- Page Heading -->
+                <section id="seccion" style="background-color: #eee;" class="font-weight-bold text-dark text-center mb-2">
+                    <h1>Informes disponibles</h1>
+                </section>
+                <div class="container mt-3">
+                    <div class="row text-center">
+                        <p> A continuación podrás visualizar los informes disponibles según lo que necesites (Facultad, programa, etc).</p>
                     </div>
-
-                    <div class="col-4 text-start">
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Programas</strong></h5>
+                    <div class="row py-5">
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
+                                Banner
+                            </a>
                         </div>
-                        <div class="card-body text-star" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
+                                Moodle
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" href="{{ route('home.planeacion') }}">
+                                Planeación
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class=" col-4 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
-                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
-                                <h5>No hay datos por mostrar</h5>
-                            </div>
-                            <canvas id="estudiantes"></canvas>
-                        </div>
-                    </div>
-                </div>
-                </div> --}}
-
-
-            {{-- <div class="row">
-                <button class="btn" type="button" id="generarReporte">
-                    Generar Reporte
-                </button>
-            </div> --}}
+            </div>
 
 
 

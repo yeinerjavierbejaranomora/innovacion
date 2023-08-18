@@ -134,7 +134,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Código estudiante</p>
+                                    <p class="mb-0">Código estudiante: </p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0"></p>
@@ -143,7 +143,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Apellido</p>
+                                    <p class="mb-0">Apellido: </p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0"></p>
@@ -152,7 +152,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Programa</p>
+                                    <p class="mb-0">Programa: </p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p></p>

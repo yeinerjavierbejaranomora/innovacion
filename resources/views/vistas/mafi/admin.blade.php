@@ -2881,20 +2881,12 @@
                                         label: 'Sello',
                                         data: valuesSello,
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
-                                        datalabels: {
-                                            anchor: 'end',
-                                            align: 'center',
-                                        },
                                         stack: 'Stack 0',
                                     },
                                     {
                                         label: 'Retencion',
                                         data: valuesRetencion,
-                                        backgroundColor: ['rgba(56,101,120,1)'],
-                                        datalabels: {
-                                            anchor: 'end',
-                                            align: 'center',
-                                        },
+                                        backgroundColor: ['rgba(56,101,120,1)'],                                       
                                         stack: 'Stack 0',
                                     },
                                 ]

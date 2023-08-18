@@ -108,7 +108,7 @@
             <div class="text-center" id="mensaje">
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
-            <div class="text-center" id="">
+            <div class="col-6 text-center" id="">
                 <div class="row">
                     <div class="col-sm-2 text-dark">
                         <p class="mb-0">Codigo estudiante</p>
@@ -116,7 +116,7 @@
                     <div class="col-sm-2">
                         <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-sm-2">
                         <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
                     </div>
                 </div>

@@ -284,7 +284,7 @@
             let codBanner = $('#codigo');
             if (codBanner.val() != '') {
                 var formData = new FormData();
-                formData.append('codBanner',codBanner);
+                formData.append('codBanner',codBanner.val());
                 $.ajax({
                     headers:{
                         'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content')

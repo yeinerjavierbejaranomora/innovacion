@@ -2882,8 +2882,8 @@
                                         data: valuesSello,
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
                                         datalabels: {
-                                            anchor: 'center',
-                                            align: 'center',
+                                            anchor: 'end',
+                                            align: 'top',
                                         },
                                         stack: 'Stack 0',
                                     },

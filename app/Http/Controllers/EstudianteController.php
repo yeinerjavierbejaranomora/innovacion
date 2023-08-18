@@ -13,6 +13,6 @@ class EstudianteController extends Controller
     }
 
     public function consultaEstudiante(){
-        var_dump($_POST);die();
+        var_dump($_POST['codBanner']);die();
     }
 }

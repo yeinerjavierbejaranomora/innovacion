@@ -281,7 +281,8 @@
     </div>
     <script>
         function consultaHistorial() {
-            alert($('#codigo').val());
+            let codBanner = $('#codigo').val();
+            alert(codBanner);
         }
     </script>
     @include('layout.footer')

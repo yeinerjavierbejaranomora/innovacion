@@ -248,6 +248,7 @@
                 //consultaProgramacion(codBanner.val());
 
             } else {
+
                 alert("ingrese su codigo de estudiante");
             }
         }
@@ -288,6 +289,8 @@
                             </a>
                         </div>`)
                     }else{
+                        $('#botones').html('');
+                        $('#codigo').prop('disabled',false);
                     }
                 }
             });

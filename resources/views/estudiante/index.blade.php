@@ -283,16 +283,17 @@
         function consultaHistorial() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
-                var formData = new FormData();
-                formData.append('codBanner',codBanner.val());
-                consultaEstudiante(formData);
+
+                consultaEstudiante(codBanner);
 
             } else {
                 alert("ingrese su codigo de estudiante");
             }
         }
 
-        function consultaEstudiante(formData) {
+        function consultaEstudiante(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner.val());
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

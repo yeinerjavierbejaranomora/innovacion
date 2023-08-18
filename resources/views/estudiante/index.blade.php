@@ -110,10 +110,10 @@
             </div>
             <div class="text-center" id="">
                 <div class="row">
-                    <div class="col-sm-3 text-dark">
+                    <div class="col-sm-2 text-dark">
                         <p class="mb-0">Codigo estudiante</p>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
                     <div class="col-auto">
@@ -124,8 +124,8 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="">
-                <div class="col-12 text-star">
+            <div class="row justify-content-center" id="">
+                <div class="col-6 text-center">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Datos estudiante</strong></h5>

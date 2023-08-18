@@ -849,14 +849,6 @@ class facultadController extends Controller
             $periodos[] = $dosUltimosDigitos;
         }
 
-        dd($periodos);
-        $programasActivos = DB::table('programasPeriodos as pP')
-            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
-            ->select('p.nivelFormacion', 'pP.periodo')
-            ->where('pP.estado', '1')
-            ->groupBy('pP.periodo', 'p.nivelFormacion')
-            ->get();
-
-        return $programasActivos;
+        return $periodos;
     }
 }

@@ -282,7 +282,9 @@
     <script>
         function consultaHistorial() {
             let codBanner = $('#codigo').val();
-            alert(codBanner);
+            if (codBanner != '') {
+                alert("con valor");
+            }
         }
     </script>
     @include('layout.footer')

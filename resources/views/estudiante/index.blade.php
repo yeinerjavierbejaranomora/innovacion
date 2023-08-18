@@ -306,7 +306,7 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function(){
-                    codBanner.prop('disabled',true);
+                    $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
 

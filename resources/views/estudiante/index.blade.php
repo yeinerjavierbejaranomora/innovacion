@@ -286,10 +286,10 @@
                                 Programado
                             </a>
                         </div>`)
+                        $('#codigo').prop('disabled',false);
                     }else{
                         $('#codigo').prop('disabled',false);
                     }
-                    $('#codigo').prop('disabled',false);
                 }
             });
         }

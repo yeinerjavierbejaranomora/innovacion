@@ -266,10 +266,10 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
+                    //$('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-                    $('#codigo').prop('disabled',false);
+                    //$('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">

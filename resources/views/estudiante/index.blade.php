@@ -131,7 +131,7 @@
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group">
                                 <li class="list-group-item">
                                     <h3>Codigo Estudiante:</h3>
                                     <h4></h4>

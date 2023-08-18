@@ -341,7 +341,7 @@
             });
         }
 
-        function consultaProgramacion(codBanner) {
+        /*function consultaProgramacion(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({

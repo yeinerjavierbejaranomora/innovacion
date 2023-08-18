@@ -2824,7 +2824,7 @@
             var chartMetas
 
             graficoMetas();
-            
+
             function graficoMetas(){
                 var url = "{{ route('metas.programa')}}";
                 data = '';
@@ -2836,6 +2836,11 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         console.log(data);
                     }
                 });

@@ -296,7 +296,7 @@
             });
         }
 
-        /*function consultaMalla(codBanner) {
+        function consultaMalla(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -313,6 +313,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
                 }
             });

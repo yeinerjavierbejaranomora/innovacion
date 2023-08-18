@@ -293,7 +293,7 @@
                     url: "{{ route('historial.consulta') }}",
                     data: formData,
                     cache: false,
-                    contentType: flase,
+                    contentType: false,
                     processData: false,
                     beforeSend: function(){
                         codBanner.prop('disabled',true);

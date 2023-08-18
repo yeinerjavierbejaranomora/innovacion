@@ -18,6 +18,6 @@ class EstudianteController extends Controller
 
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
-        var_dump($mallaCurricular['curso']);die();
+        var_dump($mallaCurricular[0]->curso);die();
     }
 }

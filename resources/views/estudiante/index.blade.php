@@ -133,7 +133,7 @@
                         </div>
                         <div class="col 4 text-center">
                             <a type="button" class="btn boton" href="">
-                                Historial
+                                Historial academico
                             </a>
                         </div>
                         <div class="col 4 text-center">

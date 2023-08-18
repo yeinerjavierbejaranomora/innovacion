@@ -881,7 +881,7 @@ class facultadController extends Controller
 
         if ($periodo) :
             /** Redirecciona al formulario registro mostrando un mensaje de exito */
-            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue actualizado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal->codPrograma . " - " . $informacionOriginal->periodo . " fue actualizado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return "actualizado";
         else :
             /** Redirecciona al formulario registro mostrando un mensaje de error */

@@ -21,8 +21,9 @@ class EstudianteController extends Controller
 
     public function consultaMalla(){
         $estudiante = $_POST['codBanner'];
-        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
+        $programa = $_POST['programa'];
+        //$consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
+        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$programa)->get()->toArray();
         return $mallaCurricular;
     }
 

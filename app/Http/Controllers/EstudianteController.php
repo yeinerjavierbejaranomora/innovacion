@@ -31,4 +31,11 @@ class EstudianteController extends Controller
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
         return $mallaCurricular;
     }
+
+    public function consultaHistorial(){
+        $estudiante = $_POST['codBanner'];
+        $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
+        $historialAcademico = json_decode(file_get_contents($url),true);
+        return $historialAcademico;
+    }
 }

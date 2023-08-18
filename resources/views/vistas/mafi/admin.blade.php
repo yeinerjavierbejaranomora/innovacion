@@ -2842,6 +2842,16 @@
                             data = data;
                         }
                         console.log(data);
+
+                        var labels = [];
+                        var values = [];
+                        Object.keys(data).forEach(metas => {
+                            labels.push(metas);
+                            values.push(data[metas]);
+                        })
+                        
+                        console.log(labels,values);
+
                     }
                 });
             }

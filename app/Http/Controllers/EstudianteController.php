@@ -17,7 +17,7 @@ class EstudianteController extends Controller
         $estudiante = $_POST['codBanner'];
 
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get();
-        var_dump($mallaCurricular);die();
+        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
+        var_dump($mallaCurricular['curso']);die();
     }
 }

@@ -9,6 +9,6 @@ class EstudianteController extends Controller
     //
 
     public function inicio(){
-        
+        return view('estudiante.index');
     }
 }

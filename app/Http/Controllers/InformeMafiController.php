@@ -1255,7 +1255,7 @@ class InformeMafiController extends Controller
         ->groupBy('codprograma')
         ->get();
 
-        dd($matriculas);
+        dd($matriculas, $datos);
 
         return $datos;
     }

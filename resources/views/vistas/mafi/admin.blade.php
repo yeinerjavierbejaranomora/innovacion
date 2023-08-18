@@ -2823,8 +2823,75 @@
 
             var chartMetas
 
-            function graficoMetas(){
+            graficoMetas();
 
+            function graficoMetas(){
+                var url = "{{ route('metas.programa')}}";
+                data = '';
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+
+                        var labels = [];
+                        var values = [];
+                        Object.keys(data).forEach(metas => {
+                            labels.push(metas);
+                            values.push(data[metas]);
+                        })
+                        
+                        var ctx = document.getElementById('graficoMetas').getContext('2d');
+                        chartMetas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    data: values,
+                                    backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    },
+                                    stack: 'Stack 0',
+                                }
+                                
+                            ]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    }
+                });
             }
 
         });

@@ -1214,6 +1214,31 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
+    public function graficoMetas(){
+
+        $metas = DB::table('programas_metas')->get();
+
+        $datos = [];
+        $programas = [];
+        foreach ($metas as $meta){
+            $dato = $meta->meta;
+            if($dato != null){
+                $programas[]= $meta->programa;
+                $datos[$meta->programa] = $dato;
+            }
+        }
+
+        dd($programas);
+
+        $matriculas = DB::table('datosMafi')->where('sello','TIENE SELLO FINANCIERO')
+        ->whereIn('codprograma',$programas)
+        ->select(DB::raw('COUNT(idbanner) AS TOTAL,codprograma'))
+        ->groupBy('codprograma');
+
+        return $datos;
+    }
+
+
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos dacada grafico mafi
@@ -1404,5 +1429,10 @@ class InformeMafiController extends Controller
 
 
     }
+    
 
+
+
+
+    
 }

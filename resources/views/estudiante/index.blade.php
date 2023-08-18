@@ -284,6 +284,8 @@
             let codBanner = $('#codigo').val();
             if (codBanner != '') {
                 alert("con valor");
+            } else {
+                alert("ingrese su codigo de estudiante");
             }
         }
     </script>

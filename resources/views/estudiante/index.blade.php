@@ -284,7 +284,7 @@
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button"class="btn boton" onclick="consultaMalla(${data.homologante});">
+                            <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
                                 Programado
                             </a>
                         </div>`)
@@ -342,7 +342,7 @@
             });
         }
 
-        /*function consultaProgramacion(codBanner) {
+        function consultaProgramacion(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -359,10 +359,11 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
                 }
             });
-        }*/
+        }
 
     </script>
     @include('layout.footer')

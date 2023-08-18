@@ -131,12 +131,28 @@
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            {{-- <div class="facultades" name="facultades" id="facultades">
-                                <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
-                                </div>
-                                <br>
-                            </div> --}}
+                            <ul>
+                                <li>
+                                    <h3>Codigo Estudiante:</h3>
+                                    <h4></h4>
+                                </li>
+                                <li>
+                                    <h3>Apellido</h3>
+                                    <h4></h4>
+                                </li>
+                                <li>
+                                    <h3>programa</h3>
+                                    <h4></h4>
+                                </li>
+                                {{-- <li>
+                                    <h3></h3>
+                                    <h4></h4>
+                                </li>
+                                <li>
+                                    <h3></h3>
+                                    <h4></h4>
+                                </li> --}}
+                            </ul>
                         </div>
                     </div>
                 </div>

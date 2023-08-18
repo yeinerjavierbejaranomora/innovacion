@@ -845,9 +845,9 @@ class facultadController extends Controller
         $periodos = [];
 
         foreach ($periodosActivos as $key){
-            $periodos = substr($key->periodos, 3, 5);
+            $dosUltimosDigitos = substr($key->periodos, -2);
+            $periodos[] = $dosUltimosDigitos;
         }
-
 
         dd($periodos);
         $programasActivos = DB::table('programasPeriodos as pP')

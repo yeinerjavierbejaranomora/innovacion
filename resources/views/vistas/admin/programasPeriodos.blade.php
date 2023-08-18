@@ -179,7 +179,7 @@
                                     <div class="col-6">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Pregrado
@@ -203,7 +203,7 @@
                                     <div class="col-6">
                                         <!--Especialización-->
                                         <div class="card">
-                                            <div class="card-header" id="heading3" style="width:100%;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Especialización
@@ -225,7 +225,7 @@
                                     <div class="col-6">
                                         <!--Maestría-->
                                         <div class="card">
-                                            <div class="card-header" id="heading4" style="width:100%;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Maestría

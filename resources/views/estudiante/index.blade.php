@@ -271,17 +271,17 @@
                 success: function(data){
                     if(data.homologante != ''){
                         $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" href="">
+                            <a type="button" class="btn boton" onclik="">
                                 Malla curricular
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button" class="btn boton" href="">
+                            <a type="button" class="btn boton" onclik="">
                                 Historial academico
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button"class="btn boton" href="">
+                            <a type="button"class="btn boton" onclik="">
                                 Programado
                             </a>
                         </div>`)

@@ -846,9 +846,17 @@ class facultadController extends Controller
 
         foreach ($periodosActivos as $key){
             $dosUltimosDigitos = substr($key->periodos, -2);
-            $periodos[] = $dosUltimosDigitos;
+        $periodos[] = $dosUltimosDigitos;
         }
 
-        return $periodos;
+        $nivelFormacion = DB::table('programasPeriodos as pP')
+            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
+            ->select('p.nivelFormacion')
+            ->whereIn('pP.periodo', $periodos)
+            ->groupBy('pP.periodo', 'p.nivelFormacion')
+            ->get();
+
+        dd($nivelFormacion);    
+        return $programasActivos;
     }
 }

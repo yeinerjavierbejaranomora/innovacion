@@ -853,7 +853,7 @@ class facultadController extends Controller
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
             ->select('p.nivelFormacion')
             ->whereIn('pP.periodo', $periodos)
-            ->get();
+            ->first();
 
         $data = [
             'periodo' => $periodos,

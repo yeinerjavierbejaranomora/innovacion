@@ -1239,7 +1239,7 @@ class InformeMafiController extends Controller
             $programas[] = $programa->programa;
         }
 
-        $periodos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
+        $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
         $periodosActivos = [];
         foreach ($periodos as $periodo)

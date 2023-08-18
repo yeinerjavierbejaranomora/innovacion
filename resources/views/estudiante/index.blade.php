@@ -309,7 +309,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-
+                    console.log(data);
                 }
             });
         }

@@ -279,7 +279,7 @@
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante},${data.programa});">
+                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
                                 Historial academico
                             </a>
                         </div>

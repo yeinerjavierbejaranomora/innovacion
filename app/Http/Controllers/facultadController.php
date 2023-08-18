@@ -849,6 +849,7 @@ class facultadController extends Controller
             $periodos = substr($key->periodos, 3, 5);
         }
 
+        
         dd($periodos);
         $programasActivos = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')

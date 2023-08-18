@@ -743,7 +743,7 @@
                                     confirmButtonText: 'Editar'
                                 }).then(result => {
                                     if (result.value) {
-                                        $.post("{{ route('periodo.update')}}", {
+                                        $.post("{{ route('programasPeriodos.actualizar')}}", {
                                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                                 id: encodeURIComponent(window.btoa(data.id)),
                                                 fecha: $(document).find('#fecha').val(),

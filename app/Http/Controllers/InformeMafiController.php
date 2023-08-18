@@ -1236,7 +1236,7 @@ class InformeMafiController extends Controller
 
         foreach ($programasConsulta as $programa)
         {
-            $programas =$programa->programa;
+            $programas[] =$programa->programa;
         }
 
         dd($programas);

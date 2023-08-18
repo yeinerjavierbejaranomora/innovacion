@@ -1227,8 +1227,6 @@ class InformeMafiController extends Controller
             }
         }
 
-        $programas = [];
-
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -1254,6 +1252,7 @@ class InformeMafiController extends Controller
         $matriculasSello = [];
 
         foreach ($programasConsulta as $programa) {
+
             $consultaSello = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE SELLO FINANCIERO')
@@ -1278,13 +1277,14 @@ class InformeMafiController extends Controller
             }
 
             if ($consultaRetencion) {
-                $matriculasRetencion[$programa->programa] = $consultaSello[0]->TOTAL;
+                $matriculasRetencion[$programa->programa] = $consultaRetencion[0]->TOTAL;
             } else {
                 $matriculasRetencion[$programa->programa] = 0;
             }
 
         }
-
+            $matriculasSello = array_reverse($matriculasSello);
+            $matriculasRetencion = array_reverse($matriculasRetencion);
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,

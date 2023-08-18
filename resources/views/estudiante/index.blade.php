@@ -111,7 +111,7 @@
                     <div class="col-sm-3 text-dark">
                         <p class="mb-0">Contraseña actual</p>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
                         <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
                     </div>
                 </div>

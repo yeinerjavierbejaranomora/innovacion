@@ -283,29 +283,37 @@
         function consultaHistorial() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
-                var formData = new FormData();
-                formData.append('codBanner',codBanner.val());
-                $.ajax({
-                    headers:{
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('historial.consulta') }}",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function(){
-                        codBanner.prop('disabled',true);
-                    },
-                    success: function(data){
-                        console.log(data);
-                    }
-                });
+
+                consultaEstudiante(codBanner.val());
+
             } else {
                 alert("ingrese su codigo de estudiante");
             }
         }
+
+        function consultaEstudiante(codBanner) {
+            alert(codBanner);
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consulta') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    codBanner.prop('disabled',true);
+                },
+                success: function(data){
+
+                }
+            });
+        }
+
     </script>
     @include('layout.footer')
 

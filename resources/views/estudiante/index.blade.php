@@ -288,7 +288,7 @@
                 formData.append('codBanner',codBanner.val());
                 $.ajax({
                     headers:{
-                        'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('historial.consulta') }}",

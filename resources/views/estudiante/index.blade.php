@@ -124,7 +124,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            {{-- <div class="row justify-content-between" id="">
+            <div class="row justify-content-between" id="">
                 <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
@@ -171,7 +171,7 @@
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
-            </div> --}}
+            </div>
 
 
 

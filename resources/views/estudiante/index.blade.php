@@ -108,12 +108,12 @@
             <div class="text-center" id="mensaje">
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
-            <div class="col-6 text-center" id="">
+            <div class="col-8 text-center" id="">
                 <div class="row">
-                    <div class="col-sm-2 text-dark">
+                    <div class="col-sm-3 text-dark">
                         <p class="mb-0">Codigo estudiante</p>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
                     <div class="col-sm-2">

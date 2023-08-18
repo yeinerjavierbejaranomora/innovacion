@@ -2851,10 +2851,7 @@
                             labels.push(meta);
                             values.push(data.metas[meta]);
                         })
-
-
-
-                        Object.keys(data.)
+                        
                         
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {

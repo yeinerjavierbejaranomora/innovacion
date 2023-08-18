@@ -2896,8 +2896,7 @@
                                             align: 'center',
                                         },                                      
                                         stack: 'Stack 0',
-                                    },
-                                ]
+                                    }]
                             },
                             options: {
                                 maintainAspectRatio: false,

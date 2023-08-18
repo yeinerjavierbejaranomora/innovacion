@@ -1214,6 +1214,22 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
+    public function graficoMetas(){
+
+        $metas = DB::table('programas_metas')->get();
+
+        $datos = [];
+        foreach ($metas as $meta){
+            $dato = $meta->meta;
+            if($dato != NULL ){
+                $datos[$meta->programa] = $dato;
+            }
+        }
+        
+        return $datos;
+    }
+
+
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos dacada grafico mafi
@@ -1405,7 +1421,6 @@ class InformeMafiController extends Controller
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 
-<<<<<<< HEAD
         */
 
       
@@ -1413,9 +1428,11 @@ class InformeMafiController extends Controller
     
 
 
-=======
-         */
->>>>>>> e4c815d60f6d3a1d59cbf5d0a0223f4788a306e8
     }
+    
 
+
+
+
+    
 }

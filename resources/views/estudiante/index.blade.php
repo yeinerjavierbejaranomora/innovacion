@@ -243,7 +243,7 @@
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
-                consultaMalla(codBanner.val());
+
                 consultaHistorial(codBanner.val());
                 consultaProgramacion(codBanner.val());
 
@@ -271,7 +271,7 @@
                 success: function(data){
                     if(data.homologante != ''){
                         $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclik="">
+                            <a type="button" class="btn boton" onclik="consultaMalla(${data.homologante});">
                                 Malla curricular
                             </a>
                         </div>

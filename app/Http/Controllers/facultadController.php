@@ -871,7 +871,7 @@ class facultadController extends Controller
 
         $informacionOriginal = DB::table('programasPeriodos')->where('id', $id)->first();
 
-        $periodo = DB::table('periodo')
+        $periodo = DB::table('programasPeriodos')
             ->where('id', $id)
             ->update([
                 'fecha_inicio' => $fecha

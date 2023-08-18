@@ -130,18 +130,41 @@
                         <div class="card-header text-center">
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <h3>Codigo Estudiante:</h3>
-                            <h4></h4>
-                            <h3>Apellido</h3>
-                            <h4></h4>
-                            <h3>programa</h3>
-                            <h4></h4>
+                        <div class="card-body">
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <p class="mb-0">Código estudiante</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <p class="mb-0">Apellido</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 text-dark">
+                                    <p class="mb-0">Programa</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <br>
+                            </div>
                         </div>
 
                     </div>
-                </div>
-                {{-- <div class="col-4 text-start">
+
+                    {{-- <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -166,7 +189,8 @@
                         </div>
                     </div>
                 </div> --}}
-            </div>
+                </div>
+
 
             {{-- <div class="row">
                 <button class="btn" type="button" id="generarReporte">

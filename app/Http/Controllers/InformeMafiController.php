@@ -1263,14 +1263,12 @@ class InformeMafiController extends Controller
                 ->get();
 
             if($consulta){
-                $matriculasSello[$programa->programa] = $consulta;
+                $matriculasSello[$programa->programa] = $consulta[0]->TOTAL;
             }            
             else{
                 $matriculasSello[$programa->programa] = 0;
             }
         }
-
-        dd($consulta);
 
         dd($matriculasSello);
 

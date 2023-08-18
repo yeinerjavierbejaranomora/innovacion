@@ -284,7 +284,7 @@
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
 
-                consultaEstudiante(codBanner);
+                consultaEstudiante(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");
@@ -292,8 +292,9 @@
         }
 
         function consultaEstudiante(codBanner) {
+            alert(codBanner);
             var formData = new FormData();
-            formData.append('codBanner',codBanner.val());
+            formData.append('codBanner',codBanner);
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -1261,7 +1261,7 @@ class InformeMafiController extends Controller
         ->where('sello', 'TIENE SELLO FINANCIERO')
         ->whereIn('periodo',$periodosActivos)
         ->whereIn('codprograma', $programas)
-        ->whereIn('tipo_estudiante', $tiposEstudiante)
+        ->whereIn('tipoestudiante', $tiposEstudiante)
         ->groupBy('codprograma')
         ->get();
 
@@ -1269,7 +1269,6 @@ class InformeMafiController extends Controller
 
         return $datos;
     }
-
 
     /**
      * Método para guardar todo los historicos de los graficos

@@ -1216,13 +1216,13 @@ class InformeMafiController extends Controller
 
     public function graficoMetas(){
 
-        $metas = DB::table('programas_metas')->get();
+        $consultaMetas = DB::table('programas_metas')->get();
 
-        $datos = [];
-        foreach ($metas as $meta){
+        $metas = [];
+        foreach ($consultaMetas as $meta){
             $dato = $meta->meta;
             if($dato != null){
-                $datos[$meta->programa] = $dato;
+                $metas[$meta->programa] = $dato;
             }
         }
 
@@ -1275,8 +1275,11 @@ class InformeMafiController extends Controller
         ->groupBy('codprograma')
         ->get();
 
-
-        dd($matriculasSello, $matriculasRetencion, $datos);
+        $datos = [
+            $metas,
+            $matriculasSello,
+            $matriculasRetencion,
+        ];
 
         return $datos;
     }

@@ -1276,8 +1276,8 @@ class InformeMafiController extends Controller
         ->get();
 
         $datos = [
-            'metas'=>$metas,
-            'matriculaSello' =>$matriculasSello,
+            'metas' => $metas,
+            'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
 

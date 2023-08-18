@@ -274,7 +274,7 @@
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante},'${data.programa}');">
+                            <a type="button" class="btn boton" onclick="consultaMalla('${data.programa}');">
                                 Malla curricular
                             </a>
                         </div>
@@ -296,7 +296,7 @@
             });
         }
 
-        function consultaMalla(codBanner,programa) {
+        function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);
             formData.append('programa',programa);

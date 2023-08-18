@@ -286,9 +286,9 @@
                             </a>
                         </div>`)
                     }else{
-                        $('#codigo').prop('disabled',true);
+                        $('#codigo').prop('disabled',false);
                     }
-                    $('#codigo').prop('disabled',true);
+                    $('#codigo').prop('disabled',false);
                 }
             });
         }

@@ -2836,12 +2836,14 @@
                     url: url,
                     data: data,
                     success: function(data) {
+
                         try {
                             data = jQuery.parseJSON(data);
                         } catch {
                             data = data;
                         }
-
+                        
+                        console.log(data);
                         var labels = [];
                         var values = [];
                         Object.keys(data).forEach(metas => {

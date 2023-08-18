@@ -269,8 +269,8 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
-                        $('#codigo').prop('disabled',false);
                         $('#botones').emty();
                         $('#botones').append(`<div class="col 4 text-center">
                             <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante});">

@@ -1222,7 +1222,7 @@ class InformeMafiController extends Controller
         $programas = [];
         foreach ($metas as $meta){
             $dato = $meta->meta;
-            if($dato != 'null'){
+            if($dato != null){
                 $programas[]= $meta->programa;
                 $datos[$meta->programa] = $dato;
             }

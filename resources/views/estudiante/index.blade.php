@@ -281,13 +281,13 @@
     </div>
     <script>
         function consultaHistorial() {
-            let codBanner = $('#codigo')
+            let codBanner = $('#codigo');
             if (codBanner.val() != '') {
                 var formData = new FormData();
                 formData.append('codBanner',codBanner);
                 $.ajax({
                     headers:{
-                        'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content');
+                        'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content')
                     },
                     type: 'post',
                     url: "{{ route('historial.consulta') }}",

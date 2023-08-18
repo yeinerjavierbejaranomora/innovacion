@@ -1247,12 +1247,11 @@ class InformeMafiController extends Controller
             $periodosActivos[] = $periodo->periodos;
         }
 
-        dd($periodosActivos);
 
         $matriculas = DB::table('datosMafi')
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
         ->where('sello', 'TIENE SELLO FINANCIERO')
-        ->where('periodo',$periodosActivos)
+        ->whereIn('periodo',$periodosActivos)
         ->whereIn('codprograma', $programas)
         ->groupBy('codprograma')
         ->get();

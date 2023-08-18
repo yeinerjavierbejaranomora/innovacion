@@ -1226,11 +1226,18 @@ class InformeMafiController extends Controller
             }
         }
 
-        $programas = DB::table('programas_metas')
+        $programas = [];
+
+        $programasConsulta = DB::table('programas_metas')
         ->select('programa')
         ->whereNotNull('meta')
         ->groupBy('programa')
         ->get();
+
+        foreach ($programasConsulta as $programa)
+        {
+            $programas =$programa->programa;
+        }
 
         dd($programas);
 

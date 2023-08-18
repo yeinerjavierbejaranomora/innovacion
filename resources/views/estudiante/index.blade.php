@@ -300,7 +300,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('historial.consultaestudiante') }}",
+                url: "{{ route('historial.consulta') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

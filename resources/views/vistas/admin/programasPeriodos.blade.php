@@ -380,8 +380,8 @@
                     method: 'post',
                     async: false,
                     success: function(data) {
-                        console.log(data);
                         data.forEach(periodo => {
+                            console.log(periodo);
                             periodosSeleccionados.push(periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);

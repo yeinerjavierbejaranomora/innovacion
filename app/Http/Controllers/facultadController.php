@@ -774,7 +774,7 @@ class facultadController extends Controller
     public function getProgramasPeriodos(Request $request)
     {
         $periodos = $request->input('periodos');
-
+        
         $data = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->get();
 
         header("Content-Type: application/json");
@@ -840,6 +840,10 @@ class facultadController extends Controller
      */
     public function programasActivos()
     {
+        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodo')->first();
+        dd($periodosActivos);
+
+
         $programasActivos = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
             ->select('p.nivelFormacion', 'pP.periodo')

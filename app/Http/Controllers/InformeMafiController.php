@@ -1222,13 +1222,13 @@ class InformeMafiController extends Controller
         $programas = [];
         foreach ($metas as $meta){
             $dato = $meta->meta;
-            if($dato != NULL ){
+            if($dato != 'NULL' ){
                 $programas[]= $meta->programa;
                 $datos[$meta->programa] = $dato;
             }
         }
 
-        dd($datos);
+        dd($programas);
 
         $matriculas = DB::table('datosMafi')->where('sello','TIENE SELLO FINANCIERO')
         ->whereIn('codprograma',$programas)

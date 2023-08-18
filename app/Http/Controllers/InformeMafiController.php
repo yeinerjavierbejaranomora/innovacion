@@ -1254,7 +1254,7 @@ class InformeMafiController extends Controller
         $matriculasSello = [];
 
         foreach ($programasConsulta as $programa) {
-            $consulta = DB::table('datosMafi')
+            $consultaSello = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE SELLO FINANCIERO')
                 ->whereIn('periodo', $periodosActivos)
@@ -1262,32 +1262,36 @@ class InformeMafiController extends Controller
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->get();
 
-            if($consulta){
-                $matriculasSello[$programa->programa] = $consulta[0]->TOTAL;
-            }            
-            else{
+            $consultaRetencion = DB::table('datosMafi')
+                ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'))
+                ->where('sello', 'TIENE RETENCION')
+                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                ->whereIn('periodo', $periodosActivos)
+                ->where('codprograma', $programa->programa)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            if ($consultaSello) {
+                $matriculasSello[$programa->programa] = $consultaSello[0]->TOTAL;
+            } else {
                 $matriculasSello[$programa->programa] = 0;
             }
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$programa->programa] = $consultaSello[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$programa->programa] = 0;
+            }
+
         }
-
-        dd($matriculasSello);
-
-
-        $matriculasRetencion = DB::table('datosMafi')
-            ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'), 'codprograma')
-            ->where('sello', 'TIENE RETENCION')
-            ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-            ->whereIn('periodo', $periodosActivos)
-            ->whereIn('codprograma', $programas)
-            ->whereIn('tipoestudiante', $tiposEstudiante)
-            ->groupBy('codprograma')
-            ->get();
 
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
+
+        dd($datos);
 
         return $datos;
     }

@@ -131,48 +131,34 @@
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body">
-                            <div>
-                                <h3 class="text-center">
-                                    Cambio de contraseña
-                                </h3>
-                            </div>
                             <hr>
-
-                            <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Contraseña actual</p>
+                                    <p class="mb-0">Código estudiante</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
+                                    <p class="text-muted mb-0"></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Contraseña nueva</p>
+                                    <p class="mb-0">Apellido</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><input class="form-control" type="password" name="password" placeholder="Contraseña nueva" id="nueva" required></p>
+                                    <p class="text-muted mb-0"></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3 text-dark">
-                                    <p class="mb-0">Confirmar contraseña</p>
+                                    <p class="mb-0">Programa</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p> <input class="form-control" type="password" name="password_confirmacion" placeholder="Confirmar contraseña" id="confirmar" required></p>
+                                    <p></p>
                                 </div>
                             </div>
                             <br>
-                            {{-- <button type="submit" class="form-btn" onclick="return validacion()">
-                Cambiar contraseña
-            </button> --}}
-                            <div class="d-flex justify-content-center mb-2">
-                                <button type="submit" class="btn btn-secondary">
-                                    Cambiar contraseña
-                                </button>
                             </div>
                         </div>
 

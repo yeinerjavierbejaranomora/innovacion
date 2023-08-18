@@ -131,15 +131,15 @@
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div>
+                            <div class="row">
                                 <h3>Codigo Estudiante:</h3>
                                 <h4></h4>
                             </div </div>
-                            <div>
+                            <div class="row">
                                 <h3>Apellido</h3>
                                 <h4></h4>
                             </div>
-                            <div>
+                            <div class="row">
                                 <h3>programa</h3>
 
                                 <h4></h4>

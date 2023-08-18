@@ -1218,8 +1218,19 @@ class InformeMafiController extends Controller
        
          /// traemos todos los programas
          $programas=DB::table('programas')->get();
+         foreach ($periodos as $key_periodos => $val_periodos) {
+            # code...idprograma	meta	periodo
+            DB::table('historico_graficos')->insert([
+                'programa'=>'Total estudiantes Banner',
+                'meta'=>json_encode($Total_estudiantes_Banner),
+                'periodo'=>'todos',
+                'facultad'=>'todos',
+                'programa'=>'todos',
+                'fecha'=>date("d-m-Y"),
+            ]);
+         }
         
-
+        /*
          foreach ($periodos as $key_periodos => $val_periodos) {
 
             foreach ( $programas as $key_programas => $val_programas) {
@@ -1409,7 +1420,7 @@ class InformeMafiController extends Controller
 
       
     
-       
+    
 
 
     }

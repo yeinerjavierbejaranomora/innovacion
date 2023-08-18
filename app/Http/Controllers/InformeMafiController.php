@@ -1219,14 +1219,18 @@ class InformeMafiController extends Controller
         $metas = DB::table('programas_metas')->get();
 
         $datos = [];
-        $programas = [];
         foreach ($metas as $meta){
             $dato = $meta->meta;
             if($dato != null){
-                $programas[]= $meta->programa;
                 $datos[$meta->programa] = $dato;
             }
         }
+
+        $programas = DB::table('programas_metas')
+        ->select('programa')
+        ->whereNotNull('meta')
+        ->groupBy('programa')
+        ->get();
 
         dd($programas);
 

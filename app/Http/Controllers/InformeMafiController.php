@@ -1257,29 +1257,20 @@ class InformeMafiController extends Controller
        
          /// traemos todos los programas
          $programas=DB::table('programas')->get();
-         foreach ($periodos as $key_periodos => $val_periodos) {
-            # code...idprograma	meta	periodo
-            DB::table('historico_graficos')->insert([
-                'programa'=>'Total estudiantes Banner',
-                'meta'=>json_encode($Total_estudiantes_Banner),
-                'periodo'=>'todos',
-                'facultad'=>'todos',
-                'programa'=>'todos',
-                'fecha'=>date("d-m-Y"),
-            ]);
-         }
+  
         
-        /*
-         foreach ($periodos as $key_periodos => $val_periodos) {
+      
+         foreach ($programas as $key_periodos => $val_programas) {
 
 
                 //-- estado financiero
                 $Estado_Financiero = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+                    ->where('codprograma',$val_programas)
                     ->groupBy('sello')
                     ->orderByDesc('TOTAL')
                     ->get();
-
+                    dd($Estado_Financiero);
                 // //--- insertamos los datos  del Estado_Financiero todos
                 // DB::table('historico_graficos')->insert([
                 //     'grafico'=>'Estado Financiero',
@@ -1427,17 +1418,17 @@ class InformeMafiController extends Controller
                     $Operadores,
                     $Programas_con_mayor_cantidad_de_admitidos
                 );
-            }
-            # code...
         }
-
+            # code...
+  
+    
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 
         */
 
       
-    
+
     
 
 

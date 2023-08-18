@@ -382,18 +382,18 @@
                     success: function(data) {
                         console.log(data);
                         data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodo);
+                            periodosSeleccionados.push(periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
-                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "PROFESIONAL") {
-                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "ESPECIALISTA") {
-                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "MAESTRIA") {
-                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
                             }
                         });
                     }

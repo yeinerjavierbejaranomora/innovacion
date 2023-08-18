@@ -840,7 +840,7 @@ class facultadController extends Controller
      */
     public function programasActivos()
     {
-        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodos')->first();
+        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodos')->get();
         dd($periodosActivos);
 
         $programasActivos = DB::table('programasPeriodos as pP')

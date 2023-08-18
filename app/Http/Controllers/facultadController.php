@@ -94,9 +94,7 @@ class facultadController extends Controller
      */
     public function get_programas()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'programas.activo', 'programas.idFacultad', 'facultad.nombre')
-            ->where('programas.tabla', '=', 'pregrado')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'PROFESIONAL')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -109,11 +107,9 @@ class facultadController extends Controller
      */
     public function get_especializacion()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'especializacion')->get();
+        $especializacion = DB::table('programas')->where('nivelFormacion', '=', 'ESPECIALISTA')->get();
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
+        echo json_encode(array('data' => $especializacion));
     }
 
     /** 
@@ -124,9 +120,7 @@ class facultadController extends Controller
      */
     public function get_maestria()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'MAESTRIA')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'MAESTRIA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -139,9 +133,7 @@ class facultadController extends Controller
      */
     public function get_continua()
     {
-        $programas = DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
-            ->select('programas.id', 'programas.codprograma', 'programas.programa', 'facultad.nombre', 'programas.activo', 'programas.idFacultad')
-            ->where('programas.tabla', '=', 'EDUCACION CONTINUA')->get();
+        $programas = DB::table('programas')->where('nivelFormacion', '=', 'EDUCACION CONTINUA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $programas));
     }
@@ -408,32 +400,17 @@ class facultadController extends Controller
         endif;
     }
 
-    /** Función para visualizar la vista de los programas del usuario */
-
+    /** 
+     * Función para visualizar la vista de los programas del usuario 
+     * */
     public function programasUsuario($nombre)
     {
-        // Se obtiene el id del programa que recibe el metodo
-        $consulta = DB::table('facultad')->where('nombre', '=', $nombre)->get();
-        $idFacultad = $consulta[0]->id;
-        // Se consulta cuales son los programas que se encuentran activos
-        $programas = DB::table('programas')->where('idFacultad', '=', $idFacultad)->where('activo', '=', 1)->select('programa', 'id', 'codprograma')->get();
-        $cuenta = array();
-        // Con este foreach se cuentan los alumnos inscritos en el programa
-        foreach ($programas as $key => $value) {
-            $cantidad = DB::table('estudiantes')->where('programa', '=', $value->codprograma)->count();
-            // array_push($cuenta, $cantidad);
-            $cuenta[$value->codprograma] = $cantidad;
-        }
-        // Se almacena el nombre de la facultad y los programas que se encuentra activos en la variable datos 
-        $datos = array(
-            'facultad' => $nombre,
-            'programas' => $programas,
-        );
-
-        return view('vistas.admin.facultades', ['estudiantes' => $cuenta, 'idFacultad' => $idFacultad])->with('datos', $datos);
+        return view('vistas.admin.facultades', ['nombre' => $nombre]);
     }
 
-    /**Función para visualizar los estudiantes de cada facultad */
+    /**
+     * Función para visualizar los estudiantes de cada facultad 
+     * */
     public function estudiantesFacultad($id)
     {
         $consulta = DB::table('programas')->where('id', '=', $id)->get();
@@ -789,4 +766,96 @@ class facultadController extends Controller
         LogUsuariosController::registrarLog('INSERT', $mensaje, $tabla, json_encode($informacionOriginal), NULL);
     }
 
+    public function vistaProgramasPeriodos()
+    {
+        return view('vistas.admin.programasPeriodos');
+    }
+
+    public function getProgramasPeriodos(Request $request)
+    {
+        $periodos = $request->input('periodos');
+        
+        $data = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
+    }
+
+    public function getProgramasPeriodosFacultad(Request $request)
+    {
+        $periodos = $request->input('periodos');
+        $facultades = $request->input('idfacultad');
+        $data = DB::table('programasPeriodos as Pp')
+            ->join('programas as p', 'Pp.codPrograma', '=', 'p.codprograma')
+            ->whereIn('Pp.periodo', $periodos)
+            ->whereIn('p.Facultad', $facultades)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
+    }
+
+    /** Función para desactivar los periodos */
+    public function inactivarProgramaPeriodo()
+    {
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
+        $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        if ($inactivarPeriodo) :
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    /** 
+     * Función para activar los periodos 
+     * */
+    public function activarProgramaPeriodo()
+    {
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        $activarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 1]);
+        $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
+        if ($activarPeriodo) :
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return  "habilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+    /**
+     * Método que trae los periodos activos de cada programas
+     */
+    public function programasActivos()
+    {
+        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodos')->get();
+
+        $periodos = [];
+
+        foreach ($periodosActivos as $key){
+            $dosUltimosDigitos = substr($key->periodos, -2);
+        $periodos[] = $dosUltimosDigitos;
+        }
+
+        $nivelFormacion = DB::table('programasPeriodos as pP')
+            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
+            ->select('p.nivelFormacion','pP.periodo')
+            ->whereIn('pP.periodo', $periodos)
+            ->groupBy('p.nivelFormacion', 'pP.periodo')
+            ->get();
+ 
+        return $nivelFormacion;
+    }
 }

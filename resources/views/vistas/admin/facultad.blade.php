@@ -57,7 +57,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-4 justify-content-center">
                             <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
                         </div>

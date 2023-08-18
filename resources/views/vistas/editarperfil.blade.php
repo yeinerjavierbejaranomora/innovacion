@@ -2,7 +2,38 @@
 
 @include('layout.header')
 
-@include('menus.menu_admin')
+
+@auth
+    @switch(auth()->user()->id_rol)
+        @case (1)
+        @include('menus.menu_Decano')
+            @break;     
+        @case (2)
+        @include('menus.menu_Director')
+            @break;
+        @case (3)
+        @include('menus.menu_Coordinador')
+            @break;  
+        @case (4)
+        @include('menus.menu_Lider')
+            @break;  
+        @case (5)
+        @include('menus.menu_Docente')
+            @break;  
+        @case (6)
+        @include('menus.menu_Estudiante')
+            @break;  
+        @case (9)
+            @include('menus.menu_admin')
+            @break;  
+        @case (19)
+            @include('menus.menu_rector') 
+            @break;
+        @case (20)
+            @include('menus.menu_Vicerrector')  
+            @break;         
+    @endswitch
+@endauth
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
@@ -179,7 +210,7 @@
                                                 <p class="mb-0">Id Banner</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"> <input type="text"
+                                                <p class="text-muted mb-0"> <input type="number"
                                                         class="form-control" name="id_banner"
                                                         value="{{ $datos['user']->id_banner }}"
                                                         {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
@@ -205,8 +236,7 @@
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0"> <input type="text"
                                                         class="form-control" name="nombre"
-                                                        value="{{ $datos['user']->nombre }}"
-                                                        {{ auth()->user()->id_rol != 9 ? 'disabled' : '' }}></p>
+                                                        value="{{ $datos['user']->nombre }}"></p>
                                             </div>
                                         </div>
                                         <hr>
@@ -239,13 +269,13 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <hr>
+                                        <hr {{ auth()->user()->id_rol != 9 ? 'style=display:none;' : '' }}>
                                         @if ($facultades != '' || ($facultades = null))
-                                            <div class="row">
+                                            <div class="row" {{ auth()->user()->id_rol != 9 ? 'style=display:none;' : '' }}>
                                                 <div class="col-sm-3 text-dark">
                                                     <p class="mb-0">Facultad</p>
                                                 </div>
-                                                <select class="form-select" name="facultades" id="facultades">
+                                                <select class="form-select" name="facultades" id="facultades" >
                                                     @if ($datos['user']->id_facultad == '')
                                                         <option value="" selected>Seleccione una facultad</option>
                                                         @foreach ($facultades as $facultad)
@@ -253,7 +283,7 @@
                                                                 {{ $facultad->nombre }}</option>
                                                         @endforeach
                                                     @else
-                                                        <option value="" selected>Seleccione una facultad</option>
+                                                        <option value="" selected >Seleccione una facultad</option>
                                                         @foreach ($facultades as $facultad)
                                                             <option
                                                                 {{ $facultad->id == $datos['user']->id_facultad ? 'selected="selected"' : '' }}

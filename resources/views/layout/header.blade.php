@@ -25,9 +25,9 @@
     {{-- <script src="{{asset('public/general/vendor/jquery/jquery.min.js')}}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    {{-- Datatale --}}
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    {{-- Datatable --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" defer>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" defer></script>
 
     {{-- SweetAlert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

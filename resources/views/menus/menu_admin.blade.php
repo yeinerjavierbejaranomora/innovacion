@@ -5,6 +5,17 @@
 }
 ?>
 
+<style>
+    .textoPequeño{
+        font-size: 14px;
+        text-transform: lowercase;
+    }
+
+    #accordionSidebar {
+    width: 260px!important;
+}
+</style>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -56,9 +67,9 @@
             <div class="bg-white py-2 collapse-inner rounded" id="Facultades">
             <?php $facultades=facultades()?>
             @foreach ($facultades as $facultad)
-            <a href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" return="['facultades'=>$facultades]"] class="collapse-item">
+            <a class="collapse-item textoPequeño" href="{{ route('programa.usuario', ['nombre' => $facultad->nombre]) }}" >
                 {{$facultad->nombre}}               
-            </a>   
+            </a>
             @endforeach
         </div>
         </div>
@@ -81,6 +92,7 @@
                 <a class="collapse-item" href="{{ route('facultad.continua') }}">Educación continua</a>
                 <a class="collapse-item" href="{{ route('facultad.periodos') }}">Periodos</a>
                 <a class="collapse-item" href="{{ route('facultad.reglas') }}">Reglas de negocio</a>
+                <a class="collapse-item" href="{{ route('programasPeriodos.view') }}">Periodos - Programas</a>
 
 
             </div>

@@ -1,8 +1,6 @@
-<!-- incluimos el header para el html -->
 @include('layout.header')
 
-<!-- incluimos el menu -->
-@include('menus.menu_admin')
+@include('menus.menu_Director')
 <!--  creamos el contenido principal body -->
 
 <style>
@@ -26,6 +24,25 @@
         font-size: 14px;
     }
 
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 12px;
+    }
+
+    #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
         background-color: #dfc14e;
@@ -39,14 +56,11 @@
         font-size: 14px;
     }
 
+    #cardProgramas,
+    #cardPeriodos,
     #cardFacultades {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #cardProgramas {
-        min-height: 405.6px;
-        max-height: 405.6px;
+        min-height: 250px;
+        max-height: 250px;
     }
 
     .card {
@@ -57,27 +71,23 @@
         display: none;
     }
 
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
-    }
-
-    #centrar {
-        display: flex;
-        align-items: center;
-    }
 
     .graficos {
         min-height: 460px;
         max-height: 460px;
     }
 
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #tiposEstudiantesTotal,
     #operadoresTotal,
     #programasTotal {
         height: 600px !important;
     }
 </style>
-
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -106,66 +116,81 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Facultad de {{$nombre}}</strong></h1>
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Programas</strong></h1>
             </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h4>Aquí puedes visualizar el informe completo de {{$nombre}}, por defecto visualizas toda la
-                    información de la facultad, si quieres ver algunos programas en específico, seleccionalos.
-                </h4>
+                <h3>A continuación podrás visualizar los datos de tus Programas:
+
+                    @foreach ($programas as $programa)
+                    {{$programa->codprograma}} -
+                    @endforeach
+                </h3>
             </div>
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-start" id="">
-                <div class="col-6 text-start">
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-star" style="overflow: auto;">
-                            <div name="programas" id="programas">
-                                <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label><br>
-                            </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <button class="btn" type="button" id="generarReporte">
-                                Generar Reporte
-                            </button>
+            <div class="row justify-content-center" ">
+            <div class=" col-6 text-star">
+                <div class="card shadow mb-5" id="cardPeriodos">
+                    <div class="card-header text-center">
+                        <h5><strong>Seleccionar Periodos</strong></h5>
+                    </div>
+                    <div class="card-body text-start" id="centrar" style="overflow: auto;">
+                        <div name="periodos" id="periodos">
                         </div>
                     </div>
-
-                </div>
-                <div class=" col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 class="facultadtitulos"><strong>Estudiantes {{$nombre}}</strong></h5>
-                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
-                                <h5>No hay datos por mostrar</h5>
-                            </div>
-                            <canvas id="estudiantes"></canvas>
-                        </div>
+                    <div class="card-footer text-center" style="height: 55px;">
+                        <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
+                        <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                     </div>
                 </div>
             </div>
+            <div class=" col-6 text-start" id="colCardProgramas">
+                <div class="card shadow mb-5" id="cardProgramas">
+                    <div class="card-header text-center">
+                        <h5><strong>Seleccionar Programas</strong></h5>
+                    </div>
+                    <div class="card-body text-star" style="overflow: auto;">
+                        <div name="programas" id="programas">
+                            @foreach ($programas as $programa)
+                            <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="card-footer text-center" style="height: 55px;">
+                        <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                        <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
+        <div class="row text-center justify-content-center">
+            <button class="btn" type="button" id="generarReporte">
+                Generar Reporte
+            </button>
         </div>
 
         <div class="row justify-content-start mt-5">
+            <div class=" col-6 text-center" id="colEstudiantes">
+                <div class="card shadow mb-5 graficos">
+                    <div class="card-header">
+                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="estudiantes"></canvas>
+                    </div>
+                </div>
+            </div>
             <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Sello finaciero {{$nombre}}</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -173,13 +198,10 @@
             <div class="col-6 text-center" id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Con Sello de Retención (ASP) {{$nombre}}</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
+                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
@@ -187,41 +209,35 @@
             <div class="col-6 text-center" id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Estudiantes primer ingreso con tipos de sellos {{$nombre}}</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
+                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Tipos de estudiantes {{$nombre}}</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
+                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="tipoEstudiante"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalTiposEstudiantes" class="btn" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
                     </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="colOperadores">
-                <div class="card shadow mb-6 graficos">
+                <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Operadores {{$nombre}}</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
-                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
                         <canvas id="operadores"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -229,73 +245,137 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center" id="colProgramas">
-                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
-                    <div class="card-header">
-                        <h5 class="facultadtitulos"><strong>Programas con mayor cantidad de admitidos {{$nombre}}</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="estudiantesProgramas"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <br>
-
-        <!-- Modal Todos los Operadores de la Ibero -->
-        <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Operadores</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="operadoresTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Todos los Programas de la Ibero -->
-        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Programas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="programasTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        traerProgramas();
+    <br>
+
+    <!-- Modal Todos los Operadores de la Ibero -->
+    <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">Operadores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="operadoresTotal"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Todos los Tipos de estudiantes -->
+    <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="tiposEstudiantesTotal"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        var tabla = 'Mafi';
+
+        programasUsuario();
+        vistaEntrada();
+
+        var periodosSeleccionados = [];
+        periodos();
         invocarGraficos();
-        graficoProgramasFacultad();
-        var totalSeleccionado
+        getPeriodos();
+
+        var totalSeleccionado;
+        var totalPeriodos;
+
+        var programasSeleccionados = [];
+
+        var programasSelect;
+
+        // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
+        $(document).ajaxStart(function() {
+            $('div #programas input[type="checkbox"]').prop('disabled', true);
+            $('#generarReporte').prop("disabled", true);
+        });
+
+        // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+        $(document).ajaxStop(function() {
+            $('div #programas input[type="checkbox"]').prop('disabled', false);
+            $('#generarReporte').prop("disabled", false);
+        });
+
+        function programasUsuario() {
+            <?php
+            $datos = array();
+            foreach ($programas as $programa) {
+                $datos[] = $programa->codprograma;
+            }
+            ?>;
+            programasSeleccionados = <?php echo json_encode($datos); ?>;
+            programasSelect = programasSeleccionados;
+        }
+
+        /**
+         * Método que trae los periodos activos
+         */
+        function periodos() {
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('periodos.activos') }}",
+                method: 'post',
+                async: false,
+                success: function(data) {
+                    data.forEach(periodo => {
+                        periodosSeleccionados.push(periodo.periodos);
+                        $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                    });
+                }
+            });
+            console.log(periodosSeleccionados);
+        }
+
+        function vistaEntrada() {
+            var key = Object.keys(programasSelect);
+            var cantidadProgramas = key.length;
+            var valorPrograma = programasSelect[key[0]];
+
+            if (cantidadProgramas === 1) {
+                $('#colCardProgramas').hide();
+                var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
+                $("#mensaje").html(textoNuevo);
+            }
+
+        }
+
+        function getPeriodos() {
+            periodosSeleccionados = [];
+            var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                periodosSeleccionados.push($(this).val());
+            });
+            return periodosSeleccionados;
+        }
 
         /**
          * Método que trae los gráficos de la vista
@@ -309,6 +389,22 @@
             graficoOperadores();
         }
 
+        $('#deshacerPeriodos').on('click', function(e) {
+            $('#periodos input[type="checkbox"]').prop('checked', false);
+        });
+
+        $('#seleccionarPeriodos').on('click', function(e) {
+            $('#periodos input[type="checkbox"]').prop('checked', true);
+        });
+
+        $('#deshacerProgramas').on('click', function(e) {
+            $('#programas input[type="checkbox"]').prop('checked', false);
+        });
+
+        $('#seleccionarProgramas').on('click', function(e) {
+            $('#programas input[type="checkbox"]').prop('checked', true);
+        });
+
         /**
          * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
          */
@@ -321,37 +417,47 @@
          */
         function Contador() {
             totalSeleccionado = $('#programas input[type="checkbox"]').length;
-            totalSeleccionado -= 1;
+            totalPeriodos = $('#periodos input[type="checkbox"]').length;
         }
 
-        /**
-         * Método que trae los programas correspondientes a la facultad 
-         */
+        function limpiarTitulos() {
+            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+            var parteEliminar = ': ';
+            elementosTitulos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+            var parteTituloEliminar = 'Periodo: ';
+            var titulosPeriodos = $('.tituloPeriodo').find("strong");
+            titulosPeriodos.each(function() {
+                var contenidoActual = $(this).text();
+                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                $(this).text(contenidoLimpio);
+            });
+        }
 
-        function traerProgramas() {
-            var formData = new FormData();
-            formData.append('idfacultad[]', "<?= $nombre ?>");
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('traer.programas') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(datos) {
-                    try {
-                        datos = jQuery.parseJSON(datos);
-                    } catch {
-                        datos = datos;
-                    }
-                    $.each(datos, function(key, value) {
-                        $('#programas').append(`<label class="hidden todosProgramas"><input type="checkbox" id="" name="programa[]" value="${value.codprograma}"> ${value.nombre}</label><br>`);
-                    });
-                }
-            })
+        function estadoUsuario() {
+            limpiarTitulos();
+            var periodos = getPeriodos();
+            $("#mensaje").empty();
+            var periodosArray = Object.values(periodos);
+            var periodosFormateados = periodosArray.map(function(periodo) {
+                return periodo.replace(/2023/, '').trim();
+            }).join(' - ');
+
+            if (programasSeleccionados.length > 1) {
+                var programasArray = Object.values(programasSeleccionados);
+                var programasFormateados = programasArray.join(' - ');
+                var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+                $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasFormateados);
+            } else {
+                var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasSeleccionados);
+            }
+            $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+            $("#mensaje").show();
+            $("#mensaje").html(textoNuevo);
         }
 
         /**
@@ -364,15 +470,6 @@
         /**
          * Controlador del botón mostrarTodos
          */
-        $('body').on('change', '#mostrarTodos', function() {
-            if ($('#mostrarTodos').prop('checked')) {
-                location.reload();
-            } else {
-                $('.todosProgramas').removeClass('hidden');
-                destruirGraficos();
-                ocultarDivs();
-            }
-        });
 
         function alerta() {
             Swal.fire({
@@ -383,40 +480,64 @@
             })
         }
 
+        function alertaPeriodo() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes seleccionar al menos un periodo',
+                confirmButtonColor: '#dfc14e',
+            })
+        }
+
         /**
          * Controlador botón generarReporte
          */
-        var programasSeleccionados = [];
+
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
-            if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado) {
-                    location.reload();
+            Contador();
+            var periodosSeleccionados = getPeriodos();
+            if (periodosSeleccionados.length > 0) {
+                if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                    if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos == totalPeriodos) {
+                        location.reload();
+                    }
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    console.log(programasSeleccionados);
+                    estadoUsuario();
+                    graficosporPrograma();
+                } else {
+                    programasSeleccionados = [];
+                    $("#mensaje").empty();
+                    destruirGraficos();
+                    ocultarDivs();
+                    alerta();
                 }
-                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                programasSeleccionados = [];
-                checkboxesProgramas.each(function() {
-                    programasSeleccionados.push($(this).val());
-                });
-                graficosporPrograma();
             } else {
                 programasSeleccionados = [];
+                periodosSeleccionados = [];
+                $("#mensaje").empty();
                 destruirGraficos();
                 ocultarDivs();
-                alerta();
+                alertaPeriodo();
             }
+
         });
 
         function graficosporPrograma() {
             if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
                 chartTipoEstudiante || chartOperadores) {
                 destruirGraficos();
-                $(".facultadtitulos").hide();
-                $(".programastitulos").show();
-                $("#ocultarGraficoProgramas").hide();
-
-                invocarGraficos();
             }
+            $(".facultadtitulos").hide();
+            $(".programastitulos").show();
+            $("#ocultarGraficoProgramas").hide();
+
+            invocarGraficos();
         }
 
         /** 
@@ -425,20 +546,11 @@
         var chartEstudiantes;
 
         function graficoEstudiantes() {
-            var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.activos.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.activos.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
+
+            var url = "{{ route('estudiantes.activos.programa') }}";
+            var data = {
+                programa: programasSeleccionados,
+                periodos: periodosSeleccionados
             }
             $.ajax({
                 headers: {
@@ -516,20 +628,11 @@
 
         function grafioSelloFinanciero() {
             var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.sello.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.sello.facultad') }}";
+            var url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
                 }
-            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -609,20 +712,12 @@
 
         function graficoRetencion() {
             var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.retencion.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.retencion.facultad') }}";
+            var url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
                 }
-            }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -703,20 +798,12 @@
 
         function graficoSelloPrimerIngreso() {
             var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.primerIngreso.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.primerIngreso.facultad') }}";
+            var url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
                 }
-            }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -799,20 +886,11 @@
 
         function graficoTiposDeEstudiantes() {
             var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.tipo.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-                url = "{{ route('estudiantes.tipo.facultad') }}";
+            var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
-            }
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                };
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -830,51 +908,68 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores);
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    var yMax;
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {
                                 label = label.toUpperCase();
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
-                                label: 'Gráfico Circular',
+                                label: 'Tipos de estudiantes',
                                 data: valores,
-                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
                             }]
                         },
                         options: {
+                            scales: {
+                                y: {
+                                    max: yMax,
+                                    beginAtZero: true
+                                }
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
                                 datalabels: {
-                                    formatter: function(value, context) {
-                                        return value;
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
                                     },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
+                                    formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'right',
+                                    position: 'bottom',
                                     labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
                                         font: {
                                             size: 12
                                         }
                                     }
                                 }
                             },
-
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                         $('#colTipoEstudiantes').addClass('hidden');
@@ -892,28 +987,16 @@
 
         function graficoOperadores() {
             var data;
-            var url;
-            if (programasSeleccionados != undefined) {
-                if (programasSeleccionados.length > 0) {
-                    url = "{{ route('estudiantes.operador.programa') }}";
-                    data = {
-                        programa: programasSeleccionados,
-                    }
-                }
-            } else {
-
-                url = "{{ route('estudiantes.operador.facultad') }}";
-                data = {
-                    idfacultad: ["<?= $nombre ?>"]
-                }
-            }
-
+            data = {
+                programa: programasSeleccionados,
+                periodos: periodosSeleccionados
+            };
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: url,
+                url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                 data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
@@ -925,6 +1008,21 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores);
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    var yMax;
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     var ctx = document.getElementById('operadores').getContext('2d');
                     chartOperadores = new Chart(ctx, {
                         type: 'bar',
@@ -933,20 +1031,37 @@
                                 if (label == '') {
                                     label = 'IBERO';
                                 }
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
                                 label: 'Operadores con mayor cantidad de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
                             }]
                         },
                         options: {
+                            scales: {
+                                y: {
+                                    max: yMax,
+                                    beginAtZero: true
+                                }
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'semibold'
+                                    },
+                                    formatter: Math.round
+                                },
                                 legend: {
                                     position: 'bottom',
                                     labels: {
@@ -958,81 +1073,12 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                     if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
                         $('#colOperadores').addClass('hidden');
                     } else {
                         $('#colOperadores').removeClass('hidden');
-                    }
-                }
-            });
-        }
-
-        /**
-         * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
-         */
-        var chartProgramas;
-
-        function graficoProgramasFacultad() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('programas.estudiantes.facultad') }}",
-                data: {
-                    idfacultad: ["<?= $nombre ?>"]
-                },
-                beforeSend: function() {
-                    // Deshabilitar los checkboxes antes de la solicitud AJAX
-                    $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                        $('#colProgramas').addClass('hidden');
-                    } else {
-                        $('#colProgramas').removeClass('hidden');
                     }
                 }
             });
@@ -1046,35 +1092,31 @@
             graficoOperadoresTotal();
         });
 
-        $('#botonModalProgramas').on("click", function(e) {
+
+        $('#botonModalTiposEstudiantes').on("click", function(e) {
             e.preventDefault();
-            if (chartProgramasTotal) {
-                chartProgramasTotal.destroy();
+            if (chartTiposEstudiantesTotal) {
+                chartTiposEstudiantesTotal.destroy();
             }
-            graficoProgramasTotal();
+            tiposEstudiantesTotal();
         });
 
-        /**
-         * Método que trae todos los operadores de la Facultad
-         */
-        var chartOperadoresTotal;
+        var chartTiposEstudiantesTotal
 
-        function graficoOperadoresTotal() {
+        function tiposEstudiantesTotal() {
             var data;
-            var url;
+            var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
             if (programasSeleccionados.length > 0) {
-                url = "{{ route('operadores.programa.estudiantes') }}";
                 data = {
                     programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
                 }
             } else {
-        
-                url = "{{ route('operadores.facultad.estudiantes') }}";
                 data = {
-                    idfacultad: ["<?= $nombre ?>"]
+                    programa: programasSelect,
+                    periodos: periodosSeleccionados
                 }
             }
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1084,13 +1126,134 @@
                 data: data,
                 success: function(data) {
                     data = jQuery.parseJSON(data);
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.tipoestudiante;
+                    });
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                    var maxValor = Math.max(...valores);
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    var yMax;
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
+                    // Crear el gráfico de barras
+                    var ctx = document.getElementById('tiposEstudiantesTotal').getContext('2d');
+                    chartTiposEstudiantesTotal = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels.map(function(label, index) {
+                                return label;
+                            }),
+                            datasets: [{
+                                label: 'Tipos de esudiantes',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    max: yMax,
+                                    beginAtZero: true
+                                }
+                            },
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'light',
+                                        size: 8
+                                    },
+                                    formatter: Math.round
+                                },
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugins: [ChartDataLabels]
+                    });
+                }
+            });
 
+        }
+        /**
+         * Método que trae todos los operadores de la Facultad
+         */
+        var chartOperadoresTotal;
+
+        function graficoOperadoresTotal() {
+            var data;
+            var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
+            if (programasSeleccionados.length > 0) {
+                data = {
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                }
+            } else {
+                data = {
+                    programa: programasSelect,
+                    periodos: periodosSeleccionados
+                }
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    try {
+                        data = jQuery.parseJSON(data);
+                    } catch {
+                        data = data;
+                    }
                     var labels = data.data.map(function(elemento) {
                         return elemento.operador;
                     });
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores);
+                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                    var yMax;
+                    if (maxValor < 50) {
+                        yMax = 100;
+                    } else if (maxValor < 100) {
+                        yMax = 120;
+                    } else if (maxValor < 500) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                    } else if (maxValor < 1000) {
+                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                    } else {
+                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                    }
                     // Crear el gráfico de barras
                     var ctx = document.getElementById('operadoresTotal').getContext('2d');
                     chartOperadoresTotal = new Chart(ctx, {
@@ -1100,24 +1263,41 @@
                                 if (label == '') {
                                     label = 'IBERO';
                                 }
-                                return label + ': ' + valores[index];
+                                return label;
                             }),
                             datasets: [{
                                 label: 'Operadores ordenados de forma descendente',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
                             }]
                         },
                         options: {
+                            scales: {
+                                y: {
+                                    max: yMax,
+                                    beginAtZero: true
+                                }
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'light',
+                                        size: 8
+                                    },
+                                    formatter: Math.round
+                                },
                                 legend: {
                                     position: 'bottom',
                                     labels: {
-
                                         font: {
                                             size: 12
                                         }
@@ -1125,75 +1305,15 @@
                                 }
                             },
                         },
-                        plugin: [ChartDataLabels]
+                        plugins: [ChartDataLabels]
                     });
                 }
             });
 
         }
 
-        /**
-         * Método que trae todos los programas de la Facultad
-         */
-        var chartProgramasTotal;
+    });
+</script>
 
-        function graficoProgramasTotal() {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('programasTotal.estudiantes') }}",
-                data: {
-                    idfacultad: ["<?= $nombre ?>"]
-                },
-                success: function(data) {
-                    data = jQuery.parseJSON(data);
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('programasTotal').getContext('2d');
-                    chartProgramasTotal = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Programas',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugin: [ChartDataLabels]
-                    });
-                }
-            });
-        }
-    </script>
-
-    <!-- incluimos el footer -->
-    @include('layout.footer')
+@include('layout.footer')
 </div>

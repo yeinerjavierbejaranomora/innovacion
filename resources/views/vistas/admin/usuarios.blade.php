@@ -27,9 +27,6 @@
                 </div>
             </div>
 
-
-
-
         </nav>
         <!-- End of Topbar -->
 
@@ -106,13 +103,16 @@
                                         <option value="9">Admin</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div >
                                     <label for="message-text" class="col-form-label">Facultad</label>
-                                    <select class="form-control" name="id_facultad" id="facultades">
-                                        <option value="" selected>Seleccione la facultad</option>
-                                    </select>
+                                    <div name="facultades" id="facultades">
+                                    </div>
                                 </div>
-                                <div id="programas"> </div>
+                                <div>
+                                    <label for="message-text" style="display:none;" id="tituloPrograma" class="col-form-label">Programas</label>
+                                    <div id="programas"> </div>
+                                </div>
+                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="crear btn btn-success">Crear</button>
@@ -144,15 +144,15 @@
 
 <!-- Alertas al crear usuario -->
 @if(session('success'))
-    <script>
-        Swal.fire("Éxito", "{{ session('success') }}", "success");
-    </script>
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
 @endif
 
 @if($errors->any())
-    <script>
-        Swal.fire("Error", "{{ $errors->first() }}", "error");
-    </script>
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
 @endif
 
 <script>
@@ -167,51 +167,49 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario select#facultades').append(`<option value="${facultad.id}">${facultad.nombre}</option>`);
+                    $('#nuevousuario #facultades').append(`<label> <input type="checkbox" id="" name="facultad[]" value="${facultad.codFacultad}"> ${facultad.nombre}</label><br>`);
                 })
             }
         })
     }
 
     //* Comprueba si el select de facultades cambia de valor/
-    $('#nuevousuario select#facultades').change(function() {
-        console.log('1');
-        facultades = $(this);
-        //* comprueba que el valor de facultados sea diferente a vacio/
-        if ($(this).val() != '') {
-            //* se crea un objeto FormData para crear un conjunto depares clave/valor para el envio de los datos/
+    $('body').on('change', '#facultades input[type="checkbox"]', function() {
+        if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+            $('#programas').empty();
+            $('#tituloPrograma').show();
             var formData = new FormData();
-            //* Se añade el par clave/valor con el valor del select/
-            formData.append('idfacultad', facultades.val());
-            //* Se envia el id de facultad pormedio de ajax para recibir los programas relacionados al id enviado/
+            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                formData.append('codfacultad[]', $(this).val());
+            });
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('registro.programas') }}",
+                url: "{{ route('traer.programas.usuarios') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
-                    facultades.prop('disabled', true);
-                },
-                success: function(data) {
-                    console.log(data);
-                    facultades.prop('disabled', false)
-                    $('#nuevousuario div#programas').empty();
-                    data.forEach(programa => {
-                        //* Se crea un input tipo checkbox para cada programa recibido/
-                        $('#nuevousuario div#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${programa.id}"> ${programa.programa}</label><br>`);
+                success: function(datos) {
+                    try {
+                        datos = jQuery.parseJSON(datos);
+                    } catch {
+                        datos = datos;
+                    } 
+                    $.each(datos, function(key, value) {
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.id}"> ${value.programa}</label><br>`);
                     });
                 }
-            });
+            })
         } else {
             $('#programas').empty();
-            facultades.prop('disabled', false)
+            $('#tituloPrograma').hide();
         }
-    })
+    });
+
 
     /** DataTable */
     var xmlhttp = new XMLHttpRequest();
@@ -370,10 +368,6 @@
 
         }
     }
-
-
-
-
 
 
     /*$(document).ready(function() {

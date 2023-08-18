@@ -47,71 +47,33 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    /// cargamos la vista dependiendo el usuario
     /**
-     * 
+     * Retorna a la vista Home
      */
     public function home()
     {
+        
+        $user = auth()->user();
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+        $nombre_rol = $rol_db[0]->nombreRol;
 
-        //return auth()->user()->id;
-        // redirect()->route('login.home');
+        auth()->user()->nombre_rol = $nombre_rol;
+        return view('vistas.home');
+    }
 
-        /** para poder cargar las vistas especificas comproba,os los roles de usuario  */
-        /** roles de usuario
-         *Decano       = 1
-         *Director     = 2
-         *Coordinador  = 3
-         *Lider        = 4
-         *Docente      = 5
-         *Estudiante   = 6
-         */
-
-        /** definimos la variable usuario */
-
+    public function vistasMafi(){
         $user = auth()->user();
 
-        /// traemos los roles de la base de datos para poder cargar la vista
         $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
 
-        /*traempos el nombre del rol para cargar la vista*/
         $nombre_rol = $rol_db[0]->nombreRol;
         auth()->user()->nombre_rol = $nombre_rol;
 
-        /** traemos las facultades del sistema  */
         if (!empty($user->id_facultad)) {
-            /** trae la facultad asignada */
             $facultad = DB::table('facultad')->where([['id', '=', $user->id_facultad]])->get();
-            /* $estudiantes = DB::table('programas')
-                ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
-                ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
-                ->where('facultad.id', '=', $user->id_facultad)
-                ->select('estudiantes.id')
-                ->count();
-            $estudiantesFacultad = $estudiantes; */
         } else {
-            /** si es super admin trae todas las facultades */
-            /** */ $facultad = DB::table('facultad')->get();
-            /* $estudiantesFacultad = array();
-            foreach ($facultad as $key => $value) {
-                $estudiantes = DB::table('programas')
-                    ->join('estudiantes', 'programas.codprograma', '=', 'estudiantes.programa')
-                    ->join('facultad', 'programas.idFacultad', '=', 'facultad.id')
-                    ->where('facultad.id', '=', $value->id)
-                    ->where('programas.activo', '=', 1)
-                    ->select('estudiantes.id')
-                    ->count();
-                $estudiantesFacultad[$value->id] = $estudiantes;
-            } */
+            $facultad = DB::table('facultad')->get();
         }
-
-        // dd($user->nombre_rol);
-        /**  if(auth()->user()->nombre=="yeiner javier bejarano mora"){
-         * return ( $facultad);
-         *}
-         */
-
-        /** creamos el array con los datos necesarios */
 
         $datos = array(
             'rol' => $nombre_rol,
@@ -122,20 +84,114 @@ class UserController extends Controller
             $nombre_rol = strtolower($nombre_rol);
         }
 
+        if ($nombre_rol === 'Decano') {
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_facultad, ',');
+            $facultades = explode(",", $idfacultad);
+            foreach ($facultades as $key => $value) {
+
+                $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+                $nombreFacultades[$value] = $consulta->nombre;
+            }
+            return view('vistas.mafi.Decano', ['facultades' => $nombreFacultades])->with('datos', $datos);
+        }
+
+        if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {
+            $idPrograma = trim($user->programa, ';');
+            $programas = explode(';', $idPrograma);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
+                $data[$value] = $consulta;
+            }
+            return view('vistas.mafi.' . $nombre_rol, ['programas' => $data])->with('datos', $datos);
+        }
+
+
         /** cargamos la vista predeterminada para cada rol con la data */
-        return view('vistas.' . $nombre_rol)->with('datos', $datos);
+        return view('vistas.mafi.' . $nombre_rol)->with('datos', $datos);
     }
 
+    public function vistasPlaneacion(){
+        $user = auth()->user();
+
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+
+        $tabla = 'planeacion';    
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol = $nombre_rol;
+        if ($nombre_rol === 'Admin') {
+            $nombre_rol = strtolower($nombre_rol);
+        }
+
+        if ($nombre_rol === 'Decano') {
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_facultad, ',');
+            $facultades = explode(",", $idfacultad);
+            foreach ($facultades as $key => $value) {
+
+                $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+                $nombreFacultades[$value] = $consulta->nombre;
+            }
+            return view('vistas.planeacion.DecanoPlaneacion', ['facultades' => $nombreFacultades], ['tabla' => $tabla]);
+        }
+
+        if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {
+            $idPrograma = trim($user->programa, ';');
+            $programas = explode(';', $idPrograma);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
+                $data[$value] = $consulta;
+            }
+            return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['programas' => $data], ['tabla' => $tabla]);
+        }
+        /** cargamos la vista predeterminada para cada rol con la data */
+        return view('vistas.planeacion.' . $nombre_rol . 'Planeacion', ['tabla' => $tabla]);
+    }
+
+    public function vistasMoodle(){
+        $user = auth()->user();
+
+        $rol_db = DB::table('roles')->where([['id', '=', $user->id_rol]])->get();
+
+        $tabla = 'moodle';    
+        $nombre_rol = $rol_db[0]->nombreRol;
+        auth()->user()->nombre_rol = $nombre_rol;
+        if ($nombre_rol === 'Admin') {
+            $nombre_rol = strtolower($nombre_rol);
+        }
+
+        if ($nombre_rol === 'Decano') {
+            // $facultades = DB::table('users as u')->join('facultad as f', 'f.id', '=', 'u.id_facultad')->select('f.nombre as name')->get();
+            $idfacultad = trim($user->id_facultad, ',');
+            $facultades = explode(",", $idfacultad);
+            foreach ($facultades as $key => $value) {
+
+                $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+                $nombreFacultades[$value] = $consulta->nombre;
+            }
+            return view('vistas.moodle.DecanoMoodle', ['facultades' => $nombreFacultades], ['tabla' => $tabla]);
+        }
+
+        if ($nombre_rol === 'Director' || $nombre_rol === 'Coordinador' || $nombre_rol === 'Lider') {
+            $idPrograma = trim($user->programa, ';');
+            $programas = explode(';', $idPrograma);
+            foreach ($programas as $key => $value) {
+                $consulta = DB::table('programas')->where('id', $value)->select('programa', 'codprograma')->first();
+                $data[$value] = $consulta;
+            }
+            return view('vistas.moodle.' . $nombre_rol . 'Moodle', ['programas' => $data], ['tabla' => $tabla]);
+        }
+        /** cargamos la vista predeterminada para cada rol con la data */
+        return view('vistas.moodle.' . $nombre_rol . 'Moodle', ['tabla' => $tabla]);
+    }
     // funcion para traer todos los usuarios a la vista de administracion
 
-    public function userView()
-    {
+    public function userView(){
         /**Se retorna la vista del listado usuarios */
         return view('vistas.admin.usuarios');
     }
 
-    public function get_users()
-    {
+    public function get_users(){
         /**Realiza la consulta anidada para onbtener el usuario con su rol */
         $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.id_rol')
             ->select('users.id', 'users.id_banner', 'users.documento', 'users.activo', 'users.nombre', 'users.email', 'roles.nombreRol')->get();
@@ -197,15 +253,12 @@ class UserController extends Controller
     // *Método para cargar la vista de edicion de datos del usuario*
     public function editar($id_llegada)
     {
-        // *Condición para descencriptar el id del usuario
         $id = base64_decode(urldecode($id_llegada));
 
         if (!is_numeric($id)) {
             $id = decrypt($id_llegada);
         }
 
-        //return $id;
-        // *Consulta SQL para obtener todos los datos del id
         $consulta = DB::table('users')->select('*')->where('id', '=', $id)->get();
 
         // *Condicional para determinar si el usuario cuenta con una facultad
@@ -228,7 +281,7 @@ class UserController extends Controller
                 }
             endif;
         }
-        // *Si el usuario no tiene un facultad se preocede a dejar vacío dicho campo
+        // *Si el usuario no tiene un facultad se precede a dejar vacío dicho campo
         else {
             $facultad =  $nombre_programas = NULL;
         }
@@ -251,16 +304,18 @@ class UserController extends Controller
         // *Obtenemos los datos del usuario*
         $user = auth()->user();
         // *Validación para determinar si el usuario cuenta con una facultad*
-        if ($user->id_facultad != NULL || $user->programa != NULL) {
-            // *Consulta para obtener el nombre de la facultad según el ID de esta
-            $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
-            $facultad = $facultad->nombre;
-            // *Explode para que muestre los programas por separado
+        if ($user->id_facultad != "NULL" || $user->programa != "NULL") {
+            if ($user->id_facultad != "NULL" && !empty($user->id_facultad)) {
+                $facultad = DB::table('facultad')->select('facultad.nombre')->where('id', '=', $user->id_facultad)->first();
+                $facultad = $facultad->nombre;
+            } else {
+                $facultad = NULL;
+            }
             $programa = trim($user->programa, ';');
             $programas = explode(";", $programa);
             //$programas = explode(";", $user->programa);
             // *Una vez obtenido el arreglo, se procede a obtener el nombre cada uno según su id
-            if (empty($programa)) :
+            if (empty($programa) || $programa == NULL) :
                 $nombre_programas = NULL;
             else :
                 foreach ($programas as $key => $value) {
@@ -313,13 +368,33 @@ class UserController extends Controller
     // *Método que actualiza en la base de datos la edición del usuario
     public function actualizar($id, Request $request)
     {
-        //dd($request->all());
         $id = decrypt($id);
-        $idBanner = $request->id_banner;
+        $informacionOriginal = $this->obtenerUsuario($id);
+        $idRol = $informacionOriginal[0]->id_rol;
+        if($idRol!= '9')
+        {
+
+            $nombre = $request->nombre;
+
+            if($nombre != $informacionOriginal[0]->nombre){
+                $actualizar = DB::table('users')->where('id', $id)
+                ->update([
+                    'nombre' => $nombre]);
+                    if($actualizar){
+                        $this->registrarLog($id, $informacionOriginal, $request);
+                        return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
+                    }
+            }
+            else{
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors(['errors' => 'No realizaste ningún cambio']);    
+            }
+
+        }
+        else{
+        $id_banner = $request->id_banner;
         $documento = $request->documento;
         $nombre = $request->nombre;
         $email = $request->email;
-        $idBanner = $request->id_banner;
         $idRol = $request->id_rol;
         $idFacultad = $request->facultades;
         $programa = $request->programa;
@@ -353,11 +428,9 @@ class UserController extends Controller
             $activo = 1;
         }
 
-        $informacionOriginal = $this->obtenerUsuario($id);
-
         $actualizar = DB::table('users')->where('id', $id)
             ->update([
-                'id_banner' => $idBanner,
+                'id_banner' => $id_banner,
                 'documento' => $documento,
                 'nombre' => $nombre,
                 'email' => $email,
@@ -370,18 +443,19 @@ class UserController extends Controller
         if ($id === auth()->user()->id) :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('Sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('user.perfil', ['id' => encrypt($id)])->with('success', 'Actualizacion exitosa!');
             else :
-                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors('Error', 'Error al actuaizar los datos del usuario');
+                return redirect()->route('user.perfil', ['id' => encrypt($id)])->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;
         else :
             if ($actualizar) :
                 $this->registrarLog($id, $informacionOriginal, $request);
-                return  redirect()->route('admin.users')->with('Sucess', 'Actualizacion exitosa!');
+                return  redirect()->route('admin.users')->with('success', 'Actualizacion exitosa!');
             else :
-                return redirect()->route('admin.users')->withErrors('Error', 'Error al actuaizar los datos del usuario');
+                return redirect()->route('admin.users')->withErrors(['errors'=> 'Error al actuaizar los datos del usuario']);
             endif;
         endif;
+        }
     }
 
     /** Funcion para activar o inactivar usuario */
@@ -520,608 +594,18 @@ class UserController extends Controller
         echo json_encode($arreglo);
     }
 
-    /**
-     * Método que trae los estudiantes activos de toda la Ibero
-     * @return JSON retorna los estudiantes agrupados en activos e inactivos
-     */
-    public function estudiantesActivosGeneral()
+    public function traerProgramasUsuarios(Request $request)
     {
-        /**
-         * SELECT COUNT(estado) AS TOTAL, estado FROM `datosMafi`
-        GROUP BY estado
-         */
-        $estudiantes = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
-            ->groupBy('estado')
-            ->get();
+        $codFacultad = $request->input('codfacultad');
+        $nombreFacultad = DB::table('facultad')
+            ->whereIn('codfacultad', $codFacultad)
+            ->pluck('nombre')
+            ->toArray();
 
+        $programas = DB::table('programas')->whereIn('Facultad', $nombreFacultad)->select('id', 'programa', 'codprograma')->get();
 
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $estudiantes));
+        echo json_encode($programas);
     }
-
-    /**
-     * Método que muestra el estado del sello financiero de todos los estudiantes
-     * @return JSON retorna los estudiantes agrupados según su sello financiero
-     */
-    public function selloEstudiantesActivos()
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-         *GROUP BY sello
-         */
-        $sello = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
-    }
-
-    /**
-     * Método que trae los estudiantes con retención
-     * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
-     */
-    public function estudiantesRetencion()
-    {
-        /**
-         * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi 
-         *WHERE sello = 'TIENE RETENCION' 
-         *GROUP BY autorizado_asistir
-         */
-        $retencion = DB::table('datosMafi')
-            ->where('sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-            ->groupBy('autorizado_asistir')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $retencion));
-    }
-
-    /**
-     * Método que muestra el sello de los estudiantes de primer ingreso 
-     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
-     */
-    public function estudiantesPrimerIngreso()
-    {
-
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-         *WHERE tipoestudiante = 'PRIMER INGRESO'
-         *GROUP BY sello
-         */
-        $primerIngreso = DB::table('datosMafi')
-            ->where('tipoestudiante', 'PRIMER INGRESO')
-            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
-    }
-
-    /**
-     * Método que trae todos los tipos de estudiantes
-     * @return JSON retorna todos los tipos de estudiantes
-     */
-    public function tiposEstudiantes()
-    {
-        /**
-         * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
-         * tipoestudiante FROM `datosMafi` 
-         * GROUP BY tipoestudiante
-         */
-        $tipoEstudiantes = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
-            ->groupBy('tipoestudiante')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $tipoEstudiantes));
-    }
-
-    /**
-     * Método que muestra los 5 operadores que mas estudiantes traen
-     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
-     */
-    public function operadores()
-    {
-        /**
-         * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador
-        ORDER BY TOTAL DESC
-        LIMIT 5
-         */
-        $operadores = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-            ->groupBy('operador')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-    /**
-     * Método que muestra los 5 programas con mayor cantidad de estudiantes inscritos
-     * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
-     */
-
-    public function estudiantesProgramas()
-    {
-        /**
-         * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-        GROUP BY codprograma
-        ORDER BY TOTAL DESC
-        LIMIT 5
-         */
-
-        $programas = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
-            ->groupBy('codprograma')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
-    }
-
-    /**
-     * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
-     * @return JSON retorna los estudiantes agrupados en activos e inactivos
-     */
-    public function estudiantesActivosFacultad(Request $request)
-    {
-        /**
-         * SELECT  COUNT(dm.estado) AS TOTAL, dm.estado, p.Facultad FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.estado
-         */
-        $facultades = $request->input('idfacultad');
-        $estudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.estado) AS TOTAL'), 'dm.estado')
-            ->groupBy('dm.estado')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $estudiantes));
-    }
-
-    /**
-     * Método que muestra el estado del sello financiero de los estudiantes de las facultades seleccionadas por el usuario
-     * @return JSON retorna los estudiantes agrupados según su sello financiero
-     */
-    public function selloEstudiantesFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        GROUP BY dm.sello
-         */
-        $facultades = $request->input('idfacultad');
-        $sello = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
-            ->groupBy('dm.sello')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
-    }
-
-    /**
-     * Método que trae los estudiantes con retención de las facultades seleccionadas por el usuario
-     * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
-     */
-    public function retencionEstudiantesFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir FROM datosMafi dm
-        INNER JOIN programas p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        WHERE dm.sello = 'TIENE RETENCION' 
-        GROUP BY dm.autorizado_asistir
-         */
-        $facultades = $request->input('idfacultad');
-        $retencion = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->where('dm.sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
-            ->groupBy('dm.autorizado_asistir')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $retencion));
-    }
-
-    /**
-     * Método que muestra el sello de los estudiantes de primer ingreso de las facultades seleccionadas por el usuario
-     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
-     */
-    public function primerIngresoEstudiantesFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-        FROM datosMafi AS dm
-        JOIN programas AS p ON p.codprograma = dm.programa
-        WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-        AND dm.tipoestudiante = 'PRIMER INGRESO'
-        GROUP BY dm.sello;
-         */
-
-        $facultades = $request->input('idfacultad');
-        $primerIngreso = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->where('dm.tipoestudiante', 'PRIMER INGRESO')
-            ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
-            ->groupBy('dm.sello')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
-    }
-
-    /**
-     * Método que muestra los 5 operadores que mas estudiantes traen de las facultades seleccionadas por el usuario
-     * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
-     */
-    public function tiposEstudiantesFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
-         * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY tipoestudiante
-         */
-        $facultades = $request->input('idfacultad');
-        $tipoEstudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
-            ->groupBy('dm.tipoestudiante')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $tipoEstudiantes));
-    }
-
-    /**
-     * Método que muestra los tipos de estudiantes de las facultades seleccionadas por el usuario
-     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
-     */
-    public function operadoresFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
-         * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.operador
-         * ORDER BY TOTAL DESC
-        LIMIT 5
-         */
-        $facultades = $request->input('idfacultad');
-        $operadores = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
-            ->groupBy('dm.operador')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-    /**
-     * Método que muestra los 5 programas con mayor cantidad de estudiantes inscritos de las facultades seleccionadas por el usuario
-     * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
-     */
-
-    public function estudiantesProgramasFacultad(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-         * * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.codprograma
-         * ORDER BY TOTAL DESC
-         * LIMIT 5
-         */
-        $facultades = $request->input('idfacultad');
-        $programas = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
-            ->groupBy('dm.codprograma')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
-    }
-
-    /**
-     * Métodos para gráficos de programas
-     */
-
-    /**
-     * Método que trae los estudiantes activos e inactivos de las facultades seleccionadas por el usuario
-     * @return JSON retorna los estudiantes agrupados en activos e inactivos
-     */
-    public function estudiantesActivosPrograma(Request $request)
-    {
-        /**
-         * SELECT  COUNT(estado) AS TOTAL, estado FROM `datosMafi`
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        GROUP BY estado
-         */
-        $programas = $request->input('programa');
-        $estudiantes = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(estado) AS TOTAL'), 'estado')
-            ->groupBy('estado')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $estudiantes));
-    }
-
-    /**
-     * Método que muestra el estado del sello financiero de los estudiantes de los programas seleccionados por el usuario
-     * @return JSON retorna los estudiantes agrupados según su sello financiero
-     */
-    public function selloEstudiantesPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi` 
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        GROUP BY sello
-         */
-        $programas = $request->input('programa');
-        $sello = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
-    }
-
-    /**
-     * Método que trae los estudiantes con retención de los programas seleccionados por el usuario
-     * @return JSON retorna los estudiantes que tienen retención agrupados según 'autorizado_asistir'
-     */
-    public function retencionEstudiantesPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir FROM datosMafi
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        WHERE sello = 'TIENE RETENCION' 
-        GROUP BY autorizado_asistir
-         */
-        $programas = $request->input('programa');
-        $retencion = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->where('sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-            ->groupBy('autorizado_asistir')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $retencion));
-    }
-
-    /**
-     * Método que muestra el sello de los estudiantes de primer ingreso de los programas seleccionados por el usuario
-     * @return JSON retorna los estudiantes de primer ingreso, agrupados por sello
-     */
-    public function primerIngresoEstudiantesPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello
-        FROM datosMafi
-        WHERE programa IN ('') -- Reemplaza con los programas específicos
-        AND tipoestudiante = 'PRIMER INGRESO'
-        GROUP BY sello;
-         */
-
-        $programas = $request->input('programa');
-        $primerIngreso = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->where('tipoestudiante', 'PRIMER INGRESO')
-            ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-            ->groupBy('sello')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
-    }
-
-    /**
-     * Método que muestra los 5 operadores que mas estudiantes traen de los programas seleccionados por el usuario
-     * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
-     */
-    public function tiposEstudiantesPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante
-         * FROM datosMafi
-         * WHERE programa IN ('') -- Reemplaza con los programas específicos
-         * GROUP BY tipoestudiante
-         */
-        $programas = $request->input('programa');
-        $tipoEstudiantes = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
-            ->groupBy('tipoestudiante')->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $tipoEstudiantes));
-    }
-
-    /**
-     * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
-     * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
-     */
-    public function operadoresPrograma(Request $request)
-    {
-        /**
-         * SELECT COUNT(operador) AS TOTAL, operador 
-         * FROM datosMafi
-         * WHERE programa IN ('') -- Reemplaza con los programas específicos
-         * GROUP BY operador
-         * ORDER BY TOTAL DESC
-        LIMIT 5
-         */
-        $programas = $request->input('programa');
-        $operadores = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-            ->groupBy('operador')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-
-    /**
-     * Método que muestra todos los operadores que traen estudiantes de los programas seleccionados por el usuario
-     * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
-     */
-    public function operadoresProgramaTotal(Request $request)
-    {
-        /**
-         * SELECT COUNT(operador) AS TOTAL, operador 
-         * FROM datosMafi
-         * WHERE programa IN ('') -- Reemplaza con los programas específicos
-         * GROUP BY operador
-         * ORDER BY TOTAL DESC
-         */
-        $programas = $request->input('programa');
-        $operadores = DB::table('datosMafi')
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-            ->groupBy('operador')
-            ->orderByDesc('TOTAL')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-    /**
-     * Método que muestra todos los operadores que traen estudiantes de las facultades seleccionadas por el usuario
-     * @return JSON retorna los operadores, agrupados por operador
-     */
-    public function operadoresFacultadTotal(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
-         * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.operador
-         * ORDER BY TOTAL DESC
-         */
-        $facultades = $request->input('idfacultad');
-        $operadores = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
-            ->groupBy('dm.operador')
-            ->orderByDesc('TOTAL')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-    /**
-     * Método que muestra los operadores ordenados de forma descendente en función de la cantidad de estudiantes que traen
-     * @return JSON retorna un JSON con los operadores, agrupados por operador
-     */
-    public function operadoresTotal()
-    {
-        /**
-         * SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-        GROUP BY operador
-        ORDER BY TOTAL DESC
-         */
-        $operadores = DB::table('datosMafi')
-            ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-            ->groupBy('operador')
-            ->orderByDesc('TOTAL')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $operadores));
-    }
-
-    /**
-     * Método que muestra los 5 programas con mayor cantidad de estudiantes inscritos
-     * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
-     */
-
-     public function estudiantesProgramasTotal()
-     {
-         /**
-          * SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-         GROUP BY codprograma
-         ORDER BY TOTAL DESC
-          */
- 
-         $programas = DB::table('datosMafi')
-             ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
-             ->groupBy('codprograma')
-             ->orderByDesc('TOTAL')
-             ->get();
- 
-         header("Content-Type: application/json");
-         echo json_encode(array('data' => $programas));
-     }
-
-
-
-    /**
-     * Método que muestra los estudiantes inscritos en cada programa, organizados de forma descendente
-     * @return JSON retorna un JSON todos los programas, agrupados por programa
-     */
-       
-    public function estudiantesFacultadTotal(Request $request)
-    {
-        /**
-         * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-         * * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.codprograma
-         * ORDER BY TOTAL DESC
-         */
-        $facultades = $request->input('idfacultad');
-        $programas = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.programa')
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
-            ->groupBy('dm.codprograma')
-            ->orderByDesc('TOTAL')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $programas));
-    }
+   
 }

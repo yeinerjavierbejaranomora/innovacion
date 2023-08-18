@@ -72,12 +72,11 @@ class User extends Authenticatable
                 $Programas .= $programa . ";";
             endforeach;
             /**En el campo programa se añade el contenido de la variable $Programa */
-            $this->attributes['programa'] = $Programas;
+            $this->attributes['programa'] = rtrim($Programas, ";");
         else:
             /** Si el valor recibido es vacio se pasa al campo este valor vacio */
             $this->attributes['programa'] = '';
         endif;
     }
-
 
 }

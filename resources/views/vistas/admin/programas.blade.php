@@ -29,9 +29,6 @@
                 </div>
             </div>
 
-
-
-
         </nav>
         <!-- End of Topbar -->
 
@@ -160,40 +157,9 @@
                     title: 'Programa'
                     },
                     {
-                        data: 'nombre',
+                        data: 'Facultad',
                         title: 'Facultad'
                     },
-                    {
-                        defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar',
-                        className: "text-center"
-                    },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: "Estado",
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return 'Activo';
-                            } else if (data == '0') {
-                                return 'Inactivo';
-                            }
-                        }
-                    },
-                    {
-                        data: 'activo',
-                        defaultContent: "",
-                        title: 'Inactivar / Activar',
-                        className: "text-center",
-                        render: function(data, type, row) {
-                            if (data == '1') {
-                                return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
-                            } else if (data == '0') {
-                                return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
-                            }
-                        }
-                    }
                 ],
                 
                 "language": {
@@ -201,82 +167,7 @@
                 },
                 
             });
-            /** Función que genera una sweet alert para activar o desactivar
-             * el programa */
-            function obtener_data_inactivar(tbody, table) {
-                $(tbody).on("click", "button.inactivar", function(event) {
-                    var data = table.row($(this).parents("tr")).data();
-                    if (data.activo == 1) {
-                        Swal.fire({
-                            title: "¿Desea inactivar el programa " + data.programa + "?",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            showCloseButton: true,
-                            cancelButtonColor: '#DC3545',
-                            cancelButtonText: "No, Cancelar",
-                            confirmButtonText: "Si"
-                        }).then(result => {
-                            if (result.value) {
-                                $.post("{{ route('programa.inactivar') }}", {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                        codigo: data.codprograma,
-                                    },
-                                    function(result) {
-                                        console.log(result);
-                                        if (result == "deshabilitado") {
-                                            Swal.fire({
-                                                title: "Programa deshabilitado",
-                                                html: "El programa <strong>" + data.programa +
-                                                "</strong> ha sido inactivado",
-                                                icon: 'info',
-                                                showCancelButton: true,
-                                                confirmButtonText: "Aceptar",
-                                            }).then(result => {
-                                                if (result.value) {
-                                                    location.reload();
-                                                };
-                                            })
-                                        }
-                                    })
-                                }
-                        });
-                        
-                    } else {
-                        Swal.fire({
-                            title: "¿Desea activar el programa " + data.programa + "?",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            showCloseButton: true,
-                            cancelButtonColor: '#DC3545',
-                            cancelButtonText: "No, Cancelar",
-                            confirmButtonText: "Si"
-                        }).then(result => {
-                            if (result.value) {
-                                $.post("{{ route('programa.activar') }}", {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    codigo: data.codprograma,
-                                },
-                                function(result) {
-                                    if (result == "habilitado") {
-                                        Swal.fire({
-                                            title: "Programa habilitado",
-                                            html: "El programa <strong>" + data.programa +
-                                            "</strong> ha sido habilitado",
-                                            icon: 'info',
-                                            showCancelButton: true,
-                                            confirmButtonText: "Aceptar",
-                                        }).then(result => {
-                                            if (result.value) {
-                                                location.reload();
-                                            };
-                                        })
-                                        }
-                                    })
-                                }
-                            });
-                        }
-                });
-            }
+
             /** Función para editar  */
             function obtener_data_editar(tbody, table) {
                 $(tbody).on("click", "button.editar", function() {
@@ -344,7 +235,6 @@
                 });
             }
             obtener_data_editar("#example tbody", table);
-            obtener_data_inactivar("#example tbody", table);
         }
     }
 </script>

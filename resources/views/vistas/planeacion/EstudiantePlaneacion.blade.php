@@ -3,7 +3,7 @@
 
 @include('layout.header')
 
-@include('menus.menu_Director')
+@include('menus.menu_Estudiante')
 <!--  crea,os el contenido principal body -->
 
 

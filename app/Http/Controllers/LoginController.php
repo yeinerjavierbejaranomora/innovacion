@@ -43,6 +43,8 @@ class LoginController extends Controller
             $nombre_rol=$rol_db[0]->nombreRol;
             auth()->user()->nombre_rol=$nombre_rol;
 
+
+            
             
             return redirect()->route('home.index');
         endif;

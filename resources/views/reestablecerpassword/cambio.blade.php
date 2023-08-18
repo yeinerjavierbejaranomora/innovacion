@@ -2,7 +2,38 @@
 @include('layout.header')
 
 <!-- incluimos el menu -->
-@include('menus.menu_admin')
+
+@auth
+    @switch(auth()->user()->id_rol)
+        @case (1)
+        @include('menus.menu_Decano')
+            @break;     
+        @case (2)
+        @include('menus.menu_Director')
+            @break;
+        @case (3)
+        @include('menus.menu_Coordinador')
+            @break;  
+        @case (4)
+        @include('menus.menu_Lider')
+            @break;  
+        @case (5)
+        @include('menus.menu_Docente')
+            @break;  
+        @case (6)
+        @include('menus.menu_Estudiante')
+            @break;  
+        @case (9)
+            @include('menus.menu_admin')
+            @break;  
+        @case (19)
+            @include('menus.menu_rector') 
+            @break;
+        @case (20)
+            @include('menus.menu_Vicerrector')  
+            @break;         
+    @endswitch
+@endauth
 <!--  creamos el contenido principal body -->
 
 <div id="content-wrapper" class="d-flex flex-column">
@@ -121,7 +152,14 @@
                                     <h5 class="my-3">{{auth()->user()->nombre}}</h5>
                                     <p class="text-muted mb-1">{{ $datos['rol'] }}</p>
                                     @if($datos['facultad'] != NULL)
-                                    <p class="text-muted mb-4">{{ $datos['facultad'] }}</p>
+                                    <p class="text-muted mb-1">{{ $datos['facultad'] }}</p>
+                                    @endif
+                                    @if ($datos['programa'] != NULL)
+                                    <p class="text-muted mb-1">Programas</p>
+                                    @foreach($datos['programa'] as $programa)
+                                    <p class="text-muted mb-1">{{ $programa }}</p>
+                                    @endforeach
+                                    <br>
                                     @endif
                                 </div>
                             </div>
@@ -137,9 +175,7 @@
                                             </h3>
                                         </div>
                                         <hr>
-                                        @if(count($errors)>0)
-                                        <h4>{{$errors}}</h4>
-                                        @endif
+                    
                                         <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                                         <div class="row">
                                             <div class="col-sm-3 text-dark">
@@ -187,7 +223,18 @@
     </div>
 
 
+<!-- Alertas al cambiar contraseña -->
+@if(session('success'))
+<script>
+    Swal.fire("Éxito", "{{ session('success') }}", "success");
+</script>
+@endif
 
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
     <script>
         // * Función para enviar alerta al usuario *
         function validacion() {

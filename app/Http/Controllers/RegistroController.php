@@ -36,7 +36,7 @@ class RegistroController extends Controller
     /** Trae los datos dela tabla programas si el id coincide con el que se ricibe por POST desde el formulario de registro */
     public function programas() {
         $idFacultad = $_POST['idfacultad'];
-        $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `idFacultad` = :id', ['id' => $idFacultad]);
+        $programas = DB::select('SELECT `id`, `programa` FROM `programas` WHERE `Facultad` = :id', ['id' => $idFacultad]);
         return $programas;
     }
 
@@ -58,19 +58,18 @@ class RegistroController extends Controller
     }
 
     public function crearUsuario(UsuarioRegistroRequest $request){
-        /** Inserta los datos validades en la tabla users usando el model Userphp */
-        $usuario = User::create($request->validated());
+        $data = $request->all();
+        $facultades = $data['facultad'];
+        $data['id_facultad'] = implode(',', $facultades);
+        $user = User::create($data);
         $parametros = collect($request->all())->except(['_token'])->toArray();
         $request->replace($parametros);
-
+        
         LogUsuariosController::registrarLog('INSERT', "Usuario creado" ,'Users', json_encode($request->all()), NULL);
 
-        /** si la insercion es correcta */
-        if($usuario):
-            /** Redirecciona a la vista de administración de usuarios con un mensaje de exito */
+        if($user):
             return redirect()->route('admin.users')->with('success','Usuario creado correctamente');
         else:
-            /** Redirecciona a la vista de administración de usuarios con un mensaje de error */
             return redirect()->route('admin.users')->withErrors(['errors' => 'Usuario no se ha podido crear']);
         endif;
     }

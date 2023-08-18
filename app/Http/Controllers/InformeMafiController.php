@@ -1228,6 +1228,15 @@ class InformeMafiController extends Controller
 
         $programas = [];
 
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
         $programasConsulta = DB::table('programas_metas')
         ->select('programa')
         ->whereNotNull('meta')
@@ -1252,6 +1261,7 @@ class InformeMafiController extends Controller
         ->where('sello', 'TIENE SELLO FINANCIERO')
         ->whereIn('periodo',$periodosActivos)
         ->whereIn('codprograma', $programas)
+        ->whereIn('tipo_estudiante', $tiposEstudiante)
         ->groupBy('codprograma')
         ->get();
 

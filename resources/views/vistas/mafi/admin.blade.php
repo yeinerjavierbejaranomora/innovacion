@@ -2859,7 +2859,7 @@
                         });
 
                         Object.keys(data.matriculaRetencion).forEach(retencion => {
-                            valuesSello.push(data.matriculaRetencion[retencion]);
+                            valuesRetencion.push(data.matriculaRetencion[retencion]);
                         });
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');

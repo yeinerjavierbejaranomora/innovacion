@@ -270,6 +270,7 @@
                 },
                 success: function(data){
                     if(data.homologante != ''){
+                        $('#codigo').prop('disabled',false);
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
                             <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante});">
@@ -286,9 +287,7 @@
                                 Programado
                             </a>
                         </div>`)
-                        $('#codigo').prop('disabled',false);
                     }else{
-                        $('#codigo').prop('disabled',false);
                     }
                 }
             });

@@ -1241,9 +1241,6 @@ class InformeMafiController extends Controller
 
         $periodosActivos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
 
-        dd($periodosActivos);
-
-
         $matriculas = DB::table('datosMafi')
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
         ->where('sello', 'TIENE SELLO FINANCIERO')

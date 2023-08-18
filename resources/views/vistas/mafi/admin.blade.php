@@ -2860,6 +2860,7 @@
                             data: {
                                 labels: labels,
                                 datasets: [{
+                                    label: 'Metas',
                                     data: values,
                                     backgroundColor: ['rgba(223, 193, 78, 1)'],
                                     datalabels: {

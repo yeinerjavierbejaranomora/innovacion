@@ -2825,7 +2825,7 @@
 
             graficoMetas();
 
-            function graficoMetas(){
+            function graficoMetas() {
                 var url = "{{ route('metas.programa')}}";
                 data = '';
                 $.ajax({
@@ -2842,36 +2842,62 @@
                         } catch {
                             data = data;
                         }
-                        
+
                         console.log(data);
                         var labels = [];
                         var values = [];
+                        var valuesSello = [];
+                        var valuesRetencion = [];
 
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
                             values.push(data.metas[meta]);
-                        })
+                        });
 
-                        
+                        Object.keys(data.matriculaSello).forEach(sello => {
+                            valuesSello.push(data.matriculaSello[sello]);
+                        });
+
+                        Object.keys(data.matriculaRetencion).forEach(retencion => {
+                            valuesSello.push(data.matriculaRetencion[retencion]);
+                        });
+
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Metas',
-                                    data: values,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)'],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
                                     },
-                                    stack: 'Stack 0',
-                                },
-                                {
-                                    
-                                },
-                            ]
+                                    {
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Retencion',
+                                        data: valuesRetencion,
+                                        backgroundColor: ['rgba(56,101,120,1)'], 
+                                        datalabels: {
+                                            anchor: 'center',
+                                            align: 'center',
+                                        },                                      
+                                        stack: 'Stack 0',
+                                    },
+                                ]
                             },
                             options: {
                                 maintainAspectRatio: false,
@@ -2900,7 +2926,6 @@
                     }
                 });
             }
-
         });
     </script>
 

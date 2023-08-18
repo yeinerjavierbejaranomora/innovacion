@@ -124,23 +124,23 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            {{-- <div class="row justify-content-between" id="">
-                <div class="col-4 text-star">
+            <div class="row justify-content-between" id="">
+                <div class="col-12 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
+                            <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades">
+                            {{-- <div class="facultades" name="facultades" id="facultades">
                                 <div>
                                     <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
                                 </div>
                                 <br>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-start">
+                {{-- <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -164,10 +164,10 @@
                             <canvas id="estudiantes"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
-            <div class="row">
+            {{-- <div class="row">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

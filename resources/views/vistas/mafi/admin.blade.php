@@ -286,7 +286,7 @@
                 </div>
             </div>
 
-            <div class="col-6 text-center " id="colMetas">
+            <div class="col-12 text-center " id="colMetas">
                 <div class="card shadow mb-4 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
@@ -2853,6 +2853,8 @@
                         })
 
 
+
+                        Object.keys(data.)
                         
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {

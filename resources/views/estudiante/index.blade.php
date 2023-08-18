@@ -293,7 +293,7 @@
             });
         }
 
-        function consultaMalla(codBanner) {
+        /*function consultaMalla(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -357,7 +357,7 @@
                     console.log(data);
                 }
             });
-        }
+        }*/
 
     </script>
     @include('layout.footer')

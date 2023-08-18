@@ -1236,10 +1236,18 @@ class InformeMafiController extends Controller
 
         foreach ($programasConsulta as $programa)
         {
-            $programas[] =$programa->programa;
+            $programas[] = $programa->programa;
         }
 
-        $periodosActivos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
+        $periodos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
+
+        $periodosActivos = [];
+        foreach ($periodos as $periodo)
+        {
+            $periodosActivos[] = $periodo->periodos;
+        }
+
+        dd($periodosActivos);
 
         $matriculas = DB::table('datosMafi')
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')

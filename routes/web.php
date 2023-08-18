@@ -158,6 +158,8 @@ Route::controller(InformeMafiController::class)->group(function () {
 
     Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
 
+    Route::get('/home/probar', 'tablaMetas')->middleware('auth', 'admin')->name('funcion.probar');
+
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {

@@ -298,7 +298,7 @@
 
         function consultaMalla(codBanner,programa) {
             var formData = new FormData();
-            formData.append('codBanner',codBanner);
+            // formData.append('codBanner',codBanner);
             formData.append('programa',programa);
             $.ajax({
                 headers:{

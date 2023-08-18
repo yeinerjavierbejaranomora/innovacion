@@ -1269,7 +1269,7 @@ class InformeMafiController extends Controller
       
          foreach ($programas as $key_periodos => $val_programas) {
 
-
+            dd($val_programas);
                 //-- estado financiero
                 $Estado_Financiero = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))

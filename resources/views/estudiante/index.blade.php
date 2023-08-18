@@ -274,12 +274,12 @@
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante});">
+                            <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante},${data.programa});">
                                 Malla curricular
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante},${data.programa});">
+                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
                                 Historial academico
                             </a>
                         </div>
@@ -296,9 +296,10 @@
             });
         }
 
-        function consultaMalla(codBanner) {
+        function consultaMalla(codBanner,programa) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
+            formData.append('programa',programa);
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -319,10 +320,9 @@
             });
         }
 
-        function consultaHistorial(codBanner,programa) {
+        function consultaHistorial(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
-            formData.append('programa',programa);
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

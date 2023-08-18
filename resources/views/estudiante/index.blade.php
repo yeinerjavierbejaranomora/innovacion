@@ -102,7 +102,7 @@
 
             <!-- Page Heading -->
             <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
             </div>
             <br>
             {{-- <div class="text-center" id="mensaje">

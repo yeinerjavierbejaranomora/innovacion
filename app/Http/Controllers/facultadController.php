@@ -856,7 +856,11 @@ class facultadController extends Controller
             ->groupBy('pP.periodo', 'p.nivelFormacion')
             ->get();
 
-        dd($nivelFormacion);    
-        return $programasActivos;
+        $data = [
+            'periodo' => $periodos,
+            'nivelFormacion' => $nivelFormacion
+        ];    
+        dd($data);
+        return $data;
     }
 }

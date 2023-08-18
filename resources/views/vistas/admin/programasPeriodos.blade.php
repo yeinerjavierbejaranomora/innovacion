@@ -380,20 +380,20 @@
                     method: 'post',
                     async: false,
                     success: function(data) {
+                        console.log(data);
                         data.forEach(periodo => {
-                            console.log(periodo);
-                            periodosSeleccionados.push(periodo);
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
-                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "PROFESIONAL") {
-                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "ESPECIALISTA") {
-                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                             if (periodo.nivelFormacion == "MAESTRIA") {
-                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo}" checked> ${periodo}</label><br>`);
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
                         });
                     }

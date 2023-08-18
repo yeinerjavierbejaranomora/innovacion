@@ -283,7 +283,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-                    console.log(data.homologante);
+                    console.log(data.programa);
                 }
             });
         }

@@ -17,10 +17,10 @@ class EstudianteController extends Controller
         $estudiante = $_POST['codBanner'];
 
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
+        /*$mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
         $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
         $historialAcademico = json_decode(file_get_contents($url),true);
-        $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();
-        var_dump($programacion);die();
+        $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();*/
+        return $consultaEstudiante;
     }
 }

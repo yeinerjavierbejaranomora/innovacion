@@ -724,50 +724,51 @@
                         }
 
                         function obtener_data_editar(tbody, table) {
-                $(tbody).on("click", "button.editar", function() {
-                    var data = table.row($(this).parents("tr")).data();
-                    /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
-                    var fechaActual = new Date();
-                    var añoActual = fechaActual.getFullYear();
-                    var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
-                    var fechaLimiteISO = fechaLimite.toISOString().split('T')[0];
-                    var añoSiguiente = añoActual + 1;
+                            $(tbody).on("click", "button.editar", function() {
+                                var data = table.row($(this).parents("tr")).data();
+                                /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
+                                var fechaActual = new Date();
+                                var añoActual = fechaActual.getFullYear();
+                                var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
+                                var fechaLimiteISO = fechaLimite.toISOString().split('T')[0];
+                                var añoSiguiente = añoActual + 1;
 
-                    Swal.fire({
-                        title: 'Actualizar fecha de inicio',
-                        html: '<form>' +
-                            '<label for="fecha"> Fecha de Inicio </label>' +
-                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="fecha" name="fecha" value="' + data.fecha_inicio + '" class="form-control"> <br>',
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: "Cancelar",
-                        confirmButtonText: 'Editar'
-                    }).then(result => {
-                        if (result.value) {
-                            $.post("{{ route('periodo.update')}}", {
-                                    '_token': $('meta[name=csrf-token]').attr('content'),
-                                    id: encodeURIComponent(window.btoa(data.id)),
-                                    nombre: $(document).find('#fecha').val(),
-                                },
-                                function(result) {
-                                    console.log(result);
-                                    if (result == "actualizado") {
-                                        Swal.fire({
-                                            title: "Información actualizada",
-                                            icon: 'success'
-                                        }).then(result => {
-                                            location.reload();
-                                        });
+                                Swal.fire({
+                                    title: 'Actualizar fecha de inicio',
+                                    html: '<form>' +
+                                        '<label for="fecha"> Fecha de Inicio </label>' +
+                                        '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="fecha" name="fecha" value="' + data.fecha_inicio + '" class="form-control"> <br>',
+                                    icon: 'info',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    cancelButtonText: "Cancelar",
+                                    confirmButtonText: 'Editar'
+                                }).then(result => {
+                                    if (result.value) {
+                                        $.post("{{ route('periodo.update')}}", {
+                                                '_token': $('meta[name=csrf-token]').attr('content'),
+                                                id: encodeURIComponent(window.btoa(data.id)),
+                                                nombre: $(document).find('#fecha').val(),
+                                            },
+                                            function(result) {
+                                                console.log(result);
+                                                if (result == "actualizado") {
+                                                    Swal.fire({
+                                                        title: "Información actualizada",
+                                                        icon: 'success'
+                                                    }).then(result => {
+                                                        location.reload();
+                                                    });
+                                                }
+                                            }
+                                        )
                                     }
-                                }
-                            )
+                                })
+                            });
                         }
-                    })
-                });
-            }
                         obtener_data_inactivar("#example tbody", table);
+                        obtener_data_editar("#example tbody", table);
                     }
                 });
             }

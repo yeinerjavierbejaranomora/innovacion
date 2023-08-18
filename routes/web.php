@@ -159,7 +159,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
 
     // Route::get('/home/probar', 'tablaMetas')->middleware('auth', 'admin')->name('funcion.probar');
-    
+
     /** Ruta para cargar gráfico de metas */
     Route::post('/home/mafi/graficoMetas', 'graficoMetas')->middleware('auth')->name('metas.programa');
 });
@@ -374,6 +374,9 @@ Route::controller(HistorialEstudianteController::class)->group(function () {
 Route::controller(EstudianteController::class)->group(function(){
     Route::get('/historialestudiante','inicio')->name('historial.inicio');
     Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');
+    Route::post('/historialestudiante/consultamalla','consultaMalla')->name('historial.consultamalla');
+    Route::post('/historialestudiante/consultahistorial','consultaHistorial')->name('historial.consultahistorial');
+    Route::post('/historialestudiante/consultaprogramacion','consultaProgramacion')->name('historial.consultaprogramacion');
 });
 
 

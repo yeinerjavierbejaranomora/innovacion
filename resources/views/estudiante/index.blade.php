@@ -117,61 +117,33 @@
                         <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
                     <div class="col-auto">
-                        <button type="button" onclick="consultaHistorial()" class="btn btn-primary mb-3">Consultar</button>
+                        <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
                     </div>
                 </div>
             </div>
             <br>
 
-            <!-- Checkbox Facultades -->
-            {{-- <div class="row justify-content-between" id="">
-                <div class="col-4 text-star">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
+            <div class="container-fluid">
+                <div class="container mt-3">
+                    <div class="row py-5">
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" href="">
+                                Malla curricular
+                            </a>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades">
-                                <div>
-                                    <label> <input type="checkbox" value="" id="mostrarTodos" checked> Ver Todo</label>
-                                </div>
-                                <br>
-                            </div>
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" href="">
+                                Historial academico
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-4 text-start">
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-star" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-4 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5" id="chartEstudiantes">
-                        <div class="card-header">
-                            <h5 class="titulos"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes por Facultad</strong></h5>
-                            <h5 class="programastitulos" style="display: none;"><strong>Estudiantes por Programa</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="vacioTotalEstudiantes" class="text-center vacio" style="display: none;">
-                                <h5>No hay datos por mostrar</h5>
-                            </div>
-                            <canvas id="estudiantes"></canvas>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" href="">
+                                Programado
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <button class="btn" type="button" id="generarReporte">
-                    Generar Reporte
-                </button>
-            </div> --}}
 
 
 
@@ -280,11 +252,14 @@
 
     </div>
     <script>
-        function consultaHistorial() {
+        function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
+                consultaMalla(codBanner.val());
+                consultaHistorial(codBanner.val());
+                consultaProgramacion(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");
@@ -292,7 +267,6 @@
         }
 
         function consultaEstudiante(codBanner) {
-            alert(codBanner);
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -301,6 +275,72 @@
                 },
                 type: 'post',
                 url: "{{ route('historial.consulta') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaMalla(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultamalla') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaHistorial(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultahistorial') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaProgramacion(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultaprogramacion') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

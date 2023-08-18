@@ -1214,43 +1214,85 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetas(){
+    public function graficoMetas()
+    {
 
-        $metas = DB::table('programas_metas')->get();
+        $consultaMetas = DB::table('programas_metas')->get();
 
-        $datos = [];
-        foreach ($metas as $meta){
+        $metas = [];
+        foreach ($consultaMetas as $meta) {
             $dato = $meta->meta;
-            if($dato != null){
-                $datos[$meta->programa] = $dato;
+            if ($dato != null) {
+                $metas[$meta->programa] = $dato;
             }
         }
 
-        $programas = [];
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
 
         $programasConsulta = DB::table('programas_metas')
-        ->select('programa')
-        ->whereNotNull('meta')
-        ->groupBy('programa')
-        ->get();
+            ->select('programa')
+            ->whereNotNull('meta')
+            ->groupBy('programa')
+            ->get();
 
-        foreach ($programasConsulta as $programa)
-        {
-            $programas[] =$programa->programa;
+        $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
+
+        $periodosActivos = [];
+        foreach ($periodos as $periodo) {
+            $periodosActivos[] = $periodo->periodos;
         }
 
-        $matriculas = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(idbanner) as count_idbanner'), 'codprograma')
-        ->where('sello', 'TIENE SELLO FINANCIERO')
-        ->whereIn('codprograma', $programas)
-        ->groupBy('codprograma')
-        ->get();
+        $matriculasSello = [];
 
-        dd($matriculas);
+        foreach ($programasConsulta as $programa) {
+
+            $consultaSello = DB::table('datosMafi')
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
+                ->where('sello', 'TIENE SELLO FINANCIERO')
+                ->whereIn('periodo', $periodosActivos)
+                ->where('codprograma', $programa->programa)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            $consultaRetencion = DB::table('datosMafi')
+                ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'))
+                ->where('sello', 'TIENE RETENCION')
+                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                ->whereIn('periodo', $periodosActivos)
+                ->where('codprograma', $programa->programa)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            if ($consultaSello) {
+                $matriculasSello[$programa->programa] = $consultaSello[0]->TOTAL;
+            } else {
+                $matriculasSello[$programa->programa] = 0;
+            }
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$programa->programa] = $consultaRetencion[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$programa->programa] = 0;
+            }
+
+        }
+            $matriculasSello = array_reverse($matriculasSello);
+            $matriculasRetencion = array_reverse($matriculasRetencion);
+        $datos = [
+            'metas' => $metas,
+            'matriculaSello' => $matriculasSello,
+            'matriculaRetencion' => $matriculasRetencion,
+        ];
 
         return $datos;
     }
-
 
     /**
      * Método para guardar todo los historicos de los graficos
@@ -1436,18 +1478,6 @@ class InformeMafiController extends Controller
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 
-        */
-
-      
-
-    
-
-
+         */
     }
-    
-
-
-
-
-    
 }

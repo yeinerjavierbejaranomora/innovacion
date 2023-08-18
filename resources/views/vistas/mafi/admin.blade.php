@@ -286,7 +286,7 @@
                 </div>
             </div>
 
-            <div class="col-6 text-center " id="colMetas">
+            <div class="col-12 text-center " id="colMetas">
                 <div class="card shadow mb-4 graficosBarra">
                     <div class="card-header">
                         <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
@@ -2825,7 +2825,7 @@
 
             graficoMetas();
 
-            function graficoMetas(){
+            function graficoMetas() {
                 var url = "{{ route('metas.programa')}}";
                 data = '';
                 $.ajax({
@@ -2836,35 +2836,68 @@
                     url: url,
                     data: data,
                     success: function(data) {
+
                         try {
                             data = jQuery.parseJSON(data);
                         } catch {
                             data = data;
                         }
 
+                        console.log(data);
                         var labels = [];
                         var values = [];
-                        Object.keys(data).forEach(metas => {
-                            labels.push(metas);
-                            values.push(data[metas]);
-                        })
-                        
+                        var valuesSello = [];
+                        var valuesRetencion = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
+                            values.push(data.metas[meta]);
+                        });
+
+                        Object.keys(data.matriculaSello).forEach(sello => {
+                            valuesSello.push(data.matriculaSello[sello]);
+                        });
+
+                        Object.keys(data.matriculaRetencion).forEach(retencion => {
+                            valuesSello.push(data.matriculaRetencion[retencion]);
+                        });
+
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,
                                 datasets: [{
-                                    data: values,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)'],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
                                     },
-                                    stack: 'Stack 0',
-                                }
-                                
-                            ]
+                                    {
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'center',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Retencion',
+                                        data: valuesRetencion,
+                                        backgroundColor: ['rgba(56,101,120,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'center',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
                             },
                             options: {
                                 maintainAspectRatio: false,

@@ -375,6 +375,7 @@ Route::controller(EstudianteController::class)->group(function(){
     Route::get('/historialestudiante','inicio')->name('historial.inicio');
     Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');
     Route::post('/historialestudiante/consultamalla','consultaMalla')->name('historial.consultamalla');
+    Route::post('/historialestudiante/consultahistorial','consultaHistorial')->name('historial.consultahistorial');
 });
 
 

@@ -737,7 +737,7 @@
                         title: 'Actualizar fecha de inicio',
                         html: '<form>' +
                             '<label for="fecha"> Fecha de Inicio </label>' +
-                            '<input type="text" id="fecha" name="fecha" value="' + data.fecha_inicio + '" class="form-control" placeholder="fecha de inicio"> <br>',
+                            '<input type="date" min="' + fechaActual.toISOString().split('T')[0] + '" max="' + fechaLimiteISO + '" id="fecha" name="fecha" value="' + data.fecha_inicio + '" class="form-control"> <br>',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

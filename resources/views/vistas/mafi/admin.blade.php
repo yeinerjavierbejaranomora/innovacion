@@ -2846,11 +2846,13 @@
                         console.log(data);
                         var labels = [];
                         var values = [];
-                        Object.keys(data).forEach(metas => {
-                            labels.push(metas);
-                            values.push(data[metas]);
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
                         })
                         
+                        console.log(labels);
+
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {
                             type: 'bar',
@@ -2864,8 +2866,10 @@
                                         align: 'top',
                                     },
                                     stack: 'Stack 0',
-                                }
-                                
+                                },
+                                {
+
+                                },
                             ]
                             },
                             options: {

@@ -125,7 +125,7 @@
 
             <div class="container-fluid">
                 <div class="container mt-3">
-                    <div class="row py-5">
+                    <div class="row py-5" id="botones">
                         <div class="col 4 text-center">
                             <a type="button" class="btn boton" href="">
                                 Malla curricular
@@ -283,7 +283,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-                    console.log(data);
+                    console.log(data.homologante);
                 }
             });
         }

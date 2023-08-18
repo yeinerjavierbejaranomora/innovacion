@@ -1224,7 +1224,6 @@ class InformeMafiController extends Controller
 
         //**/ traemos los periodos activos */
 
-<<<<<<< HEAD
          $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
        
          /// traemos todos los programas
@@ -1243,34 +1242,6 @@ class InformeMafiController extends Controller
         
         /*
          foreach ($periodos as $key_periodos => $val_periodos) {
-=======
-        $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
-
-        /// traemos todos los programas
-        $programas = DB::table('programas')->get();
-
-
-        foreach ($periodos as $key_periodos => $val_periodos) {
-
-            foreach ($programas as $key_programas => $val_programas) {
-
-                // total estudiantes banner
-                $Total_estudiantes_Banner =
-                    DB::table('datosMafi')
-                    ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
-                    ->groupBy('estado')
-                    ->orderByDesc('TOTAL')
-                    ->get();
-                //--- insertamos los datos  del total estudiantes banner
-                // DB::table('historico_graficos')->insert([
-                //     'grafico'=>'Total estudiantes Banner',
-                //     'numeros'=>json_encode($Total_estudiantes_Banner),
-                //     'periodo'=>'todos',
-                //     'facultad'=>'todos',
-                //     'programa'=>'todos',
-                //     'fecha'=>date("d-m-Y"),
-                // ]);
->>>>>>> e4c815d60f6d3a1d59cbf5d0a0223f4788a306e8
 
 
                 //-- estado financiero

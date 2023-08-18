@@ -23,4 +23,12 @@ class EstudianteController extends Controller
         $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();*/
         return $consultaEstudiante;
     }
+
+    public function consultaMalla(){
+        $estudiante = $_POST['codBanner'];
+
+        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
+        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
+        return $mallaCurricular;
+    }
 }

@@ -107,6 +107,9 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
+
+            </div>
+            <div class="text-center" id="mensaje">
                 <div class="row">
                     <div class="col-sm-3 text-dark">
                         <p class="mb-0">Contraseña actual</p>

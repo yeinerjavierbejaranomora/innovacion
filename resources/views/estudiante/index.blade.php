@@ -167,11 +167,11 @@
                 </div> --}}
             </div>
 
-            <div class="row">
+            {{-- <div class="row">
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
-            </div>
+            </div> --}}
 
 
 

@@ -15,18 +15,12 @@ class EstudianteController extends Controller
 
     public function consultaEstudiante(){
         $estudiante = $_POST['codBanner'];
-
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        /*$mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
-        $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
-        $historialAcademico = json_decode(file_get_contents($url),true);
-        $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();*/
         return $consultaEstudiante;
     }
 
     public function consultaMalla(){
         $estudiante = $_POST['codBanner'];
-
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma','=',$consultaEstudiante->programa)->get()->toArray();
         return $mallaCurricular;
@@ -37,5 +31,10 @@ class EstudianteController extends Controller
         $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
         $historialAcademico = json_decode(file_get_contents($url),true);
         return $historialAcademico;
+    }
+    public function consultaProgramacion(){
+        $estudiante = $_POST['codBanner'];
+        $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();
+        return $programacion;
     }
 }

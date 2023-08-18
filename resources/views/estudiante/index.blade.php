@@ -287,6 +287,7 @@
                 consultaEstudiante(codBanner.val());
                 consultaMalla(codBanner.val());
                 consultaHistorial(codBanner.val());
+                consultaProgramacion(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");
@@ -346,6 +347,28 @@
                 },
                 type: 'post',
                 url: "{{ route('historial.consultahistorial') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaProgramacion(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultaprogramacion') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

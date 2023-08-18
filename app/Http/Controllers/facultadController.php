@@ -774,7 +774,7 @@ class facultadController extends Controller
     public function getProgramasPeriodos(Request $request)
     {
         $periodos = $request->input('periodos');
-        
+
         $data = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->get();
 
         header("Content-Type: application/json");
@@ -840,22 +840,52 @@ class facultadController extends Controller
      */
     public function programasActivos()
     {
-        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodos')->get();
+        $periodosActivos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
 
         $periodos = [];
 
-        foreach ($periodosActivos as $key){
+        foreach ($periodosActivos as $key) {
             $dosUltimosDigitos = substr($key->periodos, -2);
-        $periodos[] = $dosUltimosDigitos;
+            $periodos[] = $dosUltimosDigitos;
         }
 
         $nivelFormacion = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
-            ->select('p.nivelFormacion','pP.periodo')
+            ->select('p.nivelFormacion', 'pP.periodo')
             ->whereIn('pP.periodo', $periodos)
             ->groupBy('p.nivelFormacion', 'pP.periodo')
             ->get();
- 
+
         return $nivelFormacion;
+    }
+
+    public function actualizarProgramaPeriodo(Request $request)
+    {
+        $id_llegada = $_POST['id'];
+        $fecha = $_POST['fecha'];
+
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', $id)->first();
+
+        $periodo = DB::table('periodo')
+            ->where('id', $id)
+            ->update([
+                'fecha_inicio' => $fecha
+            ]);
+
+        $informacionActualizada = $request->except(['_token']);
+
+        if ($periodo) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue actualizado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
+            return "false";
+        endif;
     }
 }

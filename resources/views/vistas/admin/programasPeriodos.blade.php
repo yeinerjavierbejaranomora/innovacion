@@ -726,13 +726,10 @@
                         function obtener_data_editar(tbody, table) {
                             $(tbody).on("click", "button.editar", function() {
                                 var data = table.row($(this).parents("tr")).data();
-                                /** Lìneas de còdigo que determinan las fechas actuales y lìmites */
+                                /** Líneas de código que determinan las fechas actuales y límites */
                                 var fechaActual = new Date();
-                                var añoActual = fechaActual.getFullYear();
                                 var fechaLimite = new Date(fechaActual.getFullYear() + 1, fechaActual.getMonth(), fechaActual.getDate());
                                 var fechaLimiteISO = fechaLimite.toISOString().split('T')[0];
-                                var añoSiguiente = añoActual + 1;
-
                                 Swal.fire({
                                     title: 'Actualizar fecha de inicio',
                                     html: '<form>' +
@@ -749,7 +746,7 @@
                                         $.post("{{ route('periodo.update')}}", {
                                                 '_token': $('meta[name=csrf-token]').attr('content'),
                                                 id: encodeURIComponent(window.btoa(data.id)),
-                                                nombre: $(document).find('#fecha').val(),
+                                                fecha: $(document).find('#fecha').val(),
                                             },
                                             function(result) {
                                                 console.log(result);

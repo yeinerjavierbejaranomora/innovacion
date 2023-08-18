@@ -2849,7 +2849,7 @@
 
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
-                            values.push(data[meta]);
+                            values.push(data.metas[meta]);
                         })
 
 

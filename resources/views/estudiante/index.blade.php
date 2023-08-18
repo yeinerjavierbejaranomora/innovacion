@@ -125,7 +125,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" id="">
-                <div class="col-8 text-center">
+                <div class="col-6 text-center">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Datos estudiante</strong></h5>

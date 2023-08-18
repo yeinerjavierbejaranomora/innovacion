@@ -843,7 +843,6 @@ class facultadController extends Controller
         $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->select('periodos')->first();
         dd($periodosActivos);
 
-
         $programasActivos = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
             ->select('p.nivelFormacion', 'pP.periodo')

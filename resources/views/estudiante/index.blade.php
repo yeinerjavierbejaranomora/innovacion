@@ -124,14 +124,14 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="">
-                <div class="col-12 text-star">
+            <div class="row justify-content-center" id="">
+                <div class="col-8 text-center">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Datos estudiante</strong></h5>
                         </div>
                         <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group">
                                 <li class="list-group-item">
                                     <h3>Codigo Estudiante:</h3>
                                     <h4></h4>

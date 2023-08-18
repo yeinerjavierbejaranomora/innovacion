@@ -2849,7 +2849,7 @@
 
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
-                            values.push(data[metas]);
+                            values.push(data.metas[meta]);
                         })
 
 
@@ -2860,6 +2860,7 @@
                             data: {
                                 labels: labels,
                                 datasets: [{
+                                    label: 'Metas',
                                     data: values,
                                     backgroundColor: ['rgba(223, 193, 78, 1)'],
                                     datalabels: {

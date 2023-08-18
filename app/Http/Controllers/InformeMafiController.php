@@ -1239,11 +1239,12 @@ class InformeMafiController extends Controller
             $programas[] =$programa->programa;
         }
 
-
-        $matriculas = DB::table('datosMafi')->where('sello','TIENE SELLO FINANCIERO')
-        ->whereIn('codprograma',$programas)
-        ->select(DB::raw('COUNT(idbanner) AS TOTAL,codprograma'))
-        ->groupBy('codprograma');
+        $matriculas = DB::table('datosMafi')
+        ->select(DB::raw('COUNT(idbanner) as count_idbanner'), 'codprograma')
+        ->where('sello', 'TIENE SELLO FINANCIERO')
+        ->whereIn('codprograma', $programas)
+        ->groupBy('codprograma')
+        ->get();
 
         dd($matriculas);
 

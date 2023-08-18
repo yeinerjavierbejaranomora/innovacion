@@ -851,9 +851,9 @@ class facultadController extends Controller
 
         $nivelFormacion = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
-            ->select('p.nivelFormacion')
+            ->select('p.nivelFormacion','pP.periodo')
             ->whereIn('pP.periodo', $periodos)
-            ->groupBy('p.nivelFormacion','pP.periodo')
+            ->groupBy('p.nivelFormacion')
             ->get();
 
         $data = [

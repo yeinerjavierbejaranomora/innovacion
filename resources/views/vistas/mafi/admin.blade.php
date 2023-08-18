@@ -2849,10 +2849,11 @@
 
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
+                            values.push(data[metas]);
                         })
-                        
-                        console.log(labels);
 
+
+                        
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {
                             type: 'bar',
@@ -2868,7 +2869,7 @@
                                     stack: 'Stack 0',
                                 },
                                 {
-
+                                    
                                 },
                             ]
                             },

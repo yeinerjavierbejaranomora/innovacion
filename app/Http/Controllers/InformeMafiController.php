@@ -1227,8 +1227,6 @@ class InformeMafiController extends Controller
             }
         }
 
-        $programas = [];
-
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -1244,10 +1242,6 @@ class InformeMafiController extends Controller
             ->groupBy('programa')
             ->get();
 
-        foreach ($programasConsulta as $programa) {
-            $programas[] = $programa->programa;
-        }
-
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
         $periodosActivos = [];
@@ -1255,34 +1249,49 @@ class InformeMafiController extends Controller
             $periodosActivos[] = $periodo->periodos;
         }
 
-        $matriculasSello = DB::table('programas')
-            ->leftJoinSub(function ($query) use ($programas, $periodosActivos, $tiposEstudiante) {
-                $query->from('datosMafi')
-                    ->select(DB::raw('codprograma, COUNT(idbanner) as TOTAL'))
-                    ->whereIn('periodo', $periodosActivos)
-                    ->whereIn('codprograma', $programas)
-                    ->whereIn('tipoestudiante', $tiposEstudiante)
-                    ->where('sello', 'TIENE SELLO FINANCIERO')
-                    ->groupBy('codprograma');
-            }, 'datosMafi', 'programas.codprograma', '=', 'datosMafi.codprograma')
-            ->select('programas.codprograma', DB::raw('COALESCE(datosMafi.TOTAL, 0) as TOTAL'))
-            ->get();
+        $matriculasSello = [];
 
-        $matriculasRetencion = DB::table('datosMafi')
-            ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'), 'codprograma')
-            ->where('sello', 'TIENE RETENCION')
-            ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
-            ->whereIn('periodo', $periodosActivos)
-            ->whereIn('codprograma', $programas)
-            ->whereIn('tipoestudiante', $tiposEstudiante)
-            ->groupBy('codprograma')
-            ->get();
+        foreach ($programasConsulta as $programa) {
 
+            $consultaSello = DB::table('datosMafi')
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
+                ->where('sello', 'TIENE SELLO FINANCIERO')
+                ->whereIn('periodo', $periodosActivos)
+                ->where('codprograma', $programa->programa)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            $consultaRetencion = DB::table('datosMafi')
+                ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'))
+                ->where('sello', 'TIENE RETENCION')
+                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                ->whereIn('periodo', $periodosActivos)
+                ->where('codprograma', $programa->programa)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            if ($consultaSello) {
+                $matriculasSello[$programa->programa] = $consultaSello[0]->TOTAL;
+            } else {
+                $matriculasSello[$programa->programa] = 0;
+            }
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$programa->programa] = $consultaRetencion[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$programa->programa] = 0;
+            }
+
+        }
+            $matriculasSello = array_reverse($matriculasSello);
+            $matriculasRetencion = array_reverse($matriculasRetencion);
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
+
+        dd($datos);
 
         return $datos;
     }

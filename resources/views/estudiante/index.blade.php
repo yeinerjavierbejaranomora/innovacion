@@ -124,15 +124,6 @@
             <br>
 
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <section id="seccion" style="background-color: #eee;" class="font-weight-bold text-dark text-center mb-2">
-                    <h1>Informes disponibles</h1>
-                </section>
-                <div class="container mt-3">
-                    <div class="row text-center">
-                        <p> A continuación podrás visualizar los informes disponibles según lo que necesites (Facultad, programa, etc).</p>
-                    </div>
                     <div class="row py-5">
                         <div class="col 4 text-center">
                             <a type="button" class="btn boton" href="{{ route('home.mafi') }}">

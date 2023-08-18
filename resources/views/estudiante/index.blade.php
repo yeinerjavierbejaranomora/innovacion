@@ -267,10 +267,10 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function(){
-                    //$('#codigo').prop('disabled',true);
+                    $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-                    //$('#codigo').prop('disabled',false);
+                    $('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
@@ -296,7 +296,7 @@
             });
         }
 
-        function consultaMalla(codBanner) {
+        /*function consultaMalla(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -360,7 +360,7 @@
                     console.log(data);
                 }
             });
-        }
+        }*/
 
     </script>
     @include('layout.footer')

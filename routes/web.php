@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\contrasenaController;
 use App\Http\Controllers\cambioController;
+use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\MafiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\facultadController;
@@ -84,7 +85,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/home/programas', 'traerprogramas')->name('traer.programas');
     /** Ruta para traer programas en la vista Usuarios */
     Route::post('/home/programasUsuarios', 'traerProgramasUsuarios')->name('traer.programas.usuarios');
-     
+
 
 });
 
@@ -122,7 +123,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/operadoresFacultad/{tabla}', 'operadoresFacultad')->middleware('auth')->name('estudiantes.operador.facultad');
     /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos por facultad*/
     Route::post('/home/estudiantesProgramasFacultad/{tabla}' ,'estudiantesProgramasFacultad')->middleware('auth')->name('programas.estudiantes.facultad');
-    
+
     /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
     Route::post('/home/estudiantesPrograma', 'estudiantesActivosPrograma')->middleware('auth')->name('estudiantes.activos.programa');
     /** Ruta para cargar gráfica de el sello financiero de los estudiantes de cada programa */
@@ -153,14 +154,16 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente */
     Route::post('/home/tiposEsudiantesTotal/{tabla}', 'tiposEstudiantesTotal')->middleware('auth')->name('tiposEstudiantes.total.estudiantes');
     /** Ruta para cargar gráfica de los operadores ordenados de forma descendente por Programa*/
-    Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes'); 
+    Route::post('/home/tiposEsudiantesProgramaTotal/{tabla}', 'tiposEstudiantesProgramaTotal')->middleware('auth')->name('tiposEstudiantes.programa.estudiantes');
 
     Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
+
+    Route::get('/home/probar', 'tablaMetas')->middleware('auth', 'admin')->name('funcion.probar');
 
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {
-    
+
     /** Ruta para informe de ausentismo */
     Route::post('/home/Moodle/riesgo', 'riesgo')->middleware('auth')->name('moodle.riesgo');
     /** Informe de ausentismo por facultad */
@@ -173,16 +176,16 @@ Route::controller(InformeMoodleController::class)->group(function () {
     Route::get('/home/Moodle/retencion', 'retencion')->middleware('auth')->name('moodle.retencion');
     /** Ruta para cargar dataTable con los estudiantes */
     Route::post('/home/Moodle/estudiantes/{riesgo}', 'estudiantesRiesgo')->middleware('auth')->name('moodle.estudiantes');
-    
+
     Route::post('/home/Moodle/estudiantesFacultad/{riesgo}', 'estudiantesRiesgoFacultad')->middleware('auth')->name('moodle.estudiantes.facultad');
-    
+
     Route::post('/home/Moodle/estudiantesPrograma/{riesgo}', 'estudiantesRiesgoPrograma')->middleware('auth')->name('moodle.estudiantes.programa');
     /** Ruta para obtener la data de un alumno según su idBanner */
     Route::post('/home/Moodle/datosEstudiante', 'dataAlumno')->middleware('auth')->name('moodle.data');
 
     /** Ruta para obtener los cursos en riesgo de un alumno */
     Route::post('/home/Moodle/riesgoAsistencia', 'riesgoAsistencia')->middleware('auth')->name('moodle.riesgo.asistencia');
-    
+
 });
 
 Route::controller(MafiController::class)->group(function () {
@@ -194,9 +197,9 @@ Route::controller(MafiController::class)->group(function () {
     Route::get('/home/admin/Generar_faltantes', 'materiasPorVer')->middleware('auth', 'admin')->name('admin.Generar_faltantes');
     Route::get('/home/admin/probarfunciones', 'probarfunciones')->middleware('auth', 'admin')->name('admin.probarfunciones');
 
-   
 
-    
+
+
 });
 
 /** definimos las rutas para el registro de usuarios */
@@ -344,12 +347,17 @@ Route::controller(facultadController::class)->group(function () {
     /** Ruta para cargar la vista de planeación*/
     Route::get('/home/programasPeriodos', 'vistaProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.view');
     /** Ruta para cargar tabla programasPeriodos */
-    Route::get('/home/tablaProgramasPeriodos', 'getProgramasPeriodos')->middleware('auth', 'admin')->name('programasPeriodos.tabla');
-    //** Ruta para inactivar periodo */
+    Route::post('/home/tablaProgramasPeriodos', 'getProgramasPeriodos')->middleware('auth')->name('programasPeriodos.tabla');
+    /** Ruta para cargar tabla programasPeriodos por Facultad*/
+    Route::post('/home/tablaProgramasPeriodosFacultad', 'getProgramasPeriodosFacultad')->middleware('auth')->name('programasPeriodos.tabla.facultad');
+    /** Ruta para inactivar periodo */
     Route::post('/home/inactivarProgramaPeriodo', 'inactivarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.inactivar');
-    //** Ruta para activar periodo */
+    /** Ruta para activar periodo */
     Route::post('/home/activarProgramaPeriodo', 'activarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.activar');
-    
+    /** Ruta para traer periodos activos*/
+    Route::post('/home/programasActivos', 'programasActivos')->middleware('auth', 'admin')->name('programas.activos');
+    /** Ruta para editar los periodos activos*/
+    Route::post('/home/editarProgramasPeriodos', 'actualizarProgramaPeriodo')->middleware('auth', 'admin')->name('programasPeriodos.actualizar');
 });
 
 /** Controlador para el menú desplegable de facultades */
@@ -357,8 +365,13 @@ Route::controller(HistorialEstudianteController::class)->group(function () {
 
     /** Ruta para cargar informacion de los estudiantes */
     Route::get('/historial', [HistorialEstudianteController::class, 'historial']);
-    
-    
+
+
+});
+
+Route::controller(EstudianteController::class)->group(function(){
+    Route::get('/historialestudiante','inicio')->name('historial.inicio');
+    Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');
 });
 
 

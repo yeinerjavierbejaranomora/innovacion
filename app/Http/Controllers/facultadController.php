@@ -105,7 +105,8 @@ class facultadController extends Controller
      * de especialización en un arreglo y lo convierte a formato json para mostrarlo en la vista
      * @return json(array())
      */
-    public function get_especializacion(){
+    public function get_especializacion()
+    {
         $especializacion = DB::table('programas')->where('nivelFormacion', '=', 'ESPECIALISTA')->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $especializacion));
@@ -404,7 +405,7 @@ class facultadController extends Controller
      * */
     public function programasUsuario($nombre)
     {
-        return view('vistas.admin.facultades', ['nombre'=>$nombre]);
+        return view('vistas.admin.facultades', ['nombre' => $nombre]);
     }
 
     /**
@@ -770,16 +771,33 @@ class facultadController extends Controller
         return view('vistas.admin.programasPeriodos');
     }
 
-    public function getProgramasPeriodos(){
+    public function getProgramasPeriodos(Request $request)
+    {
+        $periodos = $request->input('periodos');
 
-        $data = DB::table('programasPeriodos')->get();
+        $data = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->get();
 
         header("Content-Type: application/json");
-        echo json_encode(array('data' => $data)); 
+        echo json_encode(array('data' => $data));
+    }
+
+    public function getProgramasPeriodosFacultad(Request $request)
+    {
+        $periodos = $request->input('periodos');
+        $facultades = $request->input('idfacultad');
+        $data = DB::table('programasPeriodos as Pp')
+            ->join('programas as p', 'Pp.codPrograma', '=', 'p.codprograma')
+            ->whereIn('Pp.periodo', $periodos)
+            ->whereIn('p.Facultad', $facultades)
+            ->get();
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
     }
 
     /** Función para desactivar los periodos */
-    public function inactivarProgramaPeriodo(){
+    public function inactivarProgramaPeriodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -789,15 +807,18 @@ class facultadController extends Controller
         $inactivarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 0]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($inactivarPeriodo) :
-            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue inactivado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "deshabilitado";
         else :
             return "false";
         endif;
     }
-    
-    /** Función para activar los periodos */
-    public function activarProgramaPeriodo(){
+
+    /** 
+     * Función para activar los periodos 
+     * */
+    public function activarProgramaPeriodo()
+    {
         $id_llegada = $_POST['id'];
         $id = base64_decode(urldecode($id_llegada));
         if (!is_numeric($id)) {
@@ -807,9 +828,63 @@ class facultadController extends Controller
         $activarPeriodo = DB::table('programasPeriodos')->where('id', '=', $id)->update(['estado' => 1]);
         $informacionActualizada = DB::table('programasPeriodos')->where('id', '=', $id)->select('codPrograma', 'id', 'periodo', 'estado')->get();
         if ($activarPeriodo) :
-            $this->updateLogUsuarios("El periodo ". $informacionOriginal[0]->codPrograma. " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal[0]->codPrograma . " - " . $informacionOriginal[0]->periodo . " fue activado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
             return  "habilitado";
         else :
+            return "false";
+        endif;
+    }
+
+    /**
+     * Método que trae los periodos activos de cada programas
+     */
+    public function programasActivos()
+    {
+        $periodosActivos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
+
+        $periodos = [];
+
+        foreach ($periodosActivos as $key) {
+            $dosUltimosDigitos = substr($key->periodos, -2);
+            $periodos[] = $dosUltimosDigitos;
+        }
+
+        $nivelFormacion = DB::table('programasPeriodos as pP')
+            ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
+            ->select('p.nivelFormacion', 'pP.periodo')
+            ->whereIn('pP.periodo', $periodos)
+            ->groupBy('p.nivelFormacion', 'pP.periodo')
+            ->get();
+
+        return $nivelFormacion;
+    }
+
+    public function actualizarProgramaPeriodo(Request $request)
+    {
+        $id_llegada = $_POST['id'];
+        $fecha = $_POST['fecha'];
+
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+
+        $informacionOriginal = DB::table('programasPeriodos')->where('id', $id)->first();
+
+        $periodo = DB::table('programasPeriodos')
+            ->where('id', $id)
+            ->update([
+                'fecha_inicio' => $fecha
+            ]);
+
+        $informacionActualizada = $request->except(['_token']);
+
+        if ($periodo) :
+            /** Redirecciona al formulario registro mostrando un mensaje de exito */
+            $this->updateLogUsuarios("El periodo " . $informacionOriginal->codPrograma . " - " . $informacionOriginal->periodo . " fue actualizado ", 'programasPeriodos', $informacionOriginal, $informacionActualizada);
+            return "actualizado";
+        else :
+            /** Redirecciona al formulario registro mostrando un mensaje de error */
             return "false";
         endif;
     }

@@ -91,9 +91,9 @@ class InformeMafiController extends Controller
     public function estudiantesRetencion($tabla)
     {
         /**
-        **SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir **FROM datosMafi 
-        **WHERE sello = 'TIENE RETENCION' 
-        **GROUP BY autorizado_asistir
+         **SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir **FROM datosMafi 
+         **WHERE sello = 'TIENE RETENCION' 
+         **GROUP BY autorizado_asistir
          */
         if ($tabla == "Mafi") {
             $retencion = DB::table('datosMafi')
@@ -135,9 +135,9 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        **SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-        **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
-        **GROUP BY sello;
+             **SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+             **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+             **GROUP BY sello;
              */
             $primerIngreso = DB::table('datosMafi')
                 ->whereIn('tipoestudiante', $tiposEstudiante)
@@ -148,9 +148,9 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-           **SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
-           **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
-           **GROUP BY sello;
+             **SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
+             **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
+             **GROUP BY sello;
              */
             $primerIngreso = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')
@@ -208,10 +208,10 @@ class InformeMafiController extends Controller
     {
         if ($tabla == "Mafi") {
             /**
-       **SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
-       **GROUP BY operador
-       **ORDER BY TOTAL DESC
-       **LIMIT 5
+             **SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
+             **GROUP BY operador
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $operadores = DB::table('datosMafi')
 
@@ -251,10 +251,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == 'Mafi') {
             /**
-       **SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
-       **GROUP BY codprograma
-       **ORDER BY TOTAL DESC
-       **LIMIT 5
+             **SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`
+             **GROUP BY codprograma
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $programas = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
@@ -266,10 +266,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == 'planeacion') {
             /**  
-         **SELECT COUNT(programa) AS TOTAL, programa FROM `estudiantes`
-         **GROUP BY programa
-         **ORDER BY TOTAL DESC
-         **LIMIT 5
+             **SELECT COUNT(programa) AS TOTAL, programa FROM `estudiantes`
+             **GROUP BY programa
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $programas = DB::table('estudiantes')
                 ->where('programado_ciclo1', 'OK')
@@ -323,10 +323,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-       **SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-       **INNER JOIN programas p ON p.codprograma = dm.programa
-       **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-       **GROUP BY dm.sello
+             **SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
+             **INNER JOIN programas p ON p.codprograma = dm.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **GROUP BY dm.sello
              */
             $sello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -339,10 +339,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-       **SELECT COUNT(e.sello) AS TOTAL, e.sello FROM `estudiantes` e
-       **INNER JOIN programas p ON p.codprograma = e.programa
-       **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
-       **GROUP BY e.sello */
+             **SELECT COUNT(e.sello) AS TOTAL, e.sello FROM `estudiantes` e
+             **INNER JOIN programas p ON p.codprograma = e.programa
+             **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+             **GROUP BY e.sello */
             $sello = DB::table('estudiantes AS e')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
                 ->where('e.programado_ciclo1', 'OK')
@@ -371,11 +371,11 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-       ** SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.**autorizado_asistir FROM datosMafi dm
-       ** INNER JOIN programas p ON p.codprograma = dm.codprograma
-       ** WHERE p.Facultad IN ('') AND dm.periodo IN ('')
-       ** WHERE dm.sello = 'TIENE RETENCION' 
-       ** GROUP BY dm.autorizado_asistir
+             ** SELECT COUNT(dm.autorizado_asistir) AS TOTAL, dm.**autorizado_asistir FROM datosMafi dm
+             ** INNER JOIN programas p ON p.codprograma = dm.codprograma
+             ** WHERE p.Facultad IN ('') AND dm.periodo IN ('')
+             ** WHERE dm.sello = 'TIENE RETENCION' 
+             ** GROUP BY dm.autorizado_asistir
              */
             $retencion = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -425,12 +425,12 @@ class InformeMafiController extends Controller
         ];
         if ($tabla == "Mafi") {
             /**
-           **SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-           **FROM datosMafi AS dm
-           **JOIN programas AS p ON p.codprograma = dm.programa
-           **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-           **AND dm.tipoestudiante = 'PRIMER INGRESO'
-           **GROUP BY dm.sello;
+             **SELECT COUNT(dm.sello) AS TOTAL, dm.sello
+             **FROM datosMafi AS dm
+             **JOIN programas AS p ON p.codprograma = dm.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **AND dm.tipoestudiante = 'PRIMER INGRESO'
+             **GROUP BY dm.sello;
              */
             $primerIngreso = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -469,11 +469,11 @@ class InformeMafiController extends Controller
         $tabla = trim($tabla);
         if ($tabla == "Mafi") {
             /**
-        **SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
-        **FROM datosMafi AS dm
-        **JOIN programas AS p ON p.codprograma = dm.programa
-        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-        **GROUP BY dm.tipoestudiante
+             **SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante.dm
+             **FROM datosMafi AS dm
+             **JOIN programas AS p ON p.codprograma = dm.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **GROUP BY dm.tipoestudiante
              */
             $tipoEstudiantes = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -488,11 +488,11 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             /**
-        **SELECT COUNT(e.tipo_estudiante) AS 'TOTAL', e.tipo_estudiante
-        **FROM estudiantes e
-        **JOIN programas p ON p.codprograma = e.programa
-        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-        **GROUP BY e.tipo_estudiante
+             **SELECT COUNT(e.tipo_estudiante) AS 'TOTAL', e.tipo_estudiante
+             **FROM estudiantes e
+             **JOIN programas p ON p.codprograma = e.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **GROUP BY e.tipo_estudiante
              */
             $tipoEstudiantes = DB::table('estudiantes AS e')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
@@ -523,13 +523,13 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        **SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
-        **FROM datosMafi AS dm
-        **JOIN programas AS p ON p.codprograma = dm.programa
-        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-        **GROUP BY dm.operador
-        **ORDER BY TOTAL DESC
-        **LIMIT 5
+             **SELECT COUNT(dm.operador) AS TOTAL, dm.operador 
+             **FROM datosMafi AS dm
+             **JOIN programas AS p ON p.codprograma = dm.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **GROUP BY dm.operador
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $operadores = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -545,13 +545,13 @@ class InformeMafiController extends Controller
         if ($tabla == "planeacion") {
 
             /**
-        **SELECT COUNT(e.operador) AS TOTAL, e.operador 
-        **FROM estudiantes e
-        **JOIN programas AS p ON p.codprograma = e.programa
-        **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
-        **GROUP BY e.operador
-        **ORDER BY TOTAL DESC
-        **LIMIT 5
+             **SELECT COUNT(e.operador) AS TOTAL, e.operador 
+             **FROM estudiantes e
+             **JOIN programas AS p ON p.codprograma = e.programa
+             **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+             **GROUP BY e.operador
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $operadores = DB::table('estudiantes AS e')
                 ->select(DB::raw('COUNT(e.operador) AS TOTAL'), 'e.operador')
@@ -583,13 +583,13 @@ class InformeMafiController extends Controller
 
         if ($tabla == "Mafi") {
             /**
-        **SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-        **FROM datosMafi AS dm
-        **JOIN programas AS p ON p.codprograma = dm.programa
-        **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-        **GROUP BY dm.codprograma
-        **ORDER BY TOTAL DESC
-        **LIMIT 5
+             **SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+             **FROM datosMafi AS dm
+             **JOIN programas AS p ON p.codprograma = dm.programa
+             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
+             **GROUP BY dm.codprograma
+             **ORDER BY TOTAL DESC
+             **LIMIT 5
              */
             $programas = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -605,12 +605,12 @@ class InformeMafiController extends Controller
         if ($tabla == "planeacion") {
             /**
              * SELECT COUNT(e.programa) AS TOTAL, e.programa 
-       ** FROM estudiantes e
-       ** JOIN programas p ON p.codprograma = e.programa
-       ** WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
-       ** GROUP BY e.programa
-       ** ORDER BY TOTAL DESC
-       ** LIMIT 5 */
+             ** FROM estudiantes e
+             ** JOIN programas p ON p.codprograma = e.programa
+             ** WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
+             ** GROUP BY e.programa
+             ** ORDER BY TOTAL DESC
+             ** LIMIT 5 */
             $programas = DB::table('estudiantes AS e')
                 ->select(DB::raw('COUNT(e.programa) AS TOTAL'), 'e.programa')
                 ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
@@ -793,12 +793,13 @@ class InformeMafiController extends Controller
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesPrograma(Request $request, $tabla){
+    public function tiposEstudiantesPrograma(Request $request, $tabla)
+    {
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
 
-       
+
         if ($tabla == "Mafi") {
             /**
              * SELECT COUNT(tipoestudiante) AS 'TOTAL', tipoestudiante
@@ -838,7 +839,8 @@ class InformeMafiController extends Controller
      * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna un JSON con estos 5 operadores, agrupados por operador
      */
-    public function operadoresPrograma(Request $request, $tabla){
+    public function operadoresPrograma(Request $request, $tabla)
+    {
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
@@ -886,7 +888,8 @@ class InformeMafiController extends Controller
      * Método que muestra todos los operadores que traen estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function operadoresProgramaTotal(Request $request, $tabla){
+    public function operadoresProgramaTotal(Request $request, $tabla)
+    {
 
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
@@ -929,7 +932,8 @@ class InformeMafiController extends Controller
      * Método que muestra todos los operadores que traen estudiantes de las facultades seleccionadas por el usuario
      * @return JSON retorna los operadores, agrupados por operador
      */
-    public function operadoresFacultadTotal(Request $request, $tabla){
+    public function operadoresFacultadTotal(Request $request, $tabla)
+    {
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
@@ -1009,7 +1013,8 @@ class InformeMafiController extends Controller
      * @return JSON retorna un JSON con estos 5 programas, agrupados por programa
      */
 
-    public function estudiantesProgramasTotal($tabla){
+    public function estudiantesProgramasTotal($tabla)
+    {
         $tabla = trim($tabla);
         if ($tabla == "Mafi") {
             /**
@@ -1047,41 +1052,42 @@ class InformeMafiController extends Controller
      * @return JSON retorna un JSON todos los programas, agrupados por programa
      */
 
-    public function estudiantesFacultadTotal(Request $request, $tabla){
+    public function estudiantesFacultadTotal(Request $request, $tabla)
+    {
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $tabla = trim($tabla);
 
-        if($tabla == "Mafi"){
-        /**
-         * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
-         * * FROM datosMafi AS dm
-         * JOIN programas AS p ON p.codprograma = dm.programa
-         * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
-         * GROUP BY dm.codprograma
-         * ORDER BY TOTAL DESC
-         */
-        $programas = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-            ->whereIn('dm.periodo', $periodos)
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
-            ->groupBy('dm.codprograma')
-            ->orderByDesc('TOTAL')
-            ->get();
+        if ($tabla == "Mafi") {
+            /**
+             * SELECT COUNT(dm.codprograma) AS TOTAL, dm.codprograma 
+             * * FROM datosMafi AS dm
+             * JOIN programas AS p ON p.codprograma = dm.programa
+             * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
+             * GROUP BY dm.codprograma
+             * ORDER BY TOTAL DESC
+             */
+            $programas = DB::table('datosMafi as dm')
+                ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
+                ->groupBy('dm.codprograma')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
-        
-        if($tabla == "planeacion"){
+
+        if ($tabla == "planeacion") {
             $programas = DB::table('estudiantes as e')
-            ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-            ->where('e.programado_ciclo1', 'OK')
-            ->where('e.programado_ciclo2', 'OK')
-            ->whereIn('e.marca_ingreso', $periodos)
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(e.programa) AS TOTAL, e.programa'))
-            ->groupBy('e.programa')
-            ->orderByDesc('TOTAL')
-            ->get();
+                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
+                ->where('e.programado_ciclo1', 'OK')
+                ->where('e.programado_ciclo2', 'OK')
+                ->whereIn('e.marca_ingreso', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->select(DB::raw('COUNT(e.programa) AS TOTAL, e.programa'))
+                ->groupBy('e.programa')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -1092,9 +1098,10 @@ class InformeMafiController extends Controller
      * Método que trae todos los tipos de estudiantes
      * @return JSON retorna todos los tipos de estudiantes
      */
-    public function tiposEstudiantesTotal($tabla){
+    public function tiposEstudiantesTotal($tabla)
+    {
         $tabla = trim($tabla);
-        
+
         if ($tabla == "Mafi") {
             /**
              * SELECT COUNT(tipoestudiante) AS 'TOTAL', 
@@ -1127,7 +1134,8 @@ class InformeMafiController extends Controller
      * Método que trae todos los tipos de estudiantes por facultad
      * @return JSON retorna todos los tipos de estudiantes
      */
-    public function tiposEstudiantesFacultadTotal(Request $request, $tabla){
+    public function tiposEstudiantesFacultadTotal(Request $request, $tabla)
+    {
         $periodos = $request->input('periodos');
         $facultades = $request->input('idfacultad');
         $tabla = trim($tabla);
@@ -1138,29 +1146,29 @@ class InformeMafiController extends Controller
          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          * GROUP BY tipoestudiante
          */
-        if($tabla ==  "Mafi"){
+        if ($tabla ==  "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi as dm')
-            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-            ->whereIn('dm.periodo', $periodos)
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
-            ->groupBy('dm.tipoestudiante')
-            ->orderByDesc('TOTAL')
-            ->get();
+                ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
+                ->groupBy('dm.tipoestudiante')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
-        if($tabla == "planeacion"){
+        if ($tabla == "planeacion") {
             $tipoEstudiantes = DB::table('estudiantes as e')
-            ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-            ->where('e.programado_ciclo1', 'OK')
-            ->where('e.programado_ciclo2', 'OK')
-            ->whereIn('e.marca_ingreso', $periodos)
-            ->whereIn('p.Facultad', $facultades)
-            ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL, e.tipo_estudiante'))
-            ->groupBy('e.tipo_estudiante')
-            ->orderByDesc('TOTAL')
-            ->get();
+                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
+                ->where('e.programado_ciclo1', 'OK')
+                ->where('e.programado_ciclo2', 'OK')
+                ->whereIn('e.marca_ingreso', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL, e.tipo_estudiante'))
+                ->groupBy('e.tipo_estudiante')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
-        
+
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }
@@ -1169,7 +1177,8 @@ class InformeMafiController extends Controller
      * Método que muestra los tipos de estudiantes de los programas seleccionados por el usuario
      * @return JSON retorna los tipos de estudiantes, agrupados por tipo de estudiante
      */
-    public function tiposEstudiantesProgramaTotal(Request $request, $tabla){
+    public function tiposEstudiantesProgramaTotal(Request $request, $tabla)
+    {
         $periodos = $request->input('periodos');
         $programas = $request->input('programa');
         $tabla = trim($tabla);
@@ -1179,26 +1188,26 @@ class InformeMafiController extends Controller
          * WHERE programa IN ('') -- Reemplaza con los programas específicos
          * GROUP BY tipoestudiante
          */
-        if ($tabla == "Mafi"){
+        if ($tabla == "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi')
-            ->whereIn('periodo', $periodos)
-            ->whereIn('codprograma', $programas)
-            ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
-            ->groupBy('tipoestudiante')
-            ->orderByDesc('TOTAL')
-            ->get();
+                ->whereIn('periodo', $periodos)
+                ->whereIn('codprograma', $programas)
+                ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
+                ->groupBy('tipoestudiante')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
-        
-        if($tabla == "planeacion"){
+
+        if ($tabla == "planeacion") {
             $tipoEstudiantes = DB::table('estudiantes')
-            ->where('programado_ciclo1', 'OK')
-            ->where('programado_ciclo2', 'OK')
-            ->whereIn('marca_ingreso', $periodos)
-            ->whereIn('programa', $programas)
-            ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-            ->groupBy('tipo_estudiante')
-            ->orderByDesc('TOTAL')
-            ->get();
+                ->where('programado_ciclo1', 'OK')
+                ->where('programado_ciclo2', 'OK')
+                ->whereIn('marca_ingreso', $periodos)
+                ->whereIn('programa', $programas)
+                ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
+                ->groupBy('tipo_estudiante')
+                ->orderByDesc('TOTAL')
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -1210,10 +1219,12 @@ class InformeMafiController extends Controller
      * @return JSON retorna los historicos dacada grafico mafi
      */
 
-    public function historial_graficos(){
+    public function historial_graficos()
+    {
 
         //**/ traemos los periodos activos */
 
+<<<<<<< HEAD
          $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
        
          /// traemos todos los programas
@@ -1232,190 +1243,198 @@ class InformeMafiController extends Controller
         
         /*
          foreach ($periodos as $key_periodos => $val_periodos) {
+=======
+        $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
 
-            foreach ( $programas as $key_programas => $val_programas) {
+        /// traemos todos los programas
+        $programas = DB::table('programas')->get();
 
-                 // total estudiantes banner
-                    $Total_estudiantes_Banner = 
-                        DB::table('datosMafi')
-                        ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
-                        ->groupBy('estado')
-                        ->orderByDesc('TOTAL')
-                        ->get();
-                    //--- insertamos los datos  del total estudiantes banner
-                    // DB::table('historico_graficos')->insert([
-                    //     'grafico'=>'Total estudiantes Banner',
-                    //     'numeros'=>json_encode($Total_estudiantes_Banner),
-                    //     'periodo'=>'todos',
-                    //     'facultad'=>'todos',
-                    //     'programa'=>'todos',
-                    //     'fecha'=>date("d-m-Y"),
-                    // ]);
-                    
-                    
+
+        foreach ($periodos as $key_periodos => $val_periodos) {
+
+            foreach ($programas as $key_programas => $val_programas) {
+
+                // total estudiantes banner
+                $Total_estudiantes_Banner =
+                    DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(estado) AS TOTAL, estado'))
+                    ->groupBy('estado')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+                //--- insertamos los datos  del total estudiantes banner
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Total estudiantes Banner',
+                //     'numeros'=>json_encode($Total_estudiantes_Banner),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+                // ]);
+>>>>>>> e4c815d60f6d3a1d59cbf5d0a0223f4788a306e8
+
+
                 //-- estado financiero
-                    $Estado_Financiero= DB::table('datosMafi')
-                        ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                        ->groupBy('sello')
-                        ->orderByDesc('TOTAL')
-                    ->get();
-                    
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
-
-
-                        
-                    // estado financiero retencion
-                    $Estado_Financiero_Retencion= DB::table('datosMafi')
-                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                    ->groupBy('autorizado_asistir')
+                $Estado_Financiero = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+                    ->groupBy('sello')
                     ->orderByDesc('TOTAL')
-                ->get();
+                    ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
 
+                // ]);
 
-                    //$Estudiantes_nuevos_Estado_Financiero
-                    $Estudiantes_nuevos_Estado_Financiero= DB::table('datosMafi')
+
+
+                // estado financiero retencion
+                $Estado_Financiero_Retencion = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                     ->groupBy('autorizado_asistir')
                     ->orderByDesc('TOTAL')
                     ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
-                        
-                    
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
-                    //// $Tipos_de_estudiantes
-                    $Tipos_de_estudiantes= DB::table('datosMafi')
+
+                // ]);
+
+
+
+                //$Estudiantes_nuevos_Estado_Financiero
+                $Estudiantes_nuevos_Estado_Financiero = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                     ->groupBy('autorizado_asistir')
                     ->orderByDesc('TOTAL')
                     ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
-                    
-                    
-                    
-                    //  $Operadores
-                    $Operadores= DB::table('datosMafi')
+
+                // ]);
+
+
+
+                //// $Tipos_de_estudiantes
+                $Tipos_de_estudiantes = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                     ->groupBy('autorizado_asistir')
                     ->orderByDesc('TOTAL')
                     ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
-                    //  $Programas_con_mayor_cantidad_de_admitidos
-                    $Programas_con_mayor_cantidad_de_admitidos= DB::table('datosMafi')
+
+                // ]);
+
+
+
+
+                //  $Operadores
+                $Operadores = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                     ->groupBy('autorizado_asistir')
                     ->orderByDesc('TOTAL')
                     ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
 
+                // ]);
 
-                    ///Programas con mayor cantidad de admitidos
-
-                    $Estado_Financiero_Retención= DB::table('datosMafi')
+                //  $Programas_con_mayor_cantidad_de_admitidos
+                $Programas_con_mayor_cantidad_de_admitidos = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                     ->groupBy('autorizado_asistir')
                     ->orderByDesc('TOTAL')
                     ->get();
 
-                        // //--- insertamos los datos  del Estado_Financiero todos
-                        // DB::table('historico_graficos')->insert([
-                        //     'grafico'=>'Estado Financiero',
-                        //     'numeros'=>json_encode($Estado_Financiero),
-                        //     'periodo'=>'todos',
-                        //     'facultad'=>'todos',
-                        //     'programa'=>'todos',
-                        //     'fecha'=>date("d-m-Y"),
-                        
-                        
-                        // ]);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
 
-                    dd(
-                        $Total_estudiantes_Banner ,
-                        $Estado_Financiero,
-                        $Estado_Financiero_Retencion,
-                        $Estudiantes_nuevos_Estado_Financiero,
-                        $Tipos_de_estudiantes,
-                        $Operadores,
-                        $Programas_con_mayor_cantidad_de_admitidos
-                    );
-                    
 
+                // ]);
+
+
+
+                ///Programas con mayor cantidad de admitidos
+
+                $Estado_Financiero_Retención = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+                dd(
+                    $Total_estudiantes_Banner,
+                    $Estado_Financiero,
+                    $Estado_Financiero_Retencion,
+                    $Estudiantes_nuevos_Estado_Financiero,
+                    $Tipos_de_estudiantes,
+                    $Operadores,
+                    $Programas_con_mayor_cantidad_de_admitidos
+                );
             }
             # code...
-         }
-     
+        }
+
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 
+<<<<<<< HEAD
         */
 
       
@@ -1423,6 +1442,30 @@ class InformeMafiController extends Controller
     
 
 
+=======
+         */
+>>>>>>> e4c815d60f6d3a1d59cbf5d0a0223f4788a306e8
     }
 
+
+    function tablaMetas()
+    {
+        $datos = DB::table('programasPeriodos')->get();
+
+        foreach ($datos as $dato) {
+            $codPrograma = $dato->codPrograma;
+            $periodo = $dato->periodo;
+            $estado = $dato->estado;
+
+            if ($estado == 1) {
+                $insertar = DB::table('programas_metas')->insert(
+                    [
+                        'programa' => $codPrograma,
+                        'meta' => null,
+                        'periodo' => $periodo
+                    ]
+                );
+            }
+        }
+    }
 }

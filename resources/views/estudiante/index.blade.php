@@ -270,6 +270,7 @@
                 },
                 success: function(data){
                     if(data.homologante != ''){
+                        $('#botones').('');
                         $('#botones').append(`<div class="col 4 text-center">
                             <a type="button" class="btn boton" onclick="consultaMalla(${data.homologante});">
                                 Malla curricular

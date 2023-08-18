@@ -2883,7 +2883,7 @@
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
                                         datalabels: {
                                             anchor: 'end',
-                                            align: 'top',
+                                            align: 'center',
                                         },
                                         stack: 'Stack 0',
                                     },
@@ -2893,7 +2893,7 @@
                                         backgroundColor: ['rgba(56,101,120,1)'],
                                         datalabels: {
                                             anchor: 'end',
-                                            align: 'top',
+                                            align: 'center',
                                         },
                                         stack: 'Stack 0',
                                     },

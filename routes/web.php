@@ -366,7 +366,7 @@ Route::controller(HistorialEstudianteController::class)->group(function () {
 });
 
 Route::controller(EstudianteController::class)->group(function(){
-    Route::get('/historial/estudiante','inicio')->name('historial.inicio');
+    Route::get('/historialestudiante','inicio')->name('historial.inicio');
 });
 
 

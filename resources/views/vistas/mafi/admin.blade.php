@@ -2823,8 +2823,22 @@
 
             var chartMetas
 
+            graficoMetas();
+            
             function graficoMetas(){
-
+                var url = "{{ route('metas.programa')}}";
+                data = '';
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
             }
 
         });

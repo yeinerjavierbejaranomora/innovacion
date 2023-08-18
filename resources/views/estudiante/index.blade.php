@@ -117,7 +117,7 @@
                         <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
                     <div class="col-auto">
-                        <button type="button" onclick="consultaHistorial()" class="btn btn-primary mb-3">Consultar</button>
+                        <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
                     </div>
                 </div>
             </div>
@@ -280,11 +280,12 @@
 
     </div>
     <script>
-        function consultaHistorial() {
+        function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
+                consultaMalla(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");
@@ -292,7 +293,6 @@
         }
 
         function consultaEstudiante(codBanner) {
-            alert(codBanner);
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -300,7 +300,29 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('historial.consulta') }}",
+                url: "{{ route('historial.consultaestudiante') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaMalla(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultamalla') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

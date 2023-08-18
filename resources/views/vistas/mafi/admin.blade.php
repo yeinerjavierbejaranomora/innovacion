@@ -2867,16 +2867,7 @@
                             type: 'bar',
                             data: {
                                 labels: labels,
-                                datasets: [{
-                                        label: 'Metas',
-                                        data: values,
-                                        backgroundColor: ['rgba(186,186,186,1)'],
-                                        datalabels: {
-                                            anchor: 'end',
-                                            align: 'top',
-                                        },
-                                        stack: 'Stack 0',
-                                    },
+                                datasets: [
                                     {
                                         label: 'Sello',
                                         data: valuesSello,
@@ -2896,7 +2887,18 @@
                                             align: 'center',
                                         },                                      
                                         stack: 'Stack 0',
-                                    }]
+                                    },
+                                    {
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
                             },
                             options: {
                                 maintainAspectRatio: false,

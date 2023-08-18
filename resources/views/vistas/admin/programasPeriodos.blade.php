@@ -368,7 +368,7 @@
             dataTable();
 
             $('#heading2').on('click', function() {
-                $(this).find('[data-toggle="collapse"]').click(); 
+                $(this).find('[data-toggle="collapse"]').click();
             });
 
             function programasActivos() {
@@ -609,6 +609,11 @@
                                 {
                                     data: 'fecha_inicio',
                                     title: 'Fecha de inicio'
+                                },
+                                {
+                                    defaultContent: "<button type='button' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
+                                    title: 'Editar Fecha',
+                                    className: "text-center"
                                 },
                                 {
                                     data: 'estado',

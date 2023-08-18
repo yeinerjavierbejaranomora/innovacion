@@ -283,16 +283,18 @@
         function consultaHistorial() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
-                var formData = new FormData();
-                formData.append('codBanner',codBanner.val());
-                consultaEstudiante(formData);
+
+                consultaEstudiante(codBanner.val());
 
             } else {
                 alert("ingrese su codigo de estudiante");
             }
         }
 
-        function consultaEstudiante(formData) {
+        function consultaEstudiante(codBanner) {
+            alert(codBanner);
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -304,10 +306,10 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function(){
-                    codBanner.prop('disabled',true);
+                    $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-
+                    console.log(data);
                 }
             });
         }

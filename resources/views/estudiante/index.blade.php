@@ -336,6 +336,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
                 }
             });

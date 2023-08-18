@@ -105,15 +105,26 @@
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
             </div>
             <br>
-            {{-- <div class="text-center" id="mensaje">
-                <h3>Por defecto se muestran los datos de todas las facultades,
-                    si quieres ver datos en especifico, selecciona alguna facultad.
-                </h3>
+            <div class="text-center" id="mensaje">
+                <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
+            </div>
+            <div class="text-center" id="">
+                <div class="row">
+                    <div class="col-sm-3 text-dark">
+                        <p class="mb-0">Codigo estudiante</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary mb-3">Consultar</button>
+                    </div>
+                </div>
             </div>
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-between" id="">
+            {{-- <div class="row justify-content-between" id="">
                 <div class="col-4 text-star">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">

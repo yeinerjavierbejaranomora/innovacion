@@ -107,6 +107,14 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
+                <div class="row">
+                    <div class="col-sm-3 text-dark">
+                        <p class="mb-0">Contraseña actual</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0"><input class="form-control" type="password" name="password_actual" placeholder="Contraseña actual" id="contraseña" required></p>
+                    </div>
+                </div>
             </div>
             <br>
 

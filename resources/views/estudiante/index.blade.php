@@ -101,7 +101,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="text-center">
+            {{-- <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
             <br>
@@ -160,7 +160,8 @@
                 <button class="btn" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
-            </div>
+            </div> --}}
+
 
         </div>
 

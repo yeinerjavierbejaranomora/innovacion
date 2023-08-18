@@ -1228,7 +1228,7 @@ class InformeMafiController extends Controller
             }
         }
 
-        dd($datos);
+        dd($programas);
 
         $matriculas = DB::table('datosMafi')->where('sello','TIENE SELLO FINANCIERO')
         ->whereIn('codprograma',$programas)

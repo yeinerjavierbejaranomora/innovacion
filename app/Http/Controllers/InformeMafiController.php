@@ -1418,25 +1418,4 @@ class InformeMafiController extends Controller
 >>>>>>> e4c815d60f6d3a1d59cbf5d0a0223f4788a306e8
     }
 
-
-    function tablaMetas()
-    {
-        $datos = DB::table('programasPeriodos')->get();
-
-        foreach ($datos as $dato) {
-            $codPrograma = $dato->codPrograma;
-            $periodo = $dato->periodo;
-            $estado = $dato->estado;
-
-            if ($estado == 1) {
-                $insertar = DB::table('programas_metas')->insert(
-                    [
-                        'programa' => $codPrograma,
-                        'meta' => null,
-                        'periodo' => $periodo
-                    ]
-                );
-            }
-        }
-    }
 }

@@ -767,8 +767,8 @@
                                 })
                             });
                         }
-                        obtener_data_inactivar("#example tbody", table);
-                        obtener_data_editar("#example tbody", table);
+                        obtener_data_inactivar("#datatable tbody", table);
+                        obtener_data_editar("#datatable tbody", table);
                     }
                 });
             }

@@ -1257,7 +1257,7 @@ class InformeMafiController extends Controller
         }
 
         $matriculasSello = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
+        ->selectRaw('COALESCE(COUNT(idbanner), 0) as TOTAL, codprograma')
         ->where('sello', 'TIENE SELLO FINANCIERO')
         ->whereIn('periodo',$periodosActivos)
         ->whereIn('codprograma', $programas)
@@ -1266,7 +1266,7 @@ class InformeMafiController extends Controller
         ->get();
 
         $matriculasRetencion = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
+        ->selectRaw('COALESCE(COUNT(idbanner), 0) as TOTAL, codprograma')
         ->where('sello', 'TIENE RETENCION')
         ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
         ->whereIn('periodo',$periodosActivos)

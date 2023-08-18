@@ -281,7 +281,7 @@
     </div>
     <script>
         function consultaHistorial() {
-            let codBanner = $('#codigo');
+            codBanner = $('#codigo');
             alert(codBanner.val())
             if (codBanner.val() != '') {
                 var formData = new FormData();

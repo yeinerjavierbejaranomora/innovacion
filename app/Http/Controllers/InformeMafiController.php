@@ -1239,9 +1239,12 @@ class InformeMafiController extends Controller
             $programas[] =$programa->programa;
         }
 
+        $periodosActivos = DB::table('periodo')->where('periodoActivo', 1)->select('periodos')->get();
+
         $matriculas = DB::table('datosMafi')
-        ->select(DB::raw('COUNT(idbanner) as count_idbanner'), 'codprograma')
+        ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
         ->where('sello', 'TIENE SELLO FINANCIERO')
+        ->where('periodo',$periodosActivos)
         ->whereIn('codprograma', $programas)
         ->groupBy('codprograma')
         ->get();
@@ -1275,7 +1278,7 @@ class InformeMafiController extends Controller
                 //-- estado financiero
                 $Estado_Financiero = DB::table('datosMafi')
                     ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                    ->where('codprograma',$val_programas->codprograma)
+                    ->where('codprogram',$val_programas->codprograma)
                     ->groupBy('sello')
                     ->orderByDesc('TOTAL')
                     ->get();

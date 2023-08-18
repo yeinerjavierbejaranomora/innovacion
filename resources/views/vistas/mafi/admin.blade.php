@@ -285,6 +285,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-6 text-center " id="colMetas">
+                <div class="card shadow mb-4 graficosBarra">
+                    <div class="card-header">
+                        <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="graficoMetas"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <br>
@@ -2806,6 +2818,13 @@
                         });
                     }
                 });
+            }
+
+
+            var chartMetas
+
+            function graficoMetas(){
+
             }
 
         });

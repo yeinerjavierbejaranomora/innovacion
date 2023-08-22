@@ -135,7 +135,7 @@
 
         </div>
 
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-5" id="contenido">
             {{-- <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -148,86 +148,6 @@
                             <h5>No hay datos por mostrar</h5>
                         </div>
                         <canvas id="activos"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colRetencion">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Con Sello de Retención (ASP)</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Con Sello de Retención (ASP) por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioRetencion" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="retencion"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colPrimerIngreso">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Estudiantes primer ingreso con tipos de sellos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Estudiantes primer ingreso con tipos de sellos por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioPrimerIngreso" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="primerIngreso"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Tipos de estudiantes</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Tipos de estudiantes por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Tipos de estudiantes por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioTipoEstudiante" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="tipoEstudiante"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colOperadores">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Operadores</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Operadores por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Operadores por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioOperadores" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="operadores"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center" id="colProgramas">
-                <div class="card shadow mb-4 graficos" id="ocultarGraficoProgramas">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Programas con mayor cantidad de admitidos por Facultad</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioProgramas" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="estudiantesProgramas"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                     </div>
                 </div>
             </div> --}}
@@ -243,11 +163,12 @@
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
-                consultaMalla(codBanner.val());
-                consultaHistorial(codBanner.val());
-                consultaProgramacion(codBanner.val());
+
+                //consultaHistorial(codBanner.val());
+                //consultaProgramacion(codBanner.val());
 
             } else {
+
                 alert("ingrese su codigo de estudiante");
             }
         }
@@ -269,32 +190,36 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
+                        $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" href="">
+                            <a type="button" class="btn boton" onclick="consultaMalla('${data.programa}');">
                                 Malla curricular
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button" class="btn boton" href="">
+                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
                                 Historial academico
                             </a>
                         </div>
                         <div class="col 4 text-center">
-                            <a type="button"class="btn boton" href="">
+                            <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
                                 Programado
                             </a>
                         </div>`)
                     }else{
-
+                        $('#botones').html('');
+                        $('#codigo').prop('disabled',false);
                     }
                 }
             });
         }
 
-        function consultaMalla(codBanner) {
+        function consultaMalla(programa) {
             var formData = new FormData();
-            formData.append('codBanner',codBanner);
+            // formData.append('codBanner',codBanner);
+            formData.append('programa',programa);
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -309,9 +234,17 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
+                    data.forEach(malla => {
+                        $('#contenido').append(renderMalla(malla));
+                    })
                 }
             });
+        }
+
+        function renderMalla(malla){
+            console.log(malla);
         }
 
         function consultaHistorial(codBanner) {
@@ -331,6 +264,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
                 }
             });
@@ -353,6 +287,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#codigo').prop('disabled',false);
                     console.log(data);
                 }
             });

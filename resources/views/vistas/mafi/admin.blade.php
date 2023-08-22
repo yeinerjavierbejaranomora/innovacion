@@ -2853,18 +2853,11 @@
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
                             values.push(data.metas[meta]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
                         console.log(labels);
-                       
-
-                        Object.keys(data.matriculaSello).forEach(sello => {
-                            valuesSello.push(data.matriculaSello[sello]);
-                        });
-
-                        Object.keys(data.matriculaRetencion).forEach(retencion => {
-                            valuesRetencion.push(data.matriculaRetencion[retencion]);
-                        });
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {

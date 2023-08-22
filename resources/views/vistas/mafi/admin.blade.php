@@ -361,6 +361,26 @@
             </div>
         </div>
 
+        <!-- Modal Todos los Tipos de estudiantes -->
+        <div class="modal fade" id="modalMetas" tabindex="-1" role="dialog" aria-labelledby="modalMetas" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="metasTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -2858,7 +2878,78 @@
 
                         console.log(labels, values);
 
-
+                        var ctx = document.getElementById('graficoMetas').getContext('2d');
+                        chartMetas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'middle',
+                                            align: 'center'
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Retencion',
+                                        data: valuesRetencion,
+                                        backgroundColor: ['rgba(56,101,120,1)'],
+                                        datalabels: {
+                                            anchor: 'center',
+                                            align: 'center',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        stacked: false,
+                                    }
+                                },
+                                plugins: {
+                                    formatter: function(value, context) {
+                                        if (context.dataset.label == 'Retencion' && value == 0) {
+                                            return '';
+                                        }
+                                    },
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
 
                     }
                 });
@@ -2894,7 +2985,7 @@
                             valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
-                        var ctx = document.getElementById('graficoMetas').getContext('2d');
+                        var ctx = document.getElementById('metasTotal').getContext('2d');
                         chartMetasTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {

@@ -2905,11 +2905,9 @@
                                 },
                                 plugins: {
                                     formatter: function(valuesSello, valuesRetencion) {
-                                        if (valuesSello === 0 || valuesRetencion === 0) {
+                                        if (valuesSello == 0 || valuesRetencion == 0) {
                                             return ''; // Devuelve una cadena vacía para ocultar el valor 0
-                                        } else {
-                                            return Math.round(value);
-                                        }
+                                        } 
                                     },
                                     datalabels: {
                                         color: 'black',

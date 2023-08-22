@@ -3010,6 +3010,7 @@
                                         },
                                         stack: 'Stack 0',
                                     },
+                                    
                                     {
                                         label: 'Metas',
                                         data: values,

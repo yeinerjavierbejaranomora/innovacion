@@ -59,4 +59,10 @@ class EstudianteController extends Controller
         $consultaPorVer = DB::table('materiasPorVer')->where('codBanner','=',$estudiante)->get();
         return $consultaPorVer;
     }
+
+    public function countSemestres(){
+        $programa = $_POST['programa'];
+        $consultacountSemestres = DB::table('mallaCurricular')->where('codprograma','=',$programa)->groupBy('semestre')->get();
+        var_dump($consultacountSemestres);die();
+    }
 }

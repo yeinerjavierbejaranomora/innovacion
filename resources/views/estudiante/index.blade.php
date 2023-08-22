@@ -353,7 +353,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type:'post',
-                url: formData,
+                data: formData,
+                url: "{{ route('historial.consultaporver') }}"
                 cahe: false,
                 contentType: false,
                 processData: false,

@@ -53,4 +53,10 @@ class EstudianteController extends Controller
         $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();
         return $programacion;
     }
+
+    public function consultaPorVer(){
+        $estudiante = $_POST['codBanner'];
+        $consultaPorVer = DB::table('materiasPorVer')->where('codBanner','=',$estudiante)->get();
+        return $consultaPorVer;
+    }
 }

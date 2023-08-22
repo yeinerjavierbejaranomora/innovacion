@@ -2856,8 +2856,6 @@
                             values.push(data.metas[meta]);
                         });
 
-                        console.log(values);
-                        labels.reverse();
                         console.log(labels);
                        
 

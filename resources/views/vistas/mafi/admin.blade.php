@@ -923,7 +923,7 @@
                                     fontStyle: 'bolder',
                                     display: 'auto',
                                     position: 'outside',
-                                    textMargin: 6
+                                    textMargin: -2
                                 },
                                 legend: {
                                     position: 'right',

@@ -231,6 +231,8 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+
+                    console.log(data);
                     $('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
                         $('#botones').html('');

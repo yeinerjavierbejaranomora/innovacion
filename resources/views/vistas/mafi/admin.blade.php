@@ -2849,6 +2849,7 @@
                         var valuesRetencion = [];
 
                         Object.keys(data.metas).forEach(meta => {
+                            console.log(meta);
                             labels.push(meta);
                             values.push(data.metas[meta]);
                         });

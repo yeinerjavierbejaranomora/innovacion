@@ -18,6 +18,10 @@ class EstudianteController extends Controller
         $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
         $historialAcademico = json_decode(file_get_contents($url),true);
         $programa=[];
+
+        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
+        dd($consultaEstudiante);
+
         if($historialAcademico){
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {

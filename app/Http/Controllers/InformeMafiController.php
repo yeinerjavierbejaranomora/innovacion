@@ -1235,12 +1235,12 @@ class InformeMafiController extends Controller
         $matriculasSello = [];
 
             $consultaSello = DB::table('datosMafi')
-                ->select(DB::raw('COUNT(idbanner) AS TOTAL'),'codprograma')
-                ->where('sello', 'TIENE SELLO FINANCIERO')
-                ->whereIn('periodo', $periodosActivos)
-                ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->groupBy()
-                ->orderByDesc('TOTAL')
+            ->where('sello', 'TIENE SELLO FINANCIERO')
+            ->whereIn('periodo', $periodosActivos)
+            ->whereIn('tipoestudiante', $tiposEstudiante)
+            ->select(DB::raw('COUNT(idbanner) AS TOTAL, codprograma'))
+            ->groupBy()
+            ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();
 

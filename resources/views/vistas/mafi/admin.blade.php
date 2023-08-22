@@ -2820,12 +2820,17 @@
                 });
             }
 
-            var chartMetas
+            var chartMetasTotal
 
-            graficoMetas();
+            graficoMetasTotal();
 
-            function graficoMetas() {
-                var url = "{{ route('metas.programa')}}";
+
+
+
+
+
+            function graficoMetasTotal() {
+                var url = "{{ route('metasTotal.programa')}}";
                 data = '';
                 $.ajax({
                     headers: {
@@ -2848,45 +2853,38 @@
                         var valuesSello = [];
                         var valuesRetencion = [];
 
+                        console.log(data.metas);
+
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
                             values.push(data.metas[meta]);
-                        });
-
-                        console.log(labels);
-
-                        Object.keys(data.matriculaSello).forEach(sello => {
-                            valuesSello.push(data.matriculaSello[sello]);
-                        });
-
-                        Object.keys(data.matriculaRetencion).forEach(retencion => {
-                            valuesRetencion.push(data.matriculaRetencion[retencion]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
-                        chartMetas = new Chart(ctx, {
+                        chartMetasTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,
-                                datasets: [
-                                    {
+                                datasets: [{
                                         label: 'Sello',
                                         data: valuesSello,
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
                                         datalabels: {
-                                            anchor: 'end',
-                                            align: 'top',
+                                            anchor: 'middle',
+                                            align: 'center'
                                         },
                                         stack: 'Stack 0',
                                     },
                                     {
                                         label: 'Retencion',
                                         data: valuesRetencion,
-                                        backgroundColor: ['rgba(56,101,120,1)'], 
+                                        backgroundColor: ['rgba(56,101,120,1)'],
                                         datalabels: {
                                             anchor: 'center',
                                             align: 'center',
-                                        },                                      
+                                        },
                                         stack: 'Stack 0',
                                     },
                                     {
@@ -2904,7 +2902,18 @@
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        stacked: false,
+                                    }
+                                },
                                 plugins: {
+                                    formatter: function(value, context) {
+                                        if (context.dataset.label == 'Retencion' && value == 0) {
+                                            return '';
+                                        }
+                                    },
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -2926,12 +2935,11 @@
                             plugins: [ChartDataLabels]
                         });
                     }
+
                 });
             }
         });
     </script>
-
-
 
     <!-- incluimos el footer -->
     @include('layout.footer')

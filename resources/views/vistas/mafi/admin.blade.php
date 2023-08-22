@@ -2820,7 +2820,6 @@
                 });
             }
 
-
             var chartMetas
 
             graficoMetas();
@@ -2853,6 +2852,8 @@
                             labels.push(meta);
                             values.push(data.metas[meta]);
                         });
+
+                        console.log(labels);
 
                         Object.keys(data.matriculaSello).forEach(sello => {
                             valuesSello.push(data.matriculaSello[sello]);

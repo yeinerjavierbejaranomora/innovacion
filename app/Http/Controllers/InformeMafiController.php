@@ -1239,6 +1239,7 @@ class InformeMafiController extends Controller
                 ->where('sello', 'TIENE SELLO FINANCIERO')
                 ->whereIn('periodo', $periodosActivos)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->groupBy('codprograma')
                 ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();

@@ -2905,7 +2905,7 @@
                                 },
                                 plugins: {
                                     formatter: function(value, context) {
-                                        if (context.dataset.label === 'Retencion' && value === 0) {
+                                        if (context.dataset.label == 'Retencion' && value == 0) {
                                             return '';
                                         }
                                     },

@@ -1262,7 +1262,7 @@ class InformeMafiController extends Controller
                 ->get();
 
             $consultaRetencion = DB::table('datosMafi')
-                ->select(DB::raw('COALESCE(COUNT(idbanner), 0) as TOTAL'))
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)

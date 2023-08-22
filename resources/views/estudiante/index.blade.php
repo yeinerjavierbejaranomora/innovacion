@@ -151,7 +151,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <table class="table">
-                                <tbody>
+                                <tbody id="contenido">
                                 </tbody>
                             </table>
                         </div>
@@ -279,7 +279,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
+                    //console.log(data);
                     data.forEach(malla => {
                         $('#contenido').append(renderMalla(malla));
                     })
@@ -288,7 +288,13 @@
         }
 
         function renderMalla(malla){
-            render = ``;
+            console.log(malla);
+            render = `<tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>`;
             return render;
         }
 

@@ -368,7 +368,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa</strong></h5>
+                        <h5 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa (Primer ingreso y transferentes)</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

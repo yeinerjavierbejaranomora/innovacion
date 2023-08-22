@@ -202,6 +202,9 @@
                     $('#codigo').prop('disabled',false);
                     $('#info').html('');
                     console.log(data);
+                    if (data == '') {
+                        alert('vacio sin data');
+                    }
                     $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
                         <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
                         <strong>IdBanner</strong>: ${codBanner}<br>

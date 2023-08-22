@@ -1249,14 +1249,12 @@ class InformeMafiController extends Controller
                 $programas[] = $codprograma;
             }
 
-            dd($programas);
-
             $consultaRetencion = DB::table('datosMafi')
-                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL, codprograma'))
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)
-                ->whereIn('codprograma', $consultaSello->codprograma)
+                ->whereIn('codprograma', $programas)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->orderByDesc('TOTAL')
                 ->get();

@@ -163,6 +163,7 @@
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
+                consultaMoodle(codBanner.val());
 
                 //consultaHistorial(codBanner.val());
                 //consultaProgramacion(codBanner.val());
@@ -171,6 +172,29 @@
 
                 alert("ingrese su codigo de estudiante");
             }
+        }
+
+        function consultaMoodle(codBanner){
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultamoodle') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            });
         }
 
         function consultaEstudiante(codBanner) {

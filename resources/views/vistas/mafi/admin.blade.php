@@ -2820,7 +2820,6 @@
                 });
             }
 
-
             var chartMetas
 
             graficoMetas();

@@ -143,6 +143,7 @@ class InformeMafiController extends Controller
              */
             $primerIngreso = DB::table('datosMafi')
                 ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->where('estado','Activo')
                 ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
                 ->groupBy('sello')
                 ->get();

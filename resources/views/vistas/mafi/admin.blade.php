@@ -2904,6 +2904,13 @@
                                     }
                                 },
                                 plugins: {
+                                    formatter: function(value) {
+                                        if (value === 0) {
+                                            return ''; // Devuelve una cadena vacía para ocultar el valor 0
+                                        } else {
+                                            return Math.round(value);
+                                        }
+                                    },
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -2922,9 +2929,10 @@
                                     }
                                 },
                             },
-                           
+                            plugins: [ChartDataLabels]
                         });
                     }
+
                 });
             }
         });

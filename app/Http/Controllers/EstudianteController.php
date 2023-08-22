@@ -27,8 +27,8 @@ class EstudianteController extends Controller
                 
                 
             }
-            dd($programa);
-            return $historialAcademico;
+          
+            return $programa;
         }else{
 
             $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();

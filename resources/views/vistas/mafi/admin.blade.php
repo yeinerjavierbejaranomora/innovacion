@@ -2856,7 +2856,7 @@
                             valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
-                        console.log(labels, metas);
+                        console.log(labels, values);
 
 
 

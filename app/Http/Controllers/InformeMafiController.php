@@ -1248,15 +1248,14 @@ class InformeMafiController extends Controller
                 $codprograma = $registro->codprograma;
 
                 $consultaRetencion = DB::table('datosMafi')
-                ->select(DB::raw('COUNT(idbanner) AS TOTAL, codprograma'))
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)
-                ->whereIn('codprograma', $codprograma)
+                ->where('codprograma', $codprograma)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->groupBy('codprograma')
-                ->orderByDesc('TOTAL')
                 ->get();
+
                 if ($consultaRetencion) {
                     $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;
                 } else {

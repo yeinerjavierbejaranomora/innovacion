@@ -171,7 +171,7 @@
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
-                consultaMoodle(codBanner.val());
+                consultaNombre(codBanner.val());
 
                 //consultaHistorial(codBanner.val());
                 //consultaProgramacion(codBanner.val());
@@ -182,7 +182,7 @@
             }
         }
 
-        function consultaMoodle(codBanner){
+        function consultaNombre(codBanner){
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -201,20 +201,13 @@
                 success: function(data){
                     $('#codigo').prop('disabled',false);
                     $('#info').html('');
-                    console.log(data);
-                    /*if (data == '') {
-                        alert('vacio sin data');
-                    } else if(){
+                    $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
+                        <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
+                        <strong>IdBanner</strong>: ${codBanner}<br>
 
-                    }else{
-                        $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
-                            <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
-                            <strong>IdBanner</strong>: ${codBanner}<br>
-
-                            <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
-                            Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
-                        </p>`);
-                    }*/
+                        <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                        Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                    </p>`);
                 }
             });
         }

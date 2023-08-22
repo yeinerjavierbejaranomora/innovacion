@@ -125,7 +125,7 @@
 
             <div class="container-fluid">
                 <div class="container mt-3" id="info">
-                    
+
                 </div>
             </div>
 
@@ -205,7 +205,7 @@
                     /*if (data == '') {
                         alert('vacio sin data');
                     } else if(){
-                        
+
                     }else{
                         $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
                             <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
@@ -252,6 +252,11 @@
                         <div class="col 4 text-center">
                             <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
                                 Programado
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" onclick="consultaPorVer(${data.homologante});">
+                                Materias Por Ver
                             </a>
                         </div>`)
                     }else{
@@ -338,6 +343,28 @@
                     console.log(data);
                 }
             });
+        }
+
+        function consultaPorVer(codBanner){
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                url: formData,
+                cahe: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            })
         }
 
     </script>

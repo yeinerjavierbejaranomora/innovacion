@@ -23,12 +23,17 @@ class EstudianteController extends Controller
         $estudiante = $_POST['codBanner'];
         $consultaNombre = DB::table('datos_moodle')->where('Id_Banner','=',$estudiante)->select('Nombre','Apellido')->first();
         if($consultaNombre != NULL):
-            var_dump($consultaNombre);die();
+            $nombre = $consultaNombre->Nombre . " " .$consultaNombre->Apellido;
         else:
             $consultaNombre = DB::table('historialAcademico')->where('codBanner','=',$estudiante)->select('nombreEst')->first();
-            var_dump($consultaNombre);die();
+            if($consultaNombre != NULL):
+                $nombre = $consultaNombre->nombreEst;
+            else:
+                $consultaNombre = DB::table('estudiantes')->where('homologante','=',$estudiante)->select('nombre')->first();
+                $nombre = $consultaNombre->nombre;
+            endif;
         endif;
-        return $consultaNombre;
+        return $nombre;
     }
 
     public function consultaMalla(){
@@ -47,5 +52,11 @@ class EstudianteController extends Controller
         $estudiante = $_POST['codBanner'];
         $programacion = DB::table('programacion')->where('codBanner','=',$estudiante)->get();
         return $programacion;
+    }
+
+    public function consultaPorVer(){
+        $estudiante = $_POST['codBanner'];
+        $consultaPorVer = DB::table('materiasPorVer')->where('codBanner','=',$estudiante)->get();
+        return $consultaPorVer;
     }
 }

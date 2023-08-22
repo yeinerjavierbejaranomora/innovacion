@@ -125,7 +125,7 @@
 
             <div class="container-fluid">
                 <div class="container mt-3" id="info">
-                    
+
                 </div>
             </div>
 
@@ -171,7 +171,7 @@
             if (codBanner.val() != '') {
 
                 consultaEstudiante(codBanner.val());
-                consultaMoodle(codBanner.val());
+                consultaNombre(codBanner.val());
 
                 //consultaHistorial(codBanner.val());
                 //consultaProgramacion(codBanner.val());
@@ -182,7 +182,7 @@
             }
         }
 
-        function consultaMoodle(codBanner){
+        function consultaNombre(codBanner){
             var formData = new FormData();
             formData.append('codBanner',codBanner);
             $.ajax({
@@ -199,22 +199,16 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    console.log(data);
                     $('#codigo').prop('disabled',false);
                     $('#info').html('');
-                    console.log(data);
-                    /*if (data == '') {
-                        alert('vacio sin data');
-                    } else if(){
-                        
-                    }else{
-                        $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
-                            <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
-                            <strong>IdBanner</strong>: ${codBanner}<br>
+                    $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
+                        <strong>Historial académico de: </strong> ${data}<br>
+                        <strong>IdBanner</strong>: ${codBanner}<br>
 
-                            <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
-                            Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
-                        </p>`);
-                    }*/
+                        <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                        Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                    </p>`);
                 }
             });
         }
@@ -252,6 +246,11 @@
                         <div class="col 4 text-center">
                             <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
                                 Programado
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" onclick="consultaPorVer(${data.homologante});">
+                                Materias Por Ver
                             </a>
                         </div>`)
                     }else{
@@ -338,6 +337,29 @@
                     console.log(data);
                 }
             });
+        }
+
+        function consultaPorVer(codBanner){
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                data: formData,
+                url: "{{ route('historial.consultaporver') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            })
         }
 
     </script>

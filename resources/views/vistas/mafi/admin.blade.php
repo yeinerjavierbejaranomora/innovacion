@@ -377,6 +377,7 @@
                         <canvas id="metasTotal"></canvas>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-warning">Descargar datos</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>

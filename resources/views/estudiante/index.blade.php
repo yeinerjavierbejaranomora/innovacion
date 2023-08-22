@@ -200,6 +200,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
+                    $('#info').html('');
                     console.log(data);
                     $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
                         <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>

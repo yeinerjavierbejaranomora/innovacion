@@ -832,7 +832,7 @@
                                     size: '14',
                                     fontStyle: 'bolder',
                                     position: 'outside',
-                                    textMargin: 6
+                                    textMargin: 2
                                 },
                                 legend: {
                                     position: 'right',
@@ -923,7 +923,7 @@
                                     fontStyle: 'bolder',
                                     display: 'auto',
                                     position: 'outside',
-                                    textMargin: -2
+                                    textMargin: 2
                                 },
                                 legend: {
                                     position: 'right',
@@ -1000,7 +1000,7 @@
                                     size: '14',
                                     fontStyle: 'bolder',
                                     position: 'outside',
-                                    textMargin: 6
+                                    textMargin: 2
                                 },
                                 legend: {
                                     position: 'right',

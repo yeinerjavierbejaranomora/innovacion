@@ -354,8 +354,8 @@
                 },
                 type:'post',
                 data: formData,
-                url: "{{ route('historial.consultaporver') }}"
-                cahe: false,
+                url: "{{ route('historial.consultaporver') }}",
+                cache: false,
                 contentType: false,
                 processData: false,
                 beforeSend: function () {

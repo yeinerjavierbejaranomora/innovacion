@@ -1275,7 +1275,7 @@ class InformeMafiController extends Controller
 
         $datos = [
             'metas' => $metas,
-            'matriculaSello' => $consultaSello,
+            'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
 

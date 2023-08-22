@@ -2848,7 +2848,7 @@
                         var valuesSello = [];
                         var valuesRetencion = [];
 
-                        console.log(data.metas);
+                        Object.keys(data.metas).sort();
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
                             values.push(data.metas[meta]);
@@ -2857,6 +2857,7 @@
                         console.log(values);
                         labels.reverse();
                         console.log(labels);
+                       
 
                         Object.keys(data.matriculaSello).forEach(sello => {
                             valuesSello.push(data.matriculaSello[sello]);

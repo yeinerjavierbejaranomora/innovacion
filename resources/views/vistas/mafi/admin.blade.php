@@ -2820,7 +2820,8 @@
                 });
             }
 
-            var chartMetasTotal
+            var chartMetasTotal;
+            var chartMetas;
 
             graficoMetasTotal();
             graficoMetas();
@@ -2842,6 +2843,23 @@
                             data = data;
                         }
                         console.log(data);
+
+                        var labels = [];
+                        var values = [];
+                        var valuesSello = [];
+                        var valuesRetencion = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
+                            values.push(data.metas[meta]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
+                        });
+
+                        console.log(labels, values);
+
+
+
                     }
                 });
             }

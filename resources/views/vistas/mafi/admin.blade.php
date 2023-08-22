@@ -3015,8 +3015,8 @@
                                         data: valuesRetencion,
                                         backgroundColor: ['rgba(56,101,120,1)'],
                                         datalabels: {
-                                            anchor: 'center',
-                                            align: 'center',
+                                            anchor: 'middle',
+                                            align: 'center'
                                         },
                                         stack: 'Stack 0',
                                     },

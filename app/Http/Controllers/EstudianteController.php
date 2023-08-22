@@ -20,9 +20,14 @@ class EstudianteController extends Controller
 
         if($historialAcademico){
 
+            foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
+               
+                dd($value_historialAcademico);
+            }
+
             return $historialAcademico;
         }else{
-            
+
             $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
             return $consultaEstudiante;
         }

@@ -236,8 +236,15 @@
                 success: function(data){
                     $('#codigo').prop('disabled',false);
                     console.log(data);
+                    data.forEach(malla => {
+                        $('#contenido').append(renderMalla(malla));
+                    })
                 }
             });
+        }
+
+        function renderMalla(malla){
+            console.log(malla);
         }
 
         function consultaHistorial(codBanner) {

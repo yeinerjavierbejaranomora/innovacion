@@ -1214,9 +1214,70 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetasTotal()
-    {
+    public function graficoMetas(){
 
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
+        $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
+
+        $periodosActivos = [];
+        foreach ($periodos as $periodo) {
+            $periodosActivos[] = $periodo->periodos;
+        }
+
+        $matriculasSello = [];
+
+            $consultaSello = DB::table('datosMafi')
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL','codprograma'))
+                ->where('sello', 'TIENE SELLO FINANCIERO')
+                ->whereIn('periodo', $periodosActivos)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->orderByDesc('TOTAL')
+                ->limit(5)
+                ->get();
+
+            dd($consultaSello);
+
+            $consultaRetencion = DB::table('datosMafi')
+                ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
+                ->where('sello', 'TIENE RETENCION')
+                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
+                ->whereIn('periodo', $periodosActivos)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->orderByDesc('TOTAL')
+                ->get();
+
+            if ($consultaSello) {
+                $matriculasSello[$programa->programa] = $consultaSello[0]->TOTAL;
+            } else {
+                $matriculasSello[$programa->programa] = 0;
+            }
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$programa->programa] = $consultaRetencion[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$programa->programa] = 0;
+            }
+
+        
+
+        $datos = [
+            'metas' => $metas,
+            'matriculaSello' => $matriculasSello,
+            'matriculaRetencion' => $matriculasRetencion,
+        ];
+
+        return $datos;
+    }
+
+    public function graficoMetasTotal(){
         $consultaMetas = DB::table('programas_metas')->get();
 
         $metas = [];

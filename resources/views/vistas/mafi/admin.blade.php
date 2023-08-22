@@ -2823,11 +2823,27 @@
             var chartMetasTotal
 
             graficoMetasTotal();
-
-
-
-
-
+            graficoMetas();
+            
+            function graficoMetas() {
+                var url = "{{ route('metas.programa')}}";
+                data = '';
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                    }
+                });
+            }
 
             function graficoMetasTotal() {
                 var url = "{{ route('metasTotal.programa')}}";

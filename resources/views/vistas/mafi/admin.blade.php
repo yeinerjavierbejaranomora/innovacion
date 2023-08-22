@@ -2848,7 +2848,6 @@
                         var valuesSello = [];
                         var valuesRetencion = [];
 
-                        Object.keys(data.metas).sort();
                         console.log(data.metas);
 
                         Object.keys(data.metas).forEach(meta => {

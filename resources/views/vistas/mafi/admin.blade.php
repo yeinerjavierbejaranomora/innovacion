@@ -2854,6 +2854,7 @@
                             values.push(data.metas[meta]);
                         });
 
+                        labels.sort();
                         console.log(labels);
 
                         Object.keys(data.matriculaSello).forEach(sello => {

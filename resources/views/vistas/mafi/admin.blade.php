@@ -2848,13 +2848,15 @@
                         var valuesSello = [];
                         var valuesRetencion = [];
 
+                        data.metas.sort();
+                        console.log(data.metas);
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);
                             values.push(data.metas[meta]);
                         });
 
                         console.log(values);
-                        labels.sort().reverse();
+                        labels.reverse();
                         console.log(labels);
 
                         Object.keys(data.matriculaSello).forEach(sello => {

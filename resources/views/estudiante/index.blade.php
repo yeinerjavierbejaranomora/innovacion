@@ -152,7 +152,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show " id="Malla_0" role="tabpanel" aria-labelledby="pills-home-tab">
                    
-                                <table id="tabla_0" class="table table-striped table-bordered" style="width:100%">
+                                <table id="tabla_0" class="table table-striped table-bordered" style="width:80%">
                                     <tbody>
                                         <tr id="PCPV_1">
                                             <td><span id="se_1">semestre 1</span> <br> </td>

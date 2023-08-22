@@ -1239,10 +1239,10 @@ class InformeMafiController extends Controller
             ->whereIn('periodo', $periodosActivos)
             ->whereIn('tipoestudiante', $tiposEstudiante)
             ->select(DB::raw('COUNT(idbanner) AS TOTAL, codprograma'))
-            ->groupBy()
+            ->groupBy('codprograma')
             ->orderByDesc('TOTAL')
-                ->limit(5)
-                ->get();
+            ->limit(5)
+            ->get();
 
             dd($consultaSello);
 

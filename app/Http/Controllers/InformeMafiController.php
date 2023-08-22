@@ -1273,13 +1273,13 @@ class InformeMafiController extends Controller
             }
         }
 
-        dd($matriculasSello);
-
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $consultaSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
+
+        dd($datos);
 
         return $datos;
     }

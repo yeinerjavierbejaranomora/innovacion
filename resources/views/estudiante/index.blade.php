@@ -151,31 +151,18 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                    <tr id="PCPV_1">
+                                        <td><span id="se_1">semestre 1</span> <br> </td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">DERECHO EMPRESARIAL I (PCPV22083) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 2</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 4,0</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:2</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">FUNDAMENTOS DE CONTABILIDAD (PCPV22100) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 3</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 3,9</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:1</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">FUNDAMENTOS DE ADMINISTRACION (AFV21029) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 2</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 4,7</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:2</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">FUNDAM DE ECONOM Y MICROECONOM (AFV21003) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 3</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 3,7</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:2</span></td>
+                                        <td class="bg-warning" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">APRENDIZAJE AUTONOMO DIGITAL (UV22609) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 2</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: </span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:1</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">Cátedra ibero Plan de vida - Proyecto de vida (MUV21600) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 2</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 5,0</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:2</span></td>
+                                        <td class="bg-warning" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">Competencias comunicativas - Hab Comunicación I (FAV22607) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 1</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: </span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:1</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">Razonamiento Cuantitativo - Pensamiento Matemático (AFV22610) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 2</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 4,0</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:12</span></td>
+                                        <td class="bg-success" style=" color:white"><span class="curso" style="font-size: 12px;line-height: 12px;">FUNDAMENTOS DE CONTABILIDAD (PCPV22100) </span> <br><span class="creditos" style="font-size: 12px; margin-right: 3%;line-height: 12px;">creditos: 3</span> <br><span class="nota" style="font-size: 12px;line-height: 12px;"> calificación: 3,9</span> <br> <span class="nota" style="font-size: 12px;line-height: 12px;">Ciclo:1</span></td>
                                     </tr>
                                 </tbody>
                             </table>

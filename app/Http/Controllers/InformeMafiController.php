@@ -1256,6 +1256,7 @@ class InformeMafiController extends Controller
                 ->whereIn('periodo', $periodosActivos)
                 ->whereIn('codprograma', $programas)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->groupBy('codprograma')
                 ->orderByDesc('TOTAL')
                 ->get();
 

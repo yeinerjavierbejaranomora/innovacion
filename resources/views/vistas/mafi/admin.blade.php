@@ -2904,16 +2904,6 @@
                                         stack: 'Stack 0',
                                     },
                                     {
-                                        label: 'Retencion',
-                                        data: valuesRetencion,
-                                        backgroundColor: ['rgba(56,101,120,1)'],
-                                        datalabels: {
-                                            anchor: 'center',
-                                            align: 'center',
-                                        },
-                                        stack: 'Stack 0',
-                                    },
-                                    {
                                         label: 'Metas',
                                         data: values,
                                         backgroundColor: ['rgba(186,186,186,1)'],

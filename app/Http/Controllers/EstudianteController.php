@@ -19,7 +19,7 @@ class EstudianteController extends Controller
         $historialAcademico = json_decode(file_get_contents($url),true);
         $programa=[];
 
-        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
+        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->get();
         dd($consultaEstudiante);
 
         if($historialAcademico){

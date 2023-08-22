@@ -1233,6 +1233,8 @@ class InformeMafiController extends Controller
             $periodosActivos[] = $periodo->periodos;
         }
 
+        $matriculasSello = [];
+
         $consultaSello = DB::table('datosMafi')
             ->where('sello', 'TIENE SELLO FINANCIERO')
             ->whereIn('periodo', $periodosActivos)
@@ -1244,7 +1246,9 @@ class InformeMafiController extends Controller
             ->get();
 
         foreach ($consultaSello as $registro) {
+
             $codprograma = $registro->codprograma;
+            $matriculasSello[$codprograma] = $registro->TOTAL;
 
             $consultaRetencion = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
@@ -1269,13 +1273,13 @@ class InformeMafiController extends Controller
             }
         }
 
+        dd($matriculasSello);
+
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $consultaSello,
             'matriculaRetencion' => $matriculasRetencion,
         ];
-
-        dd($datos);
 
         return $datos;
     }

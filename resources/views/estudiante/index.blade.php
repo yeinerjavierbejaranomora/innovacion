@@ -199,10 +199,11 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    console.log(data);
                     $('#codigo').prop('disabled',false);
                     $('#info').html('');
                     $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
-                        <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
+                        <strong>Historial académico de: </strong> ${data.nombre}<br>
                         <strong>IdBanner</strong>: ${codBanner}<br>
 
                         <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>

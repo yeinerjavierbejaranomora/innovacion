@@ -2867,7 +2867,7 @@
                                         data: valuesSello,
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
                                         datalabels: {
-                                            anchor: 'middle', 
+                                            anchor: 'middle',
                                             align: 'center'
                                         },
                                         stack: 'Stack 0',
@@ -2904,11 +2904,10 @@
                                     }
                                 },
                                 plugins: {
-                                    formatter: function(valuesSello, valuesRetencion) {
-                                        if (valuesRetencion = 0) 
-                                        {
-                                            return ''; 
-                                        } 
+                                    formatter: function(value, context) {
+                                        if (context.dataset.label === 'Retencion' && value === 0) {
+                                            return '';
+                                        }
                                     },
                                     datalabels: {
                                         color: 'black',

@@ -123,13 +123,18 @@
             </div>
             <br>
 
-            <p class="col-md-12" style="margin-top: 2%;">
-                <strong>Historial académico de: </strong> NELSON ADOLFO PALACIO DIAZ <br>
-                <strong>IdBanner</strong>: 900006288<br>
+            <div class="container-fluid">
+                <div class="container mt-3">
+                    <p class="col-md-12" style="margin-top: 2%;">
+                        <strong>Historial académico de: </strong> NELSON ADOLFO PALACIO DIAZ <br>
+                        <strong>IdBanner</strong>: 900006288<br>
 
-                <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
-                Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
-            </p>
+                        <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                        Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                    </p>
+                </div>
+            </div>
+
 
 
             <div class="container-fluid">

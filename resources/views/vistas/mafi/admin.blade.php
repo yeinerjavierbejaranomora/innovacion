@@ -223,12 +223,11 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                        <h5 class="tituloPeriodo"><strong></strong>
                         </h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion"></canvas>
+                        <canvas id="retencion" style="width: 80%;"></canvas>
                     </div>
                 </div>
             </div>

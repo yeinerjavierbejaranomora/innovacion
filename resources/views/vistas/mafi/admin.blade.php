@@ -2854,7 +2854,7 @@
                             values.push(data.metas[meta]);
                         });
 
-                        labels.sort();
+                        labels.sort().reverse();
                         console.log(labels);
 
                         Object.keys(data.matriculaSello).forEach(sello => {

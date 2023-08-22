@@ -26,7 +26,12 @@ class EstudianteController extends Controller
             var_dump($consultaNombre);die();
         else:
             $consultaNombre = DB::table('historialAcademico')->where('codBanner','=',$estudiante)->select('nombreEst')->first();
-            var_dump($consultaNombre);die();
+            if($consultaNombre != NULL):
+                var_dump($consultaNombre);die();
+            else:
+                $consultaNombre = DB::table('estudiantes')->where('homologante','=',$estudiante)->select('nombre')->first();
+                var_dump($consultaNombre);die();
+            endif;
         endif;
         return $consultaNombre;
     }

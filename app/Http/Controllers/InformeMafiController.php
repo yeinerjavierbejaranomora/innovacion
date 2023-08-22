@@ -1246,36 +1246,26 @@ class InformeMafiController extends Controller
 
             foreach ($consultaSello as $registro) {
                 $codprograma = $registro->codprograma;
-                $programas[] = $codprograma;
-            }
 
-            $consultaRetencion = DB::table('datosMafi')
+                $consultaRetencion = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL, codprograma'))
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)
-                ->whereIn('codprograma', $programas)
+                ->whereIn('codprograma', $codprograma)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->groupBy('codprograma')
                 ->orderByDesc('TOTAL')
                 ->get();
-
-            dd($consultaRetencion);    
-
-            if ($consultaSello) {
-                $matriculasSello[$programa->programa] = $consultaSello[0]->TOTAL;
-            } else {
-                $matriculasSello[$programa->programa] = 0;
+                if ($consultaRetencion) {
+                    $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;
+                } else {
+                    $matriculasRetencion[$codprograma] = 0;
+                }
             }
 
-            if ($consultaRetencion) {
-                $matriculasRetencion[$programa->programa] = $consultaRetencion[0]->TOTAL;
-            } else {
-                $matriculasRetencion[$programa->programa] = 0;
-            }
-
+            dd($matriculasRetencion);    
         
-
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,

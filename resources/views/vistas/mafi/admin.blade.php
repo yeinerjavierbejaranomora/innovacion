@@ -2900,6 +2900,7 @@
                                 scales: {
                                     y: {
                                         beginAtZero: true,
+                                        stacked: false,
                                     }
                                 },
                                 plugins: {

@@ -181,6 +181,7 @@ class InformeMafiController extends Controller
          */
         if ($tabla == "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi')
+                ->where('estado','Activo')
                 ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
                 ->groupBy('tipoestudiante')
                 ->orderByDesc('TOTAL')

@@ -1214,7 +1214,8 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetas(){
+    public function graficoMetas()
+    {
 
         $tiposEstudiante = [
             'PRIMER INGRESO',
@@ -1234,7 +1235,7 @@ class InformeMafiController extends Controller
 
         $matriculasSello = [];
 
-            $consultaSello = DB::table('datosMafi')
+        $consultaSello = DB::table('datosMafi')
             ->where('sello', 'TIENE SELLO FINANCIERO')
             ->whereIn('periodo', $periodosActivos)
             ->whereIn('tipoestudiante', $tiposEstudiante)
@@ -1244,10 +1245,10 @@ class InformeMafiController extends Controller
             ->limit(5)
             ->get();
 
-            foreach ($consultaSello as $registro) {
-                $codprograma = $registro->codprograma;
+        foreach ($consultaSello as $registro) {
+            $codprograma = $registro->codprograma;
 
-                $consultaRetencion = DB::table('datosMafi')
+            $consultaRetencion = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
@@ -1256,15 +1257,22 @@ class InformeMafiController extends Controller
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->get();
 
-                if ($consultaRetencion) {
-                    $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;
-                } else {
-                    $matriculasRetencion[$codprograma] = 0;
-                }
-            }
+            $consultaMetas = DB::table('programas_metas')
+                ->where('programa', $codprograma)
+                ->select('meta')
+                ->first();
 
-            dd($matriculasRetencion);    
-        
+            $metas[$codprograma] = $consultaMetas[0]->meta;
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$codprograma] = 0;
+            }
+        }
+
+        dd($matriculasRetencion, $metas);
+
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
@@ -1274,7 +1282,8 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
-    public function graficoMetasTotal(){
+    public function graficoMetasTotal()
+    {
         $consultaMetas = DB::table('programas_metas')->get();
 
         $metas = [];
@@ -1339,7 +1348,6 @@ class InformeMafiController extends Controller
             } else {
                 $matriculasRetencion[$programa->programa] = 0;
             }
-
         }
 
         $datos = [
@@ -1362,177 +1370,177 @@ class InformeMafiController extends Controller
 
         //**/ traemos los periodos activos */
 
-         $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
-       
-         /// traemos todos los programas
-         $programas=DB::table('programas')->get();
-  
+        $periodos = DB::table('periodo')->where('periodoActivo', 1)->get();
+
+        /// traemos todos los programas
+        $programas = DB::table('programas')->get();
+
         foreach ($periodos as $key => $value) {
             foreach ($programas as $key_periodos => $val_programas) {
 
                 // dd($val_programas);
-                     //-- estado financiero
-                     $Estado_Financiero = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                         ->where('codprogram',$val_programas->codprograma)
-                         ->groupBy('sello')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-                         dd($Estado_Financiero);
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-     
-     
-                     // estado financiero retencion
-                     $Estado_Financiero_Retencion = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-     
-     
-                     //$Estudiantes_nuevos_Estado_Financiero
-                     $Estudiantes_nuevos_Estado_Financiero = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-     
-     
-                     //// $Tipos_de_estudiantes
-                     $Tipos_de_estudiantes = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-     
-     
-     
-                     //  $Operadores
-                     $Operadores = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-                     //  $Programas_con_mayor_cantidad_de_admitidos
-                     $Programas_con_mayor_cantidad_de_admitidos = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-     
-     
-                     ///Programas con mayor cantidad de admitidos
-     
-                     $Estado_Financiero_Retención = DB::table('datosMafi')
-                         ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                         ->groupBy('autorizado_asistir')
-                         ->orderByDesc('TOTAL')
-                         ->get();
-     
-                     // //--- insertamos los datos  del Estado_Financiero todos
-                     // DB::table('historico_graficos')->insert([
-                     //     'grafico'=>'Estado Financiero',
-                     //     'numeros'=>json_encode($Estado_Financiero),
-                     //     'periodo'=>'todos',
-                     //     'facultad'=>'todos',
-                     //     'programa'=>'todos',
-                     //     'fecha'=>date("d-m-Y"),
-     
-     
-                     // ]);
-     
-                     dd(
-                         $Total_estudiantes_Banner,
-                         $Estado_Financiero,
-                         $Estado_Financiero_Retencion,
-                         $Estudiantes_nuevos_Estado_Financiero,
-                         $Tipos_de_estudiantes,
-                         $Operadores,
-                         $Programas_con_mayor_cantidad_de_admitidos
-                     );
-             }
+                //-- estado financiero
+                $Estado_Financiero = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+                    ->where('codprogram', $val_programas->codprograma)
+                    ->groupBy('sello')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+                dd($Estado_Financiero);
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+
+
+                // estado financiero retencion
+                $Estado_Financiero_Retencion = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+
+
+                //$Estudiantes_nuevos_Estado_Financiero
+                $Estudiantes_nuevos_Estado_Financiero = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+
+
+                //// $Tipos_de_estudiantes
+                $Tipos_de_estudiantes = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+
+
+
+                //  $Operadores
+                $Operadores = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+                //  $Programas_con_mayor_cantidad_de_admitidos
+                $Programas_con_mayor_cantidad_de_admitidos = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+
+
+                ///Programas con mayor cantidad de admitidos
+
+                $Estado_Financiero_Retención = DB::table('datosMafi')
+                    ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
+                    ->groupBy('autorizado_asistir')
+                    ->orderByDesc('TOTAL')
+                    ->get();
+
+                // //--- insertamos los datos  del Estado_Financiero todos
+                // DB::table('historico_graficos')->insert([
+                //     'grafico'=>'Estado Financiero',
+                //     'numeros'=>json_encode($Estado_Financiero),
+                //     'periodo'=>'todos',
+                //     'facultad'=>'todos',
+                //     'programa'=>'todos',
+                //     'fecha'=>date("d-m-Y"),
+
+
+                // ]);
+
+                dd(
+                    $Total_estudiantes_Banner,
+                    $Estado_Financiero,
+                    $Estado_Financiero_Retencion,
+                    $Estudiantes_nuevos_Estado_Financiero,
+                    $Tipos_de_estudiantes,
+                    $Operadores,
+                    $Programas_con_mayor_cantidad_de_admitidos
+                );
+            }
         }
-      
-       
-            # code...
-  
-    
+
+
+        # code...
+
+
         /**traemos los datos Total estudiantes Banner 
         SELECT count(estado)as total, estado FROM `datosMafi` GROUP BY estado;
          id	periodo	facultad	programa	grafico	data	fecha	* 

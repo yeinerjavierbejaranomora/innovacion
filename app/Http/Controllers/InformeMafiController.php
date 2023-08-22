@@ -1214,7 +1214,7 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetas()
+    public function graficoMetasTotal()
     {
 
         $consultaMetas = DB::table('programas_metas')->get();
@@ -1283,7 +1283,7 @@ class InformeMafiController extends Controller
             }
 
         }
-        
+
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
@@ -1292,6 +1292,7 @@ class InformeMafiController extends Controller
 
         return $datos;
     }
+
 
     /**
      * Método para guardar todo los historicos de los graficos

@@ -2820,12 +2820,17 @@
                 });
             }
 
-            var chartMetas
+            var chartMetasTotal
 
-            graficoMetas();
+            graficoMetasTotal();
 
-            function graficoMetas() {
-                var url = "{{ route('metas.programa')}}";
+
+
+
+
+
+            function graficoMetasTotal() {
+                var url = "{{ route('metasTotal.programa')}}";
                 data = '';
                 $.ajax({
                     headers: {
@@ -2858,7 +2863,7 @@
                         });
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
-                        chartMetas = new Chart(ctx, {
+                        chartMetasTotal = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,

@@ -161,7 +161,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     // Route::get('/home/probar', 'tablaMetas')->middleware('auth', 'admin')->name('funcion.probar');
 
     /** Ruta para cargar gráfico de metas */
-    Route::post('/home/mafi/graficoMetas', 'graficoMetas')->middleware('auth')->name('metas.programa');
+    Route::post('/home/mafi/graficoMetasTotal', 'graficoMetasTotal')->middleware('auth')->name('metasTotal.programa');
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {

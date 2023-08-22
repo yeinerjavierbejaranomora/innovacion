@@ -25,7 +25,7 @@ class EstudianteController extends Controller
                 $programa["programa"]=$value_historialAcademico->programa;
                 $programa["cod_programa"]=$value_historialAcademico->cod_programa;
                 
-                
+                dd($value_historialAcademico->programa);
             }
           
             return $programa;

@@ -27,13 +27,13 @@ class EstudianteController extends Controller
         else:
             $consultaNombre = DB::table('historialAcademico')->where('codBanner','=',$estudiante)->select('nombreEst')->first();
             if($consultaNombre != NULL):
-                var_dump($consultaNombre->nombreEst);die();
+                $nombre = $consultaNombre->nombreEst;
             else:
                 $consultaNombre = DB::table('estudiantes')->where('homologante','=',$estudiante)->select('nombre')->first();
-                var_dump($consultaNombre);die();
+                $nombre = $consultaNombre->nombre;
             endif;
         endif;
-        return $consultaNombre;
+        return $nombre;
     }
 
     public function consultaMalla(){

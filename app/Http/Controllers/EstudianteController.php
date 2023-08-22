@@ -23,7 +23,7 @@ class EstudianteController extends Controller
         $estudiante = $_POST['codBanner'];
         $consultaNombre = DB::table('datos_moodle')->where('Id_Banner','=',$estudiante)->select('Nombre','Apellido')->first();
         if($consultaNombre != NULL):
-            var_dump($consultaNombre['Nombre']);die();
+            var_dump($consultaNombre->Nombre);die();
         else:
             $consultaNombre = DB::table('historialAcademico')->where('codBanner','=',$estudiante)->select('nombreEst')->first();
             if($consultaNombre != NULL):

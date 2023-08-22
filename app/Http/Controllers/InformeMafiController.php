@@ -1262,7 +1262,7 @@ class InformeMafiController extends Controller
                 ->select('meta')
                 ->first();
 
-            $metas[$codprograma] = $consultaMetas[0]->meta;
+            $metas[$codprograma] = $consultaMetas->meta;
 
             if ($consultaRetencion) {
                 $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;

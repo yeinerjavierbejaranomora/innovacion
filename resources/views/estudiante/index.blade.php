@@ -136,21 +136,7 @@
         </div>
 
         <div class="row justify-content-center mt-5" id="contenido">
-            {{-- <div class="col-6 text-center" id="colSelloFinanciero">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
-                        </div>
-                        <canvas id="activos"></canvas>
-                    </div>
-                </div>
-            </div> --}}
+
 
         </div>
 
@@ -244,7 +230,22 @@
         }
 
         function renderMalla(malla){
-            console.log(malla);
+            render = `<div class="col-6 text-center" id="colSelloFinanciero">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Total estudiantes con sello financiero</strong></h5>
+                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
+                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
+                            <h5>No hay datos por mostrar</h5>
+                        </div>
+                        <canvas id="activos"></canvas>
+                    </div>
+                </div>
+            </div>`;
+            return render;
         }
 
         function consultaHistorial(codBanner) {

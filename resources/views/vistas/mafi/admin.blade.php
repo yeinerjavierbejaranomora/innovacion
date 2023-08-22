@@ -85,7 +85,7 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal {
+    #programasTotal, #metasTotal {
         height: 600px !important;
     }
 </style>
@@ -2525,7 +2525,7 @@
                 }
                 graficoMetasTotal();
             });
-            
+
             var chartTiposEstudiantesTotal
 
             function tiposEstudiantesTotal(periodosSeleccionados) {

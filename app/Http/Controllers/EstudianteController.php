@@ -22,8 +22,8 @@ class EstudianteController extends Controller
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
                
-                $programa["programa"][]=$value_historialAcademico['programa'];
-                $programa["cod_programa"][]=$value_historialAcademico['cod_programa'];
+                $programa[$value_historialAcademico['cod_programa']]=$value_historialAcademico['programa'];
+               
                 
               
             }

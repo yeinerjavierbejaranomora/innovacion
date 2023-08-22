@@ -1331,7 +1331,6 @@ class InformeMafiController extends Controller
             $consultaRetencion = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
                 ->where('sello', 'TIENE RETENCION')
-                ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)
                 ->where('codprograma', $programa->programa)
                 ->whereIn('tipoestudiante', $tiposEstudiante)

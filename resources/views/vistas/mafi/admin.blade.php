@@ -2824,7 +2824,7 @@
 
             graficoMetasTotal();
             graficoMetas();
-            
+
             function graficoMetas() {
                 var url = "{{ route('metas.programa')}}";
                 data = '';
@@ -2841,6 +2841,7 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
                     }
                 });
             }
@@ -2863,13 +2864,10 @@
                             data = data;
                         }
 
-                        console.log(data);
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
                         var valuesRetencion = [];
-
-                        console.log(data.metas);
 
                         Object.keys(data.metas).forEach(meta => {
                             labels.push(meta);

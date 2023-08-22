@@ -260,63 +260,6 @@
             });
         }
 
-        function countSemestres(programa){
-            var formData = new FormData();
-            formData.append('programa',programa);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.countsemestres') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
-        function renderMalla(malla){
-            console.log(malla);
-            render = `<tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>`;
-            return render;
-        }
-
-        function consultaHistorial(codBanner) {
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultahistorial') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
         function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);
@@ -345,7 +288,6 @@
         }
 
         function renderMalla(malla){
-            console.log(malla);
             render = `<tr>
                 <th scope="row">1</th>
                 <td>Mark</td>

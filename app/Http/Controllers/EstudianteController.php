@@ -19,11 +19,11 @@ class EstudianteController extends Controller
         return $consultaEstudiante;
     }
 
-    public function consultaMoodle(){
+    public function consultaNombre(){
         $estudiante = $_POST['codBanner'];
-        $consultaMoodle = DB::table('datos_moodle')->where('Id_Banner','=',$estudiante)->select('Nombre','Apellido')->first();
-        //var_dump($consultaMoodle);die();
-        return $consultaMoodle;
+        $consultaNombre = DB::table('datos_moodle')->where('Id_Banner','=',$estudiante)->select('Nombre','Apellido')->first();
+        var_dump($consultaNombre);die();
+        return $consultaNombre;
     }
 
     public function consultaMalla(){

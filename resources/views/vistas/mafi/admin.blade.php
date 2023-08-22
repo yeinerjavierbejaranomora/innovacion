@@ -2904,8 +2904,8 @@
                                     }
                                 },
                                 plugins: {
-                                    formatter: function(value) {
-                                        if (value === 0) {
+                                    formatter: function(valuesSello, valuesRetencion) {
+                                        if (valuesSello === 0 || valuesRetencion) {
                                             return ''; // Devuelve una cadena vacía para ocultar el valor 0
                                         } else {
                                             return Math.round(value);

@@ -2905,8 +2905,9 @@
                                 },
                                 plugins: {
                                     formatter: function(valuesSello, valuesRetencion) {
-                                        if (valuesSello = 0 || valuesRetencion = 0) {
-                                            return ''; // Devuelve una cadena vacía para ocultar el valor 0
+                                        if (valuesRetencion = 0) 
+                                        {
+                                            return ''; 
                                         } 
                                     },
                                     datalabels: {

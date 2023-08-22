@@ -202,16 +202,19 @@
                     $('#codigo').prop('disabled',false);
                     $('#info').html('');
                     console.log(data);
-                    if (data == '') {
+                    /*if (data == '') {
                         alert('vacio sin data');
-                    }
-                    $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
-                        <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
-                        <strong>IdBanner</strong>: ${codBanner}<br>
+                    } else if(){
+                        
+                    }else{
+                        $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
+                            <strong>Historial académico de: </strong> ${data.Nombre} ${data.Apellido} <br>
+                            <strong>IdBanner</strong>: ${codBanner}<br>
 
-                        <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
-                        Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
-                    </p>`);
+                            <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                            Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                        </p>`);
+                    }*/
                 }
             });
         }

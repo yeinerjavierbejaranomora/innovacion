@@ -2921,7 +2921,7 @@
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels]
+                           
                         });
                     }
                 });

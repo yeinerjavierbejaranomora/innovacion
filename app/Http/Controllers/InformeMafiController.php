@@ -1279,8 +1279,6 @@ class InformeMafiController extends Controller
             'matriculaRetencion' => $matriculasRetencion,
         ];
 
-        dd($datos);
-
         return $datos;
     }
 

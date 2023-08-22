@@ -2824,7 +2824,7 @@
 
             graficoMetasTotal();
             graficoMetas();
-            
+
             function graficoMetas() {
                 var url = "{{ route('metas.programa')}}";
                 data = '';
@@ -2841,6 +2841,7 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
                     }
                 });
             }

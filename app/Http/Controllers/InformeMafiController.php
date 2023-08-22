@@ -1252,7 +1252,7 @@ class InformeMafiController extends Controller
                 ->where('sello', 'TIENE RETENCION')
                 ->where('autorizado_asistir', 'LIKE', 'ACTIVO%')
                 ->whereIn('periodo', $periodosActivos)
-                ->whereIn('codprograma', $codprograma)
+                ->where('codprograma', $codprograma)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->get();
 

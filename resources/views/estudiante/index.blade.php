@@ -165,6 +165,8 @@
 
     </div>
     <script>
+
+        /**consultar historial estudiantes */
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {

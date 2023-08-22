@@ -15,8 +15,23 @@ class EstudianteController extends Controller
 
     public function consultaEstudiante(){
         $estudiante = $_POST['codBanner'];
-        $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        return $consultaEstudiante;
+        $url="https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
+        $historialAcademico = json_decode(file_get_contents($url),true);
+
+        if($historialAcademico){
+
+            return $historialAcademico;
+        }else{
+            
+            $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
+            return $consultaEstudiante;
+        }
+       
+      
+
+
+
+      
     }
 
     public function consultaNombre(){

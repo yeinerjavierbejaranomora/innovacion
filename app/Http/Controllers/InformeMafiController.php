@@ -1244,7 +1244,12 @@ class InformeMafiController extends Controller
             ->limit(5)
             ->get();
 
-            dd($consultaSello->codprograma);
+            foreach ($consultaSello as $registro) {
+                $codprograma = $registro->codprograma;
+                $programas[] = $codprograma;
+            }
+
+            dd($programas);
 
             $consultaRetencion = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))

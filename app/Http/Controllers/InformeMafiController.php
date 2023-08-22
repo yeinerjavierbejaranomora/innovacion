@@ -1283,8 +1283,7 @@ class InformeMafiController extends Controller
             }
 
         }
-            $matriculasSello = array_reverse($matriculasSello);
-            $matriculasRetencion = array_reverse($matriculasRetencion);
+        
         $datos = [
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,

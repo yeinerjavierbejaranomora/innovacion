@@ -2857,15 +2857,12 @@
                             valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
-                        console.log(labels);
-
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels,
-                                datasets: [
-                                    {
+                                datasets: [{
                                         label: 'Sello',
                                         data: valuesSello,
                                         backgroundColor: ['rgba(223, 193, 78, 1)'],
@@ -2878,11 +2875,11 @@
                                     {
                                         label: 'Retencion',
                                         data: valuesRetencion,
-                                        backgroundColor: ['rgba(56,101,120,1)'], 
+                                        backgroundColor: ['rgba(56,101,120,1)'],
                                         datalabels: {
                                             anchor: 'center',
                                             align: 'center',
-                                        },                                      
+                                        },
                                         stack: 'Stack 0',
                                     },
                                     {
@@ -2900,6 +2897,11 @@
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                    }
+                                },
                                 plugins: {
                                     datalabels: {
                                         color: 'black',

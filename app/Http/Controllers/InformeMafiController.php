@@ -1398,40 +1398,25 @@ class InformeMafiController extends Controller
             $estudiantes[$programa] = $key->TOTAL;
         }
 
-        /** 
-        $idEstudiantes = DB::table('planeacion')
-            ->select('codBanner', 'codprograma')
+        $consultaSello = DB::table('planeacion as p')
+            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->selectRaw('COUNT(p.codprograma) as total, p.codprograma, e.sello')
+            ->groupBy('e.sello', 'p.codprograma')
             ->get();
 
-            $estudiantesSello = [];
-            $estudiantesRetencion = [];
+        foreach ($consultaSello as $key) {
+            $programa = $key->codprograma;
+            $sello = $key->sello;
+            $total = $key->total;
 
-        foreach ($idEstudiantes as $id) {
-            $Ids = $id->codBanner;
-            $programa = $id->codprograma;
+            if($sello == 'TIENE SELLO FINANCIERO'){
+                $estudiantesSello[$programa] = $total;
+            }
 
-            $consultaSello = DB::table('estudiantes')
-                ->where('homologante', $Ids)
-                ->select('sello')
-                ->first();
-
-                if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
-                    if (isset($estudiantesSello[$programa])) {
-                        $estudiantesSello[$programa]++;
-                    } else {
-                        $estudiantesSello[$programa] = 1;
-                    }
-                }
-                
-                if ($consultaSello->sello == 'TIENE RETENCION') {
-                    if (isset($estudiantesRetencion[$programa])) {
-                        $estudiantesRetencion[$programa]++;
-                    } else {
-                        $estudiantesRetencion[$programa] = 1;
-                    }
-                }
+            if($sello == 'TIENE RETENCION'){
+                $estudiantesRetencion[$programa] = $total;
+            }
         }
-         */
 
         $data = [];
 
@@ -1439,8 +1424,8 @@ class InformeMafiController extends Controller
             $data[$key] = [
                 'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
                 'Total' => $value,
-                // 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
-                // 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
 
@@ -1462,25 +1447,23 @@ class InformeMafiController extends Controller
 
         $data = [];
 
-        foreach ($consultaMalla as $key)
-        {
+        foreach ($consultaMalla as $key) {
             $total = $key->TOTAL;
             $codMateria = $key->codMateria;
 
             $nombre = DB::table('mallaCurricular')
-            ->select('curso')
-            ->where('codigoCurso', $codMateria)
-            ->first();
+                ->select('curso')
+                ->where('codigoCurso', $codMateria)
+                ->first();
 
             $data[] = [
                 'total' => $total,
-                'codMateria' =>$codMateria,
-                'nombre' =>$nombre->curso,
+                'codMateria' => $codMateria,
+                'nombre' => $nombre->curso,
             ];
-
         }
 
-        return $data;    
+        return $data;
     }
 
     /**

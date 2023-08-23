@@ -1407,23 +1407,16 @@ class InformeMafiController extends Controller
                 ->first();
 
             if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
-                if (isset($estudiantesSello[$programa])) {
                     $estudiantesSello[$programa]++;
-                } else {
-                    $estudiantesSello[$programa] = 1;
-                }
             }
 
             if ($consultaSello->sello == 'TIENE RETENCION') {
-                if (isset($estudiantesRetencion[$programa])) {
                     $estudiantesRetencion[$programa]++;
-                } else {
-                    $estudiantesRetencion[$programa] = 1;
-                }
+
             }
 
             dd($estudiantesSello, $estudiantesRetencion);
-            
+
         }
     }
 

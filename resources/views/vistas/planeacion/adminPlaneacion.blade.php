@@ -2629,7 +2629,7 @@
                                     title: 'Estudiantes inscritos'
                                 },
                                 {
-                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning'><i class='fa-solid fa-bars'></i></button>",
                                     title: 'Malla Curricular',
                                     className: 'dt-center'
                                 },

@@ -2711,10 +2711,11 @@
             }
 
             function limpiarModal(){
-                if ($.fn.DataTable.isDataTable('#datatable')) {
+                if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
                     $("#mallaCurricular").remove();
                     table.destroy();
                     $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular tbody').empty();
                 }
             }
 

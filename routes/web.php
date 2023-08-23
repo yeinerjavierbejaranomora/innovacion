@@ -158,7 +158,7 @@ Route::controller(InformeMafiController::class)->group(function () {
 
     Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
 
-    // Route::get('/home/probar', 'tablaMetas')->middleware('auth', 'admin')->name('funcion.probar');
+    Route::get('/home/probar', 'tablaProgramas')->middleware('auth', 'admin')->name('funcion.probar');
 
     /** Ruta para cargar gráfico de metas */
     Route::post('/home/mafi/graficoMetasTotal', 'graficoMetasTotal')->middleware('auth')->name('metasTotal.programa');
@@ -200,8 +200,6 @@ Route::controller(MafiController::class)->group(function () {
     Route::get('/home/admin/periodo', 'periodo')->middleware('auth', 'admin')->name('admin.periodo');
     Route::get('/home/admin/Generar_faltantes', 'materiasPorVer')->middleware('auth', 'admin')->name('admin.Generar_faltantes');
     Route::get('/home/admin/probarfunciones', 'probarfunciones')->middleware('auth', 'admin')->name('admin.probarfunciones');
-
-
 
 
 });

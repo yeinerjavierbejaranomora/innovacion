@@ -1382,6 +1382,23 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
+    public function tablaProgramas(){
+
+            $estudiantesPrograma = DB::table('planeacion')
+            ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
+            ->groupBy('codprograma')
+            ->get();
+
+            $idEstudiantes = DB::table('planeacion')
+            ->select('codBanner', 'codprograma')
+            ->groupBy('codBanner')
+            ->get();
+
+            dd($idEstudiantes->codBanner);
+    }
+
+
+
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos da cada grafico mafi

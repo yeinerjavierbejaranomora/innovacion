@@ -69,7 +69,7 @@ class EstudianteController extends Controller
         }
         $consultaNombre = $this->consultaNombre($estudiante);
         //var_dump($consultaNombre);die();
-        return view('estudiante.historial',['estudiante' => $consultaEstudiante, 'programas' => $programa,'nombre' => $consultaNombre]);
+        return view('estudiante.historial',['estudiante' => $consultaEstudiante, 'programas' => $programas,'nombre' => $consultaNombre]);
     }
 
     public function consultaNombre($estudiante)

@@ -1,1 +1,1 @@
-{{ $estudiante }}
+<?= $estudiante ?>

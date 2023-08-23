@@ -1465,7 +1465,7 @@ class InformeMafiController extends Controller
             ->groupBy('e.sello', 'p.codMateria')
             ->get();
 
-            $Sello = $consultaSello->total;
+            $Sello = $consultaSello[0]->total;
             $Retencion = $total - $Sello;
 
             $data[] = [

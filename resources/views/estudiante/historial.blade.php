@@ -98,7 +98,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-10">
             <ul class="nav nav-tabs taps_programas" role="tablist">
                 <li class="nav-item active"><a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="false">PCPV</a></li>
             </ul>

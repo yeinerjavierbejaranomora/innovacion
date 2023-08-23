@@ -1394,8 +1394,8 @@ class InformeMafiController extends Controller
             ->groupBy('codBanner', 'codprograma')
             ->get();
 
-            $estudiantesSello = [];
-            $estudiantesRetencion = [];
+            $estudiantesSello = 0;
+            $estudiantesRetencion = 0;
 
         foreach ($idEstudiantes as $id) {
             $Ids = $id->codBanner;
@@ -1411,7 +1411,7 @@ class InformeMafiController extends Controller
             }
 
             if ($consultaSello->sello == 'TIENE RETENCION') {
-                    $estudiantesRetencion[$programa]=+1;
+                    $estudiantesRetencion[$programa] =+1;
 
             } 
         }

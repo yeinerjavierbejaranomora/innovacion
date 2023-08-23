@@ -104,7 +104,7 @@
                     <?php var_dump(count($programas)); ?>
                     @for($i = 0; $i < count($programas); $i++)
                         <div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaMalla('{{ $programas[$i]}}'');">
+                            <a type="button" class="btn boton" onclick="consultaMalla('{{ $programas[$i]}}',{{ $estudiante->homologante}});">
                                 $programas[$i]
                             </a>
                         </div>

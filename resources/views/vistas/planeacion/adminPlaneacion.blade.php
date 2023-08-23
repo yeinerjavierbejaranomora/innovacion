@@ -2630,7 +2630,8 @@
                                 },
                                 {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
-                                    title: 'Malla Curricular'
+                                    title: 'Malla Curricular',
+                                    text: 'center'
                                 },
                             ]
                         });

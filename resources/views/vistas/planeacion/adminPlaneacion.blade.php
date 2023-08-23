@@ -2568,8 +2568,9 @@
 
 
             dataTable();
+
             function dataTable() {
-                
+
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2579,13 +2580,18 @@
                     data: '',
                     success: function(data) {
                         try {
-                           data= parseJSON(data);
-                        }
-                        catch{
+                            data = parseJSON(data);
+                        } catch {
                             data = data;
                         }
                         console.log(data);
-                        console.log(data.programa);
+                        for (const programaKey in data) {
+                            if (data.hasOwnProperty(programaKey)) {
+                                const programa = data[programaKey];
+                                console.log(`Programa: ${programa.programa}`);
+                                console.log(`Total: ${programa.Total}`);
+                            }
+                        }
 
                     }
                 });

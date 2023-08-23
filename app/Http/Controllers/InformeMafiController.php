@@ -1393,7 +1393,12 @@ class InformeMafiController extends Controller
             ->groupBy('codBanner','codprograma')
             ->get();
 
-            dd($idEstudiantes);
+            foreach ($idEstudiantes as $id)
+            {
+                $Ids[] = $id->codBanner;
+            }
+            dd($Ids);
+            $estudiantesSello;
     }
 
 

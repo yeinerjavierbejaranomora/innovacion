@@ -230,7 +230,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data[0]);
+                    console.log(data);
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">

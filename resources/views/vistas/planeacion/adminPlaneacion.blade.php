@@ -280,7 +280,7 @@
             </div>
         </div>
 
-        <div class="card shadow mt-4 hidden" id="colTabla">
+        <div class="card shadow mt-4" id="colTabla">
             <!-- Card Body -->
             <div class="card-body">
                 <!--Datatable-->
@@ -2627,7 +2627,7 @@
                                 },
                             ]
                         });
-                        
+
                     }
                 });
             }

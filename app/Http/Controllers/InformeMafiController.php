@@ -1443,7 +1443,6 @@ class InformeMafiController extends Controller
             ];
         }
 
-
         dd($data);
     }
 

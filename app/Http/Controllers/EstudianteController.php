@@ -43,8 +43,8 @@ class EstudianteController extends Controller
 
     public function consultaEstudiante(Request $request){
         //dd($request->codigo);
-        //$estudiante = $request->codigo;
-        $estudiante = $_POST['codBanner'];
+        $estudiante = $request->codigo;
+        //$estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $estudiante;
         $historialAcademico = json_decode(file_get_contents($url), true);

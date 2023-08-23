@@ -1460,6 +1460,29 @@ class InformeMafiController extends Controller
             ->groupBy('codMateria')
             ->get();
 
+        $data = [];
+
+        foreach ($consultaMalla as $key)
+        {
+            $total = $key->TOTAL;
+            $codMateria = $key->codMateria;
+
+            $nombre = DB::table('mallaCurricular')
+            ->select('curso')
+            ->where('codigoCurso', $codMateria)
+            ->first();
+
+            $data[] = [
+                'total' => $total,
+                'codMateria' =>$codMateria,
+                'nombre' =>$nombre->curso,
+            ];
+
+            dd($data);
+        }
+
+
+
         return $consultaMalla;    
     }
 

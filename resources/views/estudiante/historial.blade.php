@@ -103,9 +103,13 @@
                 <div class="row py-5" id="">
                     <?php var_dump(count($programas)); ?>
                     @for($i = 0; $i < count($programas); $i++)
-                        {{ $programas[$i] }}
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" onclick="consultaMalla('{{ $programas[$i]}}',{{ $estudiante->homologante}});">
+                                $programas[$i]
+                            </a>
+                        </div>
                     @endfor
-                    <div class="col 4 text-center">
+                    {{-- <div class="col 4 text-center">
                         <a type="button" class="btn boton" onclick="consultaMalla({{ $estudiante->homologante}});">
                             Malla curricular
                         </a>
@@ -116,15 +120,16 @@
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a type="button"class="btn boton" onclick="consultaProgramacion({{ $estudiante->homologante}});">
+                        <a type="button" class="btn boton" onclick="consultaProgramacion({{ $estudiante->homologante}});">
                             Programado
                         </a>
                     </div>
                     <div class="col 4 text-center">
-                        <a type="button"class="btn boton" onclick="consultaPorVer({{ $estudiante->homologante}});">
+                        <a type="button" class="btn boton" onclick="consultaPorVer({{ $estudiante->homologante}});">
                             Materias Por Ver
                         </a>
-                    </div>
+                    </div> --}}
+
                 </div>
             </div>
         </div>

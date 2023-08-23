@@ -1479,11 +1479,8 @@ class InformeMafiController extends Controller
             ];
 
         }
-        dd($data);
 
-
-
-        return $consultaMalla;    
+        return $data;    
     }
 
     /**

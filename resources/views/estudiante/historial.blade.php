@@ -1,1 +1,1 @@
-<?php var_dump($estudiante->homologante) ?>
+<?php var_dump($programas) ?>

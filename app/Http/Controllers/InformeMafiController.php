@@ -1389,6 +1389,12 @@ class InformeMafiController extends Controller
             ->groupBy('codprograma')
             ->get();
 
+        foreach($estudiantesPrograma as $key){
+            $programa = $key->codprograma;
+            $estudiantes[$programa] = $key->TOTAL;    
+        }    
+
+
         $idEstudiantes = DB::table('planeacion')
             ->select('codBanner', 'codprograma')
             ->groupBy('codBanner', 'codprograma')
@@ -1422,7 +1428,10 @@ class InformeMafiController extends Controller
                     }
                 }
         }
-        dd($estudiantesSello, $estudiantesRetencion);
+
+
+
+        dd($estudiantes,$estudiantesSello, $estudiantesRetencion);
     }
 
 

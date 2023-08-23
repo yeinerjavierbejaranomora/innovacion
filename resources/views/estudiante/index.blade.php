@@ -114,7 +114,7 @@
                         <p class="mb-0">Codigo estudiante</p>
                     </div>
                     <div class="col-sm-3">
-                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required value="100039616"></p>
+                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                     </div>
                     <div class="col-auto">
                         <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
@@ -123,11 +123,29 @@
             </div>
             <br>
         </div>
+
+        <div class="row justify-content-center mt-5" id="">
+            <div class="col-10 text-center" id="colSelloFinanciero">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 class="titulos"><strong>Malla Curricular</strong></h5></div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <table class="table">
+                                <tbody id="contenido">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <br>
+
     </div>
     <script>
-
-        /**consultar historial estudiantes */
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -192,8 +210,6 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
-
-                    console.log(data);
                     $('#codigo').prop('disabled',false);
                     if(data.homologante != ''){
                         $('#botones').html('');
@@ -225,7 +241,7 @@
             });
         }
 
-        /*function consultaMalla(programa) {
+        function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);
             formData.append('programa',programa);
@@ -329,7 +345,7 @@
                     console.log(data);
                 }
             })
-        }*/
+        }
 
     </script>
     @include('layout.footer')

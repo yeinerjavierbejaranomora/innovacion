@@ -52,17 +52,19 @@ class EstudianteController extends Controller
         if ($historialAcademico) {
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-                if (in_array($value_historialAcademico['cod_programa'],$programa)) {
-                    var_dump("Existe");
-                    break;
-                }else{
-                    var_dump("No Existe");
-                    $programa[] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
-                }
 
+                $programa[$value_historialAcademico['cod_programa']] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }
-            //$programa = array_column($programa,'codprograma');
-            var_dump($programa);die();
+            $programaCod = array_column($programa,'codprograma');
+            $programaNombre = array_column($programa,'programa');
+            $programas= [];
+            for ($i=0; $i < count($programaCod); $i++) {
+                $programas[] = [
+                    'cod_programa' => $programaCod[$i],
+                    'programa' => $programaNombre[$i],
+                ];
+            }
+            //var_dump($programas);die();
             // return $programa;
         }
         $consultaNombre = $this->consultaNombre($estudiante);

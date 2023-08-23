@@ -1402,6 +1402,7 @@ class InformeMafiController extends Controller
                 ->select('sello')
                 ->get();
 
+                
                 echo $consultaSello;
             }
             

@@ -237,9 +237,14 @@
                     //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
                     if (length > 0) {
-                        for (let index = 0; index < length; index++) {
-                            const element = data[index];
-                            console.log(element);
+                        for (let i = 0; i < length; i++) {
+                            if (i == 0) {
+                                $('#programas').append(`<li class="nav-item active">
+                                <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa[i]['programa']}</a>
+                                </li>`)
+                            } else {
+                                $('#programas').append(`<li class="nav-item "><a class="nav-link" data-toggle="pill" href="#tap_1" role="tab" aria-controls="pills-contact" aria-selected="false">${programa[i]['programa']}</a></li>`)
+                            }
                         }
                     } else {
                         $('#programas').html('');

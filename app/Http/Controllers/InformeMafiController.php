@@ -1445,8 +1445,7 @@ class InformeMafiController extends Controller
 
         $Data = (object) $data;
 
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $Data));
+        return $Data;
     }
 
 

@@ -2585,12 +2585,12 @@
                             data = data;
                         }
                         console.log(data);
+                        console.log(data.programa);
+
                     }
                 });
 
             }
-
-
 
         });
     </script>

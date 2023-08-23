@@ -2632,6 +2632,8 @@
                                     programaKey,
                                     programa.programa,
                                     programa.Total,
+                                    programa.Sello,
+                                    programa.Retencion,
                                 ];
                                 dataTableData.push(rowData);
                             }
@@ -2648,6 +2650,14 @@
                                 },
                                 {
                                     title: 'Estudiantes inscritos',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con Sello',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'ASP',
                                     className: 'dt-center'
                                 },
                                 {

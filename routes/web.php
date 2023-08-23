@@ -158,12 +158,15 @@ Route::controller(InformeMafiController::class)->group(function () {
 
     Route::get('/historial_graficos', 'historial_graficos')->middleware('auth', 'admin')->name('historial_graficos');
 
-    Route::get('/home/probar', 'tablaProgramas')->middleware('auth', 'admin')->name('funcion.probar');
+    // Route::get('/home/probar', 'tablaProgramas')->middleware('auth', 'admin')->name('funcion.probar');
 
     /** Ruta para cargar gráfico de metas */
     Route::post('/home/mafi/graficoMetasTotal', 'graficoMetasTotal')->middleware('auth')->name('metasTotal.programa');
     /** Ruta para cargar gráfico de metas 5 mayores*/
     Route::post('/home/mafi/graficoMetas', 'graficoMetas')->middleware('auth')->name('metas.programa');
+
+    /** Ruta para cargar dataTable de programas */
+    Route::post('/home/planeacion/tablaProgramas', 'tablaPrograms')->middleware('auth')->name('planeacionProgramas.tabla');
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {

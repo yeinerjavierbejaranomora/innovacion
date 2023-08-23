@@ -2567,10 +2567,26 @@
             }
 
 
-
+            dataTable();
             function dataTable() {
                 
-                
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('planeacionProgramas.tabla')}}",
+                    data: '',
+                    success: function(data) {
+                        try {
+                           data= parseJSON(data);
+                        }
+                        catch{
+                            data = data;
+                        }
+                        console.log(data);
+                    }
+                });
 
             }
 

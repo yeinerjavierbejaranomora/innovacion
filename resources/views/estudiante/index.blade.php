@@ -109,21 +109,25 @@
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
             <div class="text-center" id="">
-                <div class="row">
-                    <div class="col-sm-3 text-dark">
-                        <p class="mb-0">Codigo estudiante</p>
+                <form action="rou" method="post">
+                    <div class="row">
+                        <div class="col-sm-3 text-dark">
+                            <p class="mb-0">Codigo estudiante</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
+                        </div>
+                        <div class="col-auto">
+                            {{-- <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button> --}}
+                            <button type="submit"  class="btn btn-primary mb-3">Consultar</button>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
-                    </div>
-                    <div class="col-auto">
-                        <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
-                    </div>
-                </div>
+                </form>
+
             </div>
             <br>
 
-            <div class="container-fluid">
+            {{-- <div class="container-fluid">
                 <div class="container mt-3" id="info">
 
                 </div>
@@ -137,7 +141,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 
@@ -164,7 +168,7 @@
         <br>
 
     </div>
-    <script>
+    {{-- <script>
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -288,7 +292,7 @@
                 }
             });
 
-            console.log(programas);
+
         }
         /*function consultaMalla(programa) {
             var formData = new FormData();
@@ -396,6 +400,6 @@
             })
         }*/
 
-    </script>
+    </script> --}}
     @include('layout.footer')
 

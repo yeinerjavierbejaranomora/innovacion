@@ -2715,7 +2715,6 @@
                     $("#mallaCurricular").remove();
                     table.destroy();
                     $('#mallaCurricular').DataTable().destroy();
-                    $('#mallaCurricular tbody').empty();
                 }
             }
 

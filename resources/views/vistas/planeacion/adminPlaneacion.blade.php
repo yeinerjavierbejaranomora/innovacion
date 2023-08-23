@@ -2654,11 +2654,9 @@
                                 },
                                 {
                                     title: 'Con Sello',
-                                    className: 'dt-center'
                                 },
                                 {
-                                    title: 'ASP',
-                                    className: 'dt-center'
+                                    title: 'ASP',      
                                 },
                                 {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",

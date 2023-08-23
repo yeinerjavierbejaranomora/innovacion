@@ -100,7 +100,8 @@
         </div>
         <div class="container-fluid">
             <div class="container mt-3">
-                <div class="row py-5" id="botones">
+                <div class="row py-5" id="">
+                    <?php var_dump(count($programas)); ?>
                     <div class="col 4 text-center">
                         <a type="button" class="btn boton" onclick="consultaMalla({{ $estudiante->homologante}});">
                             Malla curricular
@@ -124,6 +125,32 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="container-fluid">
+            <div class="container mt-3">
+                <div class="row py-5" id="botones">
+                    <div class="col 4 text-center">
+                        <a type="button" class="btn boton" onclick="consultaMalla({{ $estudiante->homologante}});">
+                            Malla curricular
+                        </a>
+                    </div>
+                    <div class="col 4 text-center">
+                        <a type="button" class="btn boton" onclick="consultaHistorial({{ $estudiante->homologante}});">
+                            Historial academico
+                        </a>
+                    </div>
+                    <div class="col 4 text-center">
+                        <a type="button"class="btn boton" onclick="consultaProgramacion({{ $estudiante->homologante}});">
+                            Programado
+                        </a>
+                    </div>
+                    <div class="col 4 text-center">
+                        <a type="button"class="btn boton" onclick="consultaPorVer({{ $estudiante->homologante}});">
+                            Materias Por Ver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     </div>
 </div>
 

@@ -1459,6 +1459,8 @@ class InformeMafiController extends Controller
             ->where('codprograma', $programa)
             ->groupBy('codMateria')
             ->get();
+
+        return $consultaMalla;    
     }
 
     /**

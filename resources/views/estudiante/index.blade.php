@@ -109,8 +109,8 @@
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
             <div class="text-center" id="">
-                <form action="{{ route('historial.consulta') }}" method="post">
-                    @csrf
+                {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
+                    {{-- @csrf --}}
                     <div class="row">
                         <div class="col-sm-3 text-dark">
                             <p class="mb-0">Codigo estudiante</p>
@@ -119,30 +119,26 @@
                             <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                         </div>
                         <div class="col-auto">
-                            {{-- <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button> --}}
-                            <button type="submit"  class="btn btn-primary mb-3">Consultar</button>
+                            <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
+                            {{-- <button type="submit"  class="btn btn-primary mb-3">Consultar</button> --}}
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
 
             </div>
             <br>
 
-            {{-- <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="container mt-3" id="info">
 
                 </div>
             </div>
-
-
-
             <div class="container-fluid">
-                <div class="container mt-3">
-                    <div class="row py-5" id="botones">
-
-                    </div>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs taps_programas" role="tablist" id="programas">
+                    </ul>
                 </div>
-            </div> --}}
+            </div>
 
 
 
@@ -169,7 +165,7 @@
         <br>
 
     </div>
-    {{-- <script>
+    <script>
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -235,35 +231,37 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
-                    consultaProgramas(data.homologante);
+                    var length = Object.keys(data).length;
+                    console.log(length);
+
+                    //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
-                    if(data.homologante != ''){
-                        $('#botones').html('');
-                        $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaMalla('${data.programa}');">
-                                Malla curricular
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
-                                Historial academico
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
-                                Programado
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button"class="btn boton" onclick="consultaPorVer(${data.homologante});">
-                                Materias Por Ver
-                            </a>
-                        </div>`)
-                    }else{
-                        $('#botones').html('');
+                    if (length > 0) {
+                        for (let i = 0; i < length; i++) {
+                            if (i == 0) {
+                                $('#programas').append(`<li class="nav-item active">
+                                <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa[i]['programa']}</a>
+                                </li>`)
+                            } else {
+                                $('#programas').append(`<li class="nav-item "><a class="nav-link" data-toggle="pill" href="#tap_1" role="tab" aria-controls="pills-contact" aria-selected="false">${programa[i]['programa']}</a></li>`)
+                            }
+                        }
+                    } else {
+                        $('#programas').html('');
                         $('#codigo').prop('disabled',false);
                     }
+                    /*if(data.homologante != ''){
+                        $('#programas').html('');
+                        data.forEach(programa =>{
+                            
+                            $('#programas').append(`<li class="nav-item active">
+                                <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
+                                </li>`)
+                        })
+                    }else{
+                        $('#programas').html('');
+                        $('#codigo').prop('disabled',false);
+                    }*/
                 }
             });
         }
@@ -401,6 +399,6 @@
             })
         }*/
 
-    </script> --}}
+    </script>
     @include('layout.footer')
 

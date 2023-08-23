@@ -91,8 +91,8 @@
         <div class="container-fluid">
             <div class="container mt-3" id="info">
                 <p class="col-md-12" style="margin-top: 2%;">
-                    <strong>Historial académico de: </strong> {{}<br>
-                    <strong>IdBanner</strong>: {{}<br>
+                    <strong>Historial académico de: </strong> {{ $nombre}}<br>
+                    <strong>IdBanner</strong>: {{ $estudiante->homologante}}<br>
 
                     <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
                     Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.

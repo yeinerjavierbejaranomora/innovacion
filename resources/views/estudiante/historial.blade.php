@@ -1,1 +1,1 @@
-<?php var_dump($programas[0]) ?>
+<?php var_dump($nombre) ?>

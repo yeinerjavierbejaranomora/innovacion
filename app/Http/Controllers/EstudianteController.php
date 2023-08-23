@@ -49,9 +49,6 @@ class EstudianteController extends Controller
         $historialAcademico = json_decode(file_get_contents($url), true);
         $programa = [];
 
-        $consultaEstudiante = DB::table('estudiantes')->where('homologante', '=', $estudiante)->get();
-        //var_dump($consultaEstudiante);die();
-
         if ($historialAcademico) {
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
@@ -63,13 +60,13 @@ class EstudianteController extends Controller
             // return $programa;
         }
         $consultaNombre = $this->consultaNombre($estudiante);
-        var_dump($consultaNombre);die();
-        return $consultaEstudiante;
+        //var_dump($consultaNombre);die();
+        return view('estudiante.historial',['estudiante' => $consultaEstudiante, 'programas' => $programa,'nombre' => $consultaNombre]);
     }
 
     public function consultaNombre($estudiante)
     {
-        
+
         $consultaNombre = DB::table('datos_moodle')->where('Id_Banner', '=', $estudiante)->select('Nombre', 'Apellido')->first();
         if ($consultaNombre != NULL) :
             $nombre = $consultaNombre->Nombre . " " . $consultaNombre->Apellido;

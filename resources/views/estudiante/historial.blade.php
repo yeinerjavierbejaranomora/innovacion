@@ -108,7 +108,7 @@
                         @endfor
                 </ul>
             </div>
-            <div class="tab-content  contenido_taps">
+            {{-- <div class="tab-content  contenido_taps">
                 <div class="tab-pane fade active show" id="tap_1" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="col-md-12">
 
@@ -509,7 +509,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -579,7 +579,7 @@
     </div>
 </div>
 <script>
-    function consultaMalla(programa,$codBanner) {
+    function consultaMalla(programa,codBanner) {
         var formData = new FormData();
         formData.append('codBanner',codBanner);
         formData.append('programa', programa);

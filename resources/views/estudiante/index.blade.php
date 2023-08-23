@@ -232,7 +232,7 @@
                     $('#codigo').prop('disabled',false);
                     console.log(data);
                     programas = consultaProgramas(data.homologante);
-                    console.log(programas);
+                    console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">

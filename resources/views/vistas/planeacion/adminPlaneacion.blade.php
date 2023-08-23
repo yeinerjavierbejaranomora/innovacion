@@ -280,6 +280,18 @@
             </div>
         </div>
 
+        <div class="card shadow mt-4 hidden" id="colTabla">
+            <!-- Card Body -->
+            <div class="card-body">
+                <!--Datatable-->
+                <div class="table">
+                    <table id="datatable" class="display" style="width:100%">
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+
         <br>
 
         <!-- Modal Todos los Operadores de la Ibero -->
@@ -2585,14 +2597,36 @@
                             data = data;
                         }
                         console.log(data);
+                        var dataTableData = [];
                         for (const programaKey in data) {
                             if (data.hasOwnProperty(programaKey)) {
                                 const programa = data[programaKey];
                                 console.log(`Programa: ${programa.programa}`);
                                 console.log(`Total: ${programa.Total}`);
+                                var rowData = [
+                                    programaKey,
+                                    programa.programa,
+                                    programa.Total,
+                                ];
+                                dataTableData.push(rowData);
                             }
                         }
 
+                        table = $('#datatable').DataTable({
+                            "data": dataTableData,
+                            'pageLength': 10,
+                            "columns": [
+                                {
+                                    title: 'Código de programa'
+                                }, 
+                                {
+                                    title: 'Programa'
+                                },
+                                {
+                                    title: 'Total'
+                                },
+                            ]
+                        });
                     }
                 });
 

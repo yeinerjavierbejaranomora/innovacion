@@ -59,15 +59,17 @@ class EstudianteController extends Controller
                 $programa[$value_historialAcademico['cod_programa']] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }
             $programa = array_column($programa,'codprograma');
-            var_dump($programa);die();
-            return $programa;
+            //var_dump($programa);die();
+            // return $programa;
         }
-        var_dump($consultaEstudiante);die();
+        $consultaNombre = $this->consultaNombre($estudiante);
+        var_dump($consultaNombre);die();
         return $consultaEstudiante;
     }
 
-    public function consultaNombre()
+    public function consultaNombre($estudiante)
     {
+        var_dump($estudiante);die();
         $estudiante = $_POST['codBanner'];
         $consultaNombre = DB::table('datos_moodle')->where('Id_Banner', '=', $estudiante)->select('Nombre', 'Apellido')->first();
         if ($consultaNombre != NULL) :

@@ -82,6 +82,30 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        <div class="container-fluid">
+            <div class="container mt-3" id="info">
+                <p class="col-md-12" style="margin-top: 2%;">
+                    <strong>Historial académico de: </strong> {{}<br>
+                    <strong>IdBanner</strong>: {{}<br>
+
+                    <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                    Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                </p>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container mt-3">
+                <div class="row py-5" id="botones">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -88,6 +88,7 @@
     #programasTotal, #metasTotal {
         height: 600px !important;
     }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -2926,11 +2927,6 @@
                                     }
                                 },
                                 plugins: {
-                                    formatter: function(value, context) {
-                                        if (context.dataset.label == 'Retencion' && value == 0) {
-                                            return '';
-                                        }
-                                    },
                                     datalabels: {
                                         color: 'black',
                                         font: {

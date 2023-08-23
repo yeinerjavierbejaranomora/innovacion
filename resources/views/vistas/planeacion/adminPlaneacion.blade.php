@@ -2695,8 +2695,9 @@
                                     title: 'Nombre Materia',
                                 },
                                 {
-                                    data: 'Estudiantes inscritos',
-                                    title: 'total'
+                                    data: 'total',
+                                    title: 'Estudiantes inscritos',
+                                    className: 'dt-center'
                                 },
                             ],
                             "language": {

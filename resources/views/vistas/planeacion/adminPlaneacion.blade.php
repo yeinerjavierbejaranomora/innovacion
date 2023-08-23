@@ -2636,6 +2636,7 @@
                             $(tbody).on("click", "button.malla", function() {
                                 var datos = table.row($(this).parents("tr")).data();
                                 console.log(datos);
+                                console.log(datos[0]);
                             })
                         }
                         obtenerData("#datatable tbody", table);

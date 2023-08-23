@@ -239,11 +239,12 @@
                     if (length > 0) {
                         for (let i = 0; i < length; i++) {
                             if (i == 0) {
-                                $('#programas').append(`<li class="nav-item active">
+                                $('#programas').append(`<li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${data[i]['programa']}</a>
                                 </li>`)
                             } else {
-                                $('#programas').append(`<li class="nav-item "><a class="nav-link" data-toggle="pill" href="#tap_1" role="tab" aria-controls="pills-contact" aria-selected="false">${data[i]['programa']}</a></li>`)
+                                $('#programas').append(`<li class="nav-item ">
+                                    <a class="nav-link" data-toggle="pill" href="#tap_1" role="tab" aria-controls="pills-contact" aria-selected="false">${data[i]['programa']}</a></li>`)
                             }
                         }
                     } else {

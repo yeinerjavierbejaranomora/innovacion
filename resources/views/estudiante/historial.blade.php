@@ -578,4 +578,29 @@
         </div> --}}
     </div>
 </div>
+<script>
+    function consultaMalla(programa,$codBanner) {
+        var formData = new FormData();
+        formData.append('codBanner',codBanner);
+        formData.append('programa', programa);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: "{{ route('historial.consultamalla') }}",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                console.log(data);
+                /*data.forEach(malla => {
+                    $('#contenido').append(renderMalla(malla));
+                })*/
+            }
+        });
+    }
+
+</script>
 

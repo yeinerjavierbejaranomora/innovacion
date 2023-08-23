@@ -1,1 +1,1 @@
-<?php $estudiante['nombre'] ?>
+<?php var_dump($estudiante) ?>

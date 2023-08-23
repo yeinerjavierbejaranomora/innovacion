@@ -260,7 +260,7 @@
             });
         }
 
-        function consultaMalla(programa) {
+        /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);
             formData.append('programa',programa);
@@ -364,7 +364,7 @@
                     console.log(data);
                 }
             })
-        }
+        }*/
 
     </script>
     @include('layout.footer')

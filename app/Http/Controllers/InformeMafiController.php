@@ -1413,11 +1413,9 @@ class InformeMafiController extends Controller
             if ($consultaSello->sello == 'TIENE RETENCION') {
                     $estudiantesRetencion[$programa]=+1;
 
-            }
-
-            dd($estudiantesSello, $estudiantesRetencion);
-
+            } 
         }
+        dd($estudiantesSello, $estudiantesRetencion);
     }
 
 

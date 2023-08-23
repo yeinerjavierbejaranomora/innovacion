@@ -1,1 +1,1 @@
-<?php $estudiante->nombre ?>
+<?php $estudiante['nombre'] ?>

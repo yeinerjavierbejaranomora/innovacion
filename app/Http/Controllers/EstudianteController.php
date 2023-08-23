@@ -69,8 +69,7 @@ class EstudianteController extends Controller
 
     public function consultaNombre($estudiante)
     {
-        var_dump($estudiante);die();
-        $estudiante = $_POST['codBanner'];
+        
         $consultaNombre = DB::table('datos_moodle')->where('Id_Banner', '=', $estudiante)->select('Nombre', 'Apellido')->first();
         if ($consultaNombre != NULL) :
             $nombre = $consultaNombre->Nombre . " " . $consultaNombre->Apellido;

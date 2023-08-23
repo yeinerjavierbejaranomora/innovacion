@@ -2259,7 +2259,6 @@
             var chartTiposEstudiantesTotal
 
             function tiposEstudiantesTotal(periodosSeleccionados) {
-                console.log(periodosSeleccionados);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -2600,13 +2599,11 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
+
                         var dataTableData = [];
                         for (const programaKey in data) {
                             if (data.hasOwnProperty(programaKey)) {
                                 const programa = data[programaKey];
-                                console.log(`Programa: ${programa.programa}`);
-                                console.log(`Total: ${programa.Total}`);
                                 var rowData = [
                                     programaKey,
                                     programa.programa,
@@ -2636,7 +2633,7 @@
                             ]
                         });
                         function obtenerData(tbody, table) {
-                            $(tbody).on("click", "button.data", function() {
+                            $(tbody).on("click", "button.malla", function() {
                                 var datos = table.row($(this).parents("tr")).data();
                                 console.log(datos);
                             })

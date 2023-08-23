@@ -1390,13 +1390,13 @@ class InformeMafiController extends Controller
             ->groupBy('codprograma')
             ->get();
 
-        foreach($estudiantesPrograma as $key){
+        foreach ($estudiantesPrograma as $key) {
             $programa = $key->codprograma;
 
-            $consultaNombre = DB::table('programas')->where('codprograma',$programa)->select('programa')->first();    
+            $consultaNombre = DB::table('programas')->where('codprograma', $programa)->select('programa')->first();
             $nombre[$programa] = $consultaNombre->programa;
-            $estudiantes[$programa] = $key->TOTAL;    
-        }    
+            $estudiantes[$programa] = $key->TOTAL;
+        }
 
         /** 
         $idEstudiantes = DB::table('planeacion')
@@ -1431,16 +1431,16 @@ class InformeMafiController extends Controller
                     }
                 }
         }
-        */
+         */
 
-        $data =[];
+        $data = [];
 
         foreach ($estudiantes as $key => $value) {
             $data[$key] = [
                 'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
                 'Total' => $value,
-               // 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
-               // 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+                // 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                // 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
 
@@ -1450,6 +1450,16 @@ class InformeMafiController extends Controller
     }
 
 
+    public function mallaPrograma(Request $request)
+    {
+        $programa = $request->input('programa');
+
+        $consultaMalla = DB::table('planeacion')
+            ->selectRaw('COUNT(codMateria) as TOTAL, codMateria')
+            ->where('codprograma', $programa)
+            ->groupBy('codMateria')
+            ->get();
+    }
 
     /**
      * Método para guardar todo los historicos de los graficos

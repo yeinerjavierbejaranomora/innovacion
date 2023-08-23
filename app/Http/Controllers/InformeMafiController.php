@@ -1398,7 +1398,7 @@ class InformeMafiController extends Controller
             $estudiantes[$programa] = $key->TOTAL;    
         }    
 
-
+        /** 
         $idEstudiantes = DB::table('planeacion')
             ->select('codBanner', 'codprograma')
             ->get();
@@ -1431,6 +1431,7 @@ class InformeMafiController extends Controller
                     }
                 }
         }
+        */
 
         $data =[];
 
@@ -1438,8 +1439,8 @@ class InformeMafiController extends Controller
             $data[$key] = [
                 'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
                 'Total' => $value,
-                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
-                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+               // 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+               // 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
 

@@ -102,7 +102,7 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs taps_programas" role="tablist">
                     @for($i = 0; $i < count($programas); $i++) 
-                        <li class="nav-item active"><a class="nav-link active" load="consultaMalla('{{ $programas[$i]['cod_programa']}}',{{ $estudiante->homologante}})" data-toggle="pill" role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
+                        <li class="nav-item active"><a class="nav-link active" onclick="consultaMalla('{{ $programas[$i]['cod_programa']}}',{{ $estudiante->homologante}})" data-toggle="pill" role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
                         {{-- @if($i==0) 
                         @else
                             <li class="nav-item "><a class="nav-link " onclick="consultaMalla('{{ $programas[$i]['cod_programa']}}',{{ $estudiante->homologante}})" data-toggle="pill" role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>

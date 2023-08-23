@@ -98,6 +98,12 @@
                 </p>
             </div>
         </div>
+        <div class="col-md-10">
+            <ul class="nav nav-tabs taps_programas" role="tablist">
+                <li class="nav-item active"><a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="false">PCPV</a></li>
+            </ul>
+        </div>
+
         <div class="container-fluid">
             <div class="container mt-3">
                 <div class="row py-5" id="">
@@ -105,7 +111,7 @@
                     @for($i = 0; $i < count($programas); $i++)
                         <div class="col 4 text-center">
                             <a type="button" class="btn boton" onclick="consultaMalla('{{ $programas[$i]}}',{{ $estudiante->homologante}});">
-                                $programas[$i]
+                               {{ $programas[$i]}}
                             </a>
                         </div>
                     @endfor

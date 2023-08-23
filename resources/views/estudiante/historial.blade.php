@@ -105,7 +105,7 @@
                     @for($i = 0; $i < count($programas); $i++)
                         <div class="col 4 text-center">
                             <a type="button" class="btn boton" onclick="consultaMalla('{{ $programas[$i]}}',{{ $estudiante->homologante}});">
-                                $programas[$i]
+                               {{ $programas[$i]}}
                             </a>
                         </div>
                     @endfor

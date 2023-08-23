@@ -1401,8 +1401,7 @@ class InformeMafiController extends Controller
                 ->where('homologante', $Ids)
                 ->select('sello')
                 ->get();
-
-                
+ 
                 echo $consultaSello;
             }
             

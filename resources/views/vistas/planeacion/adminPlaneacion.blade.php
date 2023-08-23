@@ -2683,7 +2683,7 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        table = $('#datatable').DataTable({
+                        table = $('#mallaCurricular').DataTable({
                             "data": data,
                             'pageLength': 10,
                             "columns": [{

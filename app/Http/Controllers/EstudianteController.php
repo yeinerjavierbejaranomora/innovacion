@@ -41,10 +41,11 @@ class EstudianteController extends Controller
         }*/
     }
 
-    public function consultaEstudiante(){
-        $estudiante = $_POST['codBanner'];
+    public function consultaEstudiante(Request $request){
+        var_dump($request);die();
+        /*$estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        return $consultaEstudiante;
+        return $consultaEstudiante;*/
     }
 
     public function consultaNombre()

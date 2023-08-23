@@ -236,7 +236,7 @@
                 success: function(data){
                     $('#codigo').prop('disabled',false);
                     console.log(data);
-                    consultaProgramas(data.homologante);
+                    //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){
                         $('#botones').html('');

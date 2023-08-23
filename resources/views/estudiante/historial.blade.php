@@ -98,13 +98,13 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 text-center">
             <ul class="nav nav-tabs taps_programas" role="tablist">
                 @for($i = 0; $i < count($programas); $i++)
                     @if($i == 0)
-                        <li class="nav-item active"><a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
+                        <li class="nav-item active"><a class="nav-link active" data-toggle="pill"  role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
                     @else
-                        <li class="nav-item "><a class="nav-link " data-toggle="pill" href="#tap_1" role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
+                        <li class="nav-item "><a class="nav-link " data-toggle="pill"  role="tab" aria-controls="pills-contact" aria-selected="false">{{ $programas[$i]['programa'] }}</a></li>
                     @endif
                 @endfor
             </ul>

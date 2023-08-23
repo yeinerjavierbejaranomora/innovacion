@@ -1432,7 +1432,6 @@ class InformeMafiController extends Controller
                 }
         }
 
-
         $data =[];
 
         foreach ($estudiantes as $key => $value) {
@@ -1443,7 +1442,6 @@ class InformeMafiController extends Controller
                 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
-
 
 
         dd($data);

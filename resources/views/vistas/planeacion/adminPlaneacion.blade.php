@@ -2623,7 +2623,7 @@
                         } catch {
                             data = data;
                         }
-
+                        console.log(data);
                         var dataTableData = [];
                         for (const programaKey in data) {
                             if (data.hasOwnProperty(programaKey)) {

@@ -1,1 +1,87 @@
-<?php $estudiante['nombre'] ?>
+<?php var_dump($nombre) ?>
+@include('layout.header')
+
+<style>
+    #facultades {
+        font-size: 14px;
+    }
+
+    #programas {
+        font-size: 14px;
+    }
+
+    #generarReporte {
+        margin-left: 260px;
+    }
+
+
+    .btn {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #botonModalProgramas,
+    #botonModalOperador {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #cardFacultades {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    #cardProgramas {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #chartEstudiantes {
+        min-height: 405.6px;
+        max-height: 405.6px;
+    }
+
+    #centrar {
+        display: flex;
+        align-items: center;
+    }
+
+    .graficos {
+        min-height: 460px;
+        max-height: 460px;
+    }
+
+    #operadoresTotal,
+    #programasTotal {
+        height: 600px !important;
+    }
+
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+    </div>
+</div>
+

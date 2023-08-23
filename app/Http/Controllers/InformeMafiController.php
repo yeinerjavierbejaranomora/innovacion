@@ -1394,8 +1394,8 @@ class InformeMafiController extends Controller
             ->groupBy('codBanner', 'codprograma')
             ->get();
 
-            $estudiantesSello = 0;
-            $estudiantesRetencion = 0;
+            $estudiantesSello = [];
+            $estudiantesRetencion = [];
 
         foreach ($idEstudiantes as $id) {
             $Ids = $id->codBanner;
@@ -1406,14 +1406,21 @@ class InformeMafiController extends Controller
                 ->select('sello')
                 ->first();
 
-            if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
-                    $estudiantesSello[$programa] =+1;
-            }
-
-            if ($consultaSello->sello == 'TIENE RETENCION') {
-                    $estudiantesRetencion[$programa] =+1;
-
-            } 
+                if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
+                    if (isset($estudiantesSello[$programa])) {
+                        $estudiantesSello[$programa]++;
+                    } else {
+                        $estudiantesSello[$programa] = 1;
+                    }
+                }
+                
+                if ($consultaSello->sello == 'TIENE RETENCION') {
+                    if (isset($estudiantesRetencion[$programa])) {
+                        $estudiantesRetencion[$programa]++;
+                    } else {
+                        $estudiantesRetencion[$programa] = 1;
+                    }
+                }
         }
         dd($estudiantesSello, $estudiantesRetencion);
     }

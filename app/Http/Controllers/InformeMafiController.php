@@ -1418,6 +1418,7 @@ class InformeMafiController extends Controller
                         $estudiantesRetencion[$programa] = 1;
                     }
             }
+            
             dd($estudiantesSello, $estudiantesRetencion);
     }
 

@@ -1412,6 +1412,7 @@ class InformeMafiController extends Controller
             }
 
             if ($consultaSello->sello == 'TIENE RETENCION') {
+                echo $consultaSello->sello;
                 if (isset($estudiantesRetencion[$programa])) {
                     $estudiantesRetencion[$programa]++;
                 } else {
@@ -1419,7 +1420,7 @@ class InformeMafiController extends Controller
                 }
             }
 
-            dd($estudiantesSello, $estudiantesRetencion);
+            // dd($estudiantesSello, $estudiantesRetencion);
         }
     }
 

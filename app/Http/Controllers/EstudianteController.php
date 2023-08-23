@@ -92,9 +92,10 @@ class EstudianteController extends Controller
 
     public function consultaMalla()
     {
-        var_dump($_POST);die();
         $programa = $_POST['programa'];
+        $codBaner = $_POST['codBaner'];
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
+        var_dump($mallaCurricular);die();
         return $mallaCurricular;
     }
 

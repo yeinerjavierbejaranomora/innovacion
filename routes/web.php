@@ -166,7 +166,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/mafi/graficoMetas', 'graficoMetas')->middleware('auth')->name('metas.programa');
 
     /** Ruta para cargar dataTable de programas */
-    Route::post('/home/planeacion/tablaProgramas', 'tablaPrograms')->middleware('auth')->name('planeacionProgramas.tabla');
+    Route::post('/home/planeacion/tablaProgramas', 'tablaProgramas')->middleware('auth')->name('planeacionProgramas.tabla');
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {

@@ -2632,6 +2632,8 @@
                                     programaKey,
                                     programa.programa,
                                     programa.Total,
+                                    programa.Sello,
+                                    programa.Retencion,
                                 ];
                                 dataTableData.push(rowData);
                             }
@@ -2649,6 +2651,12 @@
                                 {
                                     title: 'Estudiantes inscritos',
                                     className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con Sello',
+                                },
+                                {
+                                    title: 'ASP',      
                                 },
                                 {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",

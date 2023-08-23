@@ -22,7 +22,7 @@ class EstudianteController extends Controller
         $programa = [];
 
         $consultaEstudiante = DB::table('estudiantes')->where('homologante', '=', $estudiante)->get();
-        dd($consultaEstudiante);
+        var_dump($consultaEstudiante);die();
 
         if ($historialAcademico) {
 

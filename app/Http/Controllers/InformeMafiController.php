@@ -1436,14 +1436,16 @@ class InformeMafiController extends Controller
 
         foreach ($estudiantes as $key => $value) {
             $data[$key] = [
-                'Total' => $value,
                 'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
+                'Total' => $value,
                 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
                 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
 
-        dd($data);
+        $Data = (object) $data;
+
+        dd($Data);
     }
 
 

@@ -1392,6 +1392,9 @@ class InformeMafiController extends Controller
 
         foreach($estudiantesPrograma as $key){
             $programa = $key->codprograma;
+
+            $consultaNombre = DB::table('programas')->where('codprograma',$programa)->select('programa')->first();    
+            $nombre[$programa] = $consultaNombre->programa;
             $estudiantes[$programa] = $key->TOTAL;    
         }    
 
@@ -1435,10 +1438,13 @@ class InformeMafiController extends Controller
         foreach ($estudiantes as $key => $value) {
             $data[$key] = [
                 'Total' => $value,
+                'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
                 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
                 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
+
+
 
         dd($data);
     }

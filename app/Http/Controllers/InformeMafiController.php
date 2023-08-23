@@ -1430,8 +1430,17 @@ class InformeMafiController extends Controller
         }
 
 
+        $data =[];
 
-        dd($estudiantes,$estudiantesSello, $estudiantesRetencion);
+        foreach ($estudiantes as $key => $value) {
+            $data[$key] = [
+                'Total' => $value,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            ];
+        }
+
+        dd($data);
     }
 
 

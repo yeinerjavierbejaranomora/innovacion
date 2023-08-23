@@ -122,9 +122,28 @@
                 </div>
             </div>
             <br>
+
+            <div class="container-fluid">
+                <div class="container mt-3" id="info">
+
+                </div>
+            </div>
+
+
+
+            <div class="container-fluid">
+                <div class="container mt-3">
+                    <div class="row py-5" id="botones">
+
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
-        <div class="row justify-content-center mt-5" id="">
+        {{-- <div class="row justify-content-center mt-5" id="">
             <div class="col-10 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -140,7 +159,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
         <br>
 

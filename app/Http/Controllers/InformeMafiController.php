@@ -1382,10 +1382,9 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
-
     /**
      * Método para guardar todo los historicos de los graficos
-     * @return JSON retorna los historicos dacada grafico mafi
+     * @return JSON retorna los historicos da cada grafico mafi
      */
 
     public function historial_graficos()

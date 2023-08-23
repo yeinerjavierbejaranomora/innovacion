@@ -74,8 +74,8 @@
 
 
     .graficos {
-        min-height: 460px;
-        max-height: 460px;
+        min-height: 600px;
+        max-height: 600px;
     }
 
     .graficosBarra {
@@ -664,10 +664,6 @@
                     $('#programas').empty();
                 }
             });
-
-            /**
-             * Método que muestra el total de estudiantes activos e inactivos
-             */
 
             /**
              * Método que genera el gráfico de sello financiero
@@ -2564,6 +2560,7 @@
                     }
                 });
             }
+
 
         });
     </script>

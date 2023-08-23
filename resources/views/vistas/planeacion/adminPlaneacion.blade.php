@@ -2683,7 +2683,26 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-
+                        table = $('#datatable').DataTable({
+                            "data": data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'codMateria',
+                                    title: 'Codigo de Materia'
+                                },
+                                {
+                                    data: 'nombre',
+                                    title: 'Nombre Materia',
+                                },
+                                {
+                                    data: 'Estudiantes inscritos',
+                                    title: 'total'
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
                     }
                 });
 

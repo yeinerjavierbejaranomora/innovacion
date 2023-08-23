@@ -231,12 +231,13 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
+                    console.log(data.length());
                     //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){
                         $('#programas').html('');
                         data.forEach(programa =>{
+                            
                             $('#programas').append(`<li class="nav-item active">
                                 <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
                                 </li>`)

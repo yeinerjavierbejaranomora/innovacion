@@ -109,21 +109,26 @@
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
             <div class="text-center" id="">
-                <div class="row">
-                    <div class="col-sm-3 text-dark">
-                        <p class="mb-0">Codigo estudiante</p>
+                <form action="{{ route('historial.consulta') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-3 text-dark">
+                            <p class="mb-0">Codigo estudiante</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
+                        </div>
+                        <div class="col-auto">
+                            {{-- <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button> --}}
+                            <button type="submit"  class="btn btn-primary mb-3">Consultar</button>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
-                    </div>
-                    <div class="col-auto">
-                        <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
-                    </div>
-                </div>
+                </form>
+
             </div>
             <br>
 
-            <div class="container-fluid">
+            {{-- <div class="container-fluid">
                 <div class="container mt-3" id="info">
 
                 </div>
@@ -137,7 +142,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 
@@ -164,7 +169,7 @@
         <br>
 
     </div>
-    <script>
+    {{-- <script>
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -230,6 +235,9 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
+                    console.log(data);
+                    consultaProgramas(data.homologante);
+                    //console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
@@ -260,6 +268,33 @@
             });
         }
 
+
+        function consultaProgramas(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            var programas;
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultaprogramas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    programas = data;
+
+                }
+            });
+
+
+        }
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);
@@ -366,6 +401,6 @@
             })
         }*/
 
-    </script>
+    </script> --}}
     @include('layout.footer')
 

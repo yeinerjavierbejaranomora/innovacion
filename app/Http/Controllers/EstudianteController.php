@@ -14,7 +14,7 @@ class EstudianteController extends Controller
         return view('estudiante.index');
     }
 
-    /*public function consultaEstudiante()
+    public function consultaProgramas()
     {
         $estudiante = $_POST['codBanner'];
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $estudiante;
@@ -22,27 +22,30 @@ class EstudianteController extends Controller
         $programa = [];
 
         $consultaEstudiante = DB::table('estudiantes')->where('homologante', '=', $estudiante)->get();
-        dd($consultaEstudiante);
+        //var_dump($consultaEstudiante);die();
 
         if ($historialAcademico) {
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
 
-                $programa[$value_historialAcademico['cod_programa']] = $value_historialAcademico['programa'];
+                $programa[$value_historialAcademico['cod_programa']] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }
-            dd($programa);
+            $programa = array_column($programa,'codprograma');
+            //var_dump($programa);die();
             return $programa;
-        } else {
+        }
+        /*else {
 
             $consultaEstudiante = DB::table('estudiantes')->where('homologante', '=', $estudiante)->first();
             return $consultaEstudiante;
-        }
-    }*/
+        }*/
+    }
 
-    public function consultaEstudiante(){
-        $estudiante = $_POST['codBanner'];
+    public function consultaEstudiante(Request $request){
+        dd($request);
+        /*$estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
-        return $consultaEstudiante;
+        return $consultaEstudiante;*/
     }
 
     public function consultaNombre()

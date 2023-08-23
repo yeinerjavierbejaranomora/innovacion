@@ -14,7 +14,7 @@ class EstudianteController extends Controller
         return view('estudiante.index');
     }
 
-    public function consultaEstudiante()
+    public function consultaProgramas()
     {
         $estudiante = $_POST['codBanner'];
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $estudiante;
@@ -33,18 +33,19 @@ class EstudianteController extends Controller
             $programa = array_column($programa,'codprograma');
             //var_dump($programa);die();
             return $programa;
-        } else {
+        }
+        /*else {
 
             $consultaEstudiante = DB::table('estudiantes')->where('homologante', '=', $estudiante)->first();
             return $consultaEstudiante;
-        }
+        }*/
     }
 
-    /*public function consultaEstudiante(){
+    public function consultaEstudiante(){
         $estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         return $consultaEstudiante;
-    }*/
+    }
 
     public function consultaNombre()
     {

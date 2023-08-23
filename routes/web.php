@@ -381,6 +381,7 @@ Route::controller(EstudianteController::class)->group(function(){
     Route::post('/historialestudiante/consultahistorial','consultaHistorial')->name('historial.consultahistorial');
     Route::post('/historialestudiante/consultaprogramacion','consultaProgramacion')->name('historial.consultaprogramacion');
     Route::post('/historialestudiante/consultaporver','consultaPorVer')->name('historial.consultaporver');
+    Route::post('/historialestudiante/consultaprogramas','consultaProgramas')->name('historial.consultaprogramas');
     Route::post('/historialestudiante/countsemestres','countSemestres')->name('historial.countsemestres');
 });
 

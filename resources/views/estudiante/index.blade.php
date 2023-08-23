@@ -231,6 +231,8 @@
                 success: function(data){
                     $('#codigo').prop('disabled',false);
                     console.log(data);
+                    programas = consultaProgramas(data.homologante);
+                    console.log(programas);
                     if(data.homologante != ''){
                         $('#botones').html('');
                         $('#botones').append(`<div class="col 4 text-center">
@@ -261,6 +263,30 @@
             });
         }
 
+
+        function consultaProgramas(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultaprogramas') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+
+                }
+            });
+        }
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);

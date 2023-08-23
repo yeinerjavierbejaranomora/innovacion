@@ -42,7 +42,7 @@ class EstudianteController extends Controller
     }
 
     public function consultaEstudiante(Request $request){
-        var_dump($request);die();
+        dd($request);
         /*$estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         return $consultaEstudiante;*/

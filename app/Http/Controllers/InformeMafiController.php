@@ -1409,11 +1409,11 @@ class InformeMafiController extends Controller
             $sello = $key->sello;
             $total = $key->total;
 
-            if($sello == 'TIENE SELLO FINANCIERO'){
+            if ($sello == 'TIENE SELLO FINANCIERO') {
                 $estudiantesSello[$programa] = $total;
             }
 
-            if($sello == 'TIENE RETENCION'){
+            if ($sello == 'TIENE RETENCION') {
                 $estudiantesRetencion[$programa] = $total;
             }
         }
@@ -1456,10 +1456,24 @@ class InformeMafiController extends Controller
                 ->where('codigoCurso', $codMateria)
                 ->first();
 
+            $consultaSello = DB::table('planeacion as p')
+            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
+            ->where('p.codMateria', $codMateria)
+            ->where('p.codprograma', $programa)
+            ->where('e.sello', 'TIENE SELLO FINANCIERO')
+            ->groupBy('e.sello', 'p.codMateria')
+            ->get();
+
+            $Sello = $consultaSello->total;
+            $Retencion = $total - $Sello;
+
             $data[] = [
                 'total' => $total,
                 'codMateria' => $codMateria,
                 'nombre' => $nombre->curso,
+                'sello' => $Sello,
+                'retencion' => $Retencion,
             ];
         }
 

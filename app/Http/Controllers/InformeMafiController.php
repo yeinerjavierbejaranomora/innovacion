@@ -1478,8 +1478,8 @@ class InformeMafiController extends Controller
                 'nombre' =>$nombre->curso,
             ];
 
-            dd($data);
         }
+        dd($data);
 
 
 

@@ -1394,6 +1394,7 @@ class InformeMafiController extends Controller
             ->groupBy('codBanner')
             ->get();
 
+            
             dd($idEstudiantes->codBanner);
     }
 

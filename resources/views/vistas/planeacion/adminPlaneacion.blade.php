@@ -2615,15 +2615,18 @@
                         table = $('#datatable').DataTable({
                             "data": dataTableData,
                             'pageLength': 10,
-                            "columns": [
-                                {
+                            "columns": [{
                                     title: 'Código de programa'
-                                }, 
+                                },
                                 {
                                     title: 'Programa'
                                 },
                                 {
-                                    title: 'Total'
+                                    title: 'Estudiantes inscritos'
+                                },
+                                {
+                                    defaultContent: "<button type='button' class='editar btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
+                                    title: 'Malla Curricular'
                                 },
                             ]
                         });

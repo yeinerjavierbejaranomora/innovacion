@@ -31,6 +31,10 @@
         font-size: 20px;
     }
 
+    #btn-table {
+        width: 60px;
+    }
+
     .deshacer {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -2625,7 +2629,7 @@
                                     title: 'Estudiantes inscritos'
                                 },
                                 {
-                                    defaultContent: "<button type='button' class='editar btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning'><i class='fa-solid fa-pen-to-square'></i></button>",
                                     title: 'Malla Curricular'
                                 },
                             ]

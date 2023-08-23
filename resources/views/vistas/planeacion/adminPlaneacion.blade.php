@@ -2635,8 +2635,9 @@
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.malla", function() {
                                 var datos = table.row($(this).parents("tr")).data();
-                                console.log(datos);
-                                console.log(datos[0]);
+                                var programa = datos[0];
+                                console.log(programa);
+                                mallaPrograma(programa);
                             })
                         }
                         obtenerData("#datatable tbody", table);
@@ -2644,6 +2645,25 @@
                 });
             }
         });
+
+        mallaPrograma(programa){
+
+            var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('mallaPrograma.tabla') }}",
+                    data: {
+                        programa: programa
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+
+        }
+
     </script>
 
 

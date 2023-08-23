@@ -114,7 +114,7 @@
                         <p class="mb-0">Codigo estudiante</p>
                     </div>
                     <div class="col-sm-3">
-                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
+                        <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required value="100039616"></p>
                     </div>
                     <div class="col-auto">
                         <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
@@ -125,5 +125,212 @@
         </div>
         <br>
     </div>
+    <script>
+
+        /**consultar historial estudiantes */
+        function consultarEstudiante() {
+            codBanner = $('#codigo');
+            if (codBanner.val() != '') {
+
+                consultaEstudiante(codBanner.val());
+                consultaNombre(codBanner.val());
+
+                //consultaHistorial(codBanner.val());
+                //consultaProgramacion(codBanner.val());
+
+            } else {
+
+                alert("ingrese su codigo de estudiante");
+            }
+        }
+
+        function consultaNombre(codBanner){
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultanombre') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                    $('#codigo').prop('disabled',false);
+                    $('#info').html('');
+                    $('#info').append(`<p class="col-md-12" style="margin-top: 2%;">
+                        <strong>Historial académico de: </strong> ${data}<br>
+                        <strong>IdBanner</strong>: ${codBanner}<br>
+
+                        <b> Recuerde que la información suministrada por este sistema es de carácter informativo.</b> <br>
+                        Nota: si el periodo ha finalizado las calificaciones pueden tardar alrededor de 5 días para verse reflejadas en el historial.
+                    </p>`);
+                }
+            });
+        }
+
+        function consultaEstudiante(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consulta') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+
+                    console.log(data);
+                    $('#codigo').prop('disabled',false);
+                    if(data.homologante != ''){
+                        $('#botones').html('');
+                        $('#botones').append(`<div class="col 4 text-center">
+                            <a type="button" class="btn boton" onclick="consultaMalla('${data.programa}');">
+                                Malla curricular
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
+                                Historial academico
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
+                                Programado
+                            </a>
+                        </div>
+                        <div class="col 4 text-center">
+                            <a type="button"class="btn boton" onclick="consultaPorVer(${data.homologante});">
+                                Materias Por Ver
+                            </a>
+                        </div>`)
+                    }else{
+                        $('#botones').html('');
+                        $('#codigo').prop('disabled',false);
+                    }
+                }
+            });
+        }
+
+        function consultaMalla(programa) {
+            var formData = new FormData();
+            // formData.append('codBanner',codBanner);
+            formData.append('programa',programa);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultamalla') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    //console.log(data);
+                    data.forEach(malla => {
+                        $('#contenido').append(renderMalla(malla));
+                    })
+                }
+            });
+        }
+
+        function renderMalla(malla){
+            render = `<tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>`;
+            return render;
+        }
+
+        function consultaHistorial(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultahistorial') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaProgramacion(codBanner) {
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consultaprogramacion') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            });
+        }
+
+        function consultaPorVer(codBanner){
+            var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'post',
+                data: formData,
+                url: "{{ route('historial.consultaporver') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    $('#codigo').prop('disabled',false);
+                    console.log(data);
+                }
+            })
+        }
+
+    </script>
     @include('layout.footer')
 

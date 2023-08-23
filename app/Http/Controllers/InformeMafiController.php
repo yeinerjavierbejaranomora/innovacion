@@ -1398,8 +1398,8 @@ class InformeMafiController extends Controller
                 $Ids = $id->codBanner;
 
                 $consultaSello = DB::table('estudiantes')
-                ->select('sello')
                 ->where('homologante', $Ids)
+                ->select('sello')
                 ->get();
 
                 echo $consultaSello;

@@ -358,6 +358,30 @@
             </div>
         </div>
 
+        <!-- Modal Tabla Malla Curricular -->
+        <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title"><strong>Malla Curricular</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Datatable-->
+                        <div class="table">
+                            <table id="mallaCurricular" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -2623,15 +2647,17 @@
                                     title: 'Programa'
                                 },
                                 {
-                                    title: 'Estudiantes inscritos'
+                                    title: 'Estudiantes inscritos',
+                                    className: 'dt-center'
                                 },
                                 {
-                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning'><i class='fa-solid fa-bars'></i></button>",
+                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
                                     title: 'Malla Curricular',
                                     className: 'dt-center'
                                 },
                             ]
                         });
+
                         function obtenerData(tbody, table) {
                             $(tbody).on("click", "button.malla", function() {
                                 var datos = table.row($(this).parents("tr")).data();
@@ -2644,11 +2670,10 @@
                     }
                 });
             }
-        });
 
-        function mallaPrograma(programa){
-
-            var datos = $.ajax({
+            function mallaPrograma(programa) {
+                limpiarModal();
+                var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -2659,12 +2684,42 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-                        
+                        table = $('#mallaCurricular').DataTable({
+                            "data": data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'codMateria',
+                                    title: 'Codigo de Materia'
+                                },
+                                {
+                                    data: 'nombre',
+                                    title: 'Nombre Materia',
+                                },
+                                {
+                                    data: 'total',
+                                    title: 'Estudiantes inscritos',
+                                    className: 'dt-center'
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
                     }
                 });
 
-        }
+            }
 
+            function limpiarModal(){
+                if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
+                    $("#mallaCurricular").remove();
+                    table.destroy();
+                    $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular tbody').empty();
+                }
+            }
+
+        });
     </script>
 
 

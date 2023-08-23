@@ -109,8 +109,8 @@
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
             </div>
             <div class="text-center" id="">
-                <form action="{{ route('historial.consulta') }}" method="post">
-                    @csrf
+                {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
+                    {{-- @csrf --}}
                     <div class="row">
                         <div class="col-sm-3 text-dark">
                             <p class="mb-0">Codigo estudiante</p>
@@ -119,16 +119,16 @@
                             <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
                         </div>
                         <div class="col-auto">
-                            {{-- <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button> --}}
-                            <button type="submit"  class="btn btn-primary mb-3">Consultar</button>
+                            <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
+                            {{-- <button type="submit"  class="btn btn-primary mb-3">Consultar</button> --}}
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
 
             </div>
             <br>
 
-            {{-- <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="container mt-3" id="info">
 
                 </div>
@@ -142,7 +142,7 @@
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
 
 
@@ -169,7 +169,7 @@
         <br>
 
     </div>
-    {{-- <script>
+    <script>
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -401,6 +401,6 @@
             })
         }*/
 
-    </script> --}}
+    </script>
     @include('layout.footer')
 

@@ -41,10 +41,11 @@ class EstudianteController extends Controller
         }*/
     }
 
-    public function consultaEstudiante(Request $request){
+    //public function consultaEstudiante(Request $request){
+    public function consultaEstudiante(){
         //dd($request->codigo);
-        $estudiante = $request->codigo;
-        //$estudiante = $_POST['codBanner'];
+        //$estudiante = $request->codigo;
+        $estudiante = $_POST['codBanner'];
         $consultaEstudiante = DB::table('estudiantes')->where('homologante','=',$estudiante)->first();
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $estudiante;
         $historialAcademico = json_decode(file_get_contents($url), true);
@@ -68,9 +69,10 @@ class EstudianteController extends Controller
             //var_dump($programas);die();
             // return $programa;
         }
-        $consultaNombre = $this->consultaNombre($estudiante);
+        //$consultaNombre = $this->consultaNombre($estudiante);
         //var_dump($consultaNombre);die();
-        return view('estudiante.historial',['estudiante' => $consultaEstudiante, 'programas' => $programas,'nombre' => $consultaNombre]);
+        //return view('estudiante.historial',['estudiante' => $consultaEstudiante, 'programas' => $programas,'nombre' => $consultaNombre]);
+        return $programas;
     }
 
     public function consultaNombre($estudiante)

@@ -52,6 +52,11 @@ class EstudianteController extends Controller
         if ($historialAcademico) {
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
+                if (in_array($value_historialAcademico['cod_programa'],$programa)) {
+                    var_dump("Existe");
+                }else{
+                    var_dump("No Existe");
+                }
 
                 $programa[] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }

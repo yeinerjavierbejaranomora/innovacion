@@ -282,7 +282,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
+                    return data;
 
                 }
             });

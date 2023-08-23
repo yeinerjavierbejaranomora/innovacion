@@ -30,7 +30,8 @@ class EstudianteController extends Controller
 
                 $programa[$value_historialAcademico['cod_programa']] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }
-            var_dump(array_column($programa,'codprograma'));die();
+            $programa = array_column($programa,'codprograma');
+            var_dump($programa);die();
             return $programa;
         } else {
 

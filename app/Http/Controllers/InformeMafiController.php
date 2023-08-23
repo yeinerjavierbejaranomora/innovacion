@@ -1396,6 +1396,7 @@ class InformeMafiController extends Controller
             foreach ($idEstudiantes as $id)
             {
                 $Ids = $id->codBanner;
+                $programa = $id->codprograma;
 
                 $consultaSello = DB::table('estudiantes')
                 ->where('homologante', $Ids)
@@ -1403,8 +1404,15 @@ class InformeMafiController extends Controller
                 ->get();
  
                 echo $consultaSello->sello;
+
+                if($consultaSello->sello == 'TIENE SELLO FINANCIERO'){
+                    $estudiantesSello[$programa] =+1;
+                }
+                if($consultaSello->sello == 'TIENE RETENCION'){
+                    $estudiantesRetencion[$programa] =+1;
+                }
             }
-            
+            dd($estudiantesSello, $estudiantesRetencion);
     }
 
 

@@ -238,7 +238,7 @@
                     //console.log(consultaProgramas(data.homologante));
                     if (length > 0) {
                         for (let index = 0; index < length; index++) {
-                            const element = array[index];
+                            const element = data[index];
                             console.log(element);
                         }
                     } else {

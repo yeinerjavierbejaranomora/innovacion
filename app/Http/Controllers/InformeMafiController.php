@@ -1390,12 +1390,11 @@ class InformeMafiController extends Controller
             ->get();
 
             $idEstudiantes = DB::table('planeacion')
-            ->select('codBanner', 'codprograma')
-            ->groupBy('codBanner')
+            ->select('codBanner','codprograma')
+            ->groupBy('codBanner','codprograma')
             ->get();
 
-            
-            dd($idEstudiantes->codBanner);
+            dd($idEstudiantes);
     }
 
 

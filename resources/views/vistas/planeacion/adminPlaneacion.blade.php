@@ -2708,6 +2708,14 @@
                                     title: 'Estudiantes inscritos',
                                     className: 'dt-center'
                                 },
+                                {
+                                    data: 'sello',
+                                    title: 'Con sello'
+                                },
+                                {
+                                    data:'retencion',
+                                    title: 'ASP'
+                                },
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

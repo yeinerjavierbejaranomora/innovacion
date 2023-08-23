@@ -133,14 +133,10 @@
 
                 </div>
             </div>
-
-
-
             <div class="container-fluid">
-                <div class="container mt-3">
-                    <div class="row py-5" id="botones">
-
-                    </div>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs taps_programas" role="tablist" id="programas">
+                    </ul>
                 </div>
             </div>
 
@@ -239,29 +235,14 @@
                     //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){
-                        $('#botones').html('');
-                        $('#botones').append(`<div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaMalla('${data.programa}');">
-                                Malla curricular
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button" class="btn boton" onclick="consultaHistorial(${data.homologante});">
-                                Historial academico
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button"class="btn boton" onclick="consultaProgramacion(${data.homologante});">
-                                Programado
-                            </a>
-                        </div>
-                        <div class="col 4 text-center">
-                            <a type="button"class="btn boton" onclick="consultaPorVer(${data.homologante});">
-                                Materias Por Ver
-                            </a>
-                        </div>`)
+                        $('#programas').html('');
+                        data.forEach(programa =>{
+                            $('#programas').append(`<li class="nav-item active">
+                                <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
+                                </li>`)
+                        })
                     }else{
-                        $('#botones').html('');
+                        $('#programas').html('');
                         $('#codigo').prop('disabled',false);
                     }
                 }

@@ -267,7 +267,7 @@
         function consultaProgramas(codBanner) {
             var formData = new FormData();
             formData.append('codBanner',codBanner);
-            programas;
+            var programas;
             $.ajax({
                 headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -283,7 +283,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    programas =  data;
+                    programas = data;
 
                 }
             });

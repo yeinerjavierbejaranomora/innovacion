@@ -269,8 +269,12 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                    <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
-                        <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        <div class="mr-3">
+                            <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        </div>
                     </div>
                 </div>
             </div>

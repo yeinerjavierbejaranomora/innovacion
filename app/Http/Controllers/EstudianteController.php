@@ -62,7 +62,7 @@ class EstudianteController extends Controller
 
             }
             //$programa = array_column($programa,'codprograma');
-            var_dump(array_unique($programa));die();
+            var_dump($programa);die();
             // return $programa;
         }
         $consultaNombre = $this->consultaNombre($estudiante);

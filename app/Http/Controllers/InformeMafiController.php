@@ -1401,7 +1401,7 @@ class InformeMafiController extends Controller
                 $consultaSello = DB::table('estudiantes')
                 ->where('homologante', $Ids)
                 ->select('sello')
-                ->get();
+                ->first();
  
                 echo $consultaSello->sello;
 

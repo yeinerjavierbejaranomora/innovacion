@@ -64,7 +64,7 @@ class EstudianteController extends Controller
                     'programa' => $programaNombre[$i],
                 ];
             }
-            var_dump($programas);die();
+            //var_dump($programas);die();
             // return $programa;
         }
         $consultaNombre = $this->consultaNombre($estudiante);

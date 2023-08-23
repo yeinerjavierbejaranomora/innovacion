@@ -1383,7 +1383,6 @@ class InformeMafiController extends Controller
     }
 
     public function tablaProgramas(){
-
             $estudiantesPrograma = DB::table('planeacion')
             ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
             ->groupBy('codprograma')

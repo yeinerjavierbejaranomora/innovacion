@@ -1395,10 +1395,16 @@ class InformeMafiController extends Controller
 
             foreach ($idEstudiantes as $id)
             {
-                $Ids[] = $id->codBanner;
+                $Ids = $id->codBanner;
+
+                $consultaSello = DB::table('estudiantes')
+                ->select('selllo')
+                ->where('homologante', $Ids)
+                ->get();
+
+                echo $consultaSello->sello;
             }
-            dd($Ids);
-            $estudiantesSello;
+            
     }
 
 

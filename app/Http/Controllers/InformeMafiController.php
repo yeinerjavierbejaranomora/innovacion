@@ -1382,6 +1382,7 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
+
     public function tablaProgramas()
     {
         $estudiantesPrograma = DB::table('planeacion')
@@ -1397,7 +1398,6 @@ class InformeMafiController extends Controller
 
         $idEstudiantes = DB::table('planeacion')
             ->select('codBanner', 'codprograma')
-            ->groupBy('codBanner', 'codprograma')
             ->get();
 
             $estudiantesSello = [];

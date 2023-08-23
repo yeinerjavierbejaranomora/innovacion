@@ -1423,6 +1423,7 @@ class InformeMafiController extends Controller
             }
 
             dd($estudiantesSello, $estudiantesRetencion);
+            
         }
     }
 

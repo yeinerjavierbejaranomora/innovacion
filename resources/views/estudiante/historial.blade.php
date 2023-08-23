@@ -101,7 +101,7 @@
         <div class="col-md-10">
             <ul class="nav nav-tabs taps_programas" role="tablist">
                 @for($i = 0; $i < count($programas); $i++)
-                <?php var_dump($programas[$i]['cod_programa']);?>
+                <?php var_dump($programas['cod_programa']);?>
                     {{-- @if($i == 0)
                         <li class="nav-item active"><a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="false">DIP SEG Y SALUD TRA RIES P VIR</a></li>
                     @else

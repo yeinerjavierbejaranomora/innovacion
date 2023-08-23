@@ -236,7 +236,16 @@
 
                     //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
-                    if(data.homologante != ''){
+                    if (length > 0) {
+                        for (let index = 0; index < length; index++) {
+                            const element = array[index];
+                            console.log(element);
+                        }
+                    } else {
+                        $('#programas').html('');
+                        $('#codigo').prop('disabled',false);
+                    }
+                    /*if(data.homologante != ''){
                         $('#programas').html('');
                         data.forEach(programa =>{
                             
@@ -247,7 +256,7 @@
                     }else{
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);
-                    }
+                    }*/
                 }
             });
         }

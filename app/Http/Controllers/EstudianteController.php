@@ -57,7 +57,14 @@ class EstudianteController extends Controller
             }
             $programaCod = array_column($programa,'codprograma');
             $programaNombre = array_column($programa,'programa');
-            var_dump($programaCod,$programaNombre);die();
+            $programas= [];
+            for ($i=0; $i < count($programaCod); $i++) {
+                $programas[] = [
+                    'cod_programa' => $programaCod[$i],
+                    'programa' => $programaNombre[$i],
+                ];
+            }
+            var_dump($programas);die();
             // return $programa;
         }
         $consultaNombre = $this->consultaNombre($estudiante);

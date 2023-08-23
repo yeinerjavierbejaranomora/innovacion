@@ -2672,6 +2672,7 @@
             }
 
             function mallaPrograma(programa) {
+                limpiarModal();
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2707,6 +2708,15 @@
                     }
                 });
 
+            }
+
+            function limpiarModal(){
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $("#mallaCurricular").remove();
+                    table.destroy();
+                    $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular tbody').empty();
+                }
             }
 
         });

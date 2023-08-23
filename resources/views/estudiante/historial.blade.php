@@ -100,6 +100,7 @@
         </div>
         <div class="col-md-10">
             <ul class="nav nav-tabs taps_programas" role="tablist">
+                <?php var_dump($programas);?>
                 @for($i = 0; $i < count($programas); $i++)
                 <?php var_dump($programas['cod_programa']);?>
                     {{-- @if($i == 0)

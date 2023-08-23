@@ -2646,7 +2646,7 @@
             }
         });
 
-        mallaPrograma(programa){
+        function mallaPrograma(programa){
 
             var datos = $.ajax({
                     headers: {

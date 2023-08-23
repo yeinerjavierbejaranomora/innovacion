@@ -66,7 +66,7 @@ class InformeMafiController extends Controller
              *GROUP BY sello
              */
             $sello = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
                 ->groupBy('sello')
                 ->get();
@@ -99,7 +99,7 @@ class InformeMafiController extends Controller
         if ($tabla == "Mafi") {
             $retencion = DB::table('datosMafi')
                 ->where('sello', 'TIENE RETENCION')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
                 ->groupBy('autorizado_asistir')
                 ->get();
@@ -143,7 +143,7 @@ class InformeMafiController extends Controller
              */
             $primerIngreso = DB::table('datosMafi')
                 ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
                 ->groupBy('sello')
                 ->get();
@@ -181,7 +181,7 @@ class InformeMafiController extends Controller
          */
         if ($tabla == "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
                 ->groupBy('tipoestudiante')
                 ->orderByDesc('TOTAL')
@@ -218,7 +218,7 @@ class InformeMafiController extends Controller
              **LIMIT 5
              */
             $operadores = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
                 ->groupBy('operador')
                 ->orderByDesc('TOTAL')
@@ -261,7 +261,7 @@ class InformeMafiController extends Controller
              **LIMIT 5
              */
             $programas = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
                 ->groupBy('codprograma')
                 ->orderByDesc('TOTAL')
@@ -335,7 +335,7 @@ class InformeMafiController extends Controller
              */
             $sello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
@@ -385,7 +385,7 @@ class InformeMafiController extends Controller
              */
             $retencion = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->where('dm.sello', 'TIENE RETENCION')
@@ -441,7 +441,7 @@ class InformeMafiController extends Controller
              */
             $primerIngreso = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
@@ -485,7 +485,7 @@ class InformeMafiController extends Controller
              */
             $tipoEstudiantes = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.tipoestudiante) AS TOTAL, dm.tipoestudiante'))
@@ -542,7 +542,7 @@ class InformeMafiController extends Controller
              */
             $operadores = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
@@ -603,7 +603,7 @@ class InformeMafiController extends Controller
              */
             $programas = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))
@@ -725,7 +725,7 @@ class InformeMafiController extends Controller
              *GROUP BY autorizado_asistir
              */
             $retencion = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->where('sello', 'TIENE RETENCION')
@@ -777,7 +777,7 @@ class InformeMafiController extends Controller
              *GROUP BY sello;
              */
             $primerIngreso = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
@@ -822,7 +822,7 @@ class InformeMafiController extends Controller
              */
 
             $tipoEstudiantes = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))
@@ -870,7 +870,7 @@ class InformeMafiController extends Controller
              */
 
             $operadores = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -919,7 +919,7 @@ class InformeMafiController extends Controller
              */
 
             $operadores = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
@@ -966,7 +966,7 @@ class InformeMafiController extends Controller
         if ($tabla == "Mafi") {
             $operadores = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado','Activo')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.operador) AS TOTAL, dm.operador'))
@@ -1009,7 +1009,7 @@ class InformeMafiController extends Controller
              */
             $operadores = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->groupBy('operador')
                 ->orderByDesc('TOTAL')
                 ->limit(20)
@@ -1382,44 +1382,45 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
-    public function tablaProgramas(){
-            $estudiantesPrograma = DB::table('planeacion')
+    public function tablaProgramas()
+    {
+        $estudiantesPrograma = DB::table('planeacion')
             ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
             ->groupBy('codprograma')
             ->get();
 
-            $idEstudiantes = DB::table('planeacion')
-            ->select('codBanner','codprograma')
-            ->groupBy('codBanner','codprograma')
+        $idEstudiantes = DB::table('planeacion')
+            ->select('codBanner', 'codprograma')
+            ->groupBy('codBanner', 'codprograma')
             ->get();
 
-            foreach ($idEstudiantes as $id)
-            {
-                $Ids = $id->codBanner;
-                $programa = $id->codprograma;
+        foreach ($idEstudiantes as $id) {
+            $Ids = $id->codBanner;
+            $programa = $id->codprograma;
 
-                $consultaSello = DB::table('estudiantes')
+            $consultaSello = DB::table('estudiantes')
                 ->where('homologante', $Ids)
                 ->select('sello')
                 ->first();
 
-                if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
-                    if (isset($estudiantesSello[$programa])) {
-                        $estudiantesSello[$programa]++;
-                    } else {
-                        $estudiantesSello[$programa] = 1;
-                    }
+            if ($consultaSello->sello == 'TIENE SELLO FINANCIERO') {
+                if (isset($estudiantesSello[$programa])) {
+                    $estudiantesSello[$programa]++;
+                } else {
+                    $estudiantesSello[$programa] = 1;
                 }
-                
-                if ($consultaSello->sello == 'TIENE RETENCION') {
-                    if (isset($estudiantesRetencion[$programa])) {
-                        $estudiantesRetencion[$programa]++;
-                    } else {
-                        $estudiantesRetencion[$programa] = 1;
-                    }
             }
-            
+
+            if ($consultaSello->sello == 'TIENE RETENCION') {
+                if (isset($estudiantesRetencion[$programa])) {
+                    $estudiantesRetencion[$programa]++;
+                } else {
+                    $estudiantesRetencion[$programa] = 1;
+                }
+            }
+
             dd($estudiantesSello, $estudiantesRetencion);
+        }
     }
 
 

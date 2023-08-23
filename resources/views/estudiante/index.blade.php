@@ -143,24 +143,23 @@
 
         </div>
 
-        <div class="row justify-content-center mt-5" id="">
+        {{-- <div class="row justify-content-center mt-5" id="">
             <div class="col-10 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 class="titulos"><strong>Malla Curricular</strong></h5>
-                        <h5 class="facultadtitulos" style="display: none;"><strong>Sello finaciero por Facultad</strong></h5>
-                        <h5 class="programastitulos" style="display: none;"><strong>Sello finaciero por Programa</strong></h5>
-                    </div>
+                        <h5 class="titulos"><strong>Malla Curricular</strong></h5></div>
                     <div class="card-body">
-                        <div id="vacioTotalSello" class="text-center vacio" style="display: none;">
-                            <h5>No hay datos por mostrar</h5>
+                        <div class="tab-content">
+                            <table class="table">
+                                <tbody id="contenido">
+                                </tbody>
+                            </table>
                         </div>
-                        <canvas id="activos"></canvas>
                     </div>
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
         <br>
 
@@ -280,7 +279,7 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
+                    //console.log(data);
                     data.forEach(malla => {
                         $('#contenido').append(renderMalla(malla));
                     })
@@ -289,7 +288,12 @@
         }
 
         function renderMalla(malla){
-            render = ``;
+            render = `<tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>`;
             return render;
         }
 

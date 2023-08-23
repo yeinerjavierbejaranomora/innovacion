@@ -231,7 +231,9 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    console.log(data);
+                    var length = Object.keys(data).length;
+                    console.log(length);
+
                     //consultaProgramas(data.homologante);
                     //console.log(consultaProgramas(data.homologante));
                     if(data.homologante != ''){

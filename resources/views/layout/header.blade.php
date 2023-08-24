@@ -28,6 +28,9 @@
     {{-- Datatable --}}
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" defer>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" defer></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.1.1/js/buttons.html5.min.js"></script>
 
     {{-- SweetAlert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

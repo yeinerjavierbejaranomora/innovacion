@@ -2606,7 +2606,12 @@
             }
 
 
-            dataTable();
+            $('#botondataTable').on("click", function(e){
+                e.preventDefault();
+                destruirTable();
+                dataTable();
+            });
+
 
             function dataTable() {
 
@@ -2703,8 +2708,8 @@
                                 const curso = data[cursoKey];
                                 var rowData = [
                                     cursoKey,
-                                    curso.programa,
                                     curso.nombreMateria,
+                                    curso.Total,
                                     curso.Sello,
                                     curso.Retencion,
                                 ];
@@ -2737,6 +2742,9 @@
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },
+                            "buttons": [
+                                'excel'
+                            ]
                         });
                     }
                 });
@@ -2751,6 +2759,14 @@
                 }
             }
 
+            function destruirTable(){
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $("#datatable").remove();
+                    table.destroy();
+                    $('#datatable').DataTable().destroy();
+                    $('#datatable tbody').empty();
+                }  
+            }
         });
     </script>
 

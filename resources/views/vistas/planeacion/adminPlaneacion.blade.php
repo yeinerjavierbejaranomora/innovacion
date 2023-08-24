@@ -612,7 +612,7 @@
                         estadoUsuarioPrograma();
                         $("#colProgramas").addClass("hidden");
                         graficosporPrograma(programasSeleccionados, periodosSeleccionados);
-                        dataTable();
+                        dataTable(periodosSeleccionados);
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                             $('#mensaje').hide();

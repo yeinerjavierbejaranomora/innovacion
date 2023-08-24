@@ -1516,7 +1516,7 @@ class InformeMafiController extends Controller
             ->where('p.Facultad', 'FAC EDUCACION Y CCS HUM Y SOC')
             ->whereIn('pP.periodo', $periodos)
             ->where('pP.estado', 1)
-            ->groupBy('p.codprograma')
+            ->groupBy('p.codprograma', 'p.programa')
             ->get();
         foreach ($programas as $programa) {
             $arreglo[] = [

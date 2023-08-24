@@ -674,7 +674,7 @@
                 }
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
                     var formData = new FormData();

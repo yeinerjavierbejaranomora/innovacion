@@ -723,6 +723,7 @@
                         }
                     })
                 } else {
+                    console.log('entra2');
                     $('#programas').empty();
                 }
             });

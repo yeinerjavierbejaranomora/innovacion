@@ -1463,6 +1463,10 @@ class InformeMafiController extends Controller
             ];
         }
 
+
+        $estudiantesSello = [];
+        $estudiantesRetencion = [];
+
         $consultaSello = DB::table('planeacion as p')
         ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
         ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')

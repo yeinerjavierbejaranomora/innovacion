@@ -175,7 +175,7 @@
             if (codBanner.val() != '') {
                 $('#info').html('');
                 $('#programas').html('');
-                $('#info').empty();
+                $('#myTabs').empty();
                 consultaEstudiante(codBanner.val());
                 consultaNombre(codBanner.val());
 

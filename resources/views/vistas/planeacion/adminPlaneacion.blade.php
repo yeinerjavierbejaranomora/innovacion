@@ -2710,11 +2710,13 @@
                                 },
                                 {
                                     data: 'sello',
-                                    title: 'Con sello'
+                                    title: 'Con sello',
+                                    className: 'dt-center'
                                 },
                                 {
                                     data:'retencion',
-                                    title: 'ASP'
+                                    title: 'ASP',
+                                    className: 'dt-center'
                                 },
                             ],
                             "language": {

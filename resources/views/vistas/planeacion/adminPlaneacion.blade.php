@@ -706,7 +706,7 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            if (datos) {
+                            if (datos != null) {
                                 try {
                                     datos = jQuery.parseJSON(datos);
                                 } catch {

@@ -717,6 +717,7 @@
                                 });
                             }   
                             else{
+                                console.log('entra');
                                 $('#programas').append('<h5>No hay programas</h5>')
                             }
 

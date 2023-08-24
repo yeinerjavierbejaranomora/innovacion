@@ -242,7 +242,7 @@
                         .addClass('nav-link')
                         .attr('data-toggle', 'tab')
                         .attr('href', '#tab' + index)
-                        .text(tab.title); // Suponiendo que cada objeto tiene una propiedad 'title'
+                        .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
 
                         // Agregar la pestaña a la lista de pestañas
                         $('#myTabs').append($('<li>').append(tabLink));

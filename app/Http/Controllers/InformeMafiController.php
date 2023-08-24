@@ -1685,7 +1685,6 @@ class InformeMafiController extends Controller
         foreach($programas as $key){
             
             $nivel = $key->nivelFormacion;
-            echo $nivel . ' ';
             $codprograma = $key->codprograma;
 
             if($nivel == 'EDUCACION CONTINUA'){
@@ -1699,6 +1698,7 @@ class InformeMafiController extends Controller
                     ]);
                 }
             }
+
             if($nivel == 'PROFESIONAL' && $codprograma == 'PPSV' || $codprograma == 'PCPV'){
                 $periodos = $periodosPregradoC;
                 foreach ($periodos as $periodo) {
@@ -1711,7 +1711,7 @@ class InformeMafiController extends Controller
                 }
             }
 
-            if($nivel == 'PROFESIONAL' || $nivel == 'TECNOLOGICO' && $codprograma != 'PPSV' && $codprograma != 'PCPV'){
+            if($nivel == 'PROFESIONAL' || $nivel == 'TECNOLOGICO' && ($codprograma != 'PPSV' && $codprograma != 'PCPV')){
                 $periodos = $periodosPregradoS;
                 foreach ($periodos as $periodo) {
                     DB::table('programasPeriodos')->insert([
@@ -1746,7 +1746,6 @@ class InformeMafiController extends Controller
                     ]);
                 }
             }
-
         }
 
     }

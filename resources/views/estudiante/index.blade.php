@@ -169,7 +169,8 @@
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
-
+                $('#info').html('');
+                $('#programas').html('');
                 consultaEstudiante(codBanner.val());
                 consultaNombre(codBanner.val());
 
@@ -295,18 +296,8 @@
 
         }
 
-        $('#programas a').click(function (e) {
-            e.preventDefault();
-
-            var url = $(this).attr("data-url");
-            alert(url);
-            var href = this.hash;
-            var pane = $(this);
-
-            // ajax load from data-url
-            $(href).load(url,function(result){
-                pane.tab('show');
-            });
+        $('#home').load($('.active a').attr("data-url"),function(result){
+            $('.active a').tab('show');
         });
 
         /*function consultaMalla(programa) {

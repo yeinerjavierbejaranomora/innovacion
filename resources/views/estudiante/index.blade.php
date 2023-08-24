@@ -251,15 +251,15 @@
                             }
                         }
 
-                        $('#programas a').on('shown.bs.tab', function(event) {
-                            var targetTab = $(event.target).attr('href');
-                            cargarContenido(targetTab); // Llama a la función para cargar contenido
-                        });
 
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);
                     }
+                        $('#programas a').on('shown.bs.tab', function(event) {
+                            var targetTab = $(event.target).attr('href');
+                            cargarContenido(targetTab); // Llama a la función para cargar contenido
+                        });
                     /*if(data.homologante != ''){
                         $('#programas').html('');
                         data.forEach(programa =>{

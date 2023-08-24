@@ -1514,7 +1514,7 @@ class InformeMafiController extends Controller
 
         foreach ($periodos as $periodo)
         {
-            $periodosFormateados[] = substr($periodosFormateados, -2); 
+            $periodosFormateados[] = substr($periodo, -2); 
         }
 
         dd($periodosFormateados);

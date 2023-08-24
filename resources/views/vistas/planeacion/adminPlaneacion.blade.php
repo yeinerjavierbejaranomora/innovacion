@@ -2747,6 +2747,7 @@
                                     className: 'dt-center'
                                 },
                                 {
+                                    data: '',
                                     title: 'tutor',
                                     visible: false
                                 }

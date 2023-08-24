@@ -296,8 +296,8 @@
         }
 
         $(document).ready(function(){
-            $(".nav-tabs a").each(function(){
-                console.log($(this));
+            $(".nav-tabs a").click(function(){
+                alert($(this));
             });
         });
 

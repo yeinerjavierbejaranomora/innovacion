@@ -683,12 +683,20 @@
                         formData.append('idfacultad[]', $(this).val());
                     });
 
+                    var periodosSeleccionados = getPeriodos();
+
+                    periodosSeleccionados.each(function(){
+                        formData.append('periodos[]', $(this).val());
+                    });
+
+                    console.log(formData);
+
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'post',
-                        url: "{{ route('traer.programas') }}",
+                        url: "{{ route('programasPeriodo.activos') }}",
                         data: formData,
                         cache: false,
                         contentType: false,

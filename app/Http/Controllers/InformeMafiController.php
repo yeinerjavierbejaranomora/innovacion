@@ -1469,26 +1469,26 @@ class InformeMafiController extends Controller
         $estudiantesRetencion = [];
 
         $consultaSello = DB::table('planeacion as p')
-        ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
-        ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
-        ->where('p.codprograma', $programa)
-        ->groupBy('e.sello', 'p.codMateria')
-        ->get();
+            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
+            ->where('p.codprograma', $programa)
+            ->groupBy('e.sello', 'p.codMateria')
+            ->get();
 
-        foreach($consultaSello as $sello){
+        foreach ($consultaSello as $sello) {
             $dato = $sello->sello;
             $conteo = $sello->total;
             $materia = $sello->codMateria;
 
-            if($dato == 'TIENE SELLO FINANCIERO'){
+            if ($dato == 'TIENE SELLO FINANCIERO') {
                 $estudiantesSello[$materia] = $conteo;
             }
-            if($dato == 'TIENE RETENCION'){
+            if ($dato == 'TIENE RETENCION') {
                 $estudiantesRetencion[$materia] = $conteo;
             }
         }
 
-            $data = [];
+        $data = [];
 
         foreach ($estudiantes as $key => $value) {
             $data[$key] = [
@@ -1498,11 +1498,39 @@ class InformeMafiController extends Controller
                 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
         }
-        
+
         $Data = (object) $data;
 
         return $Data;
     }
+
+
+    public function traerProgramas(Request $request)
+    {
+        $idsFacultad = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
+
+        dd($periodos);
+
+        $programas = DB::table('programas as p')
+            ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
+            ->select('p.programa', 'p.codprograma')
+            ->where('p.Facultad', 'FAC EDUCACION Y CCS HUM Y SOC')
+            ->whereIn('pP.periodo', $periodos)
+            ->where('pP.estado', 1)
+            ->groupBy('p.codprograma')
+            ->get();
+        foreach ($programas as $programa) {
+            $arreglo[] = [
+                'id' => $programa->id,
+                'nombre' => $programa->programa,
+                'codprograma' => $programa->codprograma
+            ];
+        }
+        header("Content-Type: application/json");
+        echo json_encode($arreglo);
+    }
+
 
     /**
      * Método para guardar todo los historicos de los graficos

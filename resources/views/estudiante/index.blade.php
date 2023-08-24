@@ -251,11 +251,6 @@
                             }
                         }
 
-                        $('#programas a').load('shown.bs.tab', function(event) {
-                            var targetTab = $(event.target).attr('href');
-                            console.log(targetTab);
-                            //cargarContenido(targetTab); // Llama a la función para cargar contenido
-                        });
 
                         $('#programas a').on('shown.bs.tab', function(event) {
                             var targetTab = $(event.target).attr('href');
@@ -263,7 +258,7 @@
                             //cargarContenido(targetTab); // Llama a la función para cargar contenido
                         });
 
-                        //$('#myTabs a:first').tab('show');
+                        $('#programas a:first').tab('show');
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);

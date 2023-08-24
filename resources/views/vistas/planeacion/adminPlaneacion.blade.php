@@ -685,16 +685,11 @@
                     });
 
                     var periodosSeleccionados = getPeriodos();
-
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
-
-                    console.log(periodos);
 
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
-
-                    console.log(formData);
 
                     $.ajax({
                         headers: {
@@ -2637,18 +2632,28 @@
 
 
             function dataTable(periodos) {
-
-
+                var url, data;
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('planeacionProgramas.tabla.facultad')}}",
+                    data = {
+                        periodos: periodos,
+                        facultad: facultadesSeleccionadas
+                    }
+                }
+                else{
+                    url = "{{ route('planeacionProgramas.tabla')}}",
+                    data = {
+                        periodos: periodos
+                    }
+                }
 
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('planeacionProgramas.tabla')}}",
-                    data: {
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
                         try {
                             data = parseJSON(data);

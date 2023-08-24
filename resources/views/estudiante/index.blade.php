@@ -297,8 +297,9 @@
 
         const tabs = document.querySelectorAll('.nav-link');
         const tabContents = document.querySelectorAll('.tab-pane');
-
-        console.log(tabContents);
+        const targetTab = event.target.getAttribute('href');
+        document.querySelector(targetTab).classList.add('show', 'active');
+        console.log(targetTab);
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);

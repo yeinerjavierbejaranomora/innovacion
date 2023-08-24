@@ -1035,7 +1035,7 @@ class MafiController extends Controller
         $mes = explode('-', $fechaActual);
         $periodo = DB::table('periodo')->get();
 
-        $mes[1] = 06;
+        //$mes[1] = 06;
 
 
         foreach ($periodo as $key => $value) {
@@ -1510,61 +1510,8 @@ dd($cuentaCursosCiclo1);
         // funcion para probar otras funciones
         public function probarfunciones(){
 
-
-            $sql=DB::table('programas')
-            ->select('codprograma')
-            ->get();
-
-            $periodos_acticos=array(
-                0=>4,
-                1=>5,
-                2=>6,
-                3=>7,
-                4=>8,
-                5=>11,
-                6=>12,
-                7=>13,
-                8=>16,
-                9=>17,
-                10=>31,
-                11=>32,
-                12=>33,
-                13=>34,
-                14=>35,
-                15=>41,
-                16=>42,
-                17=>43,
-                18=>44,
-                19=>45,
-                20=>51,
-                21=>52,
-                22=>53,
-                23=>54,
-                24=>55
-            );
-
-            foreach ($sql as $key => $programa) {
-                
-                foreach ($periodos_acticos as $keys => $value) {
-               //dd($key);
-               echo $keys;
-                    $insertPlaneacion = DB::table('programasPeriodos')
-                    ->insert([
-                        'codPrograma' => $programa->codprograma,
-                        'periodo' => $value,
-                        'estado' => 1,
-                       
-                    ]);
-                
-                }
-           
-              
-            }
-
+            $this->periodo();
           
-exit;
-die;
-
         }
 
 

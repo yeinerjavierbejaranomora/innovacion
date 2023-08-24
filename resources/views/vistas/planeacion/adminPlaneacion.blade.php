@@ -685,10 +685,8 @@
 
                     var periodosSeleccionados = getPeriodos();
 
-                    console.log(periodosSeleccionados);
-                    periodosSeleccionados.each(function(){
-                        formData.append('periodos[]', $(this).val());
-                    });
+                    formData.append('periodos[]', periodosSeleccionados);
+
 
                     console.log(formData);
 

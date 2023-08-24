@@ -612,6 +612,7 @@
                         estadoUsuarioPrograma();
                         $("#colProgramas").addClass("hidden");
                         graficosporPrograma(programasSeleccionados, periodosSeleccionados);
+                        dataTable();
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                             $('#mensaje').hide();
@@ -2632,19 +2633,28 @@
 
             function dataTable(periodos) {
                 $('#colTabla').removeClass('hidden');
-
                 var url, data;
-                if (facultadesSeleccionadas.length > 0) {
-                    url = "{{ route('planeacionProgramas.tabla.facultad')}}",
+
+                if (programasSeleccionados.length >0){
+                    url = "{{ route('planeacionProgramas.tabla.programa')}}",
                     data = {
                         periodos: periodos,
-                        facultad: facultadesSeleccionadas
+                        programas: programasSeleccionados
                     }
                 }
                 else{
-                    url = "{{ route('planeacionProgramas.tabla')}}",
-                    data = {
-                        periodos: periodos
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('planeacionProgramas.tabla.facultad')}}",
+                        data = {
+                            periodos: periodos,
+                            facultad: facultadesSeleccionadas
+                        }
+                    }
+                    else{
+                        url = "{{ route('planeacionProgramas.tabla')}}",
+                        data = {
+                            periodos: periodos
+                        }
                     }
                 }
 

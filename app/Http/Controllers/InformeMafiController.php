@@ -1512,6 +1512,63 @@ class InformeMafiController extends Controller
         GROUP BY e.sello, p.codprograma; */
     }
 
+    public function tablaProgramasP(Request $request)
+    {
+        $periodos = $request->input('periodos');
+        $programas = $request->input('programas');
+
+        $estudiantesPrograma = DB::table('planeacion')
+            ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
+            ->whereIn('periodo', $periodos)
+            ->whereIn('codprograma', $programas)
+            ->groupBy('codprograma')
+            ->get();
+
+        foreach ($estudiantesPrograma as $key) {
+            $programa = $key->codprograma;
+
+            $consultaNombre = DB::table('programas')->where('codprograma', $programa)->select('programa')->first();
+            $nombre[$programa] = $consultaNombre->programa;
+            $estudiantes[$programa] = $key->TOTAL;
+        }
+
+        $consultaSello = DB::table('planeacion as p')
+            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->selectRaw('COUNT(p.codprograma) as total, p.codprograma, e.sello')
+            ->whereIn('periodo', $periodos)
+            ->whereIn('p.codprograma', $programas)
+            ->groupBy('e.sello', 'p.codprograma')
+            ->get();
+
+        foreach ($consultaSello as $key) {
+            $programa = $key->codprograma;
+            $sello = $key->sello;
+            $total = $key->total;
+
+            if ($sello == 'TIENE SELLO FINANCIERO') {
+                $estudiantesSello[$programa] = $total;
+            }
+
+            if ($sello == 'TIENE RETENCION') {
+                $estudiantesRetencion[$programa] = $total;
+            }
+        }
+
+        $data = [];
+
+        foreach ($estudiantes as $key => $value) {
+            $data[$key] = [
+                'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
+                'Total' => $value,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            ];
+        }
+
+        $Data = (object) $data;
+
+        return $Data;
+    }
 
 
     public function mallaPrograma(Request $request)

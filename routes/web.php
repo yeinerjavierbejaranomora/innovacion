@@ -169,6 +169,8 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/planeacion/tablaProgramas', 'tablaProgramas')->middleware('auth')->name('planeacionProgramas.tabla');
     /** Ruta para cargar dataTable de programas por Facultad */
     Route::post('/home/planeacion/tablaProgramasFacultad', 'tablaProgramasFacultad')->middleware('auth')->name('planeacionProgramas.tabla.facultad');
+    /** Ruta para cargar dataTable de programas por Programa */
+    Route::post('/home/planeacion/tablaProgramasP', 'tablaProgramasP')->middleware('auth')->name('planeacionProgramas.tabla.programa');
     
     /** Ruta para cargar malla curricular */
     Route::post('/home/planeacion/mallaCurricular', 'mallaPrograma')->middleware('auth')->name('mallaPrograma.tabla');

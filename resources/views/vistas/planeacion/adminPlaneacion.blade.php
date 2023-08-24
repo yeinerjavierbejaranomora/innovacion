@@ -143,7 +143,7 @@
                         <div>
                             <!--Accordion-->
                             <div id="accordion">
-                                <div class="col-4">
+                                <div class="col">
                                     <!--Formación continua-->
                                     <div class="card">
                                         <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col">
                                     <!--Pregrado-->
                                     <div class="card">
                                         <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col">
                                     <!--Especialización-->
                                     <div class="card">
                                         <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col">
                                     <!--Maestría-->
                                     <div class="card">
                                         <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">

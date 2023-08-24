@@ -295,22 +295,12 @@
 
         }
 
-        const tabs = document.querySelectorAll('.nav-link');
-        const tabContents = document.querySelectorAll('.tab-pane');
-        function handleTabChange(event) {
-            // Oculta todos los contenidos de pestañas
-            tabContents.forEach(content => {
-                content.classList.remove('show', 'active');
+        $(document).ready(function(){
+            $(".nav-tabs a").click(function(){
+                $(this).tab('show');
             });
+        });
 
-            // Muestra el contenido de la pestaña seleccionada
-            const targetTab = event.target.getAttribute('href');
-            document.querySelector(targetTab).classList.add('show', 'active');
-
-            // Aquí puedes llamar a tu función específica
-            // por ejemplo: miFuncion();
-            console.log(targetTab);
-            }
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);

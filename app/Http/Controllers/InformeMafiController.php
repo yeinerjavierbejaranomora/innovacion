@@ -1475,14 +1475,15 @@ class InformeMafiController extends Controller
         ->get();
 
         foreach($consultaSello as $sello){
-            $dato = $sello->total;
+            $dato = $sello->sello;
+            $conteo = $sello->total;
             $materia = $sello->codMateria;
 
             if($dato == 'TIENE SELLO FINANCIERO'){
-                $estudiantesSello[$materia] = $dato;
+                $estudiantesSello[$materia] = $conteo;
             }
             if($dato == 'TIENE RETENCION'){
-                $estudiantesRetencion[$materia] = $dato;
+                $estudiantesRetencion[$materia] = $conteo;
             }
         }
 

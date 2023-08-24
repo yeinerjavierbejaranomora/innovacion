@@ -1685,7 +1685,7 @@ class InformeMafiController extends Controller
         foreach($programas as $key){
             
             $nivel = $key->nivelFormacion;
-            echo $nivel;
+            echo $nivel + ' ';
         }
 
     }

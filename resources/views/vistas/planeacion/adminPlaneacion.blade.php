@@ -706,16 +706,19 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
+                            if (datos) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                });
                             }
 
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
                         }
+
                     })
                 } else {
                     $('#programas').empty();

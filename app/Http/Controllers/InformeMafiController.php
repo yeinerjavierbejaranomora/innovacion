@@ -1674,14 +1674,13 @@ class InformeMafiController extends Controller
     {
         $programas = DB::table('programas')->get();
 
-        $periodos = DB::table('periodo')->get();
-
         $periodosContinua = ['04','05','06', '07','08'];
         $periodosPregradoC = ['11','12','13', '16','17'];
         $periodosPregradoS = ['31','32','33', '34','35'];
         $periodosEspecializacion = ['41','42','43', '44','45'];
         $periodosMaestria = ['51','52','53', '54','55'];
 
+        /** 
         foreach($programas as $key){
             
             $nivel = $key->nivelFormacion;
@@ -1747,6 +1746,18 @@ class InformeMafiController extends Controller
                 }
             }
         }
+        */
+        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->get();
+
+        $periodos = [];
+
+        foreach($periodosActivos as $key)
+        {
+            $periodo= $key->periodos;
+            $periodos[]=substr($periodo, -2);
+        }
+
+        var_dump($periodos);
 
     }
 

@@ -1496,8 +1496,8 @@ class InformeMafiController extends Controller
 
         }
         
-        dd($data);
         $Data = (object) $data;
+        
         return $Data;
     }
 

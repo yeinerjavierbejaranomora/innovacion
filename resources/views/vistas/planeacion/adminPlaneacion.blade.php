@@ -2623,7 +2623,6 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
                         var dataTableData = [];
                         for (const programaKey in data) {
                             if (data.hasOwnProperty(programaKey)) {
@@ -2691,30 +2690,47 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         console.log(data);
+                        var dataTableData = [];
+
+                        for (const cursoKey in data) {
+                            if (data.hasOwnProperty(cursoKey)) {
+                                const curso = data[cursoKey];
+                                var rowData = [
+                                    cursoKey,
+                                    curso.programa,
+                                    curso.Total,
+                                    curso.Sello,
+                                    curso.Retencion,
+                                ];
+                                dataTableData.push(rowData);
+                            }
+                        }
+
+
                         table = $('#mallaCurricular').DataTable({
-                            "data": data,
+                            "data": dataTableData,
                             'pageLength': 10,
                             "columns": [{
-                                    data: 'codMateria',
                                     title: 'Codigo de Materia'
                                 },
                                 {
-                                    data: 'nombre',
                                     title: 'Nombre Materia',
                                 },
                                 {
-                                    data: 'total',
                                     title: 'Estudiantes inscritos',
                                     className: 'dt-center'
                                 },
                                 {
-                                    data: 'sello',
                                     title: 'Con sello',
                                     className: 'dt-center'
                                 },
                                 {
-                                    data:'retencion',
                                     title: 'ASP',
                                     className: 'dt-center'
                                 },

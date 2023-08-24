@@ -49,8 +49,7 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperado
-     {
+    #botonModalOperado {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -62,7 +61,7 @@
         font-size: 14px;
     }
 
-    #botondataTable{
+    #botondataTable {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -74,11 +73,11 @@
         font-size: 14px;
     }
 
-    .boton{
+    .boton {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 100px;
+        width: 200px;
         height: 30px;
         border-radius: 10px;
         font-weight: bold;
@@ -171,7 +170,7 @@
                 <!--Columna Niveles de Formación-->
                 <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardPeriodos">
-                    <div class="card-header text-center">
+                        <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
                         <div class="card-body" id="cardNivel" style="overflow: auto;">
@@ -637,7 +636,7 @@
                     success: function(data) {
                         console.log(data);
                         data.forEach(periodo => {
-                            
+
                             console.log(periodo.nivelFormacion)
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);

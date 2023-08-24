@@ -685,7 +685,7 @@
 
                     var periodosSeleccionados = getPeriodos();
 
-                    var periodos = data.map(item => item.slice(-2));
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
                     console.log(periodos);
 

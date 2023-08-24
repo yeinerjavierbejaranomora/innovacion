@@ -359,7 +359,6 @@
     <script>
         $(document).ready(function() {
 
-            
 
             var periodosSeleccionados = [];
             var facultadesSeleccionadas = [];

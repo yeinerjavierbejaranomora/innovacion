@@ -144,16 +144,106 @@
 
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start">
-                <div class="col-4 text-star">
-                    <div class="card shadow mb-5" id="cardPeriodos">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Periodos</strong></h5>
+                <!--Columna Niveles de Formación-->
+                <div class="col-4 text-start">
+                    <div class="card-body" id="cardNivel" style="overflow: auto;">
+                        <div class="text-center">
+                            <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div name="periodos" id="periodos">
+                        <div>
+                            <!--Accordion-->
+                            <div id="accordion">
+                                <div class="col-4">
+                                    <!--Formación continua-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link">
+                                                    Formación continua
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                    <input type="checkbox" id="todosContinua" name="todosContinua" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
+                                        <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Continua">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!--Pregrado-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link">
+                                                    Pregrado
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                    <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
+
+                                        <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Pregrado">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <!--Especialización-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link">
+                                                    Especialización
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                    <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
+
+                                        <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Esp">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!--Maestría-->
+                                    <div class="card">
+                                        <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-link">
+                                                    Maestría
+                                                </button>
+                                                <div class="custom-checkbox">
+                                                    <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                    <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
+                                                </div>
+                                            </h5>
+                                        </div>
+
+                                        <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                            <div class="card-body" style="width:100%;" id="Maestria">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
+                        <div class="text-center">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
@@ -712,11 +802,11 @@
                                 $.each(datos, function(key, value) {
                                     $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                                 });
-                            }   
+                            }
                         },
                         error: function() {
                             console.log('entra');
-                                $('#programas').append('<h5>No hay programas</h5>')
+                            $('#programas').append('<h5>No hay programas</h5>')
                         }
                     })
                 } else {
@@ -2632,26 +2722,24 @@
                 $('#colTabla').removeClass('hidden');
                 var url, data;
                 var table;
-                if (programasSeleccionados.length >0){
+                if (programasSeleccionados.length > 0) {
                     url = "{{ route('planeacionProgramas.tabla.programa')}}",
-                    data = {
-                        periodos: periodos,
-                        programas: programasSeleccionados
-                    }
-                }
-                else{
-                    if (facultadesSeleccionadas.length > 0) {
-                        url = "{{ route('planeacionProgramas.tabla.facultad')}}",
                         data = {
                             periodos: periodos,
-                            facultad: facultadesSeleccionadas
+                            programas: programasSeleccionados
                         }
-                    }
-                    else{
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('planeacionProgramas.tabla.facultad')}}",
+                            data = {
+                                periodos: periodos,
+                                facultad: facultadesSeleccionadas
+                            }
+                    } else {
                         url = "{{ route('planeacionProgramas.tabla')}}",
-                        data = {
-                            periodos: periodos
-                        }
+                            data = {
+                                periodos: periodos
+                            }
                     }
                 }
 
@@ -2721,7 +2809,7 @@
                         }
                         obtenerData("#datatable tbody", table);
                     }
-                    
+
                 });
                 console.log(table);
             }
@@ -2811,7 +2899,7 @@
             }
 
             function destruirTable() {
-                $('#colTabla').addClass('hidden');           
+                $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
 
                     $('#datatable').dataTable().fnDestroy();

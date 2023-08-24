@@ -13,17 +13,7 @@
         font-size: 14px;
     }
 
-    .btn {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 200px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: bold;
-        place-items: center;
-        font-size: 14px;
-    }
+   
 
     #generarReporte {
         width: 250px;
@@ -250,7 +240,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 text-star">
+                <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Facultades</strong></h5>

@@ -2606,7 +2606,12 @@
             }
 
 
-            dataTable();
+            $('#botondataTable').on("click", function(e){
+                e.preventDefault();
+                destruirTable();
+                dataTable();
+            });
+
 
             function dataTable() {
 
@@ -2751,6 +2756,14 @@
                 }
             }
 
+            function destruirTable(){
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $("#datatable").remove();
+                    table.destroy();
+                    $('#datatable').DataTable().destroy();
+                    $('#datatable tbody').empty();
+                }  
+            }
         });
     </script>
 

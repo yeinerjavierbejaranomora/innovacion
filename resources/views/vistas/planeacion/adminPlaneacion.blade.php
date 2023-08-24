@@ -2722,7 +2722,7 @@
                             "data": dataTableData,
                             'pageLength': 10,
                             "buttons": [
-                                'copy', 'csv', 'excel', 'pdf', 'print'
+                                'copy', 'excel', 'pdf', 'print'
                             ],
                             "columns": [{
                                     title: 'Codigo de Materia'

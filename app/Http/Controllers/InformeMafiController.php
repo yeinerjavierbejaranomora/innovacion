@@ -1519,6 +1519,8 @@ class InformeMafiController extends Controller
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
 
+        $arreglo = [];
+
         foreach ($programas as $programa) {
             $arreglo[] = [
                 'nombre' => $programa->programa,
@@ -1526,7 +1528,7 @@ class InformeMafiController extends Controller
             ];
         }
 
-        if($arreglo){
+        if($arreglo != []){
             header("Content-Type: application/json");
             echo json_encode($arreglo);
         }

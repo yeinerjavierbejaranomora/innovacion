@@ -140,7 +140,9 @@
                 </div>
             </div>
 
-
+            <div class="tab-content" id="tabContent">
+                <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
+            </div>
 
         </div>
 
@@ -296,9 +298,6 @@
 
         }
 
-        $('#home').load($('.active a').attr("data-url"),function(result){
-            $('.active a').tab('show');
-        });
 
         /*function consultaMalla(programa) {
             var formData = new FormData();

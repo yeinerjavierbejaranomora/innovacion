@@ -2703,8 +2703,8 @@
                                 const curso = data[cursoKey];
                                 var rowData = [
                                     cursoKey,
-                                    curso.programa,
                                     curso.nombreMateria,
+                                    curso.Total,
                                     curso.Sello,
                                     curso.Retencion,
                                 ];

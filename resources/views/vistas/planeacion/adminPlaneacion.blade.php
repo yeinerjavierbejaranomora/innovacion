@@ -2649,7 +2649,7 @@
                         table = $('#datatable').DataTable({
                             "data": dataTableData,
                             'pageLength': 10,
-                            "order": [ 2, 'asc' ],
+                            "order": [ 2, 'desc' ],
                             "columns": [{
                                     title: 'Código de programa'
                                 },

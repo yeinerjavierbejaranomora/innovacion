@@ -1513,7 +1513,7 @@ class InformeMafiController extends Controller
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
             ->select('p.programa', 'p.codprograma')
-            ->where('p.Facultad', 'FAC EDUCACION Y CCS HUM Y SOC')
+            ->whereIn('p.Facultad', $idsFacultad)
             ->whereIn('pP.periodo', $periodos)
             ->where('pP.estado', 1)
             ->groupBy('p.codprograma', 'p.programa')

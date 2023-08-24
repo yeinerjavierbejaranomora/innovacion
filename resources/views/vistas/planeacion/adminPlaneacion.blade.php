@@ -216,7 +216,7 @@
                     <div class="card-header">
                         <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                         <h5 class="tituloPeriodo">
-                            <strong< /strong>
+                            <strong></strong>
                         </h5>
                     </div>
                     <div class="card-body">

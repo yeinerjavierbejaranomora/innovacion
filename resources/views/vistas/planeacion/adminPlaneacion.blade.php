@@ -66,7 +66,19 @@
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
-        width: 2500px;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton{
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 100px;
         height: 30px;
         border-radius: 10px;
         font-weight: bold;

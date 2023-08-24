@@ -1518,12 +1518,15 @@ class InformeMafiController extends Controller
             ->where('pP.estado', 1)
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
+
         foreach ($programas as $programa) {
             $arreglo[] = [
                 'nombre' => $programa->programa,
                 'codprograma' => $programa->codprograma
             ];
         }
+
+        dd($arreglo);
         header("Content-Type: application/json");
         echo json_encode($arreglo);
     }

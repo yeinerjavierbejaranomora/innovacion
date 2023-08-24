@@ -13,7 +13,17 @@
         font-size: 14px;
     }
 
-
+    .button-informe {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
 
     #generarReporte {
         width: 250px;
@@ -274,7 +284,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>

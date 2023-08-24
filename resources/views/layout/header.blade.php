@@ -26,12 +26,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     {{-- Datatable --}}
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" defer>
-    <script src="//code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" defer>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
-    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js" defer></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js" defer></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js" defer></script>
 
 
     {{-- SweetAlert --}}

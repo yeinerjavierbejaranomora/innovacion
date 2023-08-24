@@ -53,7 +53,6 @@
     }
 
     #cardProgramas,
-    #cardPeriodos,
     #cardFacultades {
         min-height: 250px;
         max-height: 250px;

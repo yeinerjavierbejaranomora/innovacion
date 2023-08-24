@@ -597,6 +597,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
+                destruirTable();
                 var periodosSeleccionados = getPeriodos();
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
@@ -2625,6 +2626,9 @@
 
 
             $('#botondataTable').on("click", function(e) {
+
+                console.log(facultadesSeleccionadas);
+
                 e.preventDefault();
                 destruirTable();
                 var periodos = getPeriodos();
@@ -2633,6 +2637,9 @@
 
 
             function dataTable(periodos) {
+
+
+
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

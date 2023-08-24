@@ -1438,6 +1438,81 @@ class InformeMafiController extends Controller
         return $Data;
     }
 
+    public function tablaProgramasFacultad(Request $request)
+    {
+        /** SELECT COUNT(p.codBanner) AS TOTAL, p.codprograma
+            FROM planeacion p
+            INNER JOIN programas pr ON p.codprograma = pr.codprograma
+            WHERE p.periodo IN ('202313', '202333') AND pr.Facultad = 'FAC CIENCIAS EMPRESARIALES'
+            GROUP BY p.codprograma;
+         */
+
+        $periodos = $request->input('periodos');
+        $facultades = $request->input('facultad');
+
+        $estudiantesPrograma = DB::table('planeacion as p')
+            ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+            ->select(DB::raw('COUNT(p.codBanner) AS TOTAL'), 'p.codprograma')
+            ->whereIn('p.periodo', $periodos)
+            ->whereIn('pr.Facultad', $facultades)
+            ->groupBy('p.codprograma')
+            ->get();
+
+        foreach ($estudiantesPrograma as $key) {
+            $programa = $key->codprograma;
+
+            $consultaNombre = DB::table('programas')->where('codprograma', $programa)->select('programa')->first();
+            $nombre[$programa] = $consultaNombre->programa;
+            $estudiantes[$programa] = $key->TOTAL;
+        }
+
+        $consultaSello = DB::table('planeacion as p')
+            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+            ->select(DB::raw('COUNT(p.codprograma) AS total'), 'p.codprograma', 'e.sello')
+            ->whereIn('p.periodo', $periodos)
+            ->whereIn('pr.Facultad', $facultades)
+            ->groupBy('e.sello', 'p.codprograma')
+            ->get();
+
+        foreach ($consultaSello as $key) {
+            $programa = $key->codprograma;
+            $sello = $key->sello;
+            $total = $key->total;
+
+            if ($sello == 'TIENE SELLO FINANCIERO') {
+                $estudiantesSello[$programa] = $total;
+            }
+
+            if ($sello == 'TIENE RETENCION') {
+                $estudiantesRetencion[$programa] = $total;
+            }
+        }
+
+        $data = [];
+
+        foreach ($estudiantes as $key => $value) {
+            $data[$key] = [
+                'programa' => isset($nombre[$key]) ? $nombre[$key] : 0,
+                'Total' => $value,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            ];
+        }
+
+        $Data = (object) $data;
+
+        return $Data;
+
+        /**SELECT COUNT(p.codprograma) AS total, p.codprograma, e.sello
+        FROM planeacion p
+        INNER JOIN estudiantes e ON p.codBanner = e.homologante
+        INNER JOIN programas pr ON p.codprograma = pr.codprograma       
+        WHERE p.periodo IN ('202313', '202333') AND pr.Facultad = 'FAC CIENCIAS EMPRESARIALES'
+        GROUP BY e.sello, p.codprograma; */
+    }
+
+
 
     public function mallaPrograma(Request $request)
     {
@@ -1528,14 +1603,12 @@ class InformeMafiController extends Controller
             ];
         }
 
-        if($arreglo != []){
+        if ($arreglo != []) {
             header("Content-Type: application/json");
             echo json_encode($arreglo);
-        }
-        else{
+        } else {
             return null;
         }
-    
     }
 
 

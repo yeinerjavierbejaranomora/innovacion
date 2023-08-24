@@ -258,7 +258,7 @@
                             //cargarContenido(targetTab); // Llama a la función para cargar contenido
                         });
 
-                        $('#programas a:first').tab('show');
+                        //$('#programas a:first').tab('show');
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);

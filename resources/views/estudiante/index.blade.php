@@ -309,8 +309,8 @@
 
             // Aquí puedes llamar a tu función específica
             // por ejemplo: miFuncion();
+            console.log(targetTab);
             }
-        console.log(targetTab);
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);

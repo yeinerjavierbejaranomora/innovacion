@@ -175,7 +175,7 @@
             if (codBanner.val() != '') {
                 $('#info').html('');
                 $('#programas').html('');
-                $('#myTabs').empty();
+               
                 consultaEstudiante(codBanner.val());
                 consultaNombre(codBanner.val());
 
@@ -236,6 +236,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    $('#myTabs').empty();
                     $('#codigo').prop('disabled',false);
                     data.forEach(function(tab, index) {
                         // Crear la pestaña

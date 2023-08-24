@@ -1510,7 +1510,9 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        $periodosFormateados = array_map(function ($item) {
+        $periodosFormateados = [];
+
+        $periodosFormateados[] = array_map(function ($item) {
             return substr($item, -2); 
         }, $periodos);
 

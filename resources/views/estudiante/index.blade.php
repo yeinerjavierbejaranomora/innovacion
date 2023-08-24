@@ -250,6 +250,12 @@
                                     <a class="nav-link" data-toggle="pill" href="#tap_${i}" role="tab" aria-controls="pills-contact" aria-selected="false">${data[i]['programa']}</a></li>`)
                             }
                         }
+
+                        $('#programas a').on('shown.bs.tab', function(event) {
+                            var targetTab = $(event.target).attr('href');
+                            console.log(targetTab);
+                            //cargarContenido(targetTab); // Llama a la función para cargar contenido
+                        });
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);

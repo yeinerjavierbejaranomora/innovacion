@@ -1100,7 +1100,7 @@
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#tituloTable").remove();
                     table.destroy();
-                    $('#datatable').dataTable().fnDestroy();
+                    $('#datatable').DataTable().destroy();
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }

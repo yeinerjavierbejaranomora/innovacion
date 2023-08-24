@@ -2813,9 +2813,9 @@
             function destruirTable() {
                 $('#colTabla').addClass('hidden');           
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-                    $("#datatable").remove();
-                    table.destroy();
-                    $('#datatable').DataTable().destroy();
+
+                    $('#datatable').dataTable().fnDestroy();
+ 
                 }
             }
         });

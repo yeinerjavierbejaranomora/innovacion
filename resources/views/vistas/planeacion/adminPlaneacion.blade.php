@@ -2721,8 +2721,8 @@
                         }
                         obtenerData("#datatable tbody", table);
                     }
+                    
                 });
-
                 console.log(table);
             }
 

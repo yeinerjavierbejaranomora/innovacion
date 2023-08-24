@@ -1510,6 +1510,9 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
+        var_dump($periodos);
+        die();
+
         $periodosFormateados = [];
 
         foreach ($periodos as $periodo)

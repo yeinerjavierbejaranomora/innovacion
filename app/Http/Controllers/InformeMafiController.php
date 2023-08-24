@@ -1759,6 +1759,8 @@ class InformeMafiController extends Controller
 
         var_dump($periodos);
 
+        DB::table('programasPeriodos')->whereIn('periodo', $periodos)->update(['estado' => 1]);
+
     }
 
     /**

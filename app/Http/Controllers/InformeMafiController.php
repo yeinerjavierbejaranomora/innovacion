@@ -1446,17 +1446,18 @@ class InformeMafiController extends Controller
             ->get();
 
         $data = [];
+        $nombre = [];
 
         foreach ($consultaMalla as $key) {
             $total = $key->TOTAL;
             $codMateria = $key->codMateria;
 
-            $nombre = DB::table('mallaCurricular')
+            $consultaNombre = DB::table('mallaCurricular')
                 ->select('curso')
                 ->where('codigoCurso', $codMateria)
                 ->first();
 
-            $nombre[$codMateria] = $nombre->curso;
+            $nombre[$codMateria] = $consultaNombre->curso;
             $estudiantes[$codMateria] = $total;
         }
 

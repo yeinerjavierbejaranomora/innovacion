@@ -2743,7 +2743,12 @@
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },
                             "buttons": [
-                                'excel'
+                                {
+                                    extend: 'excelHtml5',
+                                    text: '<i class="fas fa-file-excel"></i>',
+                                    titleAttr: 'Exportar a Excel',
+                                    className: 'btn btn-success'
+                                }
                             ]
                         });
                     }

@@ -2817,7 +2817,6 @@
                     $("#datatable").remove();
                     table.destroy();
                     $('#datatable').DataTable().destroy();
-                    $('#datatable tbody').empty();
                 }
             }
         });

@@ -2606,7 +2606,7 @@
             }
 
 
-            $('#botondataTable').on("click", function(e){
+            $('#botondataTable').on("click", function(e) {
                 e.preventDefault();
                 destruirTable();
                 dataTable();
@@ -2660,7 +2660,7 @@
                                     title: 'Con Sello',
                                 },
                                 {
-                                    title: 'ASP',      
+                                    title: 'ASP',
                                 },
                                 {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
@@ -2718,8 +2718,12 @@
                         }
 
                         table = $('#mallaCurricular').DataTable({
+                            "dom": 'Bfrtip',
                             "data": dataTableData,
                             'pageLength': 10,
+                            "buttons": [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                            ],
                             "columns": [{
                                     title: 'Codigo de Materia'
                                 },
@@ -2742,20 +2746,12 @@
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             },
-                            "buttons": [
-                                {
-                                    extend: 'excelHtml5',
-                                    text: '<i class="fas fa-file-excel"></i>',
-                                    titleAttr: 'Exportar a Excel',
-                                    className: 'btn btn-success'
-                                }
-                            ]
                         });
                     }
                 });
             }
 
-            function limpiarModal(){
+            function limpiarModal() {
                 if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
                     $("#mallaCurricular").remove();
                     table.destroy();
@@ -2764,13 +2760,13 @@
                 }
             }
 
-            function destruirTable(){
+            function destruirTable() {
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#datatable").remove();
                     table.destroy();
                     $('#datatable').DataTable().destroy();
                     $('#datatable tbody').empty();
-                }  
+                }
             }
         });
     </script>

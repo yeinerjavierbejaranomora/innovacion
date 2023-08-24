@@ -2661,7 +2661,7 @@
                                     className: 'dt-center'
                                 },
                                 {
-                                    title: 'Con Sello',
+                                    title: 'Con Sello Financiero',
                                 },
                                 {
                                     title: 'ASP',
@@ -2739,13 +2739,17 @@
                                     className: 'dt-center'
                                 },
                                 {
-                                    title: 'Con sello',
+                                    title: 'Con sello Financiero',
                                     className: 'dt-center'
                                 },
                                 {
                                     title: 'ASP',
                                     className: 'dt-center'
                                 },
+                                {
+                                    title: 'tutor',
+                                    visible: false
+                                }
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

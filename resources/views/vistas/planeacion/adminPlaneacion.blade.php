@@ -2620,12 +2620,9 @@
                 });
             }
 
-
             $('#botondataTable').on("click", function(e) {
-                console.log(facultadesSeleccionadas);
                 e.preventDefault();
                 destruirTable();
-
                 var periodos = getPeriodos();
                 dataTable(periodos);
             });
@@ -2634,7 +2631,7 @@
             function dataTable(periodos) {
                 $('#colTabla').removeClass('hidden');
                 var url, data;
-
+                var table;
                 if (programasSeleccionados.length >0){
                     url = "{{ route('planeacionProgramas.tabla.programa')}}",
                     data = {
@@ -2725,6 +2722,8 @@
                         obtenerData("#datatable tbody", table);
                     }
                 });
+
+                console.log(table);
             }
 
             function mallaPrograma(programa, nombrePrograma) {

@@ -2609,11 +2609,12 @@
             $('#botondataTable').on("click", function(e) {
                 e.preventDefault();
                 destruirTable();
-                dataTable();
+                var periodos = getPeriodos();
+                dataTable(periodos);
             });
 
 
-            function dataTable() {
+            function dataTable(periodos) {
 
                 var datos = $.ajax({
                     headers: {
@@ -2621,7 +2622,9 @@
                     },
                     type: 'post',
                     url: "{{ route('planeacionProgramas.tabla')}}",
-                    data: '',
+                    data: {
+                        periodos: periodos
+                    },
                     success: function(data) {
                         try {
                             data = parseJSON(data);

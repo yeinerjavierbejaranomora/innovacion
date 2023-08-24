@@ -1383,10 +1383,13 @@ class InformeMafiController extends Controller
     }
 
 
-    public function tablaProgramas()
+    public function tablaProgramas(Request $request)
     {
+        $periodos = $request->input('periodos');
+
         $estudiantesPrograma = DB::table('planeacion')
             ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
+            ->whereIn('periodo', $periodos)
             ->groupBy('codprograma')
             ->get();
 
@@ -1401,6 +1404,7 @@ class InformeMafiController extends Controller
         $consultaSello = DB::table('planeacion as p')
             ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
             ->selectRaw('COUNT(p.codprograma) as total, p.codprograma, e.sello')
+            ->whereIn('periodo', $periodos)
             ->groupBy('e.sello', 'p.codprograma')
             ->get();
 

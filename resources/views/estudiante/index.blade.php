@@ -116,7 +116,7 @@
                             <p class="mb-0">Codigo estudiante</p>
                         </div>
                         <div class="col-sm-3">
-                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required></p>
+                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required value="100039616"></p>
                         </div>
                         <div class="col-auto">
                             <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>

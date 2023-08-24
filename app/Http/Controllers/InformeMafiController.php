@@ -1669,7 +1669,7 @@ class InformeMafiController extends Controller
     }
 
 
-
+    /** 
     public function tablaProgramasPeriodos()
     {
         $programas = DB::table('programas')->get();
@@ -1680,7 +1680,7 @@ class InformeMafiController extends Controller
         $periodosEspecializacion = ['41','42','43', '44','45'];
         $periodosMaestria = ['51','52','53', '54','55'];
 
-        /** 
+        
         foreach($programas as $key){
             
             $nivel = $key->nivelFormacion;
@@ -1746,7 +1746,7 @@ class InformeMafiController extends Controller
                 }
             }
         }
-        */
+        
         $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->get();
 
         $periodos = [];
@@ -1761,9 +1761,9 @@ class InformeMafiController extends Controller
 
         $update = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->update(['estado' => 1]);
 
-        
     }
-
+    */
+    
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos da cada grafico mafi

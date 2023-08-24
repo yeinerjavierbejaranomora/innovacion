@@ -854,9 +854,7 @@ class facultadController extends Controller
             ->select('p.nivelFormacion', 'pP.periodo')
             ->whereIn('pP.periodo', $periodos)
             ->groupBy('p.nivelFormacion', 'pP.periodo')
-            ->get();
-
-        dd($nivelFormacion);   
+            ->get(); 
 
         return $nivelFormacion;
     }

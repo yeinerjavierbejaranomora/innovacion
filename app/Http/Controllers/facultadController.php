@@ -849,6 +849,8 @@ class facultadController extends Controller
             $periodos[] = $dosUltimosDigitos;
         }
 
+        dd($periodos);
+
         $nivelFormacion = DB::table('programasPeriodos as pP')
             ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
             ->select('p.nivelFormacion', 'pP.periodo')
@@ -857,7 +859,7 @@ class facultadController extends Controller
             ->get();
 
         dd($nivelFormacion);   
-         
+
         return $nivelFormacion;
     }
 

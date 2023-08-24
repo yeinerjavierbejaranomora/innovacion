@@ -1512,8 +1512,8 @@ class InformeMafiController extends Controller
 
         $periodosFormateados = [];
 
-        $periodosFormateados[] = array_map(function ($item) {
-            return substr($item, -2); 
+        array_map(function ($item) {
+            $periodosFormateados[] = substr($item, -2); 
         }, $periodos);
 
         dd($periodosFormateados);

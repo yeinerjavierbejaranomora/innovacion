@@ -135,8 +135,10 @@
             </div>
             <div class="container-fluid">
                 <div class="col-md-12">
-                    <ul class="nav nav-tabs taps_programas" role="tablist" id="programas">
+                    <ul class="nav nav-tabs" id="myTabs">
+                        <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
+
                 </div>
             </div>
 
@@ -234,32 +236,32 @@
                 },
                 success: function(data){
                     $('#codigo').prop('disabled',false);
-                    var length = Object.keys(data).length;
-                    console.log(length);
+                    data.forEach(function(tab, index) {
+                        // Crear la pestaña
+                        var tabLink = $('<a>')
+                        .addClass('nav-link')
+                        .attr('data-toggle', 'tab')
+                        .attr('href', '#tab' + index)
+                        .text(tab.title); // Suponiendo que cada objeto tiene una propiedad 'title'
 
-                    //consultaProgramas(data.homologante);
-                    //console.log(consultaProgramas(data.homologante));
-                    if (length > 0) {
-                        for (let i = 0; i < length; i++) {
-                            if (i == 0) {
-                                $('.nav-tabs').append(`<li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#tap_${i}" role="tab" aria-controls="pills-contact" aria-selected="true">${data[i]['programa']}</a>
-                                </li>`)
-                            } else {
-                                $('.nav-tabs').append(`<li class="nav-item ">
-                                    <a class="nav-link" data-toggle="pill" href="#tap_${i}" role="tab" aria-controls="pills-contact" aria-selected="false">${data[i]['programa']}</a></li>`)
-                            }
-                        }
+                        // Agregar la pestaña a la lista de pestañas
+                        $('#myTabs').append($('<li>').append(tabLink));
 
-                        $('#programas a').on('shown.bs.tab', function(event) {
-                            var targetTab = $(event.target).attr('href');
-                            cargarContenido(targetTab); // Llama a la función para cargar contenido
-                        });
+                        // Crear el contenido de la pestaña
+                        var tabContent = $('<div>')
+                        .addClass('tab-pane fade')
+                        .attr('id', 'tab' + index)
+                        .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
 
-                    } else {
-                        $('#programas').html('');
-                        $('#codigo').prop('disabled',false);
-                    }
+                        // Agregar el contenido de la pestaña al contenedor
+                        $('.tab-content').append(tabContent);
+                    });
+
+                    // Agregar el listener para el evento de cambio de pestaña
+                    $('#myTabs a').on('shown.bs.tab', function(event) {
+                        var targetTab = $(event.target).attr('href');
+                        cargarContenido(targetTab); // Llama a la función para cargar contenido
+                    });
                     /*if(data.homologante != ''){
                         $('#programas').html('');
                         data.forEach(programa =>{

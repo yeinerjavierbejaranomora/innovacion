@@ -1493,11 +1493,10 @@ class InformeMafiController extends Controller
                 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
                 'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
             ];
-
         }
         
-        dd($data);
         $Data = (object) $data;
+
         return $Data;
     }
 

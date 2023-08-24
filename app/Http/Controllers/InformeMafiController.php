@@ -1456,26 +1456,33 @@ class InformeMafiController extends Controller
                 ->where('codigoCurso', $codMateria)
                 ->first();
 
-            $consultaSello = DB::table('planeacion as p')
-            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
-            ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
-            ->where('p.codMateria', $codMateria)
-            ->where('p.codprograma', $programa)
-            ->where('e.sello', 'TIENE SELLO FINANCIERO')
-            ->groupBy('e.sello', 'p.codMateria')
-            ->get();
-
-            $Sello = $consultaSello[0]->total;
-            $Retencion = $total - $Sello;
-
             $data[] = [
                 'total' => $total,
                 'codMateria' => $codMateria,
                 'nombre' => $nombre->curso,
-                'sello' => $Sello,
-                'retencion' => $Retencion,
             ];
         }
+
+        $consultaSello = DB::table('planeacion as p')
+        ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+        ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
+        ->where('p.codprograma', $programa)
+        ->groupBy('e.sello', 'p.codMateria')
+        ->get();
+
+        foreach($consultaSello as $sello){
+            $dato = $sello->total;
+            $materia = $sello->codMateria;
+
+            if($dato == 'TIENE SELLO FINANCIERO'){
+                $estudiantesSello[$materia] = $dato;
+            }
+            if($dato == 'TIENE RETENCION'){
+                $estudiantesRetencion[$materia] = $dato;
+            }
+        }
+
+        dd($estudiantesSello, $estudiantesRetencion);
 
         return $data;
     }

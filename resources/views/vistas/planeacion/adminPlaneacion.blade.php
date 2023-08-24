@@ -2712,7 +2712,6 @@
                             }
                         }
 
-
                         table = $('#mallaCurricular').DataTable({
                             "data": dataTableData,
                             'pageLength': 10,

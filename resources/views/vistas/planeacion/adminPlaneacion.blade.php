@@ -689,8 +689,9 @@
 
                     console.log(periodos);
 
-                    formData.append('periodos[]', periodos);
-
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
+                    });
 
                     console.log(formData);
 
@@ -2659,7 +2660,7 @@
                         table = $('#datatable').DataTable({
                             "data": dataTableData,
                             'pageLength': 10,
-                            "order": [ 2, 'desc' ],
+                            "order": [2, 'desc'],
                             "columns": [{
                                     title: 'Código de programa'
                                 },
@@ -2689,7 +2690,7 @@
                                 var datos = table.row($(this).parents("tr")).data();
                                 var programa = datos[0];
                                 var nombrePrograma = datos[1];
-                                mallaPrograma(programa,nombrePrograma);
+                                mallaPrograma(programa, nombrePrograma);
                             })
                         }
                         obtenerData("#datatable tbody", table);
@@ -2700,7 +2701,7 @@
             function mallaPrograma(programa, nombrePrograma) {
                 limpiarModal();
                 $('#tituloMalla').empty();
-                $('#tituloMalla').append('Materias programa '+ nombrePrograma);
+                $('#tituloMalla').append('Materias programa ' + nombrePrograma);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

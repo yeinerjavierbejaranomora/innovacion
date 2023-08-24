@@ -254,7 +254,7 @@
                     /*if(data.homologante != ''){
                         $('#programas').html('');
                         data.forEach(programa =>{
-                            
+
                             $('#programas').append(`<li class="nav-item active">
                                 <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
                                 </li>`)
@@ -294,6 +294,11 @@
 
 
         }
+
+        const tabs = document.querySelectorAll('.nav-link');
+        const tabContents = document.querySelectorAll('.tab-pane');
+
+        console.log(tabs);
         /*function consultaMalla(programa) {
             var formData = new FormData();
             // formData.append('codBanner',codBanner);

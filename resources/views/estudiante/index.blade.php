@@ -251,11 +251,7 @@
                             }
                         }
 
-                        $('#programas a').on('shown.bs.tab', function(event) {
-                            var targetTab = $(event.target).attr('href');
-                            console.log(targetTab);
-                            //cargarContenido(targetTab); // Llama a la función para cargar contenido
-                        });
+                        
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);

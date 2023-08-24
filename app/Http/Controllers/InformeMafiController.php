@@ -1520,7 +1520,6 @@ class InformeMafiController extends Controller
             ->get();
         foreach ($programas as $programa) {
             $arreglo[] = [
-                'id' => $programa->id,
                 'nombre' => $programa->programa,
                 'codprograma' => $programa->codprograma
             ];

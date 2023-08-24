@@ -39,7 +39,7 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador {
+    #botonModalOperador, #botondataTable {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;

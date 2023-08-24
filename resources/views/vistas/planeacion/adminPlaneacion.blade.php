@@ -689,7 +689,7 @@
 
                     console.log(periodos);
 
-                    formData.append('periodos[]', periodosSeleccionados);
+                    formData.append('periodos[]', periodos);
 
 
                     console.log(formData);

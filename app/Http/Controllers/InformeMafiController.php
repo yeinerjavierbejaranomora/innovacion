@@ -1686,6 +1686,67 @@ class InformeMafiController extends Controller
             
             $nivel = $key->nivelFormacion;
             echo $nivel . ' ';
+            $codprograma = $key->codprograma;
+
+            if($nivel == 'EDUCACION CONTINUA'){
+                $periodos = $periodosContinua;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+            if($nivel == 'PROFESIONAL' && $codprograma == 'PPSV' || $codprograma == 'PCPV'){
+                $periodos = $periodosPregradoC;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'PROFESIONAL' || $nivel == 'TECNOLOGICO' && $codprograma != 'PPSV' && $codprograma != 'PCPV'){
+                $periodos = $periodosPregradoS;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'ESPECIALISTA'){
+                $periodos = $periodosEspecializacion;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'MAESTRIA'){
+                $periodos = $periodosMaestria;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
         }
 
     }

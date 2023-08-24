@@ -284,7 +284,7 @@
             </div>
         </div>
 
-        <div class="card shadow mt-4" id="colTabla">
+        <div class="card shadow mt-4 hidden" id="colTabla">
             <!-- Card Body -->
             <div class="card-body">
                 <!--Datatable-->
@@ -2621,17 +2621,18 @@
 
 
             $('#botondataTable').on("click", function(e) {
-
                 console.log(facultadesSeleccionadas);
-
                 e.preventDefault();
                 destruirTable();
+
                 var periodos = getPeriodos();
                 dataTable(periodos);
             });
 
 
             function dataTable(periodos) {
+                $('#colTabla').removeClass('hidden');
+
                 var url, data;
                 if (facultadesSeleccionadas.length > 0) {
                     url = "{{ route('planeacionProgramas.tabla.facultad')}}",
@@ -2801,6 +2802,7 @@
             }
 
             function destruirTable() {
+                $('#colTabla').addClass('hidden');           
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $("#datatable").remove();
                     table.destroy();

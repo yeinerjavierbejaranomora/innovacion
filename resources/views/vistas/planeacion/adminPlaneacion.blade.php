@@ -363,7 +363,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title"><strong>Malla Curricular</strong></h5>
+                        <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -2615,7 +2615,6 @@
 
 
             function dataTable(periodos) {
-
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2678,8 +2677,8 @@
                             $(tbody).on("click", "button.malla", function() {
                                 var datos = table.row($(this).parents("tr")).data();
                                 var programa = datos[0];
-                                console.log(programa);
-                                mallaPrograma(programa);
+                                var nombrePrograma = datos[1];
+                                mallaPrograma(programa,nombrePrograma);
                             })
                         }
                         obtenerData("#datatable tbody", table);
@@ -2687,8 +2686,10 @@
                 });
             }
 
-            function mallaPrograma(programa) {
+            function mallaPrograma(programa, nombrePrograma) {
                 limpiarModal();
+                $('#tituloMalla').empty();
+                $('#tituloMalla').append('Materias programa '+ nombrePrograma);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

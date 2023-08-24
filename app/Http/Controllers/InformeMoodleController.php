@@ -391,8 +391,6 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $datos));
     }
 
-    public function tablaFacultades(){
-        
-    }
+
 
 }

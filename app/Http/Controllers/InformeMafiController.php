@@ -1510,17 +1510,7 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        var_dump($periodos);
-        die();
-
-        $periodosFormateados = [];
-
-        foreach ($periodos as $periodo)
-        {
-            $periodosFormateados[] = substr($periodo, -2); 
-        }
-
-        dd($periodosFormateados);
+        dd($periodos);
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')

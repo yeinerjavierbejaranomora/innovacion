@@ -685,8 +685,9 @@
 
                     var periodosSeleccionados = getPeriodos();
 
-                    console.log(periodosSeleccionados);
+                    var periodos = data.map(item => item.slice(-2));
 
+                    console.log(periodos);
 
                     formData.append('periodos[]', periodosSeleccionados);
 

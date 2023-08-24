@@ -359,7 +359,7 @@
     <script>
         $(document).ready(function() {
 
-            $('.acordion').collapse();
+            
 
             var periodosSeleccionados = [];
             var facultadesSeleccionadas = [];

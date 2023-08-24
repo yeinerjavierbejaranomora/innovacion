@@ -1510,13 +1510,17 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        dd($periodos);
+        $periodosFormateados = array_map(function ($item) {
+            return substr($item, -2); 
+        }, $periodos);
+
+        dd($periodosFormateados);
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
             ->select('p.programa', 'p.codprograma')
             ->where('p.Facultad', 'FAC EDUCACION Y CCS HUM Y SOC')
-            ->whereIn('pP.periodo', $periodos)
+            ->whereIn('pP.periodo', $periodosFormateados)
             ->where('pP.estado', 1)
             ->groupBy('p.codprograma')
             ->get();

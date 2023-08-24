@@ -1510,7 +1510,7 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        
+
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
@@ -1521,9 +1521,6 @@ class InformeMafiController extends Controller
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
 
-        dd($programas);
-
-
         foreach ($programas as $programa) {
             $arreglo[] = [
                 'nombre' => $programa->programa,
@@ -1531,7 +1528,6 @@ class InformeMafiController extends Controller
             ];
         }
 
-        dd($arreglo);
         header("Content-Type: application/json");
         echo json_encode($arreglo);
     }

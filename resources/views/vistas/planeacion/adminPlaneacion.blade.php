@@ -2704,7 +2704,7 @@
                                 var rowData = [
                                     cursoKey,
                                     curso.programa,
-                                    curso.Total,
+                                    curso.nombreMateria,
                                     curso.Sello,
                                     curso.Retencion,
                                 ];

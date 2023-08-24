@@ -13,7 +13,7 @@
         font-size: 14px;
     }
 
-   
+
 
     #generarReporte {
         width: 250px;
@@ -39,7 +39,8 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador, #botondataTable {
+    #botonModalOperador,
+    #botondataTable {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -136,104 +137,106 @@
             <div class="row justify-content-start">
                 <!--Columna Niveles de Formación-->
                 <div class="col-4 text-start">
-                    <div class="card-body" id="cardNivel" style="overflow: auto;">
-                        <div class="text-center">
+                    <div class="card shadow mb-5" id="cardPeriodos">
+                    <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div>
-                            <!--Accordion-->
-                            <div id="accordion">
-                                <div class="col">
-                                    <!--Formación continua-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link">
-                                                    Formación continua
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                    <input type="checkbox" id="todosContinua" name="todosContinua" checked>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Continua">
+                        <div class="card-body" id="cardNivel" style="overflow: auto;">
+                            <div>
+                                <!--Accordion-->
+                                <div id="accordion">
+                                    <div class="col">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Formación continua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosContinua" name="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Continua">
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <!--Pregrado-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link">
-                                                    Pregrado
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                    <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                    <div class="col">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Pregrado">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Pregrado">
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col">
-                                    <!--Especialización-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link">
-                                                    Especialización
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                    <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                    <div class="col">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Esp">
+
                                                 </div>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Esp">
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <!--Maestría-->
-                                    <div class="card">
-                                        <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                <button class="btn btn-link">
-                                                    Maestría
-                                                </button>
-                                                <div class="custom-checkbox">
-                                                    <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                    <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
-                                                </div>
-                                            </h5>
-                                        </div>
+                                    <div class="col">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
 
-                                        <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
-                                            <div class="card-body" style="width:100%;" id="Maestria">
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                                <div class="card-body" style="width:100%;" id="Maestria">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="card-footer text-center" style="height: 55px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>

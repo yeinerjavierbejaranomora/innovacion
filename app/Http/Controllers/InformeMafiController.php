@@ -1519,6 +1519,9 @@ class InformeMafiController extends Controller
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
 
+        dd($programas);
+
+
         foreach ($programas as $programa) {
             $arreglo[] = [
                 'nombre' => $programa->programa,

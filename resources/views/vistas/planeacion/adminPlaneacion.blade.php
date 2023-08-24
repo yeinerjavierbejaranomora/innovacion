@@ -675,7 +675,7 @@
             }
 
             $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -716,13 +716,11 @@
                                     $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                                 });
                             }   
-                            else{
-                                console.log('entra');
+                        },
+                        error: function() {
+                            console.log('entra');
                                 $('#programas').append('<h5>No hay programas</h5>')
-                            }
-
                         }
-
                     })
                 } else {
                     $('#programas').empty();

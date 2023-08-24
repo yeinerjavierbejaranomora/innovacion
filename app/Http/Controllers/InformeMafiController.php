@@ -1456,13 +1456,9 @@ class InformeMafiController extends Controller
                 ->where('codigoCurso', $codMateria)
                 ->first();
 
-            $data[] = [
-                'total' => $total,
-                'codMateria' => $codMateria,
-                'nombre' => $nombre->curso,
-            ];
+            $nombre[$codMateria] = $nombre->curso;
+            $estudiantes[$codMateria] = $total;
         }
-
 
         $estudiantesSello = [];
         $estudiantesRetencion = [];
@@ -1487,9 +1483,21 @@ class InformeMafiController extends Controller
             }
         }
 
-        dd($estudiantesSello, $estudiantesRetencion);
+            $data = [];
 
-        return $data;
+        foreach ($estudiantes as $key => $value) {
+            $data[$key] = [
+                'nombreMateria' => isset($nombre[$key]) ? $nombre[$key] : 0,
+                'Total' => $value,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            ];
+
+        }
+        
+        dd($data);
+        $Data = (object) $data;
+        return $Data;
     }
 
     /**

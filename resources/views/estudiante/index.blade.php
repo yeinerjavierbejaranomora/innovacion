@@ -256,6 +256,8 @@
                             console.log(targetTab);
                             //cargarContenido(targetTab); // Llama a la función para cargar contenido
                         });
+
+                        $('#myTabs a:first').tab('show');
                     } else {
                         $('#programas').html('');
                         $('#codigo').prop('disabled',false);

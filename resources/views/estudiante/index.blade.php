@@ -297,7 +297,7 @@
 
         $(document).ready(function(){
             $(".nav-tabs a").each(function(){
-                alert($this.tab());
+                console.log($(this));
             });
         });
 

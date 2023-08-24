@@ -296,7 +296,7 @@
         }
 
         $(document).ready(function(){
-            $(".nav-tabs a").click(function(){
+            $(".nav-tabs a").load(function(){
                 alert($this);
             });
         });

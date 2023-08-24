@@ -296,7 +296,7 @@
         }
 
         $(document).ready(function(){
-            $(".nav-tabs a").click(function(){
+            $("#programas a").click(function(){
                 alert($(this));
             });
         });

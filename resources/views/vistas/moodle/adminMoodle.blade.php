@@ -562,17 +562,20 @@
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
 
-            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
-                periodosSeleccionados = getPeriodos();
-                periodosSeleccionados.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });  
+            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() { 
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
+                    });
+
+                    var periodosSeleccionados = getPeriodos();
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
                     });
 
                     $.ajax({

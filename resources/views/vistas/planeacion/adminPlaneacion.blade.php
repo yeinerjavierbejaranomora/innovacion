@@ -98,6 +98,10 @@
         max-height: 600px;
     }
 
+    #cardProgramas {
+        max-height: 500px;
+    }
+
     .graficosBarra {
         min-height: 600px;
         max-height: 600px;
@@ -158,7 +162,7 @@
             </div>
             <br>
 
-            <!-- Checkbox Periodos -->
+
             <div class="row justify-content-start">
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start">
@@ -283,10 +287,10 @@
                     </div>
 
                     <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="true" aria-controls="acordionProgramas">
+                        <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                             <h5><strong>Seleccionar Programas</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="acordionProgramas" class="collapse shadow" aria-labelledby="headingProgramas">
+                        <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                             <div name="programas" id="programas"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">

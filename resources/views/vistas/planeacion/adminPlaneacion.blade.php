@@ -112,6 +112,10 @@
     #programasTotal {
         height: 600px !important;
     }
+
+    #seccion{
+        background: #FFFFFF;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -162,7 +166,7 @@
             </div>
             <br>
 
-            <div class="row justify-content-start">
+            <div class="row justify-content-start" id="seccion">
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start">
                     <div class="card-shadow mb-3" id="cardNivel">

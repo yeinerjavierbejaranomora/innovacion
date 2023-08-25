@@ -630,10 +630,7 @@
                 method: 'post',
                 async: false,
                 success: function(data) {
-                    console.log(data);
                     data.forEach(periodo => {
-
-                        console.log(periodo.nivelFormacion)
                         if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                             $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                         }
@@ -803,6 +800,7 @@
         }
 
         $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
+            console.log('entra');
             if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                 $('#programas').empty();
                 var formData = new FormData();

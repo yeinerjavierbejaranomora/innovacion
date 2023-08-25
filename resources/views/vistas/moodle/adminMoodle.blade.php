@@ -524,18 +524,26 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('periodos.activos') }}",
+                    url: "{{ route('programas.activos') }}",
                     method: 'post',
                     async: false,
                     success: function(data) {
-                        console.log(data);
                         data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "PROFESIONAL") {
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "ESPECIALISTA") {
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "MAESTRIA") {
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
                         });
                     }
                 });
-                console.log(periodosSeleccionados);
             }
 
             /**

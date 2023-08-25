@@ -933,7 +933,8 @@
                                     textMargin: 6
                                 },
                                 legend: {
-                                    position: 'bottom',
+                                    position: 'right',
+                                    align: 'left',
                                     labels: {
                                         usePointStyle: true,
                                         padding: 20,

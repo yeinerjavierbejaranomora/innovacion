@@ -169,11 +169,11 @@
             <div class="row justify-content-start" id="seccion">
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start">
-                    <div class="card-shadow mb-3" id="cardNivel">
-                        <div class="card-header text-center">
+                    <div class=" card-body mb-3" id="cardNivel">
+                        <div class="text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div class="card-body text-start">
+                        <div class="text-start">
                             <!--Accordion-->
                             <div id="accordion">
                                 <div class="row" id="periodos">
@@ -267,7 +267,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
+                        <div class="text-center" style="height: 55px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>

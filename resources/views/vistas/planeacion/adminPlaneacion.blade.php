@@ -169,7 +169,7 @@
             <div class="row justify-content-start">
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start">
-                    <div class="card-shado mb3" id="cardNivel">
+                    <div class="card-shadow mb-3" id="cardNivel">
                         <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
@@ -291,8 +291,6 @@
                             <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
                         </div>
                     </div>
-                </div>
-                <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center">
                             <h5><strong>Seleccionar Programas</strong></h5>
@@ -306,6 +304,9 @@
                         </div>
                     </div>
                 </div>
+                
+                    
+
             </div>
 
             <div class="row text-center justify-content-center">

@@ -165,17 +165,17 @@
             </div>
             <br>
 
-            <div class="row justify-content-start" id="seccion">
+            <div class="row justify-content-start">
                 <!--Columna Niveles de Formación-->
-                <div class="col-8 text-start mt-3">
-                    <div class="card-body mb-3" id="cardNivel">
-                        <div class="text-center">
+                <div class="col-8 text-start">
+                    <div class="card-shadow mb-3" id="cardNivel">
+                        <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div class="text-start">
+                        <div class="card-body text-start">
                             <!--Accordion-->
                             <div id="periodos">
-                                <div class="row" id="periodos">
+                                <div class="row">
                                     <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">
@@ -191,8 +191,9 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Continua">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +213,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
@@ -234,7 +235,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Esp">
 
                                                 </div>
@@ -256,7 +257,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Maestria">
 
                                                 </div>
@@ -266,13 +267,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center" style="height: 55px;">
+                        <div class="card-footer text-center" style="height: 55px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-start mt-3">
+
+                <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>
@@ -679,7 +681,7 @@
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
-
+            
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();

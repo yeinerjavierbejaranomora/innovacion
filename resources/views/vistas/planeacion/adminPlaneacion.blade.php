@@ -209,9 +209,7 @@
                                             </div>
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
-                                                <div class="card-body" style="width:100%;" id="Pregrado">
-
-                                                </div>
+                                                <div class="card-body" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -288,7 +286,7 @@
                     <div class="card-header text-center"  id="HeadingPeriodos" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="true" aria-controls="acordionProgramas">
                         <h5><strong>Seleccionar Programas</strong></h5>
                     </div>
-                    <div class="card-body text-start" id="acordionProgramas" class="collapse show" aria-labelledby="headingProgramas" data-parent="#accordion">
+                    <div class="card-body text-start" id="acordionProgramas" class="collapse shadow" aria-labelledby="headingProgramas" data-parent="#accordion">
                         <div name="programas" id="programas"></div>
                     </div>
                     <div class="card-footer text-center" style="height: 55px;">

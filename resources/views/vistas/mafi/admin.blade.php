@@ -109,7 +109,7 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal {
+    #programasTotal, #metasTotal {
         height: 600px !important;
     }
 </style>
@@ -3009,7 +3009,6 @@
                             data = data;
                         }
 
-
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
@@ -3021,8 +3020,6 @@
                             valuesSello.push(data.matriculaSello[meta]);
                             valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
-
-
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {

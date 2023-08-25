@@ -174,8 +174,8 @@
                         </div>
                         <div class="card-body text-start">
                             <!--Accordion-->
-                            <div id="accordion">
-                                <div class="row" id="periodos">
+                            <div id="accordion" id="periodos">
+                                <div class="row">
                                     <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">

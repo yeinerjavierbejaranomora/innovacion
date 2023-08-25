@@ -276,7 +276,7 @@
                         <div class="card-header" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="true" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="acordionFacultades" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                        <div class="card-body text-start" id="acordionFacultades" class="collapse show" aria-labelledby="HeadingFacultades" data-parent="#accordion">
                             <div class=" facultades" name="facultades" id="facultades"></div>
                         </div>
                     <div class="card-footer text-center" style="height: 55px;">
@@ -285,10 +285,10 @@
                     </div>
                 </div>
                 <div class="card shadow mb-5" id="cardProgramas">
-                    <div class="card-header text-center">
+                    <div class="card-header text-center"  id="HeadingPeriodos" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="true" aria-controls="acordionProgramas">
                         <h5><strong>Seleccionar Programas</strong></h5>
                     </div>
-                    <div class="card-body text-start" style="overflow: auto;">
+                    <div class="card-body text-start" id="acordionProgramas" class="collapse show" aria-labelledby="headingProgramas" data-parent="#accordion">
                         <div name="programas" id="programas"></div>
                     </div>
                     <div class="card-footer text-center" style="height: 55px;">
@@ -297,9 +297,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
         <div class="row text-center justify-content-center">

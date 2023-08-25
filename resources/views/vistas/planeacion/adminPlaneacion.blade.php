@@ -800,7 +800,7 @@
         }
 
         $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
-            console.log('entra');
+            console.log($('#periodos input[type="checkbox"]:checked').length);
             if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                 $('#programas').empty();
                 var formData = new FormData();
@@ -844,7 +844,6 @@
                     }
                 })
             } else {
-                console.log('entra2');
                 $('#programas').empty();
             }
         });

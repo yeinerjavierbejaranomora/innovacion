@@ -49,7 +49,8 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador, #botonModalMetas {
+    #botonModalOperador,
+    #botonModalMetas {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -109,7 +110,8 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal, #metasTotal {
+    #programasTotal,
+    #metasTotal {
         height: 600px !important;
     }
 </style>
@@ -347,7 +349,7 @@
             <div class="col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos" ><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
@@ -683,6 +685,9 @@
                 e.preventDefault();
                 Contador();
                 var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023 ' + periodo;
+                });
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
@@ -842,7 +847,6 @@
                             }
                         },
                         error: function() {
-        
                             $('#programas').append('<h5>No hay programas</h5>')
                         }
                     })
@@ -2987,7 +2991,7 @@
             var chartMetasTotal;
             var chartMetas;
 
-            
+
             graficoMetas();
 
             function graficoMetas() {
@@ -3126,7 +3130,7 @@
                                         },
                                         stack: 'Stack 0',
                                     },
-                                    
+
                                     {
                                         label: 'Metas',
                                         data: values,

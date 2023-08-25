@@ -305,8 +305,6 @@ class InformeMafiController extends Controller
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        dd($periodos);
-
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)

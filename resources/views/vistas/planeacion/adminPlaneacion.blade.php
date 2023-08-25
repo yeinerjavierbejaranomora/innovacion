@@ -175,7 +175,7 @@
                         </div>
                         <div class="text-start">
                             <!--Accordion-->
-                            <div id="peridoso">
+                            <div id="periodos">
                                 <div class="row" id="periodos">
                                     <div class="col-6">
                                         <!--Formación continua-->

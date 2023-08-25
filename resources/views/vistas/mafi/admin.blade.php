@@ -174,7 +174,7 @@
                         </div>
                         <div class="card-body text-start">
                             <!--Accordion-->
-                            <div id="accordion">
+                            <div id="periodos">
                                 <div class="row">
                                     <div class="col-6">
                                         <!--Formación continua-->
@@ -191,7 +191,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
+                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Continua">
 
                                                 </div>
@@ -213,7 +213,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#accordion">
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
@@ -235,7 +235,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#accordion">
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Esp">
 
                                                 </div>
@@ -257,7 +257,7 @@
                                                 </h5>
                                             </div>
 
-                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Maestria">
 
                                                 </div>

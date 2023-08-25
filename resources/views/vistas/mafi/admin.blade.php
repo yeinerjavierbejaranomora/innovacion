@@ -686,7 +686,7 @@
                 Contador();
                 var periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
-                    array[index] = '2023 ' + periodo;
+                    array[index] = '2023' + periodo;
                 });
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();

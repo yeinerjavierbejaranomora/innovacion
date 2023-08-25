@@ -563,6 +563,10 @@
             var periodosSeleccionados = [];
 
             $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
+                periodosSeleccionados = getPeriodos();
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });  
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();

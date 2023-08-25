@@ -13,7 +13,7 @@
         font-size: 14px;
     }
 
-    .btn {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -31,6 +31,10 @@
         font-size: 20px;
     }
 
+    #btn-table {
+        width: 60px;
+    }
+
     .deshacer {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -45,7 +49,7 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador, #botonModalMetas {
+    #botonModalOperado {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -57,11 +61,28 @@
         font-size: 14px;
     }
 
-    #cardProgramas,
-    #cardPeriodos,
-    #cardFacultades {
-        min-height: 250px;
-        max-height: 250px;
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
     .card {
@@ -72,10 +93,13 @@
         display: none;
     }
 
-
     .graficos {
-        min-height: 460px;
-        max-height: 460px;
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #cardProgramas {
+        max-height: 500px;
     }
 
     .graficosBarra {
@@ -85,10 +109,9 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal, #metasTotal {
+    #programasTotal {
         height: 600px !important;
     }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -279,7 +302,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>

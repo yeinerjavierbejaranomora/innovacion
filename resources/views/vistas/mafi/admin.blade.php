@@ -174,7 +174,7 @@
                         </div>
                         <div class="card-body text-start">
                             <!--Accordion-->
-                            <div id="accordion" id="periodos">
+                            <div id="accordion">
                                 <div class="row">
                                     <div class="col-6">
                                         <!--Formación continua-->
@@ -663,11 +663,11 @@
             });
 
             $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
+                $('#accordion input[type="checkbox"]').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
+                $('#accordion input[type="checkbox"]').prop('checked', true);
             });
 
             $('#deshacerFacultades').on('click', function(e) {

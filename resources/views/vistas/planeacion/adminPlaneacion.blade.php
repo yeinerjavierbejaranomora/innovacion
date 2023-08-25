@@ -282,7 +282,7 @@
                         <div class="card-header" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="true" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="acordionFacultades" class="collapse show" aria-labelledby="heading2" data-parent="#accordion"">
+                        <div class="card-body text-start" id="acordionFacultades" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
                             <div class=" facultades" name="facultades" id="facultades"></div>
                         </div>
                     <div class="card-footer text-center" style="height: 55px;">

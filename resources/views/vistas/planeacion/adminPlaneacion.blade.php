@@ -191,7 +191,6 @@
 
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
                                                 <div class="card-body" style="width:100%;" id="Continua">
-
                                                 </div>
                                             </div>
                                         </div>
@@ -649,7 +648,7 @@
 
             function getPeriodos() {
                 var periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });

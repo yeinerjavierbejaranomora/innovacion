@@ -168,16 +168,16 @@
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start">
                 <!--Columna Niveles de Formación-->
-                <div class="col-4 text-start">
-                    <div class="card shadow mb-5" id="cardPeriodos">
+                <div class="col-8 text-start">
+                    <div class="card-shado mb3" id="cardNivel">
                         <div class="card-header text-center">
                             <h5 id="tituloNiveldes"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div class="card-body" id="cardNivel" style="overflow: auto;">
-                            <div>
-                                <!--Accordion-->
-                                <div id="accordion">
-                                    <div class="col">
+                        <div class="card-body text-start">
+                            <!--Accordion-->
+                            <div id="accordion">
+                                <div class="row">
+                                    <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
@@ -191,6 +191,7 @@
                                                     </div>
                                                 </h5>
                                             </div>
+
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion">
                                                 <div class="card-body" style="width:100%;" id="Continua">
 
@@ -198,7 +199,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <!--Pregrado-->
                                         <div class="card">
                                             <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -220,8 +221,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
                                         <!--Especialización-->
                                         <div class="card">
                                             <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
@@ -243,7 +245,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <!--Maestría-->
                                         <div class="card">
                                             <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -260,11 +262,11 @@
 
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#accordion">
                                                 <div class="card-body" style="width:100%;" id="Maestria">
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

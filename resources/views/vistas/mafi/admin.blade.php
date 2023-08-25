@@ -171,7 +171,7 @@
 
             <div class="row justify-content-start" id="seccion">
                 <!--Columna Niveles de Formación-->
-                <div class="col-8 text-start">
+                <div class="col-8 text-start mt-3">
                     <div class="card-body mb-3" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
@@ -278,7 +278,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 text-start">
+                <div class="col-4 text-start mt-3">
                     <div class="card shadow mb-5" id="cardFacultades">
                         <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>

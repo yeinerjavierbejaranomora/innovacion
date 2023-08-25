@@ -85,12 +85,6 @@
         font-size: 14px;
     }
 
-    #cardProgramas,
-    #cardFacultades {
-        min-height: 250px;
-        max-height: 250px;
-    }
-
     .card {
         margin-bottom: 3%;
     }

@@ -49,7 +49,7 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperado {
+    #botonModalOperador, #botonModalMetas {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -418,7 +418,7 @@
 
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Operadores</strong></h5>
@@ -476,7 +476,7 @@
             </div>
         </div>
 
-        <!-- Modal Todos los Tipos de estudiantes -->
+        <!-- Modal Metas -->
         <div class="modal fade" id="modalMetas" tabindex="-1" role="dialog" aria-labelledby="modalMetas" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
@@ -844,7 +844,7 @@
                             }
                         },
                         error: function() {
-                            console.log('entra');
+        
                             $('#programas').append('<h5>No hay programas</h5>')
                         }
                     })
@@ -1467,7 +1467,6 @@
                         periodos: periodos
                     },
                     success: function(data) {
-                        console.log(data);
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
                             return elemento.estado;
@@ -2666,7 +2665,6 @@
             var chartTiposEstudiantesTotal
 
             function tiposEstudiantesTotal(periodosSeleccionados) {
-                console.log(periodosSeleccionados);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -3010,7 +3008,7 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
+
 
                         var labels = [];
                         var values = [];
@@ -3024,7 +3022,7 @@
                             valuesRetencion.push(data.matriculaRetencion[meta]);
                         });
 
-                        console.log(labels, values);
+
 
                         var ctx = document.getElementById('graficoMetas').getContext('2d');
                         chartMetas = new Chart(ctx, {

@@ -301,6 +301,8 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class="row text-center justify-content-center">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte

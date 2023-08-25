@@ -175,7 +175,7 @@
                         </div>
                         <div class="text-start">
                             <!--Accordion-->
-                            <div id="accordion">
+                            <div id="peridoso">
                                 <div class="row" id="periodos">
                                     <div class="col-6">
                                         <!--Formación continua-->
@@ -301,7 +301,7 @@
                     </div>
                 </div>
             </div>
-            < <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>

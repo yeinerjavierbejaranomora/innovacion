@@ -170,7 +170,7 @@
                         <div class="card-body text-start">
                             <!--Accordion-->
                             <div id="accordion">
-                                <div class="row">
+                                <div class="row" id="periodos">
                                     <div class="col-6">
                                         <!--Formación continua-->
                                         <div class="card">

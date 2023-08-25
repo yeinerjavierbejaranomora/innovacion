@@ -279,13 +279,12 @@
 
                 <div class="col-4 text-start">
                     <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header" id="acordionFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="true" aria-controls="acordionFacultades">
+                        <div class="card-header" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="true" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
                         <div class="card-body text-start" id="acordionFacultades" class="collapse show" aria-labelledby="heading2" data-parent="#accordion"">
-                            <div class="facultades" name="facultades" id="facultades">
+                            <div class=" facultades" name="facultades" id="facultades"></div>
                         </div>
-                    </div>
                     <div class="card-footer text-center" style="height: 55px;">
                         <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
                         <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>

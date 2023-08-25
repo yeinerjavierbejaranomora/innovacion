@@ -276,7 +276,7 @@
                         <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
                             <h5><strong>Seleccionar Facultades</strong></h5>
                         </div>
-                        <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                        <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                             <div name="facultades" id="facultades"></div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
@@ -720,6 +720,10 @@
                 Contador();
                 destruirTable();
                 var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
+
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }

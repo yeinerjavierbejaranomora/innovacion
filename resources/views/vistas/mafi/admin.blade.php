@@ -681,6 +681,7 @@
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
+            
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();

@@ -667,11 +667,11 @@
             });
 
             $('#deshacerPeriodos').on('click', function(e) {
-                $('#accordion input[type="checkbox"]').prop('checked', false);
+                $('#periodos input[type="checkbox"]').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
-                $('#accordion input[type="checkbox"]').prop('checked', true);
+                $('#periodos input[type="checkbox"]').prop('checked', true);
             });
 
             $('#deshacerFacultades').on('click', function(e) {

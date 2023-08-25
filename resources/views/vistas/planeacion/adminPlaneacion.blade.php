@@ -166,7 +166,7 @@
             </div>
             <br>
 
-            <div class="row justify-content-start" id="seccion">
+            <div class="row justify-content-start mb-3" id="seccion">
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start mt-3">
                     <div class="card-body mb-3" id="cardNivel">
@@ -302,7 +302,7 @@
                 </div>
             </div>
 
-            
+
             <div class="row text-center justify-content-center">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte

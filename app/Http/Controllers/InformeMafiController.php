@@ -304,6 +304,7 @@ class InformeMafiController extends Controller
          */
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
+
         $estudiantes = DB::table('datosMafi as dm')
             ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
             ->whereIn('dm.periodo', $periodos)
@@ -1669,6 +1670,101 @@ class InformeMafiController extends Controller
     }
 
 
+    /** 
+    public function tablaProgramasPeriodos()
+    {
+        $programas = DB::table('programas')->get();
+
+        $periodosContinua = ['04','05','06', '07','08'];
+        $periodosPregradoC = ['11','12','13', '16','17'];
+        $periodosPregradoS = ['31','32','33', '34','35'];
+        $periodosEspecializacion = ['41','42','43', '44','45'];
+        $periodosMaestria = ['51','52','53', '54','55'];
+
+        
+        foreach($programas as $key){
+            
+            $nivel = $key->nivelFormacion;
+            $codprograma = $key->codprograma;
+
+            if($nivel == 'EDUCACION CONTINUA'){
+                $periodos = $periodosContinua;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'PROFESIONAL' && $codprograma == 'PPSV' || $codprograma == 'PCPV'){
+                $periodos = $periodosPregradoC;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'PROFESIONAL' || $nivel == 'TECNOLOGICO' && ($codprograma != 'PPSV' && $codprograma != 'PCPV')){
+                $periodos = $periodosPregradoS;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'ESPECIALISTA'){
+                $periodos = $periodosEspecializacion;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+
+            if($nivel == 'MAESTRIA'){
+                $periodos = $periodosMaestria;
+                foreach ($periodos as $periodo) {
+                    DB::table('programasPeriodos')->insert([
+                        'codprograma' => $codprograma,
+                        'periodo' => $periodo,
+                        'estado' => NULL,
+                        'fecha_inicio' => NULL
+                    ]);
+                }
+            }
+        }
+        
+        $periodosActivos = DB::table('periodo')->where('periodoActivo',1)->get();
+
+        $periodos = [];
+
+        foreach($periodosActivos as $key)
+        {
+            $periodo= $key->periodos;
+            $periodos[]=substr($periodo, -2);
+        }
+
+        var_dump($periodos);
+
+        $update = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->update(['estado' => 1]);
+
+    }
+    */
+    
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos da cada grafico mafi

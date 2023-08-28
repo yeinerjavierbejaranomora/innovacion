@@ -1049,6 +1049,7 @@ class InformeMafiController extends Controller
              */
 
             $programas = DB::table('datosMafi')
+                ->where('estado', 'Activo')
                 ->select(DB::raw('COUNT(codprograma) AS TOTAL, codprograma'))
                 ->groupBy('codprograma')
                 ->orderByDesc('TOTAL')
@@ -1094,6 +1095,7 @@ class InformeMafiController extends Controller
              */
             $programas = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->select(DB::raw('COUNT(dm.codprograma) AS TOTAL, dm.codprograma'))

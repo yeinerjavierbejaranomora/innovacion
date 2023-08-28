@@ -1241,9 +1241,8 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetas()
+    public function graficoMetas(Request $request)
     {
-
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -1308,6 +1307,80 @@ class InformeMafiController extends Controller
 
         return $datos;
     }
+
+    public function graficoMetasFacultad(Request $request)
+    {
+        $facultades = $request->input('idfacultad');
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
+        $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
+
+        $periodosActivos = [];
+        foreach ($periodos as $periodo) {
+            $periodosActivos[] = $periodo->periodos;
+        }
+
+        $matriculasSello = [];
+
+        $consultaSello = DB::table('datosMafi as dm')
+            ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            ->where('dm.sello', 'TIENE SELLO FINANCIERO')
+            ->whereIn('dm.periodo', $periodosActivos)
+            ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+            ->whereIn('p.Facultad', $facultades)
+            ->select(DB::raw('COUNT(dm.idbanner) AS TOTAL, dm.codprograma'))
+            ->groupBy('dm.codprograma')
+            ->orderByDesc('TOTAL')
+            ->limit(5)
+            ->get();
+
+        foreach ($consultaSello as $registro) {
+
+            $codprograma = $registro->codprograma;
+            $matriculasSello[$codprograma] = $registro->TOTAL;
+
+            $consultaRetencion = DB::table('datosMafi as dm')
+                ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->select(DB::raw('COUNT(dm.idbanner) AS TOTAL'))
+                ->where('dm.sello', 'TIENE RETENCION')
+                ->where('dm.autorizado_asistir', 'LIKE', 'ACTIVO%')
+                ->whereIn('dm.periodo', $periodosActivos)
+                ->where('dm.codprograma', $codprograma)
+                ->whereIn('p.Facultad', $facultades)
+                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+                ->get();
+
+            $consultaMetas = DB::table('programas_metas')
+                ->where('programa', $codprograma)
+                ->select('meta')
+                ->first();
+
+            $metas[$codprograma] = $consultaMetas->meta;
+
+            if ($consultaRetencion) {
+                $matriculasRetencion[$codprograma] = $consultaRetencion[0]->TOTAL;
+            } else {
+                $matriculasRetencion[$codprograma] = 0;
+            }
+        }
+
+        $datos = [
+            'metas' => $metas,
+            'matriculaSello' => $matriculasSello,
+            'matriculaRetencion' => $matriculasRetencion,
+        ];
+
+        return $datos;
+    }
+
+
 
     public function graficoMetasTotal()
     {

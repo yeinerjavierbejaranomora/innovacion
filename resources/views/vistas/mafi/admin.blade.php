@@ -2708,7 +2708,7 @@
                 if (chartMetasTotal) {
                     chartMetasTotal.destroy();
                 }
-                
+
                 graficoMetasTotal();
             });
 
@@ -3043,8 +3043,19 @@
             graficoMetas();
 
             function graficoMetas() {
-                var url = "{{ route('metas.programa')}}";
-                data = '';
+                var url;
+                var data;
+
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('metas.programa')}}",
+                    data = {
+                        idfacultad: facultadesSeleccionadas,
+                    }
+                } else{
+                    url = "{{ route('metasFacultad.programa')}}",
+                    data = ' ',
+                }
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

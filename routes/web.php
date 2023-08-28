@@ -164,6 +164,8 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/mafi/graficoMetasTotal', 'graficoMetasTotal')->middleware('auth')->name('metasTotal.programa');
     /** Ruta para cargar gráfico de metas 5 mayores*/
     Route::post('/home/mafi/graficoMetas', 'graficoMetas')->middleware('auth')->name('metas.programa');
+    /** Ruta para cargar gráfico de metas 5 mayores por facultad*/
+    Route::post('/home/mafi/graficoMetasFacultad', 'graficoMetasFacultad')->middleware('auth')->name('metasFacultad.programa');
 
     /** Ruta para cargar dataTable de programas */
     Route::post('/home/planeacion/tablaProgramas', 'tablaProgramas')->middleware('auth')->name('planeacionProgramas.tabla');

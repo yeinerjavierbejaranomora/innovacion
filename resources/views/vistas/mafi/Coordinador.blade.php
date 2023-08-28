@@ -436,7 +436,6 @@
                 },
                 url: "{{ route('programas.activos') }}",
                 method: 'post',
-                async: false,
                 success: function(data) {
                     data.forEach(periodo => {
                         periodosSeleccionados.push(periodo.periodo);

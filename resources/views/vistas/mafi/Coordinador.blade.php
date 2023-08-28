@@ -466,6 +466,7 @@
                 },
                 url: "{{ route('programas.activos') }}",
                 method: 'post',
+                async: false,
                 success: function(data) {
                     data.forEach(periodo => {
                         periodosSeleccionados.push(periodo.periodo);
@@ -500,12 +501,12 @@
         }
 
         function getPeriodos() {
-            periodosSeleccionados = [];
-            var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-            checkboxesSeleccionados.each(function() {
-                periodosSeleccionados.push($(this).val());
-            });
-            return periodosSeleccionados;
+                var periodosSeleccionados = [];
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
+                });
+                return periodosSeleccionados;
         }
 
         /**

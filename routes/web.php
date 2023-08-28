@@ -27,8 +27,8 @@ use App\Http\Controllers\InformeMoodleController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return view('login/index');
+    return view('welcome');
+    //return view('login/index');
 });
 
 /** definimos las rutas por controlador en este caso son las del usuario logueado */

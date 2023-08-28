@@ -274,25 +274,17 @@
                 </div>
 
                 <div class="col-4 text-start mt-3">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
-                        </div>
-                        <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                            <div name="facultades" id="facultades"></div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
-                            <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
-                        </div>
-                    </div>
 
                     <div class="card shadow mb-5" id="cardProgramas">
                         <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                             <h5><strong>Seleccionar Programas</strong></h5>
                         </div>
                         <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
+                            <div name="programas" id="programas">
+                            @foreach ($programas as $programa)
+                                <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
+                                @endforeach
+                            </div>
                         </div>
                         <div class="card-footer text-center" style="height: 55px;">
                             <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>

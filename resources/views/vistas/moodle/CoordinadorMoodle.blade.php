@@ -144,7 +144,7 @@
             <div class="row">
                 <div class="col 4 text-center">
                     <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
-                        Banner
+                        Admisiones
                     </a>
                 </div>
                 <div class="col 4 text-center">
@@ -153,7 +153,6 @@
                     </a>
                 </div>
             </div>
-
 
             <br>
             <div class="text-center" id="mensaje">

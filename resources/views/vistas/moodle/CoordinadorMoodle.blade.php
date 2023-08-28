@@ -709,11 +709,6 @@
                 }
             });
 
-            $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
-                var riesgo = $(this).data('value');
-                dataTable(riesgo);
-            });
-
             var chartRiesgoAlto;
             var chartRiesgoMedio;
             var chartRiesgoBajo;
@@ -911,6 +906,93 @@
                         }
                     }
                 });
+            }
+
+            $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
+                var riesgo = $(this).data('value');
+                dataTable(riesgo);
+            });
+
+            function dataTable(riesgo) {
+                destruirTabla();
+                $('#colTabla').removeClass("hidden");
+                    var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var datos
+                        if (data.data) {
+                            datos = data.data;
+                        } else {
+                            var data = jQuery.parseJSON(data);
+                            datos = data.data;
+                        }
+                        table = $('#datatable').DataTable({
+                            "data": datos,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'Id_Banner',
+                                    title: 'Id Banner'
+                                },
+                                {
+                                    data: null,
+                                    title: 'Nombre Completo',
+                                    render: function(data, type, row) {
+                                        return data.Nombre + ' ' + data.Apellido;
+                                    }
+                                },
+                                {
+                                    data: 'Facultad',
+                                    title: 'Facultad'
+                                },
+                                {
+                                    data: 'Programa',
+                                    title: 'Programa'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='data btn btn-warning' data-toggle='modal' data-target='#modaldataEstudiante'><i class='fa-solid fa-user'></i></button>",
+                                    title: 'Datos Estudiante',
+                                    className: "text-center",
+                                }
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                        riesgoaux = riesgo.toLowerCase();
+                        var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                        $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+
+                        function obtenerData(tbody, table) {
+                            $(tbody).on("click", "button.data", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                dataAlumno(datos.Id_Banner);
+                            })
+                        }
+                        obtenerData("#datatable tbody", table);
+                    },
+
+                });
+            }
+
+            function destruirTabla() {
+                $('#colTabla').addClass("hidden")
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $("#tituloTable").remove();
+                    table.destroy();
+                    $('#datatable').DataTable().destroy();
+                    $('#datatable tbody').empty();
+                    $("#datatable tbody").off("click", "button.data");
+                }
             }
 
         });

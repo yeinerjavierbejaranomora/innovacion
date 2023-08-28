@@ -3053,7 +3053,7 @@
                     }
                 } else{
                     url = "{{ route('metasFacultad.programa')}}",
-                    data = ' ',
+                    data = ''
                 }
 
                 $.ajax({

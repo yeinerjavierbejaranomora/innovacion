@@ -537,6 +537,9 @@
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
                 return periodosSeleccionados;
             }
 
@@ -910,6 +913,7 @@
 
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
+                getPeriodos();
                 dataTable(riesgo);
             });
 

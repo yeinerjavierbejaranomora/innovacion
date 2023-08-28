@@ -714,6 +714,10 @@
                 dataTable(riesgo);
             });
 
+            var chartRiesgoAlto;
+            var chartRiesgoMedio;
+            var chartRiesgoBajo;
+
             /**
              * Método para obtener gráficos de riesgo alto, medio y bajo 
              * */

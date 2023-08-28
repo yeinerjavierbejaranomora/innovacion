@@ -448,6 +448,7 @@
             var periodosSeleccionados = [];
             periodos();
             getPeriodos();
+            riesgo();
 
             var totalSeleccionado;
             var totalPeriodos;

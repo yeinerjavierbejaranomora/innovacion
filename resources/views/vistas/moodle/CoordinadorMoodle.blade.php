@@ -447,7 +447,6 @@
 
             var periodosSeleccionados = [];
             periodos();
-            invocarGraficos();
             getPeriodos();
 
             var totalSeleccionado;
@@ -540,16 +539,6 @@
                 return periodosSeleccionados;
             }
 
-            /**
-             * Método que trae los gráficos de la vista
-             */
-            function invocarGraficos() {
-                grafioSelloFinanciero();
-                graficoRetencion();
-                graficoSelloPrimerIngreso();
-                graficoTiposDeEstudiantes();
-                graficoOperadores();
-            }
 
             $('#deshacerPeriodos').on('click', function(e) {
                 $('#periodos input[type="checkbox"]').prop('checked', false);

@@ -468,6 +468,7 @@
                 method: 'post',
                 async: false,
                 success: function(data) {
+                    console.log(data);
                     data.forEach(periodo => {
                         periodosSeleccionados.push(periodo.periodo);
                         if (periodo.nivelFormacion == "EDUCACION CONTINUA") {

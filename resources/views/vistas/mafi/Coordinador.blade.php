@@ -144,6 +144,20 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+
+            <div class="row">
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
+                        Moodle
+                    </a>
+                </div>
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
+                        Planeación
+                    </a>
+                </div>
+            </div>
+
             <!-- Page Heading -->
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Programas</strong></h1>

@@ -693,7 +693,6 @@
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
-                        console.log(programasSeleccionados);
                         estadoUsuario();
                     } else {
                         programasSeleccionados = [];
@@ -913,7 +912,11 @@
 
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
-                getPeriodos();
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                        programasSeleccionados = [];
+                        checkboxesProgramas.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
                 dataTable(riesgo);
             });
 

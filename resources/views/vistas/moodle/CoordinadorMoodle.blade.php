@@ -494,22 +494,39 @@
          * Método que trae los periodos activos
          */
         function periodos() {
-            var datos = $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('periodos.activos') }}",
-                method: 'post',
-                async: false,
-                success: function(data) {
-                    data.forEach(periodo => {
-                        periodosSeleccionados.push(periodo.periodos);
-                        $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
-                    });
-                }
-            });
-            console.log(periodosSeleccionados);
-        }
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('periodosPrograma.activos') }}",
+                    data: {
+                        programas: programasSeleccionados,
+                    },
+                    method: 'post',
+                    async: false,
+                    success: function(datos) {
+                        console.log(datos);
+                        datos.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "PROFESIONAL") {
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "ESPECIALISTA") {
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "MAESTRIA") {
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                        });
+                    }
+                });
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
+            }
 
         function vistaEntrada() {
             var key = Object.keys(programasSelect);
@@ -525,12 +542,12 @@
         }
 
         function getPeriodos() {
-            periodosSeleccionados = [];
-            var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
-            checkboxesSeleccionados.each(function() {
-                periodosSeleccionados.push($(this).val());
-            });
-            return periodosSeleccionados;
+                var periodosSeleccionados = [];
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+                checkboxesSeleccionados.each(function() {
+                    periodosSeleccionados.push($(this).val());
+                });
+                return periodosSeleccionados;
         }
 
         /**
@@ -552,6 +569,45 @@
             $('#periodos input[type="checkbox"]').prop('checked', true);
         });
 
+        $('#deshacerProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').prop('checked', false);
+        });
+
+        $('#seleccionarProgramas').on('click', function(e) {
+                $('#programas input[type="checkbox"]').prop('checked', true);
+        });
+
+        $("#todosContinua").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Continua input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Continua input[type='checkbox']").prop("checked", false);
+                }
+        });
+
+            $("#todosPregrado").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Pregrado input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Pregrado input[type='checkbox']").prop("checked", false);
+                }
+        });
+
+            $("#todosEsp").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Esp input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Esp input[type='checkbox']").prop("checked", false);
+                }
+        });
+
+            $("#todosMaestria").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Maestria input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+        });
         /**
          * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
          */

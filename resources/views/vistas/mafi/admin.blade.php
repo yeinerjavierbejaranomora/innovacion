@@ -721,6 +721,7 @@
                             if ($('#mostrarTodos').prop('checked')) {
                                 location.reload();
                             }
+                            $("#colMetas").removeClass("hidden");
                             estadoUsuarioFacultad();
                             graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
                         } else {

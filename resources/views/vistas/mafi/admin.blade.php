@@ -115,7 +115,7 @@
         height: 600px !important;
     }
 
-    #seccion{
+    #seccion {
         background: #FFFFFF;
     }
 </style>
@@ -640,7 +640,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
             }
 
             /**
@@ -686,7 +686,7 @@
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
-            
+
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
@@ -1476,7 +1476,7 @@
 
             function graficosporFacultad(facultades, periodos) {
                 if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
+                    chartTipoEstudiante || chartOperadores || chartMetas) {
                     destruirGraficos();
                     $("#ocultarGraficoProgramas").show();
 
@@ -1487,6 +1487,7 @@
                     graficoTiposDeEstudiantesFacultad(facultades, periodos);
                     graficoOperadoresFacultad(facultades, periodos);
                     graficoProgramasFacultad(facultades, periodos);
+                    graficoMetasFacultad(facultades);
                 }
             }
 
@@ -3039,21 +3040,12 @@
 
             var chartMetasTotal;
             var chartMetas;
-    
+
 
             function graficoMetas() {
-                var url;
-                var data;
 
-                if (facultadesSeleccionadas.length > 0) {
-                    url = "{{ route('metas.programa')}}",
-                    data = {
-                        idfacultad: facultadesSeleccionadas,
-                    }
-                } else{
-                    url = "{{ route('metasFacultad.programa')}}",
-                    data = ''
-                }
+                var url = "{{ route('metasFacultad.programa')}}",
+                    var data = ''
 
                 $.ajax({
                     headers: {
@@ -3143,9 +3135,113 @@
                 });
             }
 
+            function graficoMetasFacultad(facultades) {
+
+                var url = "{{ route('metasFacultad.programa')}}";
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: {
+                        idfacultad: facultades,
+                    },  
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+
+                        var labels = [];
+                        var values = [];
+                        var valuesSello = [];
+                        var valuesRetencion = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
+                            values.push(data.metas[meta]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
+                        });
+
+                        var ctx = document.getElementById('graficoMetas').getContext('2d');
+                        chartMetas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'middle',
+                                            align: 'center'
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        stacked: false,
+                                    }
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+
+                    }
+                });
+            }
+
             function graficoMetasTotal() {
-                var url = "{{ route('metasTotal.programa')}}";
-                data = '';
+
+                var url, data;
+
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('metas.programa')}}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
+                } else {
+                    url = "{{ route('metasTotal.programa')}}";
+                    data = '';
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

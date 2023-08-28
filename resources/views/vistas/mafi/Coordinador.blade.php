@@ -12,7 +12,7 @@
         font-size: 14px;
     }
 
-    .btn {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -30,6 +30,10 @@
         font-size: 20px;
     }
 
+    #btn-table {
+        width: 60px;
+    }
+
     .deshacer {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -44,7 +48,8 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador {
+    #botonModalOperador,
+    #botonModalMetas {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -56,11 +61,28 @@
         font-size: 14px;
     }
 
-    #cardProgramas,
-    #cardPeriodos,
-    #cardFacultades {
-        min-height: 250px;
-        max-height: 250px;
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
     .card {
@@ -71,10 +93,13 @@
         display: none;
     }
 
-
     .graficos {
-        min-height: 460px;
-        max-height: 460px;
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #cardProgramas {
+        max-height: 500px;
     }
 
     .graficosBarra {
@@ -84,8 +109,13 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal {
+    #programasTotal,
+    #metasTotal {
         height: 600px !important;
+    }
+
+    #seccion {
+        background: #FFFFFF;
     }
 </style>
 
@@ -131,7 +161,7 @@
 
             <!-- Checkbox Facultades -->
             <div class="row justify-content-center" ">
-                <div class=" col-8 text-start mt-3">
+            <div class=" col-8 text-start mt-3">
                 <div class="card-body mb-3" id="cardNivel">
                     <div class="text-center">
                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
@@ -258,7 +288,7 @@
         </div>
 
         <div class="row text-center justify-content-center">
-            <button class="btn" type="button" id="generarReporte">
+            <button class="btn button-informe" type="button" id="generarReporte">
                 Generar Reporte
             </button>
         </div>

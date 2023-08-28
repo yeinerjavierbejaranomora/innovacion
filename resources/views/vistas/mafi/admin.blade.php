@@ -539,6 +539,7 @@
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
+                graficoMetas();
             }
 
             function limpiarTitulos() {
@@ -3038,9 +3039,7 @@
 
             var chartMetasTotal;
             var chartMetas;
-
-
-            graficoMetas();
+    
 
             function graficoMetas() {
                 var url;

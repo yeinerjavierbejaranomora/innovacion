@@ -111,7 +111,7 @@
         height: 600px !important;
     }
 
-    #seccion{
+    #seccion {
         background: #FFFFFF;
     }
 </style>
@@ -280,7 +280,7 @@
                         </div>
                         <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                             <div name="programas" id="programas">
-                            @foreach ($programas as $programa)
+                                @foreach ($programas as $programa)
                                 <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
                                 @endforeach
                             </div>
@@ -294,7 +294,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-            <button class="btn button-informe" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
@@ -436,55 +436,54 @@
 
     </div>
 
-<script>
-    
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        var tabla = <?php echo json_encode($tabla); ?>;
-        console.log(tabla);
-        programasUsuario();
-        Contador();
-        vistaEntrada();
+            var tabla = <?php echo json_encode($tabla); ?>;
+            console.log(tabla);
+            programasUsuario();
+            Contador();
+            vistaEntrada();
 
-        var periodosSeleccionados = [];
-        periodos();
-        invocarGraficos();
-        getPeriodos();
+            var periodosSeleccionados = [];
+            periodos();
+            invocarGraficos();
+            getPeriodos();
 
-        var totalSeleccionado;
-        var totalPeriodos;
+            var totalSeleccionado;
+            var totalPeriodos;
 
-        var programasSeleccionados = [];
+            var programasSeleccionados = [];
 
-        var programasSelect;
+            var programasSelect;
 
-        // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
-        $(document).ajaxStart(function() {
-            $('div #programas input[type="checkbox"]').prop('disabled', true);
-            $('#generarReporte').prop("disabled", true);
-        });
+            // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
+            $(document).ajaxStart(function() {
+                $('div #programas input[type="checkbox"]').prop('disabled', true);
+                $('#generarReporte').prop("disabled", true);
+            });
 
-        // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
-        $(document).ajaxStop(function() {
-            $('div #programas input[type="checkbox"]').prop('disabled', false);
-            $('#generarReporte').prop("disabled", false);
-        });
+            // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+            $(document).ajaxStop(function() {
+                $('div #programas input[type="checkbox"]').prop('disabled', false);
+                $('#generarReporte').prop("disabled", false);
+            });
 
-        function programasUsuario() {
-            <?php
-            $datos = array();
-            foreach ($programas as $programa) {
-                $datos[] = $programa->codprograma;
+            function programasUsuario() {
+                <?php
+                $datos = array();
+                foreach ($programas as $programa) {
+                    $datos[] = $programa->codprograma;
+                }
+                ?>;
+                programasSeleccionados = <?php echo json_encode($datos); ?>;
+                programasSelect = programasSeleccionados;
             }
-            ?>;
-            programasSeleccionados = <?php echo json_encode($datos); ?>;
-            programasSelect = programasSeleccionados;
-        }
 
-        /**
-         * Método que trae los periodos activos
-         */
-        function periodos() {
+            /**
+             * Método que trae los periodos activos
+             */
+            function periodos() {
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -519,62 +518,62 @@
                 });
             }
 
-        function vistaEntrada() {
-            var key = Object.keys(programasSelect);
-            var cantidadProgramas = key.length;
-            var valorPrograma = programasSelect[key[0]];
+            function vistaEntrada() {
+                var key = Object.keys(programasSelect);
+                var cantidadProgramas = key.length;
+                var valorPrograma = programasSelect[key[0]];
 
-            if (cantidadProgramas === 1) {
-                $('#colCardProgramas').hide();
-                var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
-                $("#mensaje").html(textoNuevo);
+                if (cantidadProgramas === 1) {
+                    $('#colCardProgramas').hide();
+                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
+                    $("#mensaje").html(textoNuevo);
+                }
+
             }
 
-        }
-
-        function getPeriodos() {
+            function getPeriodos() {
                 var periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
-        }
+            }
 
-        /**
-         * Método que trae los gráficos de la vista
-         */
-        function invocarGraficos() {
-            grafioSelloFinanciero();
-            graficoRetencion();
-            graficoSelloPrimerIngreso();
-            graficoTiposDeEstudiantes();
-            graficoOperadores();
-        }
+            /**
+             * Método que trae los gráficos de la vista
+             */
+            function invocarGraficos() {
+                grafioSelloFinanciero();
+                graficoRetencion();
+                graficoSelloPrimerIngreso();
+                graficoTiposDeEstudiantes();
+                graficoOperadores();
+            }
 
-        $('#deshacerPeriodos').on('click', function(e) {
-            $('#periodos input[type="checkbox"]').prop('checked', false);
-        });
+            $('#deshacerPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', false);
+            });
 
-        $('#seleccionarPeriodos').on('click', function(e) {
-            $('#periodos input[type="checkbox"]').prop('checked', true);
-        });
+            $('#seleccionarPeriodos').on('click', function(e) {
+                $('#periodos input[type="checkbox"]').prop('checked', true);
+            });
 
-        $('#deshacerProgramas').on('click', function(e) {
+            $('#deshacerProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', false);
-        });
+            });
 
-        $('#seleccionarProgramas').on('click', function(e) {
+            $('#seleccionarProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', true);
-        });
+            });
 
-        $("#todosContinua").change(function() {
+            $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
                     $("#Continua input[type='checkbox']").prop("checked", true);
                 } else {
                     $("#Continua input[type='checkbox']").prop("checked", false);
                 }
-        });
+            });
 
             $("#todosPregrado").change(function() {
                 if ($(this).is(":checked")) {
@@ -582,7 +581,7 @@
                 } else {
                     $("#Pregrado input[type='checkbox']").prop("checked", false);
                 }
-        });
+            });
 
             $("#todosEsp").change(function() {
                 if ($(this).is(":checked")) {
@@ -590,7 +589,7 @@
                 } else {
                     $("#Esp input[type='checkbox']").prop("checked", false);
                 }
-        });
+            });
 
             $("#todosMaestria").change(function() {
                 if ($(this).is(":checked")) {
@@ -598,135 +597,332 @@
                 } else {
                     $("#Maestria input[type='checkbox']").prop("checked", false);
                 }
-        });
-        /**
-         * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
-         */
-        function ocultarDivs() {
-            $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
-        }
-
-        /**
-         * Método que cuenta la cantidad de programas de la facultad correspondiente
-         */
-        function Contador() {
-            totalSeleccionado = $('#programas input[type="checkbox"]').length;
-            totalPeriodos = $('#periodos input[type="checkbox"]').length;
-        }
-
-        function limpiarTitulos() {
-            var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
-            var parteEliminar = ': ';
-            elementosTitulos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
             });
-            var parteTituloEliminar = 'Periodo: ';
-            var titulosPeriodos = $('.tituloPeriodo').find("strong");
-            titulosPeriodos.each(function() {
-                var contenidoActual = $(this).text();
-                var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
-                $(this).text(contenidoLimpio);
-            });
-        }
-
-
-        function estadoUsuario() {
-            limpiarTitulos();
-            var periodos = getPeriodos();
-            $("#mensaje").empty();
-            var periodosArray = Object.values(periodos);
-            var periodosFormateados = periodosArray.map(function(periodo) {
-                return periodo.replace(/2023/, '').trim();
-            }).join(' - ');
-
-            if (programasSeleccionados.length > 1) {
-                var programasArray = Object.values(programasSeleccionados);
-                var programasFormateados = programasArray.join(' - ');
-                var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
-                $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasFormateados);
-            } else {
-                var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
-                $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasSeleccionados);
+            /**
+             * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
+             */
+            function ocultarDivs() {
+                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
-            $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
-            $("#mensaje").show();
-            $("#mensaje").html(textoNuevo);
-        }
 
-        /**
-         * Método para destruir todos los gráficos
-         */
-        function destruirGraficos() {
-            [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
-        }
+            /**
+             * Método que cuenta la cantidad de programas de la facultad correspondiente
+             */
+            function Contador() {
+                totalSeleccionado = $('#programas input[type="checkbox"]').length;
+                totalPeriodos = $('#periodos input[type="checkbox"]').length;
+            }
 
-        /**
-         * Controlador del botón mostrarTodos
-         */
-
-        function alerta() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Debes seleccionar al menos un programa',
-                confirmButtonColor: '#dfc14e',
-            })
-        }
-
-        function alertaPeriodo() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Debes seleccionar al menos un periodo',
-                confirmButtonColor: '#dfc14e',
-            })
-        }
-
-        /**
-         * Controlador botón generarReporte
-         */
-
-        $('#generarReporte').on('click', function(e) {
-            e.preventDefault();
-            var periodosSeleccionados = getPeriodos();
-            Contador();
-            if(periodosSeleccionados.length > 0){
-            if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
-                    location.reload();
-                }
-                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                programasSeleccionados = [];
-                checkboxesProgramas.each(function() {
-                    programasSeleccionados.push($(this).val());
+            function limpiarTitulos() {
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+                var parteEliminar = ': ';
+                elementosTitulos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
                 });
-                console.log(programasSeleccionados);
-                estadoUsuario();
-            } else {
-                programasSeleccionados = [];
+                var parteTituloEliminar = 'Periodo: ';
+                var titulosPeriodos = $('.tituloPeriodo').find("strong");
+                titulosPeriodos.each(function() {
+                    var contenidoActual = $(this).text();
+                    var contenidoLimpio = contenidoActual.replace(new RegExp(parteTituloEliminar + '.*'), '');
+                    $(this).text(contenidoLimpio);
+                });
+            }
+
+
+            function estadoUsuario() {
+                limpiarTitulos();
+                var periodos = getPeriodos();
                 $("#mensaje").empty();
-                destruirGraficos();
-                ocultarDivs();
-                alerta();
+                var periodosArray = Object.values(periodos);
+                var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                }).join(' - ');
+
+                if (programasSeleccionados.length > 1) {
+                    var programasArray = Object.values(programasSeleccionados);
+                    var programasFormateados = programasArray.join(' - ');
+                    var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasFormateados);
+                } else {
+                    var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
+                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong').append(': ' + programasSeleccionados);
+                }
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
             }
+
+            /**
+             * Método para destruir todos los gráficos
+             */
+            function destruirGraficos() {
+                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
-         else{
-            programasSeleccionados = [];
-            periodosSeleccionados = [];
-            $("#mensaje").empty();
-            destruirGraficos();
-            ocultarDivs();
-            alertaPeriodo();
+
+            /**
+             * Controlador del botón mostrarTodos
+             */
+
+            function alerta() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un programa',
+                    confirmButtonColor: '#dfc14e',
+                })
             }
+
+            function alertaPeriodo() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar al menos un periodo',
+                    confirmButtonColor: '#dfc14e',
+                })
+            }
+
+            /**
+             * Controlador botón generarReporte
+             */
+
+            $('#generarReporte').on('click', function(e) {
+                e.preventDefault();
+                var periodosSeleccionados = getPeriodos();
+                Contador();
+                if (periodosSeleccionados.length > 0) {
+                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
+                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
+                            location.reload();
+                        }
+                        var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                        programasSeleccionados = [];
+                        checkboxesProgramas.each(function() {
+                            programasSeleccionados.push($(this).val());
+                        });
+                        console.log(programasSeleccionados);
+                        estadoUsuario();
+                    } else {
+                        programasSeleccionados = [];
+                        $("#mensaje").empty();
+                        destruirGraficos();
+                        ocultarDivs();
+                        alerta();
+                    }
+                } else {
+                    programasSeleccionados = [];
+                    periodosSeleccionados = [];
+                    $("#mensaje").empty();
+                    destruirGraficos();
+                    ocultarDivs();
+                    alertaPeriodo();
+                }
+            });
+
+            $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
+                var riesgo = $(this).data('value');
+                dataTable(riesgo);
+            });
+
+            /**
+             * Método para obtener gráficos de riesgo alto, medio y bajo 
+             * */
+            function riesgo() {
+                if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
+                    [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
+                }
+
+                var data;
+                var url = "{{ route('moodle.riesgo.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var ctx = document.getElementById('alto').getContext('2d');
+                        var TotalAlto = data.total - data.alto;
+                        var TotalMedio = data.total - data.medio;
+                        var TotalBajo = data.total - data.bajo;
+
+                        if (TotalAlto <= 0) {
+                            TotalAlto = 0;
+                        }
+                        if (TotalMedio <= 0) {
+                            TotalMedio = 0;
+                        }
+                        if (TotalBajo <= 0) {
+                            TotalBajo = 0;
+                        }
+                        chartRiesgoAlto = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [data.alto, TotalAlto],
+                                    backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: data.alto,
+                                        color: 'red',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+
+                        ctx = document.getElementById('medio').getContext('2d');
+                        chartRiesgoMedio = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: data.medio,
+                                        color: '#DCCD30',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+
+                        ctx = document.getElementById('bajo').getContext('2d');
+                        chartRiesgoBajo = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
+                                    backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+
+                            options: {
+                                responsive: true,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: data.bajo,
+                                        color: 'Green',
+                                        position: 'bottom',
+                                        font: {
+                                            size: 20,
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
+                            $('#colRiesgoAlto').addClass('hidden');
+                        } else {
+                            $('#colRiesgoAlto').removeClass('hidden');
+                        }
+                        if (chartRiesgoMedio.data.labels.length == 0 && chartRiesgoMedio.data.datasets[0].data.length == 0) {
+                            $('#colRiesgoMedio').addClass('hidden');
+                        } else {
+                            $('#colRiesgoMedio').removeClass('hidden');
+                        }
+                        if (chartRiesgoBajo.data.labels.length == 0 && chartRiesgoBajo.data.datasets[0].data.length == 0) {
+                            $('#colRiesgoBajo').addClass('hidden');
+                        } else {
+                            $('#colRiesgoBajo').removeClass('hidden');
+                        }
+                    }
+                });
+            }
+
         });
+    </script>
 
-    
-        
-    });
-</script>
-
-<!-- incluimos el footer -->
-@include('layout.footer')
+    <!-- incluimos el footer -->
+    @include('layout.footer')
 </div>

@@ -539,7 +539,6 @@
                 return periodosSeleccionados;
             }
 
-
             $('#deshacerPeriodos').on('click', function(e) {
                 $('#periodos input[type="checkbox"]').prop('checked', false);
             });

@@ -3044,7 +3044,7 @@
 
             function graficoMetas() {
 
-                var url = "{{ route('metasFacultad.programa')}}";
+                var url = "{{ route('metas.programa')}}";
                 var data = '';
 
                 $.ajax({

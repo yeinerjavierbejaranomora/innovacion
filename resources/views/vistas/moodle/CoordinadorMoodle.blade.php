@@ -12,13 +12,7 @@
         font-size: 14px;
     }
 
-    #generarReporte {
-        width: 250px;
-        height: 45px;
-        font-size: 20px;
-    }
-
-    .btn {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -30,9 +24,29 @@
         font-size: 14px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador {
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    #btn-table {
+        width: 60px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 12px;
+    }
+
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -44,10 +58,28 @@
         font-size: 14px;
     }
 
-    #cardProgramas,
-    #cardPeriodos {
-        min-height: 250px;
-        max-height: 250px;
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
     .card {
@@ -58,15 +90,13 @@
         display: none;
     }
 
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
+    .graficos {
+        min-height: 600px;
+        max-height: 600px;
     }
 
-
-    .graficos {
-        min-height: 460px;
-        max-height: 460px;
+    #cardProgramas {
+        max-height: 500px;
     }
 
     .graficosBarra {
@@ -76,11 +106,15 @@
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal {
+    #programasTotal,
+    #metasTotal {
         height: 600px !important;
     }
-</style>
 
+    #seccion{
+        background: #FFFFFF;
+    }
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">

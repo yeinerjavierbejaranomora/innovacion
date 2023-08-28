@@ -3229,7 +3229,7 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                        if (chartMetasTotal.data.labels.length == 0 && chartMetasTotal.data.datasets[0].data.length == 0) {
+                        if (chartMetas.data.labels.length == 0 && chartMetas.data.datasets[0].data.length == 0) {
                             $('#colMetas').addClass('hidden');
                         } else {
                             $('#colMetas').removeClass('hidden');

@@ -376,6 +376,10 @@ Route::controller(facultadController::class)->group(function () {
     Route::post('/home/activarProgramaPeriodo', 'activarProgramaPeriodo')->middleware('auth')->name('programasPeriodos.activar');
     /** Ruta para traer periodos activos*/
     Route::post('/home/programasActivos', 'programasActivos')->name('programas.activos');
+    /** Ruta para traer periodos activos de un programa */
+    Route::post('/home/programasActivos', 'periodosActivosPrograma')->name('periodosPrograma.activos');
+
+
     /** Ruta para editar los periodos activos*/
     Route::post('/home/editarProgramasPeriodos', 'actualizarProgramaPeriodo')->middleware('auth', 'admin')->name('programasPeriodos.actualizar');
 });

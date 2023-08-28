@@ -1823,7 +1823,7 @@ class InformeMafiController extends Controller
             return null;
         }
     }
-
+    
 
     /** 
     public function tablaProgramasPeriodos()

@@ -859,6 +859,21 @@ class facultadController extends Controller
         return $nivelFormacion;
     }
 
+    public function periodosActivosPrograma(Request $request){
+        $programas = $request->input('programas');
+
+        $periodosActivos = DB::table('programasPeriodos as pP')
+        ->join('programas as p', 'pP.codPrograma', '=', 'p.codprograma')
+        ->whereIn('pP.codprograma', $programas)    
+        ->where('pP.estado', 1)
+        ->select('p.nivelFormacion', 'pP.periodo')
+        ->groupBy('p.nivelFormacion', 'pP.periodo')
+        ->get();
+
+        return $periodosActivos;
+
+    }
+
     public function actualizarProgramaPeriodo(Request $request)
     {
         $id_llegada = $_POST['id'];

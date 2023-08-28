@@ -160,7 +160,7 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-center" ">
+        <div class="row justify-content-center" ">
             <div class=" col-8 text-start mt-3">
                 <div class="card-body mb-3" id="cardNivel">
                     <div class="text-center">
@@ -467,9 +467,9 @@
                 url: "{{ route('programas.activos') }}",
                 method: 'post',
                 async: false,
-                success: function(data) {
-                    console.log(data);
-                    data.forEach(periodo => {
+                success: function(datos) {
+                    console.log(datos);
+                    datos.forEach(periodo => {
                         periodosSeleccionados.push(periodo.periodo);
                         if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                             $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
@@ -502,12 +502,12 @@
         }
 
         function getPeriodos() {
-                var periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
-                checkboxesSeleccionados.each(function() {
-                    periodosSeleccionados.push($(this).val());
-                });
-                return periodosSeleccionados;
+            var periodosSeleccionados = [];
+            var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                periodosSeleccionados.push($(this).val());
+            });
+            return periodosSeleccionados;
         }
 
         /**

@@ -486,6 +486,8 @@
                     });
                 }
             });
+            console.log(periodosSeleccionados);
+
         }
 
         function vistaEntrada() {

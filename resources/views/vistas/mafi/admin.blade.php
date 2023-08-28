@@ -3234,7 +3234,7 @@
                 var url, data;
 
                 if (facultadesSeleccionadas.length > 0) {
-                    url = "{{ route('metas.programa')}}",
+                    url = "{{ route('metasTotalFacultad.programa')}}",
                         data = {
                             idfacultad: facultadesSeleccionadas,
                         }

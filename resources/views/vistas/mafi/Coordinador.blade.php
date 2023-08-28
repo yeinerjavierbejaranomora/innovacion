@@ -460,7 +460,6 @@
          * Método que trae los periodos activos
          */
         function periodos() {
-            console.log(programasSeleccionados);
             var datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -493,7 +492,6 @@
             periodosSeleccionados.forEach(function(periodo, index, array) {
                 array[index] = '2023' + periodo;
             });
-            console.log(periodosSeleccionados);
         }
 
         function vistaEntrada() {
@@ -638,7 +636,10 @@
         $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             Contador();
-            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados = getPeriodos();
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
             if (periodosSeleccionados.length > 0) {
                 if ($('#programas input[type="checkbox"]:checked').length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos == totalPeriodos) {

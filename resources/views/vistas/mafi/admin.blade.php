@@ -706,7 +706,7 @@
                         });
                         estadoUsuarioPrograma();
                         $("#colProgramas").addClass("hidden");
-                        $("colMetas").addClass("hidden");
+                        $("#colMetas").addClass("hidden");
                         graficosporPrograma(programasSeleccionados, periodosSeleccionados);
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {

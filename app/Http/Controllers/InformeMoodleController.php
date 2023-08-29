@@ -249,6 +249,28 @@ class InformeMoodleController extends Controller
             ->groupBy('nombreCurso')
             ->get();
 
+        $contAlto = 0;
+        $contBajo = 0;
+        $contMedio = 0;
+        
+
+        foreach($totalRiesgo as $total){
+            if($total->ALTO = 1){
+                $contAlto += 1;
+            }
+            if($total->BAJO = 1){
+                $contBajo += 1;
+            }
+            if($total->MEDIO = 1){
+                $contMedio += 1;
+            }
+        }
+
+        $cursosRiesgo = [
+            'ALTO' => $contAlto,
+            'BAJO' => $contBajo,
+            'MEDIO' => $contMedio,
+        ];
 
         foreach ($riesgos as $riesgo) {
             $aux = $riesgo->Riesgo;
@@ -388,7 +410,7 @@ class InformeMoodleController extends Controller
             'alto' => $alto,
             'medio' => $medio,
             'bajo' => $bajo,
-            'total' => $totalRiesgo,
+            'total' => $cursosRiesgo,
             'notas' => $definitivas,
         );
 

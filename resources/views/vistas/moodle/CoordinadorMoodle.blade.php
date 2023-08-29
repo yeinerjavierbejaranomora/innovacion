@@ -807,7 +807,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto,
+                                        text: data.alto + ' Estudiantes',
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -854,7 +854,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.medio,
+                                        text: data.medio + ' Estudiantes',
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -901,7 +901,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.bajo,
+                                        text: data.bajo + ' Estudiantes',
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

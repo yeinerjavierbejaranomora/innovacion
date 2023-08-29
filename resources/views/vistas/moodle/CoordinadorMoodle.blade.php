@@ -216,7 +216,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 text-start mt-3">
+                                    <div class="col-4 text-start">
                                         <div class="card shadow mb-5" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5><strong>Seleccionar Programas</strong></h5>
@@ -228,7 +228,7 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
+                                            <div class="card-footer text-end" style="height: 55px;">
                                                 <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
                                                 <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                                             </div>

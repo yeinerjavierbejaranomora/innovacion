@@ -256,13 +256,13 @@ class InformeMoodleController extends Controller
 
         foreach($totalRiesgo as $total){
             
-            if($total->ALTO == 1){
+            if($total->ALTO >= 1){
                 $contAlto += 1;
             }
-            if($total->BAJO == 1){
+            if($total->BAJO >= 1){
                 $contBajo += 1;
             }
-            if($total->MEDIO == 1){
+            if($total->MEDIO >= 1){
                 $contMedio += 1;
             }
         }

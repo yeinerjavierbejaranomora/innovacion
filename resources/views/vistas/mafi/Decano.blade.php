@@ -528,7 +528,6 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
-                console.log(periodosSeleccionados);
             }
 
             function getPeriodos() {
@@ -537,6 +536,11 @@
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
+
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
+
                 return periodosSeleccionados;
             }
 
@@ -800,8 +804,8 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -873,7 +877,7 @@
              */
 
             function graficoEstudiantesPorFacultades(facultades) {
-
+                console.log(periodosSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -920,6 +920,10 @@
                 dataTable(riesgo);
             });
 
+
+            var chartRiesgoIngreso;
+            var chartRiesgoNotas;
+
             function dataTable(riesgo) {
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");

@@ -247,7 +247,7 @@ class InformeMoodleController extends Controller
             COALESCE(SUM(CASE WHEN Riesgo = 'BAJO' THEN 1 ELSE 0 END), 0) AS BAJO,
             COALESCE(SUM(CASE WHEN Riesgo = 'MEDIO' THEN 1 ELSE 0 END), 0) AS MEDIO"))
             ->groupBy('nombreCurso')          
-            ->get();
+            ->first();
 
 
         foreach ($riesgos as $riesgo) {

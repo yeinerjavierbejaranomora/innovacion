@@ -1137,6 +1137,7 @@
                         var valores = [];
                         var colores = [];
                         var valor;
+                        console.log(Object.keys(data.data.notas));
                         Object.keys(data.data.notas).forEach(curso => {
                             labels.push(curso);
                             const valor = parseFloat(data.data.notas[curso]);
@@ -1151,7 +1152,7 @@
                                 colores.push('rgba(0, 255, 0, 0.8)');
                             }
                         });
-                         console.log(labels);
+                    
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 

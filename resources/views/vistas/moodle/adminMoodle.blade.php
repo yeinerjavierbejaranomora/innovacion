@@ -712,8 +712,8 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
+                console.log(periodosSeleccionados);
                 if (periodosSeleccionados.length > 0) {
-                    console.log(periodosSeleccionados);
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];

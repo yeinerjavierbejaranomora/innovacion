@@ -429,7 +429,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row text-center mt-4 mb-4 center-chart">
+                        <div class="row text-center mt-4 mb-4 ">
                             <div class="col-lg-8">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
@@ -437,7 +437,7 @@
                         </div>
                         <div class="row text-center mt-4 center-chart">
                             <div class="col-lg-8" style="height: 500px;">
-                                <canvas id="riesgoNotas"></canvas>
+                                <canvas id="riesgoNotas" class="center-chart"></canvas>
                             </div>
                         </div>
                     </div>

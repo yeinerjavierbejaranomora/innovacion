@@ -769,6 +769,10 @@
                 $("#mensaje").empty();
 
                 var periodosArray = Object.values(periodos);
+                var periodosFormateados = periodosArray.map(function(periodo) {
+                    return periodo.replace(/2023/, '').trim();
+                }).join(' - ');
+
 
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);

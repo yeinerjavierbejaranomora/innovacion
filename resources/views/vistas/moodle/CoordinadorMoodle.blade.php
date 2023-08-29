@@ -448,7 +448,8 @@
             periodos();
             getPeriodos();
             riesgo();
-
+            estadoUsuarioPeriodos();
+            
             var totalSeleccionado;
             var totalPeriodos;
 
@@ -540,6 +541,22 @@
                 });
                 return periodosSeleccionados;
             }
+
+            function estadoUsuarioPeriodos(){
+                if($('#Continua').html()) {
+                    $('#Continua').html('No hay periodos')
+                }
+                if($('#Pregrado').html()) {
+                    $('#Continua').html('No hay periodos')
+                }
+                if($('#Esp').html()) {
+                    $('#Continua').html('No hay periodos')
+                }
+                if($('#Maestria').html()) {
+                    $('#Continua').html('No hay periodos')
+                }
+            }
+
 
             $('#deshacerPeriodos').on('click', function(e) {
                 $('#periodos input[type="checkbox"]').prop('checked', false);

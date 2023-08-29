@@ -1061,8 +1061,8 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        console.log(data);
                         data = jQuery.parseJSON(data);
+                        console.log(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;
                         var medio = data.data.medio;

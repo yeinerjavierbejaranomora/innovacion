@@ -44,7 +44,7 @@
         border-radius: 10px;
         font-weight: 800;
         place-items: center;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     #botonModalTiposEstudiantes,

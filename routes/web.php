@@ -377,7 +377,7 @@ Route::controller(facultadController::class)->group(function () {
     /** Ruta para traer periodos activos*/
     Route::post('/home/programasActivos', 'programasActivos')->name('programas.activos');
     /** Ruta para traer periodos activos de un programa */
-    Route::post('/home/programasActivos', 'periodosActivosPrograma')->name('periodosPrograma.activos');
+    Route::post('/home/periodosProgramasActivos', 'periodosActivosPrograma')->name('periodosPrograma.activos');
 
 
     /** Ruta para editar los periodos activos*/

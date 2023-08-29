@@ -116,6 +116,8 @@ class InformeMoodleController extends Controller
             ->groupBy('Riesgo', 'dm.Id_Banner')
             ->get();
 
+        dd($riesgos);
+
         $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)

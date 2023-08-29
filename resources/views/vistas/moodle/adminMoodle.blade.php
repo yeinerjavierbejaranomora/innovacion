@@ -725,6 +725,7 @@
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                             var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            console.log('entra');
                             programasSeleccionados = [];
                             facultadesSeleccionadas = [];
                             checkboxesSeleccionados.each(function() {

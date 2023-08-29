@@ -116,11 +116,10 @@
     }
 
     .center-chart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 <!-- Content Wrapper -->

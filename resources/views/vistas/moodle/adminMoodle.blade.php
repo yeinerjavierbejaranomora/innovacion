@@ -116,7 +116,11 @@
         background: #FFFFFF;
     }
 
-
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 </style>
 
@@ -432,13 +436,13 @@
                             </table>
                         </div>
                         <div class="row text-center mt-4 mb-4 center-chart">
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 center-chart">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
                         <div class="row text-center mt-4 center-chart">
-                            <div class="col-lg-8" style="height: 500px;">
+                            <div class="col-lg-8 center-chart" style="height: 500px;">
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>

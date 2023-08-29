@@ -283,7 +283,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center" style="height: 55px; col-8">
+                        <div class="text-center col-8" style="height: 55px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>

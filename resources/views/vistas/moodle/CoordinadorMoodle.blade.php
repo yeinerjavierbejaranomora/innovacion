@@ -186,7 +186,7 @@
                         <div class="text-start">
                             <!--Accordion-->
                             <div id="periodos">
-                                <div class="row">
+                                <div class="row mb-2">
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">

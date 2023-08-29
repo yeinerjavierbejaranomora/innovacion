@@ -266,7 +266,6 @@ class InformeMoodleController extends Controller
                 $contMedio += 1;
             }
         }
-        dd($totalRiesgo, $contAlto, $contMedio, $contBajo);
         $cursosRiesgo = [
             'ALTO' => $contAlto,
             'BAJO' => $contBajo,

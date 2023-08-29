@@ -547,14 +547,14 @@
                     $('#Continua').html('No hay periodos')
                 }
                 if($('#Pregrado').html()=="") {
-                    $('#Continua').html('No hay periodos')
+                    $('#Pregrado').html('No hay periodos')
                 }
                 if($('#Esp').is(':empty')) {
                     console.log('entra');
-                    $('#Continua').html('No hay periodos')
+                    $('#Esp').html('No hay periodos')
                 }
                 if($('#Maestria').is(':empty')) {
-                    $('#Continua').html('No hay periodos')
+                    $('#Maestria').html('No hay periodos')
                 }
             }
 

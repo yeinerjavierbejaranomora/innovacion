@@ -243,11 +243,11 @@ class InformeMoodleController extends Controller
 
         $totalRiesgo = DB::table('datos_moodle')
             ->where('Id_Banner', $idBanner)
-            ->groupBy('nombreCurso')          
             ->select(DB::raw("COALESCE(SUM(CASE WHEN Riesgo = 'ALTO' THEN 1 ELSE 0 END), 0) AS ALTO,
-                      COALESCE(SUM(CASE WHEN Riesgo = 'BAJO' THEN 1 ELSE 0 END), 0) AS BAJO,
-                      COALESCE(SUM(CASE WHEN Riesgo = 'MEDIO' THEN 1 ELSE 0 END), 0) AS MEDIO"))
-            ->first();
+            COALESCE(SUM(CASE WHEN Riesgo = 'BAJO' THEN 1 ELSE 0 END), 0) AS BAJO,
+            COALESCE(SUM(CASE WHEN Riesgo = 'MEDIO' THEN 1 ELSE 0 END), 0) AS MEDIO"))
+            ->groupBy('nombreCurso')          
+            ->get();
 
 
         foreach ($riesgos as $riesgo) {

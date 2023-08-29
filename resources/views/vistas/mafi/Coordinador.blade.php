@@ -43,7 +43,7 @@
         border-radius: 10px;
         font-weight: 800;
         place-items: center;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     #botonModalTiposEstudiantes,
@@ -117,6 +117,7 @@
     #seccion {
         background: #FFFFFF;
     }
+
 </style>
 
 <!-- Content Wrapper -->
@@ -178,7 +179,7 @@
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-3">
                     <div class="card-body" id="cardNivel">
-                        <div class="text-center">
+                        <div class="text-center col-8">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                         </div>
                         <div class="text-start">

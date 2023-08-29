@@ -616,7 +616,6 @@
                 });
             }
 
-
             function getPeriodos() {
                 var periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');

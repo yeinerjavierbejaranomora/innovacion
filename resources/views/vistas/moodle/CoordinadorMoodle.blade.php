@@ -992,6 +992,245 @@
                 });
             }
 
+            function dataAlumno(id) {
+                limpiarModal();
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('moodle.data') }}",
+                    data: {
+                        idBanner: id
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        var primerArray;
+                        if (data.data) {
+                            primerArray = data.data[0];
+                        } else {
+                            var data = jQuery.parseJSON(data);
+                            primerArray = data.data[0];
+                        }
+                        /** Primera Card */
+                        $('#tituloEstudiante strong').append('Datos estudiante: ' + primerArray.Nombre + ' ' + primerArray.Apellido + ' - ' + primerArray.Id_Banner);
+                        $('#nombreModal').append('<strong>' + primerArray.Nombre + ' ' + primerArray.Apellido + '</strong>');
+                        $('#idModal').append('<strong>' + primerArray.Id_Banner + '</strong>');
+                        $('#facultadModal').append('<strong>' + primerArray.Facultad + '</strong>');
+                        $('#programaModal').append('<strong>' + primerArray.Programa + '</strong>');
+
+                        /** Segunda Card */
+                        $('#documentoModal').append('<strong>Documento de identidad: </strong>' + primerArray.No_Documento);
+                        $('#correoModal').append('<strong>Correo institucional: </strong>' + primerArray.Email);
+                        $('#selloModal').append('<strong>Sello financiero: </strong>' + primerArray.Sello);
+                        $('#estadoModal').append('<strong>Estado: </strong>' + primerArray.Estado_Banner);
+                        $('#tipoModal').append('<strong>Tipo estudiante: </strong>' + primerArray.Tipo_Estudiante);
+                        $('#autorizadoModal').append('<strong>Autorizado: </strong>' + primerArray.Autorizado_ASP);
+                        $('#operadorModal').append('<strong>Autorizado: </strong>' + primerArray.Operador);
+                        $('#convenioModal').append('<strong>Convenio: </strong>' + primerArray.Convenio);
+
+                        data.data.forEach(dato => {
+                            $("#tabla tbody").append(`<tr>
+                            <td>${dato.Nombrecurso} </td>
+                            <td>${dato.Total_Actividades} </td>
+                            <td>${dato.Actividades_Por_Calificar} </td>
+                            <td>${dato.Cuestionarios_Intentos_Realizados} </td>
+                            <td>${dato.Primer_Corte} </td>
+                            <td>${dato.Segundo_Corte} </td>
+                            <td>${dato.Tercer_Corte} </td>
+                            <td>${dato.Nota_Acumulada} </td>
+                            <tr>`)
+                        });
+                    }
+                });
+
+                graficosModal(id);
+            }
+
+            /**
+             * Método que grafica los datos en el Modal
+             */
+            function graficosModal(id) {
+                var charts = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('moodle.riesgo.asistencia') }}",
+                    data: {
+                        idBanner: id
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        data = jQuery.parseJSON(data);
+                        var ctx = document.getElementById('riesgoIngreso').getContext('2d');
+                        var alto = data.data.alto;
+                        var medio = data.data.medio;
+                        var bajo = data.data.bajo;
+
+                        var valoralto = data.data.total.ALTO;
+                        var valorbajo = data.data.total.BAJO;
+                        var valormedio = data.data.total.MEDIO;
+
+                        chartRiesgoIngreso = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Bajo', 'Medio', 'Alto'],
+                                datasets: [{
+                                    data: [valoralto, valormedio, valorbajo],
+                                    backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
+                                    borderWidth: 1,
+                                    cutout: '70%',
+                                    circumference: 180,
+                                    rotation: 270,
+                                }, ],
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                cutoutPercentage: 50,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold',
+                                            size: 18,
+                                        },
+                                        formatter: (value, ctx) => {
+                                            return value != 0 ? value.toString() : '';
+                                        },
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'right',
+                                        align: 'center',
+                                        labels: {
+                                            padding: 10,
+                                        }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Riesgo por ingreso',
+                                        color: 'black',
+                                        position: 'top',
+                                        font: {
+                                            size: 15,
+                                        },
+                                    },
+                                    tooltip: {
+                                        enabled: false
+                                    },
+                                    layout: {
+                                        padding: {
+                                            bottom: 10,
+                                        },
+                                        margin: {
+                                            bottom: 10,
+                                        },
+                                    },
+                                },
+
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+
+                        var labels = [];
+                        var valores = [];
+                        var colores = [];
+                        var valor;
+                        Object.keys(data.data.notas).forEach(curso => {
+                            labels.push(curso);
+                            const valor = parseFloat(data.data.notas[curso]);
+                            valores.push(valor);
+                            if (valor < 3) {
+                                colores.push('rgba(255, 0, 0, 0.8)');
+                            }
+                            if (valor >= 3 && valor <= 3.5) {
+                                colores.push('rgba(220, 205, 48, 1)');
+                            }
+                            if (valor > 3.5) {
+                                colores.push('rgba(0, 255, 0, 0.8)');
+                            }
+                        });
+
+                        ctx = document.getElementById('riesgoNotas').getContext('2d');
+                        const dataArray = Object.values(data.data.notas);
+
+                        chartRiesgoNotas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Riesgo según notas',
+                                    data: valores.map(value => value == "Sin Actividad" ? value : parseFloat(value)),
+                                    backgroundColor: colores,
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                        formatter: value => {
+                                            if (value === "Sin Actividad") {
+                                                return value;
+                                            } else {
+                                                return value.toFixed(1);
+                                            }
+                                        }
+                                    }
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: 5,
+
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Riesgo por nota acumulada',
+                                        color: 'black',
+                                        position: 'top',
+                                        font: {
+                                            size: 15,
+                                        },
+                                    }
+
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    }
+                });
+
+            }
+
+            /**
+             * Método para limpiar información del Modal
+             */
+            function limpiarModal() {
+                $('#tituloEstudiante strong, #nombreModal, #idModal, #facultadModal, #programaModal, #documentoModal, #correoModal, #selloModal, #estadoModal, #tipoModal, #autorizadoModal, #operadorModal, #convenioModal, #tabla tbody').empty();
+
+                if (chartRiesgoIngreso && chartRiesgoNotas) {
+                    [chartRiesgoIngreso, chartRiesgoNotas].forEach(chart => chart.destroy());
+                }
+
+            }
+
             function destruirTabla() {
                 $('#colTabla').addClass("hidden")
                 if ($.fn.DataTable.isDataTable('#datatable')) {

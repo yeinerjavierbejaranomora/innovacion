@@ -168,6 +168,7 @@
 
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
+                
                 <!--Columna Niveles de Formación-->
                 <div class="col-8 text-start mt-3">
                     <div class="card-body mb-3" id="cardNivel">

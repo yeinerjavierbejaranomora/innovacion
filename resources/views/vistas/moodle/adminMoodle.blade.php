@@ -44,7 +44,7 @@
         border-radius: 10px;
         font-weight: 800;
         place-items: center;
-        font-size: 11;
+        font-size: 11px;
     }
 
     .botonModal {
@@ -236,8 +236,8 @@
                                                 <div name="facultades" id="facultades"></div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
-                                                <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
+                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
+                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
                                     </div>
@@ -296,15 +296,15 @@
                                                 <div name="programas" id="programas"></div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center" style="height: 55px;">
+                        <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>

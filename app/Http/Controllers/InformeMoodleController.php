@@ -320,7 +320,7 @@ class InformeMoodleController extends Controller
             if ($nota1 != 0 && $nota2 != 0 && $nota3 != 0 && !in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
                 $definitivas[$nombre] = $notaAcum;
             } else {
-                if ($nota1 == 0 && $nota2 == 0 && $nota3 == 0 && in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
+                if ($nota1 == 0 && $nota2 == 0 && $nota3 == 0 || in_array("Sin Actividad", [$nota1, $nota2, $nota3])) {
                     $definitivas[$nombre] = $notaAcum;
                 } else {
                     if ($duracion == "8 SEMANAS") {

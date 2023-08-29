@@ -176,7 +176,7 @@
             <div class="row justify-content-start mb-3" id="seccion">
 
                 <!--Columna Niveles de Formación-->
-                <div class="col-12 text-start mt-3">
+                <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
                         <div class="text-center col-8">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>

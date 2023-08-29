@@ -165,7 +165,7 @@
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
                 <!--Columna Niveles de Formación-->
-                <div class="col-8 text-start mt-3">
+                <div class="col-12 text-start mt-3">
                     <div class="card-body mb-3" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
@@ -174,7 +174,7 @@
                             <!--Accordion-->
                             <div id="periodos">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
@@ -196,7 +196,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
                                             <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -213,6 +213,25 @@
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
                                                 <div class="card-body" style="width:100%;" id="Pregrado"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start mt-3">
+                                        <br>
+                                        <div class="card shadow mb-5" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas">
+                                                    @foreach ($programas as $programa)
+                                                    <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>
@@ -272,25 +291,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 text-start mt-3">
-                    <br>
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                            <div name="programas" id="programas">
-                                @foreach ($programas as $programa)
-                                <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row text-center justify-content-center">
@@ -542,18 +543,18 @@
                 return periodosSeleccionados;
             }
 
-            function estadoUsuarioPeriodos(){
-                if(($('#Continua').text()).trim() == '') {
+            function estadoUsuarioPeriodos() {
+                if (($('#Continua').text()).trim() == '') {
                     $('#Continua').html('No hay periodos')
                 }
-                if(($('#Pregrado').text()).trim() == '') {
+                if (($('#Pregrado').text()).trim() == '') {
                     $('#Pregrado').html('No hay periodos')
                 }
-                if(($('#Esp').text()).trim() == '') {
+                if (($('#Esp').text()).trim() == '') {
                     console.log('entra');
                     $('#Esp').html('No hay periodos')
                 }
-                if(($('#Maestria').text()).trim() == '') {
+                if (($('#Maestria').text()).trim() == '') {
                     $('#Maestria').html('No hay periodos')
                 }
             }
@@ -929,10 +930,10 @@
             $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
                 var riesgo = $(this).data('value');
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
-                        programasSeleccionados = [];
-                        checkboxesProgramas.each(function() {
-                            programasSeleccionados.push($(this).val());
-                        });
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
                 dataTable(riesgo);
             });
 
@@ -943,11 +944,11 @@
             function dataTable(riesgo) {
                 destruirTabla();
                 $('#colTabla').removeClass("hidden");
-                    var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    }
+                var url = "{{ route('moodle.estudiantes.programa', ['riesgo' => ' ']) }}" + riesgo;
+                data = {
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                }
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1171,7 +1172,7 @@
                                 colores.push('rgba(0, 255, 0, 0.8)');
                             }
                         });
-                    
+
 
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);

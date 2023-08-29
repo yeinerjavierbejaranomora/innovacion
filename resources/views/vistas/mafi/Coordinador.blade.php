@@ -173,7 +173,7 @@
             </div>
             <br>
 
-            <!-- Checkbox Facultades -->
+            <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-3">
@@ -184,7 +184,7 @@
                         <div class="text-start">
                             <!--Accordion-->
                             <div id="periodos">
-                                <div class="row">
+                                <div class="row mb-2">
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
@@ -294,13 +294,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center col-8" style="height: 55px;">
+                        <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
@@ -534,7 +533,7 @@
                 return periodosSeleccionados;
             }
 
-            
+
 
             /**
              * Método que trae los gráficos de la vista

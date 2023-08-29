@@ -183,7 +183,6 @@
                         </div>
                         <div class="text-start">
                             <!--Accordion-->
-                            <div id="periodos">
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
@@ -302,7 +301,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
@@ -575,7 +573,7 @@
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
 
-            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades, #Continua, #Pregrado, #Esp, #Maestria input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();

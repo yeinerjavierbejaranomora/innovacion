@@ -314,7 +314,7 @@
         </div>
 
 
-        <div class="text-center">
+        <div class="text-center mt-5 mb-4">
             <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
         </div>
 

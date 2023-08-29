@@ -118,10 +118,6 @@
     }
 </style>
 
-@foreach ($facultades as $facultad)
-<label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
-@endforeach
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <!-- Content Wrapper -->
@@ -177,7 +173,7 @@
                         </div>
                         <div class="text-start">
                             <div id="periodos">
-                            <!--Accordion-->
+                                <!--Accordion-->
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
@@ -224,7 +220,11 @@
                                                 <h5><strong>Seleccionar Facultades</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" id="facultades"></div>
+                                                <div name="facultades" id="facultades">
+                                                    @foreach ($facultades as $facultad)
+                                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
                                                 <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
@@ -291,8 +291,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                        </div>
+
+                            </div>
                         </div>
                         <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>

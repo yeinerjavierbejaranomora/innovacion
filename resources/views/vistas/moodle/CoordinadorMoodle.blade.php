@@ -543,17 +543,17 @@
             }
 
             function estadoUsuarioPeriodos(){
-                if($('#Continua').is(':empty')) {
+                if(($('#Continua').text()).trim() == '') {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Pregrado').is(':empty')) {
+                if(($('#Pregrado').text()).trim() == '') {
                     $('#Pregrado').html('No hay periodos')
                 }
                 if(($('#Esp').text()).trim() == '') {
                     console.log('entra');
                     $('#Esp').html('No hay periodos')
                 }
-                if($('#Maestria').is(':empty')) {
+                if(($('#Maestria').text()).trim() == '') {
                     $('#Maestria').html('No hay periodos')
                 }
             }

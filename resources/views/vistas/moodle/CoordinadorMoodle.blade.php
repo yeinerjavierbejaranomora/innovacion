@@ -166,7 +166,7 @@
             <div class="row justify-content-start mb-3" id="seccion">
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-3">
-                    <div class="card-body mb-3" id="cardNivel">
+                    <div class="card-body" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                         </div>
@@ -177,7 +177,7 @@
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Formación continua
@@ -199,7 +199,7 @@
                                     <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Pregrado
@@ -217,7 +217,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card shadow mb-5" id="cardProgramas">
+                                        <div class="card shadow" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>

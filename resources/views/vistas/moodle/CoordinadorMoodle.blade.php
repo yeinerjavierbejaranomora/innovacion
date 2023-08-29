@@ -228,9 +228,9 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-                                            <div class="card-footer text-end" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                                            <div class="card-footer text-end row" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-4">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-4">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>

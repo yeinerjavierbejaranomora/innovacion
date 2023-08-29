@@ -248,6 +248,8 @@ class InformeMoodleController extends Controller
             ->groupBy('nombreCurso')          
             ->first();
 
+            dd($totalRiesgo);
+
         foreach ($riesgos as $riesgo) {
             $aux = $riesgo->Riesgo;
             $nombreCurso = $riesgo->Nombrecurso;

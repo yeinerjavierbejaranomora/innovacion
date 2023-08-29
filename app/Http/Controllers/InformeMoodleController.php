@@ -48,39 +48,40 @@ class InformeMoodleController extends Controller
 
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-        $riesgos = DB::table('datos_moodle')
+        $riesgoAlto = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
-            ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))->groupBy('Riesgo')->get();
+            ->where('Riesgo', 'ALTO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('Riesgo')
+            ->get();
+
+        $riesgoMedio = DB::table('datos_moodle')
+            ->whereIn('Facultad', $facultades)
+            ->whereIn('Periodo_Rev', $periodos)
+            ->where('Riesgo', 'MEDIO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('Riesgo')
+            ->get();    
+
+        $riesgoBajo = DB::table('datos_moodle')
+            ->whereIn('Facultad', $facultades)
+            ->whereIn('Periodo_Rev', $periodos)
+            ->where('Riesgo', 'BAJO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('Riesgo')
+            ->get();    
 
         $Total = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))->get();
 
-        $alto = [];
-        $medio = [];
-        $bajo = [];
-        $total = [];
-
-        foreach ($riesgos as $riesgo) {
-            $tipo = $riesgo->Riesgo;
-            $cantidad = $riesgo->TOTAL;
-
-            if ($tipo == 'ALTO') {
-                $alto[] = $cantidad;
-            } elseif ($tipo == 'MEDIO') {
-                $medio[] = $cantidad;
-            } elseif ($tipo == 'BAJO') {
-                $bajo[] = $cantidad;
-            }
-        }
-
         $datos = array(
-            'alto' => $alto,
-            'medio' => $medio,
-            'bajo' => $bajo,
-            'total' => $Total[0]->TOTAL
+                'alto' => $riesgoAlto[0]->TOTAL,
+                'medio' => $riesgoMedio[0]->TOTAL,
+                'bajo' => $riesgoBajo[0]->TOTAL,
+                'total' => $Total[0]->TOTAL
         );
         return $datos;
     }

@@ -440,7 +440,6 @@
         $(document).ready(function() {
 
             var tabla = <?php echo json_encode($tabla); ?>;
-            console.log(tabla);
             programasUsuario();
             Contador();
             vistaEntrada();
@@ -495,7 +494,6 @@
                     method: 'post',
                     async: false,
                     success: function(datos) {
-                        console.log(datos);
                         datos.forEach(periodo => {
                             periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
@@ -932,7 +930,6 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                    console.log(data);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1154,7 +1151,7 @@
                                 colores.push('rgba(0, 255, 0, 0.8)');
                             }
                         });
-
+                         console.log(labels);
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 

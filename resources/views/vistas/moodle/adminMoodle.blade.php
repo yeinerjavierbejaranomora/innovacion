@@ -435,17 +435,19 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row text-center mt-4 center-chart">
+                            <div class="col-lg-8 center-chart" style="height: 500px;">
+                                <canvas id="riesgoNotas"></canvas>
+                            </div>
+                        </div>
+                        
                         <div class="row text-center mt-4 mb-4 center-chart">
                             <div class="col-lg-8 center-chart">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
-                        <div class="row text-center mt-4 center-chart">
-                            <div class="col-lg-8 center-chart" style="height: 500px;">
-                                <canvas id="riesgoNotas"></canvas>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>

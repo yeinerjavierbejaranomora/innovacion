@@ -28,16 +28,31 @@ class InformeMoodleController extends Controller
     public function riesgo()
     {
 
-        $riesgoAlto = DB::table('datos_moodle')->where('dm.Riesgo', 'ALTO')->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')->groupBy('Riesgo')->get();
-        $riesgoMedio = DB::table('datos_moodle')->where('dm.Riesgo', 'MEDIO')->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')->groupBy('Riesgo')->get();
-        $riesgoBajo = DB::table('datos_moodle')->where('dm.Riesgo', 'BAJO')->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')->groupBy('Riesgo')->get();
+        $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
+        
+        $alto = [];
+        $medio = [];
+        $bajo = [];
+
+        foreach ($riesgos as $key){
+            $riesgo = $key->Riesgo;
+            if($riesgo == 'ALTO'){
+                $alto[] = $key->TOTAL;
+            }
+            if($riesgo == 'MEDIO'){
+                $medio[] = $key->TOTAL;
+            }
+            if($riesgo == 'BAJO'){
+                $bajo[] = $key->TOTAL;
+            }
+        }
         
         $Total = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL')->get();
 
         $datos = array(
-            'alto' => $riesgoAlto[0]->TOTAL,
-            'medio' => $riesgoMedio[0]->TOTAL,
-            'bajo' => $riesgoBajo[0]->TOTAL,
+            'alto' => $alto,
+            'medio' => $medio,
+            'bajo' => $bajo,
             'total' => $Total[0]->TOTAL
         );
         return $datos;

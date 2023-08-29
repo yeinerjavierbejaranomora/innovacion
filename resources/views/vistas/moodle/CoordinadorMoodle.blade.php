@@ -550,6 +550,7 @@
                     $('#Continua').html('No hay periodos')
                 }
                 if($('#Esp').is(':empty')) {
+                    console.log('entra');
                     $('#Continua').html('No hay periodos')
                 }
                 if($('#Maestria').is(':empty')) {

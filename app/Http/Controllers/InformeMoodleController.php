@@ -223,7 +223,9 @@ class InformeMoodleController extends Controller
     function dataAlumno(Request $request)
     {
         $idBanner = $request->input('idBanner');
-        $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')->get();
+        $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')
+        ->groupBy('Nombrecurso')
+        ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));
     }
@@ -273,7 +275,7 @@ class InformeMoodleController extends Controller
             ->where('Id_Banner', $idBanner)
             ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, 
             Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
-            ->groupBy('nombreCurso')
+            ->groupBy('nombreCurso', 'Nota_Acumulada', 'Primer_Corte', 'Segundo_Corte', 'Tercer_Corte', 'FechaInicio', 'Duracion_8_16_Semanas')
             ->get();
 
         $fechaActual = date("d-m-Y");

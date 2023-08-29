@@ -44,7 +44,7 @@
         border-radius: 10px;
         font-weight: 800;
         place-items: center;
-        font-size: 12px;
+        font-size: 11;
     }
 
     .botonModal {
@@ -112,7 +112,7 @@
         height: 600px !important;
     }
 
-    #seccion{
+    #seccion {
         background: #FFFFFF;
     }
 
@@ -121,7 +121,6 @@
         justify-content: center;
         align-items: center;
     }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -175,9 +174,9 @@
 
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
-                
+
                 <!--Columna Niveles de Formación-->
-                <div class="col-8 text-start mt-3">
+                <div class="col-12 text-start mt-3">
                     <div class="card-body mb-3" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
@@ -185,8 +184,8 @@
                         <div class="text-start">
                             <!--Accordion-->
                             <div id="periodos">
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class="row mb-3">
+                                    <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
@@ -208,7 +207,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
                                             <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -228,9 +227,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card" id="cardFacultades">
+                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                                <div name="facultades" id="facultades"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
+                                                <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
                                             <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
@@ -252,7 +265,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
                                             <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -274,6 +287,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -284,37 +311,10 @@
                     </div>
                 </div>
 
-                <div class="col-4 text-start mt-5">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
-                        </div>
-                        <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                            <div name="facultades" id="facultades"></div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
-                            <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
-                        </div>
-                    </div>
-
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row text-center justify-content-center">
-            <button class="btn button-informe" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
@@ -440,14 +440,14 @@
                                 <canvas id="riesgoNotas"></canvas>
                             </div>
                         </div>
-                        
+
                         <div class="row text-center mt-4 mb-4 center-chart">
                             <div class="col-lg-8 center-chart">
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
 
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -585,7 +585,7 @@
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
 
-            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() { 
+            $('body').on('change', '#facultades input[type="checkbox"], #periodos input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
@@ -721,7 +721,7 @@
                 periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
-                });      
+                });
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

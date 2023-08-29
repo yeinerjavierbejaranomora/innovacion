@@ -47,7 +47,7 @@ class InformeMoodleController extends Controller
             }
         }
         
-        $Total = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL')->get();
+        $Total = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL')->get();
 
         $datos = array(
             'alto' => $alto,

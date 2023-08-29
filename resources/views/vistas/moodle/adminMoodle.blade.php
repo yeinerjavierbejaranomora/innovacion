@@ -713,12 +713,14 @@
                     array[index] = '2023' + periodo;
                 });
                 if (periodosSeleccionados.length > 0) {
+                    console.log(totalProgramas);
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
+                        console.log('entra');
                         estadoUsuarioPrograma();
                         riesgo();
                     } else {
@@ -771,9 +773,6 @@
                 $("#mensaje").empty();
 
                 var periodosArray = Object.values(periodos);
-                var periodosFormateados = periodosArray.map(function(periodo) {
-                    return periodo.replace(/2023/, '').trim();
-                }).join(' - ');
 
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
@@ -784,7 +783,7 @@
                     var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
                     $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + programasSeleccionados);
                 }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $('.tituloPeriodo strong').append('Periodo: ' + periodosArray);
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
 

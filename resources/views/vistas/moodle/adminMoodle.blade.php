@@ -199,7 +199,6 @@
                                                     </div>
                                                 </h5>
                                             </div>
-
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
@@ -257,9 +256,7 @@
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Esp">
-
-                                                </div>
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
                                             </div>
                                         </div>
                                     </div>

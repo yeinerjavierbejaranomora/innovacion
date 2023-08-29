@@ -699,11 +699,13 @@
         });
 
         $('#deshacerPeriodos').on('click', function(e) {
-            $('#periodos input[type="checkbox"]').prop('checked', false);
+                $('.periodos input[type="checkbox"]').prop('checked', false);
+                $('.todos').prop('checked', false);
         });
 
         $('#seleccionarPeriodos').on('click', function(e) {
-            $('#periodos input[type="checkbox"]').prop('checked', true);
+                $('.periodos input[type="checkbox"]').prop('checked', true);
+                $('.todos').prop('checked', true);
         });
 
         $('#deshacerFacultades').on('click', function(e) {

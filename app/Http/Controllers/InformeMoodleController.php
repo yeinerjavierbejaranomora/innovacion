@@ -63,29 +63,13 @@ class InformeMoodleController extends Controller
 
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
-        $riesgoAlto = DB::table('datos_moodle')
+        $riesgo = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
-            ->where('Riesgo', 'ALTO')
-            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')
             ->groupBy('Riesgo')
             ->get();
-
-        $riesgoMedio = DB::table('datos_moodle')
-            ->whereIn('Facultad', $facultades)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->where('Riesgo', 'MEDIO')
-            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
-            ->groupBy('Riesgo')
-            ->get();    
-
-        $riesgoBajo = DB::table('datos_moodle')
-            ->whereIn('Facultad', $facultades)
-            ->whereIn('Periodo_Rev', $periodos)
-            ->where('Riesgo', 'BAJO')
-            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
-            ->groupBy('Riesgo')
-            ->get();    
+    
 
         $Total = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
@@ -184,7 +168,7 @@ class InformeMoodleController extends Controller
         $estudiantes = DB::table('datos_moodle')
             ->where('Riesgo', $riesgo)
             ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->groupBy('Id_Banner')
             ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
@@ -200,7 +184,7 @@ class InformeMoodleController extends Controller
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->select('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-            ->groupBy('Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->groupBy('Id_Banner')
             ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));

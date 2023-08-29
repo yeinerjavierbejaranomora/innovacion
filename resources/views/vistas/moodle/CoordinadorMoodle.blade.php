@@ -305,7 +305,7 @@
 
             </div>
 
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center mt-2">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
@@ -314,7 +314,7 @@
         </div>
 
 
-        <div class="text-center mt-5 mb-4">
+        <div class="text-center mt-4 mb-4">
             <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
         </div>
 

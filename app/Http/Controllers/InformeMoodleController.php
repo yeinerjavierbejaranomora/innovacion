@@ -166,10 +166,12 @@ class InformeMoodleController extends Controller
     {
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
-            ->where('Riesgo', $riesgo)
-            ->select('DISTINC Id_Banner', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-            ->groupBy('Id_Banner')
-            ->get();
+        ->select('Id_Banner', 'Riesgo', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+        ->distinct()
+        ->where('Riesgo', $riesgo)
+        ->groupBy('Id_Banner')
+        ->get();
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
     }

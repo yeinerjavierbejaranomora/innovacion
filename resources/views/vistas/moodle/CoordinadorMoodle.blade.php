@@ -549,7 +549,7 @@
                 if($('#Pregrado').html()=="") {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Esp').innerText.length < 1) {
+                if($('#Esp').is(':empty')) {
                     console.log('entra');
                     $('#Continua').html('No hay periodos')
                 }

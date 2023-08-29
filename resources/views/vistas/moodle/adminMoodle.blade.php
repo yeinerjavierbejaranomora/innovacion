@@ -582,6 +582,7 @@
                         formData.append('idfacultad[]', $(this).val());
                     });
 
+                    
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 

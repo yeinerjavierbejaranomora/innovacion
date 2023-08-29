@@ -273,6 +273,7 @@ class InformeMoodleController extends Controller
             ->where('Id_Banner', $idBanner)
             ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, 
             Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
+            ->groupBy('nombreCurso')
             ->get();
 
         $fechaActual = date("d-m-Y");

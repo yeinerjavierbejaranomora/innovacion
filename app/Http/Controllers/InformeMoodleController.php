@@ -214,7 +214,7 @@ class InformeMoodleController extends Controller
             ->whereIn('dm.Periodo_Rev', $periodos)
             ->where('Riesgo', $riesgo)
             ->select('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
-            ->groupBy('dm.Id_Banner', 'dm.Nombre', 'dm.Apellido', 'dm.Facultad', 'dm.Programa')
+            ->groupBy('dm.Id_Banner')
             ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));

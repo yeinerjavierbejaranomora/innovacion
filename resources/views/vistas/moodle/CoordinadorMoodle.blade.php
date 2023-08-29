@@ -114,6 +114,13 @@
     #seccion {
         background: #FFFFFF;
     }
+
+    .center-chart {
+    width: 80%; 
+    margin: 0 auto; 
+    text-align: center;
+  }
+
 </style>
 
 <!-- Content Wrapper -->

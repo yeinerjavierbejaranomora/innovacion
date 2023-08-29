@@ -1061,6 +1061,7 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        console.log(data);
                         data = jQuery.parseJSON(data);
                         var ctx = document.getElementById('riesgoIngreso').getContext('2d');
                         var alto = data.data.alto;
@@ -1153,7 +1154,7 @@
                             }
                         });
                     
-                        
+
                         ctx = document.getElementById('riesgoNotas').getContext('2d');
                         const dataArray = Object.values(data.data.notas);
 

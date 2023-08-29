@@ -154,11 +154,18 @@
                 </div>
             </div>
 
+            <!-- Page Heading -->
+            <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Programas</strong></h1>
+            </div>
             <br>
             <div class="text-center" id="mensaje">
-                <h5>Por defecto se muestran los datos de todas las facultades,
-                    si quieres ver datos en especifico, selecciona alguna en específico.
-                </h5>
+                <h3>A continuación podrás visualizar los datos de tus Programas:
+
+                    @foreach ($programas as $programa)
+                    {{$programa->codprograma}} -
+                    @endforeach
+                </h3>
             </div>
             <br>
 

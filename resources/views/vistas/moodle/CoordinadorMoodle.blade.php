@@ -549,10 +549,10 @@
                 if($('#Pregrado').html()=="") {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Esp').is.empty()) {
+                if($('#Esp').is(':empty')) {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Maestria').html()=="") {
+                if($('#Maestria').is(':empty')) {
                     $('#Continua').html('No hay periodos')
                 }
             }

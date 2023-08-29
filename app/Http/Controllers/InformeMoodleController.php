@@ -255,6 +255,7 @@ class InformeMoodleController extends Controller
         
 
         foreach($totalRiesgo as $total){
+            dd($total);
             if($total->ALTO = 1){
                 $contAlto += 1;
             }

@@ -509,6 +509,7 @@
                     async: false,
                     success: function(data) {
                         data.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -593,11 +594,13 @@
             });
 
             $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
+                $('.periodos input[type="checkbox"]').prop('checked', false);
+                $('.todos').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
+                $('.periodos input[type="checkbox"]').prop('checked', true);
+                $('.todos').prop('checked', true);
             });
 
             function vistaEntrada() {

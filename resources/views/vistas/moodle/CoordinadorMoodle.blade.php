@@ -1099,8 +1099,6 @@
                         var valorbajo = data.data.total.BAJO;
                         var valormedio = data.data.total.MEDIO;
 
-                        console.log(valoralto,valorbajo,valormedio)
-
                         chartRiesgoIngreso = new Chart(ctx, {
                             type: 'doughnut',
                             data: {

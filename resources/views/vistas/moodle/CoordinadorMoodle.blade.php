@@ -230,7 +230,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card shadow" id="cardProgramas">
+                                        <div class="card" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>

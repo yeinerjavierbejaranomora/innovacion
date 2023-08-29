@@ -224,7 +224,7 @@ class InformeMoodleController extends Controller
     {
         $idBanner = $request->input('idBanner');
         $data = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('*')
-        ->groupBy('*')
+        ->groupBy('Nombrecurso')
         ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $data));

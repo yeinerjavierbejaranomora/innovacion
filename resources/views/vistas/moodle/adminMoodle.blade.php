@@ -116,7 +116,7 @@
         background: #FFFFFF;
     }
 
-    
+
 
 </style>
 
@@ -482,7 +482,7 @@
             periodos();
             facultades();
             riesgo();
-
+            estadoUsuarioPeriodos();
 
             function Contador() {
                 totalFacultades = $('#facultades input[type="checkbox"]').length;
@@ -557,6 +557,22 @@
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
+            }
+
+            function estadoUsuarioPeriodos() {
+                if (($('#Continua').text()).trim() == '') {
+                    $('#Continua').html('No hay periodos')
+                }
+                if (($('#Pregrado').text()).trim() == '') {
+                    $('#Pregrado').html('No hay periodos')
+                }
+                if (($('#Esp').text()).trim() == '') {
+                    console.log('entra');
+                    $('#Esp').html('No hay periodos')
+                }
+                if (($('#Maestria').text()).trim() == '') {
+                    $('#Maestria').html('No hay periodos')
+                }
             }
 
             var programasSeleccionados = [];

@@ -174,9 +174,10 @@
             <br>
 
             <!-- Checkbox Facultades -->
-            <div class="row justify-content-center" id="seccion">
-                <div class=" col-8 text-start mt-3">
-                    <div class="card-body mb-3" id="cardNivel">
+            <div class="row justify-content-start mb-3" id="seccion">
+                <!--Columna Niveles de Formación-->
+                <div class="col-12 text-start mt-3">
+                    <div class="card-body" id="cardNivel">
                         <div class="text-center">
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                         </div>
@@ -184,10 +185,10 @@
                             <!--Accordion-->
                             <div id="periodos">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Formación continua
@@ -206,10 +207,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Pregrado
@@ -226,9 +227,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card shadow" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas">
+                                                    @foreach ($programas as $programa)
+                                                    <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-end" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
                                             <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
@@ -250,7 +269,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
                                             <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
@@ -275,30 +294,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center" style="height: 55px;">
+                        <div class="text-center col-8" style="height: 55px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 text-start mt-3" id="colCardProgramas">
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                            <div name="programas" id="programas">
-                                @foreach ($programas as $programa)
-                                <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
 
 
@@ -530,6 +533,8 @@
                 });
                 return periodosSeleccionados;
             }
+
+            
 
             /**
              * Método que trae los gráficos de la vista

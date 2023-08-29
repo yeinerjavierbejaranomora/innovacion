@@ -200,7 +200,7 @@
                                             </div>
 
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body checkboxCambio" style="width:100%;" id="Continua">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua">
 
                                                 </div>
                                             </div>
@@ -222,7 +222,7 @@
                                             </div>
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
-                                                <div class="card-body checkboxCambio" style="width:100%;" id="Pregrado"></div>
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                                 <h5><strong>Seleccionar Facultades</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" class="checkboxCambio" id="facultades"></div>
+                                                <div name="facultades" id="facultades"></div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
                                                 <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
@@ -258,7 +258,7 @@
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
-                                                <div class="card-body checkboxCambio" style="width:100%;" id="Esp">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp">
 
                                                 </div>
                                             </div>
@@ -280,7 +280,7 @@
                                             </div>
 
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
-                                                <div class="card-body checkboxCambio" style="width:100%;" id="Maestria">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
 
                                                 </div>
                                             </div>
@@ -573,8 +573,8 @@
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
 
-            $('body').on('change', '.checkboxCambio input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('#periodos input[type="checkbox"]:checked').length) {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -632,11 +632,11 @@
             });
 
             $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
+                $('.periodos input[type="checkbox"]').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
+                $('.periodos input[type="checkbox"]').prop('checked', true);
             });
 
             $('#deshacerFacultades').on('click', function(e) {

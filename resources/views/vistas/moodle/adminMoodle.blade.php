@@ -201,9 +201,7 @@
                                             </div>
 
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Continua">
-
-                                                </div>
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
                                     </div>

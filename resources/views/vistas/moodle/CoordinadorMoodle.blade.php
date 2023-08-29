@@ -1107,7 +1107,7 @@
                                 labels: ['Alto', 'Medio', 'Bajo'],
                                 datasets: [{
                                     data: [valoralto, valormedio, valorbajo],
-                                    backgroundColor: ['rgba(0, 255, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(255, 0, 0, 0.7)'],
+                                    backgroundColor: ['rgba(255, 0, 0, 0.7)', 'rgba(220, 205, 48, 0.7)', 'rgba(0, 255, 0, 0.7)'],
                                     borderWidth: 1,
                                     cutout: '70%',
                                     circumference: 180,

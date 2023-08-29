@@ -192,7 +192,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosContinua" name="todosContinua" checked>
+                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -211,7 +211,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -247,7 +247,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -267,7 +267,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -668,10 +668,12 @@
 
             $('#deshacerPeriodos').on('click', function(e) {
                 $('.periodos input[type="checkbox"]').prop('checked', false);
+                $('.todos').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
                 $('.periodos input[type="checkbox"]').prop('checked', true);
+                $('.todos').prop('checked', true);
             });
 
             $('#deshacerFacultades').on('click', function(e) {

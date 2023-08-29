@@ -182,6 +182,7 @@
                             <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                         </div>
                         <div class="text-start">
+                            <div id="periodos">
                             <!--Accordion-->
                                 <div class="row mb-3">
                                     <div class="col-4">
@@ -301,6 +302,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                        </div>
                         </div>
                         <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>

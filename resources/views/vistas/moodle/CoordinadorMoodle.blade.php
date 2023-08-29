@@ -449,7 +449,7 @@
             getPeriodos();
             riesgo();
             estadoUsuarioPeriodos();
-            
+
             var totalSeleccionado;
             var totalPeriodos;
 
@@ -543,16 +543,16 @@
             }
 
             function estadoUsuarioPeriodos(){
-                if($('#Continua').html()) {
+                if($('#Continua').html()==" ") {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Pregrado').html()) {
+                if($('#Pregrado').html()==" ") {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Esp').html()) {
+                if($('#Esp').html()==" ") {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Maestria').html()) {
+                if($('#Maestria').html()==" ") {
                     $('#Continua').html('No hay periodos')
                 }
             }

@@ -108,43 +108,45 @@ class InformeMoodleController extends Controller
         $programas = $request->input('programa');
         $periodos = $request->input('periodos');
 
-        $riesgos = DB::table('datos_moodle AS dm')
+        $riesgoAlto = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
-            ->select(DB::raw('COUNT(Riesgo) AS TOTAL, Riesgo'))
-            ->groupBy('Riesgo', 'dm.Id_Banner')
+            ->where('dm.Riesgo', 'ALTO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('dm.Riesgo')
             ->get();
+
+        $riesgoMedio = DB::table('datos_moodle AS dm')
+            ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+            ->whereIn('p.codprograma', $programas)
+            ->whereIn('dm.Periodo_Rev', $periodos)
+            ->where('dm.Riesgo', 'MEDIO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('dm.Riesgo')
+            ->get();    
+
+        $riesgoBajo = DB::table('datos_moodle AS dm')
+            ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
+            ->whereIn('p.codprograma', $programas)
+            ->whereIn('dm.Periodo_Rev', $periodos)
+            ->where('dm.Riesgo', 'BAJO')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->groupBy('dm.Riesgo')
+            ->get();    
+
 
         $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
-            ->select(DB::raw('COUNT(Riesgo) AS TOTAL'))
-            ->groupBy('Riesgo', 'dm.Id_Banner')
+            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL')
             ->get();
 
-        $alto = [];
-        $medio = [];
-        $bajo = [];
-
-        foreach ($riesgos as $riesgo) {
-            $tipo = $riesgo->Riesgo;
-            $cantidad = $riesgo->TOTAL;
-
-            if ($tipo == 'ALTO') {
-                $alto[] = $cantidad;
-            } elseif ($tipo == 'MEDIO') {
-                $medio[] = $cantidad;
-            } elseif ($tipo == 'BAJO') {
-                $bajo[] = $cantidad;
-            }
-        }
-
         $datos = array(
-            'alto' => $alto,
-            'medio' => $medio,
-            'bajo' => $bajo,
+            'alto' => $riesgoAlto[0]->TOTAL,
+            'medio' => $riesgoMedio[0]->TOTAL,
+            'bajo' => $riesgoBajo[0]->TOTAL,
             'total' => $Total[0]->TOTAL
         );
         return $datos;
@@ -254,17 +256,17 @@ class InformeMoodleController extends Controller
         $contAlto = 0;
         $contBajo = 0;
         $contMedio = 0;
-        
 
-        foreach($totalRiesgo as $total){
-            
-            if($total->ALTO >= 1){
+
+        foreach ($totalRiesgo as $total) {
+
+            if ($total->ALTO >= 1) {
                 $contAlto += 1;
             }
-            if($total->BAJO >= 1){
+            if ($total->BAJO >= 1) {
                 $contBajo += 1;
             }
-            if($total->MEDIO >= 1){
+            if ($total->MEDIO >= 1) {
                 $contMedio += 1;
             }
         }

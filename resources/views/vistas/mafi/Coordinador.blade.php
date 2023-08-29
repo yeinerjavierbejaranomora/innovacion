@@ -192,7 +192,7 @@
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
-                                                        Formación continua
+                                                        For. continua
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
@@ -202,7 +202,7 @@
                                             </div>
 
                                             <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Continua">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua">
 
                                                 </div>
                                             </div>
@@ -224,7 +224,7 @@
                                             </div>
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Pregrado"></div>
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -264,7 +264,7 @@
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Esp">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp">
 
                                                 </div>
                                             </div>
@@ -286,7 +286,7 @@
                                             </div>
 
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Maestria">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
 
                                                 </div>
                                             </div>
@@ -549,11 +549,11 @@
             }
 
             $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
+                $('.periodos input[type="checkbox"]').prop('checked', false);
             });
 
             $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
+                $('.periodos input[type="checkbox"]').prop('checked', true);
             });
 
             $('#deshacerProgramas').on('click', function(e) {

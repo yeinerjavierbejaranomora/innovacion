@@ -237,7 +237,9 @@ class InformeMoodleController extends Controller
         $bajo = [];
         $medio = [];
         $alto = [];
-        $riesgos = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('Riesgo', 'Nombrecurso')->get();
+        $riesgos = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('Riesgo', 'Nombrecurso')
+        ->grupBy('NOmbrecurso')
+        ->get();
         $totalRiesgo = DB::table('datos_moodle')
             ->where('Id_Banner', $idBanner)
             ->select(DB::raw("COALESCE(SUM(CASE WHEN Riesgo = 'ALTO' THEN 1 ELSE 0 END), 0) AS ALTO,
@@ -275,7 +277,7 @@ class InformeMoodleController extends Controller
             ->where('Id_Banner', $idBanner)
             ->select(DB::raw("TRIM(SUBSTRING_INDEX(Nombrecurso, '(', 1)) AS nombreCurso, 
             Nota_Acumulada, Primer_Corte, Segundo_Corte, Tercer_Corte, FechaInicio, Duracion_8_16_Semanas"))
-            ->groupBy('nombreCurso', 'Nota_Acumulada', 'Primer_Corte', 'Segundo_Corte', 'Tercer_Corte', 'FechaInicio', 'Duracion_8_16_Semanas')
+            ->groupBy('nombreCurso')
             ->get();
 
         $fechaActual = date("d-m-Y");

@@ -543,13 +543,13 @@
             }
 
             function estadoUsuarioPeriodos(){
-                if($('#Continua').html()=="") {
+                if($('#Continua').is(':empty')) {
                     $('#Continua').html('No hay periodos')
                 }
-                if($('#Pregrado').html()=="") {
+                if($('#Pregrado').is(':empty')) {
                     $('#Pregrado').html('No hay periodos')
                 }
-                if($('#Esp').is(':empty')) {
+                if($('#Esp').text().trim() == '/n/n') {
                     console.log('entra');
                     $('#Esp').html('No hay periodos')
                 }

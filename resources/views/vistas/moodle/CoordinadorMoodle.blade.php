@@ -549,7 +549,7 @@
                 if($('#Pregrado').is(':empty')) {
                     $('#Pregrado').html('No hay periodos')
                 }
-                if($('#Esp').text().trim() == '/n/n') {
+                if(($('#Esp').text()).trim() == '') {
                     console.log('entra');
                     $('#Esp').html('No hay periodos')
                 }

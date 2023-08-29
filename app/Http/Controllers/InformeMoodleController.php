@@ -238,7 +238,7 @@ class InformeMoodleController extends Controller
         $medio = [];
         $alto = [];
         $riesgos = DB::table('datos_moodle')->where('Id_Banner', $idBanner)->select('Riesgo', 'Nombrecurso')
-        ->grupBy('NOmbrecurso')
+        ->groupBy('NOmbrecurso')
         ->get();
         $totalRiesgo = DB::table('datos_moodle')
             ->where('Id_Banner', $idBanner)

@@ -1602,7 +1602,6 @@
                     idfacultad: facultades,
                     periodos: periodos
                 },
-
                 success: function(data) {
                     data = jQuery.parseJSON(data);
                     console.log(data);

@@ -1167,11 +1167,8 @@
                 chartTipoEstudiante = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: labels.map(function(label, index) {
-                            if (label.includes("ESTUDIANTE ")) {
-                                label = label.replace(/ESTUDIANTE\S*/i, "");
-                            }
-                            return label;
+                        labels: labels.map(function(label) {
+                            label.autorizado_asistir.replace('ESTUDIANTE ', '');
                         }),
                         datasets: [{
                             label: 'Tipos de estudiantes',

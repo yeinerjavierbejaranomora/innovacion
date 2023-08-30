@@ -2865,6 +2865,11 @@
                                 className: 'dt-center'
                             },
                             {
+                            defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
+                                title: 'Estudiantes planeados',
+                                className: 'dt-center'
+                            },
+                            {
                                 defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
                                 title: 'Malla Curricular',
                                 className: 'dt-center'

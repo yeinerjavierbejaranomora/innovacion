@@ -1541,6 +1541,9 @@ class InformeMafiController extends Controller
             ->whereIn('periodo', $periodos)
             ->groupBy('codprograma')
             ->get();
+        
+        $nombre = [];
+        $estudiantes= [];
 
         foreach ($estudiantesPrograma as $key) {
             $programa = $key->codprograma;

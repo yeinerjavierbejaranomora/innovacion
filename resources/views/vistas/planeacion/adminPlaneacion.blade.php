@@ -504,7 +504,7 @@
         <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
+                    <h5 class="modal-title" id="tituloEstudiantes"><strong></strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -2926,7 +2926,7 @@
         }
 
         function mallaPrograma(programa, nombrePrograma) {
-            limpiarModal();
+            limpiarModalMalla();
             $('#tituloMalla').empty();
             $('#tituloMalla').append('Materias programa ' + nombrePrograma);
             var datos = $.ajax({
@@ -3000,15 +3000,26 @@
         }
 
         function tablaEstudiantes(programa, nombrePrograma){
-            
+            limpiarModalEstudiantes();
+            $('#tituloEstudiantes').empty();
+            $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
         }
 
-        function limpiarModal() {
+        function limpiarModalMalla() {
             if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
                 $("#mallaCurricular").remove();
                 table.destroy();
                 $('#mallaCurricular').DataTable().destroy();
                 $('#mallaCurricular tbody').empty();
+            }
+        }
+
+        function limpiarModalEstudiantes() {
+            if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
+                $("#estudiantesPlaneados").remove();
+                table.destroy();
+                $('#estudiantesPlaneados').DataTable().destroy();
+                $('#estudiantesPlaneados tbody').empty();
             }
         }
 

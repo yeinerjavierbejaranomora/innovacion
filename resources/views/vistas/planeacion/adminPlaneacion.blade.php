@@ -660,6 +660,9 @@
             checkboxesSeleccionados.each(function() {
                 periodosSeleccionados.push($(this).val());
             });
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
             return periodosSeleccionados;
         }
 
@@ -762,9 +765,6 @@
             Contador();
             destruirTable();
             var periodosSeleccionados = getPeriodos();
-            periodosSeleccionados.forEach(function(periodo, index, array) {
-                array[index] = '2023' + periodo;
-            });
 
             if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                 $('#deshacerProgramas, #seleccionarProgramas').show();

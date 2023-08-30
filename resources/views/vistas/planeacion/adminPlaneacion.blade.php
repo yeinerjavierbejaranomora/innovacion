@@ -49,7 +49,7 @@
 
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperado {
+    #botonModalOperador {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;

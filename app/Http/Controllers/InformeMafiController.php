@@ -228,12 +228,12 @@ class InformeMafiController extends Controller
         LIMIT 5
         */
             $operadores = DB::table('planeacion as p')
-            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-            ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
-            ->groupBy('dm.operador')
-            ->orderByDesc('TOTAL')
-            ->limit(5)
-            ->get();
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
+                ->groupBy('dm.operador')
+                ->orderByDesc('TOTAL')
+                ->limit(5)
+                ->get();
         }
         header("Content-Type: application/json");
         echo json_encode(array('data' => $operadores));
@@ -270,11 +270,10 @@ class InformeMafiController extends Controller
              **ORDER BY TOTAL DESC
              **LIMIT 5
              */
-            $programas = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(programa) AS TOTAL, programa'))
-                ->groupBy('programa')
+            $programas = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.codprograma')
+                ->groupBy('dm.codprograma')
                 ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();

@@ -495,14 +495,13 @@ class InformeMafiController extends Controller
              **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
              **GROUP BY e.tipo_estudiante
              */
-            $tipoEstudiantes = DB::table('estudiantes AS e')
-                ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL'), 'e.tipo_estudiante')
-                ->groupBy('e.tipo_estudiante')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->groupBy('dm.tipoestudiante')
                 ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();

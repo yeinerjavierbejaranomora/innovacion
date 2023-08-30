@@ -722,14 +722,13 @@ class InformeMafiController extends Controller
                 ->get();
         }
         if ($tabla == "planeacion") {
-            $retencion = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->where('sello', 'TIENE RETENCION')
-                ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                ->groupBy('autorizado_asistir')
+            $retencion = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->where('dm.sello', 'TIENE RETENCION')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.autorizado_asistir')
+                ->groupBy('dm.autorizado_asistir')
                 ->get();
         }
 
@@ -770,18 +769,18 @@ class InformeMafiController extends Controller
                 ->whereIn('codprograma', $programas)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')->get();
+                ->groupBy('sello')
+                ->get();
         }
 
         if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->whereIn('tipo_estudiante', $tiposEstudiante)
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
                 ->get();
         }
 
@@ -821,13 +820,12 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $tipoEstudiantes = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-                ->groupBy('tipo_estudiante')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->groupBy('dm.tipoestudiante')
                 ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();
@@ -869,13 +867,12 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $operadores = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-                ->groupBy('operador')
+            $operadores = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
+                ->groupBy('dm.operador')
                 ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();
@@ -918,13 +915,12 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $operadores = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-                ->groupBy('operador')
+            $operadores = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
+                ->groupBy('dm.operador')
                 ->orderByDesc('TOTAL')
                 ->limit(20)
                 ->get();
@@ -965,14 +961,14 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $operadores = DB::table('estudiantes as e')
-                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->select(DB::raw('COUNT(e.operador) AS TOTAL, e.operador'))
-                ->groupBy('e.operador')
+            $operadores = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
+                ->groupBy('dm.operador')
+                ->orderByDesc('TOTAL')
                 ->orderByDesc('TOTAL')
                 ->limit(20)
                 ->get();
@@ -1005,11 +1001,10 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $operadores = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(operador) AS TOTAL, operador'))
-                ->groupBy('operador')
+            $operadores = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.operador')
+                ->groupBy('dm.operador')
                 ->orderByDesc('TOTAL')
                 ->limit(20)
                 ->get();
@@ -1044,11 +1039,10 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $programas = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(programa) AS TOTAL, programa'))
-                ->groupBy('programa')
+            $programas = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.codprograma')
+                ->groupBy('dm.codprograma')
                 ->orderByDesc('TOTAL')
                 ->get();
         }
@@ -1092,15 +1086,14 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $programas = DB::table('estudiantes as e')
-                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->select(DB::raw('COUNT(e.programa) AS TOTAL, e.programa'))
-                ->groupBy('e.programa')
-                ->orderByDesc('TOTAL')
+            $programas = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.codprograma')
+                ->groupBy('dm.codprograma')
+                ->orderBy('TOTAL', 'DESC')
                 ->get();
         }
 
@@ -1131,11 +1124,10 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $tipoEstudiantes = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-                ->groupBy('tipo_estudiante')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->groupBy('dm.tipoestudiante')
                 ->orderByDesc('TOTAL')
                 ->get();
         }
@@ -1171,14 +1163,13 @@ class InformeMafiController extends Controller
                 ->get();
         }
         if ($tabla == "planeacion") {
-            $tipoEstudiantes = DB::table('estudiantes as e')
-                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->select(DB::raw('COUNT(e.tipo_estudiante) AS TOTAL, e.tipo_estudiante'))
-                ->groupBy('e.tipo_estudiante')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->groupBy('dm.tipoestudiante')
                 ->orderByDesc('TOTAL')
                 ->get();
         }
@@ -1213,13 +1204,12 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $tipoEstudiantes = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-                ->groupBy('tipo_estudiante')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->groupBy('dm.tipoestudiante')
                 ->orderByDesc('TOTAL')
                 ->get();
         }

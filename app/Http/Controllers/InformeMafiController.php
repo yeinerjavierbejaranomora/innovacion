@@ -1619,7 +1619,7 @@ class InformeMafiController extends Controller
         }
 
         $consultaSello = DB::table('planeacion as p')
-            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->join('datosMafi as e', 'p.codBanner', '=', 'e.idbanner')
             ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
             ->select(DB::raw('COUNT(p.codprograma) AS total'), 'p.codprograma', 'e.sello')
             ->whereIn('p.periodo', $periodos)
@@ -1685,7 +1685,7 @@ class InformeMafiController extends Controller
         }
 
         $consultaSello = DB::table('planeacion as p')
-            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
+            ->join('datosMafi as e', 'p.codBanner', '=', 'e.idbanner')
             ->selectRaw('COUNT(p.codprograma) as total, p.codprograma, e.sello')
             ->whereIn('periodo', $periodos)
             ->whereIn('p.codprograma', $programas)

@@ -1139,6 +1139,7 @@
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes/' + tabla;
             $.getJSON(url, function(data) {
+                console.log(data);
                 var labels = data.data.map(function(elemento) {
                     return elemento.tipo_estudiante;
                 });
@@ -1160,7 +1161,7 @@
                     var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                     yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                 }
-                console.log(data);
+                
                 // Crear el gráfico circular
                 var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                 chartTipoEstudiante = new Chart(ctx, {

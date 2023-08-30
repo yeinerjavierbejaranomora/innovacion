@@ -1604,8 +1604,7 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
-                    
+
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
                     });
@@ -1690,7 +1689,7 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-
+                    console.log(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.tipo_estudiante;
                     });

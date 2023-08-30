@@ -328,7 +328,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-8 text-center " id="colRetencion">
+        <div class="col-6 text-center " id="colRetencion">
             <div class="card shadow mb-6 graficos">
                 <div class="card-header">
                     <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>

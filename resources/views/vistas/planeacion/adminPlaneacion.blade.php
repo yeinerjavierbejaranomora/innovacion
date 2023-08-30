@@ -2785,9 +2785,6 @@
             e.preventDefault();
             destruirTable();
             var periodos = getPeriodos();
-            periodos.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });
             dataTable(periodos);
         });
 

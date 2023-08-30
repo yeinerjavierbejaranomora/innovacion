@@ -74,10 +74,10 @@ class InformeMafiController extends Controller
 
         if ($tabla == 'planeacion') {
             $sello = DB::table('planeacion as p')
-            ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-            ->groupBy('dm.sello')
-            ->get();
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->groupBy('dm.sello')
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -105,12 +105,11 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == 'planeacion') {
-            $retencion = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->where('sello', 'TIENE RETENCION')
-                ->select(DB::raw('COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir'))
-                ->groupBy('autorizado_asistir')
+            $retencion = DB::table('planeacion as p')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.autorizado_asistir')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->where('dm.sello', '=', 'TIENE RETENCION')
+                ->groupBy('dm.autorizado_asistir')
                 ->get();
         }
 
@@ -1822,7 +1821,7 @@ class InformeMafiController extends Controller
             return null;
         }
     }
-    
+
 
     /** 
     public function tablaProgramasPeriodos()
@@ -1917,8 +1916,8 @@ class InformeMafiController extends Controller
         $update = DB::table('programasPeriodos')->whereIn('periodo', $periodos)->update(['estado' => 1]);
 
     }
-    */
-    
+     */
+
     /**
      * Método para guardar todo los historicos de los graficos
      * @return JSON retorna los historicos da cada grafico mafi

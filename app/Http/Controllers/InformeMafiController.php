@@ -343,14 +343,13 @@ class InformeMafiController extends Controller
              **INNER JOIN programas p ON p.codprograma = e.programa
              **WHERE p.Facultad IN ('FAC CIENCIAS EMPRESARIALES') -- Reemplaza **con las facultades específicas
              **GROUP BY e.sello */
-            $sello = DB::table('estudiantes AS e')
-                ->join('programas AS p', 'p.codprograma', '=', 'e.programa')
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->select(DB::raw('COUNT(e.sello) AS TOTAL'), 'e.sello')
-                ->groupBy('e.sello')
+            $sello = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
                 ->get();
         }
 
@@ -1234,7 +1233,7 @@ class InformeMafiController extends Controller
         echo json_encode(array('data' => $tipoEstudiantes));
     }
 
-    public function graficoMetas(Request $request)
+    public function graficoMetas()
     {
         $tiposEstudiante = [
             'PRIMER INGRESO',
@@ -1541,9 +1540,9 @@ class InformeMafiController extends Controller
             ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
             ->groupBy('codprograma')
             ->get();
-        
+
         $nombre = [];
-        $estudiantes= [];
+        $estudiantes = [];
 
         foreach ($estudiantesPrograma as $key) {
             $programa = $key->codprograma;

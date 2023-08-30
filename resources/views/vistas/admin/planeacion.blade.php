@@ -74,6 +74,7 @@
     <script>
         // * Datatable para mostrar todas las Facultades *
         $(document).ready(function () {
+            
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programas.planeacion') }}";
             xmlhttp.open("GET", url, true);

@@ -56,15 +56,6 @@
         </div>
     </li>
 
-    <!-- Nav Item - Menu desplegable "Facultades"-->
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#collapseThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            <i class="fas fa-address-book"></i>
-            <span> Facultades </span>
-        </a>
-    </li>
-
     <!--Nav Item - Menú desplegable "Gestión de Facultades"-->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">

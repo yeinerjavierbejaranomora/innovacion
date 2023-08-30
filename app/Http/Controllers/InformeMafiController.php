@@ -153,13 +153,12 @@ class InformeMafiController extends Controller
              **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
              **GROUP BY sello;
              */
-            $primerIngreso = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('tipo_estudiante', $tiposEstudiante)
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
-                ->get();
+            $primerIngreso = DB::table('planeacion as p')
+            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+            ->whereIn('tipoestudiante', $tiposEstudiante)
+            ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+            ->groupBy('dm.sello')
+            ->get();
         }
 
         header("Content-Type: application/json");

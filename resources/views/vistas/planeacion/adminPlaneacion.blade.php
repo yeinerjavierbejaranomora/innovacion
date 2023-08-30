@@ -1141,7 +1141,7 @@
             $.getJSON(url, function(data) {
                 console.log(data);
                 var labels = data.data.map(function(elemento) {
-                    return elemento.tipo_estudiante;
+                    return element.tipo_estudiante.replace('ESTUDIANTE ', '');
                 });
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;
@@ -1167,9 +1167,7 @@
                 chartTipoEstudiante = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: labels.map(function(label) {
-                            label.autorizado_asistir.replace('ESTUDIANTE ', '');
-                        }),
+                        labels: labels,
                         datasets: [{
                             label: 'Tipos de estudiantes',
                             data: valores,

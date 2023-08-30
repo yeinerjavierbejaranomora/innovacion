@@ -882,7 +882,6 @@
                         }
                     },
                     error: function() {
-                        console.log('entra');
                         $('#programas').append('<h5>No hay programas</h5>')
                     }
                 })
@@ -1688,7 +1687,6 @@
                 },
                 success: function(data) {
                     data = jQuery.parseJSON(data);
-                    console.log(data);
                     var labels = data.data.map(function(elemento) {
                         return elemento.tipoestudiante;
                     });
@@ -2889,7 +2887,6 @@
                 }
 
             });
-            console.log(table);
         }
 
         function mallaPrograma(programa, nombrePrograma) {
@@ -2911,7 +2908,6 @@
                     } catch {
                         data = data;
                     }
-                    console.log(data);
                     var dataTableData = [];
 
                     for (const cursoKey in data) {

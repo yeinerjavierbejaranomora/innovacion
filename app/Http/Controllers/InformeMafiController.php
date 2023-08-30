@@ -1542,7 +1542,6 @@ class InformeMafiController extends Controller
             ->groupBy('codprograma')
             ->get();
         
-        dd($estudiantesPrograma);
 
         $nombre = [];
         $estudiantes= [];

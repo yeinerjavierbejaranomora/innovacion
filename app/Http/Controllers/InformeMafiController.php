@@ -187,15 +187,13 @@ class InformeMafiController extends Controller
         }
         if ($tabla == "planeacion") {
             $tipoEstudiantes = DB::table('planeacion as p')
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
                 ->groupBy('dm.tipoestudiante')
                 ->limit(5)
                 ->get();
         }
 
-        var_dump(($tipoEstudiantes));
-        die();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));
     }

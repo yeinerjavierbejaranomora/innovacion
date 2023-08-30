@@ -682,13 +682,12 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $sello = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->whereIn('marca_ingreso', $periodos)
-                ->whereIn('programa', $programas)
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
+            $sello = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
                 ->get();
         }
 

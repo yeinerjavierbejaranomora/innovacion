@@ -388,15 +388,14 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $retencion = DB::table('estudiantes as e')
-                ->join('programas as p', 'p.codprograma', '=', 'e.programa')
-                ->where('e.programado_ciclo1', 'OK')
-                ->where('e.programado_ciclo2', 'OK')
-                ->whereIn('e.marca_ingreso', $periodos)
-                ->whereIn('p.Facultad', $facultades)
-                ->where('e.sello', 'TIENE RETENCION')
-                ->select(DB::raw('COUNT(e.autorizado_asistir) AS TOTAL, e.autorizado_asistir'))
-                ->groupBy('e.autorizado_asistir')
+            $retencion = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->where('dm.sello', 'TIENE RETENCION')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.autorizado_asistir')
+                ->groupBy('dm.autorizado_asistir')
                 ->get();
         }
 

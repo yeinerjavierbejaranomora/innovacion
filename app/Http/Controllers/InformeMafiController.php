@@ -1671,7 +1671,7 @@ class InformeMafiController extends Controller
         $consultaSello = DB::table('planeacion as p')
             ->join('datosMafi as e', 'p.codBanner', '=', 'e.idbanner')
             ->selectRaw('COUNT(p.codprograma) as total, p.codprograma, e.sello')
-            ->whereIn('periodo', $periodos)
+            ->whereIn('e.periodo', $periodos)
             ->whereIn('p.codprograma', $programas)
             ->groupBy('e.sello', 'p.codprograma')
             ->get();

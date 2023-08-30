@@ -1888,7 +1888,7 @@
                     data = jQuery.parseJSON(data);
 
                     var labels = data.data.map(function(elemento) {
-                        return elemento.programa;
+                        return elemento.codprograma;
                     });
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;

@@ -499,6 +499,30 @@
         </div>
     </div>
 
+     <!-- Modal Estudiantes planeados -->
+     <div class="modal fade" id="modalEstudiantesPlaneados" tabindex="-1" role="dialog" aria-labelledby="modalEstudiantesPlaneados" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--Datatable-->
+                    <div class="table">
+                        <table id="estudiantesPlaneados" class="display" style="width:100%">
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -2877,7 +2901,7 @@
                         ]
                     });
 
-                    function obtenerData(tbody, table) {
+                    function tablaMalla(tbody, table) {
                         $(tbody).on("click", "button.malla", function() {
                             var datos = table.row($(this).parents("tr")).data();
                             var programa = datos[0];
@@ -2885,7 +2909,17 @@
                             mallaPrograma(programa, nombrePrograma);
                         })
                     }
-                    obtenerData("#datatable tbody", table);
+                    function tablaEstudiantes(tbody, table) {
+                        $(tbody).on("click", "button.estudiantes", function() {
+                            var datos = table.row($(this).parents("tr")).data();
+                            var programa = datos[0];
+                            var nombrePrograma = datos[1];
+                            estudiantesPlaneados(programa, nombrePrograma);
+                        })
+                    }
+
+                    tablaMalla("#datatable tbody", table);
+                    tablaEstudiantes("#datatable tbody", table);
                 }
 
             });
@@ -2963,6 +2997,10 @@
                     });
                 }
             });
+        }
+
+        function tablaEstudiantes(programa, nombrePrograma){
+            
         }
 
         function limpiarModal() {

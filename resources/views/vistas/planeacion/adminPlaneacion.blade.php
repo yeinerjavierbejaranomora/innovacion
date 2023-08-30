@@ -2857,7 +2857,7 @@
                                 title: 'Programa'
                             },
                             {
-                                title: 'Estudiantes inscritos',
+                                title: 'Matrículas planeadas',
                                 className: 'dt-center'
                             },
                             {
@@ -2939,7 +2939,7 @@
                                 title: 'Nombre Materia',
                             },
                             {
-                                title: 'Estudiantes inscritos',
+                                title: 'Matrículas planeadas',
                                 className: 'dt-center'
                             },
                             {

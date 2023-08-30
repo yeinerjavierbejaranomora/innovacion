@@ -391,7 +391,7 @@
             <div class="col-6 text-center " id="colProgramas">
                 <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
+                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">

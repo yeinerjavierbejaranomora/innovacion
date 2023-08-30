@@ -1141,7 +1141,7 @@
             $.getJSON(url, function(data) {
 
                 var labels = data.data.map(function(elemento) {
-                    return elemento.tipo_estudiante.replace('ESTUDIANTE ', '');
+                    return elemento.tipoestudiante.replace('ESTUDIANTE ', '');
                 });
                 var valores = data.data.map(function(elemento) {
                     return elemento.TOTAL;

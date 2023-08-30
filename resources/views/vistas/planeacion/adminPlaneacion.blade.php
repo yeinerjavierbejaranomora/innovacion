@@ -974,9 +974,9 @@
 
 
                 var labels = data.data.map(function(elemento) {
-
-                    return elemento.autorizado_asistir;
+                    return elemento.autorizado_asistir.replace('ACTIVO', '');
                 });
+
                 var valores = data.data.map(function(elemento) {
 
                     return elemento.TOTAL;

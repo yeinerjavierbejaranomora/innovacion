@@ -74,13 +74,17 @@
     <script>
         // * Datatable para mostrar todas las Facultades *
         $(document).ready(function () {
-            
+
+            var mensajeCarga = $('<p>Cargando datos...</p>');
+
             var xmlhttp = new XMLHttpRequest();
             var url = "{{ route('programas.planeacion') }}";
             xmlhttp.open("GET", url, true);
+            $('#example').append(mensajeCarga);
             xmlhttp.send();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    mensajeCarga.remove();
                     var data = JSON.parse(this.responseText);
                     var table = $('#example').DataTable({
                         "data": data.data,

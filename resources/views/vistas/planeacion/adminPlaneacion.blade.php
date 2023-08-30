@@ -2999,7 +2999,7 @@
             });
         }
 
-        function tablaEstudiantes(programa, nombrePrograma){
+        function estudiantesPlaneados(programa, nombrePrograma){
             limpiarModalEstudiantes();
             $('#tituloEstudiantes').empty();
             $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);

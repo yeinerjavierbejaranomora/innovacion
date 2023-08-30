@@ -190,6 +190,7 @@ class InformeMafiController extends Controller
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
                 ->groupBy('dm.tipoestudiante')
+                ->orderByDesc('TOTAL')
                 ->limit(5)
                 ->get();
         }

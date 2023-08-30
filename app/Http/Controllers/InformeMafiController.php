@@ -1537,8 +1537,8 @@ class InformeMafiController extends Controller
         $periodos = $request->input('periodos');
 
         $estudiantesPrograma = DB::table('planeacion')
-            ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
             ->whereIn('periodo', $periodos)
+            ->select(DB::raw('COUNT(codBanner) as TOTAL'), 'codprograma')
             ->groupBy('codprograma')
             ->get();
         

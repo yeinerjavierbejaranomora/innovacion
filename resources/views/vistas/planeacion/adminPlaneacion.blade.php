@@ -1139,7 +1139,7 @@
         function graficoTipoDeEstudiante() {
             var url = '/home/tipoEstudiantes/' + tabla;
             $.getJSON(url, function(data) {
-                console.log(data);
+
                 var labels = data.data.map(function(elemento) {
                     return elemento.tipo_estudiante.replace('ESTUDIANTE ', '');
                 });

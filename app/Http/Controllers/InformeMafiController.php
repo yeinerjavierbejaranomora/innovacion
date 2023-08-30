@@ -194,7 +194,7 @@ class InformeMafiController extends Controller
                 ->get();
         }
 
-        var_dump(($tipoEstudiantes))
+        var_dump(($tipoEstudiantes));
         die();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $tipoEstudiantes));

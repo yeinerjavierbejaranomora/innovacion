@@ -186,7 +186,11 @@ class facultadController extends Controller
      */
     public function get_planeacion()
     {
-        $planeacion = DB::table('planeacion')->get();
+        $planeacion = DB::table('planeacion as pl')
+            ->join('programas as pr', 'pl.codprograma','pr.codprograma')
+            ->join('mallaCurricular as m', 'pl.codMateria','m.codigoCurso')
+            ->select('pl.codBanner, pl.codMateria, m.curso, pl.codprograma, pr.programa')
+            ->get();
         header("Content-Type: application/json");
         echo json_encode(array('data' => $planeacion));
     }

@@ -73,56 +73,46 @@
 
     <script>
         // * Datatable para mostrar todas las Facultades *
-        var xmlhttp = new XMLHttpRequest();
-        var url = "{{ route('programas.planeacion') }}";
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                var table = $('#example').DataTable({
-                    "data": data.data,
-                    "order": [
-                            [2, 'asc'],
-                            [3, 'asc']
+        $(document).ready(function {
+
+
+            var xmlhttp = new XMLHttpRequest();
+            var url = "{{ route('programas.planeacion') }}";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var table = $('#example').DataTable({
+                        "data": data.data,
+                        "columns": [{
+                                data: 'codBanner',
+                                title: 'Codigo Banner'
+                            },
+                            {
+                                data: 'codMateria',
+                                title: 'Codigo Materia'
+                            },
+                            {
+                                data: 'curso',
+                                title: 'Materia'
+                            },
+                            {
+                                data: 'codprograma',
+                                title: 'Codigo programa'
+                            },
+                            {
+                                data: 'programa',
+                                title: 'Programa'
+                            },
                         ],
-                    "columns": [{
-                            data: 'codBanner',
-                            title: 'Codigo Banner'
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-                        {
-                            data: 'codMateria',
-                            title: 'Codigo Materia'
-                        },
-                        {
-                            data: 'orden',
-                            title: 'Orden'
-                        }, 
-                        {
-                            data: 'semestre',
-                            title: 'Semestre'
-                        },
-                        {
-                            data: 'programada',
-                            title: 'Programada'
-                        },
-                        {
-                            data: 'codprograma',
-                            title: 'Codigo programa'
-                        },
-                        {
-                            data: 'fecha_registro',
-                            title: 'Fecha de registro'
-                        }
-                    ],
-
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                    },
-
-                });
+                    });
+                }
             }
-        }
+        })
     </script>
     @include('layout.footer')
 </div>

@@ -1542,7 +1542,6 @@ class InformeMafiController extends Controller
             ->groupBy('codprograma')
             ->get();
         
-
         $nombre = [];
         $estudiantes= [];
 
@@ -1754,10 +1753,10 @@ class InformeMafiController extends Controller
         $estudiantesRetencion = [];
 
         $consultaSello = DB::table('planeacion as p')
-            ->join('estudiantes as e', 'p.codBanner', '=', 'e.homologante')
-            ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, e.sello')
+            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+            ->selectRaw('COUNT(p.codMateria) as total, p.codMateria, dm.sello')
             ->where('p.codprograma', $programa)
-            ->groupBy('e.sello', 'p.codMateria')
+            ->groupBy('dm.sello', 'p.codMateria')
             ->get();
 
         foreach ($consultaSello as $sello) {

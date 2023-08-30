@@ -154,11 +154,11 @@ class InformeMafiController extends Controller
              **GROUP BY sello;
              */
             $primerIngreso = DB::table('planeacion as p')
-            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-            ->whereIn('tipoestudiante', $tiposEstudiante)
-            ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-            ->groupBy('dm.sello')
-            ->get();
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
+                ->get();
         }
 
         header("Content-Type: application/json");
@@ -186,12 +186,10 @@ class InformeMafiController extends Controller
                 ->get();
         }
         if ($tabla == "planeacion") {
-            $tipoEstudiantes = DB::table('estudiantes')
-                ->where('programado_ciclo1', 'OK')
-                ->where('programado_ciclo2', 'OK')
-                ->select(DB::raw('COUNT(tipo_estudiante) AS TOTAL, tipo_estudiante'))
-                ->groupBy('tipo_estudiante')
-                ->orderByDesc('TOTAL')
+            $tipoEstudiantes = DB::table('planeacion as p')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.tipoestudiante')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->groupBy('dm.tipoestudiante')
                 ->limit(5)
                 ->get();
         }

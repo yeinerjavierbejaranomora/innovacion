@@ -3020,7 +3020,7 @@
                         data = data;
                     }
                     var table = $('#estudiantesPlaneados').DataTable({
-                        "data": data.data,
+                        "data": data,
                         "columns": [{
                                 data: 'codBanner',
                                 title: 'Codigo Banner'

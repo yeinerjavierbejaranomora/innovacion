@@ -3349,6 +3349,19 @@
 
             $("#generarExcel").on("click", function() {
                 console.log('entra');
+                var canvas = document.getElementById("metasTotal");
+
+                // Generar la imagen en formato base64
+                var imageBase64 = canvas.toDataURL("image/png"); // Puedes cambiar a "image/jpeg" si prefieres JPEG
+
+                // Crear un objeto JSON con la imagen base64
+                var jsonData = {
+                    image: imageBase64
+                };
+
+                // Imprimir el objeto JSON en la consola
+                console.log(jsonData);
+                 /*
                 var data = [
                     ["Nombre", "Apellido", "Edad"],
                     ["John", "Doe", 30],
@@ -3361,8 +3374,8 @@
                 XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
 
                 // Generar el archivo Excel y descargarlo
-                XLSX.writeFile(wb, "datos.xlsx");
-
+                XLSX.writeFile(wb, "metas.xlsx");
+                */
             });
         });
     </script>

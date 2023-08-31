@@ -1774,7 +1774,7 @@ class InformeMafiController extends Controller
 
     public function estudiantesMateria(Request $request){
         $programa = $request->input('programa');
-        
+        dd($programa);
         $estudiantes = DB::table('planeacion')->where('codPrograma', $programa)->select();
 
         return $estudiantes;

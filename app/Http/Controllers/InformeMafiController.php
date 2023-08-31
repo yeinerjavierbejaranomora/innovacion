@@ -1389,7 +1389,7 @@ class InformeMafiController extends Controller
         $consultaNombres = DB::table('programas')->whereIn('codprograma',$programasConsulta)->select('codprograma','programa')->get();
         $nombres = [];
         foreach ($consultaNombres as $nombre){
-            $nombre[$nombre->codprograma] = $nombre->programa;
+            $nombres[$nombre->codprograma] = $nombre->programa;
         }
 
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();

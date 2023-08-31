@@ -3373,16 +3373,22 @@
                             data = data;
                         }
                         console.log(data);
-                        $.each(data, function(key, value) {
-                            console.log("Objeto:", key);
-                            $.each(value, function(subKey, subValue) {
-                                console.log("Propiedad:", subKey, "Valor:", subValue);
+                        var newData = {};
+
+                        $.each(data, function(category, values) {
+                            $.each(values, function(property, value) {
+                                if (!newData[property]) {
+                                    newData[property] = {};
+                                }
+                                newData[property][category] = value;
                             });
                         });
 
+                        console.log(newData);
+
                     }
-                    });
-                 /*
+                });
+                /*
                 var data = [
                     ["Nombre", "Apellido", "Edad"],
                     ["John", "Doe", 30],

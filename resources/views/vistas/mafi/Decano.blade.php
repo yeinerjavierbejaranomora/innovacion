@@ -2060,7 +2060,7 @@
                                 periodos: periodosSeleccionados
                             }
                     } else {
-                        var url = "{{ route('tiposEstudiantes.total.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                             data = {
                                 idfacultad: facultadesSelect,
                                 periodos: periodosSeleccionados

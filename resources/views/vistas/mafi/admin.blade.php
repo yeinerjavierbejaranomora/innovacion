@@ -3372,17 +3372,24 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
-                        var newData = {};
+
+                        var newData = [];
+                        var headers = ["llave"];
+                        var categories = Object.keys(data);
+
+                        headers = headers.concat(categories);
+                        newData.push(headers);
 
                         $.each(data, function(category, values) {
-                            $.each(values, function(property, value) {
-                                if (!newData[property]) {
-                                    newData[property] = {};
-                                }
-                                newData[property][category] = value;
+                            var row = [category];
+
+                            $.each(categories, function(index, category) {
+                                row.push(values[category] || ""); 
                             });
+
+                            newData.push(row);
                         });
+
 
                         console.log(newData);
 

@@ -3374,7 +3374,7 @@
                         }
 
                         var newData = [];
-                        var headers = ["programa", "Meta", "Sello", "Retención"];
+                        var headers = ["programa", "Meta", "Sello", "Retención", "% Ejecución"];
                         
                         var col1 = [];
                         var col2 = [];
@@ -3388,18 +3388,20 @@
                             col4.push(data.matriculaRetencion[meta]);
                         });
 
+                        var porcentaje;
                         newData.push(headers);
                         for (var i = 0; i < col1.length; i++) {
-                            var row = [col1[i], col2[i], col3[i], col4[i]];
+                            porcentaje = ((col3[i]+col4[i])/col2[i])*100;
+                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
                             newData.push(row);
                         }
                         console.log(newData);
                         var wb = XLSX.utils.book_new();
                         var ws = XLSX.utils.aoa_to_sheet(newData);
-                        XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+                        XLSX.utils.book_append_sheet(wb, ws, "Metas");
 
                         // Generar el archivo Excel y descargarlo
-                        XLSX.writeFile(wb, "metas.xlsx");
+                        XLSX.writeFile(wb, "Metas.xlsx");
                     }
                 });
 

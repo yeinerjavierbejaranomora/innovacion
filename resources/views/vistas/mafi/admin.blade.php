@@ -3374,25 +3374,23 @@
                         }
                         console.log (data);
                         var newData = [];
-                        var headers = ["programa", "Meta", "Sello", "Retención", "% Ejecución"];
+                        var headers = ["Codigo Programa", "Meta", "Sello", "% Ejecución"];
                         
                         var col1 = [];
                         var col2 = [];
                         var col3 = [];
-                        var col4 = [];
 
                         Object.keys(data.metas).forEach(meta => {
                             col1.push(meta);
                             col2.push(data.metas[meta]);
                             col3.push(data.matriculaSello[meta]);
-                            col4.push(data.matriculaRetencion[meta]);
                         });
 
                         var porcentaje;
                         newData.push(headers);
                         for (var i = 0; i < col1.length; i++) {
-                            porcentaje = (((col3[i]+col4[i])/col2[i])*100).toFixed(2);
-                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
+                            porcentaje = (((col3[i])/col2[i])*100).toFixed(2);
+                            var row = [col1[i], col2[i], col3[i], porcentaje];
                             newData.push(row);
                         }
                         console.log(newData);

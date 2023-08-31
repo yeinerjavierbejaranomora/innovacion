@@ -489,6 +489,7 @@
             var facultadesSeleccionadas = [];
             periodos();
             facultades();
+            programas();
             riesgo();
 
             function Contador() {
@@ -552,6 +553,34 @@
                         });
                     }
                 });
+            }
+
+            function programas(){
+                $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('todosProgramas.activos') }}",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            if (datos != null) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                });
+                            }
+                        },
+                        error: function() {
+                            $('#programas').append('<h5>No hay programas</h5>')
+                        }
+                    })
             }
 
             /**

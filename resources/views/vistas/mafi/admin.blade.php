@@ -3390,6 +3390,9 @@
                         newData.push(headers);
                         for (var i = 0; i < col1.length; i++) {
                             porcentaje = (((col3[i])/col2[i])*100).toFixed(2);
+                            if(porcentaje >100){
+                                portentaje = 'Meta Superada';
+                            }
                             var row = [col1[i], col2[i], col3[i], porcentaje];
                             newData.push(row);
                         }

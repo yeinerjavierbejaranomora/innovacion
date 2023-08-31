@@ -187,7 +187,7 @@ class facultadController extends Controller
     public function get_planeacion()
     {
 
-        $sql = "SELECT * FROM `planeacion` p INNER JOIN programas pr ON pr.codprograma = p.codprograma INNER JOIN mallaCurricular m ON m.codigoCurso = p.codMateria";
+        $sql = "SELECT * FROM `planeacion` p INNER JOIN programas pr ON pr.codprograma = p.codprograma INNER JOIN mallaCurricular m ON m.codigoCurso = p.codMateria GROUP BY p.codBanner, p.codMateria;";
 
         $planeacion = DB::select($sql);
         

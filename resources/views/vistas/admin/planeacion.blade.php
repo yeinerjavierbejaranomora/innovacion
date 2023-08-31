@@ -76,7 +76,8 @@
         $(document).ready(function() {
             var mensajeCarga = $('<p>Cargando datos...</p>');
             url = "{{ route('programas.planeacion')}}";
-
+           
+            $('#example').append(mensajeCarga);
             var datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -89,7 +90,7 @@
                     } catch {
                         data = data;
                     }
-                    console.log(data);
+                    $('#example').remove(mensajeCarga);
                     var table = $('#example').DataTable({
                         "data": data.data,
                         "columns": [{

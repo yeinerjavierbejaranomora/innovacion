@@ -1779,7 +1779,7 @@ class InformeMafiController extends Controller
         ->join('mallaCurricular as m','p.codMateria', '=', 'm.codigoCurso')
         ->where('p.codPrograma', $programa)
         ->select('*')
-        ->groupBy('p.codPrograma', 'p.codMateria')
+        ->groupBy('p.codBanner', 'p.codMateria')
         ->get();
         return $estudiantes;
     }

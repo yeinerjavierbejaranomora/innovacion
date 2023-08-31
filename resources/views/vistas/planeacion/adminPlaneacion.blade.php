@@ -3014,6 +3014,31 @@
                 method: 'post',
                 success: function(data) {
                     console.log(data);
+                    try {
+                        data = parseJSON(data);
+                    } catch {
+                        data = data;
+                    }
+                    $('#example').remove(mensajeCarga);
+                    var table = $('#estudiantesPlaneados').DataTable({
+                        "data": data.data,
+                        "columns": [{
+                                data: 'codBanner',
+                                title: 'Codigo Banner'
+                            },
+                            {
+                                data: 'codMateria',
+                                title: 'Codigo Materia'
+                            },
+                            {
+                                data: 'codprograma',
+                                title: 'Codigo programa'
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                    });
                 }
             });
         }

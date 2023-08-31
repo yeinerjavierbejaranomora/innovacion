@@ -22,7 +22,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
         <div class="sidebar-brand-icon">
-            <img src="public/assets/images/Escudo.png" width="40" alt="">
+            <img src="/public/assets/images/Escudo.png" width="40" alt="">
         </div>
         <div class="sidebar-brand-text mx-3"> {{ auth()->user()->nombre_rol}}</div>
     </a>

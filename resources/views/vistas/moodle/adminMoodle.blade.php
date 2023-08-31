@@ -595,7 +595,6 @@
                 return periodosSeleccionados;
             }
 
-
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
@@ -675,7 +674,6 @@
             $('#seleccionarFacultades').on('click', function(e) {
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
-
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
@@ -1412,6 +1410,7 @@
                 }
 
             }
+            
         });
     </script>
 

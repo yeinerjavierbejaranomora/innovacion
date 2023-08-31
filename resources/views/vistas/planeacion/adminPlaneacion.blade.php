@@ -3138,6 +3138,7 @@
                     $("#datatable tbody").off("click", "button.malla");
                 }
             }
+            
         });
     </script>
 

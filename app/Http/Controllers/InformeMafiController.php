@@ -1772,6 +1772,16 @@ class InformeMafiController extends Controller
         return $Data;
     }
 
+    public function estudiantesMateria(Request $request){
+        $programa = $request->input('programa');
+        
+        $estudiantes = DB::table('planeacion')->where('codPrograma', $programa)->select();
+
+        return $estudiantes;
+    }
+
+
+
 
     public function traerProgramas(Request $request)
     {
@@ -1803,6 +1813,8 @@ class InformeMafiController extends Controller
             return null;
         }
     }
+
+    
 
 
     /** 

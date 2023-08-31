@@ -3003,6 +3003,19 @@
             limpiarModalEstudiantes();
             $('#tituloEstudiantes').empty();
             $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('mallaPrograma.tabla') }}",
+                data: {
+                    programa: programa
+                },
+                method: 'post',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
         }
 
         function limpiarModalMalla() {

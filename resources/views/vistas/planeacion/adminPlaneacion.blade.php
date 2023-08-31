@@ -3007,7 +3007,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{ route('mallaPrograma.tabla') }}",
+                url: "{{ route('estudiantesMateria.tabla') }}",
                 data: {
                     programa: programa
                 },

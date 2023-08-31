@@ -1455,6 +1455,8 @@ class InformeMafiController extends Controller
             }
         }
 
+        $nombres = [];
+
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -1480,6 +1482,8 @@ class InformeMafiController extends Controller
         $matriculasSello = [];
 
         foreach ($programasConsulta as $programa) {
+
+            $consultaNombres = DB::table('programas')->where('codprograma',$programa->programa)->select('programa')->get();
 
             $consultaSello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -1512,9 +1516,13 @@ class InformeMafiController extends Controller
             } else {
                 $matriculasRetencion[$programa->programa] = 0;
             }
+
+            $nombres[$programa->programa] = $consultaNombres[0]->programa;
+
         }
 
         $datos = [
+            'nombres' => $nombres,
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,

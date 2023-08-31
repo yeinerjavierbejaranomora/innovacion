@@ -3349,7 +3349,15 @@
 
             $("#generarExcel").on("click", function() {
                 console.log('entra');
-
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('metasTotalFacultad.programa')}}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
+                } else {
+                    url = "{{ route('metasTotal.programa')}}";
+                    data = '';
+                }
 
                 $.ajax({
                     headers: {

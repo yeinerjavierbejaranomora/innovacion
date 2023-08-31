@@ -3160,7 +3160,7 @@
                         } catch {
                             data = data;
                         }
-
+                        
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
@@ -3266,7 +3266,7 @@
                         } catch {
                             data = data;
                         }
-
+                        console.log(data);
                         var labels = [];
                         var values = [];
                         var valuesSello = [];

@@ -49,7 +49,7 @@
     <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
 
     {{--Excel con JS--}}
-    <script lang="javascript" src="dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"> </script>
 
 </head>
 

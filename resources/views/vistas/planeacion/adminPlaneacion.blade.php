@@ -2999,32 +2999,32 @@
                                 },
                                 {
                                     title: 'tutor 1',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 1',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'tutor 2',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 2',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'tutor 3',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 3',
-                                    data: ' - ',
+                                    data: null,
                                     visible: false
                                 },
                             ],

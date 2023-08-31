@@ -2955,6 +2955,12 @@
                                     curso.Total,
                                     curso.Sello,
                                     curso.Retencion,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
                                 ];
                                 dataTableData.push(rowData);
                             }
@@ -2999,32 +3005,26 @@
                                 },
                                 {
                                     title: 'tutor 1',
-                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 1',
-                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'tutor 2',
-                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 2',
-                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'tutor 3',
-                                    data: null,
                                     visible: false
                                 },
                                 {
                                     title: 'correo tutor 3',
-                                    data: null,
                                     visible: false
                                 },
                             ],

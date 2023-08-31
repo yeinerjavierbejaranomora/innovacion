@@ -3022,7 +3022,7 @@
                         data = data;
                     }
                     $('#estudiantesPlaneados').empty();
-                    table = $('#estudiantesPlaneados').DataTable({
+                    tabla = $('#estudiantesPlaneados').DataTable({
                         "data": data,
                         "columns": [{
                                 data: 'codBanner',
@@ -3057,7 +3057,7 @@
         function limpiarModalEstudiantes() {
             if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
                 $("#estudiantesPlaneados").remove();
-                table.destroy();
+                tabla.destroy();
                 $('#estudiantesPlaneados').DataTable().destroy();
                 $('#estudiantesPlaneados tbody').empty();
             }

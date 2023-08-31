@@ -646,6 +646,7 @@
             }
 
             var programasSeleccionados = [];
+
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
@@ -925,7 +926,7 @@
                                         textMargin: 6
                                     },
                                     legend: {
-                                        position: 'bottom',
+                                        position: 'right',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -2291,7 +2292,6 @@
                     var url = "{{ route('programasTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = '';
                 }
-                console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

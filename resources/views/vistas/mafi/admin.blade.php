@@ -3391,7 +3391,7 @@
                         var porcentaje;
                         newData.push(headers);
                         for (var i = 0; i < col1.length; i++) {
-                            porcentaje = ((col3[i]+col4[i])/col2[i])*100;
+                            porcentaje = (((col3[i]+col4[i])/col2[i])*100).toFixed(2);
                             var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
                             newData.push(row);
                         }

@@ -1467,7 +1467,6 @@ class InformeMafiController extends Controller
             ->groupBy('pm.programa')
             ->get();
 
-        dd($programasConsulta);
 
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
@@ -1514,7 +1513,7 @@ class InformeMafiController extends Controller
             }
 
             $nombres[$programa->programa] = $consultaNombres[0]->programa;
-            $metas[$programa->programa] = $consultaMetas[0]->programa;
+            $metas[$programa->programa] = $consultaMetas[0]->meta;
         }
 
         $datos = [

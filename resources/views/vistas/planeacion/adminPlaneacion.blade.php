@@ -3019,7 +3019,7 @@
                         data = data;
                     }
                     console.log(data);
-                    var table = $('#estudiantesPlaneados').DataTable({
+                    table = $('#estudiantesPlaneados').DataTable({
                         "data": data,
                         "columns": [{
                                 data: 'codBanner',

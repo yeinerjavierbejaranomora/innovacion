@@ -1386,6 +1386,12 @@ class InformeMafiController extends Controller
             ->groupBy('programa')
             ->get();
 
+        $consultaNombres = DB::table('programas')->whereIn('codprograma',$programasConsulta)->select('codprograma','programa')->get();
+        $nombres = [];
+        foreach ($consultaNombres as $nombre){
+            $nombre[$nombre->codprograma] = $nombre->programa;
+        }
+
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
         $periodosActivos = [];
@@ -1427,6 +1433,7 @@ class InformeMafiController extends Controller
         }
 
         $datos = [
+            'nombres' => $nombres,
             'metas' => $metas,
             'matriculaSello' => $matriculasSello,
             'matriculaRetencion' => $matriculasRetencion,
@@ -1816,8 +1823,6 @@ class InformeMafiController extends Controller
     }
 
     
-
-
     /** 
     public function tablaProgramasPeriodos()
     {

@@ -64,9 +64,9 @@ class InformeMoodleController extends Controller
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $riesgos = DB::table('datos_moodle')
+        ->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
-            ->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')
             ->groupBy('Riesgo')
             ->get();
         
@@ -148,39 +148,11 @@ class InformeMoodleController extends Controller
         return $datos;
     }
 
-    public function sello()
-    {
-        /**
-         * SELECT COUNT(sello) AS TOTAL, sello FROM `datos_Moodle`
-         *GROUP BY sello
-         */
-        $sello = DB::table('datos_moodle')
-            ->select(DB::raw('COUNT(Sello) AS TOTAL, Sello'))
-            ->groupBy('Sello')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
-    }
-
-    public function retencion()
-    {
-        $retencion = DB::table('datos_moodle')
-            ->where('Sello', 'NO EXISTE')
-            ->select(DB::raw('COUNT(Autorizado_ASP) AS TOTAL, Autorizado_ASP'))
-            ->groupBy('Autorizado_ASP')
-            ->get();
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $retencion));
-    }
-
     function estudiantesRiesgo($riesgo)
     {
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
         ->select('Id_Banner', 'Riesgo', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-        
         ->where('Riesgo', $riesgo)
         ->groupBy('Id_Banner')
         ->get();

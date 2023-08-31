@@ -180,7 +180,7 @@
                         </div>
                         <div class="text-start">
                             <div id="periodos">
-                            <!--Accordion-->
+                                <!--Accordion-->
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
@@ -294,8 +294,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                        </div>
+
+                            </div>
                         </div>
                         <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
@@ -495,7 +495,7 @@
                         <canvas id="metasTotal"></canvas>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning">Descargar datos</button>
+                        <button type="button" class="btn btn-warning" id="generarExcel">Descargar datos</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -3153,7 +3153,7 @@
                     url: url,
                     data: {
                         idfacultad: facultades,
-                    },  
+                    },
                     success: function(data) {
                         try {
                             data = jQuery.parseJSON(data);
@@ -3346,6 +3346,24 @@
 
                 });
             }
+
+            $("#btn-generarExcel").on("click", function() {
+                console.log('entra');
+                var data = [
+                    ["Nombre", "Apellido", "Edad"],
+                    ["John", "Doe", 30],
+                    ["Jane", "Smith", 28]
+                ];
+
+                // Crear una hoja de cálculo en formato xlsx
+                var wb = XLSX.utils.book_new();
+                var ws = XLSX.utils.aoa_to_sheet(data);
+                XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+
+                // Generar el archivo Excel y descargarlo
+                XLSX.writeFile(wb, "datos.xlsx");
+
+            });
         });
     </script>
 

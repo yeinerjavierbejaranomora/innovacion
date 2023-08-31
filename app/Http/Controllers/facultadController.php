@@ -165,7 +165,6 @@ class facultadController extends Controller
                 'p.codprograma',
                 'r.creditos',
                 'r.materiasPermitidas',
-                'r.tipoEstudiante',
                 'r.ciclo',
                 'r.activo',
                 'p.programa',

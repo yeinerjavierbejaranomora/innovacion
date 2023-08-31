@@ -196,10 +196,6 @@
                         title: 'Nivel de formación'
                     },
                     {
-                        data: 'tipoEstudiante',
-                        title: 'Tipo de estudiante'
-                    },
-                    {
                         data: 'ciclo',
                         title: 'Ciclo'
                     },

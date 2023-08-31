@@ -1445,15 +1445,8 @@ class InformeMafiController extends Controller
 
     public function graficoMetasFacultadTotal(Request $request)
     {
-        $consultaMetas = DB::table('programas_metas')->get();
         $facultades = $request->input('idfacultad');
         $metas = [];
-        foreach ($consultaMetas as $meta) {
-            $dato = $meta->meta;
-            if ($dato != null) {
-                $metas[$meta->programa] = $dato;
-            }
-        }
 
         $nombres = [];
 
@@ -1466,10 +1459,12 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
 
-        $programasConsulta = DB::table('programas_metas')
-            ->select('programa')
-            ->whereNotNull('meta')
-            ->groupBy('programa')
+        $programasConsulta = DB::table('programas_metas as pm')
+            ->join('programas as p', 'pm.programa', '=', 'p.codprograma')
+            ->whereNotNull('pm.meta')
+            ->whereIn('Facultad',$facultades)
+            ->select('pm.programa')
+            ->groupBy('pm.programa')
             ->get();
 
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
@@ -1484,6 +1479,7 @@ class InformeMafiController extends Controller
         foreach ($programasConsulta as $programa) {
 
             $consultaNombres = DB::table('programas')->where('codprograma',$programa->programa)->select('programa')->get();
+            $consultaMetas = DB::table('programas_metas')->where('programa',$programa->programa)->select('meta')->get();
 
             $consultaSello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -1492,7 +1488,6 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodosActivos)
                 ->where('dm.codprograma', $programa->programa)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->whereIn('p.Facultad', $facultades)
                 ->get();
 
             $consultaRetencion = DB::table('datosMafi as dm')
@@ -1502,7 +1497,6 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodosActivos)
                 ->where('dm.codprograma', $programa->programa)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->whereIn('p.Facultad', $facultades)
                 ->get();
 
             if ($consultaSello) {
@@ -1518,7 +1512,7 @@ class InformeMafiController extends Controller
             }
 
             $nombres[$programa->programa] = $consultaNombres[0]->programa;
-
+            $metas[$programa->programa] = $consultaMetas[0]->programa;
         }
 
         $datos = [

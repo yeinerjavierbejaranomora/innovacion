@@ -18,8 +18,7 @@
         <div class="sidebar-brand-icon">
             <img src="/public/assets/images/LogoBlanco.png" width="40" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3"> {{ auth()->user()->nombre_rol}}</div>
-        {{ auth()->user()}}
+        <div class="sidebar-brand-text mx-3"> Admin </div>
     </a>
 
     <!-- Divider -->

@@ -180,7 +180,7 @@
                         title: 'Nombre del programa'
                     },
                     {
-                        data:'nombre',
+                        data:'Facultad',
                         title:'Facultad',
                     },
                     {
@@ -192,7 +192,7 @@
                         title: 'Materias permitidas'
                     },
                     {
-                        data: 'tabla',
+                        data: 'nivelFormacion',
                         title: 'Nivel de formación'
                     },
                     {

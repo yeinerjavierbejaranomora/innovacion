@@ -159,19 +159,17 @@ class facultadController extends Controller
      */
     public function get_reglas()
     {
-        DB::table('programas')->join('facultad', 'facultad.id', '=', 'programas.idFacultad');
-        $reglas = DB::table('reglasNegocio')->join('programas', 'programas.codprograma', '=', 'reglasNegocio.programa')
-            ->join('facultad', 'facultad.id', '=', 'programas.idFacultad')
+        $reglas = DB::table('reglasNegocio as r')->join('programas as p', 'programas.codprograma', '=', 'reglasNegocio.programa')
             ->select(
-                'programas.codprograma',
-                'reglasNegocio.creditos',
-                'reglasNegocio.materiasPermitidas',
-                'reglasNegocio.tipoEstudiante',
-                'reglasNegocio.ciclo',
-                'reglasNegocio.activo',
-                'programas.programa',
-                'programas.tabla',
-                'facultad.nombre'
+                'p.codprograma',
+                'r.creditos',
+                'r.materiasPermitidas',
+                'r.tipoEstudiante',
+                'r.ciclo',
+                'r.activo',
+                'p.programa',
+                'p.nivelFormacion',
+                'p.Facultad'
             )
             ->get();
         header("Content-Type: application/json");

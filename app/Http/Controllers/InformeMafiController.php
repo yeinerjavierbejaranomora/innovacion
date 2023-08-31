@@ -1152,6 +1152,7 @@ class InformeMafiController extends Controller
          * WHERE p.Facultad IN ('') -- Reemplaza con las facultades específicas
          * GROUP BY tipoestudiante
          */
+        dd($facultades);
         if ($tabla ==  "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -1834,7 +1835,7 @@ class InformeMafiController extends Controller
                 'codprograma' => $programa->codprograma
             ];
         }
-        
+
         header("Content-Type: application/json");
         echo json_encode($arreglo);
     }

@@ -185,11 +185,13 @@
                     },
                     {
                         data: 'creditos',
-                        title: 'Creditos'
+                        title: 'Creditos',
+                        className: "text-center",
                     },
                     {
                         data: 'materiasPermitidas',
-                        title: 'Materias permitidas'
+                        title: 'Materias permitidas',
+                        className: "text-center",
                     },
                     {
                         data: 'nivelFormacion',
@@ -197,7 +199,8 @@
                     },
                     {
                         data: 'ciclo',
-                        title: 'Ciclo'
+                        title: 'Ciclo',
+                        className: "text-center",
                     },
                     {
                         defaultContent: "<button type='button' id='editarbtn' class='editar btn btn-warning' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",

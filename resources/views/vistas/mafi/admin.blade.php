@@ -3349,18 +3349,23 @@
 
             $("#generarExcel").on("click", function() {
                 console.log('entra');
-                var canvas = document.getElementById("metasTotal");
-
-                // Generar la imagen en formato base64
-                var imageBase64 = canvas.toDataURL("image/png"); // Puedes cambiar a "image/jpeg" si prefieres JPEG
-
-                // Crear un objeto JSON con la imagen base64
-                var jsonData = {
-                    image: imageBase64
-                };
 
                 // Imprimir el objeto JSON en la consola
-                console.log(jsonData);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }}
+                        console.log(data);
+                    });
                  /*
                 var data = [
                     ["Nombre", "Apellido", "Edad"],

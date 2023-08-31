@@ -73,19 +73,22 @@
 
     <script>
         // * Datatable para mostrar todas las Facultades *
-        $(document).ready(function () {
-
+        $(document).ready(function() {
             var mensajeCarga = $('<p>Cargando datos...</p>');
+            url = "{{ route('programas.planeacion')}}";
 
-            var xmlhttp = new XMLHttpRequest();
-            var url = "{{ route('programas.planeacion') }}";
-            xmlhttp.open("GET", url, true);
-            $('#example').append(mensajeCarga);
-            xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    mensajeCarga.remove();
-                    var data = JSON.parse(this.responseText);
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                success: function(data) {
+                    try {
+                        data = parseJSON(data);
+                    } catch {
+                        data = data;
+                    }
                     console.log(data);
                     var table = $('#example').DataTable({
                         "data": data.data,
@@ -115,7 +118,7 @@
                         },
                     });
                 }
-            }
+            })
         });
     </script>
     @include('layout.footer')

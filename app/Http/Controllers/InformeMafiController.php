@@ -1784,9 +1784,6 @@ class InformeMafiController extends Controller
         return $estudiantes;
     }
 
-
-
-
     public function traerProgramas(Request $request)
     {
         $idsFacultad = $request->input('idfacultad');

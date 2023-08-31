@@ -17,7 +17,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <img src="/public/assets/images/LogoBlanco.png" width="40" alt="">
         </div>
         <div class="sidebar-brand-text mx-3"> {{ auth()->user()->nombre_rol}}</div>
     </a>

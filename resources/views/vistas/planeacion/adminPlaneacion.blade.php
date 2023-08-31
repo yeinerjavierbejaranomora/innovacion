@@ -2986,12 +2986,7 @@
                                     className: 'dt-center'
                                 },
                                 {
-                                    title: 'tutor',
-                                    data: ' ',
-                                    visible: false
-                                },
-                                {
-                                    title: 'curso',
+                                    title: 'Cantidad de cursos',
                                     render: function(data, type, row) {
                                         if (type === 'display') {
                                             var conSello = parseFloat(row[3]);
@@ -3001,7 +2996,37 @@
                                         return data;
                                     },
                                     visible: false
-                                }
+                                },
+                                {
+                                    title: 'tutor 1',
+                                    data: ' - ',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 1',
+                                    data: ' - ',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 2',
+                                    data: ' - ',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 2',
+                                    data: ' - ',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 3',
+                                    data: ' - ',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 3',
+                                    data: ' - ',
+                                    visible: false
+                                },
                             ],
                             "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

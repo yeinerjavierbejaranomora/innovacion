@@ -3374,27 +3374,29 @@
                         }
                         console.log (data);
                         var newData = [];
-                        var headers = ["Codigo Programa", "Meta", "Sello", "% Ejecución"];
+                        var headers = ["Codigo Programa","Programa", "Meta", "Sello", "% Ejecución"];
                         
                         var col1 = [];
                         var col2 = [];
                         var col3 = [];
+                        var col4 = [];
 
                         Object.keys(data.metas).forEach(meta => {
                             col1.push(meta);
-                            col2.push(data.metas[meta]);
-                            col3.push(data.matriculaSello[meta]);
+                            col2.push(data.nombres[meta]);
+                            col3.push(data.metas[meta]);
+                            col4.push(data.matriculaSello[meta]);
                         });
 
                         var porcentaje;
                         newData.push(headers);
                         for (var i = 0; i < col1.length; i++) {
-                            porcentaje = (((col3[i])/col2[i])*100).toFixed(2);
+                            porcentaje = (((col4[i])/col3[i])*100).toFixed(2);
                             if(porcentaje > 100){
                                 porcentaje = 'Meta Superada';
                             }
                            
-                            var row = [col1[i], col2[i], col3[i], porcentaje];
+                            var row = [col1[i],col2[i], col3[i], col4[i], porcentaje];
                             newData.push(row);
                         }
                         console.log(newData);

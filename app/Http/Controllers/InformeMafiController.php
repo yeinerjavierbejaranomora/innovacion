@@ -1386,7 +1386,7 @@ class InformeMafiController extends Controller
             ->groupBy('programa')
             ->get();
 
-        
+
         $nombres = [];
 
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
@@ -1400,7 +1400,7 @@ class InformeMafiController extends Controller
 
         foreach ($programasConsulta as $programa) {
 
-            $consultaNombres = DB::table('programas')->where('codprograma',$programa->programa)->select('programa')->get();
+            $consultaNombres = DB::table('programas')->where('codprograma', $programa->programa)->select('programa')->get();
 
             $consultaSello = DB::table('datosMafi')
                 ->select(DB::raw('COUNT(idbanner) AS TOTAL'))
@@ -1462,7 +1462,7 @@ class InformeMafiController extends Controller
         $programasConsulta = DB::table('programas_metas as pm')
             ->join('programas as p', 'pm.programa', '=', 'p.codprograma')
             ->whereNotNull('pm.meta')
-            ->whereIn('Facultad',$facultades)
+            ->whereIn('Facultad', $facultades)
             ->select('pm.programa')
             ->groupBy('pm.programa')
             ->get();
@@ -1479,8 +1479,8 @@ class InformeMafiController extends Controller
 
         foreach ($programasConsulta as $programa) {
 
-            $consultaNombres = DB::table('programas')->where('codprograma',$programa->programa)->select('programa')->get();
-            $consultaMetas = DB::table('programas_metas')->where('programa',$programa->programa)->select('meta')->get();
+            $consultaNombres = DB::table('programas')->where('codprograma', $programa->programa)->select('programa')->get();
+            $consultaMetas = DB::table('programas_metas')->where('programa', $programa->programa)->select('meta')->get();
 
             $consultaSello = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -1649,13 +1649,6 @@ class InformeMafiController extends Controller
         $Data = (object) $data;
 
         return $Data;
-
-        /**SELECT COUNT(p.codprograma) AS total, p.codprograma, e.sello
-        FROM planeacion p
-        INNER JOIN estudiantes e ON p.codBanner = e.homologante
-        INNER JOIN programas pr ON p.codprograma = pr.codprograma       
-        WHERE p.periodo IN ('202313', '202333') AND pr.Facultad = 'FAC CIENCIAS EMPRESARIALES'
-        GROUP BY e.sello, p.codprograma; */
     }
 
     public function tablaProgramasP(Request $request)
@@ -1782,15 +1775,16 @@ class InformeMafiController extends Controller
         return $Data;
     }
 
-    public function estudiantesMateria(Request $request){
+    public function estudiantesMateria(Request $request)
+    {
         $programa = $request->input('programa');
 
         $estudiantes = DB::table('planeacion as p')
-        ->join('mallaCurricular as m','p.codMateria', '=', 'm.codigoCurso')
-        ->where('p.codPrograma', $programa)
-        ->select('*')
-        ->groupBy('p.codBanner', 'p.codMateria')
-        ->get();
+            ->join('mallaCurricular as m', 'p.codMateria', '=', 'm.codigoCurso')
+            ->where('p.codPrograma', $programa)
+            ->select('*')
+            ->groupBy('p.codBanner', 'p.codMateria')
+            ->get();
         return $estudiantes;
     }
 
@@ -1825,7 +1819,27 @@ class InformeMafiController extends Controller
         }
     }
 
-    
+    public function todosProgramas()
+    {
+        $programas = DB::table('programas as p')
+            ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
+            ->where('pP.estado', 1)
+            ->select('p.programa', 'p.codprograma')
+            ->groupBy('p.codprograma', 'p.programa')
+            ->get();
+
+        foreach ($programas as $programa) {
+            $arreglo[] = [
+                'nombre' => $programa->programa,
+                'codprograma' => $programa->codprograma
+            ];
+        }
+        
+        header("Content-Type: application/json");
+        echo json_encode($arreglo);
+    }
+
+
     /** 
     public function tablaProgramasPeriodos()
     {

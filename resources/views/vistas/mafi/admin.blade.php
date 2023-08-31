@@ -3373,8 +3373,11 @@
                             data = data;
                         }
                         console.log(data);
-                        var dataExcel = data.metas.forEach(data => {
-                            console.log(data);
+                        $.each(data, function(key, value) {
+                            console.log("Objeto:", key);
+                            $.each(value, function(subKey, subValue) {
+                                console.log("Propiedad:", subKey, "Valor:", subValue);
+                            });
                         });
 
                     }

@@ -3372,7 +3372,7 @@
                         } catch {
                             data = data;
                         }
-
+                        console.log (data);
                         var newData = [];
                         var headers = ["programa", "Meta", "Sello", "Retención", "% Ejecución"];
                         

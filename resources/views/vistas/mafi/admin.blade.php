@@ -3350,7 +3350,7 @@
             $("#generarExcel").on("click", function() {
                 console.log('entra');
 
-                // Imprimir el objeto JSON en la consola
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3363,8 +3363,9 @@
                             data = jQuery.parseJSON(data);
                         } catch {
                             data = data;
-                        }}
+                        }
                         console.log(data);
+                    }
                     });
                  /*
                 var data = [

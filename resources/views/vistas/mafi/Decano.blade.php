@@ -2066,6 +2066,7 @@
                                 periodos: periodosSeleccionados
                             }
                     }
+                    console.log(data);
                 }
                 $.ajax({
                     headers: {

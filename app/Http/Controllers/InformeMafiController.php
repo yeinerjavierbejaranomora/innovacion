@@ -1523,7 +1523,6 @@ class InformeMafiController extends Controller
         return $datos;
     }
 
-
     public function tablaProgramas(Request $request)
     {
         $periodos = $request->input('periodos');

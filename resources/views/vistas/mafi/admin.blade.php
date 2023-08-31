@@ -3373,7 +3373,7 @@
                             data = data;
                         }
                         console.log(data);
-                        var dataExcel = data.forEach(data => {
+                        var dataExcel = data.metas.forEach(data => {
                             console.log(data);
                         });
 

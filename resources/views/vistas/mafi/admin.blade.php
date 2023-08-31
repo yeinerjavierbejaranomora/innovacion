@@ -3396,21 +3396,14 @@
                         console.log(newData);
                     }
                 });
-                /*
-                var data = [
-                    ["Nombre", "Apellido", "Edad"],
-                    ["John", "Doe", 30],
-                    ["Jane", "Smith", 28]
-                ];
 
-                // Crear una hoja de cálculo en formato xlsx
                 var wb = XLSX.utils.book_new();
-                var ws = XLSX.utils.aoa_to_sheet(data);
+                var ws = XLSX.utils.aoa_to_sheet(newData);
                 XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
 
                 // Generar el archivo Excel y descargarlo
                 XLSX.writeFile(wb, "metas.xlsx");
-                */
+
             });
         });
     </script>

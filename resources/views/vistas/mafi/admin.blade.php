@@ -3373,6 +3373,10 @@
                             data = data;
                         }
                         console.log(data);
+                        var dataExcel = data.forEach(data => {
+                            console.log(data);
+                        });
+
                     }
                     });
                  /*

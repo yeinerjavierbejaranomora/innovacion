@@ -164,7 +164,6 @@
 
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
-
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
@@ -479,7 +478,6 @@
             var periodosSeleccionados = [];
             periodos();
             facultadesUsuario();
-
             vistaEntrada();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -544,7 +542,6 @@
                 return periodosSeleccionados;
             }
 
-
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
@@ -576,7 +573,6 @@
                 destruirGraficos();
                 llamadoFunciones();
             }
-
 
             var facultadesSeleccionadas = [];
             var facultadesSelect;
@@ -850,7 +846,6 @@
             var chartOperadores;
 
             var chartProgramas;
-
 
             /**
              * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad

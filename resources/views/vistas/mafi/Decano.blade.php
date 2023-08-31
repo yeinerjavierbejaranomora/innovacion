@@ -2175,7 +2175,7 @@
                                 periodos: periodosSeleccionados
                             }
                     } else {
-                        var url = "{{ route('operadoresTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+                        var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                             data = {
                                 idfacultad: facultadesSelect,
                                 periodos: periodosSeleccionados
@@ -2287,8 +2287,11 @@
                             periodos: periodosSeleccionados
                         }
                 } else {
-                    var url = "{{ route('programasTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                        data = '';
+                    var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+                    data = {
+                                idfacultad: facultadesSelect,
+                                periodos: periodosSeleccionados
+                            }
                 }
                 $.ajax({
                     headers: {

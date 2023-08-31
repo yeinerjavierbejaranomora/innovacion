@@ -3347,7 +3347,7 @@
                 });
             }
 
-            $("#btn-generarExcel").on("click", function() {
+            $("#generarExcel").on("click", function() {
                 console.log('entra');
                 var data = [
                     ["Nombre", "Apellido", "Edad"],

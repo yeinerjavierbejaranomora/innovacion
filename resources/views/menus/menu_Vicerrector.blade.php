@@ -19,7 +19,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <img src="/public/assets/images/LogoBlanco.png" width="40" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3"> {{ auth()->user()->nombre_rol}}</div>
+        <div class="sidebar-brand-text mx-3"> Vicerrector</div>
     </a>
 
     <!-- Divider -->

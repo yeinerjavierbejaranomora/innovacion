@@ -3013,12 +3013,12 @@
                 },
                 method: 'post',
                 success: function(data) {
-                    console.log(data);
                     try {
                         data = parseJSON(data);
                     } catch {
                         data = data;
                     }
+                    console.log(data);
                     var table = $('#estudiantesPlaneados').DataTable({
                         "data": data,
                         "columns": [{

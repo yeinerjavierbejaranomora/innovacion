@@ -1467,6 +1467,8 @@ class InformeMafiController extends Controller
             ->groupBy('pm.programa')
             ->get();
 
+        dd($programasConsulta);
+
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
         $periodosActivos = [];

@@ -654,7 +654,6 @@
                         },
                         type: 'post',
                         url: "{{ route('todosProgramas.activos') }}",
-                        data: formData,
                         cache: false,
                         contentType: false,
                         processData: false,

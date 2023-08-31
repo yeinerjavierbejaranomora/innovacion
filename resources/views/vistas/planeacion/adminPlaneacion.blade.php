@@ -3021,7 +3021,7 @@
                     } catch {
                         data = data;
                     }
-                    $('#estudiantesPlaneados').remove(mensaje);
+                    $('#estudiantesPlaneados').empty();
                     table = $('#estudiantesPlaneados').DataTable({
                         "data": data,
                         "columns": [{

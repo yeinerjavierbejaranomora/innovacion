@@ -1192,6 +1192,7 @@
              * Método que genera el gráfico con los tipos de estudiante por facultad
              */
             function graficoTiposDeEstudiantesFacultad(facultades) {
+                console.log(facultades, periodosSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1202,6 +1203,7 @@
                         idfacultad: facultades,
                         periodos: periodosSeleccionados
                     },
+                    
                     success: function(data) {
                         data = jQuery.parseJSON(data);
 

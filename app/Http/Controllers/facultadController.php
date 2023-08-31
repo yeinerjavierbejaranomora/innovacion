@@ -159,7 +159,8 @@ class facultadController extends Controller
      */
     public function get_reglas()
     {
-        $reglas = DB::table('reglasNegocio as r')->join('programas as p', 'programas.codprograma', '=', 'reglasNegocio.programa')
+        $reglas = DB::table('reglasNegocio as r')
+            ->join('programas as p', 'p.codprograma', '=', 'r.programa')
             ->select(
                 'p.codprograma',
                 'r.creditos',

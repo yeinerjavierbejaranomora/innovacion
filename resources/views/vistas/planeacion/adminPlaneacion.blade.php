@@ -3003,6 +3003,9 @@
             limpiarModalEstudiantes();
             $('#tituloEstudiantes').empty();
             $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
+            var mensaje = 'Cargando, por favor espere...';
+
+            $('#estudiantesPlaneados').append(mensaje);
             var datos = $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -3018,7 +3021,7 @@
                     } catch {
                         data = data;
                     }
-                    console.log(data);
+                    $('#estudiantesPlaneados').remove(mensaje);
                     table = $('#estudiantesPlaneados').DataTable({
                         "data": data,
                         "columns": [{

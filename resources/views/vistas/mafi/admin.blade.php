@@ -3266,7 +3266,6 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
@@ -3348,7 +3347,6 @@
             }
 
             $("#generarExcel").on("click", function() {
-                console.log('entra');
                 if (facultadesSeleccionadas.length > 0) {
                     url = "{{ route('metasTotalFacultad.programa')}}",
                         data = {
@@ -3372,7 +3370,6 @@
                         } catch {
                             data = data;
                         }
-                        console.log (data);
                         var newData = [];
                         var headers = ["Codigo Programa","Programa", "Meta", "Sello", "% Ejecución"];
                         
@@ -3399,7 +3396,6 @@
                             var row = [col1[i],col2[i], col3[i], col4[i], porcentaje];
                             newData.push(row);
                         }
-                        console.log(newData);
                         var wb = XLSX.utils.book_new();
                         var ws = XLSX.utils.aoa_to_sheet(newData);
                         XLSX.utils.book_append_sheet(wb, ws, "Metas");

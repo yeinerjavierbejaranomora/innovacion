@@ -186,10 +186,11 @@ class facultadController extends Controller
      */
     public function get_planeacion()
     {
-        $planeacion = DB::table('planeacion as pl')
-            ->join('programas as pr', 'pl.codprograma','=','pr.codprograma')
-            ->join('mallaCurricular as m', 'pl.codMateria','=','m.codigoCurso')
-            ->get();
+
+        $sql = "SELECT * FROM `planeacion` p INNER JOIN programas pr ON pr.codprograma = p.codprograma INNER JOIN mallaCurricular m ON m.codigoCurso = p.codMateria";
+
+        $planeacion = DB::select($sql);
+        
         header("Content-Type: application/json");
         echo json_encode(array('data' => $planeacion));
     }

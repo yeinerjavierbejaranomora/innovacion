@@ -3374,24 +3374,21 @@
                         }
 
                         var newData = [];
-                        var headers = ["llave"];
-                        var categories = Object.keys(data);
+                        var headers = ["programa", "Meta", "Sello", "Retención"];
 
-                        headers = headers.concat(categories);
-                        newData.push(headers);
+                        var col1 = [];
+                        var col2 = [];
+                        var col3 = [];
+                        var col4 = [];
 
-                        $.each(data, function(category, values) {
-                            var row = [category];
-
-                            $.each(categories, function(index, category) {
-                                row.push(values[category] || ""); 
-                            });
-
-                            newData.push(row);
+                        Object.keys(data.metas).forEach(meta => {
+                            col1.push(meta);
+                            col2.push(data.metas[meta]);
+                            col3.push(data.matriculaSello[meta]);
+                            col4.push(data.matriculaRetencion[meta]);
                         });
 
-
-                        console.log(newData);
+                        console.log(col1,col2,col3);
 
                     }
                 });

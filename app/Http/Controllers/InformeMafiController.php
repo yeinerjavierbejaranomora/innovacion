@@ -1392,6 +1392,7 @@ class InformeMafiController extends Controller
             $nombres[$nombre->codprograma] = $nombre->programa;
         }
 
+        dd($nombres);
         $periodos = DB::table('periodo')->where('activoCiclo1', 1)->select('periodos')->get();
 
         $periodosActivos = [];

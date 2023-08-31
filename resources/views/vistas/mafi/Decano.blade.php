@@ -2066,8 +2066,8 @@
                                 periodos: periodosSeleccionados
                             }
                     }
-                    console.log(data);
                 }
+                console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

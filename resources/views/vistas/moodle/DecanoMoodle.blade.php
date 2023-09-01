@@ -231,7 +231,11 @@
                                                 <h5><strong>Seleccionar Facultades</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" id="facultades"></div>
+                                                <div name="facultades" id="facultades">
+                                                @foreach ($facultades as $facultad)
+                                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
+                                                    @endforeach    
+                                               </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
                                                 <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
@@ -510,6 +514,9 @@
                 periodosSeleccionados = getPeriodos();
                 objeto = <?php echo json_encode($facultades); ?>;
                 facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
+
+                
+
             }
 
             function programas() {
@@ -518,6 +525,8 @@
                 facultadesSeleccionadas.forEach(function(item) {
                     formData.append('idfacultad[]', item);
                 });
+
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

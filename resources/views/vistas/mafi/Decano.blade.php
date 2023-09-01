@@ -159,7 +159,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
@@ -619,15 +619,7 @@
             function ocultarDivs() {
                 $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
-
-            /**
-             * Método que trae la información de toda la Ibero 
-             * */
-            function informacionGeneral() {
-                $('#mensaje').show();
-                destruirGraficos();
-                llamadoFunciones();
-            }
+        
 
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;

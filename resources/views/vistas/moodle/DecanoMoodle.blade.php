@@ -511,7 +511,6 @@
 
             function facultadesUsuario() {
                 var objeto;
-                periodosSeleccionados = getPeriodos();
                 objeto = <?php echo json_encode($facultades); ?>;
                 facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
             }
@@ -592,10 +591,6 @@
                 });
                 return periodosSeleccionados;
             }
-
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
 
             $('body').on('change', '#facultades input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {

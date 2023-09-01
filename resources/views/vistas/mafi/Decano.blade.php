@@ -479,7 +479,7 @@
             var programasSeleccionados = [];
             facultadesUsuario();
             programas();
-            periodos();
+            
             vistaEntrada();
             graficos();
 
@@ -585,15 +585,13 @@
 
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                facultadesSelect = facultadesSeleccionadas;
-                
+                facultadesSelect = facultadesSeleccionadas;   
             }
 
             function graficos(){
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
                 periodosSeleccionados = getPeriodos();
             }
-
 
             function programas () {
                 var formData = new FormData();
@@ -627,7 +625,7 @@
                             });
                         }
                     })
-                    console.log(programasSeleccionados);
+                    periodos();
             }
 
             $('#deshacerProgramas').on('click', function(e) {

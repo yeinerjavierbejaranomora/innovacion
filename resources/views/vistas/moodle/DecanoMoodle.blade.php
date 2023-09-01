@@ -225,7 +225,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 text-start">
+                                    <div class="col-4 text-start" id="colCardFacultades">
                                         <div class="card" id="cardFacultades">
                                             <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
                                                 <h5><strong>Seleccionar Facultades</strong></h5>
@@ -718,35 +718,11 @@
                 var valorFacultad = facultadesSeleccionadas[key[0]];
 
                 if (cantidadFacultades === 1) {
-                    $('#colCardFacultades').hide();
+                    $('#colCardFacultades').hidden();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
-                    var idFacultadesArray = Object.values(facultadesSeleccionadas);
-                    var formData = new FormData();
-                    idFacultadesArray.forEach((facultad) => {
-                        formData.append('idfacultad[]', facultad);
-                    });
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
-                            }
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    })
+
+                    
                 }
             }
 

@@ -151,7 +151,18 @@
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
             <br>
-
+            <div class="row">
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
+                        Moodle
+                    </a>
+                </div>
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
+                        Planeación
+                    </a>
+                </div>
+            </div>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Facultades:
                     @foreach ($facultades as $facultad)

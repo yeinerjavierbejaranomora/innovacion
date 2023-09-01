@@ -514,9 +514,6 @@
                 periodosSeleccionados = getPeriodos();
                 objeto = <?php echo json_encode($facultades); ?>;
                 facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
-
-                
-
             }
 
             function programas() {
@@ -525,7 +522,6 @@
                 facultadesSeleccionadas.forEach(function(item) {
                     formData.append('idfacultad[]', item);
                 });
-
 
                 $.ajax({
                     headers: {
@@ -551,6 +547,7 @@
              * Método que trae los periodos activos
              */
             function periodos() {
+                console.log(programasSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

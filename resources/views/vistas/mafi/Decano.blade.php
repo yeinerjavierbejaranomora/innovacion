@@ -590,7 +590,7 @@
                 var formData = new FormData();
                 var array = [];
                 for (const key in facultadesSelect) {
-                        array.push(objeto[key]);
+                        array.push(facultadesSelect[key]);
                 }
 
                 console.log(array);

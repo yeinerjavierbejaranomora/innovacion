@@ -627,7 +627,6 @@
                             });
                         }
                     })  
-                    programasSeleccionados = [programasSeleccionadosAux];
                     console.log(programasSeleccionados);
             }
 

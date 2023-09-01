@@ -594,6 +594,7 @@
             }
 
             function programas () {
+                var programasSeleccionadosAux = [];
                 var formData = new FormData();
                 var array = [];
                 for (const key in facultadesSelect) {
@@ -621,11 +622,12 @@
                             }
                             console.log(datos);
                             datos.forEach(data => {
-                                programasSeleccionados.push(data.codprograma);
+                                programasSeleccionadosAux.push(data.codprograma);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label><br>`);
                             });
                         }
-                    })
+                    })  
+                    programasSeleccionados = [programasSeleccionadosAux];
                     console.log(programasSeleccionados);
             }
 

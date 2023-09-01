@@ -517,7 +517,6 @@
 
             function programas() {
                 var formData = new FormData();
-
                 facultadesSeleccionadas.forEach(function(item) {
                     formData.append('idfacultad[]', item);
                 });
@@ -598,34 +597,7 @@
             $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
-                    var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
-                            }
-
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    })
+                    programas();
                 } else {
                     $('#programas').empty();
                 }

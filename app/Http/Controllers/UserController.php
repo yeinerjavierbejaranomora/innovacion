@@ -583,15 +583,8 @@ class UserController extends Controller
     {
         $idsFacultad = $request->input('idfacultad');
         $programas = DB::table('programas')->whereIn('Facultad', $idsFacultad)->select('id', 'programa', 'codprograma')->get();
-        foreach ($programas as $programa) {
-            $arreglo[] = [
-                'id' => $programa->id,
-                'nombre' => $programa->programa,
-                'codprograma' => $programa->codprograma
-            ];
-        }
-        header("Content-Type: application/json");
-        echo json_encode($arreglo);
+
+        return $programas;
     }
 
     public function traerProgramasUsuarios(Request $request)

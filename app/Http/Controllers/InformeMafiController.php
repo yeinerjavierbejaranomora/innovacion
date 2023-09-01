@@ -1197,6 +1197,7 @@ class InformeMafiController extends Controller
          */
         if ($tabla == "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->select(DB::raw('COUNT(tipoestudiante) AS TOTAL, tipoestudiante'))

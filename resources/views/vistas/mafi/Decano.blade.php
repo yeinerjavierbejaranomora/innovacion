@@ -676,6 +676,14 @@
                 $('.todos').prop('checked', true);
             });
 
+            $('#deshacerFacultades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', false);
+            });
+
+            $('#seleccionarFacultades').on('click', function(e) {
+                $('#facultades input[type="checkbox"]').prop('checked', true);
+            });
+
             function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
@@ -874,7 +882,7 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"],.todos input[type="checkbox"]', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
@@ -2169,7 +2177,7 @@
             function tiposEstudiantesTotal() {
                 var data;
                 Contador();
-                if (programasSeleccionados.length > 0 && programasSeleccionados.lenth < totalProgramas) {
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = {
                             programa: programasSeleccionados,
@@ -2284,7 +2292,7 @@
                 var data;
                 Contador();
                 console.log(facultadesSelect);
-                if (programasSeleccionados.length > 0 && programasSeleccionados.lenth < totalProgramas) {
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = {
                             programa: programasSeleccionados,

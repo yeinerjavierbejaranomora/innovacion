@@ -2722,6 +2722,64 @@
                 });
             }
 
+            $("#generarExcel").on("click", function() {
+                    url = "{{ route('metasTotalFacultad.programa')}}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ["Codigo Programa","Programa", "Meta", "Sello", "% Ejecución"];
+                        
+                        var col1 = [];
+                        var col2 = [];
+                        var col3 = [];
+                        var col4 = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            col1.push(meta);
+                            col2.push(data.nombres[meta]);
+                            col3.push(data.metas[meta]);
+                            col4.push(data.matriculaSello[meta]);
+                        });
+
+                        var porcentaje;
+                        newData.push(headers);
+                        for (var i = 0; i < col1.length; i++) {
+                            porcentaje = (((col4[i])/col3[i])*100).toFixed(2);
+                            if(porcentaje > 100){
+                                porcentaje = 'Meta Superada';
+                            }
+                           
+                            var row = [col1[i],col2[i], col3[i], col4[i], porcentaje];
+                            newData.push(row);
+                        }
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Metas");
+
+                        // Generar el archivo Excel y descargarlo
+                        XLSX.writeFile(wb, "Metas.xlsx");
+                    }
+                });
+
+                
+
+            });
+
         });
     </script>
 

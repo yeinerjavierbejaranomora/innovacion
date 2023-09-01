@@ -573,7 +573,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
                                 });
                             }
                         },
@@ -599,7 +599,7 @@
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();

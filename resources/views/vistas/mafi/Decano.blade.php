@@ -919,6 +919,38 @@
                 }
             });
 
+            $("#todosContinua").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Continua input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Continua input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPregrado").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Pregrado input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Pregrado input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosEsp").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Esp input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Esp input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosMaestria").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Maestria input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+            });
+
             var chartEstudiantes;
 
             var chartEstudiantesActivos;
@@ -2135,7 +2167,8 @@
 
             function tiposEstudiantesTotal() {
                 var data;
-                if (programasSeleccionados.length > 0) {
+                Contador();
+                if (programasSeleccionados.length > 0 && programasSeleccionados.lenth < totalProgramas) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = {
                             programa: programasSeleccionados,
@@ -2248,7 +2281,8 @@
 
             function graficoOperadoresTotal() {
                 var data;
-                if (programasSeleccionados.length > 0) {
+                Contador();
+                if (programasSeleccionados.length > 0 && programasSeleccionados.lenth < totalProgramas) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = {
                             programa: programasSeleccionados,
@@ -2380,6 +2414,7 @@
                             periodos: periodosSeleccionados
                         }
                 }
+                console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2463,6 +2498,16 @@
                     }
                 });
             }
+
+
+            $('#botonModalMetas').on("click", function(e) {
+                e.preventDefault();
+                if (chartMetasTotal) {
+                    chartMetasTotal.destroy();
+                }
+
+                graficoMetasTotal();
+            });
 
             var chartMetasTotal;
             var chartMetas;
@@ -2562,6 +2607,108 @@
                             $('#colMetas').removeClass('hidden');
                         }
                     }
+                });
+            }
+
+            function graficoMetasTotal() {
+
+                var url, data;
+                    url = "{{ route('metasTotalFacultad.programa')}}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var labels = [];
+                        var values = [];
+                        var valuesSello = [];
+                        var valuesRetencion = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
+                            values.push(data.metas[meta]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
+                        });
+
+                        var ctx = document.getElementById('metasTotal').getContext('2d');
+                        chartMetasTotal = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'middle',
+                                            align: 'center'
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+
+                                    {
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        stacked: false,
+                                    }
+                                },
+                                plugins: {
+                                    formatter: function(value, context) {
+                                        if (context.dataset.label == 'Retencion' && value == 0) {
+                                            return '';
+                                        }
+                                    },
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                    }
+
                 });
             }
 

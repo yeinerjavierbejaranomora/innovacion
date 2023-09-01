@@ -11,14 +11,7 @@
         font-size: 14px;
     }
 
-    .center-chart {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-
-    .btn {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -30,14 +23,14 @@
         font-size: 14px;
     }
 
-    #btn-table {
-        width: 60px;
-    }
-
     #generarReporte {
         width: 250px;
         height: 45px;
         font-size: 20px;
+    }
+
+    #btn-table {
+        width: 60px;
     }
 
     .deshacer {
@@ -49,13 +42,10 @@
         border-radius: 10px;
         font-weight: 800;
         place-items: center;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .botonModal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -67,11 +57,28 @@
         font-size: 14px;
     }
 
-    #cardProgramas,
-    #cardPeriodos,
-    #cardFacultades {
-        min-height: 250px;
-        max-height: 250px;
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
     .card {
@@ -82,10 +89,13 @@
         display: none;
     }
 
-
     .graficos {
-        min-height: 460px;
-        max-height: 460px;
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #cardProgramas {
+        max-height: 500px;
     }
 
     .graficosBarra {
@@ -93,9 +103,21 @@
         max-height: 600px;
     }
 
-    .graficosRiesgo {
-        min-height: 450px;
-        max-height: 450px;
+    #tiposEstudiantesTotal,
+    #operadoresTotal,
+    #programasTotal,
+    #metasTotal {
+        height: 600px !important;
+    }
+
+    #seccion {
+        background: #FFFFFF;
+    }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 
@@ -289,7 +311,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>

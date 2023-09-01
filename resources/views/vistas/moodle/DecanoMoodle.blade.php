@@ -127,6 +127,19 @@
         <div class="container-fluid">
             <!-- Page Heading -->
 
+            <div class="row mb-3">
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
+                        Admisiones
+                    </a>
+                </div>
+                <div class="col 4 text-center">
+                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
+                        Planeación
+                    </a>
+                </div>
+            </div>
+
             <br>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Facultades:
@@ -139,55 +152,140 @@
             <br>
 
             <!-- Checkbox Periodos -->
-            <div class="row justify-content-start">
-                <div class="col-4 text-star">
-                    <div class="card shadow mb-5" id="cardPeriodos">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Periodos</strong></h5>
+            <div class="row justify-content-start mb-3" id="seccion">
+
+                <!--Columna Niveles de Formación-->
+                <div class="col-12 text-start mt-1">
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="text-center col-8">
+                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                         </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div name="periodos" id="periodos">
-                            </div>
+                        <div class="text-start">
+                            <div id="periodos">
+                            <!--Accordion-->
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        For. Contínua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card" id="cardFacultades">
+                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                                <div name="facultades" id="facultades"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
+                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                         </div>
-                        <div class="card-footer text-center" style="height: 55px;">
+                        </div>
+                        <div class="text-center col-8 mt-3" style="height: 30px;">
                             <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
                             <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-4 text-star">
-                    <div class="card shadow mb-5" id="cardFacultades">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Facultades</strong></h5>
-                        </div>
-                        <div class="card-body text-start" id="centrar" style="overflow: auto;">
-                            <div class="facultades" name="facultades" id="facultades">
-                                @foreach ($facultades as $facultad)
-                                <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerFacultades" class="btn deshacer">Deshacer Todas</button>
-                            <button type="button" id="seleccionarFacultades" class="btn deshacer">Seleccionar Todas</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-start">
-                    <div class="card shadow mb-5" id="cardProgramas">
-                        <div class="card-header text-center">
-                            <h5><strong>Seleccionar Programas</strong></h5>
-                        </div>
-                        <div class="card-body text-start" style="overflow: auto;">
-                            <div name="programas" id="programas"></div>
-                        </div>
-                        <div class="card-footer text-center" style="height: 55px;">
-                            <button type="button" id="deshacerProgramas" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarProgramas" class="btn deshacer">Seleccionar Todos</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row text-center justify-content-center">

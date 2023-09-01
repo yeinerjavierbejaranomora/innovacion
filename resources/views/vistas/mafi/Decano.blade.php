@@ -612,11 +612,11 @@
                         url: "{{ route('traer.programas') }}",
                         data: formData,
                         cache: false,
+                        async: false,
                         contentType: false,
                         processData: false,
                         success: function(datos) {
                             datos.forEach(data => {
-                                console.log(data.codprograma);
                                 programasSeleccionados.push(data.codprograma);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
                             });

@@ -615,11 +615,6 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
-                            }
                             datos.forEach(data => {
                                 console.log(data.codprograma);
                                 programasSeleccionados.push(data.codprograma);

@@ -540,7 +540,7 @@
                         });
                     }
                 })
-
+                console.log(programasSeleccionados);
             }
             /**
              * Método que trae los periodos activos

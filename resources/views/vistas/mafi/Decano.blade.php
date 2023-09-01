@@ -627,6 +627,7 @@
                             });
                         }
                     })
+                    console.log(programasSeleccionados);
             }
 
             $('#deshacerProgramas').on('click', function(e) {

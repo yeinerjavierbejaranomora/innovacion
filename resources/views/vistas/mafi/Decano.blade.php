@@ -476,10 +476,12 @@
         $(document).ready(function() {
             var tabla = 'Mafi';
             var periodosSeleccionados = [];
-            periodos();
+            var programasSeleccionados = [];
             facultadesUsuario();
-            vistaEntrada();
             programas();
+            periodos();
+            vistaEntrada();
+            graficos();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -503,7 +505,10 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('programas.activos') }}",
+                    url: "{{ route('periodosPrograma.activos') }}",
+                    data: {
+                        programas: programasSeleccionados,
+                    },
                     method: 'post',
                     async: false,
                     success: function(data) {
@@ -579,12 +584,16 @@
             var facultadesSelect = [];
 
             function facultadesUsuario() {
-                periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-
-                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+                
             }
+
+            function graficos(){
+                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+                periodosSeleccionados = getPeriodos();
+            }
+
 
             function programas () {
                 var formData = new FormData();
@@ -613,6 +622,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
+                                programasSeleccionados.push(value.codprograma);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
@@ -675,7 +685,6 @@
                 }
             }
 
-            var programasSeleccionados = [];
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();

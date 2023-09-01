@@ -479,6 +479,7 @@
             periodos();
             facultadesUsuario();
             vistaEntrada();
+            programas();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -583,6 +584,34 @@
                 facultadesSelect = facultadesSeleccionadas;
 
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+            }
+
+            function programas () {
+                var formData = new FormData();
+                    facultadesSelect.each(function() {
+                        formData.append('idfacultad[]', $(this).val());
+                    });
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('traer.programas') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            try {
+                                datos = jQuery.parseJSON(datos);
+                            } catch {
+                                datos = datos;
+                            }
+                            $.each(datos, function(key, value) {
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                            });
+                        }
+                    })
             }
 
             $('#deshacerProgramas').on('click', function(e) {

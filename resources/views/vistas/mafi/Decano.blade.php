@@ -511,6 +511,8 @@
             var tabla = 'Mafi';
             var periodosSeleccionados = [];
             var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var facultadesSelect = [];
             facultadesUsuario();
             programas();
             periodos();
@@ -614,8 +616,7 @@
                 llamadoFunciones();
             }
 
-            var facultadesSeleccionadas = [];
-            var facultadesSelect = [];
+            
 
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
@@ -2282,6 +2283,7 @@
             function graficoOperadoresTotal() {
                 var data;
                 Contador();
+                console.log(facultadesSelect);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.lenth < totalProgramas) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
                         data = {

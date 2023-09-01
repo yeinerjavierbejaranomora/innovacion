@@ -159,6 +159,7 @@
                     </a>
                 </div>
             </div>
+            
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>

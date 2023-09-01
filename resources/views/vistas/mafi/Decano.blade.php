@@ -619,6 +619,7 @@
                             } catch {
                                 datos = datos;
                             }
+                            console.log(datos);
                             programasSeleccionados = datos.map(data => data.codprograma);
                             datos.forEach(data => {
                                 console.log(data.codprograma);

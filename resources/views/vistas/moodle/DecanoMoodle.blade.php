@@ -513,14 +513,9 @@
             }
 
             function programas() {
-                console.log(facultadesSeleccionadas);
                 var formData = new FormData();
-                var array = [];
-                for (const key in facultadesSelect) {
-                    array.push(facultadesSelect[key]);
-                }
 
-                array.forEach(function(item) {
+                facultadesSeleccionadas.forEach(function(item) {
                     formData.append('idfacultad[]', item);
                 });
                 $.ajax({

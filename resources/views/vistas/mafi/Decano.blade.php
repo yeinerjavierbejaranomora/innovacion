@@ -602,7 +602,7 @@
                 
                 array.forEach(function(item) {
                     formData.append('idfacultad[]', item);
-                        });
+                });
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -620,6 +620,7 @@
                                 datos = datos;
                             }
                             datos.forEach(data => {
+                                console.log(data.codprograma);
                                 programasSeleccionados.push(data.codprograma);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label><br>`);
                             });

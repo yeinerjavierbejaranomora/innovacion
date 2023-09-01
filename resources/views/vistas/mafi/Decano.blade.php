@@ -592,12 +592,10 @@
                 for (const key in facultadesSelect) {
                         array.push(facultadesSelect[key]);
                 }
-
-                console.log(array);
                 
-                array.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
+                array.forEach(function(item) {
+                    formData.append('idfacultad[]', item);
+                        });
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

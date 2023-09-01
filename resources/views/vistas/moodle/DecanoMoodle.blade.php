@@ -540,13 +540,11 @@
                         });
                     }
                 })
-                console.log(programasSeleccionados);
             }
             /**
              * Método que trae los periodos activos
              */
             function periodos() {
-                console.log(programasSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -850,8 +848,9 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
+                Contador();
                 var data;
-                if (programasSeleccionados.length > 0) {
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     var url = "{{ route('moodle.riesgo.programa') }}",
                         data = {
                             programa: programasSeleccionados,

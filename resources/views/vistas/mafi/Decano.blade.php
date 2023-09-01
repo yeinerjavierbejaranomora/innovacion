@@ -623,7 +623,7 @@
                             datos.forEach(data => {
                                 console.log(data.codprograma);
                                 programasSeleccionados.push(data.codprograma);
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
                             });
                         }
                     })  

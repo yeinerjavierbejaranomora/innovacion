@@ -184,7 +184,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        <input type="checkbox" class="todos periodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -203,7 +203,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                        <input type="checkbox" class="todos periodos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -243,7 +243,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                        <input type="checkbox" class="todos periodos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -263,7 +263,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                        <input type="checkbox" class="todos periodos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -597,7 +597,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
             }
 
             /**
@@ -615,8 +615,6 @@
                 destruirGraficos();
                 llamadoFunciones();
             }
-
-            
 
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
@@ -740,6 +738,8 @@
                                 programasSeleccionados.push($(this).val());
                             });
                             estadoUsuarioPrograma()
+                            $("#colProgramas").addClass("hidden");
+                            $("#colMetas").addClass("hidden");
                             graficosporPrograma(programasSeleccionados);
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -753,6 +753,7 @@
                                     checkboxesSeleccionados.each(function() {
                                         facultadesSeleccionadas.push($(this).val());
                                     });
+                                    $("#colMetas").removeClass("hidden");
                                     estadoUsuarioFacultad()
                                     graficosporFacultad(facultadesSeleccionadas);
                                 }

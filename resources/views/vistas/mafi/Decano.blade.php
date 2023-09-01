@@ -576,7 +576,7 @@
             }
 
             var facultadesSeleccionadas = [];
-            var facultadesSelect;
+            var facultadesSelect = [];
 
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();

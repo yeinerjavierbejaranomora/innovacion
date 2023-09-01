@@ -583,10 +583,15 @@
              */
             function getPeriodos() {
                 var periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });
+
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
+
                 return periodosSeleccionados;
             }
 

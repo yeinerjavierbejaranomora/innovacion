@@ -619,7 +619,7 @@
                             } catch {
                                 datos = datos;
                             }
-                            $.datos.forEach(data => {
+                            datos.forEach(data => {
                                 programasSeleccionados.push(data.codprograma);
                                 $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label><br>`);
                             });

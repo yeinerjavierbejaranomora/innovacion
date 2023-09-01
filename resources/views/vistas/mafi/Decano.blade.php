@@ -479,7 +479,7 @@
             var programasSeleccionados = [];
             facultadesUsuario();
             programas();
-            
+            periodos();
             vistaEntrada();
             graficos();
 
@@ -619,14 +619,12 @@
                             } catch {
                                 datos = datos;
                             }
-                            $.each(datos, function(key, value) {
-                                programasSeleccionados.push(value.codprograma);
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                            $.datos.forEach(data => {
+                                programasSeleccionados.push(data.codprograma);
+                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label><br>`);
                             });
                         }
                     })
-                    console.log(programasSeleccionados)
-                    periodos();
             }
 
             $('#deshacerProgramas').on('click', function(e) {

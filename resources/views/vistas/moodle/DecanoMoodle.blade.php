@@ -482,6 +482,7 @@
             var facultadesSeleccionadas = [];
             periodos();
             facultadesUsuario();
+            programas();
             riesgo();
             vistaEntrada();
 
@@ -504,6 +505,44 @@
                 return periodosSeleccionados;
             }
 
+            function facultadesUsuario() {
+                var objeto;
+                periodosSeleccionados = getPeriodos();
+                objeto = <?php echo json_encode($facultades); ?>;
+                facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
+            }
+
+            function programas() {
+                var programasSeleccionadosAux = [];
+                var formData = new FormData();
+                var array = [];
+                for (const key in facultadesSelect) {
+                    array.push(facultadesSelect[key]);
+                }
+
+                array.forEach(function(item) {
+                    formData.append('idfacultad[]', item);
+                });
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('traer.programas') }}",
+                    data: formData,
+                    cache: false,
+                    async: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(datos) {
+                        datos.forEach(data => {
+                            programasSeleccionados.push(data.codprograma);
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
+                        });
+                    }
+                })
+
+            }
             /**
              * Método que trae los periodos activos
              */
@@ -512,15 +551,32 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('periodos.activos') }}",
+                    url: "{{ route('periodosPrograma.activos') }}",
+                    data: {
+                        programas: programasSeleccionados,
+                    },
                     method: 'post',
                     async: false,
                     success: function(data) {
                         data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                            periodosSeleccionados.push(periodo.periodo);
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "PROFESIONAL") {
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "ESPECIALISTA") {
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "MAESTRIA") {
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
                         });
                     }
+                });
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
                 });
             }
 
@@ -623,13 +679,6 @@
 
             function ocultarDivs() {
                 $('#colRiesgoAlto, #colRiesgoMedio, #colRiesgoBajo').addClass('hidden');
-            }
-
-            function facultadesUsuario() {
-                var objeto;
-                periodosSeleccionados = getPeriodos();
-                objeto = <?php echo json_encode($facultades); ?>;
-               facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
             }
 
             function vistaEntrada() {
@@ -805,8 +854,6 @@
                 if (chartRiesgoAlto && chartRiesgoMedio && chartRiesgoBajo) {
                     [chartRiesgoAlto, chartRiesgoMedio, chartRiesgoBajo].forEach(chart => chart.destroy());
                 }
-                console.log(facultadesSeleccionadas);
-                console.log(facultadesSeleccionadas.length);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('moodle.riesgo.programa') }}",

@@ -404,6 +404,20 @@
                     </div>
                 </div>
             </div>
+            <div class="col-6 text-center " id="colMetas">
+                <div class="card shadow mb-4 graficosBarra">
+                    <div class="card-header">
+                        <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="graficoMetas"></canvas>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="" id="botonModalMetas" class="btn botonModal" data-toggle="modal" data-target="#modalMetas"> Ver más </a>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -468,6 +482,26 @@
             </div>
         </div>
 
+        <!-- Modal Metas -->
+        <div class="modal fade" id="modalMetas" tabindex="-1" role="dialog" aria-labelledby="modalMetas" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa (Primer ingreso y transferentes)</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="metasTotal"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" id="generarExcel">Descargar datos</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -585,44 +619,44 @@
 
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                facultadesSelect = facultadesSeleccionadas;   
+                facultadesSelect = facultadesSeleccionadas;
             }
 
-            function graficos(){
+            function graficos() {
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
                 periodosSeleccionados = getPeriodos();
             }
 
-            function programas () {
+            function programas() {
                 var programasSeleccionadosAux = [];
                 var formData = new FormData();
                 var array = [];
                 for (const key in facultadesSelect) {
                     array.push(facultadesSelect[key]);
                 }
-                
+
                 array.forEach(function(item) {
                     formData.append('idfacultad[]', item);
                 });
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        async: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            datos.forEach(data => {
-                                programasSeleccionados.push(data.codprograma);
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
-                            });
-                        }
-                    })  
-                    console.log(programasSeleccionados);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('traer.programas') }}",
+                    data: formData,
+                    cache: false,
+                    async: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(datos) {
+                        datos.forEach(data => {
+                            programasSeleccionados.push(data.codprograma);
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
+                        });
+                    }
+                })
+                console.log(programasSeleccionados);
             }
 
             $('#deshacerProgramas').on('click', function(e) {
@@ -846,25 +880,38 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
+
+                    var periodosSeleccionados = getPeriodos();
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
+                    });
+
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'post',
-                        url: "{{ route('traer.programas') }}",
+                        url: "{{ route('programasPeriodo.activos') }}",
                         data: formData,
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
+                            if (datos != null) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                });
                             }
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
+                        },
+                        error: function() {
+                            $('#programas').append('<h5>No hay programas</h5>')
                         }
                     })
                 } else {
@@ -903,6 +950,7 @@
                 graficoTiposDeEstudiantesFacultad(facultades);
                 graficoOperadoresFacultad(facultades);
                 graficoProgramasFacultad(facultades);
+                graficoMetasFacultad(facultades);
             }
 
             /** 
@@ -1231,7 +1279,7 @@
              * Método que genera el gráfico con los tipos de estudiante por facultad
              */
             function graficoTiposDeEstudiantesFacultad(facultades) {
-                
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1242,7 +1290,7 @@
                         idfacultad: facultades,
                         periodos: periodosSeleccionados
                     },
-                    
+
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         console.log(data);
@@ -2327,10 +2375,10 @@
                         }
                 } else {
                     var url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    data = {
-                                idfacultad: facultadesSelect,
-                                periodos: periodosSeleccionados
-                            }
+                        data = {
+                            idfacultad: facultadesSelect,
+                            periodos: periodosSeleccionados
+                        }
                 }
                 $.ajax({
                     headers: {
@@ -2412,6 +2460,107 @@
                             },
                             plugins: [ChartDataLabels]
                         });
+                    }
+                });
+            }
+
+            var chartMetasTotal;
+            var chartMetas;
+
+            function graficoMetasFacultad(facultades) {
+
+                var url = "{{ route('metasFacultad.programa')}}";
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: {
+                        idfacultad: facultades,
+                    },
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+
+                        var labels = [];
+                        var values = [];
+                        var valuesSello = [];
+                        var valuesRetencion = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            labels.push(meta);
+                            values.push(data.metas[meta]);
+                            valuesSello.push(data.matriculaSello[meta]);
+                            valuesRetencion.push(data.matriculaRetencion[meta]);
+                        });
+
+                        var ctx = document.getElementById('graficoMetas').getContext('2d');
+                        chartMetas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                        label: 'Sello',
+                                        data: valuesSello,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)'],
+                                        datalabels: {
+                                            anchor: 'middle',
+                                            align: 'center'
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                    {
+                                        label: 'Metas',
+                                        data: values,
+                                        backgroundColor: ['rgba(186,186,186,1)'],
+                                        datalabels: {
+                                            anchor: 'end',
+                                            align: 'top',
+                                        },
+                                        stack: 'Stack 0',
+                                    },
+                                ]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        stacked: false,
+                                    }
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'light',
+                                            size: 8
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartMetas.data.labels.length == 0 && chartMetas.data.datasets[0].data.length == 0) {
+                            $('#colMetas').addClass('hidden');
+                        } else {
+                            $('#colMetas').removeClass('hidden');
+                        }
                     }
                 });
             }

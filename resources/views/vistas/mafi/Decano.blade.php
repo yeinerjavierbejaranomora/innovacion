@@ -588,7 +588,7 @@
 
             function programas () {
                 var formData = new FormData();
-                facultadesSeleccionadas = Object.values(facultadesSelect)
+                facultadesSelect = Object.values(facultadesSelect)
                 console.log (facultadesSelect); 
                 facultadesSelect.each(function() {
                         formData.append('idfacultad[]', $(this).val());

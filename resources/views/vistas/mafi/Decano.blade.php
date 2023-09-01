@@ -625,6 +625,7 @@
                             });
                         }
                     })
+                    console.log(programasSeleccionados)
                     periodos();
             }
 

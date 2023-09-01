@@ -595,9 +595,47 @@
             }
 
             $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
-                    programas();
+                    var formData = new FormData();
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    checkboxesSeleccionados.each(function() {
+                        formData.append('idfacultad[]', $(this).val());
+                    });
+
+                    var periodosSeleccionados = getPeriodos();
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
+                    });
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('programasPeriodo.activos') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            if (datos != null) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                });
+                            }
+                        },
+                        error: function() {
+                            $('#programas').append('<h5>No hay programas</h5>')
+                        }
+                    })
                 } else {
                     $('#programas').empty();
                 }

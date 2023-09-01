@@ -702,7 +702,6 @@
                 }
             
 
-
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();

@@ -1137,7 +1137,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipo_estudiante;
+                            return elemento.tipoestudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {
@@ -1335,7 +1335,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.programa;
+                            return elemento.codprograma;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -1694,7 +1694,7 @@
                         data = jQuery.parseJSON(data);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipo_estudiante;
+                            return elemento.tipoestudiante;
                         });
 
                         var valores = data.data.map(function(elemento) {
@@ -1932,7 +1932,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipo_estudiante;
+                            return elemento.tipoestudiante;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -2152,7 +2152,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.programa;
+                            return elemento.codprograma;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;

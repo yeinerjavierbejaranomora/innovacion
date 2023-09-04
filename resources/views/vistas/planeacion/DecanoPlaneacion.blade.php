@@ -314,7 +314,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
@@ -648,7 +648,7 @@
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     }
-                }
+            }
 
 
             $('#generarReporte').on('click', function(e) {

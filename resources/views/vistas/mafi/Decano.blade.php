@@ -720,7 +720,7 @@
                 }
             });
 
-            
+
             function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;

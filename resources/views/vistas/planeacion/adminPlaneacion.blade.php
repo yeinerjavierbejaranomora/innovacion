@@ -665,7 +665,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
                                 });
                             }
                         },
@@ -1935,7 +1935,6 @@
                     },
                     success: function(data) {
                         data = jQuery.parseJSON(data);
-                        console.log(data);
 
                         var labels = data.data.map(function(elemento) {
                             return elemento.codprograma;

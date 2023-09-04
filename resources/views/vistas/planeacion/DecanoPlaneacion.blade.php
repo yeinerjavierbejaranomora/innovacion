@@ -586,7 +586,6 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
-                console.log(periodosSeleccionados);
             }
 
             function getPeriodos() {
@@ -626,7 +625,6 @@
                     contentType: false,
                     processData: false,
                     success: function(datos) {
-                        console.log(datos);
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);
                             $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
@@ -750,7 +748,6 @@
                 getPeriodos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
-                console.log(cantidadFacultades);
 
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
@@ -973,7 +970,6 @@
              * Método que genera el gráfico de sello financiero de alguna facultad en específico
              */
             function graficoSelloFinancieroPorFacultad(facultades) {
-                console.log(periodosSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1993,7 +1989,6 @@
             var chartTiposEstudiantesTotal
 
             function tiposEstudiantesTotal() {
-                console.log(periodosSeleccionados);
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,

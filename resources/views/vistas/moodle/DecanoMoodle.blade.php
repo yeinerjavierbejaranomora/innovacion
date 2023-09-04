@@ -727,12 +727,12 @@
                 var cantidadFacultades = key.length;
                 var valorFacultad = facultadesSeleccionadas[key[0]];
 
-                if (cantidadFacultades === 1) {
-                    $('#colCardFacultades').hidden();
-                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
-                    $("#mensaje").html(textoNuevo);
 
-                    
+                if (cantidadFacultades === 1) {
+                    $('#colCardFacultades').addClass('hidden');
+                    $("#mensaje").empty();
+                    var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
+                    $("#mensaje").html(textoNuevo);      
                 }
             }
 

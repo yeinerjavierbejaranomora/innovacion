@@ -400,7 +400,12 @@
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalProgramas" class="btn" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                    <div class="mr-3">
+                            <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -468,6 +473,53 @@
             </div>
         </div>
 
+    <!-- Modal Tabla Malla Curricular -->
+    <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Datatable-->
+                        <div class="table">
+                            <table id="mallaCurricular" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Estudiantes planeados -->
+        <div class="modal fade" id="modalEstudiantesPlaneados" tabindex="-1" role="dialog" aria-labelledby="modalEstudiantesPlaneados" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloEstudiantes"><strong></strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Datatable-->
+                        <div class="table">
+                            <table id="estudiantesPlaneados" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -808,7 +860,7 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     $('#programas').empty();
                     var formData = new FormData();

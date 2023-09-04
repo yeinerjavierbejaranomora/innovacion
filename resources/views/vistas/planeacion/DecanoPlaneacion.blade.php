@@ -906,6 +906,13 @@
                     checkboxesSeleccionados.each(function() {
                         formData.append('idfacultad[]', $(this).val());
                     });
+                    var periodosSeleccionados = getPeriodos();
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
+                    });
+                    
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

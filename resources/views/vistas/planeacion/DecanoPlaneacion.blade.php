@@ -476,9 +476,12 @@
         $(document).ready(function() {
             var tabla = <?php echo json_encode($tabla); ?>;
             var periodosSeleccionados = [];
-            periodos();
+            var facultadesSeleccionadas = [];
+            var facultadesSelect = [];
+            var programasSeleccionados = [];
             facultadesUsuario();
-
+            programas();
+            periodos();
             vistaEntrada();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -546,6 +549,38 @@
                 return periodosSeleccionados;
             }
 
+            function programas() {
+                var programasSeleccionadosAux = [];
+                var formData = new FormData();
+                var array = [];
+                for (const key in facultadesSelect) {
+                    array.push(facultadesSelect[key]);
+                }
+
+                array.forEach(function(item) {
+                    formData.append('idfacultad[]', item);
+                });
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('traer.programas') }}",
+                    data: formData,
+                    cache: false,
+                    async: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(datos) {
+                        datos.forEach(data => {
+                            programasSeleccionados.push(data.codprograma);
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
+                        });
+                    }
+                })
+
+            }
+
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
@@ -577,16 +612,12 @@
                 destruirGraficos();
                 llamadoFunciones();
             }
-
-
-            var facultadesSeleccionadas = [];
-            var facultadesSelect;
+    
 
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-                console.log(facultadesSeleccionadas);
 
                 graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
@@ -613,39 +644,13 @@
                 var valorFacultad = facultadesSelect[key[0]];
 
                 if (cantidadFacultades === 1) {
-                    $('#colCardFacultades').hide();
+                    $('#colCardFacultades').hidden();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
-                    var idFacultadesArray = Object.values(facultadesSelect);
-                    var formData = new FormData();
-                    idFacultadesArray.forEach((facultad) => {
-                        formData.append('idfacultad[]', facultad);
-                    });
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('traer.programas') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
-                            }
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                            });
-                        }
-                    })
+                    }
                 }
-            }
 
-            var programasSeleccionados = [];
+
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();

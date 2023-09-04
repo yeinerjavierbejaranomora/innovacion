@@ -632,7 +632,6 @@
             }
 
             function programas() {
-                var programasSeleccionadosAux = [];
                 var formData = new FormData();
                 var array = [];
                 for (const key in facultadesSelect) {

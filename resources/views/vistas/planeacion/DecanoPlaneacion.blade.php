@@ -533,6 +533,7 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
+                console.log(periodosSeleccionados);
             }
 
             function getPeriodos() {
@@ -880,6 +881,7 @@
              * Método que genera el gráfico de sello financiero de alguna facultad en específico
              */
             function graficoSelloFinancieroPorFacultad(facultades) {
+                console.log(periodosSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -412,6 +412,18 @@
 
         </div>
 
+        <div class="card shadow mt-4 hidden" id="colTabla">
+            <!-- Card Body -->
+            <div class="card-body">
+                <!--Datatable-->
+                <div class="table">
+                    <table id="datatable" class="display" style="width:100%">
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+
         <br>
         <!-- Modal Todos los Tipos de estudiantes -->
         <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
@@ -912,7 +924,7 @@
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
-                    
+
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2324,6 +2336,126 @@
                             plugins: [ChartDataLabels]
                         });
                     }
+                });
+            }
+
+            $('#botondataTable').on("click", function(e) {
+                e.preventDefault();
+                destruirTable();
+                var periodos = getPeriodos();
+                dataTable(periodos);
+            });
+
+            function dataTable(periodos) {
+                $('#colTabla').removeClass('hidden');
+                var url, data;
+                var table;
+                if (programasSeleccionados.length > 0) {
+                    url = "{{ route('planeacionProgramas.tabla.programa')}}",
+                        data = {
+                            periodos: periodos,
+                            programas: programasSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('planeacionProgramas.tabla.facultad')}}",
+                            data = {
+                                periodos: periodos,
+                                facultad: facultadesSeleccionadas
+                            }
+                    } else {
+                        url = "{{ route('planeacionProgramas.tabla')}}",
+                            data = {
+                                periodos: periodos
+                            }
+                    }
+                }
+
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var dataTableData = [];
+                        for (const programaKey in data) {
+                            if (data.hasOwnProperty(programaKey)) {
+                                const programa = data[programaKey];
+                                var rowData = [
+                                    programaKey,
+                                    programa.programa,
+                                    programa.Total,
+                                    programa.Sello,
+                                    programa.Retencion,
+                                ];
+                                dataTableData.push(rowData);
+                            }
+                        }
+
+                        table = $('#datatable').DataTable({
+                            "data": dataTableData,
+                            'pageLength': 10,
+                            "order": [2, 'desc'],
+                            "columns": [{
+                                    title: 'Código de programa'
+                                },
+                                {
+                                    title: 'Programa'
+                                },
+                                {
+                                    title: 'Matrículas planeadas',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con Sello Financiero',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'ASP',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
+                                    title: 'Estudiantes planeados',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
+                                    title: 'Malla Curricular',
+                                    className: 'dt-center'
+                                },
+                            ]
+                        });
+
+                        function tablaMalla(tbody, table) {
+                            $(tbody).on("click", "button.malla", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                var programa = datos[0];
+                                var nombrePrograma = datos[1];
+                                mallaPrograma(programa, nombrePrograma);
+                            })
+                        }
+
+                        function tablaEstudiantes(tbody, table) {
+                            $(tbody).on("click", "button.estudiantes", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                var programa = datos[0];
+                                var nombrePrograma = datos[1];
+                                estudiantesPlaneados(programa, nombrePrograma);
+                            })
+                        }
+
+                        tablaMalla("#datatable tbody", table);
+                        tablaEstudiantes("#datatable tbody", table);
+                    }
+
                 });
             }
 

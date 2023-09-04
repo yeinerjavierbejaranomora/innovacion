@@ -927,7 +927,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
                                 });
                             }
                         },

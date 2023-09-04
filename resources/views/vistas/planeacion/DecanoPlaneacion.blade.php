@@ -757,7 +757,8 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                getPeriodos();
+                destruirTable();
+                var periodosSeleccionados = getPeriodos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
 
@@ -778,6 +779,7 @@
                             });
                             estadoUsuarioPrograma()
                             graficosporPrograma(programasSeleccionados);
+                            dataTable(periodosSeleccionados);
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                 if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
@@ -2459,6 +2461,191 @@
                 });
             }
 
+            function mallaPrograma(programa, nombrePrograma) {
+                limpiarModalMalla();
+                $('#tituloMalla').empty();
+                $('#tituloMalla').append('Materias programa ' + nombrePrograma);
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('mallaPrograma.tabla') }}",
+                    data: {
+                        programa: programa
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var dataTableData = [];
+
+                        for (const cursoKey in data) {
+                            if (data.hasOwnProperty(cursoKey)) {
+                                const curso = data[cursoKey];
+                                var rowData = [
+                                    cursoKey,
+                                    curso.nombreMateria,
+                                    curso.Total,
+                                    curso.Sello,
+                                    curso.Retencion,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ];
+                                dataTableData.push(rowData);
+                            }
+                        }
+
+                        table = $('#mallaCurricular').DataTable({
+                            "dom": 'Bfrtip',
+                            "data": dataTableData,
+                            'pageLength': 10,
+                            "buttons": [
+                                'copy', 'excel', 'pdf', 'print'
+                            ],
+                            "columns": [{
+                                    title: 'Codigo de Materia'
+                                },
+                                {
+                                    title: 'Nombre Materia',
+                                },
+                                {
+                                    title: 'Matrículas planeadas',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con sello Financiero',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'ASP',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Cantidad de cursos',
+                                    render: function(data, type, row) {
+                                        if (type === 'display') {
+                                            var conSello = parseFloat(row[3]);
+                                            var curso = (conSello / 85).toFixed(2);
+                                            return curso;
+                                        }
+                                        return data;
+                                    },
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 1',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 1',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 2',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 2',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 3',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 3',
+                                    visible: false
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    }
+                });
+            }
+
+            function estudiantesPlaneados(programa, nombrePrograma) {
+                limpiarModalEstudiantes();
+                $('#tituloEstudiantes').empty();
+                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
+                var mensaje = 'Cargando, por favor espere...';
+
+                $('#estudiantesPlaneados').append(mensaje);
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('estudiantesMateria.tabla') }}",
+                    data: {
+                        programa: programa
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        $('#estudiantesPlaneados').empty();
+                        tabla = $('#estudiantesPlaneados').DataTable({
+                            "data": data,
+                            "columns": [{
+                                    data: 'codBanner',
+                                    title: 'Codigo Banner'
+                                },
+                                {
+                                    data: 'codMateria',
+                                    title: 'Codigo Materia'
+                                },
+                                {
+                                    data: 'curso',
+                                    title: 'Materia'
+                                }
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    }
+                });
+            }
+
+            function limpiarModalMalla() {
+                if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
+                    $("#mallaCurricular").remove();
+                    table.destroy();
+                    $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular tbody').empty();
+                }
+            }
+
+            function limpiarModalEstudiantes() {
+                if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
+                    $("#estudiantesPlaneados").remove();
+                    tabla.destroy();
+                    $('#estudiantesPlaneados').DataTable().destroy();
+                    $('#estudiantesPlaneados tbody').empty();
+                }
+            }
+
+            function destruirTable() {
+                $('#colTabla').addClass('hidden');
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+
+                    $('#datatable').dataTable().fnDestroy();
+                    $('#datatable tbody').empty();
+                    $("#datatable tbody").off("click", "button.malla");
+                }
+            }
         });
     </script>
 

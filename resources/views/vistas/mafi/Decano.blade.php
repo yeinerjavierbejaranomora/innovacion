@@ -584,7 +584,7 @@
             }
 
             function getPeriodos() {
-                var periodosSeleccionados = [];
+                periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
@@ -727,7 +727,8 @@
                 var valorFacultad = facultadesSelect[key[0]];
 
                 if (cantidadFacultades === 1) {
-                    $('#colCardFacultades').hidden();
+                    $('#colCardFacultades').addClass('hidden');
+                    $("#mensaje").empty();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     }

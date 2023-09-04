@@ -739,15 +739,7 @@
             function ocultarDivs() {
                 $('#colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
-
-            /**
-             * Método que trae la información de toda la Ibero 
-             * */
-            function informacionGeneral() {
-                $('#mensaje').show();
-                destruirGraficos();
-                llamadoFunciones();
-            }
+    
 
             $('#deshacerProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', false);

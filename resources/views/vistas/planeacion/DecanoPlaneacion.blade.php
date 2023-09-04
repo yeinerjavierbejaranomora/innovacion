@@ -483,6 +483,7 @@
             programas();
             periodos();
             vistaEntrada();
+            graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -619,8 +620,6 @@
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
-
-                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
             }
 
             $('#deshacerProgramas').on('click', function(e) {

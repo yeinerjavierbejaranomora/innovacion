@@ -911,20 +911,25 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'post',
-                        url: "{{ route('traer.programas') }}",
+                        url: "{{ route('programasPeriodo.activos') }}",
                         data: formData,
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function(datos) {
-                            try {
-                                datos = jQuery.parseJSON(datos);
-                            } catch {
-                                datos = datos;
+                            if (datos != null) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                });
                             }
-                            $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
-                            });
+                        },
+                        error: function() {
+                            $('#programas').append('<h5>No hay programas</h5>')
                         }
                     })
                 } else {

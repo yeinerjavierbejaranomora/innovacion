@@ -176,12 +176,74 @@
             $(document).on("click",".datos",function(){
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
-                href=$(this).attr('href');
-                
-                console.log(idbanner);
-                console.log(href);
-
+                tap=$(this).attr('data-tap');
+             
                 var formData = new FormData();
+                formData.append('codBanner',idbanner);
+                formData.append('programa',programa);
+                $.ajax({
+                    headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('historial.consultaHistorial') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function(){
+                        $('#codigo').prop('disabled',true);
+                    },
+                    success: function(data){
+                        console.log(data);
+                        $('#myTabs').empty();
+                        $('#codigo').prop('disabled',false);
+                        data.forEach(function(tab, index) {
+                            // Crear la pestaña
+                            var tabLink = $('<a>')
+                            .addClass('nav-link datos ')
+                            .attr('data-toggle', 'tab')
+                            .attr('data-id',codBanner )
+                            .attr('data-programa',tab.cod_programa)
+                            .attr('data-tap', 'tab' + index)
+                            .attr('href', '#tab' + index)
+                            .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
+
+                            // Agregar la pestaña a la lista de pestañas
+                            $('#myTabs').append($('<li>').append(tabLink));
+
+                    
+
+                            // Crear el contenido de la pestaña
+                            var tabContent = $('<div>')
+                            .addClass('tab-pane fade datos')
+                            .attr('id', 'tab' + index)
+                            .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
+
+                            // Agregar el contenido de la pestaña al contenedor
+                            $('.tab-content').append(tabContent);
+                            
+                        });
+
+                        // Agregar el listener para el evento de cambio de pestaña
+                        $('#myTabs a').on('shown.bs.tab', function(event) {
+                            var targetTab = $(event.target).attr('href');
+                            cargarContenido(targetTab); // Llama a la función para cargar contenido
+                        });
+                        /*if(data.homologante != ''){
+                            $('#programas').html('');
+                            data.forEach(programa =>{
+
+                                $('#programas').append(`<li class="nav-item active">
+                                    <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
+                                    </li>`)
+                            })
+                        }else{
+                            $('#programas').html('');
+                            $('#codigo').prop('disabled',false);
+                        }*/
+                    }
+                });
             });
             
 

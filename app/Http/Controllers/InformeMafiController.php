@@ -1799,11 +1799,12 @@ class InformeMafiController extends Controller
         ->select('Nombre', 'Apellido')
         ->get();
             
-        $Data = array_merge($estudiantes->toArray(), $nombres->toArray());
+        $data = array(
+            'estudiantes' => $estudiantes,
+            'nombres' => $nombres
+        );
 
-        dd($Data);
-
-        return $Data;
+        return $data;
     }
 
     public function traerProgramas(Request $request)

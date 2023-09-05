@@ -1082,7 +1082,7 @@
 
                     var labels = data.data.map(function(elemento) {
 
-                        return elemento.autorizado_asistir.replace('ACTIVO ', '').trim();
+                        return elemento.autorizado_asistir;
                     });
                     var valores = data.data.map(function(elemento) {
 

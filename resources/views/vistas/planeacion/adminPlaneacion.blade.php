@@ -3090,6 +3090,8 @@
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
 
+                            console.log(estudiante.codBanner, nombre.Nombre);
+
                             var rowData = [
                             estudiante.codBanner,
                             nombre.Nombre,

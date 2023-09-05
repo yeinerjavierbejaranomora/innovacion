@@ -1001,27 +1001,24 @@
             function graficoSelloFinanciero() {
                 var url = '/home/estudiantesActivos/' + tabla;
                 $.getJSON(url, function(data) {
-                    console.log(data);
+                    console.log(data);             
+                    var labels = [];
+                    var valores = [];
+
+                    for (var propiedad in data) {
+                        if (data.hasOwnProperty(propiedad)) {
+                            labels.push(propiedad);
+                            valores.push(data[propiedad]);
+                        }
+                    }
                     
-                    var labels = Object.keys(data);
-
-                    console.log(labels);
-
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                
+                    console.log(labels,valores)
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
+                            labels: labels,
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,

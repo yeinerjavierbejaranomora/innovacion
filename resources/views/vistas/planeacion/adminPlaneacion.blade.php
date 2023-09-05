@@ -3059,6 +3059,7 @@
             function estudiantesPlaneados(programa, nombrePrograma) {
                 limpiarModalEstudiantes();
                 $('#tituloEstudiantes').empty();
+                $('#estudiantesPlaneados').empty();
                 $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma + ' - '+ programa);
                 var mensaje = 'Cargando, por favor espere...';
 

@@ -1791,7 +1791,7 @@ class InformeMafiController extends Controller
             ->get();
 
         foreach($estudiantes as $estudiante){
-            $idsBanner = $estudiante->codBanner;
+            $idsBanner[] = $estudiante->codBanner;
         }
 
         dd($idsBanner);

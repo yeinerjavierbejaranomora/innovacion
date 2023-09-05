@@ -1784,9 +1784,8 @@ class InformeMafiController extends Controller
 
         $estudiantes = DB::table('planeacion as p')
             ->join('mallaCurricular as m', 'p.codMateria', '=', 'm.codigoCurso')
-            ->join('datos_moodle as dm', 'p.codBanner', '=', 'dm.Id_Banner')
             ->where('p.codPrograma', $programa)
-            ->select('p.codBanner','dm.Nombre', 'dm.Apellido' ,'p.codMateria', 'm.curso')
+            ->select('p.codBanner','p.codMateria', 'm.curso')
             ->groupBy('p.codBanner', 'p.codMateria')
             ->get();
         return $estudiantes;

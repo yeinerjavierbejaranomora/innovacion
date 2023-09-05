@@ -3090,10 +3090,6 @@
                                     title: 'Codigo Banner'
                                 },
                                 {
-                                    data: 'Nombre_Apellido',
-                                    title: 'Nombre Completo'
-                                },
-                                {
                                     data: 'codMateria',
                                     title: 'Codigo Materia'
                                 },

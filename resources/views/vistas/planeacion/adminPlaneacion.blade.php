@@ -3089,7 +3089,7 @@
                         for (var i = 0; i < estudiantes.length; i++) {
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
-                            var nombreCompleto = estudiante.Nombre + ' ' + estudiante.Apellido;
+                            var nombreCompleto = nombre.Nombre + ' ' + nombre.Apellido;
 
                             var rowData = [
                             estudiante.codBanner,

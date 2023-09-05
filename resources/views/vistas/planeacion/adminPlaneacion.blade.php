@@ -3089,6 +3089,8 @@
                         for (var i = 0; i < estudiantes.length; i++) {
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
+
+                            console.log(nombre);
                             var nombreCompleto = nombre.Nombre + ' ' + nombre.Apellido;
 
                             var rowData = [

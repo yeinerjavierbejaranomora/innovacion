@@ -439,7 +439,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                url: "{{ route('historial.consultahistorial') }}",
+                url: "{{ route('historial.consultaHistorial') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

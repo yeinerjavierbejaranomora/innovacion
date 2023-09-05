@@ -3082,16 +3082,18 @@
 
                         var dataTableData = [];
 
-                        data.forEach(function (item) {
-                            var nombreCompleto = item.nombres.Nombre + ' ' + item.nombres.Apellido;
-                            var rowData = [
-                                item.estudiantes.codBanner,
-                                nombreCompleto, 
-                                item.estudiantes.codMateria,
-                                item.estudiantes.curso
-                            ];
-                            dataTableData.push(rowData);
-                        });
+                        if (Array.isArray(data.estudiantes) && Array.isArray(data.nombres)) {
+                            data.estudiantes.forEach(function (estudiante, index) {
+                                var nombreCompleto = data.nombres[index].Nombre + ' ' + data.nombres[index].Apellido;
+                                var rowData = [
+                                    estudiante.codBanner,
+                                    nombreCompleto,
+                                    estudiante.codMateria,
+                                    estudiante.curso
+                                ];
+                                dataTableData.push(rowData);
+                            });
+                        }
 
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({

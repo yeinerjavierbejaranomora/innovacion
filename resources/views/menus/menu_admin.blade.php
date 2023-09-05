@@ -24,17 +24,23 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('home.index') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Panel de Control</span></a>
+    <!-- Nav Item - Pages Collapse Menu  users-->
+    <li class="nav-item">
+            <i class="fa-solid fa-network-wired"></i>
+            <a type="button" class="btn boton" href="{{ route('home.moodle') }}"> Moodle</a>        
+    </li>
+    <li class="nav-item">
+            <i class="fa-solid fa-pen"></i>
+            <a type="button" class="btn boton" href="{{ route('home.planeacion') }}"> Planeación</a>        
+    </li>
+    <li class="nav-item">
+            <i class="fa-solid fa-table"></i>
+            <a type="button" class="btn boton" href="{{ route('home.mafi') }}">Admisiones</a>       
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-address-book"></i>

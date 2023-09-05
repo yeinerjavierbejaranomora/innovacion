@@ -1002,15 +1002,17 @@
                 var url = '/home/estudiantesActivos/' + tabla;
                 $.getJSON(url, function(data) {
                     console.log(data);
-
-                    // var labels = data.data.map(function(elemento) {
-                    //     return elemento.sello;
-                    // });
-                    // var valores = data.data.map(function(elemento) {
-                    //     return elemento.TOTAL;
-                    // });
-
                     
+                    var labels = data.data.map(function(elemento) {
+                        return elemento.sello;
+                    });
+
+                    console.log(labels);
+                    
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
+                
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {

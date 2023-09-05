@@ -3117,17 +3117,15 @@
 
             function limpiarModalEstudiantes() {
                 if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
-                    $("#estudiantesPlaneados").remove();
-                    tabla.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
                     $('#estudiantesPlaneados tbody').empty();
+                    $("#estudiantesPlaneados tbody").off("click", "button.estudiantes");
                 }
             }
 
             function destruirTable() {
                 $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-
                     $('#datatable').dataTable().fnDestroy();
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.malla");

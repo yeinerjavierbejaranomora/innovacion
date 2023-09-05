@@ -1055,8 +1055,8 @@
                     });
 
                     var valoresPorcentaje = chartEstudiantesActivos.data.datasets[0].data;
+                    console.log(valoresPorcentaje);
                     var mostrarPorcentaje = valoresPorcentaje.some(function(valor) {
-                        console.log(valor);
                         return valor >= 10;
                     });
 

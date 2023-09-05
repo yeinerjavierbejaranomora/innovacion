@@ -377,7 +377,7 @@
             <div class="col-6 text-center " id="colOperadores">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
@@ -426,7 +426,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Operadores</strong></h5>
+                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Estudiantes activos por operador</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -644,7 +644,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                                 });
                             }
                         },
@@ -1000,28 +1000,27 @@
 
             function graficoSelloFinanciero() {
                 var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
+                $.getJSON(url, function(data) {          
+                    var labels = [];
+                    var valores = [];
+
+                    for (var propiedad in data) {
+                        if (data.hasOwnProperty(propiedad)) {
+                            labels.push(propiedad + ': '+ data[propiedad]);
+                            valores.push(data[propiedad]);
+                        }
+                    }
+                    
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
+                            labels: labels,
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(186,186,186,1)']
                             }]
                         },
                         options: {
@@ -1034,6 +1033,9 @@
                                         weight: 'bold',
                                         size: 12
                                     },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -1080,13 +1082,15 @@
 
                     total = total.reduce((a, b) => a + b, 0);
 
-
                     var labels = data.data.map(function(elemento) {
-
-                        return elemento.autorizado_asistir;
+                        if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                            return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                        } else {
+                            return elemento.autorizado_asistir;
+                        }
                     });
-                    var valores = data.data.map(function(elemento) {
 
+                    var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular
@@ -1124,6 +1128,9 @@
                                         weight: 'bold',
                                         size: 12
                                     },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -1164,23 +1171,22 @@
             function graficoSelloPrimerIngreso() {
                 var url = '/home/estudiantesPrimerIngreso/' + tabla;
                 $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
+                    var labels = [];
+                    var valores = [];
+
+                    for (var propiedad in data) {
+                        if (data.hasOwnProperty(propiedad)) {
+                            labels.push(propiedad + ': '+ data[propiedad]);
+                            valores.push(data[propiedad]);
+                        }
+                    }
+
                     // Crear el gráfico circular
                     var ctx = document.getElementById('primerIngreso').getContext('2d');
                     chartSelloPrimerIngreso = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
+                            labels: labels,
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
@@ -1202,6 +1208,9 @@
                                         weight: 'bold',
                                         size: 12
                                     },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -1242,26 +1251,27 @@
                 var url = '/home/tipoEstudiantes/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
-                        return elemento.tipoestudiante;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {
@@ -1274,7 +1284,6 @@
                                 return label;
                             }),
                             datasets: [{
-                                label: 'Tipos de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -1286,15 +1295,16 @@
                             }]
                         },
                         options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                scales: {
+                            scales: {
                                     y: {
                                         max: yMax,
                                         beginAtZero: true
                                     }
                                 },
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                
                                 datalabels: {
                                     color: 'black',
                                     font: {
@@ -1363,7 +1373,6 @@
                                 return label;
                             }),
                             datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -1453,7 +1462,6 @@
                                 return label;
                             }),
                             datasets: [{
-                                label: 'Programas con mayor cantidad de estudiantes',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'

@@ -665,7 +665,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.programa}</label><br>`);
+                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                                 });
                             }
                         },
@@ -3059,7 +3059,8 @@
             function estudiantesPlaneados(programa, nombrePrograma) {
                 limpiarModalEstudiantes();
                 $('#tituloEstudiantes').empty();
-                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
+                $('#estudiantesPlaneados').empty();
+                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma + ' - '+ programa);
                 var mensaje = 'Cargando, por favor espere...';
 
                 $('#estudiantesPlaneados').append(mensaje);
@@ -3078,20 +3079,48 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
+                        
+                        // var estudiantes = data.estudiantes;
+                        // var nombres = data.nombres;
+                        // var nombreCompleto;
+                        // var dataTableData = [];
+
+                        // for (var i = 0; i < estudiantes.length; i++) {
+                        //     var estudiante = estudiantes[i];
+                        //     var nombre = nombres[i];
+
+                        //     console.log(estudiante.codBanner, nombre.Nombre);
+
+                        //     var rowData = [
+                        //     estudiante.codBanner,
+                        //     nombre.Nombre,
+                        //     nombre.Apellido,
+                        //     estudiante.codMateria,
+                        //     estudiante.curso
+                        // ];
+                        //     dataTableData.push(rowData);
+                        // }
+
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
+                            "dom": 'Bfrtip',
                             "data": data,
-                            "columns": [{
-                                    data: 'codBanner',
-                                    title: 'Codigo Banner'
+                            "buttons": [
+                                'copy', 'excel', 'pdf', 'print'
+                            ],
+                            "columns": [
+                                {
+                                    title: 'Codigo Banner',
+                                    data:'codBanner'
                                 },
                                 {
-                                    data: 'codMateria',
-                                    title: 'Codigo Materia'
+                                    title: 'Codigo Materia',
+                                    data: 'codMateria'
                                 },
                                 {
-                                    data: 'curso',
-                                    title: 'Materia'
+                                    title: 'Materia',
+                                    data:'curso'
                                 }
                             ],
                             "language": {
@@ -3123,10 +3152,10 @@
             function destruirTable() {
                 $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-
                     $('#datatable').dataTable().fnDestroy();
                     $('#datatable tbody').empty();
                     $("#datatable tbody").off("click", "button.malla");
+                    $("#datatable tbody").off("click", "button.estudiantes");
                 }
             }
             

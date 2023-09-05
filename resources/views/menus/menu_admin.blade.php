@@ -8,6 +8,9 @@
     #accordionSidebar {
     width: 260px!important;
 }
+    .activo{
+    background-color: #dfc14e;
+    }
 </style>
 
 <!-- Sidebar -->
@@ -24,17 +27,28 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('home.index') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Panel de Control</span></a>
+    <!-- Nav Item - Pages Collapse Menu  users-->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('home.moodle') }}">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>Moodle</span></a>        
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('home.planeacion') }}">        
+            <i class="fa-solid fa-pen"></i>
+            <span>Planeación</span></a> 
+    </li>
+
+    <li class="nav-item activo">
+        <a class="nav-link" href="{{ route('home.mafi') }}">
+            <i class="fa-solid fa-table"></i>
+            <span>Admisiones</span></a>       
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-address-book"></i>

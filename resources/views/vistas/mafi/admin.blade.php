@@ -118,6 +118,9 @@
     #seccion {
         background: #FFFFFF;
     }
+
+    
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -149,19 +152,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
-            <br>
+
             <div class="text-center" id="mensaje">
                 <h5>Por defecto se muestran los datos de todas las facultades,
                     si quieres ver datos en especifico, selecciona alguna en específico.

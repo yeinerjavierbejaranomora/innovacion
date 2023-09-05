@@ -1034,8 +1034,8 @@
                                         size: 12
                                     },
                                     formatter: function(value, context) {
-                            
-                                return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value + '%' : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',
@@ -1058,7 +1058,7 @@
                             },
                         },
                         plugins: [ChartDataLabels]
-                    }});
+                    });
                     if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
                     } else {

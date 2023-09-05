@@ -1171,23 +1171,22 @@
             function graficoSelloPrimerIngreso() {
                 var url = '/home/estudiantesPrimerIngreso/' + tabla;
                 $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
+                    var labels = [];
+                    var valores = [];
+
+                    for (var propiedad in data) {
+                        if (data.hasOwnProperty(propiedad)) {
+                            labels.push(propiedad + ': '+ data[propiedad]);
+                            valores.push(data[propiedad]);
+                        }
+                    }
+
                     // Crear el gráfico circular
                     var ctx = document.getElementById('primerIngreso').getContext('2d');
                     chartSelloPrimerIngreso = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
+                            labels: labels,
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
@@ -1209,6 +1208,9 @@
                                         weight: 'bold',
                                         size: 12
                                     },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',

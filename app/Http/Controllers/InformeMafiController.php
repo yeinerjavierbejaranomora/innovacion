@@ -67,46 +67,44 @@ class InformeMafiController extends Controller
              */
 
             $consulta = DB::table('datosMafi')
-            ->where('estado', 'Activo')
-            ->select('sello', 'autorizado_asistir')
-            ->get();
+                ->where('estado', 'Activo')
+                ->select('sello', 'autorizado_asistir')
+                ->get();
 
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
             $Vacio = 0;
 
-            foreach($consulta as $dato){
+            foreach ($consulta as $dato) {
                 $sello = $dato->sello;
                 $estado = $dato->autorizado_asistir;
 
-                if($sello == 'TIENE SELLO FINANCIERO')
-                {
+                if ($sello == 'TIENE SELLO FINANCIERO') {
                     $selloFinanciero += 1;
                 }
 
-                if($sello == 'TIENE RETENCION' && empty($estado) ){
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
                     $AFP += 1;
                 }
-     
-                if($sello == 'TIENE RETENCION' && !empty($estado) ){
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
                     $Retencion += 1;
                 }
 
-                if($sello == 'NO EXISTE'){
+                if ($sello == 'NO EXISTE') {
                     $Vacio += 1;
                 }
             }
-        
-        $data = [
-            'CON SELLO' => $selloFinanciero,
-            'TIENE RETENCION' => $Retencion,
-            'AFP' => $AFP,
-            'INACTIVO' => $Vacio     
-        ];
 
-        return $data;
-            
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
+
+            return $data;
         }
 
         if ($tabla == 'planeacion') {
@@ -116,7 +114,6 @@ class InformeMafiController extends Controller
                 ->groupBy('dm.sello')
                 ->get();
         }
-
     }
 
     /**
@@ -174,12 +171,44 @@ class InformeMafiController extends Controller
              **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
              **GROUP BY sello;
              */
-            $primerIngreso = DB::table('datosMafi')
-                ->whereIn('tipoestudiante', $tiposEstudiante)
+
+            $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->select('sello', 'autorizado_asistir')
                 ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
         }
 
         if ($tabla == "planeacion") {
@@ -195,9 +224,8 @@ class InformeMafiController extends Controller
                 ->groupBy('dm.sello')
                 ->get();
         }
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
+        
+        return $data;
     }
 
     /**
@@ -708,7 +736,7 @@ class InformeMafiController extends Controller
              *GROUP BY sello
              */
             $sello = DB::table('datosMafi')
-                ->where('estado','Activo')
+                ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
@@ -1816,24 +1844,24 @@ class InformeMafiController extends Controller
     public function estudiantesMateria(Request $request)
     {
         $programa = $request->input('programa');
-        $idsBanner= [];
+        $idsBanner = [];
 
         $estudiantes = DB::table('planeacion as p')
             ->join('mallaCurricular as m', 'p.codMateria', '=', 'm.codigoCurso')
             ->where('p.codPrograma', $programa)
-            ->select('p.codBanner','p.codMateria', 'm.curso')
+            ->select('p.codBanner', 'p.codMateria', 'm.curso')
             ->groupBy('p.codBanner', 'p.codMateria')
             ->get();
 
-        foreach($estudiantes as $estudiante){
+        foreach ($estudiantes as $estudiante) {
             $idsBanner[] = $estudiante->codBanner;
         }
 
         $nombres = DB::table('datos_moodle')
-        ->whereIn('Id_banner',$idsBanner)
-        ->select('Id_banner','Nombre', 'Apellido')
-        ->get();
-    
+            ->whereIn('Id_banner', $idsBanner)
+            ->select('Id_banner', 'Nombre', 'Apellido')
+            ->get();
+
 
         return $estudiantes;
     }

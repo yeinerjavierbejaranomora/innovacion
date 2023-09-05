@@ -119,9 +119,7 @@
         background: #FFFFFF;
     }
 
-    .activo {
-        
-    }
+    
 
 </style>
 

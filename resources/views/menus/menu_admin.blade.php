@@ -8,6 +8,9 @@
     #accordionSidebar {
     width: 260px!important;
 }
+    .activo{
+    background-color: #dfc14e;
+    }
 </style>
 
 <!-- Sidebar -->
@@ -37,7 +40,7 @@
             <span>Planeación</span></a> 
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item activo">
         <a class="nav-link" href="{{ route('home.mafi') }}">
             <i class="fa-solid fa-table"></i>
             <span>Admisiones</span></a>       

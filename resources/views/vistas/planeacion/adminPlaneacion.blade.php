@@ -3075,7 +3075,6 @@
                     method: 'post',
                     success: function(data) {
                         console.log(data);
-
                         var dataTableData = [];
 
                         data.forEach(function (item) {

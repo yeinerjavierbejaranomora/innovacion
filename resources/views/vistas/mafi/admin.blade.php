@@ -1000,8 +1000,7 @@
 
             function graficoSelloFinanciero() {
                 var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {
-                    console.log(data);             
+                $.getJSON(url, function(data) {          
                     var labels = [];
                     var valores = [];
 
@@ -1012,7 +1011,6 @@
                         }
                     }
                     
-                    console.log(labels,valores)
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
@@ -1251,6 +1249,8 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
+                        console.log(maxValor, maxValorAux);
+                        
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1263,6 +1263,7 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        console.log(yMax);
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {

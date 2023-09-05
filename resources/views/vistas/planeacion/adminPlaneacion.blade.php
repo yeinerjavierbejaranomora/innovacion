@@ -3087,27 +3087,29 @@
                                 'copy', 'excel', 'pdf', 'print'
                             ],
                             "columns": [{
-                                    data: 'estudiantes.codBanner',
+                                    data: 'codBanner',
                                     title: 'Codigo Banner'
                                 },
                                 {
                                     data: null,
                                     title: 'Nombre Completo',
                                     render: function (data, type, row) {
-                                        // Aquí puedes personalizar cómo se muestra el nombre completo
-                                        // Suponiendo que data.nombres es una matriz de objetos con propiedades Nombre y Apellido
-                                        var nombresCompletos = data.nombres.map(function (nombre) {
-                                            return nombre.Nombre + ' ' + nombre.Apellido;
-                                        });
-                                        return nombresCompletos.join(', ');
+                                        if (Array.isArray(data.nombres)) {
+                                            var nombresCompletos = data.nombres.map(function (nombre) {
+                                                return nombre.Nombre + ' ' + nombre.Apellido;
+                                            });
+                                            return nombresCompletos.join(', ');
+                                        } else {
+                                            return ''; 
+                                        }
                                     }
                                 },
                                 {
-                                    data: 'estudiantes.codMateria',
+                                    data: 'codMateria',
                                     title: 'Codigo Materia'
                                 },
                                 {
-                                    data: 'estudiantes.curso',
+                                    data: 'curso',
                                     title: 'Materia'
                                 }
                             ],

@@ -1794,14 +1794,16 @@ class InformeMafiController extends Controller
             $idsBanner[] = $estudiante->codBanner;
         }
 
-        var_dump($idsBanner);
-        die();
+        
 
         $nombres = DB::table('datos_moodle')
         ->whereIn('Id_banner',$idsBanner)
-        ->select('Nombre', 'Apellido')
+        ->select('Id_banner','Nombre', 'Apellido')
         ->get();
             
+        var_dump($nombres);
+        die();
+
         $data = [
             'estudiantes' => $estudiantes,
             'nombres' => $nombres

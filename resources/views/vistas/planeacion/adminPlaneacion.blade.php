@@ -3074,19 +3074,15 @@
                     },
                     method: 'post',
                     success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         console.log(data);
-                        var dataTableData = [];
+                        
+                        
 
-                        data.forEach(function (item) {
-                            var nombreCompleto = item.nombres.Nombre + ' ' + item.nombres.Apellido;
-                            var rowData = [
-                                item.estudiantes.codBanner,
-                                nombreCompleto,
-                                item.estudiantes.codMateria,
-                                item.estudiantes.curso
-                            ];
-                            dataTableData.push(rowData);
-                        });
 
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
@@ -3095,7 +3091,8 @@
                             "buttons": [
                                 'copy', 'excel', 'pdf', 'print'
                             ],
-                            "columns": [{
+                            "columns": [
+                                {
                                     title: 'Codigo Banner'
                                 },
                                 {

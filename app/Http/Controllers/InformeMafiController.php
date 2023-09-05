@@ -1799,10 +1799,10 @@ class InformeMafiController extends Controller
         ->select('Nombre', 'Apellido')
         ->get();
             
-        $data = array(
+        $data = [
             'estudiantes' => $estudiantes,
             'nombres' => $nombres
-        );
+        ];
 
         return $data;
     }

@@ -1003,12 +1003,10 @@
                 $.getJSON(url, function(data) {
                     console.log(data);
                     
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
+                    var labels = Object.keys(data);
 
                     console.log(labels);
-                    
+
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });

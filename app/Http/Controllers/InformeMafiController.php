@@ -448,7 +448,6 @@ class InformeMafiController extends Controller
                 ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('pr.Facultad', $facultades)
-                ->where('dm.sello', 'TIENE RETENCION')
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
                 ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
                 ->groupBy('dm.sello')

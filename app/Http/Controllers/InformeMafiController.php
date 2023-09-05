@@ -285,7 +285,7 @@ class InformeMafiController extends Controller
             ];
         }
 
-
+        return $data;
 
     }
 

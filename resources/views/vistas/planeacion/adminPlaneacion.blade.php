@@ -3087,15 +3087,16 @@
                         for (var i = 0; i < estudiantes.length; i++) {
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
-                            
-                            console.log(estudiante.codBanner);
-                            console.log(estudiante.codMateria);
-                            console.log(estudiante.curso);
-                            console.log(nombre.Nombre);
-                            console.log(nombre.Apellido);
-                            // Puedes realizar operaciones con los datos de cada estudiante y nombre aquí
-                        }
+                            var nombreCompleto = estudiante.Nombre + ' ' + estudiante.Apellido;
 
+                            var rowData = [
+                            estudiante.codBanner,
+                            nombreCompleto,
+                            estudiante.codMateria,
+                            estudiante.curso
+                        ];
+                        dataTableData.push(rowData);
+                        }
 
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({

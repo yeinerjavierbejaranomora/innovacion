@@ -118,10 +118,11 @@ class EstudianteController extends Controller
                 $historial_programa[]=$value_historialAcademico;
 
             }
-            var_dump($historial_programa);
-            exit;
+           
         }
-
+        var_dump($historial_programa);
+        exit;
+        
         return $historialAcademico;
     }
     public function consultaProgramacion()

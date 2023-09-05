@@ -377,7 +377,7 @@
             <div class="col-6 text-center " id="colOperadores">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
+                        <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body">
@@ -426,7 +426,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Operadores</strong></h5>
+                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Estudiantes activos por operador</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -1034,7 +1034,7 @@
                                         size: 12
                                     },
                                     formatter: function(value, context) {
-                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value + '%' : '';
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
                                     }
                                 },
                                 labels: {

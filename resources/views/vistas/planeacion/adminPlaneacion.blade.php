@@ -3101,7 +3101,7 @@
                                         });
                                         return nombresCompletos.join(', ');
                                     }
-                                }
+                                },
                                 {
                                     data: 'estudiantes.codMateria',
                                     title: 'Codigo Materia'

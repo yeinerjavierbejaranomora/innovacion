@@ -1799,8 +1799,6 @@ class InformeMafiController extends Controller
         ->select('Nombre', 'Apellido')
         ->get();
             
-        dd($nombres);
-
         $data = [
             'estudiantes' => $estudiantes,
             'nombres' => $nombres

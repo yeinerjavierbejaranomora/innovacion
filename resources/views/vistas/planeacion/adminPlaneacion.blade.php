@@ -3074,11 +3074,6 @@
                     },
                     method: 'post',
                     success: function(data) {
-                        try {
-                            data = parseJSON(data);
-                        } catch {
-                            data = data;
-                        }
                         console.log(data);
 
                         var dataTableData = [];
@@ -3087,7 +3082,7 @@
                             var nombreCompleto = item.nombres.Nombre + ' ' + item.nombres.Apellido;
                             var rowData = [
                                 item.estudiantes.codBanner,
-                                nombreCompleto, // Concatenación del nombre y el apellido
+                                nombreCompleto,
                                 item.estudiantes.codMateria,
                                 item.estudiantes.curso
                             ];

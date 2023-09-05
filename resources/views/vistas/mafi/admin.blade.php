@@ -1243,26 +1243,26 @@
                 var url = '/home/tipoEstudiantes/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = data.data.map(function(elemento) {
-                        return elemento.tipoestudiante;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {

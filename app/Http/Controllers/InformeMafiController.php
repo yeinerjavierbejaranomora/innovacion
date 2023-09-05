@@ -1801,7 +1801,7 @@ class InformeMafiController extends Controller
         ->select('Id_banner','Nombre', 'Apellido')
         ->get();
             
-        var_dump($nombres);
+        var_dump($idsBanner, $nombres);
         die();
 
         $data = [

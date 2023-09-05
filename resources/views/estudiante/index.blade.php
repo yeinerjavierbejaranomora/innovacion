@@ -176,8 +176,57 @@
             $(document).on("click",".datos",function(){
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
-console.log(idbanner);
-console.log(programa);
+                href=$(this).attr('href');
+                
+                console.log(idbanner);
+                console.log(href);
+
+                var formData = new FormData();
+            formData.append('codBanner',codBanner);
+            $.ajax({
+                headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('historial.consulta') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#codigo').prop('disabled',true);
+                },
+                success: function(data){
+                    console.log(data);
+                    $('#myTabs').empty();
+                    $('#codigo').prop('disabled',false);
+                    data.forEach(function(tab, index) {
+                        // Crear la pestaña
+                        var tabLink = $('<a>')
+                        .addClass('nav-link datos ')
+                        .attr('data-toggle', 'tab')
+                        .attr('data-id',codBanner )
+                        .attr('data-programa',tab.cod_programa )
+                        .attr('href', '#tab' + index)
+                        .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
+
+                        // Agregar la pestaña a la lista de pestañas
+                        $('#myTabs').append($('<li>').append(tabLink));
+
+                 
+
+                        // Crear el contenido de la pestaña
+                        var tabContent = $('<div>')
+                        .addClass('tab-pane fade datos')
+                        .attr('id', 'tab' + index)
+                        .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
+
+                        // Agregar el contenido de la pestaña al contenedor
+                        $('.tab-content').append(tabContent);
+                        
+                    });
+
+
             })
 
         })

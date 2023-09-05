@@ -67,7 +67,7 @@ class InformeMafiController extends Controller
              */
             $sello = DB::table('datosMafi')
                 ->where('estado', 'Activo')
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+                ->select(DB::raw('COUNT(sello) AS TOTAL, sello, autorizado_asistir'))
                 ->groupBy('sello')
                 ->get();
         }

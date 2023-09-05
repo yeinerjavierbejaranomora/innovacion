@@ -1008,6 +1008,8 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+
+                    console.log(data);
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {

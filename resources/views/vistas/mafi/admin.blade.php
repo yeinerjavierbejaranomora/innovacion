@@ -1007,7 +1007,7 @@
 
                     for (var propiedad in data) {
                         if (data.hasOwnProperty(propiedad)) {
-                            labels.push(propiedad);
+                            labels.push(propiedad + ': '+ data[propiedad]);
                             valores.push(data[propiedad]);
                         }
                     }

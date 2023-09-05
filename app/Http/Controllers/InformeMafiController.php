@@ -99,10 +99,10 @@ class InformeMafiController extends Controller
             }
         
         $data = [
-            'Con Sello' => $selloFinanciero,
-            'Tiene Retencion' => $Retencion,
+            'CON SELLO' => $selloFinanciero,
+            'TIENE RETENCION' => $Retencion,
             'AFP' => $AFP,
-            'Inactivo' => $Vacio     
+            'INACTIVO' => $Vacio     
         ];
 
         return $data;

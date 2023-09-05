@@ -170,6 +170,17 @@
 
     </div>
     <script>
+
+        $(document).ready(function() {
+           
+            $(document).on("click",".datos",function(){
+                idbanner=$(this).attr('data-id');
+                programa=$(this).attr('data-programa');
+console.log(idbanner);
+console.log(programa);
+            })
+
+        })
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {

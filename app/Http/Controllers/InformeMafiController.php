@@ -1801,7 +1801,12 @@ class InformeMafiController extends Controller
             
         dd($nombres);
 
-        return $estudiantes;
+        $data = [
+            'estudiantes' => $estudiantes,
+            'nombres' => $nombres
+        ];
+
+        return $data;
     }
 
     public function traerProgramas(Request $request)

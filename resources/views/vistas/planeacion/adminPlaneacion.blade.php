@@ -3087,15 +3087,15 @@
                                 'copy', 'excel', 'pdf', 'print'
                             ],
                             "columns": [{
-                                    data: 'codBanner',
+                                    data: 'estudiantes.codBanner',
                                     title: 'Codigo Banner'
                                 },
                                 {
-                                    data: 'codMateria',
+                                    data: 'estudiantes.codMateria',
                                     title: 'Codigo Materia'
                                 },
                                 {
-                                    data: 'curso',
+                                    data: 'estudiantes.curso',
                                     title: 'Materia'
                                 }
                             ],

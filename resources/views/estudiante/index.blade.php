@@ -241,7 +241,7 @@
                     data.forEach(function(tab, index) {
                         // Crear la pestaña
                         var tabLink = $('<a>')
-                        .addClass('nav-link')
+                        .addClass('nav-link datos ')
                         .attr('data-toggle', 'tab')
                         .attr('href', '#tab' + index)
                         .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'

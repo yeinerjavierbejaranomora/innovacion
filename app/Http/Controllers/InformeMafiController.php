@@ -1781,6 +1781,7 @@ class InformeMafiController extends Controller
     public function estudiantesMateria(Request $request)
     {
         $programa = $request->input('programa');
+        $idsBanner= [];
 
         $estudiantes = DB::table('planeacion as p')
             ->join('mallaCurricular as m', 'p.codMateria', '=', 'm.codigoCurso')
@@ -1788,6 +1789,18 @@ class InformeMafiController extends Controller
             ->select('p.codBanner','p.codMateria', 'm.curso')
             ->groupBy('p.codBanner', 'p.codMateria')
             ->get();
+
+        foreach($estudiantes as $estudiante){
+            $idsBanner = $estudiante->codBanner;
+        }
+
+        dd($idsBanner);
+
+        $nombres = DB::table('datos_moodle')
+        ->where('Id_banner',$idsBanner)
+        ->select('Nombre', 'Apellido')
+        ->get();
+            
         return $estudiantes;
     }
 

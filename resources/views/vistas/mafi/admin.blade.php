@@ -360,6 +360,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-6 text-center " id="colAntiguos">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
+                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="antiguos" style="width: 50%;"></canvas>
+                    </div>
+                </div>
+            </div>
             <div class="col-6 text-center " id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">

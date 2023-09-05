@@ -717,10 +717,10 @@
                         cancelButtonText: 'Cancelar'
                         }).then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire(
-                            'Descargando',
-                            'success'
-                            )
+                            Swal.fire({
+                            title:'Descargando',
+                            icon: 'success'
+                        })
                         }
                         })
             });

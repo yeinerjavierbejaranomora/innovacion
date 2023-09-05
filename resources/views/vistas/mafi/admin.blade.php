@@ -707,22 +707,22 @@
 
             $('#descargarMafi').on('click', function(e) {
                 Swal.fire({
-                        title: 'Descargar datos',
-                        text: "Los datos que vas a descargar se encuentran 1 día desactualizados, para obtener la información completamente actualizada dirigete directamente a Banner",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Descargar',
-                        cancelButtonText: 'Cancelar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire({
-                                title:'Descargando',
-                                icon: 'success'
-                                })
-                            }
-                        })
+                    title: 'Descargar datos',
+                    text: "Los datos que vas a descargar se encuentran 1 día desactualizados, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                            title:'Descargando',
+                            icon: 'success'
+                            })
+                        }
+                    })
             });
 
 

@@ -236,6 +236,7 @@
                     $('#codigo').prop('disabled',true);
                 },
                 success: function(data){
+                    console.log(data);
                     $('#myTabs').empty();
                     $('#codigo').prop('disabled',false);
                     data.forEach(function(tab, index) {

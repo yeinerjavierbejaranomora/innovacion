@@ -3082,7 +3082,7 @@
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
                             "dom": 'Bfrtip',
-                            "data": data,
+                            "data": data.estudiantes,
                             "buttons": [
                                 'copy', 'excel', 'pdf', 'print'
                             ],
@@ -3090,6 +3090,18 @@
                                     data: 'estudiantes.codBanner',
                                     title: 'Codigo Banner'
                                 },
+                                {
+                                    data: null,
+                                    title: 'Nombre Completo',
+                                    render: function (data, type, row) {
+                                        // Aquí puedes personalizar cómo se muestra el nombre completo
+                                        // Suponiendo que data.nombres es una matriz de objetos con propiedades Nombre y Apellido
+                                        var nombresCompletos = data.nombres.map(function (nombre) {
+                                            return nombre.Nombre + ' ' + nombre.Apellido;
+                                        });
+                                        return nombresCompletos.join(', ');
+                                    }
+                                }
                                 {
                                     data: 'estudiantes.codMateria',
                                     title: 'Codigo Materia'

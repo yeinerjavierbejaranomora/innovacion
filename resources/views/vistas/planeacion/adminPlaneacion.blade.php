@@ -3084,6 +3084,8 @@
                         var estudiantes = data.estudiantes;
                         var nombres = data.nombres;
 
+                        var dataTableData = [];
+
                         for (var i = 0; i < estudiantes.length; i++) {
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
@@ -3095,7 +3097,7 @@
                             estudiante.codMateria,
                             estudiante.curso
                         ];
-                        dataTableData.push(rowData);
+                            dataTableData.push(rowData);
                         }
 
                         $('#estudiantesPlaneados').empty();

@@ -1082,7 +1082,7 @@
 
                     var labels = data.data.map(function(elemento) {
 
-                        return elemento.autorizado_asistir;
+                        return elemento.autorizado_asistir.replace('ACTIVO ', '').trim();
                     });
                     var valores = data.data.map(function(elemento) {
 
@@ -1249,7 +1249,6 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
-                        console.log(maxValor, maxValorAux);
                         
                         if (maxValor < 50) {
                             yMax = 100;
@@ -1263,7 +1262,6 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
-                        console.log(yMax);
                     // Crear el gráfico circular
                     var ctx = document.getElementById('tipoEstudiante').getContext('2d');
                     chartTipoEstudiante = new Chart(ctx, {

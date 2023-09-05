@@ -26,16 +26,21 @@
 
     <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('home.moodle') }}">
             <i class="fa-solid fa-network-wired"></i>
-            <a class="nav-link" href="{{ route('home.moodle') }}"> Moodle</a>        
+            <span>Moodle</span></a>        
     </li>
+
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('home.planeacion') }}">        
             <i class="fa-solid fa-pen"></i>
-            <a class="nav-link" href="{{ route('home.planeacion') }}"> Planeación</a>        
+            <span>Planeación</span></a> 
     </li>
+
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('home.mafi') }}">
             <i class="fa-solid fa-table"></i>
-            <a class="nav-link" href="{{ route('home.mafi') }}">Admisiones</a>       
+            <span>Admisiones</span></a>       
     </li>
 
     <!-- Divider -->

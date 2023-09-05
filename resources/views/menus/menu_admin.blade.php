@@ -27,15 +27,15 @@
     <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item">
             <i class="fa-solid fa-network-wired"></i>
-            <a type="button" class="btn boton" href="{{ route('home.moodle') }}"> Moodle</a>        
+            <a class="nav-link" href="{{ route('home.moodle') }}"> Moodle</a>        
     </li>
     <li class="nav-item">
             <i class="fa-solid fa-pen"></i>
-            <a type="button" class="btn boton" href="{{ route('home.planeacion') }}"> Planeación</a>        
+            <a class="nav-link" href="{{ route('home.planeacion') }}"> Planeación</a>        
     </li>
     <li class="nav-item">
             <i class="fa-solid fa-table"></i>
-            <a type="button" class="btn boton" href="{{ route('home.mafi') }}">Admisiones</a>       
+            <a class="nav-link" href="{{ route('home.mafi') }}">Admisiones</a>       
     </li>
 
     <!-- Divider -->

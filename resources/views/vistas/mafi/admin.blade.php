@@ -138,7 +138,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Facultades Banner </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Banner-Mafi) </strong></h3>
                 </div>
             </div>
 

@@ -1058,7 +1058,7 @@
                             },
                         },
                         plugins: [ChartDataLabels]
-                    });
+                    }});
                     if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
                     } else {

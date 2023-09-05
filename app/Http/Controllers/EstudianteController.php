@@ -103,10 +103,12 @@ class EstudianteController extends Controller
 
     public function consultaHistorial()
     {
-        $estudiante = $_POST;
-        var_dump( $estudiante);
-        exit;
-        $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $estudiante;
+        $idbanner = $_POST['codBanner'];
+        $programa = $_POST['programa'];
+
+  
+        $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $idbanner;
+        dd($url);exit;
         $historialAcademico = json_decode(file_get_contents($url), true);
         return $historialAcademico;
     }

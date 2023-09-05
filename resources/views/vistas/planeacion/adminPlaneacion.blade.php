@@ -3079,21 +3079,9 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
 
                         var dataTableData = [];
-
-                        if (Array.isArray(data.estudiantes) && Array.isArray(data.nombres)) {
-                            data.estudiantes.forEach(function (estudiante, index) {
-                                var nombreCompleto = data.nombres[index].Nombre + ' ' + data.nombres[index].Apellido;
-                                var rowData = [
-                                    estudiante.codBanner,
-                                    nombreCompleto,
-                                    estudiante.codMateria,
-                                    estudiante.curso
-                                ];
-                                dataTableData.push(rowData);
-                            });
-                        }
 
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({

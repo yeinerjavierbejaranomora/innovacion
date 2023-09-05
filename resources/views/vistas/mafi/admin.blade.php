@@ -1034,9 +1034,17 @@
                                         size: 12
                                     },
                                     formatter: function(value, context) {
-                            
-                                return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
-                                    }
+                                    var porcentaje = context.dataset.data[context.dataIndex] / context.dataset._meta[0].total * 100;
+                                    return porcentaje >= 10 ? value : '';
+                                },
+                            }
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 2
                                 },
                                 legend: {
                                     position: 'right',
@@ -1053,22 +1061,6 @@
                         },
                         plugins: [ChartDataLabels]
                     });
-
-                    var valoresPorcentaje = chartEstudiantesActivos.data.datasets[0].data;
-                    console.log(valoresPorcentaje);
-                    var mostrarPorcentaje = valoresPorcentaje.some(function(valor) {
-                        return valor >= 10;
-                    });
-
-                    chartEstudiantesActivos.options.plugins.datalabels.labels = mostrarPorcentaje ? {
-                        render: 'percentage',
-                        size: '14',
-                        fontStyle: 'bolder',
-                        position: 'outside',
-                        textMargin: 2
-                    } : false;
-
-
                     if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
                     } else {

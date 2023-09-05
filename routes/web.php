@@ -403,7 +403,7 @@ Route::controller(EstudianteController::class)->group(function(){
     Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');
     Route::post('/historialestudiante/consultanombre','consultaNombre')->name('historial.consultanombre');
     Route::post('/historialestudiante/consultamalla','consultaMalla')->name('historial.consultamalla');
-    Route::post('/historialestudiante/consultahistorial','consultaHistorial')->name('historial.consultahistorial');
+    Route::post('/historialestudiante/consultaHistorial','consultaHistorial')->name('historial.consultaHistorial');
     Route::post('/historialestudiante/consultaprogramacion','consultaProgramacion')->name('historial.consultaprogramacion');
     Route::post('/historialestudiante/consultaporver','consultaPorVer')->name('historial.consultaporver');
     Route::post('/historialestudiante/consultaprogramas','consultaProgramas')->name('historial.consultaprogramas');

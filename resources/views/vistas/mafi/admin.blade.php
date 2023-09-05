@@ -324,6 +324,9 @@
                     <div class="card-body">
                         <canvas id="estudiantes"></canvas>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" id="descargarMafi">Descargar datos Banner</button>
+                    </div>
                 </div>
             </div>
             <div class="col-6 text-center " id="colSelloFinanciero">
@@ -701,6 +704,27 @@
             $('#deshacerProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', false);
             });
+
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                        title: 'Descargar datos',
+                        text: "Los datos que vas a descargar se encuentran 1 día desactualizados, para obtener la información completamente actualizada dirigete directamente a Banner",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Descargar',
+                        cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                            title:'Descargando',
+                            icon: 'success'
+                        })
+                        }
+                        })
+            });
+
 
             $('#seleccionarProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', true);

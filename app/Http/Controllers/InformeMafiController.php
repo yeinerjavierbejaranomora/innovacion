@@ -224,9 +224,73 @@ class InformeMafiController extends Controller
                 ->groupBy('dm.sello')
                 ->get();
         }
-        
+
         return $data;
     }
+
+    public function estudiantesAntiguos($tabla){
+
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
+        if ($tabla == "Mafi") {
+            /**
+             **SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
+             **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
+             **GROUP BY sello;
+             */
+
+            $consulta = DB::table('datosMafi')
+                ->where('estado', 'Activo')
+                ->whereNotIn('tipoestudiante', $tiposEstudiante)
+                ->select('sello', 'autorizado_asistir')
+                ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
+        }
+
+        return $data;
+
+    }
+
+
+
 
     /**
      * Método que trae todos los 5 tipos de estudiantes con mayor cantidad de datos

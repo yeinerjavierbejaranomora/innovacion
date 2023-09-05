@@ -547,6 +547,7 @@
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
@@ -1252,6 +1253,83 @@
                 });
 
             }
+
+            var chartSelloAntiguos;
+
+            function graficoSelloAntiguos() {
+                var url = '/home/estudiantesAntiguos/' + tabla;
+                $.getJSON(url, function(data) {
+                    var labels = [];
+                    var valores = [];
+                    console.log(data);
+                    for (var propiedad in data) {
+                        if (data.hasOwnProperty(propiedad)) {
+                            labels.push(propiedad + ': '+ data[propiedad]);
+                            valores.push(data[propiedad]);
+                        }
+                    }
+
+                    // Crear el gráfico circular
+                    var ctx = document.getElementById('antiguos').getContext('2d');
+                    chartSelloAntiguos = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Gráfico Circular',
+                                data: valores,
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            layout: {
+                                padding: {
+                                    left: 20,
+                                },
+                            },
+                            plugins: {
+                                datalabels: {
+                                    color: 'black',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                    }
+                                },
+                                labels: {
+                                    render: 'percenteaje',
+                                    size: '14',
+                                    fontStyle: 'bolder',
+                                    position: 'outside',
+                                    textMargin: 2
+                                },
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
+                                }
+                            },
+                        },
+                        plugins: [ChartDataLabels]
+                    });
+                    if (chartSelloAntiguos.data.labels.length == 0 && chartSelloAntiguos.data.datasets[0].data.length == 0) {
+                        $('#colAntiguos').addClass('hidden');
+                    } else {
+                        $('#colAntiguos').removeClass('hidden');
+                    }
+                });
+
+            }
+
 
             /**
              * Método que genera el gráfico con todos los tipos de estudiantes 

@@ -249,14 +249,17 @@
                         // Agregar la pestaña a la lista de pestañas
                         $('#myTabs').append($('<li>').append(tabLink));
 
+                 
+
                         // Crear el contenido de la pestaña
                         var tabContent = $('<div>')
-                        .addClass('tab-pane fade')
+                        .addClass('tab-pane fade datos')
                         .attr('id', 'tab' + index)
                         .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
 
                         // Agregar el contenido de la pestaña al contenedor
                         $('.tab-content').append(tabContent);
+                        
                     });
 
                     // Agregar el listener para el evento de cambio de pestaña

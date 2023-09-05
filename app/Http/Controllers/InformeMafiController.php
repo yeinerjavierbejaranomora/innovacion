@@ -65,23 +65,16 @@ class InformeMafiController extends Controller
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
              *GROUP BY sello
              */
-            $sello = DB::table('datosMafi')
-                ->where('estado', 'Activo')
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello, autorizado_asistir'))
-                ->groupBy('sello')
-                ->get();
 
             $consulta = DB::table('datosMafi')
             ->where('estado', 'Activo')
             ->select('sello', 'autorizado_asistir')
             ->get();
 
-
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
             $Vacio = 0;
-
 
             foreach($consulta as $dato){
                 $sello = $dato->sello;
@@ -104,8 +97,17 @@ class InformeMafiController extends Controller
                     $Vacio += 1;
                 }
             }
+        
+        $data = [
+            'Con Sello' => $selloFinanciero,
+            'Tiene Retencion' => $Retencion,
+            'AFP' => $AFP,
+            'Inactivo' => $Vacio     
+        ];
 
-            dd($selloFinanciero, $AFP, $Retencion, $Vacio);
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $data));
+            
         }
 
         if ($tabla == 'planeacion') {

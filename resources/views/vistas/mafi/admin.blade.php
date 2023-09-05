@@ -547,6 +547,7 @@
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
@@ -1255,7 +1256,7 @@
 
             var chartSelloAntiguos;
 
-            function graficoSelloPrimerIngreso() {
+            function graficoSelloAntiguos() {
                 var url = '/home/estudiantesAntiguos/' + tabla;
                 $.getJSON(url, function(data) {
                     var labels = [];

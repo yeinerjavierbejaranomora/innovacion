@@ -1034,8 +1034,9 @@
                                         size: 12
                                     },
                                     formatter: function(value, context) {
-                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value + '%' : '';
-                                    }
+                            
+                                return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                            }
                                 },
                                 labels: {
                                     render: 'percenteaje',

@@ -3079,37 +3079,37 @@
                         } catch {
                             data = data;
                         }
+
+                        var dataTableData = [];
+
+                        data.forEach(function (item) {
+                            var nombreCompleto = item.nombres.Nombre + ' ' + item.nombres.Apellido;
+                            var rowData = [
+                                item.estudiantes.codBanner,
+                                nombreCompleto, 
+                                item.estudiantes.codMateria,
+                                item.estudiantes.curso
+                            ];
+                            dataTableData.push(rowData);
+                        });
+
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
                             "dom": 'Bfrtip',
-                            "data": data.estudiantes,
+                            "data": dataTableData,
                             "buttons": [
                                 'copy', 'excel', 'pdf', 'print'
                             ],
                             "columns": [{
-                                    data: 'codBanner',
                                     title: 'Codigo Banner'
                                 },
                                 {
-                                    data: null,
                                     title: 'Nombre Completo',
-                                    render: function (data, type, row) {
-                                        if (Array.isArray(data.nombres)) {
-                                            var nombresCompletos = data.nombres.map(function (nombre) {
-                                                return nombre.Nombre + ' ' + nombre.Apellido;
-                                            });
-                                            return nombresCompletos.join(', ');
-                                        } else {
-                                            return ''; 
-                                        }
-                                    }
                                 },
                                 {
-                                    data: 'codMateria',
                                     title: 'Codigo Materia'
                                 },
                                 {
-                                    data: 'curso',
                                     title: 'Materia'
                                 }
                             ],

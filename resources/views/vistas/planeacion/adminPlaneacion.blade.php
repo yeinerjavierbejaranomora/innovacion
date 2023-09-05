@@ -3091,11 +3091,11 @@
                             var nombre = nombres[i];
 
                             console.log(nombre.Nombre);
-                            nombreCompleto = nombre.Nombre + ' ' + nombre.Apellido;
 
                             var rowData = [
                             estudiante.codBanner,
-                            nombreCompleto,
+                            nombre.Nombre,
+                            nombre.Apellido,
                             estudiante.codMateria,
                             estudiante.curso
                         ];
@@ -3114,7 +3114,10 @@
                                     title: 'Codigo Banner'
                                 },
                                 {
-                                    title: 'Nombre Completo',
+                                    title: 'Nombre',
+                                },
+                                {
+                                    title: 'Apellido',
                                 },
                                 {
                                     title: 'Codigo Materia'

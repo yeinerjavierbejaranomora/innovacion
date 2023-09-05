@@ -3083,15 +3083,15 @@
                         
                         var estudiantes = data.estudiantes;
                         var nombres = data.nombres;
-
+                        var nombreCompleto;
                         var dataTableData = [];
 
                         for (var i = 0; i < estudiantes.length; i++) {
                             var estudiante = estudiantes[i];
                             var nombre = nombres[i];
 
-                            console.log(nombre);
-                            var nombreCompleto = nombre.Nombre + ' ' + nombre.Apellido;
+                            console.log(nombre.Nombre);
+                            nombreCompleto = nombre.Nombre + ' ' + nombre.Apellido;
 
                             var rowData = [
                             estudiante.codBanner,

@@ -89,19 +89,19 @@ class InformeMafiController extends Controller
 
                 if($sello == 'TIENE SELLO FINANCIERO')
                 {
-                    $selloFinanciero =+1;
+                    $selloFinanciero += 1;
                 }
 
                 if($sello == 'TIENE RETENCION' && empty($estado) ){
-                    $AFP =+ 1;
+                    $AFP += 1;
                 }
      
                 if($sello == 'TIENE RETENCION' && !empty($estado) ){
-                    $Retencion =+ 1;
+                    $Retencion += 1;
                 }
 
                 if($sello == 'NO EXISTE'){
-                    $Vacio =+1;
+                    $Vacio += 1;
                 }
             }
 

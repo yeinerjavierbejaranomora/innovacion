@@ -150,21 +150,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
-                        Admisiones
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
 
-
-            <br>
             <div class="text-center" id="mensaje">
                 <h5>Por defecto se muestran los datos de todas las facultades,
                     si quieres ver datos en especifico, selecciona alguna en específico.
@@ -462,6 +448,9 @@
 
 
     <script>
+
+        $('#menuMoodle').addClass('activo');
+
         var table;
         var data;
         $(document).ready(function() {

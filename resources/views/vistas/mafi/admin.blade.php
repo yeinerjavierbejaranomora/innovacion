@@ -1079,13 +1079,15 @@
 
                     total = total.reduce((a, b) => a + b, 0);
 
-
                     var labels = data.data.map(function(elemento) {
-
-                        return elemento.autorizado_asistir;
+                        if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                            return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                        } else {
+                            return elemento.autorizado_asistir;
+                        }
                     });
-                    var valores = data.data.map(function(elemento) {
 
+                    var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular

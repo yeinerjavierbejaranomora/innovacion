@@ -119,8 +119,6 @@
         background: #FFFFFF;
     }
 
-    
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -512,6 +510,9 @@
 
     <script>
         $(document).ready(function() {
+
+            $('#menuAdmisiones').addClass('activo');
+
             var tabla = 'Mafi';
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX

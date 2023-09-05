@@ -3059,7 +3059,7 @@
             function estudiantesPlaneados(programa, nombrePrograma) {
                 limpiarModalEstudiantes();
                 $('#tituloEstudiantes').empty();
-                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma);
+                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma + ' - '+ programa);
                 var mensaje = 'Cargando, por favor espere...';
 
                 $('#estudiantesPlaneados').append(mensaje);
@@ -3088,6 +3088,10 @@
                             "columns": [{
                                     data: 'codBanner',
                                     title: 'Codigo Banner'
+                                },
+                                {
+                                    data: 'Nombre_Apellido',
+                                    title: 'Nombre Completo'
                                 },
                                 {
                                     data: 'codMateria',

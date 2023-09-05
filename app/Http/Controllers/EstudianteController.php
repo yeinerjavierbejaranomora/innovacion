@@ -110,7 +110,7 @@ class EstudianteController extends Controller
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $idbanner;
         
         $historialAcademico = json_decode(file_get_contents($url), true);
-        dd($historialAcademico);exit;
+        var_dump($historialAcademico);exit;
         return $historialAcademico;
     }
     public function consultaProgramacion()

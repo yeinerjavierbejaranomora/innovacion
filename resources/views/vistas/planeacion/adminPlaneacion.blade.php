@@ -3081,49 +3081,46 @@
                         }
                         console.log(data);
                         
-                        var estudiantes = data.estudiantes;
-                        var nombres = data.nombres;
-                        var nombreCompleto;
-                        var dataTableData = [];
+                        // var estudiantes = data.estudiantes;
+                        // var nombres = data.nombres;
+                        // var nombreCompleto;
+                        // var dataTableData = [];
 
-                        for (var i = 0; i < estudiantes.length; i++) {
-                            var estudiante = estudiantes[i];
-                            var nombre = nombres[i];
+                        // for (var i = 0; i < estudiantes.length; i++) {
+                        //     var estudiante = estudiantes[i];
+                        //     var nombre = nombres[i];
 
-                            console.log(estudiante.codBanner, nombre.Nombre);
+                        //     console.log(estudiante.codBanner, nombre.Nombre);
 
-                            var rowData = [
-                            estudiante.codBanner,
-                            nombre.Nombre,
-                            nombre.Apellido,
-                            estudiante.codMateria,
-                            estudiante.curso
-                        ];
-                            dataTableData.push(rowData);
-                        }
+                        //     var rowData = [
+                        //     estudiante.codBanner,
+                        //     nombre.Nombre,
+                        //     nombre.Apellido,
+                        //     estudiante.codMateria,
+                        //     estudiante.curso
+                        // ];
+                        //     dataTableData.push(rowData);
+                        // }
 
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
                             "dom": 'Bfrtip',
-                            "data": dataTableData,
+                            "data": data,
                             "buttons": [
                                 'copy', 'excel', 'pdf', 'print'
                             ],
                             "columns": [
                                 {
-                                    title: 'Codigo Banner'
+                                    title: 'Codigo Banner',
+                                    data:'codBanner'
                                 },
                                 {
-                                    title: 'Nombre',
+                                    title: 'Codigo Materia',
+                                    data: 'codMateria'
                                 },
                                 {
-                                    title: 'Apellido',
-                                },
-                                {
-                                    title: 'Codigo Materia'
-                                },
-                                {
-                                    title: 'Materia'
+                                    title: 'Materia',
+                                    data:'curso'
                                 }
                             ],
                             "language": {

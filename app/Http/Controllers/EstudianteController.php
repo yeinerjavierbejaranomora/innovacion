@@ -111,8 +111,12 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-           var_dump($value_historialAcademico);
-           exit;
+            var_dump($value_historialAcademico['cod_programa']);
+            exit;
+            if( $value_historialAcademico['cod_programa']){
+                
+            }
+           
         }
 
         return $historialAcademico;

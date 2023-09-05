@@ -1801,6 +1801,8 @@ class InformeMafiController extends Controller
             
         $Data = array_merge($estudiantes->toArray(), $nombres->toArray());
 
+        dd($Data);
+
         return $Data;
     }
 

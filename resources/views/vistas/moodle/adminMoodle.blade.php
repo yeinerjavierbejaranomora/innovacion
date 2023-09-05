@@ -139,7 +139,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Facultades Moodle </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe Plataforma - Aula Virtual </strong></h3>
                 </div>
             </div>
 

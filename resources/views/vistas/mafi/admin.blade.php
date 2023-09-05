@@ -1034,11 +1034,9 @@
                                         size: 12
                                     },
                                     formatter: function(value, context) {
-                                    var porcentaje = context.dataset.data[context.dataIndex] / context.dataset._meta[0].total * 100;
-                                    return porcentaje >= 10 ? value : '';
-                                },
-                            }
-                                },
+                                        var porcentaje = context.dataset.data[context.dataIndex] / context.dataset._meta[0].total * 100;
+                                        return porcentaje >= 10 ? value : '';
+                                    },
                                 labels: {
                                     render: 'percenteaje',
                                     size: '14',

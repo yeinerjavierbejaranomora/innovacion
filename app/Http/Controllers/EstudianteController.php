@@ -106,15 +106,14 @@ class EstudianteController extends Controller
         $idbanner = $_POST['codBanner'];
         $programa = $_POST['programa'];
 
-        var_dump($programa);
-        exit;
+      
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $idbanner;
         
         $historialAcademico = json_decode(file_get_contents($url), true);
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
            
             if( $value_historialAcademico['cod_programa']==$programa){
-                var_dump($historial_programa);
+                var_dump($programa);
                 exit;
                 $historial_programa[]=$value_historialAcademico;
 

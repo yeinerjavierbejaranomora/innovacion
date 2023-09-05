@@ -244,6 +244,7 @@
                         var tabLink = $('<a>')
                         .addClass('nav-link datos ')
                         .attr('data-toggle', 'tab')
+                        .attr('data-id',codBanner )
                         .attr('href', '#tab' + index)
                         .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
 

@@ -113,8 +113,7 @@ class EstudianteController extends Controller
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
            
             if( $value_historialAcademico['cod_programa']==$programa){
-                var_dump($programa);
-                exit;
+            
                 $historial_programa[]=$value_historialAcademico;
 
             }
@@ -122,7 +121,7 @@ class EstudianteController extends Controller
         }
         var_dump($historial_programa);
         exit;
-        
+
         return $historialAcademico;
     }
     public function consultaProgramacion()

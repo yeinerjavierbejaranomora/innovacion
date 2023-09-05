@@ -1288,15 +1288,16 @@
                             }]
                         },
                         options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                scales: {
+                            scales: {
                                     y: {
                                         max: yMax,
                                         beginAtZero: true
                                     }
                                 },
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                
                                 datalabels: {
                                     color: 'black',
                                     font: {

@@ -73,7 +73,7 @@ class InformeMafiController extends Controller
 
             $selloFinanciero = 0;
             $Retencion = 0;
-            $AFP = 0;
+            $ASP = 0;
             $Vacio = 0;
 
             foreach ($consulta as $dato) {
@@ -85,7 +85,7 @@ class InformeMafiController extends Controller
                 }
 
                 if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                    $AFP += 1;
+                    $ASP += 1;
                 }
 
                 if ($sello == 'TIENE RETENCION' && !empty($estado)) {
@@ -100,8 +100,8 @@ class InformeMafiController extends Controller
             $data = [
                 'CON SELLO' => $selloFinanciero,
                 'TIENE RETENCION' => $Retencion,
-                'AFP' => $AFP,
-                'INACTIVO' => $Vacio
+                'ASP' => $ASP,
+                'NO EXISTE' => $Vacio
             ];
 
             return $data;

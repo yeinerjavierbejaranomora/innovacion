@@ -3080,7 +3080,11 @@
                         }
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
+                            "dom": 'Bfrtip',
                             "data": data,
+                            "buttons": [
+                                'copy', 'excel', 'pdf', 'print'
+                            ],
                             "columns": [{
                                     data: 'codBanner',
                                     title: 'Codigo Banner'

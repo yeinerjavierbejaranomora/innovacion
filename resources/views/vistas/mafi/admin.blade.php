@@ -1020,7 +1020,7 @@
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(186,186,186,1)']
                             }]
                         },
                         options: {
@@ -1033,6 +1033,9 @@
                                         weight: 'bold',
                                         size: 12
                                     },
+                                    formatter: function(value, context) {
+                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value + '%' : '';
+                                    }
                                 },
                                 labels: {
                                     render: 'percenteaje',

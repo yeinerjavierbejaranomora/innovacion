@@ -3083,6 +3083,17 @@
 
                         var dataTableData = [];
 
+                        data.forEach(function (item) {
+                            var nombreCompleto = item.nombres.Nombre + ' ' + item.nombres.Apellido;
+                            var rowData = [
+                                item.estudiantes.codBanner,
+                                nombreCompleto, // Concatenación del nombre y el apellido
+                                item.estudiantes.codMateria,
+                                item.estudiantes.curso
+                            ];
+                            dataTableData.push(rowData);
+                        });
+
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
                             "dom": 'Bfrtip',

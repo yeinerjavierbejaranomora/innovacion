@@ -1036,14 +1036,7 @@
                                     formatter: function(value, context) {
                             
                                 return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
-                            }
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 2
+                                    }
                                 },
                                 legend: {
                                     position: 'right',
@@ -1060,6 +1053,21 @@
                         },
                         plugins: [ChartDataLabels]
                     });
+
+                    var valoresPorcentaje = chartEstudiantesActivos.data.datasets[0].data;
+                    var mostrarPorcentaje = valoresPorcentaje.some(function(valor) {
+                        return valor >= 10;
+                    });
+
+                    chartEstudiantesActivos.options.plugins.datalabels.labels = mostrarPorcentaje ? {
+                        render: 'percentage',
+                        size: '14',
+                        fontStyle: 'bolder',
+                        position: 'outside',
+                        textMargin: 2
+                    } : false;
+
+
                     if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                         $('#colSelloFinanciero').addClass('hidden');
                     } else {

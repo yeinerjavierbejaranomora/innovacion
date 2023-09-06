@@ -428,8 +428,6 @@
             </div>
         </div>
 
-        <br>
-
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">

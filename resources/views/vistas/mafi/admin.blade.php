@@ -308,10 +308,6 @@
 
         </div>
 
-        <a class="scroll-to-bottom rounded" href="#page-bottom">
-            <i class="fas fa-angle-down"></i>
-        </a>
-
         <div class="row justify-content-start mt-5 columnas">
             <div class="col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
@@ -357,7 +353,7 @@
                                     <h5 class="tituloPeriodo"><strong></strong></h5>
                                 </div>
                                 <div class="card-body center-chart">
-                                    <canvas id="primerIngreso" style="width: 400px;height: 350px"></canvas>
+                                    <canvas id="primerIngreso" style="width: 460px;height: 350px"></canvas>
                                 </div>
                             </div>
                     </div>
@@ -368,7 +364,7 @@
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="card-body center-chart">
-                                <canvas id="antiguos" style="width: 400px;height: 350px"></canvas>
+                                <canvas id="antiguos" style="width: 460px;height: 350px"></canvas>
                             </div>
                         </div>
                     </div>

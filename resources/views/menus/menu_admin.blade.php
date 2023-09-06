@@ -65,7 +65,7 @@
             </div>
         </div>
     </li>
-    <li class="nav-tem">
+    <li class="nav-item">
         <a href="" class="nav-link" href="#">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas tempranas<br>(programación-planeación)</span></a>

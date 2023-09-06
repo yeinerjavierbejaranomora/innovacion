@@ -1002,8 +1002,8 @@
                                     textMargin: 6
                                 },
                                 legend: {
-                                    position: 'right',
-                                    align: 'bottom',
+                                    position: 'bottom',
+                                    align: 'left',
                                     labels: {
                                         usePointStyle: true,
                                         padding: 20,

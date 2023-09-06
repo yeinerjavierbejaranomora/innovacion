@@ -104,8 +104,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 400px;
+        max-height: 400px;
     }
 
     #tiposEstudiantesTotal,
@@ -1203,9 +1203,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    
-                                        display: false
-                                  
+                                        display: false,                          
                                 }
                             },
                         },
@@ -1375,14 +1373,7 @@
                                     textMargin: 2
                                 },
                                 legend: {
-                                    position: 'right',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
+                                        display: false,                          
                                 }
                             },
                         },

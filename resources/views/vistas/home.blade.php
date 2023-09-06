@@ -212,8 +212,6 @@
 
                 return false;
             });
-
-
         });
     </script>
     @include('layout.footer')

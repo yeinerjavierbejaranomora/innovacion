@@ -61,91 +61,76 @@
                                         <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-29">
-                                                    <label class="checkbox">
-                                                      <input type="checkbox" class="checkbox__input" />  
-                                                      <span class="checkbox__label"></span>
-                                                      Checkbox
+                                                <div class="checkbox-wrapper-37">
+                                                    <input type="checkbox" name="checkbox" id="terms-checkbox-37" />
+                                                    <label for="terms-checkbox-37" class="terms-label">
+                                                      <svg
+                                                        class="checkbox-svg"
+                                                        viewBox="0 0 200 200"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                        <mask id="path-1-inside-1_476_5-37" fill="white">
+                                                          <rect width="200" height="200" />
+                                                        </mask>
+                                                        <rect
+                                                          width="200"
+                                                          height="200"
+                                                          class="checkbox-box"
+                                                          stroke-width="40"
+                                                          mask="url(#path-1-inside-1_476_5-37)"
+                                                        />
+                                                        <path
+                                                          class="checkbox-tick"
+                                                          d="M52 111.018L76.9867 136L149 64"
+                                                          stroke-width="15"
+                                                        />
+                                                      </svg>
+                                                      <span class="label-text">Checkbox</span>
                                                     </label>
                                                   </div>
-                                                  
+
                                                   <style>
-                                                    .checkbox-wrapper-29 {
-                                                      --size: 1rem;
-                                                      --background: #fff;
-                                                      font-size: var(--size);
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 *,
-                                                    .checkbox-wrapper-29 *::after,
-                                                    .checkbox-wrapper-29 *::before {
-                                                      box-sizing: border-box;
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 input[type="checkbox"] {
-                                                      visibility: hidden;
+                                                    .checkbox-wrapper-37 input[type="checkbox"] {
                                                       display: none;
                                                     }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label {
-                                                      width: var(--size);
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label:before {
-                                                      content: ' ';
-                                                      display: block;
-                                                      height: var(--size);
-                                                      width: var(--size);
-                                                      position: absolute;
-                                                      top: calc(var(--size) * 0.125);
-                                                      left: 0;
-                                                      background: var(--background);  
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label:after {
-                                                      content: ' ';
-                                                      display: block;
-                                                      height: var(--size);
-                                                      width: var(--size);
-                                                      border: calc(var(--size) * .14) solid #000;
-                                                      transition: 200ms;
-                                                      position: absolute;
-                                                      top: calc(var(--size) * 0.125);
-                                                      left: 0;
-                                                      background: var(--background);  
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label:after {
-                                                      transition: 100ms ease-in-out;
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__input:checked ~ .checkbox__label:after {
-                                                      border-top-style: none; 
-                                                      border-right-style: none;
-                                                      -ms-transform: rotate(-45deg); /* IE9 */
-                                                      transform: rotate(-45deg);
-                                                      height: calc(var(--size) * .5);
-                                                      border-color: green;
-                                                    }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox {
-                                                      position: relative;
-                                                      display: flex;
+
+                                                    .checkbox-wrapper-37 .terms-label {
                                                       cursor: pointer;
-                                                      /* Mobile Safari: */
-                                                      -webkit-tap-highlight-color: rgba(0,0,0,0);   
+                                                      display: flex;
+                                                      align-items: center;
                                                     }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label:after:hover,
-                                                    .checkbox-wrapper-29 .checkbox__label:after:active {
-                                                       border-color: green; 
+
+                                                    .checkbox-wrapper-37 .terms-label .label-text {
+                                                      margin-left: 10px;
                                                     }
-                                                  
-                                                    .checkbox-wrapper-29 .checkbox__label {
-                                                      margin-right: calc(var(--size) * 0.45);
+
+                                                    .checkbox-wrapper-37 .checkbox-svg {
+                                                      width: 30px;
+                                                      height: 30px;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .checkbox-box {
+                                                      fill: #fff;
+                                                      stroke: #ff7a00;
+                                                      stroke-dasharray: 800;
+                                                      stroke-dashoffset: 800;
+                                                      transition: stroke-dashoffset 0.6s ease-in;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .checkbox-tick {
+                                                      stroke: #ff7a00;
+                                                      stroke-dasharray: 172;
+                                                      stroke-dashoffset: 172;
+                                                      transition: stroke-dashoffset 0.6s ease-in;
+                                                    }
+
+                                                    .checkbox-wrapper-37 input[type="checkbox"]:checked + .terms-label .checkbox-box,
+                                                    .checkbox-wrapper-37 input[type="checkbox"]:checked + .terms-label .checkbox-tick {
+                                                      stroke-dashoffset: 0;
                                                     }
                                                   </style>
-                                                  
+
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">

@@ -74,10 +74,10 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="text-center">
-                    <h2><strong>Módulos disponibles</strong></h2>
-                </div>
-            <div class="row justify-content-center">  
+            <div class="text-center mb-3">
+                <h2><strong>Módulos disponibles</strong></h2>
+            </div>
+            <div class="row justify-content-center">
                 <div class="col-8">
                     <div class="card">
                         <div class="card-header text-center">
@@ -87,12 +87,12 @@
                             <img class="card-img-center" src="..." alt="Card image cap">
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
-                                que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.     
+                                que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                             </p>
                             <strong>Gráficos disponibles</strong>
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
         </div>
 

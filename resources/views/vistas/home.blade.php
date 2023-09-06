@@ -82,13 +82,13 @@
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="navadmisiones" href="#admisiones">Admisiones</a>
+                                    <a class="nav-link active menuHome" id="navadmisiones" href="#admisiones">Admisiones</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="navmoodle" href="#moodle">Moodle</a>
+                                    <a class="nav-link menuHome" id="navmoodle" href="#moodle">Moodle</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="navplaneacion" href="#planeacion">Planeación</a>
+                                    <a class="nav-link menuHome" id="navplaneacion" href="#planeacion">Planeación</a>
                                 </li>
                             </ul>
                         </div>
@@ -201,8 +201,8 @@
             $(".content").hide();
             $("#admisiones").show();
 
-            $(".nav-link").click(function() {
-                $(".nav-link").removeClass('active');
+            $(".menuHome").click(function() {
+                $(".menuHome").removeClass('active');
                 $(".content").hide();
 
                 var target = $(this).attr("href").substring(1);

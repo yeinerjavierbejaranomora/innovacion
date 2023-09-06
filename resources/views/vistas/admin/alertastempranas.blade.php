@@ -51,7 +51,7 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row text-center">
                                         <div class="col-xl-2">
                                             hola 1
                                         </div>

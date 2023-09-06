@@ -4,84 +4,127 @@
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <style>
-    .checkbox-wrapper-46 input[type="checkbox"] {
-      display: none;
-      visibility: hidden;
+    #facultades {
+        font-size: 14px;
     }
 
-    .checkbox-wrapper-46 .cbx {
-      margin: auto;
-      -webkit-user-select: none;
-      user-select: none;
-      cursor: pointer;
-    }
-    .checkbox-wrapper-46 .cbx span {
-      display: inline-block;
-      vertical-align: middle;
-      transform: translate3d(0, 0, 0);
-    }
-    .checkbox-wrapper-46 .cbx span:first-child {
-      position: relative;
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-      transform: scale(1);
-      vertical-align: middle;
-      border: 1px solid #9098A9;
-      transition: all 0.2s ease;
-    }
-    .checkbox-wrapper-46 .cbx span:first-child svg {
-      position: absolute;
-      top: 3px;
-      left: 2px;
-      fill: none;
-      stroke: #FFFFFF;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 16px;
-      stroke-dashoffset: 16px;
-      transition: all 0.3s ease;
-      transition-delay: 0.1s;
-      transform: translate3d(0, 0, 0);
-    }
-    .checkbox-wrapper-46 .cbx span:first-child:before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      background: #f6c23e;
-      display: block;
-      transform: scale(0);
-      opacity: 1;
-      border-radius: 50%;
-    }
-    .checkbox-wrapper-46 .cbx span:last-child {
-      padding-left: 8px;
-    }
-    .checkbox-wrapper-46 .cbx:hover span:first-child {
-      border-color: #f6c23e;
+    #programas {
+        font-size: 14px;
     }
 
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
-      background: #f6c23e;
-      border-color: #f6c23e;
-      animation: wave-46 0.4s ease;
-    }
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
-      stroke-dashoffset: 0;
-    }
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
-      transform: scale(3.5);
-      opacity: 0;
-      transition: all 0.6s ease;
+    .button-informe {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
-    @keyframes wave-46 {
-      50% {
-        transform: scale(0.9);
-      }
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
     }
-  </style>
+
+    #btn-table {
+        width: 60px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 11px;
+    }
+
+    #botonModalTiposEstudiantes,
+    #botonModalProgramas,
+    #botonModalOperador,
+    #botonModalMetas {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .graficos {
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    #cardProgramas {
+        max-height: 500px;
+    }
+
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #tiposEstudiantesTotal,
+    #operadoresTotal,
+    #programasTotal,
+    #metasTotal {
+        height: 600px !important;
+    }
+
+    #seccion {
+        background: #FFFFFF;
+    }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
@@ -122,108 +165,147 @@
 
             <!-- Content Row -->
 
-            <div class="row">
+            <div class="row justify-content-start mb-3" id="seccion">
 
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-body">
-                                    <div class="text-center col-12 align-items-center">
-                                        <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                <!--Columna Niveles de Formación-->
+                <div class="col-12 text-start mt-1">
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="text-center col-8">
+                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                        </div>
+                        <div class="text-start">
+                            <div id="periodos">
+                                <!--Accordion-->
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        For. Contínua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        {{-- <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
-                                        </div> --}}
-                                        <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-46" type="checkbox" />
-                                                    <label class="cbx" for="cbx-46"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202313</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-47" type="checkbox" />
-                                                    <label class="cbx" for="cbx-47"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202316</span>
-                                                    </label>
-                                                </div>
+                                    <div class="col-4">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-48" type="checkbox" />
-                                                    <label class="cbx" for="cbx-48"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202333</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-49" type="checkbox" />
-                                                    <label class="cbx" for="cbx-49"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202334</span>
-                                                    </label>
-                                                </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card" id="cardFacultades">
+                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                                <div name="facultades" id="facultades"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
+                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>Especializacion</strong></h5>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-45" type="checkbox" />
-                                                    <label class="cbx" for="cbx-45"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202343</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-44" type="checkbox" />
-                                                    <label class="cbx" for="cbx-44"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202344</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
-                                        </div> --}}
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <!--Datatable-->
-                            <div class="table">
-                                <table id="example" class="display" style="width:100%">
-                                </table>
-                            </div>
+                        <div class="text-center col-8 mt-3" style="height: 30px;">
+                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
-                        <br>
                     </div>
                 </div>
+
             </div>
 
+            <div class="row text-center justify-content-center">
+                <button class="btn button-informe" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
+            </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -234,6 +316,7 @@
 <!-- End of Content Wrapper -->
 
 </div>
+
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
@@ -241,70 +324,144 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-{{-- <script>
-    // * Datatable para mostrar los programas de la Facultad *
-    var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.getmalla', ['codigo'=>$codigo]) }}";
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            var table = $('#example').DataTable({
-                "data": data.data,
-                "order": [[1,'asc'],[3,'asc']],
-                "columns": [{
-                        data: 'codprograma', "visible": false,
-                        title: 'Codigo de programa'
-                    },
-                    {
-                        data: 'semestre',
-                        title: 'Semestre'
-                    },
-                    {
-                        data: 'ciclo',
-                        title: 'Ciclo'
-                    },
-                    {
-                        data: 'orden',
-                        title: 'Orden'
-                    },
-                    {
-                        data: 'curso',
-                        title: 'Curso'
-                    },
-                    {
-                        data: 'codigoCurso',
-                        title: 'Codigo curso'
-                    },
-                    {
-                        data: 'creditos',
-                        title: 'Numero de créditos'
-                    },
-                    {
-                        data: 'prerequisito',
-                        title: 'Pre-requisitos'
-                    },
-                    {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar',
-                        className: "text-center"
-                    },
-                    {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
-                        className: "text-center"
-                    },
-                ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                },
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });
-        }
+<script>
+    $(document).ajaxStart(function() {
+        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+        $('div #programas input[type="checkbox"]').prop('disabled', true);
+        $('#generarReporte').prop("disabled", true);
+    });
+
+    // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+    $(document).ajaxStop(function() {
+        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+        $('div #programas input[type="checkbox"]').prop('disabled', false);
+        $('#generarReporte').prop("disabled", false);
+    });
+    periodos();
+    facultades();
+    programas();
+    function periodos() {
+        var datos = $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            , url: "{{ route('programas.activos') }}"
+            , method: 'post'
+            , async: false
+            , success: function(data) {
+                data.forEach(periodo => {
+                    if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                        $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "PROFESIONAL") {
+                        $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "ESPECIALISTA") {
+                        $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "MAESTRIA") {
+                        $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                });
+            }
+        });
     }
 
-</script> --}}
+    function facultades() {
+        var datos = $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                });
+            }
+        });
+    }
+
+    function programas(){
+        $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('todosProgramas.activos') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    if (datos != null) {
+                        try {
+                            datos = jQuery.parseJSON(datos);
+                        } catch {
+                            datos = datos;
+                        }
+                        $.each(datos, function(key, value) {
+                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                        });
+                    }
+                },
+                error: function() {
+                    $('#programas').append('<h5>No hay programas</h5>')
+                }
+            })
+    }
+
+    $('#deshacerProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', true);
+    });
+
+    $('#deshacerPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', false);
+        $('.todos').prop('checked', false);
+    });
+
+    $('#seleccionarPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', true);
+        $('.todos').prop('checked', true);
+    });
+
+    $('#deshacerFacultades').on('click', function(e) {
+        $('#facultades input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarFacultades').on('click', function(e) {
+        $('#facultades input[type="checkbox"]').prop('checked', true);
+    });
+
+    function getPeriodos() {
+        var periodosSeleccionados = [];
+        var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.each(function() {
+            periodosSeleccionados.push($(this).val());
+        });
+        return periodosSeleccionados;
+    }
+
+    function Contador() {
+        totalFacultades = $('#facultades input[type="checkbox"]').length;
+        totalProgramas = $('#programas input[type="checkbox"]').length;
+        totalPeriodos = $('#programas input[type="checkbox"]').length;
+    }
+
+    $('#generarReporte').on('click', function(e) {
+        e.preventDefault();
+        Contador();
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
+        console.log(periodosSeleccionados);
+    });
+</script>
+
 
 @include('layout.footer')
 

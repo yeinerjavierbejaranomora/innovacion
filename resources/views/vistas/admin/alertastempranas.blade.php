@@ -392,6 +392,32 @@
             })
     }
 
+    $('#deshacerProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', true);
+    });
+
+    $('#deshacerPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', false);
+        $('.todos').prop('checked', false);
+    });
+
+    $('#seleccionarPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', true);
+        $('.todos').prop('checked', true);
+    });
+
+    $('#deshacerFacultades').on('click', function(e) {
+        $('#facultades input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarFacultades').on('click', function(e) {
+        $('#facultades input[type="checkbox"]').prop('checked', true);
+    });
+
 </script>
 
 

@@ -78,38 +78,44 @@
                 <h2><strong>Módulos disponibles</strong></h2>
             </div>
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-10">
                     <div class="card">
                         <div class="card-header text-center">
                             <h4><strong>Admisiones</strong></h4>
                         </div>
                         <div class="card-body">
-                            <img class="card-img-center mb-4" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 50%;">
-                            <img class="card-img-center mb-4" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 50%;">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                </div>
+                                <div class="col-md-6">
+                                    <img class="card-img-center" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 100%;">
+                                </div>
+                            </div>
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                             </p>
                             <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
                             <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
-                                y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual 
+                                y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual
                                 genera un Excel con los datos de Banner.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello, 
+                            <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
                                 con retención o ASP) de los estudiantes <strong> activos </strong>.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma 
-                                de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>    
+                            <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
+                                de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
                                 financiero de todos los estudiantes <strong> activos </strong> de primer ingreso y transferentes.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero 
+                            <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero
                                 para estudiantes antiguos.</li>
                             <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
-                            cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>    
-                            <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada 
-                            operador, también cuenta con la opción de "Ver más".</li>
+                                cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>
+                            <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada
+                                operador, también cuenta con la opción de "Ver más".</li>
                             <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
-                            en cada programa, cuenta con la opción de "Ver más".</li>
+                                en cada programa, cuenta con la opción de "Ver más".</li>
                             <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
-                            y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
+                                y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
                         </div>
                     </div>
                 </div>

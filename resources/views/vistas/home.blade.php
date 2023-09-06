@@ -81,7 +81,17 @@
                 <div class="col-10">
                     <div class="card">
                         <div class="card-header text-center">
-                            <h4><strong>Admisiones</strong></h4>
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Admisiones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Moodle</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Planeación</a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -101,7 +111,7 @@
                                 y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual
                                 genera un Excel con los datos de Banner.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
-                                con retención o ASP) de los estudiantes <strong> activos </strong>.</li>
+                                con retención o ASP) de los estudiantes <strong> activos</strong>.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
                                 de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado

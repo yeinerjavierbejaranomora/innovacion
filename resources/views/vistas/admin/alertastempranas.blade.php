@@ -318,70 +318,37 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-{{-- <script>
-    // * Datatable para mostrar los programas de la Facultad *
-    var xmlhttp = new XMLHttpRequest();
-    var url = "{{ route('facultad.getmalla', ['codigo'=>$codigo]) }}";
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            var table = $('#example').DataTable({
-                "data": data.data,
-                "order": [[1,'asc'],[3,'asc']],
-                "columns": [{
-                        data: 'codprograma', "visible": false,
-                        title: 'Codigo de programa'
-                    },
-                    {
-                        data: 'semestre',
-                        title: 'Semestre'
-                    },
-                    {
-                        data: 'ciclo',
-                        title: 'Ciclo'
-                    },
-                    {
-                        data: 'orden',
-                        title: 'Orden'
-                    },
-                    {
-                        data: 'curso',
-                        title: 'Curso'
-                    },
-                    {
-                        data: 'codigoCurso',
-                        title: 'Codigo curso'
-                    },
-                    {
-                        data: 'creditos',
-                        title: 'Numero de créditos'
-                    },
-                    {
-                        data: 'prerequisito',
-                        title: 'Pre-requisitos'
-                    },
-                    {
-                        defaultContent: "<button type='button' class='editar btn btn-secondary' data-toggle='modal' data-target='#editar_facultad' data-whatever='modal'><i class='fa-solid fa-pen-to-square'></i></button>",
-                        title: 'Editar',
-                        className: "text-center"
-                    },
-                    {
-                        defaultContent: "<button type='button' class='eliminar btn btn-danger'><i class='fa-regular fa-square-minus'></i></button>",
-                        title: 'Eliminar',
-                        className: "text-center"
-                    },
-                ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                },
-                //lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            });
-        }
+<script>
+    periodos();
+    function periodos() {
+        var datos = $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            , url: "{{ route('programas.activos') }}"
+            , method: 'post'
+            , async: false
+            , success: function(data) {
+                data.forEach(periodo => {
+                    if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                        $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "PROFESIONAL") {
+                        $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "ESPECIALISTA") {
+                        $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                    if (periodo.nivelFormacion == "MAESTRIA") {
+                        $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                    }
+                });
+            }
+        });
     }
 
-</script> --}}
+</script>
+
 
 @include('layout.footer')
 

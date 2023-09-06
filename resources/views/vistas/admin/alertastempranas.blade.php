@@ -163,7 +163,7 @@
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-46" type="checkbox" />
                                                     <label class="cbx" for="cbx-46"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -171,7 +171,7 @@
                                                             </svg></span><span>202313</span>
                                                     </label>
                                                 </div>
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-47" type="checkbox" />
                                                     <label class="cbx" for="cbx-47"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -186,7 +186,7 @@
                                             <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
                                             </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-48" type="checkbox" />
                                                     <label class="cbx" for="cbx-48"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -194,7 +194,7 @@
                                                             </svg></span><span>202333</span>
                                                     </label>
                                                 </div>
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-49" type="checkbox" />
                                                     <label class="cbx" for="cbx-49"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -209,7 +209,7 @@
                                                 <h5 id="tituloNiveles" ><strong>Especializacion</strong></h5>
                                             </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-45" type="checkbox" />
                                                     <label class="cbx" for="cbx-45"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -217,7 +217,7 @@
                                                             </svg></span><span>202343</span>
                                                     </label>
                                                 </div>
-                                                <div class="checkbox-wrapper-46 mb-3">
+                                                <div class="checkbox-wrapper-46 mb-1">
                                                     <input class="inp-cbx" id="cbx-44" type="checkbox" />
                                                     <label class="cbx" for="cbx-44"><span>
                                                             <svg width="12px" height="10px" viewbox="0 0 12 10">

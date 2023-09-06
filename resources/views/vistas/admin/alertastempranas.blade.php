@@ -61,63 +61,67 @@
                                         <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-49">
-                                                    <div class="block">
-                                                      <input data-index="0" id="cheap-49" type="checkbox" />
-                                                      <label for="cheap-49"></label>
-                                                    </div>
+                                                <div class="checkbox-wrapper-53">
+                                                    <label class="container">
+                                                      <input type="checkbox">
+                                                      <div class="checkmark"></div>
+                                                    </label>
                                                   </div>
-
+                                                  
                                                   <style>
-                                                    .checkbox-wrapper-49 input[type="checkbox"] {
-                                                      display: none;
+                                                    .checkbox-wrapper-53 input[type="checkbox"] {
                                                       visibility: hidden;
+                                                      display: none;
                                                     }
-
-                                                    .checkbox-wrapper-49 {
-                                                      --size: 40px;
-                                                    }
-
-                                                    .checkbox-wrapper-49 .block {
-                                                      position: relative;
-                                                      clear: both;
-                                                      float: left;
-                                                    }
-
-                                                    .checkbox-wrapper-49 label {
-                                                      width: var(--size);
-                                                      height: calc(var(--size) / 2);
-                                                      box-sizing: border-box;
-                                                      border: 3px solid;
-                                                      float: left;
-                                                      border-radius: 100px;
+                                                  
+                                                    .checkbox-wrapper-53 .container {
+                                                      display: block;
                                                       position: relative;
                                                       cursor: pointer;
-                                                      transition: .3s ease;
-                                                      color: black;
+                                                      font-size: 20px;
+                                                      user-select: none;
                                                     }
-                                                    .checkbox-wrapper-49 input[type=checkbox]:checked + label {
-                                                      background: #f6c23e;
+                                                  
+                                                    .checkbox-wrapper-53 .checkmark {
+                                                      position: relative;
+                                                      top: 0;
+                                                      left: 0;
+                                                      height: 1.3em;
+                                                      width: 1.3em;
+                                                      background-color: #ccc;
+                                                      border-radius: 100%;
+                                                      background: #e8e8e8;
+                                                      box-shadow: 3px 3px 5px #c5c5c5,
+                                                                  -3px -3px 5px #ffffff;
                                                     }
-                                                    .checkbox-wrapper-49 input[type=checkbox]:checked + label:before {
-                                                      left: calc(var(--size) / 2);
+                                                  
+                                                    .checkbox-wrapper-53 .container input:checked ~ .checkmark {
+                                                      box-shadow: inset 3px 3px 5px #c5c5c5,
+                                                                  inset -3px -3px 5px #ffffff;
                                                     }
-                                                    .checkbox-wrapper-49 label:before {
-                                                      transition: .3s ease;
-                                                      content: '';
-                                                      width: calc((var(--size) / 2) - 10px);
-                                                      height: calc((var(--size) / 2) - 10px);
+                                                  
+                                                    .checkbox-wrapper-53 .checkmark:after {
+                                                      content: "";
                                                       position: absolute;
-                                                      background: white;
-                                                      left: 2px;
-                                                      top: 2px;
-                                                      box-sizing: border-box;
-                                                      border: 3px solid;
-                                                      color: black;
-                                                      border-radius: 100px;
+                                                      opacity: 0;
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-53 .container input:checked ~ .checkmark:after {
+                                                      opacity: 1;
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-53 .container .checkmark:after {
+                                                      left: 0.45em;
+                                                      top: 0.25em;
+                                                      width: 0.25em;
+                                                      height: 0.5em;
+                                                      border: solid darkgray;
+                                                      border-width: 0 0.15em 0.15em 0;
+                                                      transform: rotate(45deg);
+                                                      transition: all 250ms;
                                                     }
                                                   </style>
-
+                                                  
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">

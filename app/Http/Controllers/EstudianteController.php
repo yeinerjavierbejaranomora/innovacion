@@ -112,6 +112,10 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
+
+        $planeada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+        dd($planeada);
+        exit;
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
@@ -128,25 +132,10 @@ class EstudianteController extends Controller
             );
 
         }
+
+
+        
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-            // array:15 [ // app/Http/Controllers/EstudianteController.php:126
-            //     "estudiante" => "CUEVAS MARTINEZ RODRIGO "
-            //     "bannerID" => "100039616"
-            //     "pidm" => "69631"
-            //     "identificacion" => "1024473823"
-            //     "programa" => "DIP SEG Y SALUD TRA RIES P VIR"
-            //     "cod_programa" => "DSRV"
-            //     "termino" => "202108"
-            //     "tipoEstudiante" => "OPCION DE GRADO"
-            //     "idCurso" => "DSRV02100"
-            //     "tipoNota" => ""
-            //     "materia" => "CUR-DIP SEG SAL TRAB RIESO PSI VIR"
-            //     "nrc" => "7049"
-            //     "repito" => "NO"
-            //     "calificacion" => "3,90"
-            //     "creditos" => 6
-            //   ]
-           
 
             if( $value_historialAcademico['cod_programa']==$programa){
             
@@ -160,15 +149,13 @@ class EstudianteController extends Controller
                     $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
                     $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
 
-                  
-                   
-                 }
+                }
 
                 $historial_programa[]=$value_historialAcademico;
                 
 
             }
-           
+
         }
         
                     

@@ -769,7 +769,8 @@
                                 estadoUsuarioPrograma();
                                 $("#colProgramas").addClass("hidden");
                                 $("#colMetas").addClass("hidden");
-                                graficosporPrograma(programasSeleccionados, periodosSeleccionados);
+                                destruirGraficos();
+                               llamadoFunciones();
                             } else {
                                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                     $('#mensaje').hide();
@@ -785,7 +786,8 @@
                                     }
                                     $("#colMetas").removeClass("hidden");
                                     estadoUsuarioFacultad();
-                                    graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+                                    destruirGraficos();
+                                    llamadoFunciones();
                                 } else {
                                     /** Alerta */
                                     programasSeleccionados = [];
@@ -960,32 +962,6 @@
                      */
                     var chartEstudiantes;
 
-
-                    // url: "{{ route('estudiantes.activos.facultad') }}",
-                    //         data: {
-                    //             idfacultad: facultades,
-                    //             periodos: periodos
-                    //         },
-
-                    // if (programasSeleccionados.length > 0) {
-                    //         var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    //             data = {
-                    //                 programa: programasSeleccionados,
-                    //                 periodos: periodosSeleccionados
-                    //             }
-                    //     } else {
-                    //         if (facultadesSeleccionadas.length > 0) {
-                    //             var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    //                 data = {
-                    //                     idfacultad: facultadesSeleccionadas,
-                    //                     periodos: periodosSeleccionados
-                    //                 }
-                    //         } else {
-                    //             var url = "{{ route('operadoresTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
-                    //                 data = '';
-                    //         }
-                    //     }
-
                     function graficoEstudiantes() {
                         var url, data;
                         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
@@ -1092,7 +1068,6 @@
                             }
                         });
                     }
-
 
                     /**
                      * Método que genera el gráfico de sello financiero

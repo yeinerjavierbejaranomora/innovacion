@@ -119,6 +119,12 @@
         background: #FFFFFF;
     }
 
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -324,7 +330,7 @@
                         <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart">
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -986,8 +992,6 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
-                            height: 230,
-                            width: 430,
                             plugins: {
                                 datalabels: {
                                     color: 'black',
@@ -1058,8 +1062,10 @@
                             }]
                         },
                         options: {
-                            responsive: true,
+                            responsive: false,
                             maintainAspectRatio: false,
+                            height: 230,
+                            width: 430,
                             plugins: {
                                 datalabels: {
                                     color: 'black',

@@ -51,7 +51,7 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
-                                    <div class="text-center col-8">
+                                    <div class="text-center col-8 align-items-center">
                                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">

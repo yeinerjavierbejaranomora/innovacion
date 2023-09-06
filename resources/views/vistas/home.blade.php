@@ -91,9 +91,18 @@
                             </p>
                             <h5><strong class="text-dark">Gráficos disponibles</strong></h5>
                             <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
-                                y los clásifica en activos e inactivos</li>
+                                y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual 
+                                genera un Excel con los datos de Banner.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello, 
-                                con retención o ASP) de los estudiantes <strong> activos </strong></li>
+                                con retención o ASP) de los estudiantes <strong> activos </strong>.</li>
+                            <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma 
+                                de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>    
+                            <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
+                                financiero de todos los estudiantes <strong> activos </strong> de primer ingreso y transferentes.</li>
+                            <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero 
+                                para estudiantes antiguos</li>
+                            <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
+                            cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados</li>    
                         </div>
                     </div>
                 </div>

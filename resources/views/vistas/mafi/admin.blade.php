@@ -1075,7 +1075,6 @@
                     var chartEstudiantesActivos;
 
                     function graficoSelloFinanciero() {
-                        var url = '/home/estudiantesActivos/' + tabla;
                         var url, data;
                         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                             url = "{{ route('estudiantes.activos.programa') }}",

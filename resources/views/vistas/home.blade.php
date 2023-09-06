@@ -74,13 +74,15 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-8 justify-content-center">
+            <div class="row justify-content-center">
+                <div class="col-8">
                     <div class="card">
-                        <div class="card-header">
-                            <h5><strong>Admisiones</strong></h5>
+                        <div class="card-header text-center">
+                            <h4><strong>Admisiones</strong></h4>
                         </div>
-                        <div class="card-body"></div>
+                        <div class="card-body">
+                            <img class="card-img-center" src="..." alt="Card image cap">
+                        </div>
                     </div>
                 </div>           
             </div>

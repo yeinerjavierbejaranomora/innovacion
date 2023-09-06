@@ -1324,16 +1324,28 @@
                         }
                     }
 
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+
+                    labels.push('TOTAL');
+
                     // Crear el gráfico circular
                     var ctx = document.getElementById('antiguos').getContext('2d');
                     chartSelloAntiguos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels.map(function(label, index) {
+                                if(label == 'TOTAL'){
+                                    return label + ': ' + suma;
+                                }
+                            else{
+                                return label;
+                            }}),
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
                             }]
                         },
                         options: {
@@ -1384,7 +1396,6 @@
                 });
 
             }
-
 
             /**
              * Método que genera el gráfico con todos los tipos de estudiantes 

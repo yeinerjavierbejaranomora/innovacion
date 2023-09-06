@@ -134,9 +134,27 @@
                                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        {{-- <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
-                                        </div> --}}
+                                        <div class="d-flex align-items-center" style="height: 48px">
+                                            <h5 id="tituloNiveles"><strong>Formacion Continua</strong></h5>
+                                            </div>
+                                            <div class="card-body periodos" style="width:100%;" id="Continua">
+                                                <div class="checkbox-wrapper-46">
+                                                    <input class="inp-cbx" id="cbx-50" type="checkbox" />
+                                                    <label class="cbx" for="cbx-50"><span>
+                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg></span><span>202306</span>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox-wrapper-46">
+                                                    <input class="inp-cbx" id="cbx-51" type="checkbox" />
+                                                    <label class="cbx" for="cbx-51"><span>
+                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg></span><span>202307</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         <div class="col-xl-2 text-center">
                                             <div class="d-flex align-items-center" style="height: 48px">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
@@ -206,9 +224,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-xl-2 text-center">
+                                        <div class="d-flex align-items-center" style="height: 48px">
                                             <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
-                                        </div> --}}
+                                            </div>
+                                            <div class="card-body periodos" style="width:100%;" id="Continua">
+                                                <div class="checkbox-wrapper-46">
+                                                    <input class="inp-cbx" id="cbx-52" type="checkbox" />
+                                                    <label class="cbx" for="cbx-52"><span>
+                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg></span><span>202353</span>
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox-wrapper-46">
+                                                    <input class="inp-cbx" id="cbx-53" type="checkbox" />
+                                                    <label class="cbx" for="cbx-53"><span>
+                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg></span><span>202354</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

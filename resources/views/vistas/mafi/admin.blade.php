@@ -968,8 +968,46 @@
             //             periodos: periodos
             //         },
 
+            // if (programasSeleccionados.length > 0) {
+            //         var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
+            //             data = {
+            //                 programa: programasSeleccionados,
+            //                 periodos: periodosSeleccionados
+            //             }
+            //     } else {
+            //         if (facultadesSeleccionadas.length > 0) {
+            //             var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
+            //                 data = {
+            //                     idfacultad: facultadesSeleccionadas,
+            //                     periodos: periodosSeleccionados
+            //                 }
+            //         } else {
+            //             var url = "{{ route('operadoresTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
+            //                 data = '';
+            //         }
+            //     }
+
             function graficoEstudiantes() {
-                console.log(periodosSeleccionados);
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.activos.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    } 
+                }else{
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.activos.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                    }else{
+                        url = "{{ route(estudiantes.activos) }}",
+                        data = ''
+                    }
+                }
+                console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

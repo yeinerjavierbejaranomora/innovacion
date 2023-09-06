@@ -67,21 +67,21 @@
                                                       <div class="tick_mark"></div>
                                                     </label>
                                                   </div>
-                                                  
+
                                                   <style>
                                                     .checkbox-wrapper-26 * {
                                                       -webkit-tap-highlight-color: transparent;
                                                       outline: none;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 input[type="checkbox"] {
                                                       display: none;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 label {
-                                                      --size: 50px;
+                                                      --size: 25px;
                                                       --shadow: calc(var(--size) * .07) calc(var(--size) * .1);
-                                                  
+
                                                       position: relative;
                                                       display: block;
                                                       width: var(--size);
@@ -96,7 +96,7 @@
                                                       overflow: hidden;
                                                       z-index: 1;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 label:before {
                                                       content: "";
                                                       position: absolute;
@@ -112,17 +112,17 @@
                                                       box-shadow: inset 0 var(--shadow) #ffbeb8;
                                                       transition: 0.2s ease width, 0.2s ease height;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 label:hover:before {
                                                       width: calc(var(--size) * .55);
                                                       height: calc(var(--size) * .55);
                                                       box-shadow: inset 0 var(--shadow) #ff9d96;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 label:active {
                                                       transform: scale(0.9);
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 .tick_mark {
                                                       position: absolute;
                                                       top: -1px;
@@ -134,7 +134,7 @@
                                                       margin-left: calc(var(--size) * .14);
                                                       transform: rotateZ(-40deg);
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 .tick_mark:before,
                                                     .checkbox-wrapper-26 .tick_mark:after {
                                                       content: "";
@@ -144,7 +144,7 @@
                                                       opacity: 0;
                                                       transition: 0.2s ease transform, 0.2s ease opacity;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 .tick_mark:before {
                                                       left: 0;
                                                       bottom: 0;
@@ -153,7 +153,7 @@
                                                       box-shadow: -2px 0 5px rgba(0, 0, 0, 0.23);
                                                       transform: translateY(calc(var(--size) * -.68));
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 .tick_mark:after {
                                                       left: 0;
                                                       bottom: 0;
@@ -162,24 +162,24 @@
                                                       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.23);
                                                       transform: translateX(calc(var(--size) * .78));
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 input[type="checkbox"]:checked + label {
                                                       background-color: #07d410;
                                                       box-shadow: 0 var(--shadow) #92ff97;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 input[type="checkbox"]:checked + label:before {
                                                       width: 0;
                                                       height: 0;
                                                     }
-                                                  
+
                                                     .checkbox-wrapper-26 input[type="checkbox"]:checked + label .tick_mark:before,
                                                     .checkbox-wrapper-26 input[type="checkbox"]:checked + label .tick_mark:after {
                                                       transform: translate(0);
                                                       opacity: 1;
                                                     }
                                                   </style>
-                                                  
+
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">

@@ -61,73 +61,95 @@
                                         <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-21">
-                                                    <label class="control control--checkbox">
-                                                      Checkbox
-                                                      <input type="checkbox" />
-                                                      <div class="control__indicator"></div>
+                                                <div class="checkbox-wrapper-46">
+                                                    <input class="inp-cbx" id="cbx-46" type="checkbox" />
+                                                    <label class="cbx" for="cbx-46"><span>
+                                                      <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                      </svg></span><span>Checkbox</span>
                                                     </label>
                                                   </div>
-                                                  
+
                                                   <style>
-                                                    .checkbox-wrapper-21 .control {
-                                                      display: block;
-                                                      position: relative;
-                                                      padding-left: 30px;
-                                                      cursor: pointer;
-                                                      font-size: 18px;
-                                                    }
-                                                    .checkbox-wrapper-21 .control input {
-                                                      position: absolute;
-                                                      z-index: -1;
-                                                      opacity: 0;
-                                                    }
-                                                    .checkbox-wrapper-21 .control__indicator {
-                                                      position: absolute;
-                                                      top: 2px;
-                                                      left: 0;
-                                                      height: 20px;
-                                                      width: 20px;
-                                                      background: #e6e6e6;
-                                                    }
-                                                    .checkbox-wrapper-21 .control:hover input ~ .control__indicator,
-                                                    .checkbox-wrapper-21 .control input:focus ~ .control__indicator {
-                                                      background: #ccc;
-                                                    }
-                                                    .checkbox-wrapper-21 .control input:checked ~ .control__indicator {
-                                                      background: #2aa1c0;
-                                                    }
-                                                    .checkbox-wrapper-21 .control:hover input:not([disabled]):checked ~ .control__indicator,
-                                                    .checkbox-wrapper-21 .control input:checked:focus ~ .control__indicator {
-                                                      background: #0e647d;
-                                                    }
-                                                    .checkbox-wrapper-21 .control input:disabled ~ .control__indicator {
-                                                      background: #e6e6e6;
-                                                      opacity: 0.6;
-                                                      pointer-events: none;
-                                                    }
-                                                    .checkbox-wrapper-21 .control__indicator:after {
-                                                      content: '';
-                                                      position: absolute;
+                                                    .checkbox-wrapper-46 input[type="checkbox"] {
                                                       display: none;
+                                                      visibility: hidden;
                                                     }
-                                                    .checkbox-wrapper-21 .control input:checked ~ .control__indicator:after {
+
+                                                    .checkbox-wrapper-46 .cbx {
+                                                      margin: auto;
+                                                      -webkit-user-select: none;
+                                                      user-select: none;
+                                                      cursor: pointer;
+                                                    }
+                                                    .checkbox-wrapper-46 .cbx span {
+                                                      display: inline-block;
+                                                      vertical-align: middle;
+                                                      transform: translate3d(0, 0, 0);
+                                                    }
+                                                    .checkbox-wrapper-46 .cbx span:first-child {
+                                                      position: relative;
+                                                      width: 18px;
+                                                      height: 18px;
+                                                      border-radius: 3px;
+                                                      transform: scale(1);
+                                                      vertical-align: middle;
+                                                      border: 1px solid #9098A9;
+                                                      transition: all 0.2s ease;
+                                                    }
+                                                    .checkbox-wrapper-46 .cbx span:first-child svg {
+                                                      position: absolute;
+                                                      top: 3px;
+                                                      left: 2px;
+                                                      fill: none;
+                                                      stroke: #FFFFFF;
+                                                      stroke-width: 2;
+                                                      stroke-linecap: round;
+                                                      stroke-linejoin: round;
+                                                      stroke-dasharray: 16px;
+                                                      stroke-dashoffset: 16px;
+                                                      transition: all 0.3s ease;
+                                                      transition-delay: 0.1s;
+                                                      transform: translate3d(0, 0, 0);
+                                                    }
+                                                    .checkbox-wrapper-46 .cbx span:first-child:before {
+                                                      content: "";
+                                                      width: 100%;
+                                                      height: 100%;
+                                                      background: #f6c23e;
                                                       display: block;
+                                                      transform: scale(0);
+                                                      opacity: 1;
+                                                      border-radius: 50%;
                                                     }
-                                                    .checkbox-wrapper-21 .control--checkbox .control__indicator:after {
-                                                      left: 8px;
-                                                      top: 4px;
-                                                      width: 3px;
-                                                      height: 8px;
-                                                      border: solid #fff;
-                                                      border-width: 0 2px 2px 0;
-                                                      transform: rotate(45deg);
+                                                    .checkbox-wrapper-46 .cbx span:last-child {
+                                                      padding-left: 8px;
                                                     }
-                                                    .checkbox-wrapper-21 .control--checkbox input:disabled ~ .control__indicator:after {
-                                                      border-color: #7b7b7b;
+                                                    .checkbox-wrapper-46 .cbx:hover span:first-child {
+                                                      border-color: #f6c23e;
+                                                    }
+
+                                                    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
+                                                      background: #f6c23e;
+                                                      border-color: #f6c23e;
+                                                      animation: wave-46 0.4s ease;
+                                                    }
+                                                    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
+                                                      stroke-dashoffset: 0;
+                                                    }
+                                                    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
+                                                      transform: scale(3.5);
+                                                      opacity: 0;
+                                                      transition: all 0.6s ease;
+                                                    }
+
+                                                    @keyframes wave-46 {
+                                                      50% {
+                                                        transform: scale(0.9);
+                                                      }
                                                     }
                                                   </style>
-                                                  
+
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">

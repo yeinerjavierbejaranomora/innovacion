@@ -61,7 +61,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
             <div class="input-group">
 
                 <div class="input-group-append">
@@ -130,11 +129,11 @@
                                 <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
                                     y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
                             </div>
-                            <!--Card Body - Módulo Moodle--> 
+                            <!--Card Body - Módulo Moodle-->
                             <div id="moodle" class="content">
                                 <h3>Prueba</h3>
                             </div>
-                            <!--Card Body - Módulo Planeación--> 
+                            <!--Card Body - Módulo Planeación-->
                             <div id="planeacion" class="content">
                                 <h3>Funciona</h3>
                             </div>
@@ -142,30 +141,29 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".content").hide();
-        $("#admisiones").show();
-
-        $(".nav-link").click(function() {
-            console.log('entra');
+    <script>
+        $(document).ready(function() {
             $(".content").hide();
+            $("#admisiones").show();
 
-            var target = $(this).attr("href").substring(1);
+            $(".nav-link").click(function() {
+                $(".nav-link").removeClass('active');
+                $(".content").hide();
 
-            $("#" + target).show();
+                var target = $(this).attr("href").substring(1);
 
-            return false;
+                $("#" + target).show();
+                $("#" + target).addClass('active')
+
+               console.log ($("#" + target).addClass('active'));
+
+                return false;
+            });
+
+
         });
-
-
-    });
-</script>
-
-@include('layout.footer')
+    </script>
+    @include('layout.footer')
 </div>

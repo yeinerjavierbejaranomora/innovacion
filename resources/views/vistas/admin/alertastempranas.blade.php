@@ -138,7 +138,9 @@
                                             <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
                                         </div> --}}
                                         <div class="col-xl-2 text-center">
+                                            <div class="d-flex align-items-center" style="height: 48px">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
+                                            </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
                                                     <input class="inp-cbx" id="cbx-46" type="checkbox" />
@@ -159,7 +161,9 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">
+                                            <div class="d-flex align-items-center" style="height: 48px">
                                             <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
+                                            </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
                                                     <input class="inp-cbx" id="cbx-48" type="checkbox" />
@@ -180,7 +184,9 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles" style="height: 48px"><strong>Especializacion</strong></h5>
+                                            <div class="d-flex align-items-center" style="height: 48px">
+                                                <h5 id="tituloNiveles" ><strong>Especializacion</strong></h5>
+                                            </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
                                                     <input class="inp-cbx" id="cbx-45" type="checkbox" />

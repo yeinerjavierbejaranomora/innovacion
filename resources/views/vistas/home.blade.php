@@ -75,7 +75,7 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row">
-                <div class="col-8 text-center">
+                <div class="col-8 align-content-center">
                     <div class="card">
                         <div class="card-header">
                             <h5><strong>Admisiones</strong></h5>

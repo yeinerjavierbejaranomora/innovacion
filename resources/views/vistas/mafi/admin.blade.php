@@ -960,13 +960,14 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
+                    
+                    var valores = data.data.map(function(elemento) {
+                        return elemento.TOTAL;
+                    });
                     var suma = valores.reduce(function(acumulador, valorActual) {
                         return acumulador + valorActual;
                     }, 0);
                     console.log(suma);
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantes').getContext('2d');
                     chartEstudiantes = new Chart(ctx, {

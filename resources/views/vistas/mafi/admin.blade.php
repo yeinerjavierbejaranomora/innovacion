@@ -1052,13 +1052,24 @@
                             valores.push(data[propiedad]);
                         }
                     }
-                    
+
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+
+                    labels.push('TOTAL');
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels.map(function(label, index) {
+                                if(label == 'TOTAL'){
+                                    return label + ': ' + suma;
+                                }
+                            else{
+                                return label;
+                            }}),
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
@@ -1135,67 +1146,77 @@
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
+                    var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                     // Crear el gráfico circular
                     var ctx = document.getElementById('retencion').getContext('2d');
                     chartRetencion = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: labels.map(function(label, index) {
                                 if (label == '') {
                                     label = 'SIN MARCACIÓN'
                                 }
-                                return label + ': ' + valores[index];
-                            }),
+                                 return label + ': ' + valores[index];
+                                }),
                             datasets: [{
-                                label: 'Gráfico Circular',
+                                label: '',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
+                                ],
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                }
                             }]
                         },
                         options: {
-                            maintainAspectRatio: false,
-                            responsive: false,
-                            layout: {
-                                padding: {
-                                    left: 25,
-                                    right: 20,
+                            scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
                                 },
-                            },
+                            maintainAspectRatio: false,
+                            responsive: true,
                             plugins: {
+                                
                                 datalabels: {
                                     color: 'black',
                                     font: {
-                                        weight: 'bold',
-                                        size: 12
+                                        weight: 'semibold'
                                     },
-                                    formatter: function(value, context) {
-                                        return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
-                                    }
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    display: 'auto',
-                                    position: 'outside',
-                                    textMargin: 6
+                                    formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'right',
+                                    position: 'bottom',
                                     labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        content: 'Total: ' + total,
                                         font: {
                                             size: 12
                                         }
-                                    }
+                                    },
+                                    title: {
+                                        display: false
+                                    },
                                 }
                             },
                         },
-                        plugins: [ChartDataLabels]
+                        plugins: [ChartDataLabels],
                     });
                     if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                         $('#colRetencion').addClass('hidden');

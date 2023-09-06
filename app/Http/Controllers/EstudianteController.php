@@ -140,10 +140,9 @@ class EstudianteController extends Controller
             return $a<=> $b;
         });
 
-   dd($materias_malla);
-   exit;
+
    dd($materias_vistas);
-    
+   exit;
         dd($diff);
         exit;
         

@@ -459,6 +459,7 @@
             array[index] = '2023' + periodo;
         });
         if (periodosSeleccionados.length > 0) {
+            console.log(totalProgramas);
             if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                 programasSeleccionados = [];

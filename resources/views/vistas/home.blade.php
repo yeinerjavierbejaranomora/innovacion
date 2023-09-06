@@ -82,13 +82,13 @@
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#admisiones">Admisiones</a>
+                                    <a class="nav-link active menuHome" id="navadmisiones" href="#admisiones">Admisiones</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#moodle">Moodle</a>
+                                    <a class="nav-link menuHome" id="navmoodle" href="#moodle">Moodle</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#planeacion">Planeación</a>
+                                    <a class="nav-link menuHome" id="navplaneacion" href="#planeacion">Planeación</a>
                                 </li>
                             </ul>
                         </div>
@@ -131,11 +131,62 @@
                             </div>
                             <!--Card Body - Módulo Moodle-->
                             <div id="moodle" class="content">
-                                <h3>Prueba</h3>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/informeMoodle.JPG" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                </div>
+                                <p>En este módulo podrás encontrar información proveniente de aula virtual (Moodle)
+                                </p>
+
+                                <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
+                                <li class="list-group-item"> <strong class="text-dark">Riesgo (alto-medio-bajo)</strong>: Estos gráficos muestran la cantidad de
+                                matrículas que se encuentran en cada tipo de riesgo. Adicionalmente incluyen la opción "Ver más" que permite visualizar los estudiantes
+                                que se encuentran dentro de ese tipo de riesgo en específico, además de incluir un informe detallado de cada alumno en donde se observa 
+                                el estado acádemico en el que se encuentra el estudiante, junto con sus datos personales.  </li>
                             </div>
                             <!--Card Body - Módulo Planeación-->
                             <div id="planeacion" class="content">
-                                <h3>Funciona</h3>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/informePlaneacion.JPG" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                </div>
+                                <p>En este módulo podrás encontrar la información correspondiente a la proyección de lo estudiantes inscritos en la Universidad
+                                    Iberoamericana, o en su defecto a la programación, según la fecha en que se consulte.
+                                </p>
+
+                                <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
+                                    con retención o ASP) de los estudiantes <strong> proyectados o programados</strong>.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
+                                    de los estudiantes <strong>proyectados o programados</strong> que su estado financiero se encuentra en retención.</li>        
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
+                                    financiero de todos los estudiantes <strong>proyectados o programados</strong> de primer ingreso y transferentes.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero
+                                    para estudiantes antiguos.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
+                                    cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada
+                                    operador, también cuenta con la opción de "Ver más".</li>
+                                <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
+                                    en cada programa, cuenta con la opción de "Ver más". Adicionalente permite ver un informe detallado que incluye la siguiente información:
+                                    <ul>
+                                        <li>Estudiantes proyectados o programados en cada programa y el estado de su sello financiero (si tienen sello o no).</li>
+                                        <li>Malla Curricular de cada programa y la cantidad de matrículas por curso, estos datos pueden ser descargados en varios formatos
+                                            como Excel, permitiendo llevar a cabo la planeación de docentes.
+                                        </li>
+                                        <li>Buscador de estudiantes proyectados o planeados en cada programa, aquí puede observarse que cursos tiene inscrito cada estudiante de un 
+                                            programa en específico, también pueden ser descargados estos datos en varios formatos.
+                                        </li>
+                                    </ul>
+                                </li>
                             </div>
                         </div>
                     </div>
@@ -145,24 +196,22 @@
     </div>
     <script>
         $(document).ready(function() {
+            $('#menuHome').addClass('activo');
+
             $(".content").hide();
             $("#admisiones").show();
 
-            $(".nav-link").click(function() {
-                $(".nav-link").removeClass('active');
+            $(".menuHome").click(function() {
+                $(".menuHome").removeClass('active');
                 $(".content").hide();
 
                 var target = $(this).attr("href").substring(1);
 
                 $("#" + target).show();
-                $("#" + target).addClass('active')
-
-               console.log ($("#" + target).addClass('active'));
+                $("#nav" + target).addClass('active');
 
                 return false;
             });
-
-
         });
     </script>
     @include('layout.footer')

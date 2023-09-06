@@ -112,57 +112,50 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
+
+        $planeada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+        dd($planeada);
+        exit;
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
-         
-          dd($value_mallaCurricular);
-          exit;
-               $materias_malla[]=array(
+            $materias_malla[$value_mallaCurricular->codigoCurso]=array(
                 'codigo_materia'=>$value_mallaCurricular->codigoCurso,
-                'semestre'=>$value_mallaCurricular->codigoCurso,
-                'creditos'=>$value_mallaCurricular->codigoCurso,
-                'ciclo'=>$value_mallaCurricular->codigoCurso,
-                'nombre_materia'=>$value_mallaCurricular->codigoCurso,
-               );
+                'semestre'=>$value_mallaCurricular->semestre,
+                'creditos'=>$value_mallaCurricular->creditos,
+                'ciclo'=>$value_mallaCurricular->ciclo,
+                'nombre_materia'=>$value_mallaCurricular->curso,
+                'calificacion'=>"",
+                'color'=>'bg-secondary',
                
-          
-          
-       }
+            );
+
+        }
+
+
+        
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-            // array:15 [ // app/Http/Controllers/EstudianteController.php:126
-            //     "estudiante" => "CUEVAS MARTINEZ RODRIGO "
-            //     "bannerID" => "100039616"
-            //     "pidm" => "69631"
-            //     "identificacion" => "1024473823"
-            //     "programa" => "DIP SEG Y SALUD TRA RIES P VIR"
-            //     "cod_programa" => "DSRV"
-            //     "termino" => "202108"
-            //     "tipoEstudiante" => "OPCION DE GRADO"
-            //     "idCurso" => "DSRV02100"
-            //     "tipoNota" => ""
-            //     "materia" => "CUR-DIP SEG SAL TRAB RIESO PSI VIR"
-            //     "nrc" => "7049"
-            //     "repito" => "NO"
-            //     "calificacion" => "3,90"
-            //     "creditos" => 6
-            //   ]
-            dd($value_historialAcademico);
-            exit;
+
             if( $value_historialAcademico['cod_programa']==$programa){
             
-                if(in_array($value_historialAcademico['idCurso'],$materias_malla)){
-                    // $mostar_malla[]=(
-                    //     'semestre'=>
-                    // )
-                 }
+                if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+
+                    if( $value_historialAcademico['calificacion']>3){
+                        $color='bg-success';
+                    }else{
+                        $color='bg-danger';
+                    }
+                    $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
+                    $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
+
+                }
 
                 $historial_programa[]=$value_historialAcademico;
-                $materias_vistas[]=$value_historialAcademico['idCurso'];
+                
 
             }
-           
+
         }
         
                     

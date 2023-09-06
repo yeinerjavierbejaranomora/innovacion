@@ -971,7 +971,8 @@
                     var suma = valores.reduce(function(acumulador, valorActual) {
                         return acumulador + valorActual;
                     }, 0);
-                    console.log(suma);
+
+                    labels.push('total');
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantes').getContext('2d');
                     chartEstudiantes = new Chart(ctx, {
@@ -979,7 +980,12 @@
                         data: {
                             labels: labels.map(function(label, index) {
                                 label = label.toUpperCase();
-                                return label + 'S: ' + valores[index];
+                                if(label != 'TOTAL'){
+                                    return label + 'S: ' + valores[index];
+                                }
+                                else{
+                                    return label + ': '+ suma;
+                                }
                             }),
                             datasets: [{
                                 label: 'Gráfico Circular',
@@ -1076,8 +1082,8 @@
                                 labels: {
                                     render: 'percenteaje',
                                     size: '14',
-                                    fontStyle: 'border',
-                                    position: 'outside',
+                                    fontStyle: 'bolder',
+                                    position: 'border',
                                     textMargin: 2
                                 },
                                 legend: {

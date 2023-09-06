@@ -1090,7 +1090,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('sello.activos', ['tabla' => tabla]) }}",
+                                url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
                         }

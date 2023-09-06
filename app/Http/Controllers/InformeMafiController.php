@@ -60,6 +60,7 @@ class InformeMafiController extends Controller
      */
     public function selloEstudiantesActivos($tabla)
     {
+        $tabla = trim($tabla); 
         if ($tabla == 'Mafi') {
             /**
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`

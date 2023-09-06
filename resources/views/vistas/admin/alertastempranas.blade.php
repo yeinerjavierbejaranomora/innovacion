@@ -55,21 +55,21 @@
                                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        <div class="col-xl-2 text-center">
+                                        {{-- <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
+                                        </div> --}}
+                                        <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                         </div>
                                         <div class="col-xl-2 text-center">
-                                            hola 2
+                                            <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
                                         </div>
                                         <div class="col-xl-2 text-center">
-                                            hola 3
+                                            <h5 id="tituloNiveles"><strong>Especializacion</strong></h5>
                                         </div>
-                                        <div class="col-xl-2 text-center">
-                                            hola 4
-                                        </div>
-                                        <div class="col-xl-2 text-center">
-                                            hola 5
-                                        </div>
+                                        {{-- <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

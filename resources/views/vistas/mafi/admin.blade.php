@@ -1203,15 +1203,9 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    },
-                                    title: {
+                                    
                                         display: false
-                                    },
+                                  
                                 }
                             },
                         },

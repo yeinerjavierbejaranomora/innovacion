@@ -977,6 +977,15 @@
                         periodos: periodos
                     },
                     success: function(data) {
+
+                        try{
+                            data = jQuery.parseJSON(data);
+                        }
+                        catch
+                        {
+                            data = data;
+                        }
+                        
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });

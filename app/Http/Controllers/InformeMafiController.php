@@ -50,7 +50,8 @@ class InformeMafiController extends Controller
             ->get();
 
 
-        return $estudiantes;
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $estudiantes));
     }
 
     /**

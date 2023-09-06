@@ -61,53 +61,60 @@
                                         <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-41">
-                                                    <input type="checkbox">
+                                                <div class="checkbox-wrapper-49">
+                                                    <div class="block">
+                                                      <input data-index="0" id="cheap-49" type="checkbox" />
+                                                      <label for="cheap-49"></label>
+                                                    </div>
                                                   </div>
 
                                                   <style>
-                                                    .checkbox-wrapper-41 {
-                                                      --size: 100px;
+                                                    .checkbox-wrapper-49 input[type="checkbox"] {
+                                                      display: none;
+                                                      visibility: hidden;
                                                     }
 
-                                                    .checkbox-wrapper-41 input[type="checkbox"] {
-                                                      -webkit-appearance: none;
+                                                    .checkbox-wrapper-49 {
+                                                      --size: 90px;
+                                                    }
+
+                                                    .checkbox-wrapper-49 .block {
+                                                      position: relative;
+                                                      clear: both;
+                                                      float: left;
+                                                    }
+
+                                                    .checkbox-wrapper-49 label {
                                                       width: var(--size);
                                                       height: calc(var(--size) / 2);
-                                                      background-color: #fff;
-                                                      border: 3px solid #222;
-                                                      border-radius: 30px 100px 100px 100px;
-                                                      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-                                                      outline: none;
-                                                      cursor: pointer;
-                                                      position: relative;
-                                                      transition: all 0.5s;
-                                                    }
-
-                                                    .checkbox-wrapper-41 input[type="checkbox"]::before {
-                                                      content: "";
-                                                      position: absolute;
-                                                      width: calc(var(--size) / 2);
-                                                      height: calc(var(--size) / 2);
-                                                      left: 0;
-                                                      top: 50%;
-                                                      transform: translateY(-50%) scale(0.7);
-                                                      border: 3px solid #222;
-                                                      border-radius: 30px 100px 100px 100px;
-                                                      background-color: #fde881;
                                                       box-sizing: border-box;
-                                                      transition: all 0.5s;
+                                                      border: 3px solid;
+                                                      float: left;
+                                                      border-radius: 100px;
+                                                      position: relative;
+                                                      cursor: pointer;
+                                                      transition: .3s ease;
+                                                      color: black;
                                                     }
-
-                                                    .checkbox-wrapper-41 input[type="checkbox"]:checked {
-                                                      background-color: #fde881;
-                                                      border-radius: 100px 100px 30px 100px;
+                                                    .checkbox-wrapper-49 input[type=checkbox]:checked + label {
+                                                      background: #55e868;
                                                     }
-
-                                                    .checkbox-wrapper-41 input[type="checkbox"]:checked::before {
-                                                      left: 50%;
-                                                      background-color: #fff;
-                                                      border-radius: 100px 100px 30px 100px;
+                                                    .checkbox-wrapper-49 input[type=checkbox]:checked + label:before {
+                                                      left: calc(var(--size) / 2);
+                                                    }
+                                                    .checkbox-wrapper-49 label:before {
+                                                      transition: .3s ease;
+                                                      content: '';
+                                                      width: calc((var(--size) / 2) - 10px);
+                                                      height: calc((var(--size) / 2) - 10px);
+                                                      position: absolute;
+                                                      background: white;
+                                                      left: 2px;
+                                                      top: 2px;
+                                                      box-sizing: border-box;
+                                                      border: 3px solid;
+                                                      color: black;
+                                                      border-radius: 100px;
                                                     }
                                                   </style>
 

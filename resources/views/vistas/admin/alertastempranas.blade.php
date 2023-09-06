@@ -47,7 +47,7 @@
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
-                    <div class="card">
+                    <div class="card shadow mb-4">
                         <div class="card-body">
                             Hola
                         </div>

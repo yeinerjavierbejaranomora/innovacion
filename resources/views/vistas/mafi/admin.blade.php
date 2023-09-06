@@ -1013,11 +1013,8 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.activos') }}",
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
                         try{
                             data = jQuery.parseJSON(data);

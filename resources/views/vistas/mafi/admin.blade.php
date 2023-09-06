@@ -972,7 +972,6 @@
                         return acumulador + valorActual;
                     }, 0);
 
-                    valores.push(suma);
                     labels.push('total');
                     // Crear el gráfico circular
                     var ctx = document.getElementById('estudiantes').getContext('2d');
@@ -985,7 +984,7 @@
                                     return label + 'S: ' + valores[index];
                                 }
                                 else{
-                                    return label + valores[index];
+                                    return label + ': '+ suma;
                                 }
                             }),
                             datasets: [{

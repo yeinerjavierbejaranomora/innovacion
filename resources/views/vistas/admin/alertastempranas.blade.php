@@ -111,7 +111,7 @@
                                                     }
 
                                                     .checkbox-wrapper-37 .checkbox-box {
-                                                      fill: #fff;
+                                                      fill: #f3f3f3;
                                                       stroke: #ff7a00;
                                                       stroke-dasharray: 800;
                                                       stroke-dashoffset: 800;

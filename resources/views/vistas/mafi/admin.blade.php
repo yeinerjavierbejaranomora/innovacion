@@ -969,7 +969,7 @@
             //         },
 
             function graficoEstudiantes() {
-                console.log(programasSeleccionados);
+                console.log(periodosSeleccionados);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -331,7 +331,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="activos" style="width: 450px;height: 300px"></canvas>
+                        <canvas id="activos" style="width: 400px;height: 350px"></canvas>
                     </div>
                 </div>
             </div>

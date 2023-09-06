@@ -717,7 +717,6 @@
                     })
             });
 
-
             $('#seleccionarProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', true);
             });
@@ -961,6 +960,10 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+                    console.log(suma);
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });

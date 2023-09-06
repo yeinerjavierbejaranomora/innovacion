@@ -82,13 +82,13 @@
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#admisiones">Admisiones</a>
+                                    <a class="nav-link active" id="navadmisiones" href="#admisiones">Admisiones</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#moodle">Moodle</a>
+                                    <a class="nav-link" id="navmoodle" href="#moodle">Moodle</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#planeacion">Planeación</a>
+                                    <a class="nav-link" id="navplaneacion" href="#planeacion">Planeación</a>
                                 </li>
                             </ul>
                         </div>
@@ -157,7 +157,7 @@
                 $("#" + target).show();
                 $("#" + target).addClass('active')
 
-               console.log ($("#" + target).addClass('active'));
+               console.log ($("#nav" + target).addClass('active'));
 
                 return false;
             });

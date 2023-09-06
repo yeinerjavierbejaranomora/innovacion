@@ -150,7 +150,21 @@
                             </div>
                             <!--Card Body - Módulo Planeación-->
                             <div id="planeacion" class="content">
-                                <h3>Funciona</h3>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/informePlaneacion.JPG" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                </div>
+                                <p>En este módulo podrás encontrar la información correspondiente a la proyección de lo estudiantes inscritos en la Universidad
+                                    Iberoamericana, o en su defecto a la programación, según la fecha en que se consulte.
+                                </p>
+
+                                <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
+                                    con retención o ASP) de los estudiantes <strong> planeados o programados.</strong>.</li>
                             </div>
                         </div>
                     </div>

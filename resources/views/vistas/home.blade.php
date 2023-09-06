@@ -74,8 +74,8 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-8 justify-content-center">
+            <div class="row justify-content-center">
+                <div class="col-8">
                     <div class="card">
                         <div class="card-header">
                             <h5><strong>Admisiones</strong></h5>

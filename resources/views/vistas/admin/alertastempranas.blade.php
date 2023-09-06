@@ -56,9 +56,7 @@
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">
                                         <div class="col-xl-2 text-center">
-                                            <div class="text-center col-12 align-items-center">
-                                                <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
-                                            </div>
+                                            <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
                                         </div>
                                         <div class="col-xl-2 text-center">
                                             hola 2

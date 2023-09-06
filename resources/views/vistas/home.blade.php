@@ -73,25 +73,17 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
             <!-- Page Heading -->
-
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5><strong>Admisiones</strong></h5>
-                        </div>
-                        <div class="card-body">
-                            
-                        </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Admisiones</strong></h5>
                     </div>
-
+                    <div class="card-body"></div>
                 </div>
-
-
             </div>
         </div>
+
     </div>
     @include('layout.footer')
 </div>

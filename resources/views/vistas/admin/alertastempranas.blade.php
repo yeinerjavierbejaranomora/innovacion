@@ -122,154 +122,140 @@
 
             <!-- Content Row -->
 
-            <div class="row">
+            <div class="row justify-content-start mb-3" id="seccion">
 
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-body">
-                                    <div class="text-center col-12 align-items-center">
-                                        <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                <!--Columna Niveles de Formación-->
+                <div class="col-12 text-start mt-1">
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="text-center col-8">
+                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                        </div>
+                        <div class="text-start">
+                            <div id="periodos">
+                                <!--Accordion-->
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        For. Contínua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        {{-- <div class="col-xl-2 text-center">
-                                            <div class="d-flex align-items-center" style="height: 48px">
-                                                <h5 id="tituloNiveles"><strong>Formacion Continua</strong></h5>
+                                    <div class="col-4">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-50" type="checkbox" />
-                                                    <label class="cbx" for="cbx-50"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202306</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-51" type="checkbox" />
-                                                    <label class="cbx" for="cbx-51"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202307</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div> --}}
 
-                                        <div class="col-xl-2 text-center">
-                                            <div class="d-flex align-items-center" style="height: 48px">
-                                            <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
-                                            </div>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-46" type="checkbox" />
-                                                    <label class="cbx" for="cbx-46"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202313</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-47" type="checkbox" />
-                                                    <label class="cbx" for="cbx-47"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202316</span>
-                                                    </label>
-                                                </div>
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 text-center">
-                                            <div class="d-flex align-items-center" style="height: 48px">
-                                            <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card" id="cardFacultades">
+                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5><strong>Seleccionar Facultades</strong></h5>
                                             </div>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-48" type="checkbox" />
-                                                    <label class="cbx" for="cbx-48"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202333</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-49" type="checkbox" />
-                                                    <label class="cbx" for="cbx-49"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202334</span>
-                                                    </label>
-                                                </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                                <div name="facultades" id="facultades"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
+                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 text-center">
-                                            <div class="d-flex align-items-center" style="height: 48px">
-                                                <h5 id="tituloNiveles" ><strong>Especializacion</strong></h5>
-                                            </div>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-45" type="checkbox" />
-                                                    <label class="cbx" for="cbx-45"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202343</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46 mb-1">
-                                                    <input class="inp-cbx" id="cbx-44" type="checkbox" />
-                                                    <label class="cbx" for="cbx-44"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202344</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- <div class="col-xl-2 text-center">
-                                            <div class="d-flex align-items-center" style="height: 48px">
-                                                <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
-                                            </div>
-                                            <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-52" type="checkbox" />
-                                                    <label class="cbx" for="cbx-52"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202353</span>
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox-wrapper-46">
-                                                    <input class="inp-cbx" id="cbx-53" type="checkbox" />
-                                                    <label class="cbx" for="cbx-53"><span>
-                                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                            </svg></span><span>202354</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas" id="programas"></div>
+                                            </div>
+                                            <div class="card-footer text-center" style="height: 55px;">
+                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
+                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <!--Datatable-->
-                            <div class="table">
-                                <table id="example" class="display" style="width:100%">
-                                </table>
-                            </div>
+                        <div class="text-center col-8 mt-3" style="height: 30px;">
+                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
+                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
-                        <br>
                     </div>
                 </div>
+
             </div>
 
 

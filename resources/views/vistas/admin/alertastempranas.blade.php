@@ -458,7 +458,24 @@
         periodosSeleccionados.forEach(function(periodo, index, array) {
             array[index] = '2023' + periodo;
         });
-        console.log(periodosSeleccionados);
+        if (periodosSeleccionados.length > 0) {
+            if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                console.log(programasSeleccionados);
+            }else{
+                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+
+                }else{
+
+                }
+            }
+        }else{
+
+        }
     });
 </script>
 

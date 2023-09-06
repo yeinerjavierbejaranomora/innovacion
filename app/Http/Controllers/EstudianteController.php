@@ -107,60 +107,25 @@ class EstudianteController extends Controller
         $idbanner = $_POST['codBanner'];
         $programa = $_POST['programa'];
 
-      
-        $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $idbanner;
+        $proyectada=[];
+        $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
         
         $historialAcademico = json_decode(file_get_contents($url), true);
-        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
 
-        $planeada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+        $mallaCurricular = DB::table('mallaCurricular')
+                                ->where('codprograma', '=', $programa)
+                                ->orderBy('semestre', 'ASC')
+                                ->get()
+                                ->toArray();
+
+       
         $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
 
-        foreach ($variable as $key => $value) {
-            # code...
+        if(empty($proyectada)){
+            $proyectada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
         }
-
-        +"id": 61239
-        +"codBanner": 100039616
-        +"codMateria": "ABV32150"
-        +"orden": 4
-        +"semestre": "2"
-        +"programada": ""
-        +"codprograma": "EABV"
-        +"periodo": "202344"
-        +"fecha_registro": "2023-09-06 10:07:39"
-
-        foreach ($planeada as $key_planeada => $value_planeada) {
-
-            if( $proyectada[$value_planeada['codMateria']]){
-                $proyeccion[]=$proyectada[$value_planeada['codMateria']]
-            }
-           
-        }
-
-        fecha_registro
-
-        $planeada = new DateTime("2023-09-15");
-        $fecha2 = new DateTime("2023-09-20");
-
-        if ($fecha1 > $fecha2) {
-            echo "La fecha 1 es mayor que la fecha 2.";
-        } elseif ($fecha1 < $fecha2) {
-            echo "La fecha 2 es mayor que la fecha 1.";
-        } else {
-            echo "Ambas fechas son iguales.";
-        }
-
-
-
-
-
-
-
 
       
-        dd($planeada);
-        exit;
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
@@ -179,7 +144,6 @@ class EstudianteController extends Controller
         }
 
 
-        
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
 
             if( $value_historialAcademico['cod_programa']==$programa){
@@ -195,33 +159,17 @@ class EstudianteController extends Controller
                     $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
 
                 }
-
-                $historial_programa[]=$value_historialAcademico;
                 
-
             }
 
         }
         
                     
 
-      dd( $materias_malla);
+      dd($materias_malla);
       exit;
        
-        $intersection = array_filter($materias_vistas, function ($item) use ($materias_malla) {
-            return in_array($item, $materias_malla);
-        });
-      
-        
-        $diff = array_udiff($materias_vistas, $materias_malla, function($a, $b) {
-            return $a<=> $b;
-        });
-
-
-   dd($materias_vistas);
-   exit;
-        dd($diff);
-        exit;
+   
         
 
         return $historialAcademico;

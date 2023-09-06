@@ -145,6 +145,7 @@ class EstudianteController extends Controller
         }
 
         if(!empty($historialAcademico)){
+            
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
 
                 if( $value_historialAcademico['cod_programa']==$programa){

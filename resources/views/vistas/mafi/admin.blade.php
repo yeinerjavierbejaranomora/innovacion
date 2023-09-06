@@ -343,7 +343,7 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion" style="width: 500px;height: 310px"></canvas>
+                        <canvas id="retencion" style="width: 510px;height: 310px"></canvas>
                     </div>
                 </div>
             </div>

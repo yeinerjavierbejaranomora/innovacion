@@ -131,7 +131,22 @@
                             </div>
                             <!--Card Body - Módulo Moodle-->
                             <div id="moodle" class="content">
-                                <h3>Prueba</h3>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/informeMoodle.JPG" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                </div>
+                                <p>En este módulo podrás encontrar información proveniente de aula virtual (Moodle)
+                                </p>
+
+                                <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
+                                <li class="list-group-item"> <strong class="text-dark">Riesgo (alto-medio-bajo)</strong>: Estos gráficos muestran la cantidad de
+                                matrículas que se encuentran en cada tipo de riesgo. Adicionalmente incluyen la opción "Ver más" que permite visualizar los estudiantes
+                                que se encuentran dentro de ese tipo de riesgo en específico, además de incluir un informe detallado de cada alumno en donde se observa 
+                                el estado acádemico en el que se encuentra el estudiante, junto con sus datos personales.  </li>
                             </div>
                             <!--Card Body - Módulo Planeación-->
                             <div id="planeacion" class="content">

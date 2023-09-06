@@ -141,6 +141,7 @@ class EstudianteController extends Controller
         });
 
    dd($materias_malla);
+   exit;
    dd($materias_vistas);
     
         dd($diff);

@@ -112,6 +112,7 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
 
+
         $mallaCurricular = DB::table('mallaCurricular')
                                 ->where('codprograma', '=', $programa)
                                 ->orderBy('semestre', 'ASC')
@@ -143,36 +144,43 @@ class EstudianteController extends Controller
 
         }
 
+        if(!empty($historialAcademico)){
 
-        foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
+            foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
 
-            if( $value_historialAcademico['cod_programa']==$programa){
-            
-                if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+                if( $value_historialAcademico['cod_programa']==$programa){
 
-                    if( $value_historialAcademico['calificacion']>3){
-                        $color='bg-success';
-                    }else{
-                        $color='bg-danger';
-                    }
-                    $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
-                    $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
-
-                }
-                
-            }
-
-        }
-        
                     
+                
+                    if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+                        $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
 
-      dd($materias_malla);
-      exit;
-       
+                        if( $value_historialAcademico['calificacion']>3){
+                            $color='bg-success';
+                        }else{
+                            $color='bg-danger';
+                        }
+                        $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
+                        $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
+
+                    }
+                    
+                }
+
+            }
+        }      
+        
+        // $data=array(
+        //     'historial'=>
+        // )
+
+        dd($historial);
+        exit;
+        
    
         
 
-        return $historialAcademico;
+        return $data;
     }
     public function consultaProgramacion()
     {

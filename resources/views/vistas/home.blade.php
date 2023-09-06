@@ -87,9 +87,9 @@
                             <img class="card-img-center" src="..." alt="Card image cap">
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
-                                que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
-                                 
+                                que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.     
                             </p>
+                            <strong>Gráficos disponibles</strong>
                         </div>
                     </div>
                 </div>           

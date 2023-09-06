@@ -331,7 +331,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="activos"></canvas>
+                        <canvas id="activos" style="width: 350px;height: 300px"></canvas>
                     </div>
                 </div>
             </div>
@@ -1064,8 +1064,6 @@
                         options: {
                             responsive: false,
                             maintainAspectRatio: false,
-                            height: 230,
-                            width: 430,
                             plugins: {
                                 datalabels: {
                                     color: 'black',

@@ -114,22 +114,30 @@ class EstudianteController extends Controller
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
+
+        foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
+         
+               $materias_malla[]=$value_mallaCurricular->codigoCurso;
+          
+          
+       }
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
            
+            dd($value_historialAcademico);
+            exit;
             if( $value_historialAcademico['cod_programa']==$programa){
             
+                if(in_array($value_mallaCurricular->codigoCurso,$materias_malla)){
+                    $materias_malla[]=$value_mallaCurricular->codigoCurso;
+                 }
+
                 $historial_programa[]=$value_historialAcademico;
                 $materias_vistas[]=$value_historialAcademico['idCurso'];
 
             }
            
         }
-        foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
-             if(in_array($value_mallaCurricular->codigoCurso,$materias_vistas)){
-                $materias_malla[]=$value_mallaCurricular;
-             }
-           
-        }
+        
                     
 
       dd( $materias_malla);

@@ -178,7 +178,7 @@
                                 <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
                                     en cada programa, cuenta con la opción de "Ver más". Adicionalente permite ver un informe detallado que incluye la siguiente información:
                                     <ul>
-                                        <li>Estudiantes proyectados o pogramados en cada programa y el estado de su sello financiero (si tienen sello o no).</li>
+                                        <li>Estudiantes proyectados o programados en cada programa y el estado de su sello financiero (si tienen sello o no).</li>
                                         <li>Malla Curricular de cada programa y la cantidad de matrículas por curso, estos datos pueden ser descargados en varios formatos
                                             como Excel, permitiendo llevar a cabo la planeación de docentes.
                                         </li>
@@ -196,6 +196,8 @@
     </div>
     <script>
         $(document).ready(function() {
+            $('#menuHome').addClass('activo');
+
             $(".content").hide();
             $("#admisiones").show();
 

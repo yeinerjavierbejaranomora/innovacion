@@ -17,7 +17,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" id= "menuHome" href="{{ route('home.index') }}">
         <div class="sidebar-brand-icon">
             <img src="/public/assets/images/LogoBlanco.png" width="40" alt="">
         </div>

@@ -154,9 +154,9 @@
 
                 var target = $(this).attr("href").substring(1);
 
-                var objetivo = $("#" + target).show();
+                $("#" + target).show();
 
-                (objetivo).addClass('active');
+                $("#" + target).addClass('active');
 
                 return false;
             });

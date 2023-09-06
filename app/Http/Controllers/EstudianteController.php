@@ -117,18 +117,45 @@ class EstudianteController extends Controller
 
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
          
-               $materias_malla[]=$value_mallaCurricular->codigoCurso;
+          dd($value_mallaCurricular);
+          exit;
+               $materias_malla[]=array(
+                'codigo_materia'=>$value_mallaCurricular->codigoCurso,
+                'semestre'=>$value_mallaCurricular->codigoCurso,
+                'creditos'=>$value_mallaCurricular->codigoCurso,
+                'ciclo'=>$value_mallaCurricular->codigoCurso,
+                'nombre_materia'=>$value_mallaCurricular->codigoCurso,
+               );
+               
           
           
        }
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-           
+            // array:15 [ // app/Http/Controllers/EstudianteController.php:126
+            //     "estudiante" => "CUEVAS MARTINEZ RODRIGO "
+            //     "bannerID" => "100039616"
+            //     "pidm" => "69631"
+            //     "identificacion" => "1024473823"
+            //     "programa" => "DIP SEG Y SALUD TRA RIES P VIR"
+            //     "cod_programa" => "DSRV"
+            //     "termino" => "202108"
+            //     "tipoEstudiante" => "OPCION DE GRADO"
+            //     "idCurso" => "DSRV02100"
+            //     "tipoNota" => ""
+            //     "materia" => "CUR-DIP SEG SAL TRAB RIESO PSI VIR"
+            //     "nrc" => "7049"
+            //     "repito" => "NO"
+            //     "calificacion" => "3,90"
+            //     "creditos" => 6
+            //   ]
             dd($value_historialAcademico);
             exit;
             if( $value_historialAcademico['cod_programa']==$programa){
             
-                if(in_array($value_mallaCurricular->codigoCurso,$materias_malla)){
-                    $materias_malla[]=$value_mallaCurricular->codigoCurso;
+                if(in_array($value_historialAcademico['idCurso'],$materias_malla)){
+                    // $mostar_malla[]=(
+                    //     'semestre'=>
+                    // )
                  }
 
                 $historial_programa[]=$value_historialAcademico;

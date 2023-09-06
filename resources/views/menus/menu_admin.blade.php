@@ -30,23 +30,23 @@
     <li class="nav-item" id="menuAdmisiones">
         <a class="nav-link" href="{{ route('home.mafi') }}">
             <i class="fa-solid fa-table"></i>
-            <span>Admisiones</span></a>       
+            <span>Admisiones</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu  users-->
     <li class="nav-item" id="menuMoodle">
         <a class="nav-link" href="{{ route('home.moodle') }}">
             <i class="fa-solid fa-network-wired"></i>
-            <span>Moodle</span></a>        
+            <span>Moodle</span></a>
     </li>
 
     <li class="nav-item" id="menuPlaneacion">
-        <a class="nav-link" href="{{ route('home.planeacion') }}">        
+        <a class="nav-link" href="{{ route('home.planeacion') }}">
             <i class="fa-solid fa-pen"></i>
-            <span>Planeación</span></a> 
+            <span>Planeación</span></a>
     </li>
 
-    
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -64,6 +64,12 @@
 
             </div>
         </div>
+    </li>
+    <li class="nav-item">
+        <a href="" class="nav-link" href="#">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas tempranas<br>(programación-planeación)</span></a>
+        </a>
     </li>
 
     <!--Nav Item - Menú desplegable "Gestión de Facultades"-->
@@ -117,4 +123,3 @@
 <!-- End of Sidebar -->
 
 
-    

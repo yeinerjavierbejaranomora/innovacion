@@ -116,20 +116,15 @@ class EstudianteController extends Controller
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
-         
-          dd($value_mallaCurricular);
-          exit;
-               $materias_malla[]=array(
+            $materias_malla[$value_mallaCurricular->codigoCurso]=array(
                 'codigo_materia'=>$value_mallaCurricular->codigoCurso,
-                'semestre'=>$value_mallaCurricular->codigoCurso,
-                'creditos'=>$value_mallaCurricular->codigoCurso,
-                'ciclo'=>$value_mallaCurricular->codigoCurso,
-                'nombre_materia'=>$value_mallaCurricular->codigoCurso,
-               );
-               
-          
-          
-       }
+                'semestre'=>$value_mallaCurricular->semestre,
+                'creditos'=>$value_mallaCurricular->creditos,
+                'ciclo'=>$value_mallaCurricular->ciclo,
+                'nombre_materia'=>$value_mallaCurricular->curso,
+            );
+
+        }
         foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
             // array:15 [ // app/Http/Controllers/EstudianteController.php:126
             //     "estudiante" => "CUEVAS MARTINEZ RODRIGO "
@@ -148,14 +143,13 @@ class EstudianteController extends Controller
             //     "calificacion" => "3,90"
             //     "creditos" => 6
             //   ]
-            dd($value_historialAcademico);
-            exit;
+           
+
             if( $value_historialAcademico['cod_programa']==$programa){
             
-                if(in_array($value_historialAcademico['idCurso'],$materias_malla)){
-                    // $mostar_malla[]=(
-                    //     'semestre'=>
-                    // )
+                if($materias_malla[$value_historialAcademico['cod_programa']]){
+                    dd($materias_malla[$value_historialAcademico['cod_programa']]);
+                    exit;
                  }
 
                 $historial_programa[]=$value_historialAcademico;

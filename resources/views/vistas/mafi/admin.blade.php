@@ -1003,7 +1003,7 @@
                                 },
                                 legend: {
                                     position: 'right',
-                                    align: 'left',
+                                    align: 'bottom',
                                     labels: {
                                         usePointStyle: true,
                                         padding: 20,
@@ -1281,7 +1281,6 @@
                 $.getJSON(url, function(data) {
                     var labels = [];
                     var valores = [];
-                    console.log(data);
                     for (var propiedad in data) {
                         if (data.hasOwnProperty(propiedad)) {
                             labels.push(propiedad + ': '+ data[propiedad]);

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://aulavirtual.ibero.edu.co/pluginfile.php?file=%2F1%2Ftheme_adaptable%2Ffavicon%2F1693948501%2FImagen-5.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

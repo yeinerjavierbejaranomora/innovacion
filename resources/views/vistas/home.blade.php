@@ -83,55 +83,88 @@
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">Admisiones</a>
+                                    <a class="nav-link active" href="#admisiones">Admisiones</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Moodle</a>
+                                    <a class="nav-link" href="#moodle">Moodle</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Planeación</a>
+                                    <a class="nav-link" href="#planeacion">Planeación</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                            <!--Card Body - Módulo Admisiones-->
+                            <div id="admisiones" class="content">
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="card-img-center" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 100%;">
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <img class="card-img-center" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 100%;">
-                                </div>
+                                <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
+                                    encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
+                                    que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
+                                </p>
+
+                                <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
+                                <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
+                                    y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual
+                                    genera un Excel con los datos de Banner.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
+                                    con retención o ASP) de los estudiantes <strong> activos</strong>.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
+                                    de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
+                                    financiero de todos los estudiantes <strong> activos </strong> de primer ingreso y transferentes.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero
+                                    para estudiantes antiguos.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
+                                    cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada
+                                    operador, también cuenta con la opción de "Ver más".</li>
+                                <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
+                                    en cada programa, cuenta con la opción de "Ver más".</li>
+                                <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
+                                    y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
                             </div>
-                            <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
-                                encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
-                                que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
-                            </p>
-                            <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
-                            <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
-                                y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual
-                                genera un Excel con los datos de Banner.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
-                                con retención o ASP) de los estudiantes <strong> activos</strong>.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
-                                de los estudiantes <strong> activos </strong> que su estado financiero se encuentra en retención.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
-                                financiero de todos los estudiantes <strong> activos </strong> de primer ingreso y transferentes.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero
-                                para estudiantes antiguos.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
-                                cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>
-                            <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada
-                                operador, también cuenta con la opción de "Ver más".</li>
-                            <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
-                                en cada programa, cuenta con la opción de "Ver más".</li>
-                            <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
-                                y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
+                            <!--Card Body - Módulo Moodle--> 
+                            <div id="moodle" class="content">
+                                <h3>Prueba</h3>
+                            </div>
+                            <!--Card Body - Módulo Planeación--> 
+                            <div id="planeacion" class="content">
+                                <h3>Funciona</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    @include('layout.footer')
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".content").hide();
+        $("#admisiones").show();
+
+        $(".nav-link").click(function() {
+            $(".content").hide();
+
+            var target = $(this).attr("href").substring(1);
+
+            $("#" + target).show();
+
+            return false;
+        });
+
+
+    });
+</script>
+
+@include('layout.footer')
 </div>

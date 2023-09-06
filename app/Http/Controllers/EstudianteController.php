@@ -125,7 +125,7 @@ class EstudianteController extends Controller
                 'creditos'=>$value_mallaCurricular->codigoCurso,
                 'ciclo'=>$value_mallaCurricular->codigoCurso,
                 'nombre_materia'=>$value_mallaCurricular->codigoCurso,
-               )
+               );
                
           
           

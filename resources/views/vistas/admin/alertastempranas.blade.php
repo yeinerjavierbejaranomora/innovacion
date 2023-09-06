@@ -134,7 +134,7 @@
                                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        <div class="col-xl-2 text-center">
+                                        {{-- <div class="col-xl-2 text-center">
                                             <div class="d-flex align-items-center" style="height: 48px">
                                                 <h5 id="tituloNiveles"><strong>Formacion Continua</strong></h5>
                                             </div>
@@ -156,7 +156,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-xl-2 text-center">
                                             <div class="d-flex align-items-center" style="height: 48px">
@@ -227,7 +227,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 text-center">
+                                        {{-- <div class="col-xl-2 text-center">
                                             <div class="d-flex align-items-center" style="height: 48px">
                                                 <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
                                             </div>
@@ -249,7 +249,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>

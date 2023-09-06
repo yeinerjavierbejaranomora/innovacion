@@ -95,8 +95,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 400px;
+        max-height: 400px;
     }
 
     #cardProgramas {
@@ -185,7 +185,7 @@
                                                     </div>
                                                 </h5>
                                             </div>
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
@@ -215,7 +215,7 @@
                                             <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
                                                 <h5><strong>Seleccionar Facultades</strong></h5>
                                             </div>
-                                            <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -310,7 +310,7 @@
                         <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body justify-content-center" >
                         <canvas id="estudiantes"></canvas>
                     </div>
                     <div class="modal-footer">
@@ -1004,7 +1004,7 @@
                                     textMargin: 6
                                 },
                                 legend: {
-                                    position: 'bottom',
+                                    position: 'right',
                                     align: 'left',
                                     labels: {
                                         usePointStyle: true,

@@ -301,6 +301,11 @@
 
             </div>
 
+            <div class="row text-center justify-content-center">
+                <button class="btn button-informe" type="button" id="generarReporte">
+                    Generar Reporte
+                </button>
+            </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -311,6 +316,7 @@
 <!-- End of Content Wrapper -->
 
 </div>
+
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
@@ -319,6 +325,18 @@
 </a>
 
 <script>
+    $(document).ajaxStart(function() {
+        $('div #facultades input[type="checkbox"]').prop('disabled', true);
+        $('div #programas input[type="checkbox"]').prop('disabled', true);
+        $('#generarReporte').prop("disabled", true);
+    });
+
+    // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+    $(document).ajaxStop(function() {
+        $('div #facultades input[type="checkbox"]').prop('disabled', false);
+        $('div #programas input[type="checkbox"]').prop('disabled', false);
+        $('#generarReporte').prop("disabled", false);
+    });
     periodos();
     facultades();
     programas();

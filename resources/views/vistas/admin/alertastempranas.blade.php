@@ -61,125 +61,91 @@
                                         <div class="col-xl-2 text-center">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
-                                                <div class="checkbox-wrapper-26">
-                                                    <input type="checkbox" id="_checkbox-26">
-                                                    <label for="_checkbox-26">
-                                                      <div class="tick_mark">202313</div>
+                                                <div class="checkbox-wrapper-29">
+                                                    <label class="checkbox">
+                                                      <input type="checkbox" class="checkbox__input" />  
+                                                      <span class="checkbox__label"></span>
+                                                      Checkbox
                                                     </label>
                                                   </div>
-
+                                                  
                                                   <style>
-                                                    .checkbox-wrapper-26 * {
-                                                      -webkit-tap-highlight-color: transparent;
-                                                      outline: none;
+                                                    .checkbox-wrapper-29 {
+                                                      --size: 1rem;
+                                                      --background: #fff;
+                                                      font-size: var(--size);
                                                     }
-
-                                                    .checkbox-wrapper-26 input[type="checkbox"] {
+                                                  
+                                                    .checkbox-wrapper-29 *,
+                                                    .checkbox-wrapper-29 *::after,
+                                                    .checkbox-wrapper-29 *::before {
+                                                      box-sizing: border-box;
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 input[type="checkbox"] {
+                                                      visibility: hidden;
                                                       display: none;
                                                     }
-
-                                                    .checkbox-wrapper-26 label {
-                                                      --size: 25px;
-                                                      --shadow: calc(var(--size) * .07) calc(var(--size) * .1);
-
-                                                      position: relative;
-                                                      display: block;
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label {
                                                       width: var(--size);
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label:before {
+                                                      content: ' ';
+                                                      display: block;
                                                       height: var(--size);
-                                                      margin: 0 auto;
-                                                      background-color: #f72414;
-                                                      border-radius: 50%;
-                                                      box-shadow: 0 var(--shadow) #ffbeb8;
+                                                      width: var(--size);
+                                                      position: absolute;
+                                                      top: calc(var(--size) * 0.125);
+                                                      left: 0;
+                                                      background: var(--background);  
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label:after {
+                                                      content: ' ';
+                                                      display: block;
+                                                      height: var(--size);
+                                                      width: var(--size);
+                                                      border: calc(var(--size) * .14) solid #000;
+                                                      transition: 200ms;
+                                                      position: absolute;
+                                                      top: calc(var(--size) * 0.125);
+                                                      left: 0;
+                                                      background: var(--background);  
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label:after {
+                                                      transition: 100ms ease-in-out;
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__input:checked ~ .checkbox__label:after {
+                                                      border-top-style: none; 
+                                                      border-right-style: none;
+                                                      -ms-transform: rotate(-45deg); /* IE9 */
+                                                      transform: rotate(-45deg);
+                                                      height: calc(var(--size) * .5);
+                                                      border-color: green;
+                                                    }
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox {
+                                                      position: relative;
+                                                      display: flex;
                                                       cursor: pointer;
-                                                      transition: 0.2s ease transform, 0.2s ease background-color,
-                                                        0.2s ease box-shadow;
-                                                      overflow: hidden;
-                                                      z-index: 1;
+                                                      /* Mobile Safari: */
+                                                      -webkit-tap-highlight-color: rgba(0,0,0,0);   
                                                     }
-
-                                                    .checkbox-wrapper-26 label:before {
-                                                      content: "";
-                                                      position: absolute;
-                                                      top: 50%;
-                                                      right: 0;
-                                                      left: 0;
-                                                      width: calc(var(--size) * .7);
-                                                      height: calc(var(--size) * .7);
-                                                      margin: 0 auto;
-                                                      background-color: #fff;
-                                                      transform: translateY(-50%);
-                                                      border-radius: 50%;
-                                                      box-shadow: inset 0 var(--shadow) #ffbeb8;
-                                                      transition: 0.2s ease width, 0.2s ease height;
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label:after:hover,
+                                                    .checkbox-wrapper-29 .checkbox__label:after:active {
+                                                       border-color: green; 
                                                     }
-
-                                                    .checkbox-wrapper-26 label:hover:before {
-                                                      width: calc(var(--size) * .55);
-                                                      height: calc(var(--size) * .55);
-                                                      box-shadow: inset 0 var(--shadow) #ff9d96;
-                                                    }
-
-                                                    .checkbox-wrapper-26 label:active {
-                                                      transform: scale(0.9);
-                                                    }
-
-                                                    .checkbox-wrapper-26 .tick_mark {
-                                                      position: absolute;
-                                                      top: -1px;
-                                                      right: 0;
-                                                      left: calc(var(--size) * -.05);
-                                                      width: calc(var(--size) * .6);
-                                                      height: calc(var(--size) * .6);
-                                                      margin: 0 auto;
-                                                      margin-left: calc(var(--size) * .14);
-                                                      transform: rotateZ(-40deg);
-                                                    }
-
-                                                    .checkbox-wrapper-26 .tick_mark:before,
-                                                    .checkbox-wrapper-26 .tick_mark:after {
-                                                      content: "";
-                                                      position: absolute;
-                                                      background-color: #fff;
-                                                      border-radius: 2px;
-                                                      opacity: 0;
-                                                      transition: 0.2s ease transform, 0.2s ease opacity;
-                                                    }
-
-                                                    .checkbox-wrapper-26 .tick_mark:before {
-                                                      left: 0;
-                                                      bottom: 0;
-                                                      width: calc(var(--size) * .1);
-                                                      height: calc(var(--size) * .3);
-                                                      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.23);
-                                                      transform: translateY(calc(var(--size) * -.68));
-                                                    }
-
-                                                    .checkbox-wrapper-26 .tick_mark:after {
-                                                      left: 0;
-                                                      bottom: 0;
-                                                      width: 100%;
-                                                      height: calc(var(--size) * .1);
-                                                      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.23);
-                                                      transform: translateX(calc(var(--size) * .78));
-                                                    }
-
-                                                    .checkbox-wrapper-26 input[type="checkbox"]:checked + label {
-                                                      background-color: #07d410;
-                                                      box-shadow: 0 var(--shadow) #92ff97;
-                                                    }
-
-                                                    .checkbox-wrapper-26 input[type="checkbox"]:checked + label:before {
-                                                      width: 0;
-                                                      height: 0;
-                                                    }
-
-                                                    .checkbox-wrapper-26 input[type="checkbox"]:checked + label .tick_mark:before,
-                                                    .checkbox-wrapper-26 input[type="checkbox"]:checked + label .tick_mark:after {
-                                                      transform: translate(0);
-                                                      opacity: 1;
+                                                  
+                                                    .checkbox-wrapper-29 .checkbox__label {
+                                                      margin-right: calc(var(--size) * 0.45);
                                                     }
                                                   </style>
-
+                                                  
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">

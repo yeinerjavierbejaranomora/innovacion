@@ -122,12 +122,12 @@ class EstudianteController extends Controller
             if( $value_historialAcademico['cod_programa']==$programa){
             
                 $historial_programa[]=$value_historialAcademico;
-                $cod_materias[]=$value_historialAcademico;
+                $cod_materias[]=$value_historialAcademico['idCurso'];
 
             }
            
         }
-        var_dump($historial_programa);
+        var_dump($cod_materias);
         exit;
         $intersection = array_filter($array1, function ($item) use ($array2) {
             return in_array($item, $array2);

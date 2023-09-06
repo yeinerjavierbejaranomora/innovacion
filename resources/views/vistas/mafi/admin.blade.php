@@ -980,7 +980,7 @@
                         data: {
                             labels: labels.map(function(label, index) {
                                 label = label.toUpperCase();
-                                if(label != 'total'){
+                                if(label != 'TOTAL'){
                                     return label + 'S: ' + valores[index];
                                 }
                                 else{

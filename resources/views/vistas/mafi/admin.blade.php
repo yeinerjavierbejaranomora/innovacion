@@ -331,7 +331,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="activos" style="width: 450px;height: 400px"></canvas>
+                        <canvas id="activos" style="width: 470px;height: 400px"></canvas>
                     </div>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion" style="width: 50%;"></canvas>
+                        <canvas id="retencion" style="width: 500px;height: 310px"></canvas>
                     </div>
                 </div>
             </div>

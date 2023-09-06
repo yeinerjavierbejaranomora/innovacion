@@ -135,9 +135,11 @@ class EstudianteController extends Controller
             return in_array($item, $materias_malla);
         });
       
-        var_dump( $intersection);
-        exit;
+        
         $diff = array_udiff($materias_vistas, $materias_malla, function($a, $b) {
+
+            var_dump($a);
+        exit;
             return $a['name'] <=> $b['name'];
         });
         var_dump( $diff);

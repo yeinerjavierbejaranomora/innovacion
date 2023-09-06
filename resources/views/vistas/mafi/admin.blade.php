@@ -958,9 +958,25 @@
              */
             var chartEstudiantes;
 
+
+            // url: "{{ route('estudiantes.activos.facultad') }}",
+            //         data: {
+            //             idfacultad: facultades,
+            //             periodos: periodos
+            //         },
+
             function graficoEstudiantes() {
-                var url = '/home/estudiantes';
-                $.getJSON(url, function(data) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('estudiantes.activos') }}",
+                    data: {
+                        idfacultad: facultades,
+                        periodos: periodos
+                    },
+                    success: function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
@@ -1031,9 +1047,9 @@
                     } else {
                         $('#colEstudiantes').removeClass('hidden');
                     }
-
-                });
+                }});
             }
+            
 
             /**
              * Método que genera el gráfico de sello financiero

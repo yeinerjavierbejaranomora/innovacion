@@ -392,6 +392,9 @@
             })
     }
 
+    $('#deshacerProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', false);
+    });
 </script>
 
 

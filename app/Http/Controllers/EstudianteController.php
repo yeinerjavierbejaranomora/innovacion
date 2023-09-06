@@ -125,7 +125,7 @@ class EstudianteController extends Controller
             if( $value_historialAcademico['cod_programa']==$programa){
             
                 $historial_programa[]=$value_historialAcademico;
-                $materias_vistas[]=$value_historialAcademico['idCurso'];
+                $materias_vistas[]=$value_historialAcademico->idCurso;
 
             }
            

@@ -139,10 +139,11 @@ class EstudianteController extends Controller
         $diff = array_udiff($materias_vistas, $materias_malla, function($a, $b) {
             return $a<=> $b;
         });
-        var_dump( $intersection);
-        exit;
-        dd($diff);
 
+   
+    
+        dd($diff);
+        exit;
         
 
         return $historialAcademico;

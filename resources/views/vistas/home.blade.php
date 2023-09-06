@@ -89,10 +89,10 @@
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                             </p>
-                            <strong>Gráficos disponibles</strong>
-                            <li class="list-group-item"> Total Estudiantes Banner: Este gráfico muestra el total de los estudiantes
+                            <h5><strong class="text-dark">Gráficos disponibles</strong></h5>
+                            <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
                                 y los clásifica en activos e inactivos</li>
-                            <li class="list-group-item"> Estado financiero: Aquí se muestra un resumen del estado financiero (con sello, 
+                            <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello, 
                                 con retención o ASP) de los estudiantes <strong> activos </strong></li>
                         </div>
                     </div>

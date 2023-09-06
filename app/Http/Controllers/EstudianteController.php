@@ -57,6 +57,7 @@ class EstudianteController extends Controller
 
                 $programa[$value_historialAcademico['cod_programa']] = ['codprograma'=>$value_historialAcademico['cod_programa'],'programa'=>$value_historialAcademico['programa']];
             }
+
             $programaCod = array_column($programa,'codprograma');
             $programaNombre = array_column($programa,'programa');
             $programas= [];
@@ -106,10 +107,45 @@ class EstudianteController extends Controller
         $idbanner = $_POST['codBanner'];
         $programa = $_POST['programa'];
 
-  
+      
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/" . $idbanner;
-        dd($url);exit;
+        
         $historialAcademico = json_decode(file_get_contents($url), true);
+        $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
+        
+        /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
+
+        foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
+            dd($value_mallaCurricular);
+            exit;
+            $materias_malla[]=$value_mallaCurricular->idCurso;
+        }
+                    
+
+        foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
+           
+            if( $value_historialAcademico['cod_programa']==$programa){
+            
+                $historial_programa[]=$value_historialAcademico;
+                $materias_vistas[]=$value_historialAcademico['idCurso'];
+
+            }
+           
+        }
+        var_dump($materias_malla);
+        exit;
+        $intersection = array_filter($array1, function ($item) use ($array2) {
+            return in_array($item, $array2);
+        });
+
+
+        $diff = array_udiff($array1, $array2, function($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+        dd($diff);
+
+        
+
         return $historialAcademico;
     }
     public function consultaProgramacion()

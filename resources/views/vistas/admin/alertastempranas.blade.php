@@ -469,7 +469,13 @@
                 console.log(programasSeleccionados);
             }else{
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    facultadesSeleccionadas = [];
+                    checkboxesSeleccionados.each(function() {
+                        facultadesSeleccionadas.push($(this).val());
+                    });
+                    console.log(facultadesSeleccionadas);
                 }else{
 
                 }

@@ -1052,13 +1052,24 @@
                             valores.push(data[propiedad]);
                         }
                     }
-                    
+
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+
+                    labels.push('TOTAL');
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels.map(function(label, index) {
+                                if(label == 'TOTAL'){
+                                    return label + ': ' + suma;
+                                }
+                            else{
+                                return label;
+                            }}),
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,

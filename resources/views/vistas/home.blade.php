@@ -156,7 +156,7 @@
 
                 var objetivo = $("#" + target).show();
 
-                console.log(objetivo);
+                console.log(target);
                 return false;
             });
 

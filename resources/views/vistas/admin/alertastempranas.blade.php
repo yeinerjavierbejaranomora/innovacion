@@ -47,6 +47,108 @@
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="text-center col-12 align-items-center">
+                                        <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                                    </div>
+                                    <div class="row d-sm-flex align-items-center justify-content-between mb-4">
+                                        {{-- <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>F.Continua</strong></h5>
+                                        </div> --}}
+                                        <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
+                                            <div class="card-body periodos" style="width:100%;" id="Continua">
+                                                <div class="checkbox-wrapper-37">
+                                                    <input type="checkbox" name="checkbox" id="terms-checkbox-37" />
+                                                    <label for="terms-checkbox-37" class="terms-label">
+                                                      <svg
+                                                        class="checkbox-svg"
+                                                        viewBox="0 0 200 200"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                        <mask id="path-1-inside-1_476_5-37" fill="white">
+                                                          <rect width="200" height="200" />
+                                                        </mask>
+                                                        <rect
+                                                          width="200"
+                                                          height="200"
+                                                          class="checkbox-box"
+                                                          stroke-width="40"
+                                                          mask="url(#path-1-inside-1_476_5-37)"
+                                                        />
+                                                        <path
+                                                          class="checkbox-tick"
+                                                          d="M52 111.018L76.9867 136L149 64"
+                                                          stroke-width="15"
+                                                        />
+                                                      </svg>
+                                                      <span class="label-text">Checkbox</span>
+                                                    </label>
+                                                  </div>
+
+                                                  <style>
+                                                    .checkbox-wrapper-37 input[type="checkbox"] {
+                                                      display: none;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .terms-label {
+                                                      cursor: pointer;
+                                                      display: flex;
+                                                      align-items: center;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .terms-label .label-text {
+                                                      margin-left: 10px;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .checkbox-svg {
+                                                      width: 30px;
+                                                      height: 30px;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .checkbox-box {
+                                                      fill: #f3f3f3;
+                                                      stroke: #ff7a00;
+                                                      stroke-dasharray: 800;
+                                                      stroke-dashoffset: 800;
+                                                      transition: stroke-dashoffset 0.6s ease-in;
+                                                    }
+
+                                                    .checkbox-wrapper-37 .checkbox-tick {
+                                                      stroke: #ff7a00;
+                                                      stroke-dasharray: 172;
+                                                      stroke-dashoffset: 172;
+                                                      transition: stroke-dashoffset 0.6s ease-in;
+                                                    }
+
+                                                    .checkbox-wrapper-37 input[type="checkbox"]:checked + .terms-label .checkbox-box,
+                                                    .checkbox-wrapper-37 input[type="checkbox"]:checked + .terms-label .checkbox-tick {
+                                                      stroke-dashoffset: 0;
+                                                    }
+                                                  </style>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Pregrado Semestral</strong></h5>
+                                        </div>
+                                        <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Especializacion</strong></h5>
+                                        </div>
+                                        {{-- <div class="col-xl-2 text-center">
+                                            <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
@@ -56,49 +158,11 @@
                                 </table>
                             </div>
                         </div>
-
-
-                        <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
-                        </div>
                         <br>
                     </div>
                 </div>
-                </div>
-
-                <!--Modal para agragar un programa nuevo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
-                                @csrf
-                                <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
-                                <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                    </div>
-                </div>
             </div>
+
 
         </div>
         <!-- /.container-fluid -->

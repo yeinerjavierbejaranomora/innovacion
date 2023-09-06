@@ -114,6 +114,51 @@ class EstudianteController extends Controller
         $mallaCurricular = DB::table('mallaCurricular')->where('codprograma', '=', $programa)->get()->toArray();
 
         $planeada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+        $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+
+        foreach ($variable as $key => $value) {
+            # code...
+        }
+
+        +"id": 61239
+        +"codBanner": 100039616
+        +"codMateria": "ABV32150"
+        +"orden": 4
+        +"semestre": "2"
+        +"programada": ""
+        +"codprograma": "EABV"
+        +"periodo": "202344"
+        +"fecha_registro": "2023-09-06 10:07:39"
+
+        foreach ($planeada as $key_planeada => $value_planeada) {
+
+            if( $proyectada[$value_planeada['codMateria']]){
+                $proyeccion[]=$proyectada[$value_planeada['codMateria']]
+            }
+           
+        }
+
+        fecha_registro
+
+        $planeada = new DateTime("2023-09-15");
+        $fecha2 = new DateTime("2023-09-20");
+
+        if ($fecha1 > $fecha2) {
+            echo "La fecha 1 es mayor que la fecha 2.";
+        } elseif ($fecha1 < $fecha2) {
+            echo "La fecha 2 es mayor que la fecha 1.";
+        } else {
+            echo "Ambas fechas son iguales.";
+        }
+
+
+
+
+
+
+
+
+      
         dd($planeada);
         exit;
         

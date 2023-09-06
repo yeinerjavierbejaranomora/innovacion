@@ -29,7 +29,7 @@ class cambioController extends Controller
     }
 
     /** Método que consulta los datos ingresados por el usuario para verificar si existe en la base de datos
-     *  y así poder llevar a cabo del cambio de contraseña 
+     *  y así poder llevar a cabo del cambio de contraseña
      */
     public function consultar(Request $request)
     {
@@ -63,7 +63,7 @@ class cambioController extends Controller
         }
     }
 
-    /** 
+    /**
      * Función para mostrar el formulario para cambiar la contraseña
      * recibe como parametro el idBanner cifrado
      */
@@ -107,7 +107,7 @@ class cambioController extends Controller
         endif;
     }
 
-    /** 
+    /**
      * Función para realizar el update de la contraseña
      * recibiendo los datos del formulario por medio del CambioPassRequest
      * validando que se traigan datos y que las contraseñas nuevas coincidan

@@ -2,6 +2,7 @@
 
 /** definimos losb controladores para que funcionen las rutas  */
 
+use App\Http\Controllers\AlertasTempranasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
@@ -119,7 +120,7 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/estudiantesPrimerIngresoFacultad/{tabla}', 'primerIngresoEstudiantesFacultad')->middleware('auth')->name('estudiantes.primerIngreso.facultad');
 
-   
+
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/tiposEstudiantes/{tabla}', 'tiposEstudiantesFacultad')->middleware('auth')->name('estudiantes.tipo.facultad');
      /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por facultad */
@@ -178,12 +179,12 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/planeacion/tablaProgramasFacultad', 'tablaProgramasFacultad')->middleware('auth')->name('planeacionProgramas.tabla.facultad');
     /** Ruta para cargar dataTable de programas por Programa */
     Route::post('/home/planeacion/tablaProgramasP', 'tablaProgramasP')->middleware('auth')->name('planeacionProgramas.tabla.programa');
-    
+
     /** Ruta para cargar malla curricular */
     Route::post('/home/planeacion/mallaCurricular', 'mallaPrograma')->middleware('auth')->name('mallaPrograma.tabla');
     /** Ruta para cargar malla curricular */
     Route::post('/home/planeacion/estudiantesMateria', 'estudiantesMateria')->middleware('auth')->name('estudiantesMateria.tabla');
-    
+
     /** Traer programas activos */
     Route::post('/home/programasAct', 'traerProgramas')->name('programasPeriodo.activos');
     /** Traer todos los programas activos */
@@ -410,4 +411,6 @@ Route::controller(EstudianteController::class)->group(function(){
     Route::post('/historialestudiante/countsemestres','countSemestres')->name('historial.countsemestres');
 });
 
-
+Route::controller(AlertasTempranasController::class)->group(function(){
+    Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
+});

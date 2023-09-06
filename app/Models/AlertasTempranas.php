@@ -13,5 +13,12 @@ class AlertasTempranas extends Model
         'idbanner',
         'tipo_estudiante',
         'desccripcion',
+        'codprograma',
+        'periodo',
+        'activo',
+        'tipo',
+        'desccripcion',
+        'created_at',
+        'updated_at',
     ];
 }

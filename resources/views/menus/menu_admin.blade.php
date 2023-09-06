@@ -17,7 +17,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" id= "menuHome" href="{{ route('home.index') }}">
         <div class="sidebar-brand-icon">
             <img src="/public/assets/images/LogoBlanco.png" width="40" alt="">
         </div>
@@ -46,8 +46,6 @@
             <span>Planeación</span></a>
     </li>
 
-
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -66,9 +64,9 @@
         </div>
     </li>
     <li class="nav-item">
-        <a href="" class="nav-link" href="#">
+        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
-            <span>Alertas tempranas<br>(programación-planeación)</span></a>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
         </a>
     </li>
 

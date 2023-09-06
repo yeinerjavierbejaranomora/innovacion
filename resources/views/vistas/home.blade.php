@@ -85,13 +85,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
                                 </div>
-                                <div class="col-md-2">
-                                    <img class="card-img-center" src="/public/assets/images/flecha.png" alt="Card image cap" style="width: 100%;">
-                                </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <img class="card-img-center" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 100%;">
                                 </div>
                             </div>

@@ -84,12 +84,12 @@
                             <h4><strong>Admisiones</strong></h4>
                         </div>
                         <div class="card-body">
-                            <img class="card-img-center mb-5" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                            <img class="card-img-center mb-4" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                             </p>
-                            <h5><strong class="text-dark">Gráficos disponibles</strong></h5>
+                            <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
                             <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
                                 y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual 
                                 genera un Excel con los datos de Banner.</li>
@@ -109,7 +109,6 @@
                             en cada programa, cuenta con la opción de "Ver más".</li>
                             <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
                             y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
-
                         </div>
                     </div>
                 </div>

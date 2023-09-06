@@ -156,7 +156,8 @@
 
                 var objetivo = $("#" + target).show();
 
-                console.log(target);
+                (objetivo).addClass('active');
+
                 return false;
             });
 

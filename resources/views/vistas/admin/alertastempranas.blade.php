@@ -320,6 +320,7 @@
 
 <script>
     periodos();
+    facultades();
     function periodos() {
         var datos = $.ajax({
             headers: {
@@ -342,6 +343,21 @@
                     if (periodo.nivelFormacion == "MAESTRIA") {
                         $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                     }
+                });
+            }
+        });
+    }
+
+    function facultades() {
+        var datos = $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('registro.facultades') }}",
+            method: 'post',
+            success: function(data) {
+                data.forEach(facultad => {
+                    $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
                 });
             }
         });

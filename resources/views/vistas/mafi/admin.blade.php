@@ -1003,7 +1003,7 @@
                             periodos: periodosSeleccionados
                         }
                     }else{
-                        url = "{{ route(estudiantes.activos) }}",
+                        url = "{{ route('estudiantes.activos') }}",
                         data = ''
                     }
                 }

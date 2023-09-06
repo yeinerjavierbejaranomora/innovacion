@@ -153,6 +153,7 @@
         $("#admisiones").show();
 
         $(".nav-link").click(function() {
+            console.log('entra');
             $(".content").hide();
 
             var target = $(this).attr("href").substring(1);

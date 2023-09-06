@@ -533,6 +533,9 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
             periodos();
             llamadoFunciones();
             facultades();
@@ -611,6 +614,7 @@
                     async: false,
                     success: function(data) {
                         data.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -625,6 +629,9 @@
                             }
                         });
                     }
+                });
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
                 });
             }
 
@@ -742,10 +749,6 @@
             $('#seleccionarFacultades').on('click', function(e) {
                 $('#facultades input[type="checkbox"]').prop('checked', true);
             });
-
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();

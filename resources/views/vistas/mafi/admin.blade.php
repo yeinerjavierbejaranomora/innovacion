@@ -1092,10 +1092,17 @@
                                     }
                             } else {
                                 url = "{{ route('sello.activos', ['tabla' => tabla]) }}",
-                                    data = ''
+                                data = ''
                             }
                         }
-                        $.getJSON(url, function(data) {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
                             var labels = [];
                             var valores = [];
 
@@ -1170,7 +1177,7 @@
                             } else {
                                 $('#colSelloFinanciero').removeClass('hidden');
                             }
-                        });
+                        }});
                     }
 
                     /**

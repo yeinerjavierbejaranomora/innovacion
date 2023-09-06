@@ -51,7 +51,7 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
-                                    <div class="row text-center">
+                                    <div class="row d-flex justify-content-center">
                                         <div class="col-xl-2 text-center">
                                             hola 1
                                         </div>

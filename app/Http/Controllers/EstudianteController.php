@@ -145,14 +145,15 @@ class EstudianteController extends Controller
         }
 
         if(!empty($historialAcademico)){
-            
+
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
 
                 if( $value_historialAcademico['cod_programa']==$programa){
 
-                    $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
+                    
                 
                     if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+                        $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
 
                         if( $value_historialAcademico['calificacion']>3){
                             $color='bg-success';

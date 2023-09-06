@@ -84,7 +84,7 @@
                             <h4><strong>Admisiones</strong></h4>
                         </div>
                         <div class="card-body">
-                            <img class="card-img-center mb-2" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                            <img class="card-img-center mb-5" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
@@ -100,15 +100,21 @@
                             <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
                                 financiero de todos los estudiantes <strong> activos </strong> de primer ingreso y transferentes.</li>
                             <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero 
-                                para estudiantes antiguos</li>
+                                para estudiantes antiguos.</li>
                             <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
-                            cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados</li>    
+                            cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>    
+                            <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada 
+                            operador, también cuenta con la opción de "Ver más".</li>
+                            <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
+                            en cada programa, cuenta con la opción de "Ver más".</li>
+                            <li class="list-group-item"> <strong class="text-dark">Metas por ciclo</strong>: Muestra la cantidad de estudiantes inscritos por programa con sello financiero
+                            y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta.</li>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     @include('layout.footer')
 </div>

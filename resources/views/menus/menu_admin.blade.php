@@ -66,7 +66,7 @@
     <li class="nav-item">
         <a href="" class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
-            <span>Alertas tempranas<br>(programación-planeación)</span></a>
+            <span>Alertas Tempranas<br>(programación-planeación)</span></a>
         </a>
     </li>
 

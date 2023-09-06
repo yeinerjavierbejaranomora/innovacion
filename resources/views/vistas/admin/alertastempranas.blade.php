@@ -134,8 +134,9 @@
                                         <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
                                     </div>
                                     <div class="row d-sm-flex align-items-center justify-content-between mb-4">
-                                        <div class="d-flex align-items-center" style="height: 48px">
-                                            <h5 id="tituloNiveles"><strong>Formacion Continua</strong></h5>
+                                        <div class="col-xl-2 text-center">
+                                            <div class="d-flex align-items-center" style="height: 48px">
+                                                <h5 id="tituloNiveles"><strong>Formacion Continua</strong></h5>
                                             </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
@@ -155,6 +156,8 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+
                                         <div class="col-xl-2 text-center">
                                             <div class="d-flex align-items-center" style="height: 48px">
                                             <h5 id="tituloNiveles"><strong>Pregrado Cuatrimestral</strong></h5>
@@ -224,8 +227,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-center" style="height: 48px">
-                                            <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
+                                        <div class="col-xl-2 text-center">
+                                            <div class="d-flex align-items-center" style="height: 48px">
+                                                <h5 id="tituloNiveles"><strong>Maestria</strong></h5>
                                             </div>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
@@ -245,6 +249,8 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

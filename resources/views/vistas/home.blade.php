@@ -164,7 +164,29 @@
 
                                 <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
                                 <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
-                                    con retención o ASP) de los estudiantes <strong> planeados o programados.</strong>.</li>
+                                    con retención o ASP) de los estudiantes <strong> proyectados o programados</strong>.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma
+                                    de los estudiantes <strong>proyectados o programados</strong> que su estado financiero se encuentra en retención.</li>        
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes nuevos - Estado financiero</strong>: En este gráfico se puede visualizar el Estado
+                                    financiero de todos los estudiantes <strong>proyectados o programados</strong> de primer ingreso y transferentes.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes antiguos - Estado financiero</strong>: Muestra lo mismo del gráfico anterior pero
+                                    para estudiantes antiguos.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Tipos de estudiantes</strong>: Ilustra los tipos de estudiantes <strong>activos</strong>, además
+                                    cuenta la opción "Ver más" para ampliar la cantidad de datos mostrados.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Estudiantes activos por operador</strong>: Muestra la cantidad de estudiantes inscritos por cada
+                                    operador, también cuenta con la opción de "Ver más".</li>
+                                <li class="list-group-item"> <strong class="text-dark">Programas con mayor cantidad de admitidos Activos</strong>: Muestra la cantidad de estudiantes inscritos
+                                    en cada programa, cuenta con la opción de "Ver más". Adicionalente permite ver un informe detallado que incluye la siguiente información:
+                                    <ul>
+                                        <li>Estudiantes proyectados o pogramados en cada programa y el estado de su sello financiero (si tienen sello o no).</li>
+                                        <li>Malla Curricular de cada programa y la cantidad de matrículas por curso, estos datos pueden ser descargados en varios formatos
+                                            como Excel, permitiendo llevar a cabo la planeación de docentes.
+                                        </li>
+                                        <li>Buscador de estudiantes proyectados o planeados en cada programa, aquí puede observarse que cursos tiene inscrito cada estudiante de un 
+                                            programa en específico, también pueden ser descargados estos datos en varios formatos.
+                                        </li>
+                                    </ul>
+                                </li>
                             </div>
                         </div>
                     </div>

@@ -4,84 +4,127 @@
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <style>
-    .checkbox-wrapper-46 input[type="checkbox"] {
-      display: none;
-      visibility: hidden;
+    #facultades {
+        font-size: 14px;
     }
 
-    .checkbox-wrapper-46 .cbx {
-      margin: auto;
-      -webkit-user-select: none;
-      user-select: none;
-      cursor: pointer;
-    }
-    .checkbox-wrapper-46 .cbx span {
-      display: inline-block;
-      vertical-align: middle;
-      transform: translate3d(0, 0, 0);
-    }
-    .checkbox-wrapper-46 .cbx span:first-child {
-      position: relative;
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-      transform: scale(1);
-      vertical-align: middle;
-      border: 1px solid #9098A9;
-      transition: all 0.2s ease;
-    }
-    .checkbox-wrapper-46 .cbx span:first-child svg {
-      position: absolute;
-      top: 3px;
-      left: 2px;
-      fill: none;
-      stroke: #FFFFFF;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 16px;
-      stroke-dashoffset: 16px;
-      transition: all 0.3s ease;
-      transition-delay: 0.1s;
-      transform: translate3d(0, 0, 0);
-    }
-    .checkbox-wrapper-46 .cbx span:first-child:before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      background: #f6c23e;
-      display: block;
-      transform: scale(0);
-      opacity: 1;
-      border-radius: 50%;
-    }
-    .checkbox-wrapper-46 .cbx span:last-child {
-      padding-left: 8px;
-    }
-    .checkbox-wrapper-46 .cbx:hover span:first-child {
-      border-color: #f6c23e;
+    #programas {
+        font-size: 14px;
     }
 
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child {
-      background: #f6c23e;
-      border-color: #f6c23e;
-      animation: wave-46 0.4s ease;
-    }
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child svg {
-      stroke-dashoffset: 0;
-    }
-    .checkbox-wrapper-46 .inp-cbx:checked + .cbx span:first-child:before {
-      transform: scale(3.5);
-      opacity: 0;
-      transition: all 0.6s ease;
+    .button-informe {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
-    @keyframes wave-46 {
-      50% {
-        transform: scale(0.9);
-      }
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
     }
-  </style>
+
+    #btn-table {
+        width: 60px;
+    }
+
+    .deshacer {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: 800;
+        place-items: center;
+        font-size: 11px;
+    }
+
+    #botonModalTiposEstudiantes,
+    #botonModalProgramas,
+    #botonModalOperador,
+    #botonModalMetas {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+    .card {
+        margin-bottom: 3%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .graficos {
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    #cardProgramas {
+        max-height: 500px;
+    }
+
+    .graficosBarra {
+        min-height: 600px;
+        max-height: 600px;
+    }
+
+    #tiposEstudiantesTotal,
+    #operadoresTotal,
+    #programasTotal,
+    #metasTotal {
+        height: 600px !important;
+    }
+
+    #seccion {
+        background: #FFFFFF;
+    }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->

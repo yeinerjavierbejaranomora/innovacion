@@ -664,7 +664,7 @@
                         }
                     })
             }
-            
+
             var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
@@ -689,7 +689,7 @@
             }
 
             /**
-             * Método que trae la información de toda la Ibero 
+             * Método que trae la información de toda la Ibero
              * */
             function informacionGeneral() {
                 $('#mensaje').show();
@@ -964,7 +964,7 @@
                     var labels = data.data.map(function(elemento) {
                         return elemento.estado;
                     });
-                    
+
                     var valores = data.data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
@@ -1042,7 +1042,7 @@
 
             function graficoSelloFinanciero() {
                 var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {          
+                $.getJSON(url, function(data) {
                     var labels = [];
                     var valores = [];
 
@@ -1149,7 +1149,7 @@
                     var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
-                        
+
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1194,7 +1194,7 @@
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
-                                
+
                                 datalabels: {
                                     color: 'black',
                                     font: {
@@ -1203,7 +1203,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                        display: false,                          
+                                        display: false,
                                 }
                             },
                         },
@@ -1396,7 +1396,7 @@
             }
 
             /**
-             * Método que genera el gráfico con todos los tipos de estudiantes 
+             * Método que genera el gráfico con todos los tipos de estudiantes
              */
             var chartTipoEstudiante;
 
@@ -1412,7 +1412,7 @@
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
-                        
+
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1458,7 +1458,7 @@
                             maintainAspectRatio: false,
                             responsive: true,
                             plugins: {
-                                
+
                                 datalabels: {
                                     color: 'black',
                                     font: {
@@ -1467,7 +1467,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                        display: false,                          
+                                        display: false,
                                 }
                             },
                         },
@@ -1482,7 +1482,7 @@
             }
 
             /**
-             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
+             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen
              */
             var chartOperadores;
 
@@ -1566,7 +1566,7 @@
             }
 
             /**
-             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
+             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos
              */
 
             var chartProgramas;
@@ -1671,7 +1671,7 @@
                 }
             }
 
-            /** 
+            /**
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
              */
 
@@ -2306,7 +2306,7 @@
             }
 
             /**
-             * Método que limpia la data de los gráficos y después invoca todos los gráficos por los 
+             * Método que limpia la data de los gráficos y después invoca todos los gráficos por los
              * programas que seleccione el usuario
              */
             function graficosporPrograma(programas, periodos) {
@@ -2325,7 +2325,7 @@
                 }
             }
 
-            /** 
+            /**
              * Método que muestra los estudiantes activos e inactivos de algún programa en específico
              */
             function graficoEstudiantesPorPrograma(programas, periodos) {
@@ -3338,7 +3338,7 @@
                         } catch {
                             data = data;
                         }
-                        
+
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
@@ -3550,7 +3550,7 @@
                         }
                         var newData = [];
                         var headers = ["Codigo Programa","Programa", "Meta", "Sello", "% Ejecución"];
-                        
+
                         var col1 = [];
                         var col2 = [];
                         var col3 = [];
@@ -3570,7 +3570,7 @@
                             if(porcentaje > 100){
                                 porcentaje = 'Meta Superada';
                             }
-                           
+
                             var row = [col1[i],col2[i], col3[i], col4[i], porcentaje];
                             newData.push(row);
                         }
@@ -3583,10 +3583,10 @@
                     }
                 });
 
-                
+
 
             });
-            
+
         });
     </script>
 

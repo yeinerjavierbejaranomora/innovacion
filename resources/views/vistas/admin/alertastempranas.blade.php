@@ -436,6 +436,20 @@
         $('#facultades input[type="checkbox"]').prop('checked', true);
     });
 
+    function getPeriodos() {
+        var periodosSeleccionados = [];
+        var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.each(function() {
+            periodosSeleccionados.push($(this).val());
+        });
+        return periodosSeleccionados;
+    }
+
+    function Contador() {
+        totalFacultades = $('#facultades input[type="checkbox"]').length;
+        totalProgramas = $('#programas input[type="checkbox"]').length;
+        totalPeriodos = $('#programas input[type="checkbox"]').length;
+    }
 
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();

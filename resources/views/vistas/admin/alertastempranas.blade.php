@@ -180,7 +180,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-2 text-center">
-                                            <h5 id="tituloNiveles"><strong>Especializacion</strong></h5>
+                                            <h5 id="tituloNiveles" style="height: 48px"><strong>Especializacion</strong></h5>
                                             <div class="card-body periodos" style="width:100%;" id="Continua">
                                                 <div class="checkbox-wrapper-46">
                                                     <input class="inp-cbx" id="cbx-45" type="checkbox" />

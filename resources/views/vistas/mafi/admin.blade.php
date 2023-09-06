@@ -343,7 +343,7 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion" style="width: 510px;height: 310px"></canvas>
+                        <canvas id="retencion""></canvas>
                     </div>
                 </div>
             </div>
@@ -353,8 +353,8 @@
                         <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
-                        <canvas id="primerIngreso" style="width: 50%;"></canvas>
+                    <div class="card-body center-chart">
+                        <canvas id="primerIngreso" style="width: 400px;height: 350px"></canvas>
                     </div>
                 </div>
             </div>
@@ -364,8 +364,8 @@
                         <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
-                        <canvas id="antiguos" style="width: 50%;"></canvas>
+                    <div class="card-body center-chart">
+                        <canvas id="antiguos" style="width: 400px;height: 350px"></canvas>
                     </div>
                 </div>
             </div>
@@ -1261,7 +1261,7 @@
                         },
                         options: {
                             maintainAspectRatio: false,
-                            responsive: true,
+                            responsive: false,
                             layout: {
                                 padding: {
                                     left: 20,
@@ -1348,7 +1348,7 @@
                         },
                         options: {
                             maintainAspectRatio: false,
-                            responsive: true,
+                            responsive: false,
                             layout: {
                                 padding: {
                                     left: 20,
@@ -1369,7 +1369,7 @@
                                     render: 'percenteaje',
                                     size: '14',
                                     fontStyle: 'bolder',
-                                    position: 'outside',
+                                    position: 'border',
                                     textMargin: 2
                                 },
                                 legend: {
@@ -1551,12 +1551,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
+                                    display:false,
                                 }
                             },
                         },
@@ -1641,12 +1636,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
+                                    display:false,
                                 }
                             },
                         },

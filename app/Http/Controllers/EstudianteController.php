@@ -148,6 +148,18 @@ class EstudianteController extends Controller
             if( $value_historialAcademico['cod_programa']==$programa){
             
                 if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+
+                    if( $value_historialAcademico['calificacion']>3){
+                        $color='bg-success';
+                    }else{
+                        $color='bg-danger';
+                    }
+
+                    $array2=array(
+                        'calificacion'=>$value_historialAcademico['calificacion'],
+                        'color'=>$color,
+                    );
+                    $materias_malla[$value_historialAcademico['idCurso']]=$result = array_merge( $materias_malla[$value_historialAcademico['idCurso']], $array2);
                     dd($materias_malla[$value_historialAcademico['idCurso']]);
                     exit;
                  }

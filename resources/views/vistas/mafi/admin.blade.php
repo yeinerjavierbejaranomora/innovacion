@@ -315,8 +315,8 @@
                         <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body justify-content-center">
-                        <canvas id="estudiantes"></canvas>
+                    <div class="card-body center-chart">
+                        <canvas id="estudiantes" style="width: 400px;height: 350px"></canvas>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="descargarMafi">Descargar datos Banner</button>
@@ -1029,7 +1029,7 @@
                                     },
                                     options: {
                                         maintainAspectRatio: false,
-                                        responsive: true,
+                                        responsive: false,
                                         plugins: {
                                             datalabels: {
                                                 color: 'black',

@@ -122,6 +122,9 @@ class EstudianteController extends Controller
                 'creditos'=>$value_mallaCurricular->creditos,
                 'ciclo'=>$value_mallaCurricular->ciclo,
                 'nombre_materia'=>$value_mallaCurricular->curso,
+                'calificacion'=>"",
+                'color'=>'bg-secondary',
+               
             );
 
         }
@@ -154,18 +157,15 @@ class EstudianteController extends Controller
                     }else{
                         $color='bg-danger';
                     }
+                    $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
+                    $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
 
-                    $array2=array(
-                        'calificacion'=>$value_historialAcademico['calificacion'],
-                        'color'=>$color,
-                    );
-                    $materias_malla[$value_historialAcademico['idCurso']]=$result = array_merge( $materias_malla[$value_historialAcademico['idCurso']], $array2);
-                    dd($materias_malla[$value_historialAcademico['idCurso']]);
-                    exit;
+                  
+                   
                  }
 
                 $historial_programa[]=$value_historialAcademico;
-                $materias_vistas[]=$value_historialAcademico['idCurso'];
+                
 
             }
            

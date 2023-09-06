@@ -84,7 +84,7 @@
                             <h4><strong>Admisiones</strong></h4>
                         </div>
                         <div class="card-body">
-                            <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap">
+                            <img class="card-img-center mb-2" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
                             <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
                                 encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.

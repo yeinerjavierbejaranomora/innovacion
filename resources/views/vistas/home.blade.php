@@ -75,15 +75,14 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row">
-                <div class="col-8">
+                <div class="col-8 text-center">
                     <div class="card">
                         <div class="card-header">
                             <h5><strong>Admisiones</strong></h5>
                         </div>
                         <div class="card-body"></div>
                     </div>
-                </div>
-                
+                </div>           
             </div>
         </div>
 

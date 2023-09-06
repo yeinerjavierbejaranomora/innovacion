@@ -1002,7 +1002,7 @@
                                     render: 'percenteaje',
                                     size: '14',
                                     fontStyle: 'bolder',
-                                    position: 'outside',
+                                    position: 'border',
                                     textMargin: 6
                                 },
                                 legend: {
@@ -1431,7 +1431,10 @@
                                         font: {
                                             size: 12
                                         }
-                                    }
+                                    },
+                                    title: {
+                                        display: false
+                                    },
                                 }
                             },
                         },

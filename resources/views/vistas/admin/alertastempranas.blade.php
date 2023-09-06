@@ -85,7 +85,7 @@
                                                     }
 
                                                     .checkbox-wrapper-49 label {
-                                                      width: calc(var(--size) / 2);
+                                                      width: calc(var(--size) / 1.5);
                                                       height: calc(var(--size) / 2);
                                                       box-sizing: border-box;
                                                       border: 3px solid;

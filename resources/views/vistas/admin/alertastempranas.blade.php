@@ -85,7 +85,7 @@
                                                     }
 
                                                     .checkbox-wrapper-49 label {
-                                                      width: calc(var(--size) / 0.5);
+                                                      width: calc(var(--size) / 2);
                                                       height: calc(var(--size) / 2);
                                                       box-sizing: border-box;
                                                       border: 3px solid;
@@ -97,7 +97,7 @@
                                                       color: black;
                                                     }
                                                     .checkbox-wrapper-49 input[type=checkbox]:checked + label {
-                                                      background: #55e868;
+                                                      background: #f6c23e;
                                                     }
                                                     .checkbox-wrapper-49 input[type=checkbox]:checked + label:before {
                                                       left: calc(var(--size) / 2);

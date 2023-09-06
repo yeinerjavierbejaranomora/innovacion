@@ -104,8 +104,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 400px;
+        max-height: 400px;
     }
 
     #tiposEstudiantesTotal,
@@ -1174,7 +1174,6 @@
                                  return label + ': ' + valores[index];
                                 }),
                             datasets: [{
-                                label: '',
                                 data: valores,
                                 backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                     'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -1204,15 +1203,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    },
-                                    title: {
-                                        display: false
-                                    },
+                                        display: false,                          
                                 }
                             },
                         },
@@ -1244,16 +1235,28 @@
                         }
                     }
 
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+
+                    labels.push('TOTAL');
+
                     // Crear el gráfico circular
                     var ctx = document.getElementById('primerIngreso').getContext('2d');
                     chartSelloPrimerIngreso = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels.map(function(label, index) {
+                                if(label == 'TOTAL'){
+                                    return label + ': ' + suma;
+                                }
+                            else{
+                                return label;
+                            }}),
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
                             }]
                         },
                         options: {
@@ -1279,7 +1282,7 @@
                                     render: 'percenteaje',
                                     size: '14',
                                     fontStyle: 'bolder',
-                                    position: 'outside',
+                                    position: 'border',
                                     textMargin: 2
                                 },
                                 legend: {
@@ -1319,16 +1322,28 @@
                         }
                     }
 
+                    var suma = valores.reduce(function(acumulador, valorActual) {
+                        return acumulador + valorActual;
+                    }, 0);
+
+                    labels.push('TOTAL');
+
                     // Crear el gráfico circular
                     var ctx = document.getElementById('antiguos').getContext('2d');
                     chartSelloAntiguos = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: labels,
+                            labels: labels.map(function(label, index) {
+                                if(label == 'TOTAL'){
+                                    return label + ': ' + suma;
+                                }
+                            else{
+                                return label;
+                            }}),
                             datasets: [{
                                 label: 'Gráfico Circular',
                                 data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
                             }]
                         },
                         options: {
@@ -1379,7 +1394,6 @@
                 });
 
             }
-
 
             /**
              * Método que genera el gráfico con todos los tipos de estudiantes 
@@ -1453,15 +1467,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    },
-                                    title: {
-                                        display: false
-                                    },
+                                        display: false,                          
                                 }
                             },
                         },

@@ -986,6 +986,8 @@
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
+                            height: 230,
+                            width: 430,
                             plugins: {
                                 datalabels: {
                                     color: 'black',

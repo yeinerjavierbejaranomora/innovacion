@@ -112,7 +112,8 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
 
-
+        $historial=[];
+        $proyectada=[]; 
         $mallaCurricular = DB::table('mallaCurricular')
                                 ->where('codprograma', '=', $programa)
                                 ->orderBy('semestre', 'ASC')
@@ -121,6 +122,8 @@ class EstudianteController extends Controller
 
        
         $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
+
+        $materiasPorVer=DB::table('materiasPorVer')->where('codBanner', '=', $idbanner)->get()->toArray();
 
         if(empty($proyectada)){
             $proyectada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
@@ -150,9 +153,8 @@ class EstudianteController extends Controller
 
                 if( $value_historialAcademico['cod_programa']==$programa){
 
-                    
-                
                     if(isset($materias_malla[$value_historialAcademico['idCurso']])){
+
                         $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
 
                         if( $value_historialAcademico['calificacion']>3){
@@ -170,14 +172,13 @@ class EstudianteController extends Controller
             }
         }      
         
-        // $data=array(
-        //     'historial'=>
-        // )
+         $data=array(
+            'historial'=> $historial,
+            'malla'=>$materias_malla,
+            'proyectada'=>$proyectada,
+            'materias por ver'=>
+         );
 
-        dd($historial);
-        exit;
-        
-   
         
 
         return $data;

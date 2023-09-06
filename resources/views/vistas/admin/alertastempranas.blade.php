@@ -116,7 +116,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<script>
+{{-- <script>
     // * Datatable para mostrar los programas de la Facultad *
     var xmlhttp = new XMLHttpRequest();
     var url = "{{ route('facultad.getmalla', ['codigo'=>$codigo]) }}";
@@ -179,7 +179,7 @@
         }
     }
 
-</script>
+</script> --}}
 
 @include('layout.footer')
 

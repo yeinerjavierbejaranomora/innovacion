@@ -331,7 +331,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="activos" style="width: 350px;height: 370px"></canvas>
+                        <canvas id="activos" style="width: 450px;height: 400px"></canvas>
                     </div>
                 </div>
             </div>
@@ -427,8 +427,6 @@
                 </div>
             </div>
         </div>
-
-        <br>
 
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">

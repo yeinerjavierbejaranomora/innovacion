@@ -1373,7 +1373,14 @@
                                     textMargin: 2
                                 },
                                 legend: {
-                                        display: false,                          
+                                    position: 'right',
+                                    labels: {
+                                        usePointStyle: true,
+                                        padding: 20,
+                                        font: {
+                                            size: 12
+                                        }
+                                    }
                                 }
                             },
                         },
@@ -1460,15 +1467,7 @@
                                     formatter: Math.round
                                 },
                                 legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    },
-                                    title: {
-                                        display: false
-                                    },
+                                        display: false,                          
                                 }
                             },
                         },

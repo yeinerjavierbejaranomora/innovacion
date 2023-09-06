@@ -126,7 +126,7 @@ class EstudianteController extends Controller
         }
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
              if(in_array($value_mallaCurricular->codigoCurso,$materias_vistas)){
-                $materias_malla[]=$value_mallaCurricular->codigoCurso;
+                $materias_malla[]=$value_mallaCurricular;
              }
            
         }

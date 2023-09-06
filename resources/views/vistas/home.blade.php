@@ -90,6 +90,10 @@
                                 que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                             </p>
                             <strong>Gráficos disponibles</strong>
+                            <li class="list-group-item"> Total Estudiantes Banner: Este gráfico muestra el total de los estudiantes
+                                y los clásifica en activos e inactivos</li>
+                            <li class="list-group-item"> Estado financiero: Aquí se muestra un resumen del estado financiero (con sello, 
+                                con retención o ASP) de los estudiantes <strong> activos </strong></li>
                         </div>
                     </div>
                 </div>

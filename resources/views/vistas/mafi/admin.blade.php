@@ -353,7 +353,7 @@
                         <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart">
                         <canvas id="primerIngreso" style="width: 400px;height: 350px"></canvas>
                     </div>
                 </div>
@@ -364,7 +364,7 @@
                         <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart">
                         <canvas id="antiguos" style="width: 400px;height: 350px"></canvas>
                     </div>
                 </div>

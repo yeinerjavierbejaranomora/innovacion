@@ -75,7 +75,7 @@
                                                     }
 
                                                     .checkbox-wrapper-49 {
-                                                      --size: 90px;
+                                                      --size: 20px;
                                                     }
 
                                                     .checkbox-wrapper-49 .block {

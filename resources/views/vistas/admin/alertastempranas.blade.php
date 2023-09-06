@@ -47,6 +47,11 @@
 
                 <!-- Area Chart -->
                 <div class="col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            Hola
+                        </div>
+                    </div>
                     <div class="card shadow mb-4">
                         <!-- Card Body -->
                         <div class="card-body">
@@ -56,49 +61,11 @@
                                 </table>
                             </div>
                         </div>
-
-
-                        <div class="col-4 justify-content-center">
-                            <button href="#" class="agregar btn btn-secondary" data-toggle="modal" data-target="#nuevoprograma" data-whatever="modal">Agregar nuevo programa</button>
-                        </div>
                         <br>
                     </div>
                 </div>
-                </div>
-
-                <!--Modal para agragar un programa nuevo-->
-            <div class="modal fade" id="nuevoprograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo programa</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="miForm" method="get" action="#">
-                                @csrf
-                                <div>
-                                    <input type="number" id="id" name="id" hidden>
-                                </div>
-                                <div>
-                                    <label for="recipient-name" class="col-form-label">Codigo del programa</label>
-                                    <input type="text" class="form-control" id="editcodFacultad" name="editcodFacultad">
-                                </div>
-                                <div>
-                                    <label for="message-text" class="col-form-label">Nombre del programa</label>
-                                    <input type="text" class="form-control" id="editnombre" name="editnombre">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="crear btn btn-primary">Crear</button>
-                        </div>
-                    </div>
-                </div>
             </div>
+
 
         </div>
         <!-- /.container-fluid -->

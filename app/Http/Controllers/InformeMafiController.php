@@ -2298,14 +2298,13 @@ class InformeMafiController extends Controller
     public function excelMafiPrograma(Request $request){   
         $periodos = $request->input('periodos');
         $programas = $request->input('programa');
-        dd($programas);
+
         $data = DB::table('datosMafi')
         ->whereIn('periodo', $periodos)
         ->whereIn('codprograma', $programas)
         ->select('*')
         ->get();
 
-        $data = DB::table('datosMafi')->get();
             $dataExcel = $data->map(function ($item) {
                 return collect($item)->except('id')->toArray();
             });

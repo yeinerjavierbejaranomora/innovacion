@@ -9,8 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
 
-
-
     <title>@yield('title')</title>
 
     <!-- ponemos los estilos y complementos necesarios para las paginas -->
@@ -51,9 +49,6 @@
 
     {{--Excel con JS--}}
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"> </script>
-
-    {{--Tooltips--}} 
-    <script> $('[data-toggle="tooltip"]').tooltip(); </script>
 
 </head>
 

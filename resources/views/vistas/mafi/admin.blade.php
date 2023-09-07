@@ -314,7 +314,7 @@
                     <div class="card-header">
                         <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
-                        <span data-toggle="tooltip" id="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner.">
+                        <span data-toggle="tooltip" class="tt" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner.">
                         <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                         </span> 
                     </div>
@@ -518,6 +518,11 @@
                     $('#menuAdmisiones').addClass('activo');
 
                     var tabla = 'Mafi';
+
+                    var tooltip = $('.tt');
+                    tooltip.forEach(t=>{
+                        new bootstrap.Tooltip(t);
+                    });
 
                     // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
                     $(document).ajaxStart(function() {

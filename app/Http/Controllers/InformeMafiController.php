@@ -2288,7 +2288,7 @@ class InformeMafiController extends Controller
         ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
         ->whereIn('dm.periodo', $periodos)
         ->whereIn('p.Facultad', $facultades)
-        ->select('dm.idbanner','dm.primer_apellido','p.Facultad' ,'dm.programa', 'dm.codprograma', 'dm.cadena', 
+        ->select('dm.idbanner','dm.primer_apellido','dm.programa', 'dm.codprograma', 'dm.cadena', 
         'dm.periodo', 'dm.estado', 'dm.tipoestudiante', 'dm.ruta_academica', 'dm.sello', 'dm.operador', 'dm.autorizado_asistir')
         ->get();
 

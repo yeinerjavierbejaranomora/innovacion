@@ -144,7 +144,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Banner-Mafi) </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos-Mafi) </strong></h3>
                 </div>
             </div>
 
@@ -280,10 +280,8 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programasBox">
-                                                    <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <div name="programas" id="programas" class="d-flex flex-column justify-content-between">
-                                                    </div>
+                                                <div name="programas" id="programas" >
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -643,7 +641,12 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
-                    var $checkbox = $label.find('input[type="checkbox"]');
+                    $('#checkboxProgramas:checked').each(
+                        function() {
+                            console.log("El checkbox con valor " + $(this).val() + " está seleccionado");
+                        }
+                    );
+                    /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
                         $label.removeClass('d-none');
@@ -651,7 +654,7 @@
                     } else {
                         $label.addClass('d-none');
                         $checkbox.addClass('d-none');
-                    }
+                    }*/
                 });
             });
 
@@ -750,7 +753,7 @@
             }
 
             function getPeriodos() {
-                var periodosSeleccionados = [];
+                periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
@@ -776,7 +779,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },
@@ -844,9 +847,8 @@
             });
 
             function ExcelBanner(){
-                console.log(programasSeleccionados);
+                console.log(periodosSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
@@ -864,7 +866,6 @@
                             data = ''
                     }
                 }
-
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -879,40 +880,32 @@
                             data = data;
                         }
                         console.log(data);
-                        /**
-                         *
+
                         var newData = [];
-                        var headers = ["Codigo Programa", "Programa", "Meta", "Sello", "% Ejecución"];
+                        var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
 
-                        var col1 = [];
-                        var col2 = [];
-                        var col3 = [];
-                        var col4 = [];
-
-                        Object.keys(data.metas).forEach(meta => {
-                            col1.push(meta);
-                            col2.push(data.nombres[meta]);
-                            col3.push(data.metas[meta]);
-                            col4.push(data.matriculaSello[meta]);
-                        });
-
-                        var porcentaje;
                         newData.push(headers);
-                        for (var i = 0; i < col1.length; i++) {
-                            porcentaje = (((col4[i]) / col3[i]) * 100).toFixed(2);
-                            if (porcentaje > 100) {
-                                porcentaje = 'Meta Superada';
-                            }
-
-                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
-                            newData.push(row);
-                        }
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena,
+                                item.periodo,
+                                item.estado,
+                                item.tipoestudiante,
+                                item.ruta_academica,
+                                item.sello,
+                                item.operador,
+                                item.autorizado_asistir
+                            ];
+                            newData.push(fila);
+                        });
                         var wb = XLSX.utils.book_new();
                         var ws = XLSX.utils.aoa_to_sheet(newData);
                         XLSX.utils.book_append_sheet(wb, ws, "Informe");
-
                         XLSX.writeFile(wb, "informe banner.xlsx");
-                        */
                     }
                 });
             }
@@ -942,7 +935,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });

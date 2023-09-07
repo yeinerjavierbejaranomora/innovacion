@@ -103,15 +103,15 @@
                                         <img class="card-img-center" src="/public/assets/images/informeBanner.JPG" alt="Card image cap" style="width: 100%;">
                                     </div>
                                 </div>
-                                <p>Este módulo corresponde a la información obtenida directamente desde Banner, aquí podrás
+                                <p>Este módulo corresponde a la información obtenida directamente desde Argos, aquí podrás
                                     encontrar un resumen de los datos obtenidos allí y filtrarlos según lo necesites, cabe recalcar
                                     que la información mostrada cuenta con 1 día de retraso puesto que es actualizada diariamente.
                                 </p>
 
                                 <h5><strong class="text-dark">Gráficos disponibles:</strong></h5>
-                                <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Banner</strong>: Este gráfico muestra el total de los estudiantes
-                                    y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Banner" la cual
-                                    genera un Excel con los datos de Banner.</li>
+                                <li class="list-group-item"> <strong class="text-dark">Total Estudiantes Argos</strong>: Este gráfico muestra el total de los estudiantes
+                                    y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción "Descargar datos Argos" la cual
+                                    genera un Excel con los datos de Argos.</li>
                                 <li class="list-group-item"> <strong class="text-dark">Estado financiero</strong>: Aquí se muestra un resumen del estado financiero (con sello,
                                     con retención o ASP) de los estudiantes <strong> activos</strong>.</li>
                                 <li class="list-group-item"> <strong class="text-dark">Estado financiero - Retención</strong>: Aquí se muestra un resumen del estado en plataforma

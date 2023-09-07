@@ -316,7 +316,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <div class="row align-self-end">
+                        <div class="row align-content-end">
                             <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
                                 <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                             </span>

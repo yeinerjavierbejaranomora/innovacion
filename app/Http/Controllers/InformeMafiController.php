@@ -123,6 +123,7 @@ class InformeMafiController extends Controller
      */
     public function estudiantesRetencion($tabla)
     {
+        $tabla = trim($tabla);
         /**
          **SELECT COUNT(autorizado_asistir) AS TOTAL, autorizado_asistir **FROM datosMafi 
          **WHERE sello = 'TIENE RETENCION' 
@@ -156,7 +157,7 @@ class InformeMafiController extends Controller
      */
     public function estudiantesPrimerIngreso($tabla)
     {
-
+        $tabla = trim($tabla);
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -231,7 +232,7 @@ class InformeMafiController extends Controller
 
     public function estudiantesAntiguos($tabla)
     {
-
+        $tabla = trim($tabla);
         $tiposEstudiante = [
             'PRIMER INGRESO',
             'PRIMER INGRESO PSEUDO INGRES',
@@ -302,6 +303,7 @@ class InformeMafiController extends Controller
          * tipoestudiante FROM `datosMafi` 
          * GROUP BY tipoestudiante
          */
+        $tabla = trim($tabla);
         if ($tabla == "Mafi") {
             $tipoEstudiantes = DB::table('datosMafi')
                 ->where('estado', 'Activo')
@@ -331,6 +333,7 @@ class InformeMafiController extends Controller
      */
     public function operadores($tabla)
     {
+        $tabla = trim($tabla);
         if ($tabla == "Mafi") {
             /**
              **SELECT COUNT(operador) AS TOTAL,operador FROM `datosMafi`
@@ -372,7 +375,7 @@ class InformeMafiController extends Controller
 
     public function estudiantesProgramas($tabla)
     {
-
+        $tabla = trim($tabla);
         if ($tabla == 'Mafi') {
             /**
              **SELECT COUNT(codprograma) AS TOTAL, codprograma FROM `datosMafi`

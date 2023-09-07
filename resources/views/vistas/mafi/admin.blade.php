@@ -2226,7 +2226,6 @@
                     var chartMetasTotal;
                     var chartMetas;
 
-
                     function graficoMetas() {
 
                         var url = "{{ route('metas.programa')}}";

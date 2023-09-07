@@ -22,18 +22,21 @@ class AlertasTempranasController extends Controller
         $consultaAlertas = DB::table('alertas_tempranas')
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)
-                        //->orderBy('created_at','desc')
+                        ->orderBy('created_at','desc')
                         ->get();
         return $consultaAlertas;
     }
 
     public function tablaAlertasFacultad(Request $request){
         $periodos = $_POST['periodos'];
-        $programas = $_POST['programas'];
-        $consultaAlertas = DB::table('alertas_tempranas')
-                        ->whereIn('periodo',$periodos)
-                        ->whereIn('codprograma',$programas)
-                        //->orderBy('created_at','desc')
+        $facultades = $_POST['facultad'];
+        //var_dump($facultades);die();
+        $consultaAlertas = DB::table('alertas_tempranas as a')
+                        ->join('programas as p','p.codprograma','=','a.codprograma')
+                        ->select('a.*','p.Facultad')
+                        ->whereIn('a.periodo',$periodos)
+                        ->whereIn('p.codprograma',$facultades)
+                        ->orderBy('a.created_at','desc')
                         ->get();
         return $consultaAlertas;
 

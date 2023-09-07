@@ -1210,7 +1210,6 @@
                             return acumulador + valorActual;
                         }, 0);
 
-                        labels.push('TOTAL');
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
@@ -1459,8 +1458,6 @@
                             return acumulador + valorActual;
                         }, 0);
 
-                        labels.push('TOTAL');
-
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
@@ -1581,8 +1578,6 @@
                         var suma = valores.reduce(function(acumulador, valorActual) {
                             return acumulador + valorActual;
                         }, 0);
-
-                        labels.push('TOTAL');
 
                         // Crear el gráfico circular
                         var ctx = document.getElementById('antiguos').getContext('2d');

@@ -193,6 +193,8 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/programasAct', 'traerProgramas')->name('programasPeriodo.activos');
     /** Traer todos los programas activos */
     Route::post('/home/todosProgramasActivos', 'todosProgramas')->name('todosProgramas.activos');
+    /** Data Excel Mafi */
+    Route::post('/home/dataMafi', 'excelMafi')->name('data.Mafi');
 
 });
 

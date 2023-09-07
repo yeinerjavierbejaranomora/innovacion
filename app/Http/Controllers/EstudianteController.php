@@ -225,7 +225,7 @@ class EstudianteController extends Controller
             foreach ($moodle as $key_moodle => $value_moodle) {
                 dd($value_moodle);
                 exit;
-                if(isset($materias_malla[$value_moodle->codMateria])){
+                if(isset($materias_malla[$value_moodle->codigomateria])){
                     $materias_malla[$value_moodle['idCurso']]['color']="bg-info";
                     $materias_malla[$value_moodle['idCurso']]['cursada']="";
                     $materias_malla[$value_moodle['idCurso']]['por_ver']= "Viendo";

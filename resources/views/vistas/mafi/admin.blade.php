@@ -1210,7 +1210,6 @@
                             return acumulador + valorActual;
                         }, 0);
 
-                        labels.push('TOTAL');
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
@@ -1260,7 +1259,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1450,8 +1458,6 @@
                             return acumulador + valorActual;
                         }, 0);
 
-                        labels.push('TOTAL');
-
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
@@ -1505,7 +1511,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1564,8 +1579,6 @@
                             return acumulador + valorActual;
                         }, 0);
 
-                        labels.push('TOTAL');
-
                         // Crear el gráfico circular
                         var ctx = document.getElementById('antiguos').getContext('2d');
                         chartSelloAntiguos = new Chart(ctx, {
@@ -1619,7 +1632,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]

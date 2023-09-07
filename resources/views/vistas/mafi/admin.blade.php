@@ -1139,14 +1139,15 @@
                                                 size: 12
                                             }
                                         }
-                                    }
-                                },
-                                title: {
+                                    },
+                                    title: {
                                     display: true,
                                     text: 'Total: ' + suma, 
                                     fontSize: 16,
                                     fontStyle: 'bold'
                                 }
+                                },
+                                
                             },
                             plugins: [ChartDataLabels]
                         });

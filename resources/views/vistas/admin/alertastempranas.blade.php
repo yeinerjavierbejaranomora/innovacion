@@ -514,7 +514,7 @@
         $('#colTabla').removeClass('hidden');
         var url, data;
         var table;
-        console.log(periodos);
+        console.log(programasSeleccionados);
     }
 
     function destruirTable() {

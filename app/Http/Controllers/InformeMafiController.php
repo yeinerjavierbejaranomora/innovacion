@@ -2302,6 +2302,7 @@ class InformeMafiController extends Controller
         $data = DB::table('datosMafi')
         ->whereIn('periodo', $periodos)
         ->whereIn('codprograma', $programas)
+        ->select('*')
         ->get();
 
         $data = DB::table('datosMafi')->get();

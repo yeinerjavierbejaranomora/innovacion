@@ -624,6 +624,7 @@
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('#programas');
 
+            
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();

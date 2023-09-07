@@ -95,8 +95,8 @@
     }
 
     .graficos {
-        min-height: 500px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -104,8 +104,8 @@
     }
 
     .graficosBarra {
-        min-height: 500px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,

@@ -197,11 +197,7 @@
                     success: function(data){
                         console.log(data);
 
-                        const materias = {
-                                        AFV21604: {codigo_materia: 'AFV21604', semestre: 5, creditos: 2, ciclo: 1, nombre_materia: 'Cátedra Iberoamericana -Emprendimiento y emprenderismo'},
-                                        // ... (otros objetos)
-                                        UV22609: {codigo_materia: 'UV22609', semestre: 1, creditos: 2, ciclo: 1, nombre_materia: 'Aprendizaje Autónomo digital'}
-                                        };
+                        const materias = data.historial
 
                                         // Convierte el objeto en un array de objetos
                                         const materiasArray = $.map(materias, function(value, key) {

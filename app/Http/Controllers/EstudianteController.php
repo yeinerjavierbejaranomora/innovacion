@@ -136,7 +136,7 @@ class EstudianteController extends Controller
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
-
+        $semestre=0;
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
             $materias_malla[$value_mallaCurricular->codigoCurso]=array(
                 'codigo_materia'=>$value_mallaCurricular->codigoCurso,
@@ -152,6 +152,8 @@ class EstudianteController extends Controller
                 'moodle'=>'',
                
             );
+         
+            $value_mallaCurricular->semestre >= $semestre ? $semestre= $value_mallaCurricular->semestre : $semestre=$semestre;
 
         }
 
@@ -193,9 +195,11 @@ class EstudianteController extends Controller
               
 
                if(isset($materias_malla[$value_materiasPorVer->codMateria])){
-                   
+                   if(empty($materias_malla[$value_materiasPorVer->codMateria]['calificacion'])){
                     $materias_malla[$value_materiasPorVer->codMateria]['cursada']="";
                     $materias_malla[$value_materiasPorVer->codMateria]['por_ver']= "Por ver";
+                   }
+                    
                }
 
              
@@ -209,11 +213,12 @@ class EstudianteController extends Controller
             foreach ($proyectada as $key_proyectada => $value_proyectada) {
              
                if(isset($materias_malla[$value_proyectada->codMateria])){
-                
-                    $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
-                    $materias_malla[$value_proyectada->codMateria]['cursada']="";
-                    $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
-               }
+                    if(empty($materias_malla[$value_proyectada->codMateria]['calificacion'])){
+                        $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
+                        $materias_malla[$value_proyectada->codMateria]['cursada']="";
+                        $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
+                    }
+                }
 
              
             }
@@ -235,18 +240,11 @@ class EstudianteController extends Controller
 
         endif;
 
-
-        dd($materias_malla);
-        exit;
         $data=array(
-            'historial'=> $historial,
-            'malla'=>$materias_malla,
-            'proyectada'=>$proyectada,
-            'materias por ver'=>''
+            'historial'=>$materias_malla,
+            'semestre'=>$semestre
         );
-
-        dd($value_materiasPorVer);
-        exit;
+      
         return $data;
     }
     public function consultaProgramacion()

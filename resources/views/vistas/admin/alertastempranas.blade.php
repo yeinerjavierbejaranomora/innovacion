@@ -305,7 +305,7 @@
                     Generar Reporte
                 </button>
             </div>
-            <div class="row align-content-center" >         
+            <div class="row align-items-center">         
                 <div class="col-11 text-center">
                     <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
                         <div class="card-header">

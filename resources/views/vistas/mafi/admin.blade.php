@@ -279,8 +279,10 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas">
+                                                <div name="programas" id="programasBox">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <div name="programas" id="programas" class="d-flex justify-content-between">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -877,7 +879,7 @@
                         }
                         console.log(data);
                         /**
-                         *   
+                         *
                         var newData = [];
                         var headers = ["Codigo Programa", "Programa", "Meta", "Sello", "% Ejecución"];
 
@@ -1242,7 +1244,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL ESTUDIANTES: ' + suma, 
+                                    text: 'TOTAL ESTUDIANTES: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1250,7 +1252,7 @@
                                     position: 'bottom'
                                 }
                                 },
-                                
+
                             },
                             plugins: [ChartDataLabels]
                         });
@@ -1362,7 +1364,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO: ' + suma, 
+                                    text: 'TOTAL SELLO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1614,7 +1616,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma, 
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1735,7 +1737,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma, 
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',

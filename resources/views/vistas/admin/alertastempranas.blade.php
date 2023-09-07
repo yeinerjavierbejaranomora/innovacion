@@ -535,12 +535,12 @@
             url: "{{ route('alertas.tabla.programa')}}",
             data: data,
             success: function(data) {
+                console.log(data);
                 try {
                     data = parseJSON(data);
                 } catch {
                     data = data;
                 }
-                console.log(data);
                 /*var dataTableData = [];
                 for (const programaKey in data) {
                     if (data.hasOwnProperty(programaKey)) {

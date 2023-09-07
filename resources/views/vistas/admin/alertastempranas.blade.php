@@ -571,7 +571,7 @@
                         },*/
                         {
                             title: 'Programa',
-                            data:'codprograma - programa',
+                            data:'codprograma' + ' - ' + 'programa',
                         },
                         {
                             title: 'Tipo estudiante',

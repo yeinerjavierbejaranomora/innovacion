@@ -55,6 +55,14 @@ class AlertasTempranasController extends Controller
         return $consultaAlertas;
     }
 
-    
+    public function graficaAlertas(){
+        
+        $consulta = DB::table('alertas_tempranas')
+        ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
+        ->groupBy('codprograma')
+        ->get();
+
+        return $consulta;
+    }
 
 }

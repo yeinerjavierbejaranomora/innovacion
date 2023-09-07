@@ -381,7 +381,7 @@
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
                                     <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>

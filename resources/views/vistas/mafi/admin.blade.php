@@ -1324,7 +1324,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('estudiantesPrimerIngreso', ['tabla' => ' ']) }}" + tabla,
+                                url = "{{ route('sello.estudiantes', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
                         }

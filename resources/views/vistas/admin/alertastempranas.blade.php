@@ -306,7 +306,7 @@
                 </button>
             </div>
             <div class="row d-flex align-items-center">         
-                <div class="col-11 text-center">
+                <div class="col text-center">
                     <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
                         <div class="card-header">
                             <div class="row">

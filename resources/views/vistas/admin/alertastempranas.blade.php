@@ -307,7 +307,7 @@
             </div>
             <div class="row d-flex align-items-center mt-3">
                 <div class="col text-center" id="colAlertas">
-                    <div class="card shadow mb-4" style="min-height: 650px; max-height: 650px;">
+                    <div class="card shadow mb-4" style="min-height: 450px; max-height: 450px;">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-2"></div>

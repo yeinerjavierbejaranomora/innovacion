@@ -260,7 +260,8 @@ class EstudianteController extends Controller
             if(!empty($historialAcademico)){
 
                 foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-    
+    dd($value_historialAcademico);
+    exit;
                     if( $value_historialAcademico['cod_programa']==$programa){
                         $semestre++;
                         $historial[]=$materias_malla[$value_historialAcademico['idCurso']];

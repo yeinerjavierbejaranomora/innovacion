@@ -517,11 +517,26 @@
         var table;
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
-                data = {
-                    periodos: periodos,
-                    programas: programasSeleccionados
-                }
+            data = {
+                periodos: periodos,
+                programas: programasSeleccionados
+            }
+            /*var formData = new FormData();
+            formData.append('periodos', periodos);
+            formData.append('programas', programasSeleccionados);*/
         } else {
+            if (facultadesSeleccionadas.length > 0) {
+                url = "{{ route('alertas.tabla.facultad')}}",
+                    data = {
+                        periodos: periodos,
+                        facultad: facultadesSeleccionadas
+                    }
+            } else {
+                url = "{{ route('alertas.tabla')}}",
+                    data = {
+                        periodos: periodos
+                    }
+            }
         }
 
         var datos = $.ajax({

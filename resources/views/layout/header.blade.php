@@ -9,8 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
 
-
-
     <title>@yield('title')</title>
 
     <!-- ponemos los estilos y complementos necesarios para las paginas -->

@@ -246,6 +246,7 @@ class EstudianteController extends Controller
             endif;
 
             $data=array(
+                'info'=>"con datos"
                 'historial'=>$materias_malla,
                 'semestre'=>$semestre
             );
@@ -253,7 +254,9 @@ class EstudianteController extends Controller
             return $data;
 
         else:
-
+            $data=array(
+                'info'=>"sin datos"
+            )
             return NUll;
 
         endif;

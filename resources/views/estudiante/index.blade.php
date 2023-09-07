@@ -196,7 +196,7 @@
                     },
                     success: function(data){
 
-                        if(data)
+                        if(data.info=="con datos")
                         {
                                 console.log(data);
 

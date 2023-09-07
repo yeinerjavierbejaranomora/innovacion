@@ -279,7 +279,7 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas"  class="d-flex flex-column">
+                                                <div name="programas" id="programas">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
@@ -643,11 +643,11 @@
                     var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        $label.removeClass('hidden'); // Mostrar la etiqueta
-                        $checkbox.removeClass('hidden'); // Mostrar el checkbox
+                        $label.css('display', 'block'); // Mostrar la etiqueta
+                        $checkbox.css('display', 'inline-block'); // Mostrar el checkbox
                     } else {
-                        $label.addClass('hidden'); // Ocultar la etiqueta
-                        $checkbox.addClass('hidden'); // Ocultar el checkbox
+                        $label.css('display', 'none'); // Ocultar la etiqueta
+                        $checkbox.css('display', 'none'); // Ocultar el checkbox
                     }
                 });
             });
@@ -840,7 +840,7 @@
                 })
             });
 
-            function ExcelBanner(){
+            function ExcelBanner() {
                 console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     console.log('entra');
@@ -1241,16 +1241,16 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL ESTUDIANTES: ' + suma, 
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL ESTUDIANTES: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
-                                
+
                             },
                             plugins: [ChartDataLabels]
                         });
@@ -1361,14 +1361,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO: ' + suma, 
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1613,14 +1613,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma, 
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1734,14 +1734,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma, 
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]

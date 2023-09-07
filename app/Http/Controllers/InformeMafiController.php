@@ -2282,7 +2282,7 @@ class InformeMafiController extends Controller
 
     public function excelMafiFacultad(Request $request){
         $periodos = $request->input('periodos');
-        $facultades = $request->input('facultad');
+        $facultades = $request->input('idfacultad');
         
         $dataExcel = DB::table('datosMafi as dm')
         ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')

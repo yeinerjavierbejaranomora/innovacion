@@ -52,6 +52,9 @@
     {{--Excel con JS--}}
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"> </script>
 
+    {{--Tooltips--}} 
+    <script> $('[data-toggle="tooltip"]').tooltip(); </script>
+
 </head>
 
 <body id="page-top">

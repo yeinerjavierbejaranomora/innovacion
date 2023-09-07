@@ -2297,7 +2297,7 @@ class InformeMafiController extends Controller
 
     public function excelMafiPrograma(Request $request){   
         $periodos = $request->input('periodos');
-        $programas = $request->input('programas');
+        $programas = $request->input('programa');
         
         $data = DB::table('datosMafi')
         ->whereIn('periodo', $periodos)

@@ -18,4 +18,12 @@ class AlertasTempranasController extends Controller
     public function tablaProgramasP(Request $request){
         var_dump($_POST);die();
     }
+
+    public function tablaProgramasFacultad(Request $request){
+        var_dump($_POST);die();
+    }
+
+    public function tablaProgramas(Request $request){
+        var_dump($_POST);die();
+    }
 }

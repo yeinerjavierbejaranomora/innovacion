@@ -212,18 +212,27 @@
                         }
                         });
 
-                        // Recorre cada elemento del array
-                        $.each(materiasArray, function(index, materia) {
-                            // Accede a los campos de cada materia
-                            const codigo = materia.codigo_materia;
-                            const semestre = materia.semestre;
-                            const ciclo = materia.ciclo;
-                            const nombre = materia.nombre_materia;
+                                            
+                        // Crea la tabla y agrega las filas
+                        const $tabla = $('<table>');
 
-                            // Haz lo que necesites con los campos de la materia
-                            console.log(`Materia: ${codigo}, Semestre: ${semestre}, Ciclo: ${ciclo}, Nombre: ${nombre}`);
+                        // Recorre los semestres y crea las filas
+                        $.each(materiasPorSemestre, function(semestre, materias) {
+                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${semestre}`).attr('colspan', 4));
+                        $tabla.append($filaSemestre);
+
+                        $.each(materias, function(index, materia) {
+                            const $filaMateria = $('<tr>')
+                            .append($('<td>').text(materia.codigo_materia))
+                            .append($('<td>').text(materia.nombre_materia))
+                            .append($('<td>').text(materia.creditos))
+                            .append($('<td>').text(materia.ciclo));
+                            $tabla.append($filaMateria);
+                        });
                         });
 
+                        // Agrega la tabla al documento
+                        $tabla.appendTo('body');
                       
                     }
                 });

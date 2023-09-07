@@ -264,7 +264,7 @@ class EstudianteController extends Controller
                     exit;
                     if( $value_historialAcademico['cod_programa']==$programa){
                         $semestre++;
-                        $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
+                        $historial[]=$value_historialAcademico;
 
                         if( $value_historialAcademico['calificacion']>3){
                             $color='bg-success';

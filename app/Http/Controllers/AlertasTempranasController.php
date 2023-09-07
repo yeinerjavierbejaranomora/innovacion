@@ -23,7 +23,7 @@ class AlertasTempranasController extends Controller
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)
                         ->orderBy('created_at','desc')
-                        ->first();
+                        ->dd();
         var_dump($consultaAlertas);die();
     }
 

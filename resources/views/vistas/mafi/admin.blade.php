@@ -95,8 +95,8 @@
     }
 
     .graficos {
-        min-height: 500px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -104,8 +104,8 @@
     }
 
     .graficosBarra {
-        min-height: 500px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -309,7 +309,7 @@
         </div>
 
         <div class="row justify-content-start mt-5 columnas">
-            <div class="col-md-6 mx-auto text-center" id="colEstudiantes">
+            <div class="col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                     <div class="card-header">
                         <div class="row">
@@ -332,11 +332,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mx-auto text-center " id="colSelloFinanciero">
+            <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body center-chart">
                         <canvas id="activos"></canvas>
@@ -346,9 +355,17 @@
             <div class="col-6 text-center " id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong>
-                        </h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -358,8 +375,17 @@
             <div class=" col-6 text-center " id=" colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body center-chart">
                         <canvas id="primerIngreso"></canvas>

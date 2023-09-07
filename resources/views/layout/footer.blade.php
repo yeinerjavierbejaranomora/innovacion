@@ -24,6 +24,7 @@
 <!-- Font awesome for Icons-->
 <script src="https://kit.fontawesome.com/def3229fdd.js" crossorigin="anonymous"></script>
 
+<!--Tooltip-->
 <script>
     var j = jQuery.noConflict();
     j(document).ready(function() {

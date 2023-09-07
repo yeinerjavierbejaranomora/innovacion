@@ -573,13 +573,12 @@
                             title: 'Programa',
                             render: function ( data, type, row ) {
                             // esto es lo que se va a renderizar como html
-                                return `<b>${row.codprograma}</b> ${row.programa}`;
+                                return `<b>${row.codprograma}</b> - ${row.programa}`;
                             }
                         },
                         {
                             title: 'Tipo estudiante',
                             data: 'tipo_estudiante',
-                            className: 'dt-center'
                         },
                         {
                             title: 'Periodo',
@@ -589,7 +588,6 @@
                         {
                             title: 'Tipo alerta',
                             data: 'tipo',
-                            className: 'dt-center'
                         },
                         {
                             title: 'Descripción',

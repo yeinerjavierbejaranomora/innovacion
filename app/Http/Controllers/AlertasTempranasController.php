@@ -24,7 +24,7 @@ class AlertasTempranasController extends Controller
                         ->whereIn('codprograma',$programas)
                         ->orderBy('created_at','desc')
                         ->get();
-        var_dump($consultaAlertas);die();
+        return $consultaAlertas;
     }
 
     public function tablaAlertasFacultad(Request $request){

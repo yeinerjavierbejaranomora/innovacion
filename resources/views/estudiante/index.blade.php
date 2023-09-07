@@ -196,33 +196,26 @@
                     },
                     success: function(data){
                         console.log(data);
-                        $('#myTabs').empty();
-                        $('#codigo').prop('disabled',false);
+                       
                         data.forEach(function(tab, index) {
-                            // Crear la pestaña
-                            var tabLink = $('<a>')
-                            .addClass('nav-link datos ')
-                            .attr('data-toggle', 'tab')
-                            .attr('data-id',codBanner )
-                            .attr('data-programa',tab.cod_programa)
-                            .attr('data-tap', 'tab' + index)
-                            .attr('href', '#tab' + index)
-                            .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
+                            const materias = {
+                                        AFV21604: {codigo_materia: 'AFV21604', semestre: 5, creditos: 2, ciclo: 1, nombre_materia: 'Cátedra Iberoamericana -Emprendimiento y emprenderismo'},
+                                        // ... (otros objetos)
+                                        UV22609: {codigo_materia: 'UV22609', semestre: 1, creditos: 2, ciclo: 1, nombre_materia: 'Aprendizaje Autónomo digital'}
+                                        };
 
-                            // Agregar la pestaña a la lista de pestañas
-                            $('#myTabs').append($('<li>').append(tabLink));
+                                        // Convierte el objeto en un array de objetos
+                                        const materiasArray = $.map(materias, function(value, key) {
+                                        return value;
+                                        });
 
-                    
+                                        // Ordena el array por el campo "semestre" de menor a mayor
+                                        materiasArray.sort(function(a, b) {
+                                        return a.semestre - b.semestre;
+                                        });
 
-                            // Crear el contenido de la pestaña
-                            var tabContent = $('<div>')
-                            .addClass('tab-pane fade datos')
-                            .attr('id', 'tab' + index)
-                            .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
-
-                            // Agregar el contenido de la pestaña al contenedor
-                            $('.tab-content').append(tabContent);
-                            
+                                        // Ahora el array estará ordenado por semestre de menor a mayor
+                                        console.log(materiasArray);
                         });
 
                         // Agregar el listener para el evento de cambio de pestaña

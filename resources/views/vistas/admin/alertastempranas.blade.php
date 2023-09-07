@@ -532,7 +532,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: '{{ route('alertas.tabla.programa')}}',
+            url: "{{ route('alertas.tabla.programa')}}",
             data: data,
             success: function(data) {
                 try {

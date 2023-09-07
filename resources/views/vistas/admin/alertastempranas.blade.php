@@ -520,7 +520,7 @@
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
             data = {
-                periodos: periodos,
+                periodos: periodosSeleccionados,
                 programas: programasSeleccionados
             }
             /*var formData = new FormData();
@@ -530,13 +530,13 @@
             if (facultadesSeleccionadas.length > 0) {
                 url = "{{ route('alertas.tabla.facultad')}}",
                     data = {
-                        periodos: periodos,
+                        periodos: periodosSeleccionados,
                         facultad: facultadesSeleccionadas
                     }
             } else {
                 url = "{{ route('alertas.tabla')}}",
                     data = {
-                        periodos: periodos
+                        periodos: periodosSeleccionados
                     }
             }
         }

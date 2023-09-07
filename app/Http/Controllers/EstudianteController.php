@@ -112,8 +112,7 @@ class EstudianteController extends Controller
                                 ->orderBy('semestre', 'ASC')
                                 ->get()
                                 ->toArray();
-                                dd( $mallaCurricular);
-                                exit;
+                                
         if(!empty( $mallaCurricular)):
             $proyectada=[];
             $historial=[];

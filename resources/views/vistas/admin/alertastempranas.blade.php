@@ -517,16 +517,28 @@
         var table;
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
-                data = {
-                    periodos: periodos,
-                    programas: programasSeleccionados
-                }
+            data = {
+                periodos: periodos,
+                programas: programasSeleccionados
+            }
+            /*var formData = new FormData();
+            formData.append('periodos', periodos);
+            formData.append('programas', programasSeleccionados);*/
         } else {
+            if (facultadesSeleccionadas.length > 0) {
+                url = "{{ route('alertas.tabla.facultad')}}",
+                    data = {
+                        periodos: periodos,
+                        facultad: facultadesSeleccionadas
+                    }
+            } else {
+                url = "{{ route('alertas.tabla')}}",
+                    data = {
+                        periodos: periodos
+                    }
+            }
         }
 
-        /*var formData = new FormData();
-        formData.append('periodos', periodos);
-        formData.append('programas', programasSeleccionados);*/
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -536,12 +548,12 @@
             data: data,
             success: function(data) {
                 console.log(data);
-                try {
+                /*try {
                     data = parseJSON(data);
                 } catch {
                     data = data;
                 }
-                /*var dataTableData = [];
+                var dataTableData = [];
                 for (const programaKey in data) {
                     if (data.hasOwnProperty(programaKey)) {
                         const programa = data[programaKey];

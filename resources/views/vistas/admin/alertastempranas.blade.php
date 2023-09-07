@@ -527,6 +527,7 @@
         var url, data;
         var table;
         console.log(programasSeleccionados.length);
+        console.log(facultadesSeleccionadas.length);
     }
 
     function destruirTable() {

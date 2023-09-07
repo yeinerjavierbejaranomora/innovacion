@@ -106,7 +106,7 @@ class EstudianteController extends Controller
     {
         $idbanner = $_POST['codBanner'];
         $programa = $_POST['programa'];
-
+        $semestre=0;
         $mallaCurricular = DB::table('mallaCurricular')
                                 ->where('codprograma', '=', $programa)
                                 ->orderBy('semestre', 'ASC')
@@ -115,9 +115,8 @@ class EstudianteController extends Controller
         $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
 
         $historialAcademico = json_decode(file_get_contents($url), true);
-
-                   dd($historialAcademico);     
-                   exit;        
+           
+                   
         if(!empty( $mallaCurricular)):
             $proyectada=[];
             $historial=[];
@@ -143,7 +142,7 @@ class EstudianteController extends Controller
             
             /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
-            $semestre=0;
+           
 
             foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
                 $materias_malla[$value_mallaCurricular->codigoCurso]=array(
@@ -257,9 +256,62 @@ class EstudianteController extends Controller
             return $data;
 
         else:
-            $data=array(
-                'info'=>"sin datos"
-            );
+
+            if(!empty($historialAcademico)){
+
+                foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
+    
+                    if( $value_historialAcademico['cod_programa']==$programa){
+                        $semestre++;
+                        $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
+
+                        if( $value_historialAcademico['calificacion']>3){
+                            $color='bg-success';
+                            $Cursada='aprobada';
+                            $porver='Vista';
+                        }else{
+                            $color='bg-danger';
+                            $Cursada='perdida';
+                            $porver='';
+                        }
+
+
+                        $materias_malla[$value_historialAcademico['idCurso']]]=array(
+                            'codigo_materia'=>$value_historialAcademico['idCurso'],
+                            'semestre'=> $semestre,
+                            'creditos'=>$value_historialAcademico['creditos'],
+                            'ciclo'=>'',
+                            'nombre_materia'=>$$value_historialAcademico['materia'],
+                            'calificacion'=>$value_historialAcademico['calificacion'],
+                            'color'=>$color,
+                            'cursada'=>$Cursada,
+                            'por_ver'=>$porver,
+                            'programada'=>'',
+                            'moodle'=>'',
+                        
+                        );
+
+                       
+                     
+                    }
+    
+                }
+
+                $data=array(
+                    'info'=>"con_datos",
+                    'historial'=>$materias_malla,
+                    'semestre'=>$semestre
+                );
+            }  else{
+
+                $data=array(
+                    'info'=>"sin datos"
+                );
+            }
+
+
+
+           
             return  $data;
 
         endif;

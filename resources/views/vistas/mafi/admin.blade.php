@@ -635,11 +635,11 @@
 
                     console.log(programa);
 
-                    if (programa.includes(query)) {
-                        $label.addClass('hidden'); 
-                    } else {
-                        $label.removeClass('hidden'); 
-                    }
+                    // if (programa.includes(query)) {
+                    //     $label.addClass('hidden'); 
+                    // } else {
+                    //     $label.removeClass('hidden'); 
+                    // }
                 });
             });
 

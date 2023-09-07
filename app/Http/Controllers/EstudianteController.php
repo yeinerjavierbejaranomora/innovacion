@@ -262,7 +262,7 @@ class EstudianteController extends Controller
                 foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
     
                     if( $value_historialAcademico['cod_programa']==$programa){
-                        $semestre= +1;
+                        $semestre++;
                         $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
 
                         if( $value_historialAcademico['calificacion']>3){

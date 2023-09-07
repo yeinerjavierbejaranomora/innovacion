@@ -876,8 +876,7 @@
                             data = data;
                         }
                         console.log(data);
-                        /**
-                         *   
+ 
                         var newData = [];
                         newData.push(headers);
                         data.forEach(function(item) {

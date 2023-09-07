@@ -622,16 +622,16 @@
             });
 
             var buscador = $('#buscadorProgramas');
-            var listaProgramas = $('#programas');
+            var listaProgramas = $('.listaProgramas');
+            var programas = $('#programas');
 
 
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
-                var query = $(this).val().toLowerCase();
-                listaProgramas.find('label').each(function() {
+                var query = $(this).val();
+                programas.find('label').each(function() {
                     var $label = $(this);
-                    console.log($label.val());
-                    var programa = $label.val();
+                    var programa = $label.text();
 
                     console.log(programa);
 

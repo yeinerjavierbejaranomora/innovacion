@@ -1142,7 +1142,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL: ' + suma, 
+                                    text: 'TOTAL ESTUDIANTES: ' + suma, 
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1262,7 +1262,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL: ' + suma, 
+                                    text: 'TOTAL SELLO: ' + suma, 
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1514,7 +1514,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL: ' + suma, 
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma, 
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1635,7 +1635,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL: ' + suma, 
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma, 
                                     font: {
                                             size: 14,
                                             Style: 'bold',

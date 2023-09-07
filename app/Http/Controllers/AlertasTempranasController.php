@@ -14,4 +14,8 @@ class AlertasTempranasController extends Controller
     public function index(){
         return view('vistas.admin.alertastempranas');
     }
+
+    public function tablaProgramasP(){
+        var_dump($_POST);die();
+    }
 }

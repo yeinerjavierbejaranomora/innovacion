@@ -260,8 +260,8 @@ class EstudianteController extends Controller
             if(!empty($historialAcademico)){
 
                 foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-    dd($value_historialAcademico);
-    exit;
+                    dd($value_historialAcademico);
+                    exit;
                     if( $value_historialAcademico['cod_programa']==$programa){
                         $semestre++;
                         $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
@@ -303,7 +303,7 @@ class EstudianteController extends Controller
                     'historial'=>$materias_malla,
                     'semestre'=>$semestre
                 );
-            }  else{
+            } else{
 
                 $data=array(
                     'info'=>"sin datos"
@@ -315,7 +315,7 @@ class EstudianteController extends Controller
            
             return  $data;
 
-        endif;
+        }
 
     }
     public function consultaProgramacion()

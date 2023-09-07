@@ -144,7 +144,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Banner-Mafi) </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos-Mafi) </strong></h3>
                 </div>
             </div>
 
@@ -876,8 +876,10 @@
                             data = data;
                         }
                         console.log(data);
-
+                        
                         var newData = [];
+                        var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
+
                         newData.push(headers);
                         data.forEach(function(item) {
                             var fila = [
@@ -885,7 +887,14 @@
                                 item.primer_apellido,
                                 item.programa,
                                 item.codprograma,
-                                item.cadena
+                                item.cadena,
+                                item.periodo,
+                                item.estado,
+                                item.tipoestudiante,
+                                item.ruta_academica,
+                                item.sello,
+                                item.operador,
+                                item.autorizado_asistir
                             ];
                             newData.push(fila);
                         });

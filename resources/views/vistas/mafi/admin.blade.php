@@ -849,7 +849,6 @@
             function ExcelBanner(){
                 console.log(periodosSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,

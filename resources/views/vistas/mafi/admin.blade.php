@@ -309,7 +309,7 @@
         </div>
 
         <div class="row justify-content-start mt-5 columnas">
-            <div class="col-6 text-center" id="colEstudiantes">
+            <div class="col-md-6 mx-auto text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                     <div class="card-header">
                         <div class="row">
@@ -332,7 +332,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center " id="colSelloFinanciero">
+            <div class="col-md-6 mx-auto text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>

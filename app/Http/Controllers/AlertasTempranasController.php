@@ -15,15 +15,20 @@ class AlertasTempranasController extends Controller
         return view('vistas.admin.alertastempranas');
     }
 
-    public function tablaProgramasP(Request $request){
+    public function tablaAlertasP(Request $request){
+        $periodos = $_POST['periodos'];
+        $programas = $_POST['programas'];
         var_dump($_POST);die();
     }
 
-    public function tablaProgramasFacultad(Request $request){
+    public function tablaAlertasFacultad(Request $request){
+        $periodos = $_POST['periodos'];
+        $programas = $_POST['programas'];
         var_dump($_POST);die();
     }
 
-    public function tablaProgramas(Request $request){
+    public function tablaAlertas(Request $request){
+        $periodos = $_POST['periodos'];
         var_dump($_POST);die();
     }
 }

@@ -355,9 +355,17 @@
             <div class="col-6 text-center " id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong>
-                        </h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <canvas id="retencion"></canvas>
@@ -367,8 +375,17 @@
             <div class=" col-6 text-center " id=" colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body center-chart">
                         <canvas id="primerIngreso"></canvas>

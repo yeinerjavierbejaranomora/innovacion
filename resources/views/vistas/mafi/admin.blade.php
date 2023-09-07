@@ -643,7 +643,7 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
-                    var $checkbox = $label.find('input[type="checkbox"]');
+                    /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
                         $label.removeClass('d-none');
@@ -651,7 +651,7 @@
                     } else {
                         $label.addClass('d-none');
                         $checkbox.addClass('d-none');
-                    }
+                    }*/
                 });
             });
 

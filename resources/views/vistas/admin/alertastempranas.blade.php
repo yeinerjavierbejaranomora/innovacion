@@ -524,12 +524,15 @@
         } else {
         }
 
+        var formData = new FormData();
+        formData.append('periodos': periodos);
+        formData.append('programas': programasSeleccionados);
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: url,
+            url: {{ route('alertas.tabla.programa')}},
             data: data,
             success: function(data) {
                 try {

@@ -222,12 +222,13 @@ class EstudianteController extends Controller
         endif;
 
         if(!empty($moodle)):
-            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
-
-                if(isset($materias_malla[$value_materiasPorVer->codMateria])){
-                    $materias_malla[$value_historialAcademico['idCurso']]['color']="bg-info";
-                    $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
-                    $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Viendo";
+            foreach ($moodle as $key_moodle => $value_moodle) {
+                dd($value_moodle);
+                exit;
+                if(isset($materias_malla[$value_moodle->codMateria])){
+                    $materias_malla[$value_moodle['idCurso']]['color']="bg-info";
+                    $materias_malla[$value_moodle['idCurso']]['cursada']="";
+                    $materias_malla[$value_moodle['idCurso']]['por_ver']= "Viendo";
                 }
  
               

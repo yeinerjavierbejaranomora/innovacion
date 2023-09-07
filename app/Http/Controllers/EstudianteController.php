@@ -117,7 +117,7 @@ class EstudianteController extends Controller
         $historialAcademico = json_decode(file_get_contents($url), true);
            
                    
-        if(!empty( $mallaCurricular)):
+        if(!empty( $mallaCurricular)){
             $proyectada=[];
             $historial=[];
             $proyectada=[]; 
@@ -255,7 +255,7 @@ class EstudianteController extends Controller
         
             return $data;
 
-        else:
+        }else{
 
             if(!empty($historialAcademico)){
 

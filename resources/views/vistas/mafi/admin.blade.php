@@ -797,7 +797,7 @@
             $('#descargarMafi').on('click', function(e) {
                 Swal.fire({
                     title: 'Descargar datos',
-                    text: "Los datos que vas a descargar se encuentran 1 día desactualizados, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -810,9 +810,82 @@
                             title: 'Descargando',
                             icon: 'success'
                         })
+                        ExcelBanner();
                     }
                 })
             });
+
+            function ExcelBanner(){
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('data.Mafi') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('') }}",
+                            data = ''
+                    }
+                }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+                        /**
+                         *   
+                        var newData = [];
+                        var headers = ["Codigo Programa", "Programa", "Meta", "Sello", "% Ejecución"];
+
+                        var col1 = [];
+                        var col2 = [];
+                        var col3 = [];
+                        var col4 = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            col1.push(meta);
+                            col2.push(data.nombres[meta]);
+                            col3.push(data.metas[meta]);
+                            col4.push(data.matriculaSello[meta]);
+                        });
+
+                        var porcentaje;
+                        newData.push(headers);
+                        for (var i = 0; i < col1.length; i++) {
+                            porcentaje = (((col4[i]) / col3[i]) * 100).toFixed(2);
+                            if (porcentaje > 100) {
+                                porcentaje = 'Meta Superada';
+                            }
+
+                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
+                            newData.push(row);
+                        }
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                        */
+                    }
+                });
+            }
 
             $('#seleccionarProgramas').on('click', function(e) {
                 $('#programas input[type="checkbox"]').prop('checked', true);
@@ -2728,9 +2801,6 @@
                         XLSX.writeFile(wb, "Metas.xlsx");
                     }
                 });
-
-
-
             });
 
         });

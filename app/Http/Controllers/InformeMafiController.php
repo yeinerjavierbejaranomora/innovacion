@@ -2268,6 +2268,18 @@ class InformeMafiController extends Controller
         echo json_encode($arreglo);
     }
 
+    public function excelMafi(){
+        $data = DB::table('datosMafi') 
+        ->get();
+
+        $data = DB::table('datosMafi')->get();
+            $dataExcel = $data->map(function ($item) {
+                return collect($item)->except('id')->toArray();
+            });
+
+        return $dataExcel;
+    }
+
 
     /** 
     public function tablaProgramasPeriodos()

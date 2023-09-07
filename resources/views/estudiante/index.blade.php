@@ -213,11 +213,11 @@
                                                     
                                 // Ordena el array primero por "semestre" y luego por "ciclo"
                                 materiasArray.sort(function(a, b) {
-                                if (a.semestre !== b.semestre) {
-                                    return a.semestre - b.semestre;
-                                } else {
-                                    return a.ciclo - b.ciclo;
-                                }
+                                    if (a.semestre !== b.semestre) {
+                                        return a.semestre - b.semestre;
+                                    } else {
+                                        return a.ciclo - b.ciclo;
+                                    }
                                 });
 
                                 // Crea un objeto para agrupar las materias por semestre
@@ -236,7 +236,7 @@
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<table>');
+                                const $tablas = $('<div class="container "><div class="row"> <table>');
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
@@ -266,7 +266,7 @@
                         }
                         if(data.info=="sin_datos"){
 
-                            const $tablas = $('<table>');
+                            const $tablas = $('<div class="container "><div class="row"> <table>');
 
                             const $filaMateria = $('<td>')
                                         .text('En estos momentos no contamos Con información contacta con soporte');
@@ -424,112 +424,6 @@
 
         }
 
-
-        /*function consultaMalla(programa) {
-            var formData = new FormData();
-            // formData.append('codBanner',codBanner);
-            formData.append('programa',programa);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultamalla') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    //console.log(data);
-                    data.forEach(malla => {
-                        $('#contenido').append(renderMalla(malla));
-                    })
-                }
-            });
-        }
-
-        function renderMalla(malla){
-            render = `<tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>`;
-            return render;
-        }
-
-        function consultaHistorial(codBanner) {
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultaHistorial') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
-        function consultaProgramacion(codBanner) {
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultaprogramacion') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
-        function consultaPorVer(codBanner){
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type:'post',
-                data: formData,
-                url: "{{ route('historial.consultaporver') }}",
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function () {
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            })
-        }*/
 
     </script>
     @include('layout.footer')

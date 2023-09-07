@@ -636,15 +636,18 @@
 
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
-                var query = $(this).val();
+                var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
-                    var programa = $label.text();
+                    var etiqueta = $label.text().toLowerCase();
+                    var $checkbox = $label.find('input[type="checkbox"]');
 
-                    if (programa.includes(query)) {
-                        $label.addClass('hidden'); 
+                    if (etiqueta.includes(query)) {
+                        $label.addClass('hidden');
+                        $checkbox.removeClass('hidden');
                     } else {
                         $label.removeClass('hidden'); 
+                        $checkbox.addClass('hidden');
                     }
                 });
             });

@@ -136,7 +136,7 @@ class EstudianteController extends Controller
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
-
+        $semestre=0;
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
             $materias_malla[$value_mallaCurricular->codigoCurso]=array(
                 'codigo_materia'=>$value_mallaCurricular->codigoCurso,
@@ -152,9 +152,12 @@ class EstudianteController extends Controller
                 'moodle'=>'',
                
             );
+         
+            $value_mallaCurricular->semestre >= $semestre ? $semestre= $value_mallaCurricular->semestre : $semestre=$semestre;
 
         }
 
+        dd($semestre);
         if(!empty($historialAcademico)){
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {

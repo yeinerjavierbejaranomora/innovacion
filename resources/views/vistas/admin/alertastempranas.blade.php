@@ -305,25 +305,26 @@
                     Generar Reporte
                 </button>
             </div>
-
-            <div class="col-11 text-center mt-3">
-                <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloAlertas"><strong>Alertas por programa</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Muestra la cantidad de alertas activas por programa" data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
+            <div class="row align-content-center" >         
+                <div class="col-11 text-center">
+                    <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloAlertas"><strong>Alertas por programa</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Muestra la cantidad de alertas activas por programa" data-placement="right">
+                                        <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="graficoAlertas"></canvas>
+                        <div class="card-body">
+                            <canvas id="graficoAlertas"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

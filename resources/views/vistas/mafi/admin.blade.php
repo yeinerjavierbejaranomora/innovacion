@@ -624,12 +624,12 @@
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('#programas');
 
-            
+
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
 
-                $listaProgramas.find('label').each(function() {
+                listaProgramas.find('label').each(function() {
                     var $label = $(this);
                     var $checkbox = $label.find('input[type="checkbox"]');
                     var programa = $checkbox.val().toLowerCase();

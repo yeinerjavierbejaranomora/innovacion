@@ -556,57 +556,65 @@
                     data = data;
                 }
                 console.log(data);
-                /*var dataTableData = [];
-                for (const programaKey in data) {
-                    if (data.hasOwnProperty(programaKey)) {
-                        const programa = data[programaKey];
-                        var rowData = [
-                            programaKey,
-                            programa.programa,
-                            programa.Total,
-                            programa.Sello,
-                            programa.Retencion,
-                        ];
-                        dataTableData.push(rowData);
-                    }
-                }
 
                 table = $('#datatable').DataTable({
-                    "data": dataTableData,
+                    "data": data,
                     'pageLength': 10,
                     "order": [2, 'desc'],
                     "columns": [{
-                            title: 'Código de programa'
+                            title: 'Codigo Banner',
+                            data:'idbanner',
                         },
                         {
-                            title: 'Programa'
+                            title: 'Código de programa',
+                            data: 'codprograma',
                         },
                         {
-                            title: 'Matrículas planeadas',
+                            title: 'Programa',
+                            data:'programa',
+                        },
+                        {
+                            title: 'Tipo estudiante',
+                            data: 'tipo_estudiante',
                             className: 'dt-center'
                         },
                         {
-                            title: 'Con Sello Financiero',
+                            title: 'Periodo',
+                            data: 'periodo'
                             className: 'dt-center'
                         },
                         {
-                            title: 'ASP',
+                            title: 'Tipo alerta',
+                            data: 'tipo'
                             className: 'dt-center'
                         },
                         {
+                            title: 'Descripción',
+                            data:'desccripcion',
+                        },
+                        {
+                            title: 'Activo',
+                            data:'activo',
+                        },
+                        {
+                            title: 'Fecha creación',
+                            data:'created_at',
+                        },
+                        /*{
                             defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
                             title: 'Estudiantes planeados',
                             className: 'dt-center'
                         },
+
                         {
                             defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
                             title: 'Malla Curricular',
                             className: 'dt-center'
-                        },
+                        },*/
                     ]
                 });
 
-                function tablaMalla(tbody, table) {
+                /*function tablaMalla(tbody, table) {
                     $(tbody).on("click", "button.malla", function() {
                         var datos = table.row($(this).parents("tr")).data();
                         var programa = datos[0];

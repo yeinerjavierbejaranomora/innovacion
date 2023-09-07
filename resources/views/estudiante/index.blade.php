@@ -247,7 +247,7 @@ console.log(data.info);
                                             $('<tr>').append(
                                                 $('<th>').text(`Semestre ${currentSemestre}`)
                                                 .attr('colspan', 4)
-                                                .addClass('')
+                                                .addClass(materia.color)
                                                 );
                                         $tablas.append($filaSemestre);
                                     }

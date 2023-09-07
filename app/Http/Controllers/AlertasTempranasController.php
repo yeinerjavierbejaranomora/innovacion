@@ -37,7 +37,7 @@ class AlertasTempranasController extends Controller
                         ->whereIn('a.periodo',$periodos)
                         ->whereIn('p.codprograma',$facultades)
                         ->orderBy('a.created_at','desc')
-                        ->get();
+                        ->toSql();
         return $consultaAlertas;
 
     }

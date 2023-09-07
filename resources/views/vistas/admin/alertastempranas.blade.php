@@ -524,21 +524,24 @@
         } else {
         }
 
+        var formData = new FormData();
+        formData.append('periodos': periodos);
+        formData.append('programas': programasSeleccionados);
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: url,
+            url: {{ route('alertas.tabla.programa')}},
             data: data,
             success: function(data) {
-                console.log(data);
-                /*try {
+                try {
                     data = parseJSON(data);
                 } catch {
                     data = data;
                 }
-                var dataTableData = [];
+                console.log(data);
+                /*var dataTableData = [];
                 for (const programaKey in data) {
                     if (data.hasOwnProperty(programaKey)) {
                         const programa = data[programaKey];

@@ -281,7 +281,6 @@
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programas">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <ul id="resultadosBusqueda"></ul>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -622,29 +621,24 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
-            $('#buscadorProgramas').on('input', function() {
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
 
-                var query = $(this).val();
+            // Agregar un evento de escucha al campo de búsqueda
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
 
-                $.ajax({
-                    headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                    type: 'post',
-                    url: "{{ route('todosProgramas.activos') }}",
-                    cache: false,
-                    contentType: false,
-                    processData: false, 
-                    data: { query: query },
-                    success: function(data) {
-                        $('#resultadosBusqueda').empty();
+                $listaProgramas.find('label').each(function() {
+                    var $label = $(this);
+                    var $checkbox = $label.find('input[type="checkbox"]');
+                    var programa = $checkbox.val().toLowerCase();
 
-                        $.each(data, function(index, programa) {
-                            $('#resultadosBusqueda').append('<li>' + programa.nombre + '</li>');
-                        });
-                    },
-                    error: function(error) {
-                        console.error('Error en la búsqueda AJAX:', error);
+                    if (programa.includes(query)) {
+                        $label.show(); // Mostrar el label si coincide
+                        $checkbox.show(); // Mostrar el checkbox si coincide
+                    } else {
+                        $label.hide(); // Ocultar el label si no coincide
+                        $checkbox.hide(); // Ocultar el checkbox si no coincide
                     }
                 });
             });
@@ -779,7 +773,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" class="listaProgramas" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

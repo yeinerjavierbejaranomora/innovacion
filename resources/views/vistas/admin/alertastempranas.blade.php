@@ -696,10 +696,10 @@
                 } catch {
                     data = data;
                 }
-                var labels = data.data.map(function(elemento) {
+                var labels = data.map(function(elemento) {
                     return elemento.codprograma;
                 });
-                var valores = data.data.map(function(elemento) {
+                var valores = data.map(function(elemento) {
                     return elemento.TOTAL;
                 });
                 var maxValor = Math.max(...valores);
@@ -766,7 +766,7 @@
             }
         });
     }
-    
+
 </script>
 
 

@@ -227,52 +227,29 @@
                         materiasPorSemestre[semestre].push(materia);
                         });
 
+                                                
                         // Crea la tabla y agrega las filas
-                        const $tabla = $('<table>');
+                        const $tablas = $('<table>');
 
-                        // Recorre los semestres y crea las filas
-                        $.each(materiasPorSemestre, function(semestre, materias) {
-                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${semestre}`).attr('colspan', 4));
-                        $tabla.append($filaSemestre);
+                        let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
-                        $.each(materias, function(index, materia) {
-                            const $filaMateria = $('<tr>')
-                            .append($('<td>').text(materia.codigo_materia))
-                            .append($('<td>').text(materia.nombre_materia))
-                            .append($('<td>').text(materia.creditos))
-                            .append($('<td>').text(materia.ciclo));
-                            $tabla.append($filaMateria);
-                        });
+                        // Recorre las materias y crea filas
+                        $.each(materiasArray, function(index, materia) {
+                        if (materia.semestre !== currentSemestre) {
+                            // Si es un nuevo semestre, crea una nueva fila
+                            currentSemestre = materia.semestre;
+                            const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
+                            $tabla.append($filaSemestre);
+                        }
+
+                        // Agrega la materia como una columna en la fila actual
+                        const $filaMateria = $('<td>')
+                            .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
+                        $tabla.children('tr:last').append($filaMateria);
                         });
 
                         // Agrega la tabla al documento
-                        $tabla.appendTo('body');
-
-
-
-                        
-// Crea la tabla y agrega las filas
-const $tablas = $('<table>');
-
-let currentSemestre = null; // Para mantener un seguimiento del semestre actual
-
-// Recorre las materias y crea filas
-$.each(materiasArray, function(index, materia) {
-  if (materia.semestre !== currentSemestre) {
-    // Si es un nuevo semestre, crea una nueva fila
-    currentSemestre = materia.semestre;
-    const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
-    $tabla.append($filaSemestre);
-  }
-
-  // Agrega la materia como una columna en la fila actual
-  const $filaMateria = $('<td>')
-    .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
-  $tabla.children('tr:last').append($filaMateria);
-});
-
-// Agrega la tabla al documento
-$tablas.appendTo('body');
+                        $tablas.appendTo('body');
                       
                     }
                 });

@@ -22,7 +22,7 @@ class AlertasTempranasController extends Controller
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)
                         ->orderBy('created_at','desc')
-                        ->sql();
+                        ->dd();
     }
 
     public function tablaAlertasFacultad(Request $request){

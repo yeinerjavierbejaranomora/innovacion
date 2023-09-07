@@ -198,44 +198,82 @@
                         console.log(data);
 
                         const materias = data.historial
-// Convierte el objeto en un array de objetos
-const materiasArray = $.map(materias, function(value, key) {
-  return value;
-});
+                        // Convierte el objeto en un array de objetos
+                        const materiasArray = $.map(materias, function(value, key) {
+                        return value;
+                        });
 
-// Ordena el array primero por "semestre" y luego por "ciclo"
-materiasArray.sort(function(a, b) {
-  if (a.semestre !== b.semestre) {
-    return a.semestre - b.semestre;
-  } else {
-    return a.ciclo - b.ciclo;
+                                            
+                        // Ordena el array primero por "semestre" y luego por "ciclo"
+                        materiasArray.sort(function(a, b) {
+                        if (a.semestre !== b.semestre) {
+                            return a.semestre - b.semestre;
+                        } else {
+                            return a.ciclo - b.ciclo;
+                        }
+                        });
+
+                        // Crea un objeto para agrupar las materias por semestre
+                        const materiasPorSemestre = {};
+
+                        // Agrupa las materias por semestre
+                        $.each(materiasArray, function(index, materia) {
+                        const semestre = materia.semestre;
+
+                        if (!materiasPorSemestre[semestre]) {
+                            materiasPorSemestre[semestre] = [];
+                        }
+
+                        materiasPorSemestre[semestre].push(materia);
+                        });
+
+                        // Crea la tabla y agrega las filas
+                        const $tabla = $('<table>');
+
+                        // Recorre los semestres y crea las filas
+                        $.each(materiasPorSemestre, function(semestre, materias) {
+                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${semestre}`).attr('colspan', 4));
+                        $tabla.append($filaSemestre);
+
+                        $.each(materias, function(index, materia) {
+                            const $filaMateria = $('<tr>')
+                            .append($('<td>').text(materia.codigo_materia))
+                            .append($('<td>').text(materia.nombre_materia))
+                            .append($('<td>').text(materia.creditos))
+                            .append($('<td>').text(materia.ciclo));
+                            $tabla.append($filaMateria);
+                        });
+                        });
+
+                        // Agrega la tabla al documento
+                        $tabla.appendTo('body');
+
+
+
+                        
+// Crea la tabla y agrega las filas
+const $tabla = $('<table>');
+
+let currentSemestre = null; // Para mantener un seguimiento del semestre actual
+
+// Recorre las materias y crea filas
+$.each(materiasArray, function(index, materia) {
+  if (materia.semestre !== currentSemestre) {
+    // Si es un nuevo semestre, crea una nueva fila
+    currentSemestre = materia.semestre;
+    const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
+    $tabla.append($filaSemestre);
   }
+
+  // Agrega la materia como una columna en la fila actual
+  const $filaMateria = $('<td>')
+    .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
+  $tabla.children('tr:last').append($filaMateria);
 });
 
-                                        // Ahora el array estará ordenado por semestre de menor a mayor
-                                        console.log(materiasArray);
-                       
-                        data.forEach(function(tab, index) {
-                           
-                        });
-
-                        // Agregar el listener para el evento de cambio de pestaña
-                        $('#myTabs a').on('shown.bs.tab', function(event) {
-                            var targetTab = $(event.target).attr('href');
-                            cargarContenido(targetTab); // Llama a la función para cargar contenido
-                        });
-                        /*if(data.homologante != ''){
-                            $('#programas').html('');
-                            data.forEach(programa =>{
-
-                                $('#programas').append(`<li class="nav-item active">
-                                    <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
-                                    </li>`)
-                            })
-                        }else{
-                            $('#programas').html('');
-                            $('#codigo').prop('disabled',false);
-                        }*/
+// Agrega la tabla al documento
+$tabla.appendTo('body');
+                      
                     }
                 });
             });

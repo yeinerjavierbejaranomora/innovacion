@@ -279,7 +279,9 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas"></div>
+                                                <div name="programas" id="programas">
+                                                    <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
+                                                </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
                                                 <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
@@ -619,6 +621,30 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('#programas');
+
+
+            // Agregar un evento de escucha al campo de búsqueda
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+
+                listaProgramas.find('label').each(function() {
+                    var $label = $(this);
+                    var $checkbox = $label.find('input[type="checkbox"]');
+                    var programa = $checkbox.val().toLowerCase();
+
+                    if (programa.includes(query)) {
+                        $label.show(); // Mostrar el label si coincide
+                        $checkbox.show(); // Mostrar el checkbox si coincide
+                    } else {
+                        $label.hide(); // Ocultar el label si no coincide
+                        $checkbox.hide(); // Ocultar el checkbox si no coincide
+                    }
+                });
+            });
+
+
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
@@ -748,7 +774,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" class="listaProgramas" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

@@ -2304,7 +2304,6 @@ class InformeMafiController extends Controller
         ->whereIn('codprograma', $programas)
         ->select('*')
         ->get();
-
             $dataExcel = $data->map(function ($item) {
                 return collect($item)->except('id')->toArray();
             });

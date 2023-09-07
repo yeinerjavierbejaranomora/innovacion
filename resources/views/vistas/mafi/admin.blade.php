@@ -631,16 +631,16 @@
                 console.log(query);
                 listaProgramas.find('label').each(function() {
                     var $label = $(this);
-
                     var $checkbox = $label.find('input[type="checkbox"]');
+                    console.log($label);
                     var programa = $checkbox.val().toLowerCase();
 
                     if (programa.includes(query)) {
-                        $label.show(); // Mostrar el label si coincide
-                        $checkbox.show(); // Mostrar el checkbox si coincide
+                        $label.show(); 
+                        $checkbox.show(); 
                     } else {
-                        $label.hide(); // Ocultar el label si no coincide
-                        $checkbox.hide(); // Ocultar el checkbox si no coincide
+                        $label.hide(); 
+                        $checkbox.hide(); 
                     }
                 });
             });

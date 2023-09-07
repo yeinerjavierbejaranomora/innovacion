@@ -263,6 +263,7 @@
                                     $tablas.children('tr:last').append($filaMateria);
                             $tablas.appendTo('body');
                         }
+                    }
                 });
             });
             

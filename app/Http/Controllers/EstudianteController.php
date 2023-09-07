@@ -239,18 +239,8 @@ class EstudianteController extends Controller
         endif;
 
 
-        dd($materias_malla);
-        exit;
-        $data=array(
-            'historial'=> $historial,
-            'malla'=>$materias_malla,
-            'proyectada'=>$proyectada,
-            'materias por ver'=>''
-        );
-
-        dd($value_materiasPorVer);
-        exit;
-        return $data;
+      
+        return $materias_malla;
     }
     public function consultaProgramacion()
     {

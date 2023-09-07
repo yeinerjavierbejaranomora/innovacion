@@ -18,13 +18,17 @@ class AlertasTempranasController extends Controller
     public function tablaAlertasP(Request $request){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
-        var_dump($_POST);die();
+        $consultaAlertas = DB::table('alertas_tempranas')
+                        ->whereIn('periodo',$periodos)
+                        ->whereIn('codprograma',$programas)
+                        ->orderBy('created_at','desc')
+                        ->sql();
     }
 
     public function tablaAlertasFacultad(Request $request){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
-        var_dump($_POST);die();
+
     }
 
     public function tablaAlertas(Request $request){

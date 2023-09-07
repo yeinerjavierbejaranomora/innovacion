@@ -515,6 +515,7 @@
         $('#colTabla').removeClass('hidden');
         var url, data;
         var table;
+        console.log(programasSeleccionados);
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
             data = {

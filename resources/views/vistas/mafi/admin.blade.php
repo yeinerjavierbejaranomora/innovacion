@@ -1069,7 +1069,6 @@
                             data = ''
                     }
                 }
-                console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1093,8 +1092,6 @@
                         var suma = valores.reduce(function(acumulador, valorActual) {
                             return acumulador + valorActual;
                         }, 0);
-
-                        labels.push('total');
                         // Crear el gráfico circular
                         var ctx = document.getElementById('estudiantes').getContext('2d');
                         chartEstudiantes = new Chart(ctx, {
@@ -1142,8 +1139,15 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'Total: ' + suma, 
+                                    fontSize: 16,
+                                    fontStyle: 'bold'
+                                }
                                 },
+                                
                             },
                             plugins: [ChartDataLabels]
                         });

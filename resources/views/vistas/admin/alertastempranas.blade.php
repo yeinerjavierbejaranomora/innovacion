@@ -513,6 +513,16 @@
     function dataTable(periodos) {
         $('#colTabla').removeClass('hidden');
     }
+
+    function destruirTable() {
+        $('#colTabla').addClass('hidden');
+        if ($.fn.DataTable.isDataTable('#datatable')) {
+            $('#datatable').dataTable().fnDestroy();
+            $('#datatable tbody').empty();
+            $("#datatable tbody").off("click", "button.malla");
+            $("#datatable tbody").off("click", "button.estudiantes");
+        }
+    }
 </script>
 
 

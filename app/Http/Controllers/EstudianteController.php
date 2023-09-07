@@ -193,9 +193,11 @@ class EstudianteController extends Controller
               
 
                if(isset($materias_malla[$value_materiasPorVer->codMateria])){
-                   
+                   if($materias_malla[$value_materiasPorVer->codMateria]['calificacion']==""){
                     $materias_malla[$value_materiasPorVer->codMateria]['cursada']="";
                     $materias_malla[$value_materiasPorVer->codMateria]['por_ver']= "Por ver";
+                   }
+                    
                }
 
              

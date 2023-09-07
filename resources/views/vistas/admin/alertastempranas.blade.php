@@ -580,12 +580,12 @@
                         },
                         {
                             title: 'Periodo',
-                            data: 'periodo'
+                            data: 'periodo',
                             className: 'dt-center'
                         },
                         {
                             title: 'Tipo alerta',
-                            data: 'tipo'
+                            data: 'tipo',
                             className: 'dt-center'
                         },
                         {

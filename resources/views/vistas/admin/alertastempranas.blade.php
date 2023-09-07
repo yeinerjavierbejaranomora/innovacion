@@ -466,7 +466,7 @@
         totalPeriodos = $('#programas input[type="checkbox"]').length;
     }
 
-    /*$('#generarReporte').on('click', function(e) {
+    $('#generarReporte').on('click', function(e) {
         e.preventDefault();
         Contador();
         var periodosSeleccionados = getPeriodos();
@@ -474,14 +474,13 @@
             array[index] = '2023' + periodo;
         });
         if (periodosSeleccionados.length > 0) {
-            console.log(totalProgramas);
+            //console.log(totalProgramas);
             if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                 var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                 programasSeleccionados = [];
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
-                console.log(programasSeleccionados);
             }else{
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -496,22 +495,49 @@
                     facultadesSeleccionadas = [];
                 }
             }
+            destruirTable();
+            Contador();
+            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
+            var periodos = getPeriodos();
+            dataTable(periodos);
         }else{
             programasSeleccionados = [];
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
         }
-    });*/
+    });
 
-    $('#generarReporte').on("click", function(e) {
+    /*$('#generarReporte').on("click", function(e) {
         e.preventDefault();
         destruirTable();
+        Contador();
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
         var periodos = getPeriodos();
         dataTable(periodos);
-    });
+    });*/
 
     function dataTable(periodos) {
         $('#colTabla').removeClass('hidden');
+        var url, data;
+        var table;
+        console.log(programasSeleccionados.length);
+        console.log(facultadesSeleccionadas.length);
+    }
+
+    function destruirTable() {
+        $('#colTabla').addClass('hidden');
+        if ($.fn.DataTable.isDataTable('#datatable')) {
+            $('#datatable').dataTable().fnDestroy();
+            $('#datatable tbody').empty();
+            $("#datatable tbody").off("click", "button.malla");
+            $("#datatable tbody").off("click", "button.estudiantes");
+        }
     }
 </script>
 

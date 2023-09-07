@@ -277,7 +277,7 @@ class EstudianteController extends Controller
                         }
 
 
-                        $materias_malla[$value_historialAcademico['idCurso']]]=array(
+                        $materias_malla[$value_historialAcademico['idCurso']]=array(
                             'codigo_materia'=>$value_historialAcademico['idCurso'],
                             'semestre'=> $semestre,
                             'creditos'=>$value_historialAcademico['creditos'],

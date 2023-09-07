@@ -16,6 +16,9 @@ class AlertasTempranasController extends Controller
     }
 
     public function tablaProgramasP(Request $request){
-        dd($request->all());
+        $periodos = $request->input('periodos');
+        $programas = $request->input('programas');
+
+        var_dump($programas);die();
     }
 }

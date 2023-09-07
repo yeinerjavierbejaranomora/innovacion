@@ -19,10 +19,12 @@ class AlertasTempranasController extends Controller
     public function tablaAlertasP(Request $request){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
-        $consultaAlertas = DB::table('alertas_tempranas')
-                        ->whereIn('periodo',$periodos)
-                        ->whereIn('codprograma',$programas)
-                        ->orderBy('created_at','desc')
+        $consultaAlertas = DB::table('alertas_tempranas as a')
+                        ->join('programas as p','p.codprograma','=','a.codprograma')
+                        ->select('a.*','p.programa')
+                        ->whereIn('a.periodo',$periodos)
+                        ->whereIn('a.codprograma',$programas)
+                        ->orderBy('a.created_at','desc')
                         ->get();
         return $consultaAlertas;
     }
@@ -33,7 +35,7 @@ class AlertasTempranasController extends Controller
         //var_dump($facultades);die();
         $consultaAlertas = DB::table('alertas_tempranas as a')
                         ->join('programas as p','p.codprograma','=','a.codprograma')
-                        ->select('a.*','p.Facultad')
+                        ->select('a.*','p.programa')
                         ->whereIn('a.periodo',$periodos)
                         ->whereIn('p.Facultad',$facultades)
                         ->orderBy('a.created_at','desc')
@@ -44,9 +46,11 @@ class AlertasTempranasController extends Controller
 
     public function tablaAlertas(Request $request){
         $periodos = $_POST['periodos'];
-        $consultaAlertas = DB::table('alertas_tempranas')
-                        ->whereIn('periodo',$periodos)
-                        ->orderBy('created_at','desc')
+        $consultaAlertas = DB::table('alertas_tempranas as a')
+                        ->join('programas as p','p.codprograma','=','a.codprograma')
+                        ->select('a.*','p.programa')
+                        ->whereIn('a.periodo',$periodos)
+                        ->orderBy('a.created_at','desc')
                         ->get();
         return $consultaAlertas;
     }

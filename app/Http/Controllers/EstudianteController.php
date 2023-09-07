@@ -158,6 +158,7 @@ class EstudianteController extends Controller
         }
 
         dd($semestre);
+        exit;
         if(!empty($historialAcademico)){
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {

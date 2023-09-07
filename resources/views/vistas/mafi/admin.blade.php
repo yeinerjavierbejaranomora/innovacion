@@ -939,6 +939,7 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
+                console.log(periodosSeleccionados);
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }

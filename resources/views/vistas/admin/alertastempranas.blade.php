@@ -501,8 +501,8 @@
             periodosSeleccionados.forEach(function(periodo, index, array) {
                 array[index] = '2023' + periodo;
             });
-            var periodos = getPeriodos();
-            dataTable(periodos);
+            //var periodos = getPeriodos();
+            dataTable(periodosSeleccionados);
         }else{
             programasSeleccionados = [];
             facultadesSeleccionadas = [];
@@ -511,10 +511,11 @@
     });
 
 
-    function dataTable(periodos) {
+    function dataTable(periodosSeleccionados) {
         $('#colTabla').removeClass('hidden');
         var url, data;
         var table;
+        console.log(periodosSeleccionados);
         console.log(programasSeleccionados);
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",

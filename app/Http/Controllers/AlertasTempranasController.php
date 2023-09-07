@@ -17,9 +17,9 @@ class AlertasTempranasController extends Controller
     }
 
     public function tablaAlertasP(Request $request){
-        $periodos = $_POST['periodos'];
-        var_dump($periodos);
-        $programas = $_POST['programas'];
+        $periodos = $request->input('periodos');
+        //var_dump($periodos);die();
+        $programas = $request->input('programas');
         $consultaAlertas = DB::table('alertas_tempranas')
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)

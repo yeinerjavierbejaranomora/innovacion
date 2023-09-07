@@ -19,6 +19,6 @@ class AlertasTempranasController extends Controller
         $periodos = $request->input('periodos');
         $programas = $request->input('programas');
 
-        var_dump($programas);die();
+        return $programas;
     }
 }

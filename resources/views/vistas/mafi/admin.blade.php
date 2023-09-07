@@ -876,8 +876,10 @@
                             data = data;
                         }
                         console.log(data);
- 
+                        
                         var newData = [];
+                        var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
+
                         newData.push(headers);
                         data.forEach(function(item) {
                             var fila = [
@@ -885,7 +887,14 @@
                                 item.primer_apellido,
                                 item.programa,
                                 item.codprograma,
-                                item.cadena
+                                item.cadena,
+                                item.periodo,
+                                item.estado,
+                                item.tipoestudiante,
+                                item.ruta_academica,
+                                item.sello,
+                                item.operador,
+                                item.autorizado_asistir
                             ];
                             newData.push(fila);
                         });

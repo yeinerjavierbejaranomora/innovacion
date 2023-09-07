@@ -571,7 +571,10 @@
                         },*/
                         {
                             title: 'Programa',
-                            data:'codprograma' + ' - ' + 'programa',
+                            render: function ( data, type, row ) {
+                            // esto es lo que se va a renderizar como html
+                                return `<b>${row.codprograma}</b> ${row.programa}`;
+                            }
                         },
                         {
                             title: 'Tipo estudiante',

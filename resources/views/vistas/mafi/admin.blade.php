@@ -316,7 +316,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="estudiantes" style="width: 400px;height: 350px"></canvas>
+                        <canvas id="estudiantes"></canvas>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="descargarMafi">Descargar datos Banner</button>
@@ -330,7 +330,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="activos" style="width: 430px;height: 350px"></canvas>
+                        <canvas id="activos"></canvas>
                     </div>
                 </div>
             </div>
@@ -342,7 +342,7 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="retencion""></canvas>
+                        <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
@@ -353,7 +353,7 @@
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
                     <div class="card-body center-chart">
-                        <canvas id="primerIngreso" style="width: 460px;height: 350px"></canvas>
+                        <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
             </div>
@@ -364,7 +364,7 @@
                             <h5 class="tituloPeriodo"><strong></strong></h5>
                         </div>
                         <div class="card-body center-chart">
-                            <canvas id="antiguos" style="width: 460px;height: 350px"></canvas>
+                            <canvas id="antiguos"></canvas>
                         </div>
                     </div>
                 </div>
@@ -1028,7 +1028,7 @@
                                     },
                                     options: {
                                         maintainAspectRatio: false,
-                                        responsive: false,
+                                        responsive: true,
                                         plugins: {
                                             datalabels: {
                                                 color: 'black',
@@ -1135,7 +1135,7 @@
                                     }]
                                 },
                                 options: {
-                                    responsive: false,
+                                    responsive: true,
                                     maintainAspectRatio: false,
                                     plugins: {
                                         datalabels: {
@@ -1375,7 +1375,7 @@
                                 },
                                 options: {
                                     maintainAspectRatio: false,
-                                    responsive: false,
+                                    responsive: true,
                                     layout: {
                                         padding: {
                                             left: 20,
@@ -1488,7 +1488,7 @@
                                 },
                                 options: {
                                     maintainAspectRatio: false,
-                                    responsive: false,
+                                    responsive: true,
                                     layout: {
                                         padding: {
                                             left: 20,

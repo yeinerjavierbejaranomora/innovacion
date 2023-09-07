@@ -30,6 +30,12 @@ class AlertasTempranasController extends Controller
     public function tablaAlertasFacultad(Request $request){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
+        $consultaAlertas = DB::table('alertas_tempranas')
+                        ->whereIn('periodo',$periodos)
+                        ->whereIn('codprograma',$programas)
+                        //->orderBy('created_at','desc')
+                        ->get();
+        return $consultaAlertas;
 
     }
 

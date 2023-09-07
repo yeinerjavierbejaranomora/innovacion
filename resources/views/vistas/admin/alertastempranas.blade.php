@@ -517,6 +517,7 @@
         var table;
         console.log(periodosSeleccionados);
         console.log(programasSeleccionados);
+        console.log(facultadesSeleccionadas);
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
             data = {

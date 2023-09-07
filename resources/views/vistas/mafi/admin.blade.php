@@ -515,7 +515,7 @@
 
             <script>
                 $(document).ready(function() {
-                    $('#tooltip').tooltip(options)
+                    $('[data-toggle="tooltip"]').tooltip();
                     $('#menuAdmisiones').addClass('activo');
 
                     var tabla = 'Mafi';

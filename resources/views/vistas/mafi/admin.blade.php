@@ -282,7 +282,7 @@
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programasBox">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <div name="programas" id="programas" class="d-flex justify-content-between">
+                                                    <div name="programas" id="programas" class="d-flex flex-column justify-content-between">
                                                     </div>
                                                 </div>
                                             </div>

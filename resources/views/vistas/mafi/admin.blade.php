@@ -636,10 +636,8 @@
 
                     if (programa.includes(query)) {
                         $label.show(); 
-                        $checkbox.show(); 
                     } else {
                         $label.hide(); 
-                        $checkbox.hide(); 
                     }
                 });
             });

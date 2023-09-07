@@ -246,7 +246,7 @@ class EstudianteController extends Controller
             endif;
 
             $data=array(
-                'info'=>"con datos"
+                'info'=>"con datos",
                 'historial'=>$materias_malla,
                 'semestre'=>$semestre
             );

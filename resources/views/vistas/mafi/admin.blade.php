@@ -144,7 +144,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos-Mafi) </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Banner-Mafi) </strong></h3>
                 </div>
             </div>
 
@@ -641,15 +641,6 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
-                    $( '#checkboxProgramas' ).on( 'click', function() {
-                        if( $(this).is(':checked') ){
-                            // Hacer algo si el checkbox ha sido seleccionado
-                            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
-                        } else {
-                            // Hacer algo si el checkbox ha sido deseleccionado
-                            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
-                        }
-                    });         
                     /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
@@ -757,7 +748,7 @@
             }
 
             function getPeriodos() {
-                periodosSeleccionados = [];
+                var periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
@@ -851,8 +842,9 @@
             });
 
             function ExcelBanner(){
-                console.log(periodosSeleccionados);
+                console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
@@ -886,8 +878,6 @@
                         console.log(data);
 
                         var newData = [];
-                        var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
-
                         newData.push(headers);
                         data.forEach(function(item) {
                             var fila = [
@@ -895,14 +885,7 @@
                                 item.primer_apellido,
                                 item.programa,
                                 item.codprograma,
-                                item.cadena,
-                                item.periodo,
-                                item.estado,
-                                item.tipoestudiante,
-                                item.ruta_academica,
-                                item.sello,
-                                item.operador,
-                                item.autorizado_asistir
+                                item.cadena
                             ];
                             newData.push(fila);
                         });
@@ -939,7 +922,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                periodosSeleccionados = getPeriodos();
+                var periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });

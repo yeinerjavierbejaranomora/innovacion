@@ -1260,7 +1260,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1505,7 +1514,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1619,7 +1637,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL: ' + suma, 
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]

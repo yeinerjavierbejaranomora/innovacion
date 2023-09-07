@@ -279,7 +279,10 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas"></div>
+                                                <div name="programas" id="programas">
+                                                    <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul id="resultadosBusqueda"></ul>
+                                                </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
                                                 <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
@@ -618,6 +621,34 @@
                 $('div #programas input[type="checkbox"]').prop('disabled', false);
                 $('#generarReporte').prop("disabled", false);
             });
+
+            $('#buscadorProgramas').on('input', function() {
+
+                var query = $(this).val();
+
+                $.ajax({
+                    headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                    type: 'post',
+                    url: "{{ route('todosProgramas.activos') }}",
+                    cache: false,
+                    contentType: false,
+                    processData: false, 
+                    data: { query: query },
+                    success: function(data) {
+                        $('#resultadosBusqueda').empty();
+
+                        $.each(data, function(index, programa) {
+                            $('#resultadosBusqueda').append('<li>' + programa.nombre + '</li>');
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error en la búsqueda AJAX:', error);
+                    }
+                });
+            });
+
 
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];

@@ -198,25 +198,24 @@
                         console.log(data);
 
                         const materias = data.historial
-// Convierte el objeto en un array de objetos
-const materiasArray = $.map(materias, function(value, key) {
-  return value;
-});
+                        // Convierte el objeto en un array de objetos
+                        const materiasArray = $.map(materias, function(value, key) {
+                        return value;
+                        });
 
-// Ordena el array primero por "semestre" y luego por "ciclo"
-materiasArray.sort(function(a, b) {
-  if (a.semestre !== b.semestre) {
-    return a.semestre - b.semestre;
-  } else {
-    return a.ciclo - b.ciclo;
-  }
-});
+                        // Ordena el array primero por "semestre" y luego por "ciclo"
+                        materiasArray.sort(function(a, b) {
+                        if (a.semestre !== b.semestre) {
+                            return a.semestre - b.semestre;
+                        } else {
+                            return a.ciclo - b.ciclo;
+                        }
+                        });
 
-                                        // Ahora el array estará ordenado por semestre de menor a mayor
-                                        console.log(materiasArray);
-                       
-                        data.forEach(function(tab, index) {
-                           
+                        materiasArray.forEach(function(tab, index) {
+
+                            console.log(index)
+
                         });
 
                         // Agregar el listener para el evento de cambio de pestaña

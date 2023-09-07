@@ -641,6 +641,11 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
+                    $('.micheckbox:checked').each(
+                        function() {
+                            console.log("El checkbox con valor " + $(this).val() + " está seleccionado");
+                        }
+                    );
                     /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
@@ -876,7 +881,7 @@
                             data = data;
                         }
                         console.log(data);
-                        
+
                         var newData = [];
                         var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
 

@@ -522,7 +522,7 @@
                     programas: programasSeleccionados
                 }
         } else {
-            if (facultadesSeleccionadas.length > 0) {
+            /*if (facultadesSeleccionadas.length > 0) {
                 url = "{{ route('alertas.tabla.facultad')}}",
                     data = {
                         periodos: periodos,
@@ -533,7 +533,7 @@
                     data = {
                         periodos: periodos
                     }
-            }
+            }*/
         }
 
         var datos = $.ajax({

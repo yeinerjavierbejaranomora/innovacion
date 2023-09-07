@@ -196,13 +196,8 @@
                     },
                     success: function(data){
                         console.log(data);
-                       
-                        data.forEach(function(tab, index) {
-                            const materias = {
-                                        AFV21604: {codigo_materia: 'AFV21604', semestre: 5, creditos: 2, ciclo: 1, nombre_materia: 'Cátedra Iberoamericana -Emprendimiento y emprenderismo'},
-                                        // ... (otros objetos)
-                                        UV22609: {codigo_materia: 'UV22609', semestre: 1, creditos: 2, ciclo: 1, nombre_materia: 'Aprendizaje Autónomo digital'}
-                                        };
+
+                        const materias = data.historial
 
                                         // Convierte el objeto en un array de objetos
                                         const materiasArray = $.map(materias, function(value, key) {
@@ -216,6 +211,9 @@
 
                                         // Ahora el array estará ordenado por semestre de menor a mayor
                                         console.log(materiasArray);
+                       
+                        data.forEach(function(tab, index) {
+                           
                         });
 
                         // Agregar el listener para el evento de cambio de pestaña

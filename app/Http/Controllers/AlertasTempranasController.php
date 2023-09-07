@@ -33,7 +33,7 @@ class AlertasTempranasController extends Controller
         //var_dump($facultades);die();
         $consultaAlertas = DB::table('alertas_tempranas as a')
                         ->join('programas as p','p.codprograma','=','a.codprograma')
-                        ->select('p.*')
+                        ->select('p.*','a.Facultad')
                         ->whereIn('a.periodo',$periodos)
                         ->whereIn('p.codprograma',$facultades)
                         ->orderBy('a.created_at','desc')

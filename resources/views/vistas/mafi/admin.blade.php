@@ -817,20 +817,20 @@
 
             function ExcelBanner(){
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    url = "{{ route('data.Mafi') }}",
+                    url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
                             periodos: periodosSeleccionados
                         }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        url = "{{ route('') }}",
+                        url = "{{ route('data.Mafi.facultad') }}",
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
                     } else {
-                        url = "{{ route('') }}",
+                        url = "{{ route('data.Mafi') }}",
                             data = ''
                     }
                 }

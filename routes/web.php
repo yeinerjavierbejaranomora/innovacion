@@ -195,6 +195,10 @@ Route::controller(InformeMafiController::class)->group(function () {
     Route::post('/home/todosProgramasActivos', 'todosProgramas')->name('todosProgramas.activos');
     /** Data Excel Mafi */
     Route::post('/home/dataMafi', 'excelMafi')->name('data.Mafi');
+    /** Data Excel Mafi por facultad*/
+    Route::post('/home/dataMafiFacultad', 'excelMafiFacultad')->name('data.Mafi.facultad');
+    /** Data Excel Mafi por programa*/
+    Route::post('/home/dataMafiPrograma', 'excelMafiPrograma')->name('data.Mafi.programa');
 
 });
 

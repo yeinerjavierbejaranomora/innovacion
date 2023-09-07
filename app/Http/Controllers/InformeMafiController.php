@@ -2280,6 +2280,38 @@ class InformeMafiController extends Controller
         return $dataExcel;
     }
 
+    public function excelMafiFacultad(Request $request){
+        $periodos = $request->input('periodos');
+        $facultades = $request->input('idfacultad');
+        
+        $dataExcel = DB::table('datosMafi as dm')
+        ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+        ->whereIn('dm.periodo', $periodos)
+        ->whereIn('p.Facultad', $facultades)
+        ->select('dm.idbanner','dm.primer_apellido','p.Facultad' ,'dm.programa', 'dm.codprograma', 'dm.cadena', 
+        'dm.periodo', 'dm.estado', 'dm.tipoestudiante', 'dm.ruta_academica', 'dm.sello', 'dm.operador', 'dm.autorizado_asistir')
+        ->get();
+
+        return $dataExcel;
+    }
+
+    public function excelMafiPrograma(Request $request){   
+        $periodos = $request->input('periodos');
+        $programas = $request->input('programas');
+        
+        $data = DB::table('datosMafi')
+        ->whereIn('periodo', $periodos)
+        ->whereIn('codprograma', $programas)
+        ->get();
+
+        $data = DB::table('datosMafi')->get();
+            $dataExcel = $data->map(function ($item) {
+                return collect($item)->except('id')->toArray();
+            });
+
+        return $dataExcel;
+    }
+
 
     /** 
     public function tablaProgramasPeriodos()

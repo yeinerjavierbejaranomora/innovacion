@@ -171,7 +171,11 @@
     </div>
     <script>
 
+
         $(document).ready(function() {
+
+            	
+            new DataTable('#example');
            
             $(document).on("click",".datos",function(){
                 idbanner=$(this).attr('data-id');
@@ -195,7 +199,7 @@
                         $('#codigo').prop('disabled',true);
                     },
                     success: function(data){
-console.log(data.info);
+
                         if(data.info=="con_datos")
                         {
                                 console.log(data);
@@ -239,7 +243,6 @@ console.log(data.info);
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
 
-                                    console.log(materia);
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
                                         currentSemestre = materia.semestre;
@@ -252,7 +255,7 @@ console.log(data.info);
                                     }
 
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td>')
+                                    const $filaMateria = $('<td style="color:white">')
                                         .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`).addClass(materia.color);
                                     $tablas.children('tr:last').append($filaMateria);
                                 });

@@ -999,10 +999,9 @@
 
             function estadoUsuarioPrograma() {
                 limpiarTitulos();
-                var periodos = getPeriodos();
                 $("#mensaje").empty();
 
-                var periodosArray = Object.values(periodos);
+                var periodosArray = Object.values(periodosSeleccionados);
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
@@ -1024,14 +1023,13 @@
 
             function estadoUsuarioFacultad() {
                 limpiarTitulos();
-                var periodos = getPeriodos();
                 $("#mensaje").empty();
                 var facultadesArray = Object.values(facultadesSeleccionadas);
                 var facultadesFormateadas = facultadesArray.map(function(facultad) {
                     return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
                 }).join(' - ');
 
-                var periodosArray = Object.values(periodos);
+                var periodosArray = Object.values(periodosSeleccionados);
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');

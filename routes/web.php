@@ -426,4 +426,6 @@ Route::controller(AlertasTempranasController::class)->group(function(){
     Route::post('/alertastempranas/tablaAlertasP','tablaAlertasP')->middleware('auth', 'admin')->name('alertas.tabla.programa');
     Route::post('/alertastempranas/tablaAlertasFacultad','tablaAlertasFacultad')->middleware('auth', 'admin')->name('alertas.tabla.facultad');
     Route::post('/alertastempranas/tablaAlertas','tablaAlertas')->middleware('auth', 'admin')->name('alertas.tabla');
+
+    Route::post('/alertastempranas/graficoAlertas','graficaAlertas')->middleware('auth', 'admin')->name('alertas.grafico');
 });

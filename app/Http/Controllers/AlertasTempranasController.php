@@ -35,9 +35,9 @@ class AlertasTempranasController extends Controller
                         ->join('programas as p','p.codprograma','=','a.codprograma')
                         ->select('a.*','p.Facultad')
                         ->whereIn('a.periodo',$periodos)
-                        ->whereIn('p.codprograma',$facultades)
+                        ->whereIn('p.Facultad',$facultades)
                         ->orderBy('a.created_at','desc')
-                        ->toSql();
+                        ->get();
         return $consultaAlertas;
 
     }

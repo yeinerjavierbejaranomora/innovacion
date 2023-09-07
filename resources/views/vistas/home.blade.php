@@ -92,7 +92,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="card-body text-white bg-secondary">
+                        <div class="card-body">
                             <!--Card Body - Módulo Admisiones-->
                             <div id="admisiones" class="content">
                                 <div class="row mb-4">

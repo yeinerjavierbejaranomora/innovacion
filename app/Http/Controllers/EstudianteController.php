@@ -133,6 +133,7 @@ class EstudianteController extends Controller
         
         /*utilizamos la función array_filter() y in_array() para filtrar los elementos de $array1 que existen en $array2. El resultado se almacena en $intersection. Luego, verificamos si $intersection contiene al menos un elemento utilizando count($intersection) > 0.*/
 
+
         foreach ( $mallaCurricular as $key_mallaCurricular => $value_mallaCurricular) {
             $materias_malla[$value_mallaCurricular->codigoCurso]=array(
                 'codigo_materia'=>$value_mallaCurricular->codigoCurso,
@@ -142,6 +143,10 @@ class EstudianteController extends Controller
                 'nombre_materia'=>$value_mallaCurricular->curso,
                 'calificacion'=>"",
                 'color'=>'bg-secondary',
+                'cursada'=>'',
+                'por_ver'=>'Por ver',
+                'programada'=>'',
+                'moodle'=>'',
                
             );
 
@@ -159,11 +164,18 @@ class EstudianteController extends Controller
 
                         if( $value_historialAcademico['calificacion']>3){
                             $color='bg-success';
+                           $Cursada='aprobada';
+                           $porver='Vista';
                         }else{
                             $color='bg-danger';
+                           $Cursada='perdida';
+                           $porver='Por ver';
                         }
                         $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
                         $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
+                        $materias_malla[$value_historialAcademico['idCurso']]['cursada']=$Cursada;
+                        $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= $porver;
+                 
 
                     }
                     
@@ -171,15 +183,19 @@ class EstudianteController extends Controller
 
             }
         }      
-        
-         $data=array(
-            'historial'=> $historial,
-            'malla'=>$materias_malla,
-            'proyectada'=>$proyectada,
-            'materias por ver'=>
-         );
+        if(!empty($materiasPorVer)):
+            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+              dd($value_materiasPorVer);
+              exit;
+            }
+            $data=array(
+                'historial'=> $historial,
+                'malla'=>$materias_malla,
+                'proyectada'=>$proyectada,
+                'materias por ver'=>''
+            );
 
-        
+        endif;
 
         return $data;
     }

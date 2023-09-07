@@ -1185,9 +1185,39 @@
                     var chartRetencion;
 
                     function graficoRetencion() {
-                        var url = '/home/retencionActivos/' + tabla;
-                        $.getJSON(url, function(data) {
+                        var url,data;
 
+                        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                            url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('retencion.activos', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+                        }
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }    
                             var total = data.data.map(function(elemento) {
                                 return elemento.TOTAL;
                             });
@@ -1273,7 +1303,7 @@
                             } else {
                                 $('#colRetencion').removeClass('hidden');
                             }
-                        });
+                        }});
                     }
 
                     /**
@@ -1282,8 +1312,34 @@
                     var chartSelloPrimerIngreso;
 
                     function graficoSelloPrimerIngreso() {
-                        var url = '/home/estudiantesPrimerIngreso/' + tabla;
-                        $.getJSON(url, function(data) {
+                        var url,data;
+
+                        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                            url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('sello.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+                        }
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
                             var labels = [];
                             var valores = [];
 
@@ -1363,15 +1419,41 @@
                             } else {
                                 $('#colPrimerIngreso').removeClass('hidden');
                             }
-                        });
+                        }});
 
                     }
 
                     var chartSelloAntiguos;
 
                     function graficoSelloAntiguos() {
-                        var url = '/home/estudiantesAntiguos/' + tabla;
-                        $.getJSON(url, function(data) {
+                        var url,data;
+
+                        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                            url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('antiguos.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('antiguos.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+                        }
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
                             var labels = [];
                             var valores = [];
                             for (var propiedad in data) {
@@ -1450,7 +1532,7 @@
                             } else {
                                 $('#colAntiguos').removeClass('hidden');
                             }
-                        });
+                        }});
 
                     }
 
@@ -1460,8 +1542,38 @@
                     var chartTipoEstudiante;
 
                     function graficoTipoDeEstudiante() {
-                        var url = '/home/tipoEstudiantes/' + tabla;
-                        $.getJSON(url, function(data) {
+                        var url,data;
+                        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                            url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('tipo.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+                        }
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.tipoestudiante;
                             });
@@ -1537,7 +1649,7 @@
                             } else {
                                 $('#colTipoEstudiantes').removeClass('hidden');
                             }
-                        });
+                        }});
                     }
 
                     /**
@@ -1546,8 +1658,38 @@
                     var chartOperadores;
 
                     function graficoOperadores() {
-                        var url = '/home/operadores/' + tabla;
-                        $.getJSON(url, function(data) {
+                        var url,data;
+                        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                            url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                                data = {
+                                    programa: programasSeleccionados,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('operadores.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+                        }
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.operador;
                             });
@@ -1621,7 +1763,7 @@
                             } else {
                                 $('#colOperadores').removeClass('hidden');
                             }
-                        });
+                        }});
                     }
 
                     /**
@@ -1631,8 +1773,30 @@
                     var chartProgramas;
 
                     function graficoProgramas() {
-                        var url = '/home/estudiantesProgramas/' + tabla;
-                        $.getJSON(url, function(data) {
+                        if (facultadesSeleccionadas.length > 0) {
+                                url = "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
+                                    data = {
+                                        idfacultad: facultadesSeleccionadas,
+                                        periodos: periodosSeleccionados
+                                    }
+                            } else {
+                                url = "{{ route('programas.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                                data = ''
+                            }
+
+                            $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: url,
+                            data: data,
+                            success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.codprograma;
                             });
@@ -1706,873 +1870,7 @@
                             } else {
                                 $('#colProgramas').removeClass('hidden');
                             }
-                        });
-                    }
-
-                    /**
-                     * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
-                     */
-
-                    function graficosporFacultad(facultades, periodos) {
-                        if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                            chartTipoEstudiante || chartOperadores || chartMetas) {
-                            destruirGraficos();
-                            $("#ocultarGraficoProgramas").show();
-
-                            graficoSelloFinancieroPorFacultad(facultades, periodos);
-                            graficoRetencionPorFacultad(facultades, periodos);
-                            graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
-                            graficoTiposDeEstudiantesFacultad(facultades, periodos);
-                            graficoOperadoresFacultad(facultades, periodos);
-                            graficoProgramasFacultad(facultades, periodos);
-                            graficoMetasFacultad(facultades);
-                        }
-                    }
-
-
-                    /**
-                     * Método que genera el gráfico ASP de alguna facultad en específico
-                     */
-                    function graficoRetencionPorFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.autorizado_asistir;
-                                });
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('retencion').getContext('2d');
-                                chartRetencion = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == '') {
-                                                label = 'SIN MARCACIÓN'
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                                    $('#colRetencion').addClass('hidden');
-                                } else {
-                                    $('#colRetencion').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
-                     */
-                    function graficoSelloPrimerIngresoPorFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.sello;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('primerIngreso').getContext('2d');
-                                chartSelloPrimerIngreso = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == 'NO EXISTE') {
-                                                label = 'INACTIVO';
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                                    $('#colPrimerIngreso').addClass('hidden');
-                                } else {
-                                    $('#colPrimerIngreso').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico con los tipos de estudiante por facultad
-                     */
-                    function graficoTiposDeEstudiantesFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.tipoestudiante;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                var maxValor = Math.max(...valores);
-                                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                                var yMax;
-                                if (maxValor < 50) {
-                                    yMax = 100;
-                                } else if (maxValor < 100) {
-                                    yMax = 120;
-                                } else if (maxValor < 500) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                                } else if (maxValor < 1000) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                                } else {
-                                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                                }
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                                chartTipoEstudiante = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            label = label.toUpperCase();
-                                            return label;
-                                        }),
-                                        datasets: [{
-                                            label: 'Tipos de estudiantes',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
-                                            datalabels: {
-                                                anchor: 'end',
-                                                align: 'top',
-                                            }
-                                        }, ]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                max: yMax,
-                                                beginAtZero: true
-                                            }
-                                        },
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'semibold'
-                                                },
-                                                formatter: Math.round
-                                            },
-                                            legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                                    $('#colTipoEstudiantes').addClass('hidden');
-                                } else {
-                                    $('#colTipoEstudiantes').removeClass('hidden');
-                                }
-                            }
-
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
-                     */
-                    function graficoOperadoresFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.operador;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                var maxValor = Math.max(...valores);
-                                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                                var yMax;
-                                if (maxValor < 50) {
-                                    yMax = 100;
-                                } else if (maxValor < 100) {
-                                    yMax = 120;
-                                } else if (maxValor < 500) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                                } else if (maxValor < 1000) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                                } else {
-                                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                                }
-                                var ctx = document.getElementById('operadores').getContext('2d');
-                                chartOperadores = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == '') {
-                                                label = 'IBERO';
-                                            }
-                                            return label;
-                                        }),
-                                        datasets: [{
-                                            label: 'Operadores con mayor cantidad de estudiantes',
-                                            data: valores,
-                                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                            ],
-                                            datalabels: {
-                                                anchor: 'end',
-                                                align: 'top',
-                                            }
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                max: yMax,
-                                                beginAtZero: true
-                                            }
-                                        },
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'semibold'
-                                                },
-                                                formatter: Math.round
-                                            },
-                                            legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                                    $('#colOperadores').addClass('hidden');
-                                } else {
-                                    $('#colOperadores').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
-                     */
-                    function graficoProgramasFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-                            beforeSend: function() {
-                                // Deshabilitar los checkboxes antes de la solicitud AJAX
-                                $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.codprograma;
-                                });
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                var maxValor = Math.max(...valores);
-                                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                                var yMax;
-                                if (maxValor < 50) {
-                                    yMax = 100;
-                                } else if (maxValor < 100) {
-                                    yMax = 120;
-                                } else if (maxValor < 500) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                                } else if (maxValor < 1000) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                                } else {
-                                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                                }
-                                var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                                chartProgramas = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            return label;
-                                        }),
-                                        datasets: [{
-                                            label: 'Operadores con mayor cantidad de estudiantes',
-                                            data: valores,
-                                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                            ],
-                                            datalabels: {
-                                                anchor: 'end',
-                                                align: 'top',
-                                            }
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                max: yMax,
-                                                beginAtZero: true
-                                            }
-                                        },
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'semibold'
-                                                },
-                                                formatter: Math.round
-                                            },
-                                            legend: {
-                                                position: 'bottom',
-                                                labels: {
-
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                                    $('#colProgramas').addClass('hidden');
-                                } else {
-                                    $('#colProgramas').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que limpia la data de los gráficos y después invoca todos los gráficos por los
-                     * programas que seleccione el usuario
-                     */
-                    function graficosporPrograma(programas, periodos) {
-                        if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                            chartTipoEstudiante || chartOperadores) {
-                            destruirGraficos();
-
-                            $("#ocultarGraficoProgramas").hide();
-
-                            grafioSelloFinancieroPorPrograma(programas, periodos);
-                            graficoRetencionPorPrograma(programas, periodos);
-                            graficoSelloPrimerIngresoPorPrograma(programas, periodos);
-                            graficoTiposDeEstudiantesPrograma(programas, periodos);
-                            graficoOperadoresPrograma(programas, periodos);
-                        }
-                    }
-
-                    /**
-                     * Método que genera el gráfico ASP de algún programa en específico
-                     */
-                    function graficoRetencionPorPrograma(programas, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                programa: programas,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.autorizado_asistir;
-                                });
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('retencion').getContext('2d');
-                                chartRetencion = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == '') {
-                                                label = 'SIN MARCACIÓN'
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                                    $('#colRetencion').addClass('hidden');
-                                } else {
-                                    $('#colRetencion').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
-                     */
-                    function graficoSelloPrimerIngresoPorPrograma(programas, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                programa: programas,
-                                periodos: periodos
-                            },
-
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.sello;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('primerIngreso').getContext('2d');
-                                chartSelloPrimerIngreso = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == 'NO EXISTE') {
-                                                label = 'INACTIVO';
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                                    $('#colPrimerIngreso').addClass('hidden');
-                                } else {
-                                    $('#colPrimerIngreso').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico con los tipos de estudiante por programa
-                     */
-                    function graficoTiposDeEstudiantesPrograma(programas, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                programa: programas,
-                                periodos: periodos
-                            },
-
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.tipoestudiante;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                var maxValor = Math.max(...valores);
-                                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                                var yMax;
-                                if (maxValor < 50) {
-                                    yMax = 100;
-                                } else if (maxValor < 100) {
-                                    yMax = 120;
-                                } else if (maxValor < 500) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                                } else if (maxValor < 1000) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                                } else {
-                                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                                }
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                                chartTipoEstudiante = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            label = label.toUpperCase();
-                                            return label;
-                                        }),
-                                        datasets: [{
-                                            label: 'Tipos de estudiantes',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
-                                            datalabels: {
-                                                anchor: 'end',
-                                                align: 'top',
-                                            }
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                max: yMax,
-                                                beginAtZero: true
-                                            }
-                                        },
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'semibold'
-                                                },
-                                                formatter: Math.round
-                                            },
-                                            legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                                    $('#colTipoEstudiantes').addClass('hidden');
-                                } else {
-                                    $('#colTipoEstudiantes').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
-
-                    /**
-                     * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
-                     */
-                    function graficoOperadoresPrograma(programas, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                programa: programas,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.operador;
-                                });
-
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                var maxValor = Math.max(...valores);
-                                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                                var yMax;
-                                if (maxValor < 50) {
-                                    yMax = 100;
-                                } else if (maxValor < 100) {
-                                    yMax = 120;
-                                } else if (maxValor < 500) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                                } else if (maxValor < 1000) {
-                                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                                } else {
-                                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                                }
-                                var ctx = document.getElementById('operadores').getContext('2d');
-                                chartOperadores = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == '') {
-                                                label = 'IBERO';
-                                            }
-                                            return label;
-                                        }),
-                                        datasets: [{
-                                            label: 'Operadores con mayor cantidad de estudiantes',
-                                            data: valores,
-                                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                            ],
-                                            datalabels: {
-                                                anchor: 'end',
-                                                align: 'top',
-                                            }
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                max: yMax,
-                                                beginAtZero: true
-                                            }
-                                        },
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'semibold'
-                                                },
-                                                formatter: Math.round
-                                            },
-                                            legend: {
-                                                position: 'bottom',
-                                                labels: {
-
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                                    $('#colOperadores').addClass('hidden');
-                                } else {
-                                    $('#colOperadores').removeClass('hidden');
-                                }
-                            }
-                        });
+                        }});
                     }
 
                     $('#botonModalOperador').on("click", function(e) {
@@ -2946,7 +2244,6 @@
 
                     var chartMetasTotal;
                     var chartMetas;
-
 
                     function graficoMetas() {
 

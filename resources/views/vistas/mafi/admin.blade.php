@@ -637,7 +637,7 @@
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val();
-                divprogramas.find('label').each(function() {
+                divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var programa = $label.text();
 

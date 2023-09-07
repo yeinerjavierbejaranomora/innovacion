@@ -757,7 +757,7 @@
             }
 
             function getPeriodos() {
-                var periodosSeleccionados = [];
+                periodosSeleccionados = [];
                 var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
@@ -853,7 +853,6 @@
             function ExcelBanner(){
                 console.log(periodosSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
@@ -940,7 +939,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });

@@ -314,7 +314,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 align-middle">
-                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                                <h5 class="align-middle" id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="col-2 slign-content-end">

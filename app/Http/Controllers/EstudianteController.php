@@ -207,8 +207,7 @@ class EstudianteController extends Controller
         if(!empty($proyectada)):
 
             foreach ($proyectada as $key_proyectada => $value_proyectada) {
-                dd($value_proyectada);
-                exit;
+             
                if(isset($materias_malla[$value_proyectada->codMateria])){
                 
                     $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";

@@ -238,10 +238,17 @@ console.log(data.info);
 
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
+
+                                    console.log(materia);
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
                                         currentSemestre = materia.semestre;
-                                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
+                                        const $filaSemestre = 
+                                            $('<tr>').append(
+                                                $('<th>').text(`Semestre ${currentSemestre}`)
+                                                .attr('colspan', 4)
+                                                .addClass('')
+                                                );
                                         $tablas.append($filaSemestre);
                                     }
 
@@ -254,7 +261,8 @@ console.log(data.info);
                                 // Agrega la tabla al documento
                                 $tablas.appendTo('body');
                             
-                        }else{
+                        }
+                        if(data.info=="sin_datos"){
 
                             const $tablas = $('<table>');
 

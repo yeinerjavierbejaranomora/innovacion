@@ -676,6 +676,8 @@
 
     var chartAlertas;
 
+    graficoAlertas();
+
     function graficoAlertas() {
 
         var url = "{{ route('alertas.grafico') }}";

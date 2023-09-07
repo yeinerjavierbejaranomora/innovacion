@@ -203,49 +203,46 @@
                         return value;
                         });
 
-// Ordena el array primero por "semestre" y luego por "ciclo"
-materiasArray.sort(function(a, b) {
-  if (a.semestre !== b.semestre) {
-    return a.semestre - b.semestre;
-  } else {
-    return a.ciclo - b.ciclo;
-  }
-});
+                                            
+                        // Ordena el array primero por "semestre" y luego por "ciclo"
+                        materiasArray.sort(function(a, b) {
+                        if (a.semestre !== b.semestre) {
+                            return a.semestre - b.semestre;
+                        } else {
+                            return a.ciclo - b.ciclo;
+                        }
+                        });
 
-// Crea un objeto para agrupar las materias por semestre
-const materiasPorSemestre = {};
+                        // Crea un objeto para agrupar las materias por semestre
+                        const materiasPorSemestre = {};
 
-// Agrupa las materias por semestre
-$.each(materiasArray, function(index, materia) {
-  const semestre = materia.semestre;
+                        // Agrupa las materias por semestre
+                        $.each(materiasArray, function(index, materia) {
+                        const semestre = materia.semestre;
 
-  if (!materiasPorSemestre[semestre]) {
-    materiasPorSemestre[semestre] = [];
-  }
+                        if (!materiasPorSemestre[semestre]) {
+                            materiasPorSemestre[semestre] = [];
+                        }
 
-  materiasPorSemestre[semestre].push(materia);
-});
+                        materiasPorSemestre[semestre].push(materia);
+                        });
 
-// Crea la tabla y agrega las filas
-const $tabla = $('<table>');
+                        // Crea la tabla y agrega las filas
+                        const $tabla = $('<table>');
 
-// Recorre los semestres y crea las filas
-$.each(materiasPorSemestre, function(semestre, materias) {
-  const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${semestre}`).attr('colspan', 4));
-  $tabla.append($filaSemestre);
+                        // Recorre los semestres y crea las filas
+                        $.each(materiasPorSemestre, function(semestre, materias) {
+                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${semestre}`).attr('colspan', 4));
+                        $tabla.append($filaSemestre);
 
-  $.each(materias, function(index, materia) {
-    const $filaMateria = $('<tr>')
-      .append($('<td>').text(materia.codigo_materia))
-      .append($('<td>').text(materia.nombre_materia))
-      .append($('<td>').text(materia.creditos))
-      .append($('<td>').text(materia.ciclo));
-    $tabla.append($filaMateria);
-  });
-});
-
-// Agrega la tabla al documento
-$tabla.appendTo('body');
+                        $.each(materias, function(index, materia) {
+                            const $filaMateria = $('<tr>')
+                            .append($('<td>').text(materia.codigo_materia))
+                            .append($('<td>').text(materia.nombre_materia))
+                            .append($('<td>').text(materia.creditos))
+                            .append($('<td>').text(materia.ciclo));
+                            $tabla.append($filaMateria);
+                        });
                         });
 
                         // Agrega la tabla al documento

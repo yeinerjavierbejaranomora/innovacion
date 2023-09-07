@@ -137,9 +137,9 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada programa*/
     Route::post('/home/estudiantesPrimerIngresoPrograma/{tabla}', 'primerIngresoEstudiantesPrograma')->middleware('auth')->name('estudiantes.primerIngreso.programa');
     /** Ruta para cargar gráfica de estudiantes antiguos - sello finaciero */
-    Route::get('/home/estudiantesAntiguosFacultad/{tabla}', 'estudiantesAntiguosFacultad')->middleware('auth')->name('antiguos.estudiantes.facultad');
-/** Ruta para cargar gráfica de estudiantes antiguos - sello finaciero */
-Route::get('/home/estudiantesAntiguosPrograma/{tabla}', 'estudiantesAntiguosPrograma')->middleware('auth')->name('antiguos.estudiantes.programa');
+    Route::post('/home/estudiantesAntiguosFacultad/{tabla}', 'estudiantesAntiguosFacultad')->middleware('auth')->name('antiguos.estudiantes.facultad');
+    /** Ruta para cargar gráfica de estudiantes antiguos - sello finaciero */
+    Route::post('/home/estudiantesAntiguosPrograma/{tabla}', 'estudiantesAntiguosPrograma')->middleware('auth')->name('antiguos.estudiantes.programa');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso de cada facultad*/
     Route::post('/home/tiposPrograma/{tabla}', 'tiposEstudiantesPrograma')->middleware('auth')->name('estudiantes.tipo.programa');
     /** Ruta para cargar gráfica de los operadores que mas estudiantes traen por programa */
@@ -417,4 +417,5 @@ Route::controller(EstudianteController::class)->group(function(){
 
 Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
+    Route::post('/alertastempranas/tablaProgramasP','tablaProgramasP')->middleware('auth', 'admin')->name('alertas.tabla.programa');
 });

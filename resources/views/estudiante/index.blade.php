@@ -245,7 +245,7 @@
                         // Agrega la materia como una columna en la fila actual
                         const $filaMateria = $('<td>')
                             .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
-                        $tabla.children('tr:last').append($filaMateria);
+                        $tablas.children('tr:last').append($filaMateria);
                         });
 
                         // Agrega la tabla al documento

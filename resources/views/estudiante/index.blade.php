@@ -252,7 +252,7 @@
 
                         
 // Crea la tabla y agrega las filas
-const $tabla = $('<table>');
+const $tablas = $('<table>');
 
 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
@@ -272,7 +272,7 @@ $.each(materiasArray, function(index, materia) {
 });
 
 // Agrega la tabla al documento
-$tabla.appendTo('body');
+$tablas.appendTo('body');
                       
                     }
                 });

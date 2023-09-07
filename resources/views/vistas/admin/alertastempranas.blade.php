@@ -550,13 +550,13 @@
             url: url,
             data: data,
             success: function(data) {
-                console.log(data);
-                /*try {
+                try {
                     data = parseJSON(data);
                 } catch {
                     data = data;
                 }
-                var dataTableData = [];
+                console.log(data);
+                /*var dataTableData = [];
                 for (const programaKey in data) {
                     if (data.hasOwnProperty(programaKey)) {
                         const programa = data[programaKey];

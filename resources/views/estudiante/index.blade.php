@@ -196,26 +196,26 @@
                     },
                     success: function(data){
                         console.log(data);
-                       
-                        data.forEach(function(tab, index) {
-                            const materias = {
-                                        AFV21604: {codigo_materia: 'AFV21604', semestre: 5, creditos: 2, ciclo: 1, nombre_materia: 'Cátedra Iberoamericana -Emprendimiento y emprenderismo'},
-                                        // ... (otros objetos)
-                                        UV22609: {codigo_materia: 'UV22609', semestre: 1, creditos: 2, ciclo: 1, nombre_materia: 'Aprendizaje Autónomo digital'}
-                                        };
 
-                                        // Convierte el objeto en un array de objetos
-                                        const materiasArray = $.map(materias, function(value, key) {
-                                        return value;
-                                        });
+                        const materias = data.historial
+                        // Convierte el objeto en un array de objetos
+                        const materiasArray = $.map(materias, function(value, key) {
+                        return value;
+                        });
 
-                                        // Ordena el array por el campo "semestre" de menor a mayor
-                                        materiasArray.sort(function(a, b) {
-                                        return a.semestre - b.semestre;
-                                        });
+                        // Ordena el array primero por "semestre" y luego por "ciclo"
+                        materiasArray.sort(function(a, b) {
+                        if (a.semestre !== b.semestre) {
+                            return a.semestre - b.semestre;
+                        } else {
+                            return a.ciclo - b.ciclo;
+                        }
+                        });
 
-                                        // Ahora el array estará ordenado por semestre de menor a mayor
-                                        console.log(materiasArray);
+                        materiasArray.forEach(function(tab, index) {
+
+                            console.log(tab)
+
                         });
 
                         // Agregar el listener para el evento de cambio de pestaña

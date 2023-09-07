@@ -307,13 +307,16 @@
                 </button>
             </div>
 
-            <div class="card-footer d-flex justify-content-end">
-                <div class="mr-3">
-                    <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
+            <div class="card shadow mt-4 hidden" id="colTabla">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!--Datatable-->
+                    <div class="table">
+                        <table id="datatable" class="display" style="width:100%">
+                        </table>
+                    </div>
                 </div>
-                <div class="ml-1">
-                    <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                </div>
+                <br>
             </div>
 
         </div>
@@ -463,7 +466,7 @@
         totalPeriodos = $('#programas input[type="checkbox"]').length;
     }
 
-    $('#generarReporte').on('click', function(e) {
+    /*$('#generarReporte').on('click', function(e) {
         e.preventDefault();
         Contador();
         var periodosSeleccionados = getPeriodos();
@@ -498,7 +501,18 @@
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
         }
+    });*/
+
+    $('#generarReporte').on("click", function(e) {
+        e.preventDefault();
+        destruirTable();
+        var periodos = getPeriodos();
+        dataTable(periodos);
     });
+
+    function dataTable(periodos) {
+        $('#colTabla').removeClass('hidden');
+    }
 </script>
 
 

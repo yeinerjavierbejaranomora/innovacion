@@ -16,7 +16,7 @@ class AlertasTempranasController extends Controller
         return view('vistas.admin.alertastempranas');
     }
 
-    public function tablaAlertasP(Request $request){
+    public function tablaAlertasP(){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
         $consultaAlertas = DB::table('alertas_tempranas as a')
@@ -29,7 +29,7 @@ class AlertasTempranasController extends Controller
         return $consultaAlertas;
     }
 
-    public function tablaAlertasFacultad(Request $request){
+    public function tablaAlertasFacultad(){
         $periodos = $_POST['periodos'];
         $facultades = $_POST['facultad'];
         //var_dump($facultades);die();
@@ -44,7 +44,7 @@ class AlertasTempranasController extends Controller
 
     }
 
-    public function tablaAlertas(Request $request){
+    public function tablaAlertas(){
         $periodos = $_POST['periodos'];
         $consultaAlertas = DB::table('alertas_tempranas as a')
                         ->join('programas as p','p.codprograma','=','a.codprograma')
@@ -54,4 +54,7 @@ class AlertasTempranasController extends Controller
                         ->get();
         return $consultaAlertas;
     }
+
+    
+
 }

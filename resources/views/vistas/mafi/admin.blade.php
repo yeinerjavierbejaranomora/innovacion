@@ -493,13 +493,13 @@
                 </div>
             </div>
 
-            <div class="col-6 text-center " id="colMetas">
+            <div class="col-6 text-center" id="colMetas">
                 <div class="card shadow mb-4 graficosBarra">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
+                                <h5 id="tituloMetas"><strong>Metas periodo activo por programa</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="col-2 text-right">

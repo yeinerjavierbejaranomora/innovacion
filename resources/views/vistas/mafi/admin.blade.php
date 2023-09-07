@@ -630,14 +630,15 @@
                 var query = $(this).val().toLowerCase();
                 listaProgramas.find('label').each(function() {
                     var $label = $(this);
-                    var programa = $label.val().toLowerCase();
+                    console.log($label.val());
+                    var programa = $label.val();
 
                     console.log(programa);
 
                     if (programa.includes(query)) {
-                        $label.show(); 
+                        $label.addClass('hidden'); 
                     } else {
-                        $label.hide(); 
+                        $label.removeClass('hidden'); 
                     }
                 });
             });

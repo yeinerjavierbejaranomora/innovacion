@@ -281,7 +281,7 @@
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programas" >
-                                                    <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">

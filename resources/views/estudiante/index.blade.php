@@ -260,6 +260,7 @@
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
+                                $("#"+tap+"").empty();
                                 // Agrega la tabla al documento
                                 $tablas.appendTo("#"+tap+"");
                             
@@ -271,7 +272,8 @@
                             const $filaMateria = $('<td>')
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
-                            $tablas.appendTo('body');
+                                    $("#"+tap+"").empty();
+                                    $tablas.appendTo("#"+tap+"");
                         }
                     }
                 });

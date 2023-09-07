@@ -311,16 +311,18 @@
         <div class="row justify-content-start mt-5 columnas">
             <div class="col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                    <div class="card-header">
-                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body center-chart">
-                        <div class="row align-content-end">
+                    <div class="card-header row">
+                        <div class="col-9">
+                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                        </div>
+                        <div class="col-3">
                             <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
                                 <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                             </span>
                         </div>
+                    </div>
+                    <div class="card-body center-chart">
                         <canvas id="estudiantes"></canvas>
                     </div>
                     <div class="modal-footer">

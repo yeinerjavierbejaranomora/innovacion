@@ -684,7 +684,7 @@
                      * Método para destruir todos los gráficos
                      */
                     function destruirGraficos() {
-                        [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
+                        [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso,chartSelloAntiguos, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
                     }
 
                     /**
@@ -1024,7 +1024,7 @@
                                         datasets: [{
                                             label: 'Gráfico Circular',
                                             data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)',  'rgba(0, 255, 0, 0.5)']
+                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)']
                                         }]
                                     },
                                     options: {
@@ -1077,14 +1077,14 @@
                     function graficoSelloFinanciero() {
                         var url, data;
                         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                            url = "{{ route('estudiantes.activos.programa') }}",
+                            url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
                                 data = {
                                     programa: programasSeleccionados,
                                     periodos: periodosSeleccionados
                                 }
                         } else {
                             if (facultadesSeleccionadas.length > 0) {
-                                url = "{{ route('estudiantes.activos.facultad') }}",
+                                url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
                                     data = {
                                         idfacultad: facultadesSeleccionadas,
                                         periodos: periodosSeleccionados
@@ -1729,94 +1729,6 @@
                         }
                     }
 
-                    /**
-                     * Método que genera el gráfico de sello financiero de alguna facultad en específico
-                     */
-                    function graficoSelloFinancieroPorFacultad(facultades, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                idfacultad: facultades,
-                                periodos: periodos
-                            },
-
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.sello;
-                                });
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('activos').getContext('2d');
-                                chartEstudiantesActivos = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == 'NO EXISTE') {
-                                                label = 'INACTIVO';
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                                    $('#colSelloFinanciero').addClass('hidden');
-                                } else {
-                                    $('#colSelloFinanciero').removeClass('hidden');
-                                }
-                            }
-                        });
-                    }
 
                     /**
                      * Método que genera el gráfico ASP de alguna facultad en específico
@@ -2297,87 +2209,6 @@
                             graficoTiposDeEstudiantesPrograma(programas, periodos);
                             graficoOperadoresPrograma(programas, periodos);
                         }
-                    }
-
-                    /**
-                     * Método que genera el gráfico de sello financiero de algún programa en específico
-                     */
-                    function grafioSelloFinancieroPorPrograma(programas, periodos) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'post',
-                            url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
-                            data: {
-                                programa: programas,
-                                periodos: periodos
-                            },
-                            success: function(data) {
-                                data = jQuery.parseJSON(data);
-                                var labels = data.data.map(function(elemento) {
-                                    return elemento.sello;
-                                });
-                                var valores = data.data.map(function(elemento) {
-                                    return elemento.TOTAL;
-                                });
-                                // Crear el gráfico circular
-                                var ctx = document.getElementById('activos').getContext('2d');
-                                chartEstudiantesActivos = new Chart(ctx, {
-                                    type: 'pie',
-                                    data: {
-                                        labels: labels.map(function(label, index) {
-                                            if (label == 'NO EXISTE') {
-                                                label = 'INACTIVO';
-                                            }
-                                            label = label.toUpperCase();
-                                            return label + ': ' + valores[index];
-                                        }),
-                                        datasets: [{
-                                            label: 'Gráfico Circular',
-                                            data: valores,
-                                            backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                        }]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        plugins: {
-                                            datalabels: {
-                                                color: 'black',
-                                                font: {
-                                                    weight: 'bold',
-                                                    size: 12
-                                                },
-                                            },
-                                            labels: {
-                                                render: 'percenteaje',
-                                                size: '14',
-                                                fontStyle: 'bolder',
-                                                position: 'outside',
-                                                textMargin: 6
-                                            },
-                                            legend: {
-                                                position: 'right',
-                                                labels: {
-                                                    usePointStyle: true,
-                                                    padding: 20,
-                                                    font: {
-                                                        size: 12
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    },
-                                    plugins: [ChartDataLabels]
-                                });
-                                if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                                    $('#colSelloFinanciero').addClass('hidden');
-                                } else {
-                                    $('#colSelloFinanciero').removeClass('hidden');
-                                }
-                            }
-                        });
                     }
 
                     /**

@@ -449,20 +449,56 @@ class InformeMafiController extends Controller
         $tabla = trim($tabla);
 
         if ($tabla == "Mafi") {
-            /**
-             **SELECT COUNT(dm.sello) AS TOTAL, dm.sello FROM `datosMafi` dm
-             **INNER JOIN programas p ON p.codprograma = dm.programa
-             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-             **GROUP BY dm.sello
-             */
-            $sello = DB::table('datosMafi as dm')
+            // $sello = DB::table('datosMafi as dm')
+            //     ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            //     ->where('dm.estado', 'Activo')
+            //     ->whereIn('dm.periodo', $periodos)
+            //     ->whereIn('p.Facultad', $facultades)
+            //     ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
+            //     ->groupBy('dm.sello')
+            //     ->get();
+
+                $consulta = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-                ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
-                ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
-                ->groupBy('dm.sello')
+                ->where('dm.estado', 'Activo')
+                ->select('dm.sello', 'dm.autorizado_asistir')
                 ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $ASP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $ASP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'ASP' => $ASP,
+                'NO EXISTE' => $Vacio
+            ];
+
         }
 
         if ($tabla == "planeacion") {
@@ -482,8 +518,7 @@ class InformeMafiController extends Controller
         }
 
 
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
+            return $data;  
     }
 
     /**
@@ -795,18 +830,54 @@ class InformeMafiController extends Controller
         $tabla = trim($tabla);
 
         if ($tabla == "Mafi") {
-            /**
-             * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi` 
-             *WHERE programa IN ('') -- Reemplaza con los programas específicos
-             *GROUP BY sello
-             */
-            $sello = DB::table('datosMafi')
+            // $sello = DB::table('datosMafi')
+            //     ->where('estado', 'Activo')
+            //     ->whereIn('periodo', $periodos)
+            //     ->whereIn('codprograma', $programas)
+            //     ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
+            //     ->groupBy('sello')
+            //     ->get();
+
+                $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
+                ->select('sello', 'autorizado_asistir')
                 ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $ASP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $ASP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'ASP' => $ASP,
+                'NO EXISTE' => $Vacio
+            ];
+
         }
 
         if ($tabla == "planeacion") {
@@ -819,8 +890,7 @@ class InformeMafiController extends Controller
                 ->get();
         }
 
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $sello));
+        return $data;
     }
 
     /**

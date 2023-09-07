@@ -60,7 +60,7 @@ class InformeMafiController extends Controller
      */
     public function selloEstudiantesActivos($tabla)
     {
-        $tabla = trim($tabla); 
+        $tabla = trim($tabla);
         if ($tabla == 'Mafi') {
             /**
              * SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
@@ -229,7 +229,8 @@ class InformeMafiController extends Controller
         return $data;
     }
 
-    public function estudiantesAntiguos($tabla){
+    public function estudiantesAntiguos($tabla)
+    {
 
         $tiposEstudiante = [
             'PRIMER INGRESO',
@@ -287,10 +288,7 @@ class InformeMafiController extends Controller
         }
 
         return $data;
-
     }
-
-
 
 
     /**
@@ -458,7 +456,7 @@ class InformeMafiController extends Controller
             //     ->groupBy('dm.sello')
             //     ->get();
 
-                $consulta = DB::table('datosMafi as dm')
+            $consulta = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
@@ -498,7 +496,6 @@ class InformeMafiController extends Controller
                 'ASP' => $ASP,
                 'NO EXISTE' => $Vacio
             ];
-
         }
 
         if ($tabla == "planeacion") {
@@ -518,7 +515,7 @@ class InformeMafiController extends Controller
         }
 
 
-            return $data;  
+        return $data;
     }
 
     /**
@@ -586,23 +583,56 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
         if ($tabla == "Mafi") {
-            /**
-             **SELECT COUNT(dm.sello) AS TOTAL, dm.sello
-             **FROM datosMafi AS dm
-             **JOIN programas AS p ON p.codprograma = dm.programa
-             **WHERE p.Facultad IN ('') -- Reemplaza con las facultades **específicas
-             **AND dm.tipoestudiante = 'PRIMER INGRESO'
-             **GROUP BY dm.sello;
-             */
-            $primerIngreso = DB::table('datosMafi as dm')
+            // $primerIngreso = DB::table('datosMafi as dm')
+            //     ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+            //     ->where('dm.estado', 'Activo')
+            //     ->whereIn('dm.periodo', $periodos)
+            //     ->whereIn('p.Facultad', $facultades)
+            //     ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+            //     ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
+            //     ->groupBy('dm.sello')
+            //     ->get();
+
+            $consulta = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
                 ->where('dm.estado', 'Activo')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('p.Facultad', $facultades)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
-                ->groupBy('dm.sello')
+                ->select('dm.sello', 'dm.autorizado_asistir')
                 ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
         }
 
         if ($tabla == "planeacion") {
@@ -616,9 +646,81 @@ class InformeMafiController extends Controller
                 ->groupBy('dm.sello')
                 ->get();
         }
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
+        return $data;
     }
+
+    public function estudiantesAntiguosFacultad(Request $request, $tabla)
+    {
+
+        $facultades = $request->input('idfacultad');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+        if ($tabla == "Mafi") {
+            $consulta = DB::table('datosMafi as dm')
+                ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
+                ->where('dm.estado', 'Activo')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('p.Facultad', $facultades)
+                ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
+        }
+
+        if ($tabla == "planeacion") {
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
+                ->get();
+        }
+        return $data;
+    }
+
 
     /**
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos, de algunas facultades en específico
@@ -838,7 +940,7 @@ class InformeMafiController extends Controller
             //     ->groupBy('sello')
             //     ->get();
 
-                $consulta = DB::table('datosMafi')
+            $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
@@ -877,7 +979,6 @@ class InformeMafiController extends Controller
                 'ASP' => $ASP,
                 'NO EXISTE' => $Vacio
             ];
-
         }
 
         if ($tabla == "planeacion") {
@@ -961,14 +1062,47 @@ class InformeMafiController extends Controller
              *AND tipoestudiante = 'PRIMER INGRESO'
              *GROUP BY sello;
              */
-            $primerIngreso = DB::table('datosMafi')
+
+                $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
                 ->whereIn('periodo', $periodos)
                 ->whereIn('codprograma', $programas)
                 ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->select(DB::raw('COUNT(sello) AS TOTAL, sello'))
-                ->groupBy('sello')
+                ->select('sello', 'autorizado_asistir')
                 ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
+
         }
 
         if ($tabla == "planeacion") {
@@ -982,10 +1116,89 @@ class InformeMafiController extends Controller
                 ->get();
         }
 
-
-        header("Content-Type: application/json");
-        echo json_encode(array('data' => $primerIngreso));
+        return $data;
     }
+
+    public function estudiantesAntiguosPrograma(Request $request, $tabla)
+    {
+        $programas = $request->input('programa');
+        $periodos = $request->input('periodos');
+        $tabla = trim($tabla);
+
+        $tiposEstudiante = [
+            'PRIMER INGRESO',
+            'PRIMER INGRESO PSEUDO INGRES',
+            'TRANSFERENTE EXTERNO',
+            'TRANSFERENTE EXTERNO (ASISTEN)',
+            'TRANSFERENTE EXTERNO PSEUD ING',
+            'TRANSFERENTE INTERNO',
+        ];
+
+        if ($tabla == "Mafi") {
+            /**
+             * SELECT COUNT(sello) AS TOTAL, sello
+             *FROM datosMafi
+             *WHERE programa IN ('') -- Reemplaza con los programas específicos
+             *AND tipoestudiante = 'PRIMER INGRESO'
+             *GROUP BY sello;
+             */
+
+                $consulta = DB::table('datosMafi')
+                ->where('estado', 'Activo')
+                ->whereIn('periodo', $periodos)
+                ->whereIn('codprograma', $programas)
+                ->whereNotIn('tipoestudiante', $tiposEstudiante)
+                ->select('sello', 'autorizado_asistir')
+                ->get();
+
+            $selloFinanciero = 0;
+            $Retencion = 0;
+            $AFP = 0;
+            $Vacio = 0;
+
+            foreach ($consulta as $dato) {
+                $sello = $dato->sello;
+                $estado = $dato->autorizado_asistir;
+
+                if ($sello == 'TIENE SELLO FINANCIERO') {
+                    $selloFinanciero += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                    $AFP += 1;
+                }
+
+                if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                    $Retencion += 1;
+                }
+
+                if ($sello == 'NO EXISTE') {
+                    $Vacio += 1;
+                }
+            }
+            $data = [
+                'CON SELLO' => $selloFinanciero,
+                'TIENE RETENCION' => $Retencion,
+                'AFP' => $AFP,
+                'INACTIVO' => $Vacio
+            ];
+
+        }
+
+        if ($tabla == "planeacion") {
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->whereIn('tipoestudiante', $tiposEstudiante)
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
+                ->groupBy('dm.sello')
+                ->get();
+        }
+
+        return $data;
+    }
+
 
     /**
      * Método que muestra los 5 tipos de estudiantes con mayor cantidad de datos de los programas seleccionados por el usuario

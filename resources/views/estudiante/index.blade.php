@@ -368,7 +368,7 @@
                         var tabContent = $('<div>')
                         .addClass('tab-pane fade datos')
                         .attr('id', 'tab' + index)
-                        .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
+                        .text(); // Puedes poner un mensaje mientras carga el contenido
 
                         // Agregar el contenido de la pestaña al contenedor
                         $('.tab-content').append(tabContent);

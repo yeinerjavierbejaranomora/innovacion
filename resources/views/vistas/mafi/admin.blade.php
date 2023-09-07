@@ -395,8 +395,17 @@
             <div class="col-6 text-center " id="colAntiguos">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body center-chart">
                         <canvas id="antiguos"></canvas>

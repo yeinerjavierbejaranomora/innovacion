@@ -157,8 +157,6 @@ class EstudianteController extends Controller
 
         }
 
-        dd($semestre);
-        exit;
         if(!empty($historialAcademico)){
 
             foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
@@ -242,9 +240,12 @@ class EstudianteController extends Controller
 
         endif;
 
-
+        $data=array(
+            'historial'=>$materias_malla,
+            'semestre'=>$semestre
+        );
       
-        return $materias_malla;
+        return $data;
     }
     public function consultaProgramacion()
     {

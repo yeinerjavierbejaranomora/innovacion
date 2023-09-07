@@ -183,8 +183,13 @@ class EstudianteController extends Controller
 
             }
         }      
+        dd( $materias_malla);
         if(!empty($materiasPorVer)):
             foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+               if( $materias_malla[$value_materiasPorVer['codMateria']]){
+
+               }
+
               dd($value_materiasPorVer);
               exit;
             }

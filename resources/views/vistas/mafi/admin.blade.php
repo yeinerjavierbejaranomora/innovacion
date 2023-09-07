@@ -1142,7 +1142,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'Total: ' + suma, 
+                                    text: 'TOTAL: ' + suma, 
                                     fontSize: 18,
                                     fontStyle: 'bold',
                                     position: 'bottom'

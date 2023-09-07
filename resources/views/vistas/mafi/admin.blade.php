@@ -314,10 +314,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 class="align-middle" id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
-                            <div class="col-2 slign-content-end">
+                            <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
                                     <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>

@@ -641,6 +641,11 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
+                    $('.micheckbox:checked').each(
+                        function() {
+                            console.log("El checkbox con valor " + $(this).val() + " está seleccionado");
+                        }
+                    );
                     /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
@@ -774,7 +779,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },
@@ -876,7 +881,7 @@
                             data = data;
                         }
                         console.log(data);
-                        
+
                         var newData = [];
                         var headers = ["Id Banner", "Primer Apellido", "Programa", "Codigo programa", "Cadena", "Periodo", "Estado", "Tipo de estudiante", "Ruta académica", "Sello", "Operador", "Autorizado_asistir"];
 

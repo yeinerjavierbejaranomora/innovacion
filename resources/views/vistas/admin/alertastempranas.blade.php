@@ -501,8 +501,8 @@
             periodosSeleccionados.forEach(function(periodo, index, array) {
                 array[index] = '2023' + periodo;
             });
-            var periodos = getPeriodos();
-            dataTable(periodos);
+            //var periodos = getPeriodos();
+            dataTable(periodosSeleccionados);
         }else{
             programasSeleccionados = [];
             facultadesSeleccionadas = [];
@@ -511,7 +511,7 @@
     });
 
 
-    function dataTable(periodos) {
+    function dataTable(periodosSeleccionados) {
         $('#colTabla').removeClass('hidden');
         var url, data;
         var table;

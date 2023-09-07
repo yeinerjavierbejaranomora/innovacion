@@ -281,7 +281,7 @@ class EstudianteController extends Controller
                             'semestre'=> $semestre,
                             'creditos'=>$value_historialAcademico['creditos'],
                             'ciclo'=>'',
-                            'nombre_materia'=>$$value_historialAcademico['materia'],
+                            'nombre_materia'=>$value_historialAcademico['materia'],
                             'calificacion'=>$value_historialAcademico['calificacion'],
                             'color'=>$color,
                             'cursada'=>$Cursada,

@@ -261,7 +261,7 @@
                                 });
 
                                 // Agrega la tabla al documento
-                                $tablas.appendTo('body');
+                                $tablas.appendTo(tap);
                             
                         }
                         if(data.info=="sin_datos"){

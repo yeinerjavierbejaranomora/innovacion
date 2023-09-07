@@ -1438,7 +1438,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('estudiantesAntiguos', ['tabla' => ' ']) }}" + tabla,
+                                url = "{{ route('antiguos.estudiantes', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
                         }

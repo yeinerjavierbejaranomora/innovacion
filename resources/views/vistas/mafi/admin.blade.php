@@ -621,15 +621,23 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
+            periodos();
+            llamadoFunciones();
+            facultades();
+            programas();
+
+
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('.listaProgramas');
-            var programas = $('#programas');
-
+            var divProgramas = $('#programas');
 
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val();
-                programas.find('label').each(function() {
+                divprogramas.find('label').each(function() {
                     var $label = $(this);
                     var programa = $label.text();
 
@@ -643,14 +651,6 @@
                 });
             });
 
-
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
-            periodos();
-            llamadoFunciones();
-            facultades();
-            programas();
 
             /**
              * Llamado a todos los scripts
@@ -773,7 +773,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" class="listaProgramas" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

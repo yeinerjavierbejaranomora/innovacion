@@ -193,7 +193,7 @@ class EstudianteController extends Controller
               
 
                if(isset($materias_malla[$value_materiasPorVer->codMateria])){
-                   if(!empty($materias_malla[$value_materiasPorVer->codMateria]['calificacion'])){
+                   if(empty($materias_malla[$value_materiasPorVer->codMateria]['calificacion'])){
                     $materias_malla[$value_materiasPorVer->codMateria]['cursada']="";
                     $materias_malla[$value_materiasPorVer->codMateria]['por_ver']= "Por ver";
                    }
@@ -211,11 +211,12 @@ class EstudianteController extends Controller
             foreach ($proyectada as $key_proyectada => $value_proyectada) {
              
                if(isset($materias_malla[$value_proyectada->codMateria])){
-                
-                    $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
-                    $materias_malla[$value_proyectada->codMateria]['cursada']="";
-                    $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
-               }
+                    if(empty($materias_malla[$value_proyectada->codMateria]['calificacion'])){
+                        $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
+                        $materias_malla[$value_proyectada->codMateria]['cursada']="";
+                        $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
+                    }
+                }
 
              
             }
@@ -238,18 +239,8 @@ class EstudianteController extends Controller
         endif;
 
 
-        dd($materias_malla);
-        exit;
-        $data=array(
-            'historial'=> $historial,
-            'malla'=>$materias_malla,
-            'proyectada'=>$proyectada,
-            'materias por ver'=>''
-        );
-
-        dd($value_materiasPorVer);
-        exit;
-        return $data;
+      
+        return $materias_malla;
     }
     public function consultaProgramacion()
     {

@@ -816,6 +816,7 @@
             });
 
             function ExcelBanner(){
+                console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {

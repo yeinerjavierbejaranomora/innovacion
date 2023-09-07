@@ -123,7 +123,6 @@
         justify-content: center;
         align-items: center;
     }
-
 </style>
 <!--  creamos el contenido principal body -->
 
@@ -301,11 +300,35 @@
 
             </div>
 
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center mb-2">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
+            <div class="row align-items-center">         
+                <div class="col-11 text-center">
+                    <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloAlertas"><strong>Alertas por programa</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Muestra la cantidad de alertas activas por programa" data-placement="right">
+                                        <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="graficoAlertas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="card shadow mt-4 hidden" id="colTabla">
                 <!-- Card Body -->
@@ -355,15 +378,16 @@
     periodos();
     facultades();
     programas();
+
     function periodos() {
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-            , url: "{{ route('programas.activos') }}"
-            , method: 'post'
-            , async: false
-            , success: function(data) {
+            },
+            url: "{{ route('programas.activos') }}",
+            method: 'post',
+            async: false,
+            success: function(data) {
                 data.forEach(periodo => {
                     if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                         $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
@@ -397,32 +421,32 @@
         });
     }
 
-    function programas(){
+    function programas() {
         $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('todosProgramas.activos') }}",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(datos) {
-                    if (datos != null) {
-                        try {
-                            datos = jQuery.parseJSON(datos);
-                        } catch {
-                            datos = datos;
-                        }
-                        $.each(datos, function(key, value) {
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                        });
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: "{{ route('todosProgramas.activos') }}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(datos) {
+                if (datos != null) {
+                    try {
+                        datos = jQuery.parseJSON(datos);
+                    } catch {
+                        datos = datos;
                     }
-                },
-                error: function() {
-                    $('#programas').append('<h5>No hay programas</h5>')
+                    $.each(datos, function(key, value) {
+                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                    });
                 }
-            })
+            },
+            error: function() {
+                $('#programas').append('<h5>No hay programas</h5>')
+            }
+        })
     }
 
     $('#deshacerProgramas').on('click', function(e) {
@@ -481,7 +505,7 @@
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
-            }else{
+            } else {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                     programasSeleccionados = [];
@@ -490,7 +514,7 @@
                         facultadesSeleccionadas.push($(this).val());
                     });
                     console.log(facultadesSeleccionadas);
-                }else{
+                } else {
                     programasSeleccionados = [];
                     facultadesSeleccionadas = [];
                 }
@@ -503,7 +527,7 @@
             });
             //var periodos = getPeriodos();
             dataTable(periodosSeleccionados);
-        }else{
+        } else {
             programasSeleccionados = [];
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
@@ -520,10 +544,10 @@
         console.log(facultadesSeleccionadas);
         if (programasSeleccionados.length > 0) {
             url = "{{ route('alertas.tabla.programa')}}",
-            data = {
-                periodos: periodosSeleccionados,
-                programas: programasSeleccionados
-            }
+                data = {
+                    periodos: periodosSeleccionados,
+                    programas: programasSeleccionados
+                }
             /*var formData = new FormData();
             formData.append('periodos', periodos);
             formData.append('programas', programasSeleccionados);*/
@@ -563,7 +587,7 @@
                     "order": [2, 'desc'],
                     "columns": [{
                             title: 'Codigo Banner',
-                            data:'idbanner',
+                            data: 'idbanner',
                         },
                         /*{
                             title: 'Código de programa',
@@ -571,8 +595,8 @@
                         },*/
                         {
                             title: 'Programa',
-                            render: function ( data, type, row ) {
-                            // esto es lo que se va a renderizar como html
+                            render: function(data, type, row) {
+                                // esto es lo que se va a renderizar como html
                                 return `<b>${row.codprograma}</b> - ${row.programa}`;
                             }
                         },
@@ -591,15 +615,15 @@
                         },
                         {
                             title: 'Descripción',
-                            data:'desccripcion',
+                            data: 'desccripcion',
                         },
                         {
                             title: 'Activo',
-                            data:'activo',
+                            data: 'activo',
                         },
                         {
                             title: 'Fecha creación',
-                            data:'created_at',
+                            data: 'created_at',
                         },
                         /*{
                             defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
@@ -655,4 +679,3 @@
 
 
 @include('layout.footer')
-

@@ -45,6 +45,12 @@
             <i class="fa-solid fa-pen"></i>
             <span>Planeación</span></a>
     </li>
+    <li class="nav-item">
+        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -63,12 +69,7 @@
             </div>
         </div>
     </li>
-    <li class="nav-item">
-        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
-            <i class="fa-solid fa-bell"></i>
-            <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
-        </a>
-    </li>
+    
 
     <!--Nav Item - Menú desplegable "Gestión de Facultades"-->
     <li class="nav-item">

@@ -117,7 +117,7 @@ class EstudianteController extends Controller
         $historialAcademico = json_decode(file_get_contents($url), true);
            
                    
-        if(!empty( $mallaCurricular)):
+        if(!empty( $mallaCurricular)){
             $proyectada=[];
             $historial=[];
             $proyectada=[]; 
@@ -255,15 +255,15 @@ class EstudianteController extends Controller
         
             return $data;
 
-        else:
+        }else{
 
             if(!empty($historialAcademico)){
 
                 foreach ($historialAcademico as $key_historialAcademico => $value_historialAcademico) {
-    
+                    
                     if( $value_historialAcademico['cod_programa']==$programa){
                         $semestre++;
-                        $historial[]=$materias_malla[$value_historialAcademico['idCurso']];
+                        $historial[]=$value_historialAcademico;
 
                         if( $value_historialAcademico['calificacion']>3){
                             $color='bg-success';
@@ -276,12 +276,12 @@ class EstudianteController extends Controller
                         }
 
 
-                        $materias_malla[$value_historialAcademico['idCurso']]]=array(
+                        $materias_malla[$value_historialAcademico['idCurso']]=array(
                             'codigo_materia'=>$value_historialAcademico['idCurso'],
                             'semestre'=> $semestre,
                             'creditos'=>$value_historialAcademico['creditos'],
                             'ciclo'=>'',
-                            'nombre_materia'=>$$value_historialAcademico['materia'],
+                            'nombre_materia'=>$value_historialAcademico['materia'],
                             'calificacion'=>$value_historialAcademico['calificacion'],
                             'color'=>$color,
                             'cursada'=>$Cursada,
@@ -302,7 +302,7 @@ class EstudianteController extends Controller
                     'historial'=>$materias_malla,
                     'semestre'=>$semestre
                 );
-            }  else{
+            } else{
 
                 $data=array(
                     'info'=>"sin datos"
@@ -314,7 +314,7 @@ class EstudianteController extends Controller
            
             return  $data;
 
-        endif;
+        }
 
     }
     public function consultaProgramacion()

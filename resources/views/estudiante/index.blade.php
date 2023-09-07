@@ -195,8 +195,8 @@
                         $('#codigo').prop('disabled',true);
                     },
                     success: function(data){
-
-                        if(data.info=="con datos")
+console.log(data.info);
+                        if(data.info=="con_datos")
                         {
                                 console.log(data);
 

@@ -466,7 +466,7 @@
         totalPeriodos = $('#programas input[type="checkbox"]').length;
     }
 
-    $('#generarReporte').on('click', function(e) {
+    /*$('#generarReporte').on('click', function(e) {
         e.preventDefault();
         Contador();
         var periodosSeleccionados = getPeriodos();
@@ -501,7 +501,18 @@
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
         }
+    });*/
+
+    $('#generarReporte').on("click", function(e) {
+        e.preventDefault();
+        destruirTable();
+        var periodos = getPeriodos();
+        dataTable(periodos);
     });
+
+    function dataTable(periodos) {
+        $('#colTabla').removeClass('hidden');
+    }
 </script>
 
 

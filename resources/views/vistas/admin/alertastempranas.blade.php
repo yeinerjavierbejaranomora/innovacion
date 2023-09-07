@@ -307,6 +307,15 @@
                 </button>
             </div>
 
+            <div class="card-footer d-flex justify-content-end">
+                <div class="mr-3">
+                    <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
+                </div>
+                <div class="ml-1">
+                    <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
+                </div>
+            </div>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -337,6 +346,9 @@
         $('div #programas input[type="checkbox"]').prop('disabled', false);
         $('#generarReporte').prop("disabled", false);
     });
+    var programasSeleccionados = [];
+    var facultadesSeleccionadas = [];
+    var periodosSeleccionados = [];
     periodos();
     facultades();
     programas();
@@ -477,11 +489,14 @@
                     });
                     console.log(facultadesSeleccionadas);
                 }else{
-
+                    programasSeleccionados = [];
+                    facultadesSeleccionadas = [];
                 }
             }
         }else{
-
+            programasSeleccionados = [];
+            facultadesSeleccionadas = [];
+            periodosSeleccionados = [];
         }
     });
 </script>

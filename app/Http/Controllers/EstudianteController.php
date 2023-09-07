@@ -124,7 +124,8 @@ class EstudianteController extends Controller
         $materiasPorVer=DB::table('materiasPorVer')->where('codBanner', '=', $idbanner)->get()->toArray();
 
         $moodle=DB::table('datos_moodle')->where('id_Banner', '=', $idbanner)->get()->toArray();
-
+        dd($moodle);
+        exit;
         $historial=[];
         $proyectada=[]; 
 
@@ -221,8 +222,7 @@ class EstudianteController extends Controller
         endif;
 
         if(!empty($moodle)):
-                dd($moodle);
-                exit;
+                
             foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
 
                if($materias_malla[$value_materiasPorVer['codMateria']]){

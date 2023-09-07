@@ -631,8 +631,8 @@
                 console.log(query);
                 listaProgramas.find('label').each(function() {
                     var $label = $(this);
-
                     var $checkbox = $label.find('input[type="checkbox"]');
+                    console.log($label);
                     var programa = $checkbox.val().toLowerCase();
 
                     if (programa.includes(query)) {

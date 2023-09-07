@@ -565,13 +565,13 @@
                             title: 'Codigo Banner',
                             data:'idbanner',
                         },
-                        {
+                        /*{
                             title: 'Código de programa',
                             data: 'codprograma',
-                        },
+                        },*/
                         {
                             title: 'Programa',
-                            data:'programa',
+                            data:'codprograma - programa',
                         },
                         {
                             title: 'Tipo estudiante',

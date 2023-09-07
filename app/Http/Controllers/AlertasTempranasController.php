@@ -22,7 +22,7 @@ class AlertasTempranasController extends Controller
         $consultaAlertas = DB::table('alertas_tempranas')
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)
-                        //->orderBy('created_at','desc')
+                        ->orderBy('created_at','desc')
                         ->get();
         return $consultaAlertas;
     }
@@ -34,7 +34,7 @@ class AlertasTempranasController extends Controller
                         ->join('programas as p','p.codprograma','=','a.codprograma')
                         ->whereIn('a.periodo',$periodos)
                         ->whereIn('p.codprograma',$facultades)
-                        //->orderBy('created_at','desc')
+                        ->orderBy('a.created_at','desc')
                         ->get();
         return $consultaAlertas;
 

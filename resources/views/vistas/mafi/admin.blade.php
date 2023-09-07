@@ -1553,7 +1553,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('tipo.estudiantes, ['tabla' => ' ']) }}" + tabla,
+                                url = "{{ route('tipo.estudiantes', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
                         }
@@ -1664,7 +1664,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('operadores.estudiantes, ['tabla' => ' ']) }}" + tabla,
+                                url = "{{ route('operadores.estudiantes', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
                         }
@@ -1766,7 +1766,7 @@
                                         periodos: periodosSeleccionados
                                     }
                             } else {
-                                url = "{{ route('programas.estudiantes, ['tabla' => ' ']) }}" + tabla,
+                                url = "{{ route('programas.estudiantes', ['tabla' => ' ']) }}" + tabla,
                                 data = ''
                             }
 

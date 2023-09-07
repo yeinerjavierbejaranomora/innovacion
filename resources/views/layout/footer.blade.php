@@ -25,7 +25,13 @@
     <!-- Font awesome for Icons-->
     <script src="https://kit.fontawesome.com/def3229fdd.js" crossorigin="anonymous"></script>
 
-    
+    <script>
+        
+        var tooltip = $('.tt');
+            tooltip.forEach(t=>{
+            new bootstrap.Tooltip(t);
+        });
+    </script>    
 
 </body>
 

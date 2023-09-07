@@ -99,17 +99,17 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Ruta para cargar gráfica de el sello financiero de los estudiantes */
     Route::post('/home/estudiantesActivos/{tabla}', 'selloEstudiantesActivos')->middleware('auth')->name('sello.activos');
     /** Ruta para cargar gráfica de estudiantes activos con retenciòn */
-    Route::get('/home/retencionActivos/{tabla}', 'estudiantesRetencion')->middleware('auth')->name('retencion.activos');
+    Route::post('/home/retencionActivos/{tabla}', 'estudiantesRetencion')->middleware('auth')->name('retencion.activos');
     /** Ruta para cargar gráfica de estudiantes de primer ingreso */
-    Route::get('/home/estudiantesPrimerIngreso/{tabla}', 'estudiantesPrimerIngreso')->middleware('auth')->name('sello.estudiantes');
+    Route::post('/home/estudiantesPrimerIngreso/{tabla}', 'estudiantesPrimerIngreso')->middleware('auth')->name('sello.estudiantes');
     /** Ruta para cargar gráfica de estudiantes antiguos - sello finaciero */
-    Route::get('/home/estudiantesAntiguos/{tabla}', 'estudiantesAntiguos')->middleware('auth')->name('antiguos.estudiantes');
+    Route::post('/home/estudiantesAntiguos/{tabla}', 'estudiantesAntiguos')->middleware('auth')->name('antiguos.estudiantes');
     /** Ruta para cargar gráfica de estudiantes tipos de estudiantes */
-    Route::get('/home/tipoEstudiantes/{tabla}', 'tiposEstudiantes')->middleware('auth')->name('tipo.estudiantes');
+    Route::post('/home/tipoEstudiantes/{tabla}', 'tiposEstudiantes')->middleware('auth')->name('tipo.estudiantes');
     /** Ruta para cargar gráfica de los operadores que mas estudiantes traen */
-    Route::get('/home/operadores/{tabla}', 'operadores')->middleware('auth')->name('operadores.estudiantes');
+    Route::post('/home/operadores/{tabla}', 'operadores')->middleware('auth')->name('operadores.estudiantes');
     /** Ruta para cargar gráfica de los programas que mas estudiantes tienen inscritos */
-    Route::get('/home/estudiantesProgramas/{tabla}' ,'estudiantesProgramas')->middleware('auth')->name('programas.estudiantes');
+    Route::post('/home/estudiantesProgramas/{tabla}' ,'estudiantesProgramas')->middleware('auth')->name('programas.estudiantes');
 
     /** Ruta para cargas gráfica de estudiantes activos e inactivos de cada facultad */
     Route::post('/home/estudiantesFacultad', 'estudiantesActivosFacultad')->middleware('auth')->name('estudiantes.activos.facultad');

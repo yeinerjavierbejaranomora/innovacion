@@ -112,8 +112,7 @@ class EstudianteController extends Controller
         
         $historialAcademico = json_decode(file_get_contents($url), true);
 
-        $historial=[];
-        $proyectada=[]; 
+       
         $mallaCurricular = DB::table('mallaCurricular')
                                 ->where('codprograma', '=', $programa)
                                 ->orderBy('semestre', 'ASC')
@@ -122,8 +121,12 @@ class EstudianteController extends Controller
 
        
         $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
-
         $materiasPorVer=DB::table('materiasPorVer')->where('codBanner', '=', $idbanner)->get()->toArray();
+
+        $moodle=DB::table('datos_moodle')->where('id_Banner', '=', $idbanner)->get()->toArray();
+
+        $historial=[];
+        $proyectada=[]; 
 
         if(empty($proyectada)){
             $proyectada = DB::table('planeacion')->where('codBanner', '=', $idbanner)->get()->toArray();
@@ -144,7 +147,7 @@ class EstudianteController extends Controller
                 'calificacion'=>"",
                 'color'=>'bg-secondary',
                 'cursada'=>'',
-                'por_ver'=>'Por ver',
+                'por_ver'=>'',
                 'programada'=>'',
                 'moodle'=>'',
                
@@ -164,12 +167,12 @@ class EstudianteController extends Controller
 
                         if( $value_historialAcademico['calificacion']>3){
                             $color='bg-success';
-                           $Cursada='aprobada';
-                           $porver='Vista';
+                            $Cursada='aprobada';
+                            $porver='Vista';
                         }else{
                             $color='bg-danger';
-                           $Cursada='perdida';
-                           $porver='Por ver';
+                            $Cursada='perdida';
+                            $porver='';
                         }
                         $materias_malla[$value_historialAcademico['idCurso']]['calificacion']=$value_historialAcademico['calificacion'];
                         $materias_malla[$value_historialAcademico['idCurso']]['color']=$color;
@@ -183,25 +186,64 @@ class EstudianteController extends Controller
 
             }
         }      
-        dd( $materias_malla);
+       
         if(!empty($materiasPorVer)):
-            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
-               if( $materias_malla[$value_materiasPorVer['codMateria']]){
 
+            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+
+               if($materias_malla[$value_materiasPorVer['codMateria']]){
+
+                    $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
+                    $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Por ver";
                }
 
-              dd($value_materiasPorVer);
-              exit;
+             
             }
-            $data=array(
-                'historial'=> $historial,
-                'malla'=>$materias_malla,
-                'proyectada'=>$proyectada,
-                'materias por ver'=>''
-            );
+           
 
         endif;
 
+        if(!empty($proyectada)):
+
+            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+
+               if($materias_malla[$value_materiasPorVer['codMateria']]){
+
+                    $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
+                    $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Por ver";
+               }
+
+             
+            }
+           
+
+        endif;
+
+        if(!empty($moodle)):
+dd($moodle);
+exit;
+            foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+
+               if($materias_malla[$value_materiasPorVer['codMateria']]){
+
+                    $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
+                    $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Por ver";
+               }
+
+             
+            }
+           
+
+        endif;
+        $data=array(
+            'historial'=> $historial,
+            'malla'=>$materias_malla,
+            'proyectada'=>$proyectada,
+            'materias por ver'=>''
+        );
+
+        dd($value_materiasPorVer);
+        exit;
         return $data;
     }
     public function consultaProgramacion()

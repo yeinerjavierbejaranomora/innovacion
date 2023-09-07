@@ -112,15 +112,18 @@ class EstudianteController extends Controller
                                 ->orderBy('semestre', 'ASC')
                                 ->get()
                                 ->toArray();
-                                
+        $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
+
+        $historialAcademico = json_decode(file_get_contents($url), true);
+
+                   dd($historialAcademico);     
+                   exit;        
         if(!empty( $mallaCurricular)):
             $proyectada=[];
             $historial=[];
             $proyectada=[]; 
 
-            $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
-            
-            $historialAcademico = json_decode(file_get_contents($url), true);
+          
 
         
             
@@ -246,7 +249,7 @@ class EstudianteController extends Controller
             endif;
 
             $data=array(
-                'info'=>"con datos",
+                'info'=>"con_datos",
                 'historial'=>$materias_malla,
                 'semestre'=>$semestre
             );

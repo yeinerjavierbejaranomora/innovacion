@@ -124,6 +124,7 @@
         justify-content: center;
         align-items: center;
     }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -279,10 +280,8 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programasBox">
+                                                <div name="programas" id="programas">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <div name="programas" id="programas" class="d-flex justify-content-between">
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -645,11 +644,11 @@
                     var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        $label.removeClass('hidden'); // Mostrar la etiqueta
-                        $checkbox.removeClass('hidden'); // Mostrar el checkbox
+                        $label.removeClass('d-none');
+                        $checkbox.removeClass('d-none');
                     } else {
-                        $label.addClass('hidden'); // Ocultar la etiqueta
-                        $checkbox.addClass('hidden'); // Ocultar el checkbox
+                        $label.addClass('d-none');
+                        $checkbox.addClass('d-none');
                     }
                 });
             });

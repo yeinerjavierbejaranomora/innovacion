@@ -1213,7 +1213,11 @@
                             url: url,
                             data: data,
                             success: function(data) {
-
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }    
                             var total = data.data.map(function(elemento) {
                                 return elemento.TOTAL;
                             });
@@ -1565,6 +1569,11 @@
                             url: url,
                             data: data,
                             success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.tipoestudiante;
                             });
@@ -1676,6 +1685,11 @@
                             url: url,
                             data: data,
                             success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.operador;
                             });
@@ -1778,6 +1792,11 @@
                             url: url,
                             data: data,
                             success: function(data) {
+                                try {
+                                    data = jQuery.parseJSON(data);
+                                } catch {
+                                    data = data;
+                                }
                             var labels = data.data.map(function(elemento) {
                                 return elemento.codprograma;
                             });

@@ -525,8 +525,8 @@
         }
 
         var formData = new FormData();
-        formData.append('periodos': periodos);
-        formData.append('programas': programasSeleccionados);
+        formData.append('periodos', periodos);
+        formData.append('programas', programasSeleccionados);
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

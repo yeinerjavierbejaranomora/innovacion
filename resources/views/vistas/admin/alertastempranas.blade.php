@@ -305,9 +305,9 @@
                     Generar Reporte
                 </button>
             </div>
-            <div class="row d-flex align-items-center">         
+            <div class="row d-flex align-items-center mt-3">         
                 <div class="col text-center">
-                    <div class="card shadow mb-4 graficosBarra" style="min-height: 800px; max-height: 800px;">
+                    <div class="card shadow mb-4 graficosBarra" style="min-height: 650px; max-height: 650px;">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-2"></div>

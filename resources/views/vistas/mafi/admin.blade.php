@@ -641,11 +641,15 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
-                    $('#checkboxProgramas:checked').each(
-                        function() {
-                            console.log("El checkbox con valor " + $(this).val() + " está seleccionado");
+                    $( '#checkboxProgramas' ).on( 'click', function() {
+                        if( $(this).is(':checked') ){
+                            // Hacer algo si el checkbox ha sido seleccionado
+                            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
+                        } else {
+                            // Hacer algo si el checkbox ha sido deseleccionado
+                            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
                         }
-                    );
+                    });         
                     /*var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {

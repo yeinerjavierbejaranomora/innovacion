@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AlertasTempranasController extends Controller
 {
@@ -22,7 +23,7 @@ class AlertasTempranasController extends Controller
                         ->whereIn('periodo',$periodos)
                         ->whereIn('codprograma',$programas)
                         ->orderBy('created_at','desc')
-                        ->sql();
+                        ->dd();
     }
 
     public function tablaAlertasFacultad(Request $request){

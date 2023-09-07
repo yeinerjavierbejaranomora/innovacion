@@ -643,11 +643,11 @@
                     var $checkbox = $label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        $label.addClass('hidden');
-                        $checkbox.removeClass('hidden');
+                        $label.show(); // Mostrar la etiqueta
+                        $checkbox.show(); // Mostrar el checkbox
                     } else {
-                        $label.removeClass('hidden'); 
-                        $checkbox.addClass('hidden');
+                        $label.hide(); // Ocultar la etiqueta
+                        $checkbox.hide(); // Ocultar el checkbox
                     }
                 });
             });

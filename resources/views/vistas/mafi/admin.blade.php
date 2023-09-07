@@ -157,9 +157,9 @@
             <!-- Page Heading -->
 
             <div class="text-center" id="mensaje">
-                <h5>Por defecto se muestran los datos de todas las facultades,
+                <h6>Por defecto se muestran los datos de todas las facultades,
                     si quieres ver datos en especifico, selecciona alguna en específico.
-                </h5>
+                </h6>
             </div>
             <br>
 
@@ -170,7 +170,7 @@
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
                         <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                            <h6 id="tituloNiveles"><strong>Periodos Activos</strong></h6>
                         </div>
                         <div class="text-start">
                             <div id="periodos">
@@ -180,7 +180,7 @@
                                         <!--Formación continua-->
                                         <div class="card">
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         For. Contínua
                                                     </button>
@@ -188,7 +188,7 @@
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Continua"></div>
@@ -199,7 +199,7 @@
                                         <!--Pregrado-->
                                         <div class="card">
                                             <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Pregrado
                                                     </button>
@@ -207,7 +207,7 @@
                                                         <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
-                                                </h5>
+                                                </h6>
                                             </div>
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
@@ -218,7 +218,7 @@
                                     <div class="col-4 text-start">
                                         <div class="card" id="cardFacultades">
                                             <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                                <h6><strong>Seleccionar Facultades</strong></h6>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
@@ -235,7 +235,7 @@
                                         <!--Especialización-->
                                         <div class="card">
                                             <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Especialización
                                                     </button>
@@ -243,7 +243,7 @@
                                                         <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
-                                                </h5>
+                                                </h6>
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
@@ -255,7 +255,7 @@
                                         <!--Maestría-->
                                         <div class="card">
                                             <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         Maestría
                                                     </button>
@@ -263,7 +263,7 @@
                                                         <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
-                                                </h5>
+                                                </h6>
                                             </div>
 
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
@@ -276,7 +276,7 @@
                                     <div class="col-4 text-start">
                                         <div class="card mb-3" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                                <h6><strong>Seleccionar Programas</strong></h6>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programas"></div>
@@ -314,8 +314,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
@@ -337,8 +337,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
@@ -357,8 +357,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
@@ -377,8 +377,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
@@ -397,8 +397,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
@@ -417,8 +417,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloTipos"><strong>Tipos de estudiantes</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
@@ -440,8 +440,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
@@ -463,8 +463,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
@@ -487,8 +487,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                                <h6 id="tituloMetas"><strong>Metas por ciclo</strong></h6>
+                                <h6 class="tituloPeriodo"><strong></strong></h6>
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
@@ -512,7 +512,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Estudiantes activos por operador</strong></h5>
+                        <h6 class="modal-title" id="tituloOperadoresTotal"><strong>Estudiantes activos por operador</strong></h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -532,7 +532,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloProgramasTotal"><strong>Programas</strong></h5>
+                        <h6 class="modal-title" id="tituloProgramasTotal"><strong>Programas</strong></h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -552,7 +552,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloTiposTotal"><strong>Tipos de estudiantes</strong></h5>
+                        <h6 class="modal-title" id="tituloTiposTotal"><strong>Tipos de estudiantes</strong></h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -572,7 +572,7 @@
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa (Primer ingreso y transferentes)</strong></h5>
+                        <h6 class="modal-title" id="tituloMetasTotal"><strong>Metas por programa (Primer ingreso y transferentes)</strong></h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -744,7 +744,7 @@
                         }
                     },
                     error: function() {
-                        $('#programas').append('<h5>No hay programas</h5>')
+                        $('#programas').append('<h6>No hay programas</h6>')
                     }
                 })
             }
@@ -995,7 +995,7 @@
                             }
                         },
                         error: function() {
-                            $('#programas').append('<h5>No hay programas</h5>')
+                            $('#programas').append('<h6>No hay programas</h6>')
                         }
                     })
                 } else {

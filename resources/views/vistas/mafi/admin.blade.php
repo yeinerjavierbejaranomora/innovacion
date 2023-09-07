@@ -313,7 +313,7 @@
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 align-middle">
+                            <div class="col-10 d-flex align-items-center justify-content-center">
                                 <h5 class="align-middle" id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>

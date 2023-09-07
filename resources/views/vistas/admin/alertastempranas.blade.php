@@ -522,18 +522,6 @@
                     programas: programasSeleccionados
                 }
         } else {
-            if (facultadesSeleccionadas.length > 0) {
-                url = "{{ route('alertas.tabla.facultad')}}",
-                    data = {
-                        periodos: periodos,
-                        facultad: facultadesSeleccionadas
-                    }
-            } else {
-                url = "{{ route('alertas.tabla')}}",
-                    data = {
-                        periodos: periodos
-                    }
-            }
         }
 
         var datos = $.ajax({

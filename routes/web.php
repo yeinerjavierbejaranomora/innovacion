@@ -417,4 +417,5 @@ Route::controller(EstudianteController::class)->group(function(){
 
 Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
+    Route::post('/alertastempranas/tablaProgramasP','tablaProgramasP')->middleware('auth', 'admin')->name('alertas.tabla.programa');
 });

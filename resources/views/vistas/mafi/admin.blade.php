@@ -621,29 +621,6 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
-            var buscador = $('#buscadorProgramas');
-            var listaProgramas = $('#programas');
-
-
-            // Agregar un evento de escucha al campo de búsqueda
-            buscador.on('input', function() {
-                var query = $(this).val().toLowerCase();
-                listaProgramas.find('label').each(function() {
-                    var $label = $(this);
-                    console.log($label.val());
-                    var programa = $label.val();
-
-                    console.log(programa);
-
-                    // if (programa.includes(query)) {
-                    //     $label.addClass('hidden'); 
-                    // } else {
-                    //     $label.removeClass('hidden'); 
-                    // }
-                });
-            });
-
-
             var programasSeleccionados = [];
             var facultadesSeleccionadas = [];
             var periodosSeleccionados = [];
@@ -651,6 +628,27 @@
             llamadoFunciones();
             facultades();
             programas();
+
+
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            // Agregar un evento de escucha al campo de búsqueda
+            buscador.on('input', function() {
+                var query = $(this).val();
+                divProgramas.find('label').each(function() {
+                    var $label = $(this);
+                    var programa = $label.text();
+
+                    if (programa.includes(query)) {
+                        $label.addClass('hidden'); 
+                    } else {
+                        $label.removeClass('hidden'); 
+                    }
+                });
+            });
+
 
             /**
              * Llamado a todos los scripts
@@ -773,7 +771,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input type="checkbox" class="listaProgramas" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label><input type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

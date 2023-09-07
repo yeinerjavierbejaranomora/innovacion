@@ -211,11 +211,12 @@ class EstudianteController extends Controller
             foreach ($proyectada as $key_proyectada => $value_proyectada) {
              
                if(isset($materias_malla[$value_proyectada->codMateria])){
-                
-                    $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
-                    $materias_malla[$value_proyectada->codMateria]['cursada']="";
-                    $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
-               }
+                    if(empty($materias_malla[$value_proyectada->codMateria]['calificacion'])){
+                        $materias_malla[$value_proyectada->codMateria]['color']="bg-warning";
+                        $materias_malla[$value_proyectada->codMateria]['cursada']="";
+                        $materias_malla[$value_proyectada->codMateria]['por_ver']= "Por ver";
+                    }
+                }
 
              
             }

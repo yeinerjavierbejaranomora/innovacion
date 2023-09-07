@@ -526,7 +526,7 @@
         $('#colTabla').removeClass('hidden');
         var url, data;
         var table;
-        console.log(programasSeleccionados);
+        console.log(programasSeleccionados.length);
     }
 
     function destruirTable() {

@@ -192,7 +192,7 @@ class EstudianteController extends Controller
             foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
               
 
-               if(isset($materias_malla[$value_materiasPorVer['codMateria']])){
+               if(isset($materias_malla[$value_materiasPorVer->codMateria])){
 
                     $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
                     $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Por ver";

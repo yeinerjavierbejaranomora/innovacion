@@ -239,7 +239,7 @@
                             // Si es un nuevo semestre, crea una nueva fila
                             currentSemestre = materia.semestre;
                             const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
-                            $tabla.append($filaSemestre);
+                            $tablas.append($filaSemestre);
                         }
 
                         // Agrega la materia como una columna en la fila actual

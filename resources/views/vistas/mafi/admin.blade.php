@@ -313,8 +313,7 @@
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-2">
-                            </div>
+                            <div class="col-2"></div>
                             <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
@@ -338,7 +337,8 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -358,7 +358,8 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -378,7 +379,8 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -398,7 +400,8 @@
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -418,7 +421,8 @@
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -441,7 +445,8 @@
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -464,7 +469,8 @@
                 <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
@@ -488,7 +494,8 @@
                 <div class="card shadow mb-4 graficosBarra">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 d-flex align-items-center justify-content-center">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
                                 <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>

@@ -256,8 +256,8 @@ class EstudianteController extends Controller
         else:
             $data=array(
                 'info'=>"sin datos"
-            )
-            return NUll;
+            );
+            return  $data;
 
         endif;
 

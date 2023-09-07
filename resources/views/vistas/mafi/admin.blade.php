@@ -641,7 +641,7 @@
                 divProgramas.find('label').each(function() {
                     var $label = $(this);
                     var etiqueta = $label.text().toLowerCase();
-                    $('.micheckbox:checked').each(
+                    $('#checkboxProgramas:checked').each(
                         function() {
                             console.log("El checkbox con valor " + $(this).val() + " está seleccionado");
                         }

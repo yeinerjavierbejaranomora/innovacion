@@ -214,7 +214,7 @@
 
                         materiasArray.forEach(function(tab, index) {
 
-                            console.log(index)
+                            console.log(tab)
 
                         });
 

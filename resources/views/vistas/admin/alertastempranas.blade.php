@@ -512,6 +512,9 @@
 
     function dataTable(periodos) {
         $('#colTabla').removeClass('hidden');
+        var url, data;
+        var table;
+        console.log(periodos);
     }
 
     function destruirTable() {

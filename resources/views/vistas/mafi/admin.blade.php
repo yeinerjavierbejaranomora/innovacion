@@ -280,10 +280,8 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programasBox">
-                                                    <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <div name="programas" id="programas" class="d-flex flex-column justify-content-between">
-                                                    </div>
+                                                <div name="programas" id="programas" >
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">
@@ -864,7 +862,6 @@
                             data = ''
                     }
                 }
-
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -879,40 +876,23 @@
                             data = data;
                         }
                         console.log(data);
-                        /**
-                         *
+
                         var newData = [];
-                        var headers = ["Codigo Programa", "Programa", "Meta", "Sello", "% Ejecución"];
-
-                        var col1 = [];
-                        var col2 = [];
-                        var col3 = [];
-                        var col4 = [];
-
-                        Object.keys(data.metas).forEach(meta => {
-                            col1.push(meta);
-                            col2.push(data.nombres[meta]);
-                            col3.push(data.metas[meta]);
-                            col4.push(data.matriculaSello[meta]);
-                        });
-
-                        var porcentaje;
                         newData.push(headers);
-                        for (var i = 0; i < col1.length; i++) {
-                            porcentaje = (((col4[i]) / col3[i]) * 100).toFixed(2);
-                            if (porcentaje > 100) {
-                                porcentaje = 'Meta Superada';
-                            }
-
-                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
-                            newData.push(row);
-                        }
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
                         var wb = XLSX.utils.book_new();
                         var ws = XLSX.utils.aoa_to_sheet(newData);
                         XLSX.utils.book_append_sheet(wb, ws, "Informe");
-
                         XLSX.writeFile(wb, "informe banner.xlsx");
-                        */
                     }
                 });
             }

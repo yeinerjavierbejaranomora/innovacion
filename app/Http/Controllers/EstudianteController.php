@@ -190,8 +190,9 @@ class EstudianteController extends Controller
         if(!empty($materiasPorVer)):
 
             foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
+              
 
-               if($materias_malla[$value_materiasPorVer['codMateria']]){
+               if(isset($materias_malla[$value_materiasPorVer['codMateria']])){
 
                     $materias_malla[$value_historialAcademico['idCurso']]['cursada']="";
                     $materias_malla[$value_historialAcademico['idCurso']]['por_ver']= "Por ver";
@@ -220,8 +221,8 @@ class EstudianteController extends Controller
         endif;
 
         if(!empty($moodle)):
-dd($moodle);
-exit;
+                dd($moodle);
+                exit;
             foreach ($materiasPorVer as $key_materiasPorVer => $value_materiasPorVer) {
 
                if($materias_malla[$value_materiasPorVer['codMateria']]){

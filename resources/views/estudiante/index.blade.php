@@ -212,10 +212,16 @@
                         }
                         });
 
-                        materiasArray.forEach(function(tab, index) {
+                        // Recorre cada elemento del array
+                        $.each(materiasArray, function(index, materia) {
+                            // Accede a los campos de cada materia
+                            const codigo = materia.codigo_materia;
+                            const semestre = materia.semestre;
+                            const ciclo = materia.ciclo;
+                            const nombre = materia.nombre_materia;
 
-                            console.log(tab)
-
+                            // Haz lo que necesites con los campos de la materia
+                            console.log(`Materia: ${codigo}, Semestre: ${semestre}, Ciclo: ${ciclo}, Nombre: ${nombre}`);
                         });
 
                         // Agregar el listener para el evento de cambio de pestaña

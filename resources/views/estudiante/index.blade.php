@@ -195,62 +195,74 @@
                         $('#codigo').prop('disabled',true);
                     },
                     success: function(data){
-                        console.log(data);
 
-                        const materias = data.historial
-                        // Convierte el objeto en un array de objetos
-                        const materiasArray = $.map(materias, function(value, key) {
-                        return value;
-                        });
+                        if(data)
+                        {
+                                console.log(data);
 
-                                            
-                        // Ordena el array primero por "semestre" y luego por "ciclo"
-                        materiasArray.sort(function(a, b) {
-                        if (a.semestre !== b.semestre) {
-                            return a.semestre - b.semestre;
-                        } else {
-                            return a.ciclo - b.ciclo;
+                                const materias = data.historial
+                                // Convierte el objeto en un array de objetos
+                                const materiasArray = $.map(materias, function(value, key) {
+                                return value;
+                                });
+
+                                                    
+                                // Ordena el array primero por "semestre" y luego por "ciclo"
+                                materiasArray.sort(function(a, b) {
+                                if (a.semestre !== b.semestre) {
+                                    return a.semestre - b.semestre;
+                                } else {
+                                    return a.ciclo - b.ciclo;
+                                }
+                                });
+
+                                // Crea un objeto para agrupar las materias por semestre
+                                const materiasPorSemestre = {};
+
+                                // Agrupa las materias por semestre
+                                $.each(materiasArray, function(index, materia) {
+                                    const semestre = materia.semestre;
+
+                                    if (!materiasPorSemestre[semestre]) {
+                                        materiasPorSemestre[semestre] = [];
+                                    }
+
+                                    materiasPorSemestre[semestre].push(materia);
+                                });
+
+                                                        
+                                // Crea la tabla y agrega las filas
+                                const $tablas = $('<table>');
+
+                                let currentSemestre = null; // Para mantener un seguimiento del semestre actual
+
+                                // Recorre las materias y crea filas
+                                $.each(materiasArray, function(index, materia) {
+                                    if (materia.semestre !== currentSemestre) {
+                                        // Si es un nuevo semestre, crea una nueva fila
+                                        currentSemestre = materia.semestre;
+                                        const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
+                                        $tablas.append($filaSemestre);
+                                    }
+
+                                    // Agrega la materia como una columna en la fila actual
+                                    const $filaMateria = $('<td>')
+                                        .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
+                                    $tablas.children('tr:last').append($filaMateria);
+                                });
+
+                                // Agrega la tabla al documento
+                                $tablas.appendTo('body');
+                            
+                        }else{
+
+                            const $tablas = $('<table>');
+
+                            const $filaMateria = $('<td>')
+                                        .text('En estos momentos no contamos Con información contacta con soporte');
+                                    $tablas.children('tr:last').append($filaMateria);
+                            $tablas.appendTo('body');
                         }
-                        });
-
-                        // Crea un objeto para agrupar las materias por semestre
-                        const materiasPorSemestre = {};
-
-                        // Agrupa las materias por semestre
-                        $.each(materiasArray, function(index, materia) {
-                        const semestre = materia.semestre;
-
-                        if (!materiasPorSemestre[semestre]) {
-                            materiasPorSemestre[semestre] = [];
-                        }
-
-                        materiasPorSemestre[semestre].push(materia);
-                        });
-
-                                                
-                        // Crea la tabla y agrega las filas
-                        const $tablas = $('<table>');
-
-                        let currentSemestre = null; // Para mantener un seguimiento del semestre actual
-
-                        // Recorre las materias y crea filas
-                        $.each(materiasArray, function(index, materia) {
-                        if (materia.semestre !== currentSemestre) {
-                            // Si es un nuevo semestre, crea una nueva fila
-                            currentSemestre = materia.semestre;
-                            const $filaSemestre = $('<tr>').append($('<th>').text(`Semestre ${currentSemestre}`).attr('colspan', 4));
-                            $tablas.append($filaSemestre);
-                        }
-
-                        // Agrega la materia como una columna en la fila actual
-                        const $filaMateria = $('<td>')
-                            .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`);
-                        $tablas.children('tr:last').append($filaMateria);
-                        });
-
-                        // Agrega la tabla al documento
-                        $tablas.appendTo('body');
-                      
                     }
                 });
             });

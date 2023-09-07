@@ -280,8 +280,10 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas">
+                                                <div name="programas" id="programasBox">
                                                     <input type="text" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <div name="programas" id="programas" class="d-flex justify-content-between">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-center" style="height: 55px;">

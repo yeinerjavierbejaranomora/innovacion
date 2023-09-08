@@ -273,7 +273,7 @@
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>

@@ -642,7 +642,7 @@
                     var label = $(this);
                     console.log(label);
                     var etiqueta = label.text().toLowerCase();
-                    var $checkbox = label.find('input[type="checkbox"]');
+                    var checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
                         label.removeClass('d-none');

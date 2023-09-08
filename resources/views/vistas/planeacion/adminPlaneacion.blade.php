@@ -962,13 +962,19 @@
                         catch{
                             data = data;
                         }
-                        console.log(data);
-                    var labels = data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
                     // Crear el gráfico circular
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
@@ -1014,6 +1020,15 @@
                                             size: 12
                                         }
                                     }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
                                 }
                             },
                         },

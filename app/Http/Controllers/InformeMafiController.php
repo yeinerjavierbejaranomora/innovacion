@@ -144,6 +144,7 @@ class InformeMafiController extends Controller
                     'CON SELLO' => $selloFinanciero,
                     'TIENE RETENCION' => $Retencion,
                     'ASP' => $ASP,
+                    'NO EXISTE' => $Vacio
                 ];
 
         }

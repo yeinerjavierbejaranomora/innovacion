@@ -669,31 +669,6 @@
             /**
              * Botones
              */
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-                $('.todos').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-                $('.todos').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
-            });
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
@@ -724,6 +699,22 @@
                     $("#Maestria input[type='checkbox']").prop("checked", true);
                 } else {
                     $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosFacultad").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#facultades input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#facultades input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
                 }
             });
 

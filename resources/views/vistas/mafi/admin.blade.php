@@ -639,21 +639,22 @@
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
+                    var label = $(this);
                     //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        var label = $('#Checkbox+'$checkbo.val()'+'));
-                        console.log(label);
+                        var label2 = $('#Checkbox'+$checkbox.val());
+                        console.log(label2);
                         //label.removeClass('d-none');
-                        label.removeAttr('hidden');
+                        //label.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
-                        var label = $('#Checkbox+'$checkbo.val()'+'));
-                        console.log(label);
+                        var label2 = $('#Checkbox'+$checkbox.val());
+                        console.log(label2);
                         //label.addClass('d-none');
-                        label.attr('hidden');
+                        //label.attr('hidden');
                         //$checkbox.addClass('d-none');
                     }
                 });

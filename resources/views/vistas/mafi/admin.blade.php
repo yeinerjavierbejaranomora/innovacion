@@ -329,7 +329,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;"data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;"data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>

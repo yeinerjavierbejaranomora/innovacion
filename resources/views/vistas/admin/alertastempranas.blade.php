@@ -282,10 +282,10 @@
                                                                 </svg></span><span>202306</span>
                                                         </label>
                                                     </div>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
-                                                    </div>
+                                                    </div> --}}
                                                 </h5>
                                             </div>
                                             <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">

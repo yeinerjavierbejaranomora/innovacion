@@ -466,7 +466,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

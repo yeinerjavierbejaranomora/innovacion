@@ -348,7 +348,7 @@
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="alto"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -362,7 +362,7 @@
                         <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="medio"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -376,7 +376,7 @@
                         <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="bajo"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

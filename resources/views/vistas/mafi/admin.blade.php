@@ -127,6 +127,11 @@
         align-items: center;
     }
 
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -189,7 +194,7 @@
                                         <!--Formación continua-->
                                         <div class="card">
                                             <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center fondocards">
                                                     <button class="btn btn-link">
                                                         For. Contínua
                                                     </button>

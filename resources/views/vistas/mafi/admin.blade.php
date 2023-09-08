@@ -648,13 +648,13 @@
                         var label2 = $('#Checkbox'+$checkbox.val());
                         console.log(label2);
                         //label.removeClass('d-none');
-                        //label.removeAttr('hidden');
+                        label2.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
                         var label2 = $('#Checkbox'+$checkbox.val());
                         console.log(label2);
                         //label.addClass('d-none');
-                        //label.attr('hidden');
+                        label2.attr('hidden');
                         //$checkbox.addClass('d-none');
                     }
                 });

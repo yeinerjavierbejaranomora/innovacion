@@ -161,7 +161,7 @@
             </button>
 
             <div class="input-group">
-                <div class="input-group-append text-gray-800 text-center">
+                <div  style="background-image:/public/assets/images/fondo cabecera.png"  class="input-group-append text-gray-800 text-center">
                     <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                             <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
                         </div>
-                        
+
                         <div class="text-start">
                             <div id="periodos">
                                 <!--Accordion-->
@@ -211,7 +211,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -269,7 +269,7 @@
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
@@ -316,8 +316,10 @@
                                                 </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas" >
+                                                <div name="programas">
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -401,12 +403,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
-            <div class=" col-6 text-center " id=" colPrimerIngreso">
+            <div class=" col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
@@ -464,7 +466,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -512,7 +514,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -666,23 +668,23 @@
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
-                divProgramas.find('label').each(function() {
+                divProgramas.find('li').each(function() {
                     var label = $(this);
                     //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        var label2 = $('#Checkbox'+$checkbox.val());
-                        console.log(label2);
-                        //label.removeClass('d-none');
-                        label2.removeAttr('hidden');
+                        //var label2 = $('#Checkbox'+$checkbox.val());
+                        //console.log(label2);
+                        label.removeClass('d-none');
+                        //.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
-                        var label2 = $('#Checkbox'+$checkbox.val());
-                        console.log(label2);
-                        //label.addClass('d-none');
-                        label2.attr('hidden');
+                        //var label2 = $('#Checkbox'+$checkbox.val());
+                        //console.log(label2);
+                        label.addClass('d-none');
+                        //label2.attr('hidden');
                         //$checkbox.addClass('d-none');
                     }
                 });
@@ -809,7 +811,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                             });
                         }
                     },

@@ -171,7 +171,11 @@
     </div>
     <script>
 
+
         $(document).ready(function() {
+
+            	
+            new DataTable('#example');
            
             $(document).on("click",".datos",function(){
                 idbanner=$(this).attr('data-id');
@@ -195,7 +199,7 @@
                         $('#codigo').prop('disabled',true);
                     },
                     success: function(data){
-console.log(data.info);
+
                         if(data.info=="con_datos")
                         {
                                 console.log(data);
@@ -209,11 +213,11 @@ console.log(data.info);
                                                     
                                 // Ordena el array primero por "semestre" y luego por "ciclo"
                                 materiasArray.sort(function(a, b) {
-                                if (a.semestre !== b.semestre) {
-                                    return a.semestre - b.semestre;
-                                } else {
-                                    return a.ciclo - b.ciclo;
-                                }
+                                    if (a.semestre !== b.semestre) {
+                                        return a.semestre - b.semestre;
+                                    } else {
+                                        return a.ciclo - b.ciclo;
+                                    }
                                 });
 
                                 // Crea un objeto para agrupar las materias por semestre
@@ -232,14 +236,13 @@ console.log(data.info);
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<table>');
+                                const $tablas = $('<div class="container "><div class="row"> <table>');
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
 
-                                    console.log(materia);
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
                                         currentSemestre = materia.semestre;
@@ -252,23 +255,25 @@ console.log(data.info);
                                     }
 
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td>')
+                                    const $filaMateria = $('<td style="color:white">')
                                         .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`).addClass(materia.color);
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
+                                $("#"+tap+"").empty();
                                 // Agrega la tabla al documento
-                                $tablas.appendTo('body');
+                                $tablas.appendTo("#"+tap+"");
                             
                         }
                         if(data.info=="sin_datos"){
 
-                            const $tablas = $('<table>');
+                            const $tablas = $('<div class="container "><div class="row"> <table>');
 
                             const $filaMateria = $('<td>')
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
-                            $tablas.appendTo('body');
+                                    $("#"+tap+"").empty();
+                                    $tablas.appendTo("#"+tap+"");
                         }
                     }
                 });
@@ -365,7 +370,7 @@ console.log(data.info);
                         var tabContent = $('<div>')
                         .addClass('tab-pane fade datos')
                         .attr('id', 'tab' + index)
-                        .text('Cargando...'); // Puedes poner un mensaje mientras carga el contenido
+                        .text(' '); // Puedes poner un mensaje mientras carga el contenido
 
                         // Agregar el contenido de la pestaña al contenedor
                         $('.tab-content').append(tabContent);
@@ -421,112 +426,6 @@ console.log(data.info);
 
         }
 
-
-        /*function consultaMalla(programa) {
-            var formData = new FormData();
-            // formData.append('codBanner',codBanner);
-            formData.append('programa',programa);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultamalla') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    //console.log(data);
-                    data.forEach(malla => {
-                        $('#contenido').append(renderMalla(malla));
-                    })
-                }
-            });
-        }
-
-        function renderMalla(malla){
-            render = `<tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>`;
-            return render;
-        }
-
-        function consultaHistorial(codBanner) {
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultaHistorial') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
-        function consultaProgramacion(codBanner) {
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: "{{ route('historial.consultaprogramacion') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            });
-        }
-
-        function consultaPorVer(codBanner){
-            var formData = new FormData();
-            formData.append('codBanner',codBanner);
-            $.ajax({
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type:'post',
-                data: formData,
-                url: "{{ route('historial.consultaporver') }}",
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function () {
-                    $('#codigo').prop('disabled',true);
-                },
-                success: function(data){
-                    $('#codigo').prop('disabled',false);
-                    console.log(data);
-                }
-            })
-        }*/
 
     </script>
     @include('layout.footer')

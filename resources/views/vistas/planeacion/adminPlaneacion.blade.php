@@ -634,6 +634,7 @@
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();

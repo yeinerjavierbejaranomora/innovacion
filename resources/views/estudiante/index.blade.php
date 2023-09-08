@@ -230,7 +230,7 @@
                         </table>
                     </div>
                     <div class="tab-pane fade"                id="proyectadas"    role="tabpanel" >
-                    <table class="table table-striped">
+                    <table class="table table-responsive table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>

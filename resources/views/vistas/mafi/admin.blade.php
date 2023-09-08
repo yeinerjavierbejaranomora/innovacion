@@ -316,8 +316,10 @@
                                                 </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas" >
+                                                <div name="programas">
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -809,7 +811,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                             });
                         }
                     },

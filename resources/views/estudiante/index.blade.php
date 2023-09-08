@@ -197,37 +197,45 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active"    id="malla"          role="tabpanel" ></div>
+
                     <div class="tab-pane fade"                id="Viendo"         role="tabpanel" >
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                        </table>
+
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">ABV32190</th>
+                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade"                id="proyectadas"    role="tabpanel" >
                         <div class="table-responsive-xl">

@@ -118,7 +118,7 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
 
     .center-chart {

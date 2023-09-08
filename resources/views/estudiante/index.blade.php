@@ -204,7 +204,7 @@
                             <div class="row">
                                 <table class="table table-striped">
                                     <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                        <tr>
+                                        <tr style="border: 13px solid;">
                                             <th scope="col">Codigo Materia</th>
                                             <th scope="col">Materias</th>
                                             <th scope="col">Semestre</th>

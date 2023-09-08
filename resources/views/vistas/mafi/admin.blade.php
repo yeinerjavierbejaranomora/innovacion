@@ -646,7 +646,7 @@
 
                     if (etiqueta.includes(query)) {
                         //label.removeClass('d-none');
-                        /label.removeAttr('hidden');
+                        label.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
                         //label.addClass('d-none');

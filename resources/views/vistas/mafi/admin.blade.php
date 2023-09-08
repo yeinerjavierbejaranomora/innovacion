@@ -650,7 +650,7 @@
                         //$checkbox.removeClass('d-none');
                     } else {
                         //label.addClass('d-none');
-                        label.attr('hidden');
+                        label.attr(hidden);
                         //$checkbox.addClass('d-none');
                     }
                 });

@@ -640,6 +640,9 @@
                 graficoProgramas();
             }
 
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('li').each(function() {

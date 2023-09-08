@@ -1112,87 +1112,98 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var total = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
 
-                    var total = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
+                        total = total.reduce((a, b) => a + b, 0);
 
-                    total = total.reduce((a, b) => a + b, 0);
+                        var labels = data.data.map(function(elemento) {
+                            if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                                return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                            } else {
+                                return elemento.autorizado_asistir;
+                            }
+                        });
 
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
 
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.autorizado_asistir.replace('ACTIVO', '');
-                    });
-
-                    var valores = data.data.map(function(elemento) {
-
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('retencion').getContext('2d');
-                    chartRetencion = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'SIN MARCACIÓN'
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            layout: {
-                                padding: {
-                                    left: 25,
-                                    right: 20,
-                                },
-                            },
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    display: 'auto',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        content: 'Total: ' + total,
-                                        font: {
-                                            size: 12
-                                        }
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('retencion').getContext('2d');
+                        chartRetencion = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'SIN MARCACIÓN'
                                     }
-                                }
+                                    return label + ': ' + valores[index];
+                                }),
+                                datasets: [{
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(208,171,75, 1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
                             },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                        $('#colRetencion').addClass('hidden');
-                    } else {
-                        $('#colRetencion').removeClass('hidden');
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        display: false,
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels],
+                        });
+                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
+                            $('#colRetencion').addClass('hidden');
+                        } else {
+                            $('#colRetencion').removeClass('hidden');
+                        }
                     }
-                }});
+                });
             }
 
             /**
@@ -1533,179 +1544,6 @@
                         $('#colProgramas').addClass('hidden');
                     } else {
                         $('#colProgramas').removeClass('hidden');
-                    }
-                });
-            }
-
-
-            /**
-             * Método que genera el gráfico de sello financiero de alguna facultad en específico
-             */
-            function graficoSelloFinancieroPorFacultad(facultades, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('activos').getContext('2d');
-                        chartEstudiantesActivos = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#colSelloFinanciero').addClass('hidden');
-                        } else {
-                            $('#colSelloFinanciero').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico ASP de alguna facultad en específico
-             */
-            function graficoRetencionPorFacultad(facultades, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('retencion').getContext('2d');
-                        chartRetencion = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == '') {
-                                        label = 'SIN MARCACIÓN'
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#colRetencion').addClass('hidden');
-                        } else {
-                            $('#colRetencion').removeClass('hidden');
-                        }
                     }
                 });
             }
@@ -2082,169 +1920,6 @@
                             $('#colProgramas').addClass('hidden');
                         } else {
                             $('#colProgramas').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de sello financiero de algún programa en específico
-             */
-            function grafioSelloFinancieroPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('activos').getContext('2d');
-                        chartEstudiantesActivos = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#colSelloFinanciero').addClass('hidden');
-                        } else {
-                            $('#colSelloFinanciero').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico ASP de algún programa en específico
-             */
-            function graficoRetencionPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('retencion').getContext('2d');
-                        chartRetencion = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == '') {
-                                        label = 'SIN MARCACIÓN'
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#colRetencion').addClass('hidden');
-                        } else {
-                            $('#colRetencion').removeClass('hidden');
                         }
                     }
                 });

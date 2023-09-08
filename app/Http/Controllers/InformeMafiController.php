@@ -105,16 +105,49 @@ class InformeMafiController extends Controller
                 'NO EXISTE' => $Vacio
             ];
 
-            return $data;
         }
 
         if ($tabla == 'planeacion') {
-            $sello = DB::table('planeacion as p')
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->groupBy('dm.sello')
-                ->get();
+
+            $consulta = DB::table('planeacion as p')
+            ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+            ->select('dm.sello', 'dm.autorizado_asistir')
+            ->get();
+
+                $selloFinanciero = 0;
+                $Retencion = 0;
+                $ASP = 0;
+                $Vacio = 0;
+    
+                foreach ($consulta as $dato) {
+                    $sello = $dato->sello;
+                    $estado = $dato->autorizado_asistir;
+    
+                    if ($sello == 'TIENE SELLO FINANCIERO') {
+                        $selloFinanciero += 1;
+                    }
+    
+                    if ($sello == 'TIENE RETENCION' && empty($estado)) {
+                        $ASP += 1;
+                    }
+    
+                    if ($sello == 'TIENE RETENCION' && !empty($estado)) {
+                        $Retencion += 1;
+                    }
+    
+                    if ($sello == 'NO EXISTE') {
+                        $Vacio += 1;
+                    }
+                }
+    
+                $data = [
+                    'CON SELLO' => $selloFinanciero,
+                    'TIENE RETENCION' => $Retencion,
+                    'ASP' => $ASP,
+                ];
+
         }
+        return $data;
     }
 
     /**

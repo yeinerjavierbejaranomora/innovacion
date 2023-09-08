@@ -532,10 +532,15 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
+
             periodos();
             llamadoFunciones();
             facultades();
             programas();
+
             /**
              * Llamado a todos los scripts
              */
@@ -788,15 +793,11 @@
                 }
             });
 
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
-
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
                 destruirTable();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
 
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
@@ -884,7 +885,7 @@
                         formData.append('idfacultad[]', $(this).val());
                     });
 
-                    var periodosSeleccionados = getPeriodos();
+                    periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
                     periodos.forEach(function(periodo) {
@@ -928,12 +929,44 @@
             var chartEstudiantesActivos;
 
             function graficoSelloFinanciero() {
-                var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try{
+                            data = parseJSON(data);
+                        }
+                        catch{
+                            data = data;
+                        }
+                        console.log(data);
+                    var labels = data.map(function(elemento) {
                         return elemento.sello;
                     });
-                    var valores = data.data.map(function(elemento) {
+                    var valores = data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular
@@ -991,7 +1024,7 @@
                     } else {
                         $('#colSelloFinanciero').removeClass('hidden');
                     }
-                });
+                }});
             }
 
             /**

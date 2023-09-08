@@ -143,10 +143,6 @@
         background-color: #DFE0E2;
     }
 
-    .inputTodos:checked {
-    background-color: #dfc14e;
-    }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -165,8 +161,8 @@
             </button>
 
             <div class="input-group">
-                <div class="input-group-append text-gray-800 text-center">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
+                <div style="background-image: url('/public/assets/images/fondo cabecera.png');" class="input-group-append text-gray-800 text-center">
+                    <h3><strong> Bienvenido {{ auth()->user()->nombre }}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
 

@@ -297,9 +297,19 @@
         <div class="row justify-content-start mt-5 columnas">
             <div class="col-6 text-center " id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                <div class="card-header">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes proyectados o programados." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <canvas id="activos"></canvas>
@@ -974,17 +984,20 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
-                                },
                                 labels: {
                                     render: 'percenteaje',
                                     size: '14',
                                     fontStyle: 'bolder',
-                                    position: 'outside',
+                                    position: 'border',
                                     textMargin: 6
                                 },
                                 legend: {

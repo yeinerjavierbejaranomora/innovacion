@@ -956,6 +956,13 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        try{
+                            data = parseJSON(data);
+                        }
+                        catch{
+                            data = data;
+                        }
+
                     var labels = data.map(function(elemento) {
                         return elemento.sello;
                     });

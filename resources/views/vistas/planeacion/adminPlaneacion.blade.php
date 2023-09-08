@@ -1214,28 +1214,26 @@
                 });
             }
 
-            /**
-             * Método que genera el gráfico de estudiantes de primer ingreso
-             */
-            var chartEstudiantesActivos;
+            var chartSelloPrimerIngreso;
 
-            function graficoSelloFinanciero() {
+            function graficoSelloPrimerIngreso() {
                 var url, data;
+
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                    url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
                         data = {
                             programa: programasSeleccionados,
                             periodos: periodosSeleccionados
                         }
                 } else {
                     if (facultadesSeleccionadas.length > 0) {
-                        url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
+                        url = "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
                     } else {
-                        url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
+                        url = "{{ route('sello.estudiantes', ['tabla' => ' ']) }}" + tabla,
                             data = ''
                     }
                 }
@@ -1262,11 +1260,17 @@
                         }, 0);
 
                         // Crear el gráfico circular
-                        var ctx = document.getElementById('activos').getContext('2d');
-                        chartEstudiantesActivos = new Chart(ctx, {
+                        var ctx = document.getElementById('primerIngreso').getContext('2d');
+                        chartSelloPrimerIngreso = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels,
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
+                                    }
+                                }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
@@ -1274,8 +1278,13 @@
                                 }]
                             },
                             options: {
-                                responsive: true,
                                 maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
@@ -1296,7 +1305,6 @@
                                     },
                                     legend: {
                                         position: 'right',
-                                        align: 'left',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -1307,7 +1315,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO: ' + suma,
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1318,13 +1326,14 @@
                             },
                             plugins: [ChartDataLabels]
                         });
-                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#colSelloFinanciero').addClass('hidden');
+                        if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
+                            $('#colPrimerIngreso').addClass('hidden');
                         } else {
-                            $('#colSelloFinanciero').removeClass('hidden');
+                            $('#colPrimerIngreso').removeClass('hidden');
                         }
                     }
                 });
+
             }
 
             var chartSelloAntiguos;

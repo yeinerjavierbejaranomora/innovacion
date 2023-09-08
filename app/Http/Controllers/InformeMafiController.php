@@ -1050,7 +1050,7 @@ class InformeMafiController extends Controller
                 ->get();
         }
         if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
+            $consulta = DB::table('planeacion as p')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('dm.codprograma', $programas)
@@ -1122,7 +1122,7 @@ class InformeMafiController extends Controller
             }
 
         if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
+            $consulta = DB::table('planeacion as p')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('dm.codprograma', $programas)

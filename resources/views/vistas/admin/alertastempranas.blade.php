@@ -508,6 +508,7 @@
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
+                graficoAlertas();
             } else {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -517,6 +518,7 @@
                         facultadesSeleccionadas.push($(this).val());
                     });
                     console.log(facultadesSeleccionadas);
+                    graficoAlertas();
                 } else {
                     programasSeleccionados = [];
                     facultadesSeleccionadas = [];
@@ -690,14 +692,14 @@
     });
 
     if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-        url = "{{ route('alertas.grafico.programa',['tabla' => ' ']) }}" + tabla,
+        url = "{{ route('alertas.grafico.programa') }}",
             data = {
                 programa: programasSeleccionados,
                 periodos: periodosSeleccionados
             }
     } else {
         if (facultadesSeleccionadas.length > 0) {
-            url = "{{ route('alertas.grafico.facultad',['tabla' => ' ']) }}" + tabla,
+            url = "{{ route('alertas.grafico.facultad') }}",
                 data = {
                     idfacultad: facultadesSeleccionadas,
                     periodos: periodosSeleccionados

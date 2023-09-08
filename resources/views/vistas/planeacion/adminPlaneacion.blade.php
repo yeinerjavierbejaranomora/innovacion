@@ -532,6 +532,10 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
+
             periodos();
             llamadoFunciones();
             facultades();
@@ -789,15 +793,11 @@
                 }
             });
 
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
-
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
                 destruirTable();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
 
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
@@ -885,7 +885,7 @@
                         formData.append('idfacultad[]', $(this).val());
                     });
 
-                    var periodosSeleccionados = getPeriodos();
+                    periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
                     periodos.forEach(function(periodo) {
@@ -929,7 +929,6 @@
             var chartEstudiantesActivos;
 
             function graficoSelloFinanciero() {
-
                 var url, data;
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,

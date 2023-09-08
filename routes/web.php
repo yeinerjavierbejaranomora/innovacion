@@ -402,13 +402,6 @@ Route::controller(facultadController::class)->group(function () {
     Route::post('/home/editarProgramasPeriodos', 'actualizarProgramaPeriodo')->middleware('auth', 'admin')->name('programasPeriodos.actualizar');
 });
 
-/** Controlador para el menú desplegable de facultades */
-Route::controller(HistorialEstudianteController::class)->group(function () {
-
-    /** Ruta para cargar informacion de los estudiantes */
-    Route::get('/historial', [HistorialEstudianteController::class, 'historial']);
-});
-
 Route::controller(EstudianteController::class)->group(function(){
     Route::get('/historialestudiante','inicio')->name('historial.inicio');
     Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');

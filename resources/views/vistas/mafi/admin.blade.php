@@ -196,7 +196,7 @@
                             <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
                         </div>
-                        
+
                         <div class="text-start">
                             <div id="periodos">
                                 <!--Accordion-->
@@ -668,7 +668,7 @@
             // Agregar un evento de escucha al campo de búsqueda
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
-                divProgramas.find('label').each(function() {
+                divProgramas.find('li').each(function() {
                     var label = $(this);
                     //console.log(label);
                     var etiqueta = label.text().toLowerCase();

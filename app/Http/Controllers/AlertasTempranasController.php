@@ -88,7 +88,7 @@ class AlertasTempranasController extends Controller
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];
 
-        $consulta = DB::table('alertas_tempranas')
+        $consulta = DB::table('alertas_tempranas as a')
         ->join('programas as p','p.codprograma','=','a.codprograma')
         ->whereIn('a.periodo',$periodos)
         ->whereIn('a.codprograma',$programas)

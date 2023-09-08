@@ -44,7 +44,7 @@ class cambioController extends Controller
         /* Si encuentra el usuario en la base de datos le permite acceder al formulario para
         cambiar la contraseña */
         if ($consulta == '[]') {
-            return redirect()->route('cambio.index')->with('error', 'Credenciales invalidos!');
+            return redirect()->route('cambio.index')->with('Error', 'Credenciales invalidos!');
         } else {
             $id = encrypt($consulta[0]->id);
             return redirect()->route('cambio.nueva', ['id' => $id]);

@@ -639,12 +639,13 @@
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
-                    var label = $(this);
                     //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
+                        var label = $('#Checkbox+'$checkbo.val()'+'));
+                        console.log(label);
                         //label.removeClass('d-none');
                         label.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');

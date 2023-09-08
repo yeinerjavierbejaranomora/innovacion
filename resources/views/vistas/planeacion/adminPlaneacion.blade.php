@@ -1217,78 +1217,114 @@
             /**
              * Método que genera el gráfico de estudiantes de primer ingreso
              */
-            var chartSelloPrimerIngreso;
+            var chartEstudiantesActivos;
 
-            function graficoSelloPrimerIngreso() {
-                var url = '/home/estudiantesPrimerIngreso/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('primerIngreso').getContext('2d');
-                    chartSelloPrimerIngreso = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            layout: {
-                                padding: {
-                                    left: 20,
-                                },
-                            },
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                        $('#colPrimerIngreso').addClass('hidden');
+            function graficoSelloFinanciero() {
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
-                        $('#colPrimerIngreso').removeClass('hidden');
+                        url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('activos').getContext('2d');
+                        chartEstudiantesActivos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'border',
+                                        textMargin: 2
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        align: 'left',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
+                            $('#colSelloFinanciero').addClass('hidden');
+                        } else {
+                            $('#colSelloFinanciero').removeClass('hidden');
+                        }
                     }
                 });
-
             }
 
             var chartSelloAntiguos;

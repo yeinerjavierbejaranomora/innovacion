@@ -280,7 +280,7 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas">
+                                                <div name="programas" id="programas" >
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
@@ -640,17 +640,16 @@
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
                     var label = $(this);
-                    //console.log(label);
+                    console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        label.removeClass('d-none');
-                        $checkbox.val();
-                        console.log($checkbox.val());
+                        //label.removeClass('d-none');
+                        $checkbox.removeClass('d-none');
                     } else {
-                        label.addClass('d-none');
-                        $checkbox.hide();
+                        //label.addClass('d-none');
+                        $checkbox.addClass('d-none');
                     }
                 });
             });
@@ -776,7 +775,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label id="Checkbox${value.codprograma}"data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

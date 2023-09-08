@@ -190,7 +190,8 @@ class InformeMafiController extends Controller
             $consulta= DB::table('planeacion as p')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
             $selloFinanciero = 0;
@@ -253,7 +254,8 @@ class InformeMafiController extends Controller
             $consulta= DB::table('planeacion as p')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
 
@@ -592,7 +594,8 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('pr.Facultad', $facultades)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
             $selloFinanciero = 0;
@@ -662,10 +665,11 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('pr.Facultad', $facultades)
                 ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
-        
+
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
@@ -1059,7 +1063,8 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('dm.codprograma', $programas)
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
 
@@ -1130,7 +1135,8 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.periodo', $periodos)
                 ->whereIn('dm.codprograma', $programas)
                 ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
-                ->select('dm.sello', 'dm.autorizado_asistir')
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
                 ->get();
         }
             $selloFinanciero = 0;

@@ -62,6 +62,11 @@
 
 </div>
 
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
 
 @endsection
 

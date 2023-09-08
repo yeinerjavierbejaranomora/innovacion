@@ -161,7 +161,7 @@
             </button>
 
             <div class="input-group">
-                <div class="input-group-append text-gray-800 text-center">
+                <div  style="background-image:/public/assets/images/fondo cabecera.png"  class="input-group-append text-gray-800 text-center">
                     <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>

@@ -1465,7 +1465,7 @@
                                 datasets: [{
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                        'rgba(208,171,75, 1)'
                                     ],
                                     datalabels: {
                                         anchor: 'end',
@@ -1570,7 +1570,7 @@
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
@@ -1691,7 +1691,7 @@
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {

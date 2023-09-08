@@ -280,7 +280,7 @@
                                                 <h5><strong>Seleccionar Programas</strong></h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas" >
+                                                <div name="programas" id="programas">
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
                                             </div>
@@ -775,7 +775,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

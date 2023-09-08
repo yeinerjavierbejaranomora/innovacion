@@ -186,7 +186,6 @@ class InformeMafiController extends Controller
                 ->distinct()
                 ->get();
 
-            var_dump($consulta);
             }
             $selloFinanciero = 0;
             $Retencion = 0;
@@ -581,7 +580,7 @@ class InformeMafiController extends Controller
         }
 
         if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
+            $consulta = DB::table('planeacion as p')
                 ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
                 ->whereIn('dm.periodo', $periodos)

@@ -180,213 +180,156 @@
             <br>
 
             <!-- Checkbox Periodos -->
-            <div class="row justify-content-start mt-5 columnas">
-                <div class="col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloEstudiantes"><strong>Total estudiantes Argos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
+            <div class="row justify-content-start mb-3" id="seccion">
+
+                <!--Columna Niveles de Formación-->
+                <div class="col-12 text-start mt-1">
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
                             </div>
+                            <div class="text-center col-4">
+                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
-                        <div class="card-body center-chart fondocharts">
-                            <canvas id="estudiantes"></canvas>
                         </div>
-                        <div class="modal-footer">
-                            <a type="button" class="btn botonMafi" id="descargarMafi">Descargar datos Banner</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center" id="colSelloFinanciero">
-                    <div class="card shadow mb-6 graficos">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+
+                        <div class="text-start">
+                            <div id="periodos">
+                                <!--Accordion-->
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <!--Formación continua-->
+                                        <div class="card">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        For. Contínua
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Pregrado-->
+                                        <div class="card">
+                                            <div class="card-header fondocards" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Pregrado
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card" id="cardFacultades">
+                                            <div class="card-header text-center fondocards" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Facultades
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosFacultad" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                                <div name="facultades" id="facultades"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!--Especialización-->
+                                        <div class="card">
+                                            <div class="card-header fondocards" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Especialización
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <!--Maestría-->
+                                        <div class="card">
+                                            <div class="card-header fondocards" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Maestría
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
+                                            </div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
-                        </div>
-                        <div class="card-body center-chart fondocharts">
-                            <canvas id="activos"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center " id="colRetencion">
-                    <div class="card shadow mb-6 graficos">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="retencion"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-6 text-center " id="colPrimerIngreso">
-                    <div class="card shadow mb-6 graficos">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body center-chart fondocharts">
-                            <canvas id="primerIngreso"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center " id="colAntiguos">
-                    <div class="card shadow mb-6 graficos">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body center-chart fondocharts">
-                            <canvas id="antiguos"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center " id="colTipoEstudiantes">
-                    <div class="card shadow mb-6 graficosBarra">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloTipos"><strong>Tipos de estudiantes activos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="tipoEstudiante"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalTiposEstudiantes" class="btn botonModal" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center " id="colOperadores">
-                    <div class="card shadow mb-6 graficosBarra">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="operadores" style="height: 400px;"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalOperador" class="btn botonModal" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 text-center " id="colProgramas">
-                    <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="estudiantesProgramas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-6 text-center" id="colMetas">
-                    <div class="card shadow mb-4 graficosBarra">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloMetas"><strong>Metas periodo activo por programa</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="graficoMetas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalMetas" class="btn botonModal" data-toggle="modal" data-target="#modalMetas"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
             </div>
+           
             <div class="row text-center justify-content-center">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte

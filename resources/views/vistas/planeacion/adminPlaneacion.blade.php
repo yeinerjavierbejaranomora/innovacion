@@ -956,10 +956,10 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                    var labels = data.data.map(function(elemento) {
+                    var labels = data.map(function(elemento) {
                         return elemento.sello;
                     });
-                    var valores = data.data.map(function(elemento) {
+                    var valores = data.map(function(elemento) {
                         return elemento.TOTAL;
                     });
                     // Crear el gráfico circular

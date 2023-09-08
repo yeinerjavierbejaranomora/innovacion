@@ -60,12 +60,14 @@ class AlertasTempranasController extends Controller
         $consulta = DB::table('alertas_tempranas')
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
         ->groupBy('codprograma')
+        ->orderByDesc('TOTAL')
+        ->limit(10)
         ->get();
         return $consulta;
     }
 
     public function graficaAlertasFacultad(){
-        
+
         $periodos = $_POST['periodos'];
         $facultades = $_POST['facultad'];
         $consulta = DB::table('alertas_tempranas as a')
@@ -73,6 +75,8 @@ class AlertasTempranasController extends Controller
         ->whereIn('a.periodo',$periodos)
         ->whereIn('p.Facultad',$facultades)
         ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
+        ->orderByDesc('TOTAL')
+        ->limit(10)
         ->get();
         return $consulta;
     }
@@ -87,6 +91,8 @@ class AlertasTempranasController extends Controller
         ->whereIn('a.codprograma',$programas)
         ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
         ->groupBy('a.codprograma')
+        ->orderByDesc('TOTAL')
+        ->limit(10)
         ->get();
 
         return $consulta;

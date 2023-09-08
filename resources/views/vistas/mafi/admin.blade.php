@@ -347,7 +347,6 @@
                     </div>
                     <div class="modal-footer">
                         <a type="button" class="btn botonMafi" id="descargarMafi">Descargar datos Banner</a>
-                        <a href="" id="botonModalOperador" class="btn botonModal"> Ver más </a>
                     </div>
                 </div>
             </div>

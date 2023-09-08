@@ -186,8 +186,8 @@ class InformeMafiController extends Controller
                 ->distinct()
                 ->get();
 
-            dd($consulta);
-        }
+            var_dump($consulta);
+            }
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;

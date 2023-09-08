@@ -203,7 +203,7 @@
                         <div class="container">
                             <div class="row">
                                 <table class="table table-striped">
-                                    <thead>
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
                                         <tr>
                                             <th scope="col">Codigo Materia</th>
                                             <th scope="col">Materias</th>

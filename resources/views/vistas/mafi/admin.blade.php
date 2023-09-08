@@ -153,16 +153,16 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
 
-            <div class="input-group">
-                <div  style="background-image:/public/assets/images/fondo cabecera.png"  class="input-group-append text-gray-800 text-center">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
+            <div class="input-group" >
+                <div class="input-group-append text-gray-800 text-center">
+                    <h3><strong> Bienvenido {{ auth()->user()->nombre }}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
 
@@ -670,21 +670,16 @@
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('li').each(function() {
                     var label = $(this);
-                    //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        //var label2 = $('#Checkbox'+$checkbox.val());
-                        //console.log(label2);
                         label.removeClass('d-none');
-                        //.removeAttr('hidden');
+                        //label.removeAttr('d-none');
                         //$checkbox.removeClass('d-none');
                     } else {
-                        //var label2 = $('#Checkbox'+$checkbox.val());
-                        //console.log(label2);
                         label.addClass('d-none');
-                        //label2.attr('hidden');
+                        //label.addClass('hidden');
                         //$checkbox.addClass('d-none');
                     }
                 });

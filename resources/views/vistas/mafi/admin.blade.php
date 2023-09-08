@@ -35,18 +35,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador,
@@ -341,7 +329,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;"data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>

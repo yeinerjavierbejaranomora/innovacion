@@ -833,6 +833,7 @@
                 e.preventDefault();
                 Contador();
                 destruirTable();
+                destruirGraficos();
                 periodosSeleccionados = getPeriodos();
 
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
@@ -847,7 +848,7 @@
                         });
                         estadoUsuarioPrograma();
                         $("#colProgramas").addClass("hidden");
-                        graficosporPrograma(programasSeleccionados, periodosSeleccionados);
+                        llamadoFunciones();
                         dataTable(periodosSeleccionados);
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
@@ -863,7 +864,7 @@
                                 location.reload();
                             }
                             estadoUsuarioFacultad();
-                            graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+                            llamadoFunciones();
                         } else {
                             /** Alerta */
                             programasSeleccionados = [];
@@ -1083,8 +1084,34 @@
             var chartRetencion;
 
             function graficoRetencion() {
-                var url = '/home/retencionActivos/' + tabla;
-                $.getJSON(url, function(data) {
+                var url, data;
+
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('retencion.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
 
                     var total = data.data.map(function(elemento) {
                         return elemento.TOTAL;
@@ -1165,7 +1192,7 @@
                     } else {
                         $('#colRetencion').removeClass('hidden');
                     }
-                });
+                }});
             }
 
             /**
@@ -1508,25 +1535,6 @@
                         $('#colProgramas').removeClass('hidden');
                     }
                 });
-            }
-
-            /**
-             * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
-             */
-
-            function graficosporFacultad(facultades, periodos) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
-                    destruirGraficos();
-                    $("#ocultarGraficoProgramas").show();
-
-                    graficoSelloFinancieroPorFacultad(facultades, periodos);
-                    graficoRetencionPorFacultad(facultades, periodos);
-                    graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
-                    graficoTiposDeEstudiantesFacultad(facultades, periodos);
-                    graficoOperadoresFacultad(facultades, periodos);
-                    graficoProgramasFacultad(facultades, periodos);
-                }
             }
 
 
@@ -2077,25 +2085,6 @@
                         }
                     }
                 });
-            }
-
-            /**
-             * Método que limpia la data de los gráficos y después invoca todos los gráficos por los 
-             * programas que seleccione el usuario
-             */
-            function graficosporPrograma(programas, periodos) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
-                    destruirGraficos();
-
-                    $("#ocultarGraficoProgramas").hide();
-
-                    grafioSelloFinancieroPorPrograma(programas, periodos);
-                    graficoRetencionPorPrograma(programas, periodos);
-                    graficoSelloPrimerIngresoPorPrograma(programas, periodos);
-                    graficoTiposDeEstudiantesPrograma(programas, periodos);
-                    graficoOperadoresPrograma(programas, periodos);
-                }
             }
 
             /**

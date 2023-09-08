@@ -508,6 +508,7 @@
                 checkboxesProgramas.each(function() {
                     programasSeleccionados.push($(this).val());
                 });
+                graficoAlertas();
             } else {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -517,6 +518,7 @@
                         facultadesSeleccionadas.push($(this).val());
                     });
                     console.log(facultadesSeleccionadas);
+                    graficoAlertas();
                 } else {
                     programasSeleccionados = [];
                     facultadesSeleccionadas = [];

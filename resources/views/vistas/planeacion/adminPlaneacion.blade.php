@@ -536,6 +536,7 @@
             llamadoFunciones();
             facultades();
             programas();
+
             /**
              * Llamado a todos los scripts
              */
@@ -928,8 +929,34 @@
             var chartEstudiantesActivos;
 
             function graficoSelloFinanciero() {
-                var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {
+
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
                     var labels = data.data.map(function(elemento) {
                         return elemento.sello;
                     });
@@ -991,7 +1018,7 @@
                     } else {
                         $('#colSelloFinanciero').removeClass('hidden');
                     }
-                });
+                }});
             }
 
             /**

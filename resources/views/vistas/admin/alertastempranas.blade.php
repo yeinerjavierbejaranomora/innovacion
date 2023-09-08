@@ -163,7 +163,7 @@
             </div>
 
             <!-- Content Row -->
-            
+
 
             <div class="row justify-content-start mb-3" id="seccion">
 
@@ -192,7 +192,8 @@
                                                 </h5>
                                             </div>
                                             <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                                <div class="card-body periodos" style="width:100%;" id="Continua">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -394,7 +395,15 @@
             success: function(data) {
                 data.forEach(periodo => {
                     if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
-                        $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        //$('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        $('#Continua').append(`<div class="checkbox-wrapper mb-1">
+                                        <input class="inp-cbx" id="cbx-value="${periodo.periodo}"" type="checkbox" value="${periodo.periodo}"/>
+                                        <label class="cbx" for="cbx-value="${periodo.periodo}""><span>
+                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                </svg></span><span>${periodo.periodo}</span>
+                                        </label>
+                                    </div>`);
                     }
                     if (periodo.nivelFormacion == "PROFESIONAL") {
                         $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);

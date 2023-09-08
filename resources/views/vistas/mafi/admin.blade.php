@@ -139,6 +139,10 @@
         background-color: #3A6577;
     }
 
+    .fondocharts{
+        background-color: #DFE0E2;
+    }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -352,7 +356,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="estudiantes"></canvas>
                     </div>
                     <div class="modal-footer">
@@ -376,7 +380,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -418,7 +422,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="primerIngreso"></canvas>
                     </div>
                 </div>
@@ -439,7 +443,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body center-chart">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="antiguos"></canvas>
                     </div>
                 </div>
@@ -484,7 +488,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="operadores" style="height: 400px;"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -533,7 +537,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="graficoMetas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

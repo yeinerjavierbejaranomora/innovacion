@@ -35,7 +35,7 @@
 			<h2 class="text-center mb-5" style="font-weight: 800;"> Recuperar contraseña </h2>
 
 			<form action="{{Route('cambio.actualizar')}}" method="POST" class="align-content-center">
-			@csrf
+			    @csrf
 				<div class="mb-5 col-10 mx-auto">
 					<input type="password" class="form-control custom-input" name="nueva" id="nueva" placeholder="Contraseña nueva" required>
 					<span class="input-border"></span>

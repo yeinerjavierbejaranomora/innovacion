@@ -158,7 +158,7 @@
 
             <div class="input-group">
                 <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Banner-Mafi) </strong></h3>
+                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
 
@@ -332,7 +332,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
+                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Argos</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="col-2 text-right">

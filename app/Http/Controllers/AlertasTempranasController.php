@@ -76,10 +76,11 @@ class AlertasTempranasController extends Controller
         ->whereIn('a.periodo',$periodos)
         ->whereIn('p.Facultad',$facultades)
         ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
+        ->groupBy('a.codprograma')
         ->orderByDesc('TOTAL')
         ->limit(10)
         ->get();
-        
+
         return $consulta;
     }
 

@@ -646,10 +646,10 @@
 
                     if (etiqueta.includes(query)) {
                         label.removeClass('d-none');
-                        $checkbox.removeClass('d-none');
+                        $checkbox.show();
                     } else {
                         label.addClass('d-none');
-                        $checkbox.addClass('d-none');
+                        $checkbox.hide();
                     }
                 });
             });

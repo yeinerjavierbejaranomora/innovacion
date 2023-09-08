@@ -639,7 +639,8 @@
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
-                    var $label = $(this);
+                    var label = $(this);
+                    console.log(label);
                     var etiqueta = $label.text().toLowerCase();
                     var $checkbox = $label.find('input[type="checkbox"]');
 

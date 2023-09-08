@@ -143,7 +143,7 @@
         background-color: #DFE0E2;
     }
 
-    .todos-checked {
+    .inputTodos:checked {
     background-color: #dfc14e;
     }
 
@@ -215,7 +215,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>

@@ -1304,13 +1304,7 @@
                         chartEstudiantesActivos = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'TOTAL') {
-                                        return label + ': ' + suma;
-                                    } else {
-                                        return label;
-                                    }
-                                }),
+                                labels: labels,
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,

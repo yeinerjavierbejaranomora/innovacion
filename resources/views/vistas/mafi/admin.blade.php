@@ -293,7 +293,7 @@
                                     </div>
                                     <div class="col-4 text-start">
                                         <div class="card mb-3" id="cardProgramas">
-                                            <div class="card-header text-center fondo cards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link text-light">
                                                         Programas

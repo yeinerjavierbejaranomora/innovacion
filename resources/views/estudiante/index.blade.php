@@ -205,10 +205,11 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
                                         </tr>
                                     </thead>
                                     <tbody>

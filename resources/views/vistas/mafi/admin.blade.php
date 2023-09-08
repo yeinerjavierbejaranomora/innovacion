@@ -650,6 +650,8 @@
                         label.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
+                        var label = $('#Checkbox+'$checkbo.val()'+'));
+                        console.log(label);
                         //label.addClass('d-none');
                         label.attr('hidden');
                         //$checkbox.addClass('d-none');

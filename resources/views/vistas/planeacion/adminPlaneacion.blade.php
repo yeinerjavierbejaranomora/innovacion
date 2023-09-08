@@ -962,7 +962,7 @@
                         catch{
                             data = data;
                         }
-
+                        console.log(data);
                     var labels = data.map(function(elemento) {
                         return elemento.sello;
                     });

@@ -674,21 +674,16 @@
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('li').each(function() {
                     var label = $(this);
-                    //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        //var label2 = $('#Checkbox'+$checkbox.val());
-                        //console.log(label2);
                         label.removeClass('d-none');
-                        //.removeAttr('hidden');
+                        //label.removeAttr('d-none');
                         //$checkbox.removeClass('d-none');
                     } else {
-                        //var label2 = $('#Checkbox'+$checkbox.val());
-                        //console.log(label2);
                         label.addClass('d-none');
-                        //label2.attr('hidden');
+                        //label.addClass('hidden');
                         //$checkbox.addClass('d-none');
                     }
                 });

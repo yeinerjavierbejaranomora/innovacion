@@ -145,7 +145,7 @@
             </button>
 
             <div class="input-group">
-                <div class="input-group-append text-gray-800">
+                <div class="input-group-append text-gray-800 text-center">
                     <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
@@ -172,9 +172,15 @@
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
-                        <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
+                            </div>
+                            <div class="text-center col-4">
+                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
+                        </div>
+                        
                         <div class="text-start">
                             <div id="periodos">
                                 <!--Accordion-->

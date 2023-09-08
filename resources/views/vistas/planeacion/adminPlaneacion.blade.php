@@ -384,12 +384,43 @@
             </div>
             <div class="col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                <div class="card-header">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes proyectados o programados de primer ingreso y transferentes." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body fondocharts">
                         <canvas id="primerIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center " id="colAntiguos">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body center-chart fondocharts">
+                        <canvas id="antiguos"></canvas>
                     </div>
                 </div>
             </div>

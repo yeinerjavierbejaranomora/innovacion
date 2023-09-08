@@ -591,7 +591,7 @@ class UserController extends Controller
     {
         $codFacultad = $request->input('codfacultad');
         $nombreFacultad = DB::table('facultad')
-            ->whereIn('codfacultad', $codFacultad)
+            ->whereIn('id', $codFacultad)
             ->pluck('nombre')
             ->toArray();
 

@@ -798,7 +798,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                                 });
                             }
                         },
@@ -872,7 +872,7 @@
             function ocultarDivs() {
                 $('#colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
-            
+
             $("#todosFacultad").change(function() {
                 if ($(this).is(":checked")) {
                     $("#facultades input[type='checkbox']").prop("checked", true);
@@ -1104,7 +1104,7 @@
                         var suma = valores.reduce(function(acumulador, valorActual) {
                             return acumulador + valorActual;
                         }, 0);
-                    
+
 
                     var ctx = document.getElementById('activos').getContext('2d');
                     chartEstudiantesActivos = new Chart(ctx, {
@@ -1542,7 +1542,7 @@
             }
 
             /**
-             * Método que genera el gráfico con todos los tipos de estudiantes 
+             * Método que genera el gráfico con todos los tipos de estudiantes
              */
             var chartTipoEstudiante;
 
@@ -1659,7 +1659,7 @@
             }
 
             /**
-             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
+             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen
              */
             var chartOperadores;
 
@@ -1774,7 +1774,7 @@
             }
 
             /**
-             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
+             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos
              */
 
              var chartProgramas;
@@ -2490,7 +2490,7 @@
                             data = data;
                         }
                         console.log(data);
-                        
+
                         // var estudiantes = data.estudiantes;
                         // var nombres = data.nombres;
                         // var nombreCompleto;
@@ -2568,7 +2568,7 @@
                     $("#datatable tbody").off("click", "button.estudiantes");
                 }
             }
-            
+
         });
     </script>
 

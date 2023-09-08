@@ -427,9 +427,19 @@
             <div class="col-6 text-center " id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     <div class="card-body fondocharts">
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
@@ -441,8 +451,18 @@
             <div class="col-6 text-center " id="colOperadores">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body fondocharts">
                         <canvas id="operadores" style="height: 400px;"></canvas>
@@ -455,8 +475,18 @@
             <div class="col-6 text-center " id="colProgramas">
                 <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'. Adicionalente permite ver un informe detallad" data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body fondocharts">
                         <canvas id="estudiantesProgramas"></canvas>

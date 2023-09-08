@@ -456,7 +456,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
+                                <h5 id="tituloTipos"><strong>Tipos de estudiantes activos</strong></h5>
                                 <h5 class="tituloPeriodo"><strong></strong></h5>
                             </div>
                             <div class="col-2 text-right">

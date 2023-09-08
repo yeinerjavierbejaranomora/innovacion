@@ -679,17 +679,17 @@
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        var label2 = $('#Checkbox'+$checkbox.val());
-                        console.log(label2);
-                        //label.removeClass('d-none');
-                        label2.removeAttr('hidden');
+                        //var label2 = $('#Checkbox'+$checkbox.val());
+                        //console.log(label2);
+                        label.removeClass('d-none');
+                        //.removeAttr('hidden');
                         //$checkbox.removeClass('d-none');
                     } else {
-                        var label2 = $('#Checkbox'+$checkbox.val());
-                        console.log(label2);
-                        //label.addClass('d-none');
-                        label2.attr('hidden');
-                        //$checkbox.addClass('d-none');
+                        //var label2 = $('#Checkbox'+$checkbox.val());
+                        //console.log(label2);
+                        label.addClass('d-none');
+                        //label2.attr('hidden');
+                        $checkbox.addClass('d-none');
                     }
                 });
             });

@@ -329,7 +329,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;"data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -374,7 +374,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -395,7 +395,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -416,7 +416,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -437,7 +437,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -461,7 +461,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -485,7 +485,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -510,7 +510,7 @@
                             </div>
                             <div class="col-2 text-right">
                                 <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
                                 </span>
                             </div>
                         </div>

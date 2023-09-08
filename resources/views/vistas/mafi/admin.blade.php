@@ -62,6 +62,20 @@
         font-size: 14px;
     }
 
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+    }
+
+
+
     #botondataTable {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -332,7 +346,7 @@
                         <canvas id="estudiantes"></canvas>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" id="descargarMafi">Descargar datos Banner</button>
+                        <a type="button" class="btn botonMafi" id="descargarMafi">Descargar datos Banner</a>
                     </div>
                 </div>
             </div>

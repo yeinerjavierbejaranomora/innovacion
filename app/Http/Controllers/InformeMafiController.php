@@ -111,7 +111,8 @@ class InformeMafiController extends Controller
 
             $consulta = DB::table('planeacion as p')
             ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-            ->select('dm.sello', 'dm.autorizado_asistir')
+            ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+            ->distinct()
             ->get();
 
                 $selloFinanciero = 0;

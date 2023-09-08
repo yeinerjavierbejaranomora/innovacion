@@ -401,12 +401,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
-            <div class=" col-6 text-center " id=" colPrimerIngreso">
+            <div class=" col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
                         <div class="row">
@@ -512,7 +512,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

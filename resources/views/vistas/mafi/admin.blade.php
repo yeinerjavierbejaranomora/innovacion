@@ -640,13 +640,13 @@
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
                     var label = $(this);
-                    console.log(label);
+                    //console.log(label);
                     var etiqueta = label.text().toLowerCase();
                     var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
                         //label.removeClass('d-none');
-                        label.removeAttr('hidden');
+                        label.removeAttr(hidden);
                         //$checkbox.removeClass('d-none');
                     } else {
                         //label.addClass('d-none');

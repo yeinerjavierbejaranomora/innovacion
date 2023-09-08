@@ -639,15 +639,16 @@
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('label').each(function() {
-                    var $label = $(this);
-                    var etiqueta = $label.text().toLowerCase();
-                    var $checkbox = $label.find('input[type="checkbox"]');
+                    var label = $(this);
+                    console.log(label);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
-                        $label.removeClass('d-none');
+                        //label.removeClass('d-none');
                         $checkbox.removeClass('d-none');
                     } else {
-                        $label.addClass('d-none');
+                        //label.addClass('d-none');
                         $checkbox.addClass('d-none');
                     }
                 });
@@ -774,7 +775,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

@@ -70,6 +70,7 @@ class AlertasTempranasController extends Controller
 
         $periodos = $_POST['periodos'];
         $facultades = $_POST['facultad'];
+
         $consulta = DB::table('alertas_tempranas as a')
         ->join('programas as p','p.codprograma','=','a.codprograma')
         ->whereIn('a.periodo',$periodos)
@@ -78,6 +79,7 @@ class AlertasTempranasController extends Controller
         ->orderByDesc('TOTAL')
         ->limit(10)
         ->get();
+        
         return $consulta;
     }
 

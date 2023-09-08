@@ -640,6 +640,25 @@
                 graficoProgramas();
             }
 
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
+
             function limpiarTitulos() {
                 var elementosTitulos = $('#tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas, #tituloOperadoresTotal, #tituloTiposTotal, #tituloProgramasTotal').find("strong");
                 var parteEliminar = ': ';
@@ -1495,82 +1514,113 @@
             var chartTipoEstudiante;
 
             function graficoTipoDeEstudiante() {
-                var url = '/home/tipoEstudiantes/' + tabla;
-                $.getJSON(url, function(data) {
-
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.tipoestudiante.replace('ESTUDIANTE ', '');
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        url = "{{ route('tipo.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
                     }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
 
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                    chartTipoEstudiante = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Tipos de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                }
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                        chartTipoEstudiante = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label.includes("ESTUDIANTE ")) {
+                                        label = label.replace(/ESTUDIANTE\S*/i, "");
+                                    }
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: '',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
+                            },
+                            options: {
                                 scales: {
                                     y: {
                                         max: yMax,
                                         beginAtZero: true
                                     }
                                 },
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+
+                                    datalabels: {
+                                        color: 'black',
                                         font: {
-                                            size: 12
-                                        }
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        display: false,
                                     }
-                                }
+                                },
                             },
-                        },
-                        plugins: [ChartDataLabels],
-                    });
-                    if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                        $('#colTipoEstudiantes').addClass('hidden');
-                    } else {
-                        $('#colTipoEstudiantes').removeClass('hidden');
+                            plugins: [ChartDataLabels],
+                        });
+                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                            $('#colTipoEstudiantes').addClass('hidden');
+                        } else {
+                            $('#colTipoEstudiantes').removeClass('hidden');
+                        }
                     }
                 });
             }
@@ -1581,85 +1631,111 @@
             var chartOperadores;
 
             function graficoOperadores() {
-                var url = '/home/operadores/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.operador;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        url = "{{ route('operadores.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
                     }
-                    // Crear el gráfico de barras
-                    var ctx = document.getElementById('operadores').getContext('2d');
-                    chartOperadores = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label;
-                            }),
-                            datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                }
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    max: yMax,
-                                    beginAtZero: true
-                                }
-                            },
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.operador;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico de barras
+                        var ctx = document.getElementById('operadores').getContext('2d');
+                        chartOperadores = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
                                     }
-                                }
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
                             },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                        $('#colOperadores').addClass('hidden');
-                    } else {
-                        $('#colOperadores').removeClass('hidden');
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        display: false,
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
+                            $('#colOperadores').addClass('hidden');
+                        } else {
+                            $('#colOperadores').removeClass('hidden');
+                        }
                     }
                 });
             }
@@ -1668,92 +1744,109 @@
              * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
              */
 
-            var chartProgramas;
+             var chartProgramas;
 
             function graficoProgramas() {
-                var url = '/home/estudiantesProgramas/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label;
-                            }),
-                            datasets: [{
-                                label: 'Programas con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                },
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    max: yMax,
-                                    beginAtZero: true
-                                }
-                            },
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    url = "{{ route('programas.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                        data = ''
+                }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.codprograma;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
+                        chartProgramas = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == '') {
+                                        label = 'IBERO';
                                     }
-                                }
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: 'Programas con mayor cantidad de estudiantes',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    },
+                                }]
                             },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                        $('#colProgramas').addClass('hidden');
-                    } else {
-                        $('#colProgramas').removeClass('hidden');
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        display: false,
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
+                            $('#colProgramas').addClass('hidden');
+                        } else {
+                            $('#colProgramas').removeClass('hidden');
+                        }
                     }
                 });
             }
-
 
             $('#botonModalOperador').on("click", function(e) {
                 e.preventDefault();

@@ -61,8 +61,34 @@ class AlertasTempranasController extends Controller
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
         ->groupBy('codprograma')
         ->get();
-
         return $consulta;
     }
 
+    public function graficaAlertasFacultad(){
+        
+        $periodos = $_POST['periodos'];
+        $facultades = $_POST['facultad'];
+        $consulta = DB::table('alertas_tempranas as a')
+        ->join('programas as p','p.codprograma','=','a.codprograma')
+        ->whereIn('a.periodo',$periodos)
+        ->whereIn('p.Facultad',$facultades)
+        ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
+        ->get();
+        return $consulta;
+    }
+
+    public function graficaAlertasProgramas(){
+        $periodos = $_POST['periodos'];
+        $programas = $_POST['programas'];
+
+        $consulta = DB::table('alertas_tempranas')
+        ->join('programas as p','p.codprograma','=','a.codprograma')
+        ->whereIn('a.periodo',$periodos)
+        ->whereIn('a.codprograma',$programas)
+        ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
+        ->groupBy('a.codprograma')
+        ->get();
+
+        return $consulta;
+    }
 }

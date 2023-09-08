@@ -301,7 +301,7 @@
                                                     </button>
                                                     <div class="custom-checkbox">
                                                         <label for="todosPrograma" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosPrograma" name="todosPrograma" checked>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
                                                     </div>
                                                 </h5>
                                             </div>

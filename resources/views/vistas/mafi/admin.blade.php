@@ -246,10 +246,6 @@
                                             <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
                                             </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
-                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -313,10 +309,6 @@
                                                 <div name="programas" id="programas" >
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                 </div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>

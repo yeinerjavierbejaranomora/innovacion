@@ -642,14 +642,14 @@
                     var label = $(this);
                     console.log(label);
                     var etiqueta = label.text().toLowerCase();
-                    var checkbox = label.find('input[type="checkbox"]');
+                    var $checkbox = label.find('input[type="checkbox"]');
 
                     if (etiqueta.includes(query)) {
                         label.removeClass('d-none');
-                        checkbox.removeClass('d-none');
+                        $checkbox.removeClass('d-none');
                     } else {
                         label.addClass('d-none');
-                        checkbox.addClass('d-none');
+                        $checkbox.addClass('d-none');
                     }
                 });
             });

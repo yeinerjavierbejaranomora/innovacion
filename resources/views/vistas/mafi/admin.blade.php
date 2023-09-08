@@ -689,7 +689,7 @@
                         //console.log(label2);
                         label.addClass('d-none');
                         //label2.attr('hidden');
-                        $checkbox.addClass('d-none');
+                        //$checkbox.addClass('d-none');
                     }
                 });
             });

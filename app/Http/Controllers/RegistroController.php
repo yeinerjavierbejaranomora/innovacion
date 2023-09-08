@@ -60,7 +60,7 @@ class RegistroController extends Controller
     public function crearUsuario(UsuarioRegistroRequest $request){
         $data = $request->all();
 
-        if(empty($data['facultad'])){
+        if(isset($data['facultad'])){
             $facultades = $data['facultad'];
             $data['id_facultad'] = implode(',', $facultades);
         }

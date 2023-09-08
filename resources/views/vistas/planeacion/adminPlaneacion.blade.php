@@ -35,18 +35,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador {
@@ -213,14 +201,18 @@
                                     <div class="col-4 text-start">
                                         <div class="card" id="cardFacultades">
                                             <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Facultades
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosFacultad" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
-                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
                                     </div>
@@ -271,24 +263,24 @@
                                     <div class="col-4 text-start">
                                         <div class="card mb-3" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programas"></div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="text-center col-8 mt-3" style="height: 30px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -733,32 +725,21 @@
             function ocultarDivs() {
                 $('#colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
-    
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
+            
+            $("#todosFacultad").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#facultades input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#facultades input[type='checkbox']").prop("checked", false);
+                }
             });
 
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-                $('.todos').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-                $('.todos').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {

@@ -101,6 +101,8 @@
                                         <option value="5">Docente</option>
                                         <option value="6">Estudiante</option>
                                         <option value="9">Admin</option>
+                                        <option value="19">Rector</option>
+                                        <option value="20">Vicerrector</option>
                                     </select>
                                 </div>
                                 <div >
@@ -167,7 +169,7 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('#nuevousuario #facultades').append(`<label> <input type="checkbox" id="" name="facultad[]" value="${facultad.codFacultad}"> ${facultad.nombre}</label><br>`);
+                    $('#nuevousuario #facultades').append(`<label> <input type="checkbox" id="" name="facultad[]" value="${facultad.id}"> ${facultad.nombre}</label><br>`);
                 })
             }
         })

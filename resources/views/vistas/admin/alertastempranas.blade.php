@@ -694,14 +694,14 @@
     if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
         url = "{{ route('alertas.grafico.programa') }}",
             data = {
-                programa: programasSeleccionados,
+                programas: programasSeleccionados,
                 periodos: periodosSeleccionados
             }
     } else {
         if (facultadesSeleccionadas.length > 0) {
             url = "{{ route('alertas.grafico.facultad') }}",
                 data = {
-                    idfacultad: facultadesSeleccionadas,
+                    facultad: facultadesSeleccionadas,
                     periodos: periodosSeleccionados
                 }
         } else {

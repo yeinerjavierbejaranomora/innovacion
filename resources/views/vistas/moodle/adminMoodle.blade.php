@@ -35,10 +35,7 @@
         width: 60px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador,
-    #botonModalMetas {
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;

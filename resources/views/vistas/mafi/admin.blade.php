@@ -160,8 +160,8 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-            <div class="input-group">
-                <div style="background-image: url('/public/assets/images/fondo cabecera.png');" class="input-group-append text-gray-800 text-center">
+            <div class="input-group" style="background-image: url('/public/assets/images/fondo cabecera.png');">
+                <div class="input-group-append text-gray-800 text-center">
                     <h3><strong> Bienvenido {{ auth()->user()->nombre }}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>

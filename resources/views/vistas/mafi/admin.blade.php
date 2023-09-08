@@ -233,7 +233,15 @@
                                     <div class="col-4 text-start">
                                         <div class="card" id="cardFacultades">
                                             <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Facultades
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosFacultad" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
@@ -291,7 +299,15 @@
                                     <div class="col-4 text-start">
                                         <div class="card mb-3" id="cardProgramas">
                                             <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
                                                 <div name="programas" id="programas" >

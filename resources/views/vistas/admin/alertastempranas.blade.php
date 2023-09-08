@@ -361,7 +361,7 @@
 
 <script>
 
-    $('#menuAlertas').addClass('activo');                
+    $('#menuAlertas').addClass('activo');
 
     $(document).ajaxStart(function() {
         $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -486,6 +486,54 @@
         });
         return periodosSeleccionados;
     }
+
+    $("#todosContinua").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Continua input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Continua input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPregrado").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Pregrado input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Pregrado input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosEsp").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Esp input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Esp input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosMaestria").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Maestria input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosFacultad").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#facultades input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#facultades input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
+            });
 
     function Contador() {
         totalFacultades = $('#facultades input[type="checkbox"]').length;
@@ -672,6 +720,7 @@
             $("#datatable tbody").off("click", "button.estudiantes");
         }
     }
+
 
     var chartAlertas;
 

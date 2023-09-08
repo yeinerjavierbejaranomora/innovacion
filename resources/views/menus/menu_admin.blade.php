@@ -45,7 +45,7 @@
             <i class="fa-solid fa-pen"></i>
             <span>Planeación</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" id="menuAlertas">
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>

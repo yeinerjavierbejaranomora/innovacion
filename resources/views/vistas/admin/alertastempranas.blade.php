@@ -360,6 +360,9 @@
 </a>
 
 <script>
+
+    $('#menuAlertas').addClass('activo');                
+
     $(document).ajaxStart(function() {
         $('div #facultades input[type="checkbox"]').prop('disabled', true);
         $('div #programas input[type="checkbox"]').prop('disabled', true);

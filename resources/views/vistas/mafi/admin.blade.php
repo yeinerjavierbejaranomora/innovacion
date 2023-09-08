@@ -646,7 +646,7 @@
 
                     if (etiqueta.includes(query)) {
                         label.removeClass('d-none');
-                        $checkbox.show();
+                        $checkbox.val();
                     } else {
                         label.addClass('d-none');
                         $checkbox.hide();
@@ -775,7 +775,7 @@
                                 datos = datos;
                             }
                             $.each(datos, function(key, value) {
-                                $('#programas').append(`<label data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                $('#programas').append(`<label  data-codigo="${value.codprograma}"><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
                             });
                         }
                     },

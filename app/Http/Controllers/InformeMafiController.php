@@ -174,13 +174,26 @@ class InformeMafiController extends Controller
              **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
              **GROUP BY sello;
              */
-
+            
             $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->select('sello', 'autorizado_asistir')
                 ->get();
-
+        }
+        if ($tabla == "planeacion") {
+            /**
+             **SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
+             **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
+             **GROUP BY sello;
+             */
+            $consulta= DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
@@ -212,21 +225,7 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
 
-        if ($tabla == "planeacion") {
-            /**
-             **SELECT COUNT(sello) AS TOTAL, sello FROM `estudiantes`
-             **WHERE  tipo_estudiante IN('PRIMER INGRESO','PRIMER INGRESO **PSEUDO INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE **EXTERNO (ASISTEN)', 'TRANSFERENTE EXTERNO PSEUD ING', **'TRANSFERENTE INTERNO')
-             **GROUP BY sello;
-             */
-            $primerIngreso = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->groupBy('dm.sello')
-                ->get();
-        }
 
         return $data;
     }
@@ -244,17 +243,21 @@ class InformeMafiController extends Controller
         ];
 
         if ($tabla == "Mafi") {
-            /**
-             **SELECT COUNT(sello) AS TOTAL, sello FROM `datosMafi`
-             **WHERE  tipoestudiante IN('PRIMER INGRESO','PRIMER INGRESO PSEUDO **INGRES', 'TRANSFERENTE EXTERNO', 'TRANSFERENTE EXTERNO (ASISTEN)**', 'TRANSFERENTE EXTERNO PSEUD ING', 'TRANSFERENTE INTERNO')
-             **GROUP BY sello;
-             */
-
             $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
                 ->whereNotIn('tipoestudiante', $tiposEstudiante)
                 ->select('sello', 'autorizado_asistir')
                 ->get();
+        }
+
+        if ($tabla == "planeacion") {
+            $consulta= DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
 
             $selloFinanciero = 0;
             $Retencion = 0;
@@ -287,8 +290,7 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
-
+        
         return $data;
     }
 
@@ -574,15 +576,6 @@ class InformeMafiController extends Controller
             'TRANSFERENTE INTERNO',
         ];
         if ($tabla == "Mafi") {
-            // $primerIngreso = DB::table('datosMafi as dm')
-            //     ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
-            //     ->where('dm.estado', 'Activo')
-            //     ->whereIn('dm.periodo', $periodos)
-            //     ->whereIn('p.Facultad', $facultades)
-            //     ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-            //     ->select(DB::raw('COUNT(dm.sello) AS TOTAL, dm.sello'))
-            //     ->groupBy('dm.sello')
-            //     ->get();
 
             $consulta = DB::table('datosMafi as dm')
                 ->join('programas as p', 'p.codprograma', '=', 'dm.codprograma')
@@ -592,7 +585,19 @@ class InformeMafiController extends Controller
                 ->whereIn('dm.tipoestudiante', $tiposEstudiante)
                 ->select('dm.sello', 'dm.autorizado_asistir')
                 ->get();
+        }
 
+        if ($tabla == "planeacion") {
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
@@ -624,19 +629,7 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
-
-        if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
-                ->whereIn('dm.periodo', $periodos)
-                ->whereIn('pr.Facultad', $facultades)
-                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->groupBy('dm.sello')
-                ->get();
-        }
+        
         return $data;
     }
 
@@ -664,6 +657,18 @@ class InformeMafiController extends Controller
                 ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
                 ->select('dm.sello', 'dm.autorizado_asistir')
                 ->get();
+        }
+        if ($tabla == "planeacion") {
+            $consulta = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('pr.Facultad', $facultades)
+                ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
 
             $selloFinanciero = 0;
             $Retencion = 0;
@@ -696,19 +701,7 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
-
-        if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
-                ->whereIn('dm.periodo', $periodos)
-                ->whereIn('pr.Facultad', $facultades)
-                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->groupBy('dm.sello')
-                ->get();
-        }
+        
         return $data;
     }
 
@@ -1063,6 +1056,17 @@ class InformeMafiController extends Controller
                 ->whereIn('tipoestudiante', $tiposEstudiante)
                 ->select('sello', 'autorizado_asistir')
                 ->get();
+        }
+        if ($tabla == "planeacion") {
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->whereIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
 
             $selloFinanciero = 0;
             $Retencion = 0;
@@ -1095,18 +1099,6 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
-
-        if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->whereIn('dm.periodo', $periodos)
-                ->whereIn('dm.codprograma', $programas)
-                ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->groupBy('dm.sello')
-                ->get();
-        }
 
         return $data;
     }
@@ -1127,13 +1119,6 @@ class InformeMafiController extends Controller
         ];
 
         if ($tabla == "Mafi") {
-            /**
-             * SELECT COUNT(sello) AS TOTAL, sello
-             *FROM datosMafi
-             *WHERE programa IN ('') -- Reemplaza con los programas específicos
-             *AND tipoestudiante = 'PRIMER INGRESO'
-             *GROUP BY sello;
-             */
 
             $consulta = DB::table('datosMafi')
                 ->where('estado', 'Activo')
@@ -1142,7 +1127,18 @@ class InformeMafiController extends Controller
                 ->whereNotIn('tipoestudiante', $tiposEstudiante)
                 ->select('sello', 'autorizado_asistir')
                 ->get();
+            }
 
+        if ($tabla == "planeacion") {
+            $primerIngreso = DB::table('planeacion as p')
+                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
+                ->whereIn('dm.periodo', $periodos)
+                ->whereIn('dm.codprograma', $programas)
+                ->whereNotIn('dm.tipoestudiante', $tiposEstudiante)
+                ->select('p.codbanner','dm.sello', 'dm.autorizado_asistir')
+                ->distinct()
+                ->get();
+        }
             $selloFinanciero = 0;
             $Retencion = 0;
             $AFP = 0;
@@ -1174,18 +1170,9 @@ class InformeMafiController extends Controller
                 'AFP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
-        }
 
-        if ($tabla == "planeacion") {
-            $primerIngreso = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
-                ->whereIn('dm.periodo', $periodos)
-                ->whereIn('dm.codprograma', $programas)
-                ->whereIn('tipoestudiante', $tiposEstudiante)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.sello')
-                ->groupBy('dm.sello')
-                ->get();
-        }
+        
+        
 
         return $data;
     }

@@ -169,6 +169,116 @@
         <br>
 
     </div>
+
+    <div class="" id="taps_internos">
+        <div class="container">
+            <div class="row">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active"    id="malla"          role="tabpanel" ></div>
+                    <div class="tab-pane fade"                id="Viendo"         role="tabpanel" >
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade"                id="proyectadas"    role="tabpanel" >
+                        <div class="table-responsive-xl">
+                            <table class="table table-striped">
+                  
+                                <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                    <div class="tab-pane fade"                id="por_ver"        role="tabpanel" ></div>
+                    <div class="tab-pane fade"                id="vistas"         role="tabpanel" ></div>
+                    <div class="tab-pane fade"                id="Historial"      role="tabpanel"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+   
+
+   
+
+
+
     <script>
 
 
@@ -281,6 +391,8 @@
             
 
         })
+
+
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
@@ -369,8 +481,19 @@
                         // Crear el contenido de la pestaña
                         var tabContent = $('<div>')
                         .addClass('tab-pane fade datos')
-                        .attr('id', 'tab' + index)
-                        .text(' '); // Puedes poner un mensaje mientras carga el contenido
+                        .attr('id', 'tab' + index); 
+
+                        var tabLink = $('<a>')
+                        .addClass('nav-link datos ')
+                        .attr('data-toggle', 'tab')
+                        .attr('data-id',codBanner )
+                        .attr('data-programa',tab.cod_programa)
+                        .attr('data-tap', 'tab' + index)
+                        .attr('href', '#tab' + index)
+                        .text(tab.programa);
+                        
+                        $(tabContent).append()
+                        // Puedes poner un mensaje mientras carga el contenido
 
                         // Agregar el contenido de la pestaña al contenedor
                         $('.tab-content').append(tabContent);

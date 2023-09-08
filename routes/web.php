@@ -402,13 +402,6 @@ Route::controller(facultadController::class)->group(function () {
     Route::post('/home/editarProgramasPeriodos', 'actualizarProgramaPeriodo')->middleware('auth', 'admin')->name('programasPeriodos.actualizar');
 });
 
-/** Controlador para el menú desplegable de facultades */
-Route::controller(HistorialEstudianteController::class)->group(function () {
-
-    /** Ruta para cargar informacion de los estudiantes */
-    Route::get('/historial', [HistorialEstudianteController::class, 'historial']);
-});
-
 Route::controller(EstudianteController::class)->group(function(){
     Route::get('/historialestudiante','inicio')->name('historial.inicio');
     Route::post('/historialestudiante/consulta','consultaEstudiante')->name('historial.consulta');
@@ -429,5 +422,5 @@ Route::controller(AlertasTempranasController::class)->group(function(){
 
     Route::post('/alertastempranas/graficoAlertas','graficaAlertas')->middleware('auth', 'admin')->name('alertas.grafico');
     Route::post('/alertastempranas/graficoAlertasFacultad','graficaAlertasFacultad')->middleware('auth', 'admin')->name('alertas.grafico.facultad');
-    Route::post('/alertastempranas/graficoAlertasPrograma','graficaAlertasPrograma')->middleware('auth', 'admin')->name('alertas.grafico.programa');
+    Route::post('/alertastempranas/graficoAlertasPrograma','graficaAlertasProgramas')->middleware('auth', 'admin')->name('alertas.grafico.programa');
 });

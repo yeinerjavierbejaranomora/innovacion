@@ -48,6 +48,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .botonMafi {
@@ -62,8 +65,6 @@
         font-size: 14px;
     }
 
-
-
     #botondataTable {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -74,6 +75,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {

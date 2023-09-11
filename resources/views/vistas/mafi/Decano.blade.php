@@ -171,18 +171,6 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row mb-3">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
 
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>

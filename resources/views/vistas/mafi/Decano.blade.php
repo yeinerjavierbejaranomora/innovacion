@@ -747,7 +747,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
             }
 
             /**

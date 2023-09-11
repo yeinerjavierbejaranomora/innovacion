@@ -57,11 +57,12 @@ class cambioController extends Controller
     public function actualizar(ActualizarPassRequest $request)
     {
         //dd(decrypt($request->id));
-        $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
+        $id =decrypt($request->id);
+        $cambioPass = User::where('id', '=', $id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) {
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
         } else {
-            return redirect()->route('cambio.nueva')->withErrors(['errors', 'Cambio no valido!']);
+            return redirect()->route('cambio.nueva',['id' => $request->id])->withErrors(['errors', 'Cambio no valido!']);
         }
     }
 

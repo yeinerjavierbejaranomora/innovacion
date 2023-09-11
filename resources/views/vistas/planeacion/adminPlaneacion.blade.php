@@ -2271,6 +2271,8 @@
             });
 
 
+            var programaEstudiante;
+
             function dataTable(periodos) {
                 $('#colTabla').removeClass('hidden');
                 var url, data;
@@ -2386,6 +2388,8 @@
                         $(tbody).on("click", "button.buscar", function() {
                             limpiarModalBuscador();
                             $("#idBanner").val("");
+                            var datos = table.row($(this).parents("tr")).data();
+                            programaEstudiante = datos[0];
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);
@@ -2631,6 +2635,7 @@
             $("#formBuscar").submit(function(e) {
                 limpiarModalBuscador();
                 e.preventDefault();
+                console.log(programaEstudiante);
                 var id = $("#idBanner").val();
                 var url, data;
                 data = {

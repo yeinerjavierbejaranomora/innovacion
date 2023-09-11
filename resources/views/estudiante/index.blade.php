@@ -201,8 +201,8 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active"    id="malla"          role="tabpanel" >
-                    <div class="row">
-                        <div class="">
+                    <div class="card-deck">
+                        
                             <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
@@ -210,8 +210,8 @@
                                 <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
                             </div>
-                        </div>
-                        <div class="">
+                     
+                        
                             <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
@@ -219,7 +219,7 @@
                                 <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
                             </div>
-                        </div>
+                       
                         </div>
 
 

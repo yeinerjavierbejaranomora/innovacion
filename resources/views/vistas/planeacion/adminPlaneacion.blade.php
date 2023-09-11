@@ -2593,7 +2593,7 @@
             function limpiarModalEstudiantes() {
                 if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
                     $("#estudiantesPlaneados").remove();
-                    tabla.destroy();
+                    estudiante.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
                     $('#estudiantesPlaneados tbody').empty();
                 }
@@ -2620,6 +2620,7 @@
             }
 
             $("#formBuscar").submit(function(e) {
+                limpiarModalBuscador();
                 e.preventDefault();
                 var id = $("#idBanner").val();
                 var url, data;
@@ -2640,6 +2641,7 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
                         estudiante = $('#buscarEstudiante').DataTable({
                             "data": data,
                             'pageLength': 10,

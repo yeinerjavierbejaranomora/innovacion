@@ -211,6 +211,8 @@
                         
                             <div class="card card_historial">
                             <div class="card-body">
+                                <span style="border-bottom: 2px solid;border-top: 2px solid;border-left: 2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 30px;width: 70px;min-width: 130px;
+                                ">&nbsp;&nbsp;&nbsp;</span>
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               

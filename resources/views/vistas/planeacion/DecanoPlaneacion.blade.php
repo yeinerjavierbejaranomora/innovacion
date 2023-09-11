@@ -667,6 +667,7 @@
              * Método que trae los periodos activos
              */
             function periodos() {
+                console.log(programasSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

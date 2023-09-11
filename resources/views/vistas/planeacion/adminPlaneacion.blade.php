@@ -2627,6 +2627,7 @@
                     $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.malla");
                     $("#datatable tbody").off("click", "button.estudiantes");
+                    $("#datatable tbody").off("click", "button.buscar");
                 }
             }
 

@@ -909,8 +909,10 @@
                                     $('#mensaje').hide();
                                     limpiarTitulos();
                                     llamadoFunciones();
+                                    programasSeleccionados = []
                                 } else {
                                 /** Alerta */
+                                
                                 programasSeleccionados = [];
                                 periodosSeleccionados = [];
                                 destruirGraficos();

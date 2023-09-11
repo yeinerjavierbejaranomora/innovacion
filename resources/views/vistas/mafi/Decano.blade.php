@@ -972,6 +972,20 @@
 
             function graficoEstudiantesPorFacultades() {
                 console.log(facultadesSeleccionadas);
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.activos.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                        url = "{{ route('estudiantes.activos.facultad') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                        }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -979,7 +993,7 @@
                     type: 'post',
                     url: "{{ route('estudiantes.activos.facultad',['tabla' => ' ']) }}" + tabla,
                     data: {
-                        idfacultad: facultades,
+                        idfacultad: facultadesSeleccionadas,
                         periodos: periodosSeleccionados
                     },
                     success: function(data) {

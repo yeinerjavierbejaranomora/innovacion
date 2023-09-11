@@ -896,13 +896,14 @@
                         console.log(data);
 
                         var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
                         newData.push(headers);
                         data.forEach(function(item) {
                             var fila = [
                                 item.idbanner,
                                 item.primer_apellido,
-                                item.programa,
                                 item.codprograma,
+                                item.programa,
                                 item.cadena
                             ];
                             newData.push(fila);

@@ -2385,6 +2385,7 @@
                         function buscarEstudiante(tbody, table){
                         $(tbody).on("click", "button.buscar", function() {
                             limpiarModalBuscador();
+                            $("#idBanner").val("");
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);
@@ -2601,7 +2602,6 @@
             }
 
             function limpiarModalBuscador(){
-                $("#idBanner").val("");
                 if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
                     $("#buscarEstudiante").remove();
                     estudiante.destroy();

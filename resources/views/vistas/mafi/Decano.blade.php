@@ -1005,7 +1005,7 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
+            $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
                 if ($('.periodos input[type="checkbox"]:checked').length) { 
                     console.log('entra');
                     $('#programas').empty();

@@ -660,7 +660,6 @@
             facultades();
             programas();
 
-
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('.listaProgramas');
             var divProgramas = $('#programas');
@@ -839,15 +838,6 @@
                 $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
-            /**
-             * Método que trae la información de toda la Ibero
-             * */
-            function informacionGeneral() {
-                $('#mensaje').show();
-                destruirGraficos();
-                llamadoFunciones();
-            }
-
             $('#descargarMafi').on('click', function(e) {
                 Swal.fire({
                     title: 'Descargar datos',
@@ -924,7 +914,6 @@
                     }
                 });
             }
-
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();

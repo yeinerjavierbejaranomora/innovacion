@@ -153,7 +153,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
-
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
@@ -171,7 +170,6 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
@@ -183,7 +181,6 @@
                     {{$facultad}} -
                     @endforeach
                 </h3>
-
             </div>
             <br>
 
@@ -613,7 +610,6 @@
 
     </div>
 
-
     <script>
         $(document).ready(function() {
             $('#menuAdmisiones').addClass('activo');
@@ -837,6 +833,78 @@
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     }
+            }
+
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                console.log(programasSeleccionados);
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    console.log('entra');
+                    url = "{{ route('data.Mafi.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    url = "{{ route('data.Mafi.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+
+                        var newData = [];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
             }
             
             $('#generarReporte').on('click', function(e) {

@@ -551,8 +551,8 @@
             </div>
         </div>
 
-    <!-- Modal Tabla Malla Curricular -->
-    <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
+        <!-- Modal Tabla Malla Curricular -->
+        <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">

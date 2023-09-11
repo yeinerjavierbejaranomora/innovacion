@@ -717,7 +717,7 @@
 
             function programas() {
                 var formData = new FormData();
-                var periodos = [06,07,13,16,33,34,43,44,53,54];
+                var periodos = ['06','07','13','16','33','34','43','44','53','54'];
                 for (const key in facultadesSeleccionadas) {
                     formData.append('idfacultad[]', facultadesSeleccionadas[key]);
                 }

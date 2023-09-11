@@ -544,7 +544,7 @@
             programas();
             periodos();
             vistaEntrada();
-            graficoEstudiantesPorFacultades();
+            graficoEstudiantes();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -970,7 +970,7 @@
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
              */
 
-            function graficoEstudiantesPorFacultades() {
+            function graficoEstudiantes() {
                 console.log(facultadesSeleccionadas);
                 var url, data;
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
@@ -986,77 +986,97 @@
                                 periodos: periodosSeleccionados
                             }
                         }
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultadesSeleccionadas,
-                        periodos: periodosSeleccionados
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
+                        $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: url,
+                        data: data,
+                        success: function(data) {
+                            try {
+                                data = jQuery.parseJSON(data);
+                            } catch {
+                                data = data;
+                            }
+                            var labels = data.data.map(function(elemento) {
+                                return elemento.estado;
+                            });
+
+                            var valores = data.data.map(function(elemento) {
+                                return elemento.TOTAL;
+                            });
+                            var suma = valores.reduce(function(acumulador, valorActual) {
+                                return acumulador + valorActual;
+                            }, 0);
+                            // Crear el gráfico circular
+                            var ctx = document.getElementById('estudiantes').getContext('2d');
+                            chartEstudiantes = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: labels.map(function(label, index) {
+                                        label = label.toUpperCase();
+                                        if (label != 'TOTAL') {
+                                            return label + 'S: ' + valores[index];
+                                        } else {
+                                            return label + ': ' + suma;
                                         }
+                                    }),
+                                    datasets: [{
+                                        label: 'Gráfico Circular',
+                                        data: valores,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)']
+                                    }]
+                                },
+                                options: {
+                                    maintainAspectRatio: false,
+                                    responsive: true,
+                                    plugins: {
+                                        datalabels: {
+                                            color: 'black',
+                                            font: {
+                                                weight: 'bold',
+                                                size: 12
+                                            },
+                                        },
+                                        labels: {
+                                            render: 'percenteaje',
+                                            size: '14',
+                                            fontStyle: 'bolder',
+                                            position: 'border',
+                                            textMargin: 6
+                                        },
+                                        legend: {
+                                            position: 'right',
+                                            align: 'left',
+                                            labels: {
+                                                usePointStyle: true,
+                                                padding: 20,
+                                                font: {
+                                                    size: 12
+                                                }
+                                            }
+                                        },
+                                        title: {
+                                        display: true,
+                                        text: 'TOTAL ESTUDIANTES: ' + suma,
+                                        font: {
+                                                size: 14,
+                                                Style: 'bold',
+                                            },
+                                        position: 'bottom'
                                     }
+                                    },
 
                                 },
-
-                            },
-                            plugin: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
+                                plugins: [ChartDataLabels]
+                            });
+                            if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                                $('#colEstudiantes').addClass('hidden');
+                            } else {
+                                $('#colEstudiantes').removeClass('hidden');
+                            }
                         }
-                    }
                 });
             }
 

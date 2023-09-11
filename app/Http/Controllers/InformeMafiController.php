@@ -2189,7 +2189,7 @@ class InformeMafiController extends Controller
         $idsFacultad =$_POST['idfacultad'];
         $periodos =  $_POST['periodos'];
 
-        dd($periodos);
+        
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
@@ -2200,6 +2200,9 @@ class InformeMafiController extends Controller
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
 
+        
+            dd($programas);
+            
         $arreglo = [];
 
         foreach ($programas as $programa) {

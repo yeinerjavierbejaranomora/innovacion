@@ -160,7 +160,7 @@
         border-radius: 3px;
         transform: scale(1);
         vertical-align: middle;
-        border: 1px solid #9098A9;
+        border: 1px solid #f6c23e;
         transition: all 0.2s ease;
     }
 

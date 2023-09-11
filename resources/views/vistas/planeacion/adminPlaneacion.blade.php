@@ -2610,8 +2610,8 @@
                     $("#buscarEstudiante").remove();
                     estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
-                    $('#buscarEstudiante t').empty();
                     $('#buscarEstudiante thead').empty();
+                    $('#buscarEstudiante tbody').empty();
                     $('#buscarEstudiante tfooter').empty();
                 }
             }

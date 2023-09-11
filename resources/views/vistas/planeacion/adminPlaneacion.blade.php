@@ -2588,7 +2588,9 @@
                     $("#mallaCurricular").remove();
                     table.destroy();
                     $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular thead').empty();
                     $('#mallaCurricular tbody').empty();
+                    $('#mallaCurricular tfooter').empty();
                 }
             }
 
@@ -2597,7 +2599,9 @@
                     $("#estudiantesPlaneados").remove();
                     tabla.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
+                    $('#estudiantesPlaneados thead').empty();
                     $('#estudiantesPlaneados tbody').empty();
+                    $('#estudiantesPlaneados tfooter').empty();
                 }
             }
 
@@ -2607,6 +2611,8 @@
                     estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
                     $('#buscarEstudiante t').empty();
+                    $('#buscarEstudiante thead').empty();
+                    $('#buscarEstudiante tfooter').empty();
                 }
             }
 
@@ -2614,7 +2620,9 @@
                 $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').dataTable().fnDestroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.malla");
                     $("#datatable tbody").off("click", "button.estudiantes");
                 }

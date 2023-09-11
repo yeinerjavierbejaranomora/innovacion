@@ -2605,7 +2605,9 @@
                     $("#buscarEstudiante").remove();
                     estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
-                    $('#buscarEstudiante').empty();
+                    $('#buscarEstudiante tbody').empty();
+                    $('#buscarEstudiante theader').empty();
+                    $('#buscarEstudiante tfooter').empty();
                 }
             }
 

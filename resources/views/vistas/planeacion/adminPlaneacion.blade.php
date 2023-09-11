@@ -2382,7 +2382,7 @@
                             })
                         }
 
-                        function buscarEstudiante(){
+                        function buscarEstudiante(tbody, table){
                         $(tbody).on("click", "button.buscar", function() {
                             limpiarModalBuscador();
                             })

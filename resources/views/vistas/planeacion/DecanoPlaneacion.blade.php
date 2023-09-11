@@ -874,7 +874,7 @@
                 periodosSeleccionados= getPeriodos();
                 destruirGraficos();
 
-                var key = Object.keys(facultadesSelect);
+                var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
 
                 if (periodosSeleccionados.length > 0) {

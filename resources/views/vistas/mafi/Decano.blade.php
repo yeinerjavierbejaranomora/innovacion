@@ -857,9 +857,7 @@
             });
 
             function ExcelBanner(){
-                console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
@@ -885,8 +883,6 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
-
                         var newData = [];
                         var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
                         newData.push(headers);
@@ -1071,7 +1067,6 @@
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
                 if ($('.periodos input[type="checkbox"]:checked').length) { 
-                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
@@ -1137,7 +1132,6 @@
              */
 
             function graficoEstudiantes() {
-                console.log(facultadesSeleccionadas);
                 var url, data;
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     url = "{{ route('estudiantes.activos.programa') }}",
@@ -2632,7 +2626,6 @@
                 
 
             });
-
         });
     </script>
 

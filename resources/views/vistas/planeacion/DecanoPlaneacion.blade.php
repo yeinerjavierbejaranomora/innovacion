@@ -685,7 +685,7 @@
             function programas() {
                 var formData = new FormData();
                 for (const key in facultadesSeleccionadas) {
-                    formData.append('idfacultad[]', item);
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
                 }
 
                 $.ajax({

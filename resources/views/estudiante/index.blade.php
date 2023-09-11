@@ -200,7 +200,58 @@
                 </ul>
 
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active"    id="malla"          role="tabpanel" ></div>
+                    <div class="tab-pane fade show active"    id="malla"          role="tabpanel" >
+                    <div class="card-deck">
+                        
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                     
+                        
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                            </div>
+                            </div>
+                       
+                        </div>
+
+
+                    </div>
 
                     <div class="tab-pane fade"                id="Viendo"         role="tabpanel" >
 
@@ -255,11 +306,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                        <div class="card bg-primary">
-                                            <div class="card-body text-center">
-                                            <p class="card-text">Some text inside the first card</p>
-                                            </div>
-                                        </div>
+  
                                         </tr>
                                         <tr>
                                         <th scope="row">2</th>

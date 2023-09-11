@@ -684,14 +684,10 @@
 
             function programas() {
                 var formData = new FormData();
-                var array = [];
-                for (const key in facultadesSelect) {
-                    array.push(facultadesSelect[key]);
+                for (const key in facultadesSeleccionadas) {
+                    formData.append('idfacultad[]', item);
                 }
 
-                array.forEach(function(item) {
-                    formData.append('idfacultad[]', item);
-                });
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

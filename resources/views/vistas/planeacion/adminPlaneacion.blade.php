@@ -640,7 +640,9 @@
                         @csrf
                         <label for="buscar" >Buscar estudiante</label>
                         <input type="text" class="form-control mb-2" placeholder="Id banner estudiante" name="buscar" id="buscador">
-                        <input type="submit" class="form-control mb-2">
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-sm btn-primary" value="Buscar">
+                        </div>
                         </form>
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table">

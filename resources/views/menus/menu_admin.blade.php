@@ -46,10 +46,15 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">Flex item 1</div>
+            <div class="p-2 bd-highlight">Flex item 2</div>
+        </div>
+
+        {{-- <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
-        </a>
+        </a> --}}
     </li>
 
     <!-- Divider -->
@@ -69,7 +74,7 @@
             </div>
         </div>
     </li>
-    
+
 
     <!--Nav Item - Menú desplegable "Gestión de Facultades"-->
     <li class="nav-item">

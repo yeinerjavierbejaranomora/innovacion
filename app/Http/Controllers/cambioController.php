@@ -47,6 +47,7 @@ class cambioController extends Controller
             return redirect()->route('cambio.index')->withErrors(['errors', 'Credenciales invalidos!']);
         } else {
             $id = encrypt($consulta[0]->id);
+            dd($id);
             return redirect()->route('cambio.nueva', ['id' => $id]);
         }
     }

@@ -907,7 +907,7 @@
                         } else {
                             if (facultadesSeleccionadas) {
                                     $('#mensaje').hide();
-                                    estadoUsuarioFacultad();
+                                    limpiarTitulos();
                                     llamadoFunciones();
                                 } else {
                                 /** Alerta */
@@ -956,7 +956,7 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, $tituloEstudiantesAntiguos').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -995,33 +995,6 @@
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
 
-            }
-
-            function estadoUsuarioFacultad() {
-                limpiarTitulos();
-                var periodos = getPeriodos();
-                $("#mensaje").empty();
-                var facultadesArray = Object.values(facultadesSeleccionadas);
-                var facultadesFormateadas = facultadesArray.map(function(facultad) {
-                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                }).join(' - ');
-
-                var periodosArray = Object.values(periodos);
-                var periodosFormateados = periodosArray.map(function(periodo) {
-                    return periodo.replace(/2023/, '').trim();
-                }).join(' - ');
-
-                if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                } else {
-
-                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
-                $("#mensaje").show();
-                $("#mensaje").html(textoNuevo);
             }
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {

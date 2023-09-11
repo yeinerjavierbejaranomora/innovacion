@@ -476,7 +476,7 @@
                                     }
 
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td style="color:white">')
+                                    const $filaMateria = $(' <div class="card bg-primary">  <div class="card-body text-center"> <p class="card-text">')
                                         .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`).addClass(materia.color);
                                     $tablas.children('tr:last').append($filaMateria);
                                 });

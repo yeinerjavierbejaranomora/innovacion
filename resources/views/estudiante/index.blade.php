@@ -243,42 +243,136 @@
                     </div>
                     <div class="tab-pane fade"                id="proyectadas"    role="tabpanel" >
                         <div class="table-responsive-xl">
-                            <table class="table table-striped">
-                  
-                                <thead>
-                                    <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <div class="card bg-primary">
+                                            <div class="card-body text-center">
+                                            <p class="card-text">Some text inside the first card</p>
+                                            </div>
+                                        </div>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                         </div>  
                     </div>
-                    <div class="tab-pane fade"                id="por_ver"        role="tabpanel" ></div>
-                    <div class="tab-pane fade"                id="vistas"         role="tabpanel" ></div>
-                    <div class="tab-pane fade"                id="Historial"      role="tabpanel"></div>
+                    <div class="tab-pane fade"                id="por_ver"        role="tabpanel" > <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">ABV32190</th>
+                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                    <div class="tab-pane fade"                id="vistas"         role="tabpanel" > <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">ABV32190</th>
+                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                    <div class="tab-pane fade"                id="Historial"      role="tabpanel"> <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">ABV32190</th>
+                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
                 </div>
             </div>
 
@@ -365,19 +459,24 @@
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
 
+                               
+
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
+                                       
+
+                                       
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr>').append(
-                                                $('<th>').text(`Semestre ${currentSemestre}`)
+                                                $('<div class="card bg-primary">  <div class="card-body text-center"> <p class="card-text">').text(`Semestre ${currentSemestre}`)
                                                 .attr('colspan', 4)
                                                 );
                                         $tablas.append($filaSemestre);
                                     }
 
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td style="color:white">')
+                                    const $filaMateria = $('<td style="color:white"><div class="card bg-primary">  <div class="card-body text-center"> <p class="card-text">')
                                         .text(`Código: ${materia.codigo_materia}\nNombre: ${materia.nombre_materia}\nCréditos: ${materia.creditos}\nCiclo: ${materia.ciclo}`).addClass(materia.color);
                                     $tablas.children('tr:last').append($filaMateria);
                                 });

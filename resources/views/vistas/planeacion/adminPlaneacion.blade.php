@@ -2640,6 +2640,7 @@
                 var url, data;
                 data = {
                     id: id,
+                    programa: programaEstudiante
                 };
                 url = "{{ route('materias.estudiante') }}";
                 var datos = $.ajax({

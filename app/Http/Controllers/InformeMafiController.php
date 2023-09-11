@@ -2295,10 +2295,13 @@ class InformeMafiController extends Controller
 
     function buscarEstudiante(){
         $id = $_POST['id'];
+        $programa = $_POST['programa'];
 
         $materias = DB::table('planeacion as p')
         ->join('mallaCurricular as m','p.codMateria', '=','m.codigoCurso')
-        ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')
+        ->where('p.codBanner', $id)
+        ->where('p.codprograma', $programa)
+        ->select('p.codMateria', 'm.curso', 'p.semestre')
         ->distinct()->get();
 
         return $materias;

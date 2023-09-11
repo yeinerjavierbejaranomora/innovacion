@@ -35,10 +35,7 @@
         width: 60px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador,
-    #botonModalMetas {
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -636,14 +633,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#">
+                    <form class="form-inline">
                         @csrf
-                        <label for="buscar" >Buscar estudiante</label>
-                        <input type="text" class="form-control mb-2" placeholder="Id banner estudiante" name="buscar" id="buscador">
-                        <div class="input-group-append">
-                            <input type="submit" class="btn btn-sm btn-primary" value="Buscar">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="idBanner" class="sr-only">Id Banner</label>
+                            <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
-                        </form>
+                        <button type="submit" class="btn botonModal mb-2">Buscar</button>
+                    </form>
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table">
                             <table id="buscarEstudiante" class="display" style="width:100%">

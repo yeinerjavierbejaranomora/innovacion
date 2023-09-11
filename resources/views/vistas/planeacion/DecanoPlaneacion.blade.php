@@ -882,7 +882,6 @@
                 destruirTable();
                 periodosSeleccionados = getPeriodos();
                 destruirGraficos();
-
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
 

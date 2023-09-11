@@ -748,7 +748,7 @@
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
             function ocultarDivs() {
-                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas', '#colAntiguos').addClass('hidden');
             }
         
             function facultadesUsuario() {
@@ -757,24 +757,38 @@
 
             function programas() {
                 var formData = new FormData();
-                    for (const key in facultadesSeleccionadas) {
-                        formData.append('idfacultad[]', facultadesSeleccionadas[key]);
-                    }
+                var periodos = ['06','07','13','16','33','34','43','44','53','54'];
+                for (const key in facultadesSeleccionadas) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                }
+
+                periodos.forEach(function(periodo) {
+                    formData.append('periodos[]', periodo);
+                });
+
+                console.log(formData);
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('traer.programas') }}",
+                    url: "{{ route('programasPeriodo.activos') }}",
                     data: formData,
                     cache: false,
                     async: false,
                     contentType: false,
                     processData: false,
                     success: function(datos) {
-                        datos.forEach(data => {
-                            programasSeleccionados.push(data.codprograma);
-                            $('#programas').append(`<li id="Checkbox${data.codprograma}" data-codigo="${data.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label></li>`);
+                        try{
+                            parseJSON(datos);
+                        }
+                        catch{
+                            datos = datos;
+                        }
+                        $.each(datos, function(key, value) {
+                            programasSeleccionados.push(value.codprograma);
+                            $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                         });
                     }
                 })
@@ -929,19 +943,17 @@
                             $("#colMetas").addClass("hidden");
                             llamadoFunciones();
                         } else {
-                            if (facultadesSeleccionadas.length > 0) {
+                            if (facultadesSeleccionadas) {
                                     $('#mensaje').hide();
-                                    $("#colMetas").removeClass("hidden");
-                                    estadoUsuarioFacultad();
+                                    limpiarTitulos();
                                     llamadoFunciones();
-                                
-                            } else {
+                                    programasSeleccionados = []
+                                } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
-                                alertaFacultad();
                             }
                         }
                     }
@@ -1021,33 +1033,6 @@
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
 
-            }
-
-            function estadoUsuarioFacultad() {
-                limpiarTitulos();
-                var periodos = getPeriodos();
-                $("#mensaje").empty();
-                var facultadesArray = Object.values(facultadesSeleccionadas);
-                var facultadesFormateadas = facultadesArray.map(function(facultad) {
-                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                }).join(' - ');
-
-                var periodosArray = Object.values(periodos);
-                var periodosFormateados = periodosArray.map(function(periodo) {
-                    return periodo.replace(/2023/, '').trim();
-                }).join(' - ');
-
-                if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                } else {
-
-                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloEstudiantes strong, #tituloEstadoFinanciero strong, #tituloRetencion strong, #tituloEstudiantesNuevos strong, #tituloTipos strong, #tituloOperadores strong, #tituloProgramas strong').append(': ' + facultadesFormateadas);
-                }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
-                $("#mensaje").show();
-                $("#mensaje").html(textoNuevo);
             }
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {

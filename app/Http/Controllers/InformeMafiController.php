@@ -2301,17 +2301,7 @@ class InformeMafiController extends Controller
         ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')
         ->distinct()->get();
 
-        $nombre = DB::table('datos_moodle')
-        ->where('Id_Banner',$id)
-        ->select('Nombre', 'Apellido')
-        ->first();
-        
-        $datos = [
-            'materias' => $materias,
-            'nombre' => $nombre
-        ];
-
-        return $datos;
+        return $materias;
     }
 
 

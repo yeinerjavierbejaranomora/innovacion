@@ -545,6 +545,7 @@
             periodos();
             vistaEntrada();
             graficos();
+            graficoEstudiantesPorFacultades();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -738,7 +739,6 @@
                 }
             });
 
-
             function vistaEntrada() {
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
@@ -750,9 +750,8 @@
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Facultad: " + valorFacultad + " </h3>";
                     $("#mensaje").html(textoNuevo);
                     }
-                }
+            }
             
-
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
@@ -959,7 +958,6 @@
                 }
             });
 
-
             var chartEstudiantes;
 
             var chartEstudiantesActivos;
@@ -974,31 +972,12 @@
 
             var chartProgramas;
 
-            /**
-             * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
-             */
-
-            function graficosporFacultad(facultades) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
-                    destruirGraficos();
-                    $("#ocultarGraficoProgramas").show();
-                }
-                graficoEstudiantesPorFacultades(facultades);
-                graficoSelloFinancieroPorFacultad(facultades);
-                graficoRetencionPorFacultad(facultades);
-                graficoSelloPrimerIngresoPorFacultad(facultades);
-                graficoTiposDeEstudiantesFacultad(facultades);
-                graficoOperadoresFacultad(facultades);
-                graficoProgramasFacultad(facultades);
-                graficoMetasFacultad(facultades);
-            }
-
             /** 
              * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
              */
 
-            function graficoEstudiantesPorFacultades(facultades) {
+            function graficoEstudiantesPorFacultades() {
+                console.log(facultadesSeleccionadas);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

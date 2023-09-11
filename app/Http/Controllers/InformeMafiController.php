@@ -528,6 +528,7 @@ class InformeMafiController extends Controller
                 ->where('dm.sello', 'TIENE RETENCION')
                 ->select(DB::raw('COUNT(dm.autorizado_asistir) AS TOTAL, dm.autorizado_asistir'))
                 ->groupBy('dm.autorizado_asistir')
+                ->orderByDesc('TOTAL')
                 ->get();
         }
 
@@ -540,6 +541,7 @@ class InformeMafiController extends Controller
                 ->where('dm.sello', 'TIENE RETENCION')
                 ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.autorizado_asistir')
                 ->groupBy('dm.autorizado_asistir')
+                ->orderByDesc('TOTAL')
                 ->get();
         }
 

@@ -1017,8 +1017,6 @@
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
-                    console.log(formData.value());
-
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

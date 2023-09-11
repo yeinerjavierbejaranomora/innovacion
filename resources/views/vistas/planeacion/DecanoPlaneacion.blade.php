@@ -744,7 +744,6 @@
             }
 
             function llamadoFunciones() {
-                graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
@@ -768,7 +767,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -1052,6 +1051,8 @@
             var chartRetencion;
 
             var chartSelloPrimerIngreso;
+
+            var chartSelloAntiguos;
 
             var chartTipoEstudiante;
 

@@ -60,7 +60,6 @@ class LoginController extends Controller
     /** funcion para realizar el  cambio de la contraseña */
     public function cambioPass(CambioPassRequest $request){
 
-        dd($request->all());
         /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
         $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
         /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */

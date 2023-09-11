@@ -737,6 +737,7 @@
                     contentType: false,
                     processData: false,
                     success: function(datos) {
+                        console.log(datos);
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);
                             $('#programas').append(`<li id="Checkbox${data.codprograma}" data-codigo="${data.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label></li>`);

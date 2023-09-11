@@ -25,7 +25,6 @@ class cambioController extends Controller
     public function nueva($id)
     {
         $id = decrypt($id);
-        dd($id);
         return view('reestablecerpassword.nueva', ['id' => $id]);
     }
 

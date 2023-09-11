@@ -318,9 +318,18 @@
                                                     <button class="btn btn-link text-light">
                                                         Pregrado
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosPregrado" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosPregrado" type="checkbox" checked>
+                                                        <label class="cbx" for="todosPregrado"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -337,9 +346,18 @@
                                                     <button class="btn btn-link text-light">
                                                         Facultades
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosFacultad" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosFacultad" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosFacultad" type="checkbox" checked>
+                                                        <label class="cbx" for="todosFacultad"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -358,9 +376,18 @@
                                                     <button class="btn btn-link text-light">
                                                         Especialización
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosEsp" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosEsp" type="checkbox" checked>
+                                                        <label class="cbx" for="todosEsp"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -378,9 +405,18 @@
                                                     <button class="btn btn-link text-light">
                                                         Maestría
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosMaestria" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosMaestria" type="checkbox" checked>
+                                                        <label class="cbx" for="todosMaestria"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -399,9 +435,18 @@
                                                     <button class="btn btn-link text-light">
                                                         Programas
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosPrograma" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosPrograma" type="checkbox" checked>
+                                                        <label class="cbx" for="todosPrograma"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>

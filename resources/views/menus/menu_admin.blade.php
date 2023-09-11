@@ -60,10 +60,22 @@
         </div> --}}
 
 
-
+<style>
+    .notificaciones-count {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+</style>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count">99+</span>
         </a>
     </li>
 

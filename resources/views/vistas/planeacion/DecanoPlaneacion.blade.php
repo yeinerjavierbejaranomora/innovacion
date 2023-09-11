@@ -740,6 +740,12 @@
                     contentType: false,
                     processData: false,
                     success: function(datos) {
+                        try{
+                            parseJSON(datos);
+                        }
+                        catch{
+                            datos = datos;
+                        }
                         console.log(datos);
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);

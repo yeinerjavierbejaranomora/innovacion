@@ -638,7 +638,7 @@
                     <div class="modal-body">
                         <label for="buscar" >Buscar estudiante</label>
                         <input type="text" class="form-control mb-2" placeholder="Id banner estudiante" name="buscar" id="buscador">
-
+                        <input type="submit">
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table">
                             <table id="buscarEstudiante" class="display" style="width:100%">

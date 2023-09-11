@@ -2384,7 +2384,7 @@
 
                         function buscarEstudiante(){
                         $(tbody).on("click", "button.buscar", function() {
-                                
+                            limpiarModalBuscador();
                             })
                         }
                         tablaMalla("#datatable tbody", table);
@@ -2596,6 +2596,16 @@
                     tabla.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
                     $('#estudiantesPlaneados tbody').empty();
+                }
+            }
+
+            function limpiarModalBuscador(){
+                $('#idBanner').empty();
+                if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
+                    $("#buscarEstudiante").remove();
+                    tabla.destroy();
+                    $('#buscarEstudiante').DataTable().destroy();
+                    $('#buscarEstudiante tbody').empty();
                 }
             }
 

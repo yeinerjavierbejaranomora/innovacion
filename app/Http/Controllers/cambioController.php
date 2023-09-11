@@ -25,6 +25,7 @@ class cambioController extends Controller
     public function nueva($id)
     {
         $id = decrypt($id);
+        dd($id);
         return view('reestablecerpassword.nueva', ['id' => $id]);
     }
 
@@ -41,7 +42,6 @@ class cambioController extends Controller
             ['documento', '=', $request->documento]
         ])->get();
 
-        dd($consulta[0]->id);
         /* Si encuentra el usuario en la base de datos le permite acceder al formulario para
         cambiar la contraseña */
         if ($consulta == '[]') {

@@ -649,6 +649,7 @@
             programas();
             periodos();
             vistaEntrada();
+            llamadoFunciones();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {

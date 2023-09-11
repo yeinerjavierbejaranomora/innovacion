@@ -152,19 +152,18 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
 
-            <div class="input-group">
-                <div class="input-group-append">
-                    <h3> Bienvenido {{auth()->user()->nombre}}</h3>
+            <div class="input-group" >
+                <div class="input-group-append text-gray-800 text-center">
+                    <h3><strong> Bienvenido {{ auth()->user()->nombre }}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
-
         </nav>
         <!-- End of Topbar -->
 
@@ -172,18 +171,6 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row mb-3">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
 
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
@@ -1018,23 +1005,19 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-
-            
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+            $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
+                if ($('.periodos input[type="checkbox"]:checked').length) { 
+                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-
+                    formData.append('idfacultad[]', facultadesSeleccionadas);
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
+                    console.log(formData.value());
 
                     $.ajax({
                         headers: {
@@ -1054,7 +1037,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                                 });
                             }
                         },

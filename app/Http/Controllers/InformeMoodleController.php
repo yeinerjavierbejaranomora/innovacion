@@ -28,7 +28,7 @@ class InformeMoodleController extends Controller
     public function riesgo()
     {
 
-        $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
+        $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
         
         $alto = [];
         $medio = [];

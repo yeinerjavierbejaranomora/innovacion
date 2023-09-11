@@ -849,7 +849,8 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                getPeriodos();
+                periodosSeleccionados= getPeriodos();
+                destruirGraficos();
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
 
@@ -871,6 +872,7 @@
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             $("#colMetas").addClass("hidden");
+                            
                             llamadoFunciones();
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {

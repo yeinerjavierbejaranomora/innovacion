@@ -762,14 +762,9 @@
 
             function programas() {
                 var formData = new FormData();
-                var array = [];
-                for (const key in facultadesSelect) {
-                    array.push(facultadesSelect[key]);
-                }
-
-                array.forEach(function(item) {
-                    formData.append('idfacultad[]', item);
-                });
+                    for (const key in facultadesSeleccionadas) {
+                        formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                    }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -832,9 +827,9 @@
             });
 
             function vistaEntrada() {
-                var key = Object.keys(facultadesSelect);
+                var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
-                var valorFacultad = facultadesSelect[key[0]];
+                var valorFacultad = facultadesSeleccionadas[key[0]];
 
                 if (cantidadFacultades === 1) {
                     $('#colCardFacultades').addClass('hidden');
@@ -849,7 +844,7 @@
                 Contador();
                 periodosSeleccionados= getPeriodos();
                 destruirGraficos();
-                var key = Object.keys(facultadesSelect);
+                var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
 
                 if (periodosSeleccionados.length > 0) {
@@ -1411,7 +1406,7 @@
             /**
              * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
              */
-            function graficoSelloPrimerIngreso(facultades) {
+            function graficoSelloPrimerIngreso() {
                 var url, data;
 
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
@@ -1990,7 +1985,7 @@
 
             var chartTiposEstudiantesTotal
 
-            function tiposEstudiantesTotal(periodosSeleccionados) {
+            function tiposEstudiantesTotal() {
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -2094,7 +2089,7 @@
              */
             var chartOperadoresTotal;
 
-            function graficoOperadoresTotal(periodosSeleccionados) {
+            function graficoOperadoresTotal() {
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -2206,7 +2201,7 @@
              */
             var chartProgramasTotal;
 
-            function graficoProgramasTotal(periodosSeleccionados) {
+            function graficoProgramasTotal() {
                 var url, data;
                     url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                     data = {

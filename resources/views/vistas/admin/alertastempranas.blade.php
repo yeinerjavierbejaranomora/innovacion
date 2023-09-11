@@ -124,6 +124,95 @@
         align-items: center;
     }
 </style>
+{{-- estilos checkbox --}}
+<style>
+    .checkbox-wrapper input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+    }
+
+    .checkbox-wrapper .cbx {
+        margin: auto;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .checkbox-wrapper .cbx span {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        transform: scale(1);
+        vertical-align: middle;
+        border: 1px solid #9098A9;
+        transition: all 0.2s ease;
+    }
+
+    .checkbox-wrapper .cbx span:first-child svg {
+        position: absolute;
+        top: 3px;
+        left: 2px;
+        fill: none;
+        stroke: #FFFFFF;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 16px;
+        stroke-dashoffset: 16px;
+        transition: all 0.3s ease;
+        transition-delay: 0.1s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #f6c23e;
+        display: block;
+        transform: scale(0);
+        opacity: 1;
+        border-radius: 50%;
+    }
+
+    .checkbox-wrapper .cbx span:last-child {
+        padding-left: 8px;
+    }
+
+    .checkbox-wrapper .cbx:hover span:first-child {
+        border-color: #f6c23e;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child {
+        background: #f6c23e;
+        border-color: #f6c23e;
+        animation: wave 0.4s ease;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child svg {
+        stroke-dashoffset: 0;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child:before {
+        transform: scale(3.5);
+        opacity: 0;
+        transition: all 0.6s ease;
+    }
+
+    @keyframes wave {
+        50% {
+            transform: scale(0.9);
+        }
+    }
+</style>
+{{-- estilos checkbox --}}
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->
@@ -164,6 +253,7 @@
 
             <!-- Content Row -->
 
+
             <div class="row justify-content-start mb-3" id="seccion">
 
                 <!--Columna Niveles de Formación-->
@@ -184,6 +274,14 @@
                                                     <button class="btn btn-link">
                                                         For. Contínua
                                                     </button>
+                                                    {{-- <div class="checkbox-wrapper">
+                                                        <input class="inp-cbx" id="cbx-50" type="checkbox" />
+                                                        <label class="cbx" for="cbx-50"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span>202306</span>
+                                                        </label>
+                                                    </div> --}}
                                                     <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
@@ -191,7 +289,8 @@
                                                 </h5>
                                             </div>
                                             <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
+                                                <div class="card-body periodos" style="width:100%;" id="Continua">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -361,7 +460,7 @@
 
 <script>
 
-    $('#menuAlertas').addClass('activo');                
+    $('#menuAlertas').addClass('activo');
 
     $(document).ajaxStart(function() {
         $('div #facultades input[type="checkbox"]').prop('disabled', true);
@@ -393,16 +492,48 @@
             success: function(data) {
                 data.forEach(periodo => {
                     if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
-                        $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        //$('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        $('#Continua').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${periodo.periodo}" type="checkbox" value="${periodo.periodo}" checked>
+                            <label class="cbx" for="cbx-${periodo.periodo}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${periodo.periodo}</span>
+                            </label>
+                        </div>`);
                     }
                     if (periodo.nivelFormacion == "PROFESIONAL") {
-                        $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        //$('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        $('#Pregrado').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${periodo.periodo}" type="checkbox" value="${periodo.periodo}" checked>
+                            <label class="cbx" for="cbx-${periodo.periodo}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${periodo.periodo}</span>
+                            </label>
+                        </div>`);
                     }
                     if (periodo.nivelFormacion == "ESPECIALISTA") {
-                        $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        //$('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        $('#Esp').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${periodo.periodo}" type="checkbox" value="${periodo.periodo}" checked>
+                            <label class="cbx" for="cbx-${periodo.periodo}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${periodo.periodo}</span>
+                            </label>
+                        </div>`);
                     }
                     if (periodo.nivelFormacion == "MAESTRIA") {
-                        $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        //$('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                        $('#Maestria').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${periodo.periodo}" type="checkbox" value="${periodo.periodo}" checked>
+                            <label class="cbx" for="cbx-${periodo.periodo}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${periodo.periodo}</span>
+                            </label>
+                        </div>`);
                     }
                 });
             }
@@ -418,7 +549,15 @@
             method: 'post',
             success: function(data) {
                 data.forEach(facultad => {
-                    $('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                    //$('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
+                    $('div #facultades').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${facultad.nombre}" type="checkbox" value="${facultad.nombre}" checked>
+                            <label class="cbx" for="cbx-${facultad.nombre}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${facultad.nombre}</span>
+                            </label>
+                        </div>`);
                 });
             }
         });
@@ -442,7 +581,15 @@
                         datos = datos;
                     }
                     $.each(datos, function(key, value) {
-                        $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                        $('#programas').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
+                            <label class="cbx" for="cbx-${value.codprograma}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${value.nombre}</span>
+                            </label>
+                        </div>`);
                     });
                 }
             },
@@ -486,6 +633,108 @@
         });
         return periodosSeleccionados;
     }
+
+    $("#todosContinua").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Continua input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Continua input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPregrado").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Pregrado input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Pregrado input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosEsp").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Esp input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Esp input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosMaestria").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#Maestria input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#Maestria input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosFacultad").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#facultades input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#facultades input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+                    $('#programas').empty();
+                    var formData = new FormData();
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    checkboxesSeleccionados.each(function() {
+                        formData.append('idfacultad[]', $(this).val());
+                    });
+
+                    periodosSeleccionados = getPeriodos();
+                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+                    periodos.forEach(function(periodo) {
+                        formData.append('periodos[]', periodo);
+                    });
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: "{{ route('programasPeriodo.activos') }}",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(datos) {
+                            if (datos != null) {
+                                try {
+                                    datos = jQuery.parseJSON(datos);
+                                } catch {
+                                    datos = datos;
+                                }
+                                $.each(datos, function(key, value) {
+                                    $('#programas').append(`<div class="checkbox-wrapper mb-1">
+                                        <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
+                                        <label class="cbx" for="cbx-${value.codprograma}"><span>
+                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                </svg></span><span>${value.nombre}</span>
+                                        </label>
+                                    </div>`);
+                                });
+                            }
+                        },
+                        error: function() {
+                            $('#programas').append('<h5>No hay programas</h5>')
+                        }
+                    })
+                } else {
+                    $('#programas').empty();
+                }
+            });
 
     function Contador() {
         totalFacultades = $('#facultades input[type="checkbox"]').length;
@@ -672,6 +921,7 @@
             $("#datatable tbody").off("click", "button.estudiantes");
         }
     }
+
 
     var chartAlertas;
 

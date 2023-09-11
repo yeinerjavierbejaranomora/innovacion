@@ -746,7 +746,6 @@
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
@@ -767,7 +766,6 @@
                                 } else {
                                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                                     programasSeleccionados = [];
-                                    facultadesSeleccionadas = [];
                                     checkboxesSeleccionados.each(function() {
                                         facultadesSeleccionadas.push($(this).val());
                                     });
@@ -777,7 +775,6 @@
                             } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                facultadesSeleccionadas = [];
                                 alerta();
                                 limpiarTitulos();
                                 ocultarDivs();

@@ -36,6 +36,7 @@
 
 			<form action="{{Route('cambio.actualizar')}}" method="POST" class="align-content-center">
 			    @csrf
+                <input type="hidden" name="id" value="{{ $id }}">
 				<div class="mb-5 col-10 mx-auto">
 					<input type="password" class="form-control custom-input" name="nueva" id="nueva" placeholder="Contraseña nueva" required>
 					<span class="input-border"></span>
@@ -54,7 +55,7 @@
                 </div>
                 @endif
 				<br><br><br>
-				
+
 			</form>
 
 		</div>

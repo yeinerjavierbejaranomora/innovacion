@@ -285,7 +285,7 @@ Route::controller(cambioController::class)->group(function () {
     Route::get('/cambio', 'index')->name('cambio.index');
     Route::get('/nueva/{id}', 'nueva')->name('cambio.nueva');
     Route::post('/confirmar', 'consultar')->name('cambio.consultar');
-    Route::post('/confirmar/nueva', 'actualizar')->middleware('auth')->name('cambio.actualizar');
+    Route::post('/confirmar/nueva', 'actualizar')->name('cambio.actualizar');
     Route::get('/home/cambiopassword/{idbanner}', 'consultaCambio')->middleware('auth')->name('cambio.cambio');
     Route::post('/home/cambiopassword/', 'cambioSave')->middleware('auth')->name('cambio.cambiosave');
 });

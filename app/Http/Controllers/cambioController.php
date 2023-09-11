@@ -24,7 +24,7 @@ class cambioController extends Controller
     // * Método para acceder a la vista de cambio de contraseña *
     public function nueva($id)
     {
-        $id = decrypt($id);
+        //$id = decrypt($id);
         return view('reestablecerpassword.nueva', ['id' => $id]);
     }
 
@@ -47,16 +47,16 @@ class cambioController extends Controller
             return redirect()->route('cambio.index')->withErrors(['errors', 'Credenciales invalidos!']);
         } else {
             $id = encrypt($consulta[0]->id);
+            //dd($id);
             return redirect()->route('cambio.nueva', ['id' => $id]);
         }
     }
 
     // * Método que actualiza la contraseña del usuario
 
-    public function actualizar(Request $request)
+    public function actualizar(ActualizarPassRequest $request)
     {
-        dd($request->all());
-        die();
+        dd(decrypt($request->id()));
         $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) {
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');

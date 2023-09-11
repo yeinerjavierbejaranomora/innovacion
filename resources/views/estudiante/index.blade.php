@@ -1,6 +1,12 @@
 @include('layout.header')
 
 <style>
+
+    .card_historial{
+        border-radius: 2rem;
+    box-shadow: 5px 5px;
+    
+    }
     #facultades {
         font-size: 14px;
     }
@@ -203,7 +209,7 @@
                     <div class="tab-pane fade show active"    id="malla"          role="tabpanel" >
                     <div class="card-deck">
                         
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -212,35 +218,35 @@
                             </div>
                      
                         
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               
                             </div>
                             </div>
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               
                             </div>
                             </div>
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               
                             </div>
                             </div>
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               
                             </div>
                             </div>
-                            <div class="card">
+                            <div class="card card_historial">
                             <div class="card-body">
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

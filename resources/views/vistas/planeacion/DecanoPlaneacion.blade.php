@@ -725,7 +725,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('traer.programas') }}",
+                    url: "{{ route('programasPeriodo.activos') }}",
                     data: formData,
                     cache: false,
                     async: false,

@@ -2189,6 +2189,8 @@ class InformeMafiController extends Controller
         $idsFacultad =$_POST['idfacultad'];
         $periodos =  $_POST['periodos'];
 
+        dd($periodos);
+
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
             ->whereIn('p.Facultad', $idsFacultad)

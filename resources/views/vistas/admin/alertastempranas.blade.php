@@ -282,7 +282,7 @@
                                                                 </svg></span><span>202306</span>
                                                         </label>
                                                     </div> --}}
-                                                    <div class="custom-checkbox">
+                                                    <div class="checkbox-wrapper">
                                                         {{-- <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked> --}}
                                                         <input class="inp-cbx" id="todosContinua" name="todosContinua" type="checkbox" />

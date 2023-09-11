@@ -283,9 +283,16 @@
                                                         </label>
                                                     </div> --}}
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        {{-- <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked> --}}
+                                                        <input class="inp-cbx" id="todosContinua" name="todosContinua" type="checkbox" />
+                                                        <label class="cbx" for="todosContinua"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span></span>
+                                                        </label>
                                                     </div>
+
                                                 </h5>
                                             </div>
                                             <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">

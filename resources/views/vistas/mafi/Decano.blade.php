@@ -1010,7 +1010,11 @@
                     console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
-                    formData.append('idfacultad[]', facultadesSeleccionadas);
+                    for (var key in facultadesSeleccionadas) {
+                        if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                            formData.append('idfacultad[]', key); 
+                        }
+                    }
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 

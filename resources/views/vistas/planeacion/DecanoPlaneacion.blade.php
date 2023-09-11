@@ -901,7 +901,6 @@
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
-                                alertaFacultad();
                             }
                         }
                     } 

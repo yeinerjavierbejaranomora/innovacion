@@ -57,12 +57,12 @@ class cambioController extends Controller
     {
         dd($request->all());
         die();
-        $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
+        /*$cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) {
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
         } else {
             return redirect()->route('cambio.nueva')->withErrors(['errors', 'Cambio no valido!']);
-        }
+        }*/
     }
 
     /**

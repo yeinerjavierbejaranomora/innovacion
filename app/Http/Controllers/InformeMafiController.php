@@ -2293,6 +2293,27 @@ class InformeMafiController extends Controller
         return $dataExcel;
     }
 
+    function buscarEstudiante(){
+        $id = $_POST['id'];
+
+        $materias = DB::table('planeacion as p')
+        ->join('mallaCurricular as m','p.codMateria', '=','m.codigoCurso')
+        ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')->get();
+
+        $nombre = DB::table('datosMafi')
+        ->where('Id_Banner',$id)
+        ->select('Nombre', 'Apellido')
+        ->first();
+        
+        $datos = [
+            'materias' => $materias,
+            'nombre' => $nombre
+        ];
+
+        header("Content-Type: application/json");
+        echo json_encode(array('data' => $datos));
+    }
+
 
     /** 
     public function tablaProgramasPeriodos()

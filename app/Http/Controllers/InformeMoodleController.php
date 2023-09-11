@@ -393,4 +393,5 @@ class InformeMoodleController extends Controller
         header("Content-Type: application/json");
         echo json_encode(array('data' => $datos));
     }
+
 }

@@ -35,10 +35,7 @@
         width: 60px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador,
-    #botonModalMetas {
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -615,6 +612,39 @@
                         <!--Datatable-->
                         <div class="table">
                             <table id="estudiantesPlaneados" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Buscar estudiante -->
+        <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloBuscar"><strong>Buscar estudiante</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <form class="form-inline" id="formBuscar">
+                        @csrf
+                        <h5>Id banner del estudiante</h5>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="idBanner" class="sr-only">Id Banner</label>
+                            <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
+                        </div>
+                        <button type="submit" class="btn botonModal mb-2">Buscar</button>
+                    </form>
+                        <!--Datatable con id Banner del estudiante-->
+                        <div class="table">
+                            <table id="buscarEstudiante" class="display" style="width:100%">
                             </table>
                         </div>
                     </div>
@@ -2322,6 +2352,11 @@
                                     className: 'dt-center'
                                 },
                                 {
+                                    defaultContent: "<button type='button' id='btn-table' class='buscar btn btn-warning' data-toggle='modal' data-target='#modalBuscarEstudiante'><i class='fa-solid fa-magnifying-glass'></i></button>",
+                                    title: 'Buscar estudiante',
+                                    className: 'dt-center'
+                                },
+                                {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
                                     title: 'Malla Curricular',
                                     className: 'dt-center'
@@ -2347,6 +2382,14 @@
                             })
                         }
 
+                        function buscarEstudiante(){
+                        $(tbody).on("click", "button.buscar", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                var programa = datos[0];
+                                var nombrePrograma = datos[1];
+                                estudiantesPlaneados(programa, nombrePrograma);
+                            })
+                        }
                         tablaMalla("#datatable tbody", table);
                         tablaEstudiantes("#datatable tbody", table);
                     }
@@ -2568,6 +2611,52 @@
                     $("#datatable tbody").off("click", "button.estudiantes");
                 }
             }
+
+            $("#formBuscar").submit(function(e) {
+                e.preventDefault();
+                var id = $("#idBanner").val();
+                var url, data;
+                data = {
+                    id: id,
+                };
+                url = "{{ route('materias.estudiante') }}";
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+
+                        estudiante = $('#buscarEstudiante').DataTable({
+                            "data": data.materias,
+                            'pageLength': 10,
+                            "columns": [{
+                                    title: 'Código de materia',
+                                    data:'codMateria'
+                                },
+                                {
+                                    title: 'Nombre materia',
+                                    data: 'curso'
+                                },
+                                {
+                                    title: 'Semestre',
+                                    data:'semestre',
+                                    className: 'dt-center'
+                                },
+                            ]
+                        });
+
+                    }
+
+                });
+            });
 
         });
     </script>

@@ -744,7 +744,6 @@
             }
 
             function llamadoFunciones() {
-                graficoEstudiantes();
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
@@ -752,7 +751,6 @@
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
-                graficoMetas();
             }
 
             var totalFacultades;
@@ -764,11 +762,35 @@
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
+
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
+
             /**
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -791,6 +813,14 @@
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
             }
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
+            });
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
@@ -844,7 +874,7 @@
                 periodosSeleccionados= getPeriodos();
                 destruirGraficos();
 
-                var key = Object.keys(facultadesSelect);
+                var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
 
                 if (periodosSeleccionados.length > 0) {
@@ -1052,6 +1082,8 @@
             var chartRetencion;
 
             var chartSelloPrimerIngreso;
+
+            var chartSelloAntiguos;
 
             var chartTipoEstudiante;
 

@@ -33,7 +33,7 @@ class cambioController extends Controller
      */
     public function consultar(Request $request)
     {
-        dd($request->all());
+
         // * Consulta MySQL *
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],
@@ -41,6 +41,7 @@ class cambioController extends Controller
             ['documento', '=', $request->documento]
         ])->get();
 
+        dd($request);
         /* Si encuentra el usuario en la base de datos le permite acceder al formulario para
         cambiar la contraseña */
         if ($consulta == '[]') {

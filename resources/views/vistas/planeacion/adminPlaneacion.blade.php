@@ -2620,6 +2620,7 @@
             }
 
             $("#formBuscar").submit(function(e) {
+                limpiarModalBuscador();
                 e.preventDefault();
                 var id = $("#idBanner").val();
                 var url, data;

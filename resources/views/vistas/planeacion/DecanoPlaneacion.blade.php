@@ -875,7 +875,6 @@
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
@@ -902,7 +901,6 @@
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
-                                alertaFacultad();
                             }
                         }
                     } 

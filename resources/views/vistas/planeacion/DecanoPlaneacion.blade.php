@@ -602,6 +602,39 @@
             </div>
         </div>
 
+        <!-- Modal Buscar estudiante -->
+        <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloBuscar"><strong>Buscar estudiante</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <form class="form-inline" id="formBuscar">
+                        @csrf
+                        <h5>Id banner del estudiante</h5>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="idBanner" class="sr-only">Id Banner</label>
+                            <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
+                        </div>
+                        <button type="submit" class="btn botonModal mb-2">Buscar</button>
+                    </form>
+                        <!--Datatable con id Banner del estudiante-->
+                        <div class="table" id="divTablaBuscador">
+                            <table id="buscarEstudiante" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -2152,18 +2185,11 @@
                             programas: programasSeleccionados
                         }
                 } else {
-                    if (facultadesSeleccionadas.length > 0) {
                         url = "{{ route('planeacionProgramas.tabla.facultad')}}",
                             data = {
                                 periodos: periodos,
                                 facultad: facultadesSeleccionadas
                             }
-                    } else {
-                        url = "{{ route('planeacionProgramas.tabla')}}",
-                            data = {
-                                periodos: periodos
-                            }
-                    }
                 }
 
                 var datos = $.ajax({
@@ -2222,6 +2248,11 @@
                                     className: 'dt-center'
                                 },
                                 {
+                                    defaultContent: "<button type='button' id='btn-table' class='buscar btn btn-warning' data-toggle='modal' data-target='#modalBuscarEstudiante'><i class='fa-solid fa-magnifying-glass'></i></button>",
+                                    title: 'Buscar estudiante',
+                                    className: 'dt-center'
+                                },
+                                {
                                     defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
                                     title: 'Malla Curricular',
                                     className: 'dt-center'
@@ -2247,6 +2278,15 @@
                             })
                         }
 
+                        function buscarEstudiante(tbody, table){
+                        $(tbody).on("click", "button.buscar", function() {
+                            limpiarModalBuscador();
+                            $("#idBanner").val("");
+                            var datos = table.row($(this).parents("tr")).data();
+                            programaEstudiante = datos[0];
+                            })
+                        }
+                        buscarEstudiante("#datatable tbody", table);
                         tablaMalla("#datatable tbody", table);
                         tablaEstudiantes("#datatable tbody", table);
                     }
@@ -2430,15 +2470,80 @@
                 }
             }
 
+            function limpiarModalBuscador(){
+                if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
+                    $("#buscarEstudiante").remove();
+                    estudiante.destroy();
+                    $('#buscarEstudiante').DataTable().destroy();
+                    $('#buscarEstudiante thead').empty();
+                    $('#buscarEstudiante tbody').empty();
+                    $('#buscarEstudiante tfooter').empty();
+                }
+            }
+
             function destruirTable() {
                 $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
-
                     $('#datatable').dataTable().fnDestroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.malla");
+                    $("#datatable tbody").off("click", "button.estudiantes");
+                    $("#datatable tbody").off("click", "button.buscar");
                 }
             }
+
+            $("#formBuscar").submit(function(e) {
+                limpiarModalBuscador();
+                e.preventDefault();
+                console.log(programaEstudiante);
+                var id = $("#idBanner").val();
+                var url, data;
+                data = {
+                    id: id,
+                    programa: programaEstudiante
+                };
+                url = "{{ route('materias.estudiante') }}";
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        if(data.length === 0){
+                            $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
+                        }else{
+                            console.log(data);
+                            estudiante = $('#buscarEstudiante').DataTable({
+                                "data": data,
+                                'pageLength': 10,
+                                "columns": [{
+                                        title: 'Código de materia',
+                                        data:'codMateria'
+                                    },
+                                    {
+                                        title: 'Nombre materia',
+                                        data: 'curso'
+                                    },
+                                    {
+                                        title: 'Semestre',
+                                        data:'semestre',
+                                        className: 'dt-center'
+                                    },
+                                ]
+                            });
+                        }
+                    }
+                });
+            });
         });
     </script>
 

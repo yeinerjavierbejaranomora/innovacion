@@ -161,6 +161,7 @@
         transform: scale(1);
         vertical-align: middle;
         border: 1px solid #f6c23e;
+        background: #FFFFFF;
         transition: all 0.2s ease;
     }
 

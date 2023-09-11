@@ -2297,7 +2297,7 @@ class InformeMafiController extends Controller
         $id = $_POST['id'];
 
         $materias = DB::table('planeacion as p')
-        ->join('mallaCurricula as m','p.codMateria', '=','m.codigoCurso')
+        ->join('mallaCurricular as m','p.codMateria', '=','m.codigoCurso')
         ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')->get();
 
         $nombre = DB::table('datosMafi')

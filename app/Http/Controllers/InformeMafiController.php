@@ -2184,10 +2184,10 @@ class InformeMafiController extends Controller
         return $estudiantes;
     }
 
-    public function traerProgramas(Request $request)
+    public function traerProgramas()
     {
-        $idsFacultad = $programa = $_POST['idfacultad'];
-        $periodos = $programa = $_POST['periodos'];
+        $idsFacultad =$_POST['idfacultad'];
+        $periodos =  $_POST['periodos'];
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')

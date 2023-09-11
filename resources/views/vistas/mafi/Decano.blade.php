@@ -691,7 +691,7 @@
                     success: function(datos) {
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);
-                            $('#programas').append(`<li id="Checkbox${data.codprograma}" data-codigo="${data.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${data.codprograma}" checked> ${data.nombre}</label></li>`);
+                            $('#programas').append(`<li id="Checkbox${data.codprograma}" data-codigo="${data.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label></li>`);
                         });
                     }
                 })

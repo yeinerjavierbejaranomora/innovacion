@@ -115,13 +115,22 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
 
     .center-chart {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts{
+        background-color: #DFE0E2;
     }
 </style>
 {{-- estilos checkbox --}}
@@ -269,7 +278,7 @@
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link">
                                                         For. Contínua

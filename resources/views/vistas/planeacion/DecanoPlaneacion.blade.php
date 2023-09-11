@@ -885,7 +885,7 @@
 
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
-                console.log(facultadesSeleccionadas.length);
+
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
@@ -905,7 +905,7 @@
                             llamadoFunciones();
                             dataTable(periodosSeleccionados);
                         } else {
-                            if (facultadesSeleccionadas.length > 0) {
+                            if (facultadesSeleccionadas) {
                                     $('#mensaje').hide();
                                     estadoUsuarioFacultad();
                                     llamadoFunciones();

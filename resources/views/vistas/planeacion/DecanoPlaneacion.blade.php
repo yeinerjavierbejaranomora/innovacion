@@ -762,6 +762,30 @@
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
+
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
+
             /**
              * Método para destruir todos los gráficos
              */
@@ -789,6 +813,14 @@
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
             }
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
+            });
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {

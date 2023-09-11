@@ -611,13 +611,11 @@
             var tabla = <?php echo json_encode($tabla); ?>;
             var periodosSeleccionados = [];
             var facultadesSeleccionadas = [];
-            var facultadesSelect = [];
             var programasSeleccionados = [];
             facultadesUsuario();
             programas();
             periodos();
             vistaEntrada();
-            graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -685,16 +683,11 @@
             }
 
             function programas() {
-                var programasSeleccionadosAux = [];
                 var formData = new FormData();
-                var array = [];
-                for (const key in facultadesSelect) {
-                    array.push(facultadesSelect[key]);
+                for (const key in facultadesSeleccionadas) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
                 }
 
-                array.forEach(function(item) {
-                    formData.append('idfacultad[]', item);
-                });
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -709,11 +702,23 @@
                     success: function(datos) {
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
+                            $('#programas').append(`<li id="Checkbox${data.codprograma}" data-codigo="${data.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label></li>`);
                         });
                     }
                 })
 
+            }
+
+            function llamadoFunciones() {
+                graficoEstudiantes();
+                graficoSelloFinanciero();
+                graficoRetencion();
+                graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
+                graficoTipoDeEstudiante();
+                graficoOperadores();
+                graficoProgramas();
+                graficoMetas();
             }
 
             var totalFacultades;
@@ -752,32 +757,7 @@
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                facultadesSelect = facultadesSeleccionadas;
             }
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
-            });
 
             $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
@@ -824,12 +804,13 @@
                     }
             }
 
-
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
                 destruirTable();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados= getPeriodos();
+                destruirGraficos();
+
                 var key = Object.keys(facultadesSelect);
                 var cantidadFacultades = key.length;
 
@@ -849,8 +830,10 @@
                                 programasSeleccionados.push($(this).val());
                             });
                             estadoUsuarioPrograma()
-                            graficosporPrograma(programasSeleccionados);
-                            dataTable(periodosSeleccionados);
+                            $("#colProgramas").addClass("hidden");
+                            $("#colMetas").addClass("hidden");
+                            
+                            llamadoFunciones();
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                 if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
@@ -863,8 +846,9 @@
                                     checkboxesSeleccionados.each(function() {
                                         facultadesSeleccionadas.push($(this).val());
                                     });
-                                    estadoUsuarioFacultad()
-                                    graficosporFacultad(facultadesSeleccionadas);
+                                    $("#colMetas").removeClass("hidden");
+                                    estadoUsuarioFacultad();
+                                    llamadoFunciones();
                                 }
                             } else {
                                 /** Alerta */
@@ -983,21 +967,22 @@
                 $("#mensaje").html(textoNuevo);
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0) {
+            $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
+                if ($('.periodos input[type="checkbox"]:checked').length) { 
+                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
+                    for (var key in facultadesSeleccionadas) {
+                        if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                            formData.append('idfacultad[]', facultadesSeleccionadas[key]); 
+                        }
+                    }
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
-
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1016,7 +1001,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                                 });
                             }
                         },
@@ -1028,7 +1013,6 @@
                     $('#programas').empty();
                 }
             });
-
 
             var chartEstudiantesActivos;
 

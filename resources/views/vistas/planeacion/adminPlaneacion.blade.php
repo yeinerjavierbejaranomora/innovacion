@@ -703,6 +703,7 @@
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('.listaProgramas');
             var divProgramas = $('#programas');
+
             buscador.on('input', function() {
                 var query = $(this).val().toLowerCase();
                 divProgramas.find('li').each(function() {
@@ -1069,7 +1070,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                                 });
                             }
                         },

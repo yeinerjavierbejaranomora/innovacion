@@ -884,7 +884,7 @@
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             $("#colMetas").addClass("hidden");
-
+                            llamadoFunciones();
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                 if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
@@ -898,7 +898,8 @@
                                         facultadesSeleccionadas.push($(this).val());
                                     });
                                     $("#colMetas").removeClass("hidden");
-                                    estadoUsuarioFacultad()
+                                    estadoUsuarioFacultad();
+                                    llamadoFunciones();
                                 }
                             } else {
                                 /** Alerta */
@@ -1017,6 +1018,8 @@
                 $("#mensaje").html(textoNuevo);
             }
 
+
+            
             $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();

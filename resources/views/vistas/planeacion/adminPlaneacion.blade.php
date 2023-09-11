@@ -2387,6 +2387,7 @@
                             limpiarModalBuscador();
                             })
                         }
+                        buscarEstudiante("#datatable tbody", table);
                         tablaMalla("#datatable tbody", table);
                         tablaEstudiantes("#datatable tbody", table);
                     }

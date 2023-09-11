@@ -2593,7 +2593,7 @@
             function limpiarModalEstudiantes() {
                 if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
                     $("#estudiantesPlaneados").remove();
-                    tabla.destroy();
+                    estudiante.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
                     $('#estudiantesPlaneados tbody').empty();
                 }

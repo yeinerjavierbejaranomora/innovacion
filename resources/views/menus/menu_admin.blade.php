@@ -48,8 +48,11 @@
     <li class="nav-item" id="menuAlertas">
         <div class="container">
             <div class="row">
-                <div class="col-10">.col-9</div>
-                <div class="col-2">.col-4</div>
+                <div class="col-9"><a  class="nav-link" href="{{ route('alertas.inicio') }}">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
+                </a> </div>
+                <div class="col-3">.col-4</div>
             </div>
         </div>
 

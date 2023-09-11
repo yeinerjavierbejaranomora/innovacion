@@ -2200,8 +2200,6 @@ class InformeMafiController extends Controller
             ->groupBy('p.codprograma', 'p.programa')
             ->get();
 
-        
-            dd($programas);
             
         $arreglo = [];
 

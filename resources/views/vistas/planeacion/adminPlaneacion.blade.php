@@ -633,7 +633,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form class="form-inline">
+                    <form class="form-inline" id="formBuscar">
                         @csrf
                         <h4>Id banner del estudiante</h4>
                         <div class="form-group mx-sm-3 mb-2">
@@ -2611,6 +2611,12 @@
                     $("#datatable tbody").off("click", "button.estudiantes");
                 }
             }
+
+            $("#formBuscar").submit(function(e) {
+                e.preventDefault();
+                var id = $("#idBanner").val();
+                console.log("Valor del campo de entrada: " + id); 
+            });
 
         });
     </script>

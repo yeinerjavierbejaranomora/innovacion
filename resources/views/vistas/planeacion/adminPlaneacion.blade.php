@@ -2656,7 +2656,6 @@
                         } catch {
                             data = data;
                         }
-
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5>No hay datos por mostrar</h5>');
                         }else{

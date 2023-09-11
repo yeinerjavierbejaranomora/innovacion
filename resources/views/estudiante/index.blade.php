@@ -255,11 +255,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row">ABV32190</th>
-                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                        <div class="card bg-primary">
+                                            <div class="card-body text-center">
+                                            <p class="card-text">Some text inside the first card</p>
+                                            </div>
+                                        </div>
                                         </tr>
                                         <tr>
                                         <th scope="row">2</th>

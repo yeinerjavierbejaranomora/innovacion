@@ -1010,10 +1010,7 @@
                     console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
-                    facultadesSeleccionadas.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-
+                    formData.append('idfacultad[]', facultadesSeleccionadas);
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 

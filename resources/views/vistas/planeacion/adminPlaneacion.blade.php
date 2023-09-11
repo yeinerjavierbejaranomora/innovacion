@@ -2633,7 +2633,7 @@
                         } catch {
                             data = data;
                         }
-
+                        console.log(data);
                         estudiante = $('#buscarEstudiante').DataTable({
                             "data": data.materias,
                             'pageLength': 10,

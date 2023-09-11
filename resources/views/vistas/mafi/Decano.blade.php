@@ -2006,20 +2006,13 @@
                             periodos: periodosSeleccionados
                         }
                 } else {
-                    if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
-                    } else {
-                        var url = "{{ route('tiposEstudiantes.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                            data = {
-                                idfacultad: facultadesSelect,
-                                periodos: periodosSeleccionados
-                            }
-                    }
-                }
+                    } 
+                
                 console.log(data);
                 $.ajax({
                     headers: {
@@ -2125,12 +2118,6 @@
                         var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
                             data = {
                                 idfacultad: facultadesSeleccionadas,
-                                periodos: periodosSeleccionados
-                            }
-                    } else {
-                        var url = "{{ route('operadores.facultad.estudiantes',['tabla' => ' ']) }}" + tabla,
-                            data = {
-                                idfacultad: facultadesSelect,
                                 periodos: periodosSeleccionados
                             }
                     }
@@ -2331,7 +2318,6 @@
                 });
             }
 
-
             $('#botonModalMetas').on("click", function(e) {
                 e.preventDefault();
                 if (chartMetasTotal) {
@@ -2344,9 +2330,12 @@
             var chartMetasTotal;
             var chartMetas;
 
-            function graficoMetasFacultad(facultades) {
-
-                var url = "{{ route('metasFacultad.programa')}}";
+            function graficoMetas() {
+                var url,data;
+                url = "{{ route('metasFacultad.programa')}}";
+                data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
 
                 $.ajax({
                     headers: {
@@ -2354,9 +2343,7 @@
                     },
                     type: 'post',
                     url: url,
-                    data: {
-                        idfacultad: facultades,
-                    },
+                    data: data,
                     success: function(data) {
                         try {
                             data = jQuery.parseJSON(data);

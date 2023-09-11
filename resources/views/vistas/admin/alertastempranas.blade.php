@@ -160,7 +160,8 @@
         border-radius: 3px;
         transform: scale(1);
         vertical-align: middle;
-        border: 1px solid #9098A9;
+        border: 1px solid #f6c23e;
+        background: #FFFFFF;
         transition: all 0.2s ease;
     }
 
@@ -289,9 +290,18 @@
                                                     <button class="btn btn-link text-light">
                                                         For. Contínua
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosContinua" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosContinua" type="checkbox" />
+                                                        <label class="cbx" for="todosContinua"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>

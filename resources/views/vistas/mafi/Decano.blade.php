@@ -33,18 +33,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador,
@@ -58,6 +46,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #botondataTable {
@@ -70,6 +76,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {
@@ -93,8 +102,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -102,8 +111,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -114,8 +123,24 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts{
+        background-color: #DFE0E2;
+    }
+
 </style>
 
 
@@ -180,9 +205,15 @@
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
-                        <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
+                            </div>
+                            <div class="text-center col-4">
+                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
+                        </div>
+
                         <div class="text-start">
                             <div id="periodos">
                                 <!--Accordion-->
@@ -190,18 +221,18 @@
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         For. Contínua
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
@@ -209,13 +240,13 @@
                                     <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <div class="card-header fondocards" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Pregrado
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
@@ -226,21 +257,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 text-start" id="colCardFacultades">
-                                        <div class="card" id="cardFacultades">
-                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                    <div class="col-4 text-start">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
-                                            <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" id="facultades">
-                                                    @foreach ($facultades as $facultad)
-                                                    <label class="idFacultad"> <input data-facultad="{{$facultad}}" type="checkbox" value="{{$facultad}}" checked> {{$facultad}} </label><br>
-                                                    @endforeach
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                    </ul>
                                                 </div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
-                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
                                     </div>
@@ -249,18 +284,17 @@
                                     <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
-                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <div class="card-header fondocards" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Esp"></div>
                                             </div>
@@ -269,46 +303,24 @@
                                     <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
-                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <div class="card-header fondocards" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Maestría
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
-
-                                                </div>
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4 text-start">
-                                        <div class="card mb-3" id="cardProgramas">
-                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
-                                            </div>
-                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas"></div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div>  
                                 </div>
-
                             </div>
-                        </div>
-                        <div class="text-center col-8 mt-3" style="height: 30px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -521,6 +533,8 @@
 
     <script>
         $(document).ready(function() {
+            $('#menuAdmisiones').addClass('activo');
+
             var tabla = 'Mafi';
             var periodosSeleccionados = [];
             var programasSeleccionados = [];

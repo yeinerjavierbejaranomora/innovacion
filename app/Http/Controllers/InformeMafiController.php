@@ -2298,7 +2298,8 @@ class InformeMafiController extends Controller
 
         $materias = DB::table('planeacion as p')
         ->join('mallaCurricular as m','p.codMateria', '=','m.codigoCurso')
-        ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')->get();
+        ->where('p.codBanner', $id)->select('p.codMateria', 'm.curso', 'p.semestre')
+        ->distinct()->get();
 
         $nombre = DB::table('datos_moodle')
         ->where('Id_Banner',$id)

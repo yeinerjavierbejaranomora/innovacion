@@ -2186,8 +2186,8 @@ class InformeMafiController extends Controller
 
     public function traerProgramas(Request $request)
     {
-        $idsFacultad = $request->input('idfacultad');
-        $periodos = $request->input('periodos');
+        $idsFacultad = $programa = $_POST['idfacultad'];
+        $periodos = $$programa = $_POST['periodos'];
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')

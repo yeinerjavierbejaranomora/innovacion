@@ -53,7 +53,7 @@ class cambioController extends Controller
 
     // * Método que actualiza la contraseña del usuario
 
-    public function actualizar(ActualizarPassRequest $request)
+    public function actualizar(Request $request)
     {
         dd($request->all());
         die();

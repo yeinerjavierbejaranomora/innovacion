@@ -857,9 +857,7 @@
             });
 
             function ExcelBanner(){
-                console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-                    console.log('entra');
                     url = "{{ route('data.Mafi.programa') }}",
                         data = {
                             programa: programasSeleccionados,
@@ -885,8 +883,6 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
-
                         var newData = [];
                         var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
                         newData.push(headers);
@@ -919,7 +915,6 @@
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
@@ -944,7 +939,6 @@
                                     $('#mensaje').hide();
                                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                                     programasSeleccionados = [];
-                                    facultadesSeleccionadas = [];
                                     checkboxesSeleccionados.each(function() {
                                         facultadesSeleccionadas.push($(this).val());
                                     });
@@ -955,7 +949,6 @@
                             } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                facultadesSeleccionadas = [];
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
@@ -965,7 +958,6 @@
                     }
                 } else {
                     programasSeleccionados = [];
-                    facultadesSeleccionadas = [];
                     periodosSeleccionados = [];
                     destruirGraficos();
                     ocultarDivs();
@@ -1071,7 +1063,6 @@
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
                 if ($('.periodos input[type="checkbox"]:checked').length) { 
-                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
@@ -1137,7 +1128,6 @@
              */
 
             function graficoEstudiantes() {
-                console.log(facultadesSeleccionadas);
                 var url, data;
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     url = "{{ route('estudiantes.activos.programa') }}",
@@ -2632,7 +2622,6 @@
                 
 
             });
-
         });
     </script>
 

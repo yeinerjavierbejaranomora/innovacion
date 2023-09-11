@@ -294,7 +294,7 @@
                                                         <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div> --}}
                                                     <div class="checkbox-wrapper">
-                                                        <label for="todosContinua" style="vertical-align: middle;font-size:12px;">Selec. Todos</label>
+                                                        <label for="todosContinua" style="font-size:12px;">Selec. Todos</label>
                                                         <input class="inp-cbx" id="todosContinua" type="checkbox" />
                                                         <label class="cbx" for="todosContinua"><span>
                                                                 <svg width="12px" height="10px" viewbox="0 0 12 10">

@@ -1006,7 +1006,8 @@
             }
 
             $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
-                if ($('.periodos input[type="checkbox"]:checked').length) {
+                if ($('.periodos input[type="checkbox"]:checked').length) { 
+                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
                     facultadesSeleccionadas.each(function() {
@@ -1019,6 +1020,7 @@
                     periodos.forEach(function(periodo) {
                         formData.append('periodos[]', periodo);
                     });
+                    console.log(formData.value());
 
                     $.ajax({
                         headers: {

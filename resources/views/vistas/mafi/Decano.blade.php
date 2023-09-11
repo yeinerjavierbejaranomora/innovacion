@@ -153,7 +153,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
-
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
@@ -171,7 +170,6 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe de Facultades</strong></h1>
             </div>
@@ -183,7 +181,6 @@
                     {{$facultad}} -
                     @endforeach
                 </h3>
-
             </div>
             <br>
 
@@ -613,7 +610,6 @@
 
     </div>
 
-
     <script>
         $(document).ready(function() {
             $('#menuAdmisiones').addClass('activo');
@@ -628,6 +624,7 @@
             periodos();
             vistaEntrada();
             llamadoFunciones();
+            Contador();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -694,12 +691,10 @@
                 return periodosSeleccionados;
             }
 
-            var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
 
             function Contador() {
-                totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
@@ -838,10 +833,78 @@
                     $("#mensaje").html(textoNuevo);
                     }
             }
+
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('data.Mafi.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    url = "{{ route('data.Mafi.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
+            }
             
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                Contador();
                 periodosSeleccionados= getPeriodos();
                 destruirGraficos();
                 var key = Object.keys(facultadesSeleccionadas);
@@ -850,7 +913,6 @@
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
@@ -865,28 +927,17 @@
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             $("#colMetas").addClass("hidden");
-                            
                             llamadoFunciones();
                         } else {
-                            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                                if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
-                                    location.reload();
-                                } else {
+                            if (facultadesSeleccionadas.length > 0) {
                                     $('#mensaje').hide();
-                                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                                    programasSeleccionados = [];
-                                    facultadesSeleccionadas = [];
-                                    checkboxesSeleccionados.each(function() {
-                                        facultadesSeleccionadas.push($(this).val());
-                                    });
                                     $("#colMetas").removeClass("hidden");
                                     estadoUsuarioFacultad();
                                     llamadoFunciones();
-                                }
+                                
                             } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                facultadesSeleccionadas = [];
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
@@ -896,7 +947,6 @@
                     }
                 } else {
                     programasSeleccionados = [];
-                    facultadesSeleccionadas = [];
                     periodosSeleccionados = [];
                     destruirGraficos();
                     ocultarDivs();
@@ -1002,7 +1052,6 @@
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
                 if ($('.periodos input[type="checkbox"]:checked').length) { 
-                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
@@ -1068,7 +1117,6 @@
              */
 
             function graficoEstudiantes() {
-                console.log(facultadesSeleccionadas);
                 var url, data;
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
                     url = "{{ route('estudiantes.activos.programa') }}",
@@ -2563,7 +2611,6 @@
                 
 
             });
-
         });
     </script>
 

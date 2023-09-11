@@ -490,12 +490,10 @@
             riesgo();
             vistaEntrada();
 
-            var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
 
             function Contador() {
-                totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
@@ -517,9 +515,9 @@
 
             function programas() {
                 var formData = new FormData();
-                facultadesSeleccionadas.forEach(function(item) {
-                    formData.append('idfacultad[]', item);
-                });
+                    for (const key in facultadesSeleccionadas) {
+                        formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                    }
 
                 $.ajax({
                     headers: {
@@ -641,31 +639,12 @@
                 }
             });
 
-            /**
-             * Botones
-             */
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {
@@ -746,7 +725,6 @@
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
-                        facultadesSeleccionadas = [];
                         periodosSeleccionados = [];
                         destruirGraficos();
                         ocultarDivs();
@@ -767,7 +745,6 @@
                                 } else {
                                     var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
                                     programasSeleccionados = [];
-                                    facultadesSeleccionadas = [];
                                     checkboxesSeleccionados.each(function() {
                                         facultadesSeleccionadas.push($(this).val());
                                     });
@@ -777,7 +754,6 @@
                             } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                facultadesSeleccionadas = [];
                                 alerta();
                                 limpiarTitulos();
                                 ocultarDivs();

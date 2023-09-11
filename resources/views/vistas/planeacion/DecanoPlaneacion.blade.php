@@ -722,6 +722,7 @@
                 }
 
                 periodos.forEach(function(periodo) {
+                    console.log(periodo);
                     formData.append('periodos[]', periodo);
                 });
 

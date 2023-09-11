@@ -2208,8 +2208,7 @@ class InformeMafiController extends Controller
             ];
         }
         if ($arreglo != []) {
-            header("Content-Type: application/json");
-            echo json_encode($arreglo);
+            return $arreglo;
         } else {
             return null;
         }

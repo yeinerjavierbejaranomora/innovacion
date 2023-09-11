@@ -748,6 +748,7 @@
                         }
                         console.log(datos);
                         $.each(datos, function(key, value) {
+                            programasSeleccionados.push(data.codprograma);
                             $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                         });
                     }

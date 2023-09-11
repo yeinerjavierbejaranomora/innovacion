@@ -2601,13 +2601,13 @@
             }
 
             function limpiarModalBuscador(){
-                $('#idBanner').empty();
+                $("#idBanner").val("");
                 if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
                     $("#buscarEstudiante").remove();
                     estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
                     $('#buscarEstudiante tbody').empty();
-                    $('#buscarEstudiante theader').empty();
+                    $('#buscarEstudiante thead').empty();
                     $('#buscarEstudiante tfooter').empty();
                 }
             }

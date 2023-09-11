@@ -48,14 +48,11 @@
     <li class="nav-item" id="menuAlertas">
         <div class="container">
             <div class="row">
-                <div class="co-2">
-                    1 of 3
-                </div>
-                <div class="col">
-                    2 of 3 (wider)
-                </div>
+                <div class="col-10">.col-9</div>
+                <div class="col-2">.col-4</div>
             </div>
         </div>
+
 
 
         {{-- <a  class="nav-link" href="{{ route('alertas.inicio') }}">

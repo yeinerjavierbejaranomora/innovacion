@@ -758,7 +758,6 @@
         
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-                facultadesSelect = facultadesSeleccionadas;
             }
 
             function programas() {

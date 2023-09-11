@@ -2189,10 +2189,6 @@ class InformeMafiController extends Controller
         $idsFacultad = $request->input('idfacultad');
         $periodos = $request->input('periodos');
 
-        if($periodos == NULL || empty($periodos)){
-            $periodos = ['202306','202304','202313','202316','202333','202334','202343','202344','202353','202354'];
-        }
-
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
             ->whereIn('p.Facultad', $idsFacultad)

@@ -28,7 +28,7 @@ class InformeMoodleController extends Controller
     public function riesgo()
     {
 
-        $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
+        $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
         
         $alto = [];
         $medio = [];
@@ -47,7 +47,7 @@ class InformeMoodleController extends Controller
             }
         }
         
-        $Total = DB::table('datos_moodle')->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL')->get();
+        $Total = DB::table('datos_moodle')->selectRaw('COUNT(Id_Banner) AS TOTAL')->get();
 
         $datos = array(
             'alto' => $alto,
@@ -64,7 +64,7 @@ class InformeMoodleController extends Controller
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $riesgos = DB::table('datos_moodle')
-        ->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL, Riesgo')
+        ->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->groupBy('Riesgo')
@@ -90,7 +90,7 @@ class InformeMoodleController extends Controller
         $Total = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
-            ->selectRaw('COUNT(DISTINCT Id_Banner) AS TOTAL')->get();
+            ->selectRaw('COUNT(Id_Banner) AS TOTAL')->get();
 
             $datos = array(
                 'alto' => $alto,
@@ -111,7 +111,7 @@ class InformeMoodleController extends Controller
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
-            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL, dm.Riesgo')
+            ->selectRaw('COUNT(dm.Id_Banner) AS TOTAL, dm.Riesgo')
             ->groupBy('dm.Riesgo')
             ->get();   
 
@@ -136,7 +136,7 @@ class InformeMoodleController extends Controller
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
             ->whereIn('dm.Periodo_Rev', $periodos)
-            ->selectRaw('COUNT(DISTINCT dm.Id_Banner) AS TOTAL')
+            ->selectRaw('COUNT(dm.Id_Banner) AS TOTAL')
             ->get();
 
             $datos = array(

@@ -46,10 +46,17 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        <div class="d-flex flex-row bd-highlight mb-3">
-            <div class="p-2 bd-highlight">Flex item 1</div>
-            <div class="p-2 bd-highlight">Flex item 2</div>
+        <div class="container">
+            <div class="row">
+                <div class="co-2">
+                    1 of 3
+                </div>
+                <div class="col">
+                    2 of 3 (wider)
+                </div>
+            </div>
         </div>
+
 
         {{-- <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>

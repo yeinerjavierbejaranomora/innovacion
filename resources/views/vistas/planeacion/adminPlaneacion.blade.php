@@ -2593,7 +2593,7 @@
             function limpiarModalEstudiantes() {
                 if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
                     $("#estudiantesPlaneados").remove();
-                    estudiante.destroy();
+                    tabla.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
                     $('#estudiantesPlaneados tbody').empty();
                 }
@@ -2603,7 +2603,7 @@
                 $('#idBanner').empty();
                 if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
                     $("#buscarEstudiante").remove();
-                    tabla.destroy();
+                    estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
                     $('#buscarEstudiante tbody').empty();
                 }

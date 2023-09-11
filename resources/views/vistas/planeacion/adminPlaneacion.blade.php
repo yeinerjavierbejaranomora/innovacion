@@ -635,6 +635,7 @@
                     <div class="modal-body">
                     <form class="form-inline">
                         @csrf
+                        <h4>Id banner del estudiante</h4>
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="idBanner" class="sr-only">Id Banner</label>
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">

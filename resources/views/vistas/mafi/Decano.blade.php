@@ -544,7 +544,6 @@
             programas();
             periodos();
             vistaEntrada();
-            graficos();
             graficoEstudiantesPorFacultades();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX

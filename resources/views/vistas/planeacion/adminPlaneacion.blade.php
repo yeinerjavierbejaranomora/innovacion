@@ -643,7 +643,7 @@
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
                     </form>
                         <!--Datatable con id Banner del estudiante-->
-                        <div class="table">
+                        <div class="table" id="divTablaBuscador">
                             <table id="buscarEstudiante" class="display" style="width:100%">
                             </table>
                         </div>
@@ -2656,7 +2656,9 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
+
+                        if(data.length === 0){
+                            console.log(data);
                         estudiante = $('#buscarEstudiante').DataTable({
                             "data": data,
                             'pageLength': 10,
@@ -2675,12 +2677,13 @@
                                 },
                             ]
                         });
-
+                        }
+                        else{
+                            $('#divTablaBuscador').append('<h5>No hay datos por mostrar</h5>')
+                        }
                     }
-
                 });
             });
-
         });
     </script>
 

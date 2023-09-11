@@ -210,7 +210,7 @@
                                 <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
                             </div>
                             <div class="text-center col-4">
-                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
+                            <h5 id="tituloNiveles" class="text-dark"><strong>Programas</strong></h5>
                         </div>
                         </div>
 

@@ -2656,30 +2656,28 @@
                         } catch {
                             data = data;
                         }
-
                         if(data.length === 0){
+                            $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
+                        }else{
                             console.log(data);
-                        estudiante = $('#buscarEstudiante').DataTable({
-                            "data": data,
-                            'pageLength': 10,
-                            "columns": [{
-                                    title: 'Código de materia',
-                                    data:'codMateria'
-                                },
-                                {
-                                    title: 'Nombre materia',
-                                    data: 'curso'
-                                },
-                                {
-                                    title: 'Semestre',
-                                    data:'semestre',
-                                    className: 'dt-center'
-                                },
-                            ]
-                        });
-                        }
-                        else{
-                            $('#divTablaBuscador').append('<h5>No hay datos por mostrar</h5>')
+                            estudiante = $('#buscarEstudiante').DataTable({
+                                "data": data,
+                                'pageLength': 10,
+                                "columns": [{
+                                        title: 'Código de materia',
+                                        data:'codMateria'
+                                    },
+                                    {
+                                        title: 'Nombre materia',
+                                        data: 'curso'
+                                    },
+                                    {
+                                        title: 'Semestre',
+                                        data:'semestre',
+                                        className: 'dt-center'
+                                    },
+                                ]
+                            });
                         }
                     }
                 });

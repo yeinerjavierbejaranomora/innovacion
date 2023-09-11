@@ -41,7 +41,7 @@ class cambioController extends Controller
             ['documento', '=', $request->documento]
         ])->get();
 
-        dd($request);
+        dd($consulta);
         /* Si encuentra el usuario en la base de datos le permite acceder al formulario para
         cambiar la contraseña */
         if ($consulta == '[]') {

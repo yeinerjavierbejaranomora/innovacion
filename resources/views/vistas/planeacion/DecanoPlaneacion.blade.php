@@ -647,6 +647,7 @@
             periodos();
             vistaEntrada();
             llamadoFunciones();
+            Contador();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -750,12 +751,10 @@
                 graficoProgramas();
             }
 
-            var totalFacultades;
             var totalProgramas;
             var totalPeriodos;
 
             function Contador() {
-                totalFacultades = $('#facultades input[type="checkbox"]').length;
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
@@ -866,9 +865,8 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                Contador();
                 destruirTable();
-                periodosSeleccionados= getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 destruirGraficos();
 
                 var key = Object.keys(facultadesSeleccionadas);
@@ -891,39 +889,26 @@
                             });
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
-                            $("#colMetas").addClass("hidden");
                             llamadoFunciones();
                             dataTable(periodosSeleccionados);
                         } else {
-                            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                                if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
-                                    location.reload();
-                                } else {
+                            if (facultadesSeleccionadas.length > 0) {
                                     $('#mensaje').hide();
-                                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                                    programasSeleccionados = [];
-                                    facultadesSeleccionadas = [];
-                                    checkboxesSeleccionados.each(function() {
-                                        facultadesSeleccionadas.push($(this).val());
-                                    });
-                                    $("#colMetas").removeClass("hidden");
                                     estadoUsuarioFacultad();
                                     llamadoFunciones();
-                                }
-                            } else {
+                                } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                facultadesSeleccionadas = [];
                                 periodosSeleccionados = [];
                                 destruirGraficos();
                                 ocultarDivs();
                                 alertaFacultad();
                             }
                         }
-                    }
-                } else {
+                    } 
+                }
+                 else {
                     programasSeleccionados = [];
-                    facultadesSeleccionadas = [];
                     periodosSeleccionados = [];
                     destruirGraficos();
                     ocultarDivs();

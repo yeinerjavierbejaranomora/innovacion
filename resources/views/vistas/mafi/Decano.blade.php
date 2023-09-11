@@ -927,7 +927,6 @@
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             $("#colMetas").addClass("hidden");
-                            
                             llamadoFunciones();
                         } else {
                             if (facultadesSeleccionadas.length > 0) {

@@ -663,11 +663,6 @@
                 facultadesSelect = facultadesSeleccionadas;
             }
 
-            function graficos() {
-                graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
-                periodosSeleccionados = getPeriodos();
-            }
-
             function programas() {
                 var formData = new FormData();
                 var array = [];

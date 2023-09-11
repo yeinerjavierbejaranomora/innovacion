@@ -1406,7 +1406,7 @@
             /**
              * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
              */
-            function graficoSelloPrimerIngreso(facultades) {
+            function graficoSelloPrimerIngreso() {
                 var url, data;
 
                 if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
@@ -1985,7 +1985,7 @@
 
             var chartTiposEstudiantesTotal
 
-            function tiposEstudiantesTotal(periodosSeleccionados) {
+            function tiposEstudiantesTotal() {
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -2089,7 +2089,7 @@
              */
             var chartOperadoresTotal;
 
-            function graficoOperadoresTotal(periodosSeleccionados) {
+            function graficoOperadoresTotal() {
                 var data;
                 if (programasSeleccionados.length > 0) {
                     var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla,
@@ -2201,7 +2201,7 @@
              */
             var chartProgramasTotal;
 
-            function graficoProgramasTotal(periodosSeleccionados) {
+            function graficoProgramasTotal() {
                 var url, data;
                     url = "{{ route('FacultadTotal.estudiantes',['tabla' => ' ']) }}" + tabla,
                     data = {

@@ -716,7 +716,7 @@
 
             function programas() {
                 var formData = new FormData();
-                var periodos = ['202306','202304','202313','202316','202333','202334','202343','202344','202353','202354'];
+                var periodos = [202306,202304,202313,202316,202333,202334,202343,202344,202353,202354];
                 for (const key in facultadesSeleccionadas) {
                     formData.append('idfacultad[]', facultadesSeleccionadas[key]);
                 }
@@ -725,6 +725,8 @@
                     console.log(periodo);
                     formData.append('periodos[]', periodo);
                 });
+
+                console.log(formData);
 
                 $.ajax({
                     headers: {

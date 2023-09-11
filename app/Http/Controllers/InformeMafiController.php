@@ -2187,7 +2187,7 @@ class InformeMafiController extends Controller
     public function traerProgramas(Request $request)
     {
         $idsFacultad = $programa = $_POST['idfacultad'];
-        $periodos = $$programa = $_POST['periodos'];
+        $periodos = $programa = $_POST['periodos'];
 
         $programas = DB::table('programas as p')
             ->join('programasPeriodos as pP', 'p.codprograma', '=', 'pP.codPrograma')
@@ -2206,7 +2206,6 @@ class InformeMafiController extends Controller
                 'codprograma' => $programa->codprograma
             ];
         }
-
         if ($arreglo != []) {
             header("Content-Type: application/json");
             echo json_encode($arreglo);

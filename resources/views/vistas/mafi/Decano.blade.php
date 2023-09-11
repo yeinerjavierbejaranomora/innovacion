@@ -1976,9 +1976,7 @@
                     chartOperadoresTotal.destroy();
                 }
                 var periodos = getPeriodos();
-                periodos.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });
+        
                 graficoOperadoresTotal(periodos);
             });
 
@@ -1988,9 +1986,7 @@
                     chartProgramasTotal.destroy();
                 }
                 var periodos = getPeriodos();
-                periodos.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });
+                
                 graficoProgramasTotal(periodos);
             });
 
@@ -2000,9 +1996,7 @@
                     chartTiposEstudiantesTotal.destroy();
                 }
                 var periodos = getPeriodos();
-                periodos.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });
+                
                 tiposEstudiantesTotal(periodos);
             });
 

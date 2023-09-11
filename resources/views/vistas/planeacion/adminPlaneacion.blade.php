@@ -2271,6 +2271,8 @@
             });
 
 
+            var programaEstudiante;
+
             function dataTable(periodos) {
                 $('#colTabla').removeClass('hidden');
                 var url, data;
@@ -2382,9 +2384,12 @@
                             })
                         }
 
-                        function buscarEstudiante(){
+                        function buscarEstudiante(tbody, table){
                         $(tbody).on("click", "button.buscar", function() {
                             limpiarModalBuscador();
+                            $("#idBanner").val("");
+                            var datos = table.row($(this).parents("tr")).data();
+                            programaEstudiante = datos[0];
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);
@@ -2587,7 +2592,9 @@
                     $("#mallaCurricular").remove();
                     table.destroy();
                     $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular thead').empty();
                     $('#mallaCurricular tbody').empty();
+                    $('#mallaCurricular tfooter').empty();
                 }
             }
 
@@ -2596,18 +2603,19 @@
                     $("#estudiantesPlaneados").remove();
                     tabla.destroy();
                     $('#estudiantesPlaneados').DataTable().destroy();
+                    $('#estudiantesPlaneados thead').empty();
                     $('#estudiantesPlaneados tbody').empty();
+                    $('#estudiantesPlaneados tfooter').empty();
                 }
             }
 
             function limpiarModalBuscador(){
-                $('#idBanner').empty();
                 if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
                     $("#buscarEstudiante").remove();
                     estudiante.destroy();
                     $('#buscarEstudiante').DataTable().destroy();
+                    $('#buscarEstudiante thead').empty();
                     $('#buscarEstudiante tbody').empty();
-                    $('#buscarEstudiante theader').empty();
                     $('#buscarEstudiante tfooter').empty();
                 }
             }
@@ -2616,7 +2624,9 @@
                 $('#colTabla').addClass('hidden');
                 if ($.fn.DataTable.isDataTable('#datatable')) {
                     $('#datatable').dataTable().fnDestroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.malla");
                     $("#datatable tbody").off("click", "button.estudiantes");
                 }
@@ -2625,10 +2635,12 @@
             $("#formBuscar").submit(function(e) {
                 limpiarModalBuscador();
                 e.preventDefault();
+                console.log(programaEstudiante);
                 var id = $("#idBanner").val();
                 var url, data;
                 data = {
                     id: id,
+                    programa: programaEstudiante
                 };
                 url = "{{ route('materias.estudiante') }}";
                 var datos = $.ajax({

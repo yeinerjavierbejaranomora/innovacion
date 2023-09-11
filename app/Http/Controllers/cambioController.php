@@ -13,7 +13,7 @@ class cambioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['consultaCambio', 'cambioSave']]);
+        //$this->middleware('auth', ['only' => ['consultaCambio', 'cambioSave']]);
     }
 
     // * Método para acceder a la vista de reestablecer contraseña *

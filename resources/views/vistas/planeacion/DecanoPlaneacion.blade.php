@@ -751,7 +751,6 @@
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
-                graficoMetas();
             }
 
             var totalFacultades;

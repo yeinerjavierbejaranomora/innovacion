@@ -68,7 +68,7 @@
     padding: 2px 6px;
     border-radius: 50%;
     position: absolute;
-    top: 0;
+    vertical-align: middle;
     right: 0;
 }
 </style>

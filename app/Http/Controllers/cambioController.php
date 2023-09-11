@@ -33,7 +33,7 @@ class cambioController extends Controller
      */
     public function consultar(Request $request)
     {
-
+        dd($request->all());
         // * Consulta MySQL *
         $consulta = DB::table('users')->where([
             ['id_banner', '=', $request->idbanner],

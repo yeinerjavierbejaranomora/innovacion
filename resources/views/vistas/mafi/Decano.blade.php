@@ -620,6 +620,29 @@
                 totalProgramas = $('#programas input[type="checkbox"]').length;
                 totalPeriodos = $('#programas input[type="checkbox"]').length;
             }
+
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
             /**
              * Método para destruir todos los gráficos
              */
@@ -634,7 +657,6 @@
                 $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
         
-
             function facultadesUsuario() {
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
                 facultadesSelect = facultadesSeleccionadas;
@@ -669,37 +691,19 @@
                     success: function(datos) {
                         datos.forEach(data => {
                             programasSeleccionados.push(data.codprograma);
-                            $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${data.codprograma}" checked> ${data.programa}</label><br>`);
+                            $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                         });
                     }
                 })
 
             }
 
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-                $('.todos').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-                $('.todos').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {

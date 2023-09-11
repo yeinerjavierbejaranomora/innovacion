@@ -13,7 +13,7 @@ class cambioController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth', ['only' => ['consultaCambio', 'cambioSave']]);
+        $this->middleware('auth', ['only' => ['consultaCambio', 'cambioSave']]);
     }
 
     // * Método para acceder a la vista de reestablecer contraseña *
@@ -56,13 +56,12 @@ class cambioController extends Controller
     public function actualizar(ActualizarPassRequest $request)
     {
         dd($request->all());
-        die();
-        /*$cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
+        $cambioPass = User::where('id', '=', $request->id)->update(['password' => bcrypt($request->confirmar)]);
         if ($cambioPass) {
             return redirect()->route('login.index')->with('Sucess', 'Contraseña actualizada');
         } else {
             return redirect()->route('cambio.nueva')->withErrors(['errors', 'Cambio no valido!']);
-        }*/
+        }
     }
 
     /**

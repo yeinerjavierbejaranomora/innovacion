@@ -1012,7 +1012,7 @@
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
                         if (facultadesSeleccionadas.hasOwnProperty(key)) {
-                            formData.append('idfacultad[]', key); 
+                            formData.append('idfacultad[]', facultadesSeleccionadas[key]); 
                         }
                     }
                     var periodosSeleccionados = getPeriodos();

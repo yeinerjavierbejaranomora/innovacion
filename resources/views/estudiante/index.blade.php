@@ -200,7 +200,61 @@
                 </ul>
 
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active"    id="malla"          role="tabpanel" ></div>
+                    <div class="tab-pane fade show active"    id="malla"          role="tabpanel" >
+
+
+                    <div class="table-responsive-xl">
+                        <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <div class="row">
+                                          
+                                                <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Special title treatment</h5>
+                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                             
+                                                </div>
+                                            </div>
+                                         
+                                                <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Special title treatment</h5>
+                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                </div>
+                                                </div>
+                                            
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>  
+                    </div>
+
+                    </div>
 
                     <div class="tab-pane fade"                id="Viendo"         role="tabpanel" >
 

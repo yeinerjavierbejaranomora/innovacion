@@ -636,9 +636,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <form action="#">
+                        @csrf
                         <label for="buscar" >Buscar estudiante</label>
                         <input type="text" class="form-control mb-2" placeholder="Id banner estudiante" name="buscar" id="buscador">
-                        <input type="submit">
+                        <input type="submit" class="form-control mb-2">
+                        </form>
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table">
                             <table id="buscarEstudiante" class="display" style="width:100%">

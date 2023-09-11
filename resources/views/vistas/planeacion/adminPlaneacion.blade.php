@@ -2640,6 +2640,7 @@
                         } catch {
                             data = data;
                         }
+                        console.log(data);
                         estudiante = $('#buscarEstudiante').DataTable({
                             "data": data,
                             'pageLength': 10,

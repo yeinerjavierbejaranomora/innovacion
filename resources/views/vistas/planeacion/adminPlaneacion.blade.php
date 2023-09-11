@@ -635,7 +635,7 @@
                     <div class="modal-body">
                     <form class="form-inline" id="formBuscar">
                         @csrf
-                        <h4>Id banner del estudiante</h4>
+                        <h5>Id banner del estudiante</h5>
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="idBanner" class="sr-only">Id Banner</label>
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
@@ -2615,7 +2615,47 @@
             $("#formBuscar").submit(function(e) {
                 e.preventDefault();
                 var id = $("#idBanner").val();
-                console.log("Valor del campo de entrada: " + id); 
+                var url, data;
+                data = {
+                    id: id,
+                };
+                url = "{{ route('materias.estudiante') }}";
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+
+                        estudiante = $('#buscarEstudiante').DataTable({
+                            "data": data.materias,
+                            'pageLength': 10,
+                            "columns": [{
+                                    title: 'Código de materia',
+                                    data:'codMateria'
+                                },
+                                {
+                                    title: 'Nombre materia',
+                                    data: 'curso'
+                                },
+                                {
+                                    title: 'Semestre',
+                                    data:'semestre',
+                                    className: 'dt-center'
+                                },
+                            ]
+                        });
+
+                    }
+
+                });
             });
 
         });

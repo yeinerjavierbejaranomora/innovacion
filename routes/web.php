@@ -200,6 +200,8 @@ Route::controller(InformeMafiController::class)->group(function () {
     /** Data Excel Mafi por programa*/
     Route::post('/home/dataMafiPrograma', 'excelMafiPrograma')->name('data.Mafi.programa');
 
+    /**Buscar materias por estudiante */
+    Route::post('/home/mafi/materiasEstudiante', 'buscarEstudiante')->name('materias.estudiante');
 });
 
 Route::controller(InformeMoodleController::class)->group(function () {

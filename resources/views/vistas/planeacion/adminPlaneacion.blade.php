@@ -2384,10 +2384,7 @@
 
                         function buscarEstudiante(){
                         $(tbody).on("click", "button.buscar", function() {
-                                var datos = table.row($(this).parents("tr")).data();
-                                var programa = datos[0];
-                                var nombrePrograma = datos[1];
-                                estudiantesPlaneados(programa, nombrePrograma);
+                                
                             })
                         }
                         tablaMalla("#datatable tbody", table);
@@ -2633,9 +2630,8 @@
                         } catch {
                             data = data;
                         }
-                        console.log(data);
                         estudiante = $('#buscarEstudiante').DataTable({
-                            "data": data.materias,
+                            "data": data,
                             'pageLength': 10,
                             "columns": [{
                                     title: 'Código de materia',

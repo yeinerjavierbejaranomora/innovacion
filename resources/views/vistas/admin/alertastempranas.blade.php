@@ -115,13 +115,22 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
 
     .center-chart {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts{
+        background-color: #DFE0E2;
     }
 </style>
 {{-- estilos checkbox --}}

@@ -939,7 +939,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto + ' Estudiantes',
+                                        text: data.alto + ' Matrículas',
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -986,7 +986,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.medio + ' Estudiantes',
+                                        text: data.medio + ' Matrículas',
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -1033,7 +1033,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.bajo + ' Estudiantes',
+                                        text: data.bajo + ' Matrículas',
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

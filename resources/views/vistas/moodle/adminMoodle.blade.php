@@ -105,6 +105,11 @@
         max-height: 450px;
     }
 
+    .graficosRiesgo {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
     #cardProgramas {
         max-height: 500px;
     }
@@ -967,7 +972,7 @@
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1014,7 +1019,7 @@
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1061,7 +1066,7 @@
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {

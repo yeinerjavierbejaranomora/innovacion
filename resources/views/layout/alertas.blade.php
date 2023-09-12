@@ -29,8 +29,10 @@
         }
 
         if(id_rol = 1){
-            console.log('{{ auth()->user()->id_facultad }}');
-            $.get("{{ route('alertas.notificaciones') }}",{},function(data){
+            var id_facultad = '{{ auth()->user()->id_facultad }}';
+            $.get("{{ route('alertas.notificaciones') }}",{
+                id_facultad:id_facultad
+            },function(data){
                 console.log(data);
                 var total = data;
                 if (total > 99) {

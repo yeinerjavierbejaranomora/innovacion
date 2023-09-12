@@ -248,6 +248,8 @@
 
                              
                                 <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
+                                <p class="card-text" id="" style="text-align: center;"><span> Calificación: 4.5</span> </p>
+                                <p class="card-text" id="" style="text-align: center;"><span> Créditos: 2</span> </p>
                               
                             </div>
                             </div>

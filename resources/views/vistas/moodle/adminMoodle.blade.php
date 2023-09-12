@@ -990,6 +990,7 @@
                                         font: {
                                             size: 14,
                                         },
+                                        padding: 1,
                                     },
                                     tooltip: {
                                         enabled: false

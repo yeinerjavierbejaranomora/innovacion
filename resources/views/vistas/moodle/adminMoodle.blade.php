@@ -991,6 +991,7 @@
                                             size: 14,
                                         },
                                         padding: 1,
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false

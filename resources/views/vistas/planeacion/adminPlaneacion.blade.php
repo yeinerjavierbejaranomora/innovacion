@@ -2672,7 +2672,7 @@
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
 
-                            ['#primerApellido', '#Sello', '#Operador', '#tipoEstudiante'].forEach(selector => {
+                            ['#primerApellido', '#Sello', '#Operador', '#tipEstudiante'].forEach(selector => {
                                 $(selector).empty();
                             });
                             $('#dataEstudiante').removeClass('hidden');

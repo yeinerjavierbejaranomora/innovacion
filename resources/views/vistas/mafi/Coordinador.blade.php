@@ -1326,6 +1326,8 @@
                 });
             }
 
+            var chartSelloAntiguos;
+            
             function graficoSelloAntiguos() {
                 var url, data;
                 url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
@@ -1543,6 +1545,7 @@
 
             function graficoOperadores() {
                 var data;
+                var url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
                     programa: programasSeleccionados,
                     periodos: periodosSeleccionados

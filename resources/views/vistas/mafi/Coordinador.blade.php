@@ -484,55 +484,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center " id="colProgramas">
-                    <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="estudiantesProgramas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 text-center" id="colMetas">
-                    <div class="card shadow mb-4 graficosBarra">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloMetas"><strong>Metas periodo activo por programa</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="graficoMetas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalMetas" class="btn botonModal" data-toggle="modal" data-target="#modalMetas"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -846,8 +797,7 @@
              */
 
             $('#generarReporte').on('click', function(e) {
-                e.preventDefault();
-                
+                e.preventDefault();          
                 periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;

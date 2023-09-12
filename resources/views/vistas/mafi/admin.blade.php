@@ -919,7 +919,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
@@ -1450,9 +1450,13 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'SIN MARCACIÓN'
+                                        label = 'RETENCION';
+                                        return label;
+                                    }else
+                                    {
+                                        return 'ACT. ' +label + ':' + valores[index];
                                     }
-                                    return label + ': ' + valores[index];
+                                    
                                 }),
                                 datasets: [{
                                     data: valores,
@@ -1475,7 +1479,6 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
-
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -1603,7 +1606,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    text: 'TOTAL ESTUDIANTES NUEVOS ESTADO FINANCIERO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1724,7 +1727,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    text: 'TOTAL ESTUDIANTES ANTIGUOS SELLO FINANCIERO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',

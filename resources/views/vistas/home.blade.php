@@ -133,7 +133,7 @@
                             <div id="moodle" class="content">
                                 <div class="row mb-4">
                                     <div class="col-md-6">
-                                        <img class="card-img-center" src="/public/assets/images/Banner.jpeg" alt="Card image cap" style="width: 100%;">
+                                        <img class="card-img-center" src="/public/assets/images/informeMoodleOriginal.jpeg" alt="Card image cap" style="width: 100%;">
                                     </div>
                                     <div class="col-md-6">
                                         <img class="card-img-center" src="/public/assets/images/informeMoodle.JPG" alt="Card image cap" style="width: 100%;">

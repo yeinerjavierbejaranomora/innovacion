@@ -96,11 +96,11 @@ class InformeMafiController extends Controller
             }
 
             if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                $ASP += 1;
+                $Retencion += 1;
             }
 
             if ($sello == 'TIENE RETENCION' && !empty($estado)) {
-                $Retencion += 1;
+                $ASP += 1;
             }
 
             if ($sello == 'NO EXISTE') {
@@ -110,7 +110,7 @@ class InformeMafiController extends Controller
 
         $data = [
             'CON SELLO' => $selloFinanciero,
-            'TIENE RETENCION' => $Retencion,
+            'RETENCION' => $Retencion,
             'ASP' => $ASP,
             'NO EXISTE' => $Vacio
         ];
@@ -480,11 +480,11 @@ class InformeMafiController extends Controller
             }
 
             if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                $ASP += 1;
+                $Retencion += 1;
             }
 
             if ($sello == 'TIENE RETENCION' && !empty($estado)) {
-                $Retencion += 1;
+                $ASP += 1;
             }
 
             if ($sello == 'NO EXISTE') {
@@ -950,11 +950,11 @@ class InformeMafiController extends Controller
             }
 
             if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                $ASP += 1;
+                $Retencion += 1;
             }
 
             if ($sello == 'TIENE RETENCION' && !empty($estado)) {
-                $Retencion += 1;
+                $ASP += 1;
             }
 
             if ($sello == 'NO EXISTE') {
@@ -1088,7 +1088,7 @@ class InformeMafiController extends Controller
             $data = [
                 'CON SELLO' => $selloFinanciero,
                 'TIENE RETENCION' => $Retencion,
-                'AFP' => $AFP,
+                'ASP' => $AFP,
                 'INACTIVO' => $Vacio
             ];
 

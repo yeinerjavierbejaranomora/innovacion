@@ -48,24 +48,7 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        <style>
-            .notificaciones-count {
-            background-color: red;
-            color: white;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 50%;
-            position: absolute;
-            vertical-align: middle;
-            right: 0;
-        }
-        </style>
-        
-        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
-            <i class="fa-solid fa-bell"></i>
-            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
-            <span id="notificacionesCount" class="notificaciones-count"></span>
-        </a>
+        @include('layout.alertas');
     </li>
 
     <!-- Divider -->

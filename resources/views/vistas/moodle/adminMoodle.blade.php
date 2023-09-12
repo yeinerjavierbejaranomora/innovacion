@@ -105,6 +105,11 @@
         max-height: 450px;
     }
 
+    .graficosRiesgo {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
     #cardProgramas {
         max-height: 500px;
     }
@@ -139,6 +144,7 @@
     .fondocharts {
         background-color: #DFE0E2;
     }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -348,8 +354,9 @@
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart fondocharts">
+                    <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
+                        <div class="chart-title">Título</div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
@@ -953,10 +960,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -964,10 +969,11 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
+                                        padding: 0,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1000,10 +1006,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1011,10 +1015,11 @@
                                     title: {
                                         display: true,
                                         text: data.medio + ' Matrículas',
+                                        padding: 0,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1047,10 +1052,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1058,10 +1061,11 @@
                                     title: {
                                         display: true,
                                         text: data.bajo + ' Matrículas',
+                                        padding: 0,
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {

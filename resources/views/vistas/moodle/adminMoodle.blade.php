@@ -149,7 +149,7 @@
         margin-top: 30px;
         font-size: 14px;
         color: black; 
-        font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-family: sans-serif;
     }
 </style>
 

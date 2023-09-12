@@ -31,4 +31,3 @@
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
-    </li>

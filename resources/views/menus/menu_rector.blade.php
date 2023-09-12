@@ -48,7 +48,7 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        <style>
+        {{-- <style>
             .notificaciones-count {
             background-color: red;
             color: white;
@@ -59,7 +59,7 @@
             vertical-align: middle;
             right: 0;
         }
-        </style>
+        </style> --}}
 
         {{-- <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>

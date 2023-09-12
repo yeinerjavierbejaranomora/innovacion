@@ -314,9 +314,9 @@
                                                         <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
                                                         @foreach ($programas as $programa)
-                                                        <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
                                                         @endforeach
-                                                        </div>
+                                                    </div>
                                                 </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
@@ -615,8 +615,7 @@
 
             var programasSeleccionados = [];
 
-            var programasSeleccionados
-;
+            var programasSeleccionados;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -1471,8 +1470,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSeleccionados
-,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }
@@ -1575,8 +1573,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSeleccionados
-,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }

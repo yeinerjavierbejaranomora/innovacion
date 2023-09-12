@@ -967,7 +967,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto + ' Matrículas',
+                                        text: data.alto + ' Matrículas <br>' + 'Total: ' + data.total + ' Matrículas',
                                         padding: 0,
                                         color: 'red',
                                         position: 'bottom',

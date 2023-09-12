@@ -28,7 +28,7 @@
             })
         }
 
-        if(id_rol = 1){
+        if(id_rol == 1){
             var id_facultad = '{{ auth()->user()->id_facultad }}';
             $.post("{{ route('alertas.notificacionesfacultad') }}",{
                 id_facultad:id_facultad

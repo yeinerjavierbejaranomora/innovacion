@@ -147,7 +147,7 @@
     <!-- Main Content -->
     <div id="content">
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -626,11 +626,11 @@
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-
+                    for (var key in facultadesSeleccionadas) {
+                        if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                            formData.append('idfacultad[]', facultadesSeleccionadas[key]); 
+                        }
+                    }
                     var periodosSeleccionados = getPeriodos();
                     var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
@@ -898,7 +898,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto,
+                                        text: data.alto + ' Matrículas',
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -946,7 +946,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.medio,
+                                        text: data.medio + ' Matrículas',
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -994,7 +994,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.bajo,
+                                        text: data.bajo + ' Matrículas',
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

@@ -498,7 +498,6 @@
 
     </div>
 
-
     <script>
         $('#menuMoodle').addClass('activo');
 

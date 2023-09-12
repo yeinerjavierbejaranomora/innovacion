@@ -484,55 +484,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center " id="colProgramas">
-                    <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="estudiantesProgramas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 text-center" id="colMetas">
-                    <div class="card shadow mb-4 graficosBarra">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloMetas"><strong>Metas periodo activo por programa</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="graficoMetas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalMetas" class="btn botonModal" data-toggle="modal" data-target="#modalMetas"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -704,6 +655,68 @@
                 });
             });
 
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                    url = "{{ route('data.Mafi.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
+            }
+
             /**
              * Método que trae los gráficos de la vista
              */
@@ -712,6 +725,7 @@
                 grafioSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTiposDeEstudiantes();
                 graficoOperadores();
             }
@@ -815,7 +829,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -845,8 +859,7 @@
              */
 
             $('#generarReporte').on('click', function(e) {
-                e.preventDefault();
-                
+                e.preventDefault();          
                 periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
@@ -884,7 +897,7 @@
 
             function graficosporPrograma() {
                 if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores ) {
+                    chartTipoEstudiante || chartOperadores || chartSelloAntiguos) {
                     destruirGraficos();
                 }
                 $(".facultadtitulos").hide();
@@ -1327,7 +1340,7 @@
             }
 
             var chartSelloAntiguos;
-            
+
             function graficoSelloAntiguos() {
                 var url, data;
                 url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,

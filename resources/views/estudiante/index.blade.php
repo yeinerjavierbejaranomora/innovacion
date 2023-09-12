@@ -237,6 +237,7 @@
                                 border-top-right-radius: 30px;
                                 margin-left: 4px;
                                 height: 42px;
+                                width: 100%;
                             ">Codigo:<br>
                                 <span>
                                 ABV32190

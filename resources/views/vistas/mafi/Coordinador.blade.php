@@ -1326,6 +1326,8 @@
                 });
             }
 
+            var chartSelloAntiguos;
+            
             function graficoSelloAntiguos() {
                 var url, data;
                 url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,

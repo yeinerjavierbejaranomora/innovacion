@@ -29,6 +29,7 @@
         }
 
         if(id_rol = 1){
+            console.log('{{ auth()->user()->id_facultad }}');
             $.get("{{ route('alertas.notificaciones') }}",{},function(data){
                 console.log(data);
                 var total = data;

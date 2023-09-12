@@ -75,7 +75,7 @@
 <script>
     numeroAlertas();
     function numeroAlertas(){
-        $.post({{ route() }},{},function(data){
+        $.post("{{ route('alertas.notificaciones') }}",{},function(data){
             console.log(data);
         })
     }

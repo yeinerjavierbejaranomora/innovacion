@@ -102,6 +102,6 @@ class AlertasTempranasController extends Controller
     }
 
     public function numeroAlertas(){
-        
+        var_dump("Hola Noti");die();
     }
 }

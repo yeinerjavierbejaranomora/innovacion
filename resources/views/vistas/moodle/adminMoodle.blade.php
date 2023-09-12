@@ -362,7 +362,7 @@
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart fondocharts" style="position: relative;>
+                    <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
                         <div class="chart-title">Título</div>
                     </div>

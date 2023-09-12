@@ -638,7 +638,7 @@
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
-
+                        <br>
                         <div class="hidden mt-3 mb-3" id="dataEstudiante">
                             <h5 id="primerApellido"></h5>
                             <h5 id="Sello"></h5>
@@ -2675,10 +2675,10 @@
                                 $(selector).empty();
                             });
                             $('#dataEstudiante').removeClass('hidden');
-                            $('#primerApellido').append(data.estudiante.primer_apellido);
-                            $('#Sello').append(data.estudiante.sello);
-                            $('#Operador').append(data.estudiante.operador);
-                            $('#tipoEstudiante').append(data.estudiante.tipoestudiante);
+                            $('#primerApellido').append('Primer Apellido: '+ data.estudiante.primer_apellido);
+                            $('#Sello').append('Sello financiero: '+ data.estudiante.sello);
+                            $('#Operador').append('Operador: '+ data.estudiante.operador);
+                            $('#tipoEstudiante').append('Tipo estudiante: '+data.estudiante.tipoestudiante);
 
                             console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({

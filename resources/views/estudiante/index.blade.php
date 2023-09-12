@@ -213,7 +213,7 @@
                             <div class="card-body">
                             <div class="" style=" display: flex;">
                                 
-                                <span style="
+                                <span class="bg-danger"style="
                                 border-bottom: 2px solid;
                                 border-top: 2px solid;
                                 border-left: 2px solid;

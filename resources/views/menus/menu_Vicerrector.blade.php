@@ -9,7 +9,7 @@
     #accordionSidebar {
     width: 260px!important;
     }
-    
+
     .activo{
     background-color: #dfc14e;
     }
@@ -48,6 +48,9 @@
             <i class="fa-solid fa-pen"></i>
             <span>Planeación</span></a>
     </li>
+    <li class="nav-item" id="menuAlertas">
+        @include('layout.alertas');
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -79,4 +82,3 @@
 <!-- End of Sidebar -->
 
 
-    

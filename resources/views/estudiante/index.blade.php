@@ -235,7 +235,7 @@
                                 border-bottom-right-radius: 30px;
                                 border-top-right-radius: 30px;
                             ">Special title treatment</h6>
-
+                            </div>
                                 <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;">Codigo:<br>
                                 <span>
                                 ABV32190

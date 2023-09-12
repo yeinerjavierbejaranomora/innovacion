@@ -75,7 +75,9 @@
 <script>
     numeroAlertas();
     function numeroAlertas(){
-        alert('Hola');
+        $.post({{ route() }},{},function(data){
+            console.log(data);
+        })
     }
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">

@@ -78,9 +78,9 @@
         $.get("{{ route('alertas.notificaciones') }}",{},function(data){
             total = data[0].total_alertas;
             if (total > 99) {
-                console.log("+99");
+                $('#notificacionesCount').append('+99');
             } else {
-                console.log("-99");
+                $('#notificacionesCount').append(total);
             }
         })
     }

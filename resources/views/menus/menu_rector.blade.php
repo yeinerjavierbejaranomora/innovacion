@@ -47,7 +47,20 @@
             <i class="fa-solid fa-pen"></i>
             <span>Planeación</span></a>
     </li>
-    
+    <li class="nav-item" id="menuAlertas">
+        <div class="container">
+            <div class="row justify-content-start">
+                <div class="col-9 d-flex justify-content-between align-items-center">
+                    <a class="nav-link" href="{{ route('alertas.inicio') }}">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
+                    </a>
+                </div>
+
+                <div class="col-3">4</div>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -994,7 +994,7 @@
             }
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores').find("strong");
+                var elementosTitulos = $('#tituloEstudiantes, #tituloEstadoFinanciero, #tituloRetencion, #tituloEstudiantesNuevos, #tituloTipos, #tituloOperadores, #tituloProgramas').find("strong");
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();

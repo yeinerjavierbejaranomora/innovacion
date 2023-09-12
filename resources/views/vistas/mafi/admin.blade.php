@@ -1603,7 +1603,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    text: 'TOTAL ESTUDIANTES NUEVOS ESTADO FINANCIERO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',
@@ -1724,7 +1724,7 @@
                                     },
                                     title: {
                                     display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    text: 'TOTAL ESTUDIANTES ANTIGUOS SELLO FINANCIERO: ' + suma,
                                     font: {
                                             size: 14,
                                             Style: 'bold',

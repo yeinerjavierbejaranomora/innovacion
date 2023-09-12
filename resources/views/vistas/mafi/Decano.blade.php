@@ -937,7 +937,7 @@
                             checkboxesProgramas.each(function() {
                                 programasSeleccionados.push($(this).val());
                             });
-                            estadoUsuarioPrograma()
+                            estadoUsuarioPrograma();
                             $("#colProgramas").addClass("hidden");
                             $("#colMetas").addClass("hidden");
                             llamadoFunciones();
@@ -945,6 +945,7 @@
                             if (facultadesSeleccionadas) {
                                     $('#mensaje').hide();
                                     limpiarTitulos();
+                                    estadoUsuarioFacultad();
                                     llamadoFunciones();
                                     programasSeleccionados = []
                                 } else {
@@ -1032,6 +1033,16 @@
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
 
+            }
+
+            function estadoUsuarioFacultad() {
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                
+                var textoNuevo = "<h4><strong>Informe facultades: " + facultadesArray + "</strong></h4>";
+
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
             }
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {

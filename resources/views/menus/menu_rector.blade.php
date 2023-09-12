@@ -60,21 +60,7 @@
             right: 0;
         }
         </style>
-        <script>
-            numeroAlertas();
-            function numeroAlertas(){
-                id_rol = '{{ auth()->user()->id_rol }}';
-                alert(id_rol);
-                $.get("{{ route('alertas.notificaciones') }}",{},function(data){
-                    var total = data;
-                    if (total > 99) {
-                        $('#notificacionesCount').append('+99');
-                    } else {
-                        $('#notificacionesCount').append(`${total}`);
-                    }
-                })
-            }
-        </script>
+        
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>

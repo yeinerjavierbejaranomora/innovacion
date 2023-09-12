@@ -821,6 +821,16 @@
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
             }
 
+            function estadoUsuarioFacultad() {
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                
+                var textoNuevo = "<h4><strong>Informe facultades: " + facultadesArray + "</strong></h4>";
+
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+            }
+
             $("#todosPrograma").change(function() {
                 if ($(this).is(":checked")) {
                     $("#programas input[type='checkbox']").prop("checked", true);
@@ -905,6 +915,7 @@
                                     programasSeleccionados = []
                                     $('#mensaje').hide();
                                     limpiarTitulos();
+                                    estadoUsuarioFacultad();
                                     llamadoFunciones();
                                 } else {
                                 /** Alerta */

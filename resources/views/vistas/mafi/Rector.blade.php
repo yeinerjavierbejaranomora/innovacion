@@ -35,18 +35,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador,
@@ -60,6 +48,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #botondataTable {
@@ -72,6 +78,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {
@@ -95,8 +104,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -104,8 +113,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -116,8 +125,24 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts{
+        background-color: #DFE0E2;
+    }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -128,16 +153,16 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
 
-            <div class="input-group">
-                <div class="input-group-append text-gray-800">
-                    <h3><strong> Bienvenido {{auth()->user()->nombre}}! - Informe de Facultades Banner </strong></h3>
+            <div class="input-group" >
+                <div class="input-group-append text-gray-800 text-center">
+                    <h3><strong> Bienvenido {{ auth()->user()->nombre }}! - Informe de Admisiones (Argos) </strong></h3>
                 </div>
             </div>
 
@@ -149,19 +174,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
-            <br>
+
             <div class="text-center" id="mensaje">
                 <h5>Por defecto se muestran los datos de todas las facultades,
                     si quieres ver datos en especifico, selecciona alguna en específico.
@@ -175,28 +188,34 @@
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
-                        <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
+                            </div>
+                            <div class="text-center col-4">
+                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
                         </div>
+                        </div>
+
                         <div class="text-start">
                             <div id="periodos">
-                            <!--Accordion-->
+                                <!--Accordion-->
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         For. Contínua
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosContinua" name="todosContinua" checked>
+                                                        <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
                                                 <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
@@ -204,13 +223,13 @@
                                     <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                            <div class="card-header fondocards" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Pregrado
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
@@ -223,15 +242,19 @@
                                     </div>
                                     <div class="col-4 text-start">
                                         <div class="card" id="cardFacultades">
-                                            <div class="card-header text-center" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
-                                                <h5><strong>Seleccionar Facultades</strong></h5>
+                                            <div class="card-header text-center fondocards" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Facultades
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosFacultad" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
-                                            <div class="card-body text-start collapse show" id="acordionFacultades" aria-labelledby="HeadingFacultades">
+                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
                                                 <div name="facultades" id="facultades"></div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerFacultades" class="btn deshacer col-5">Deshacer Todas</button>
-                                                <button type="button" id="seleccionarFacultades" class="btn deshacer col-6">Seleccionar Todas</button>
                                             </div>
                                         </div>
                                     </div>
@@ -240,13 +263,13 @@
                                     <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
-                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <div class="card-header fondocards" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
@@ -260,13 +283,13 @@
                                     <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
-                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <div class="card-header fondocards" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Maestría
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
+                                                        <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
@@ -281,25 +304,29 @@
                                     </div>
                                     <div class="col-4 text-start">
                                         <div class="card mb-3" id="cardProgramas">
-                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas"></div>
-                                            </div>
-                                            <div class="card-footer text-center" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                        </div>
-                        </div>
-                        <div class="text-center col-8 mt-3" style="height: 30px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -318,21 +345,44 @@
             <div class="col-6 text-center" id="colEstudiantes">
                 <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantes"><strong>Total estudiantes Argos</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="estudiantes"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn botonMafi" id="descargarMafi">Descargar datos Banner</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center " id="colSelloFinanciero">
+            <div class="col-6 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body center-chart fondocharts">
                         <canvas id="activos"></canvas>
                     </div>
                 </div>
@@ -340,33 +390,83 @@
             <div class="col-6 text-center " id="colRetencion">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong>
-                        </h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <canvas id="retencion" style="width: 50%;"></canvas>
+                    <div class="card-body fondocharts">
+                        <canvas id="retencion"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-center " id="colPrimerIngreso">
+            <div class=" col-6 text-center " id="colPrimerIngreso">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
-                        <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <canvas id="primerIngreso" style="width: 50%;"></canvas>
+                    <div class="card-body center-chart fondocharts">
+                        <canvas id="primerIngreso"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center " id="colAntiguos">
+                <div class="card shadow mb-6 graficos">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body center-chart fondocharts">
+                        <canvas id="antiguos"></canvas>
                     </div>
                 </div>
             </div>
             <div class="col-6 text-center " id="colTipoEstudiantes">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloTipos"><strong>Tipos de estudiantes activos</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="tipoEstudiante"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -377,10 +477,20 @@
             <div class="col-6 text-center " id="colOperadores">
                 <div class="card shadow mb-6 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="operadores" style="height: 400px;"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -391,10 +501,20 @@
             <div class="col-6 text-center " id="colProgramas">
                 <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
                     <div class="card-header">
-                        <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="estudiantesProgramas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -403,13 +523,23 @@
                 </div>
             </div>
 
-            <div class="col-6 text-center " id="colMetas">
+            <div class="col-6 text-center" id="colMetas">
                 <div class="card shadow mb-4 graficosBarra">
                     <div class="card-header">
-                        <h5 id="tituloMetas"><strong>Metas por ciclo</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                <h5 id="tituloMetas"><strong>Metas periodo activo por programa</strong></h5>
+                                <h5 class="tituloPeriodo"><strong></strong></h5>
+                            </div>
+                            <div class="col-2 text-right">
+                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por programa con sello financiero y de primer ingreso VS la meta fijada, además permite descargar un Excel en donde se puede visualizar el porcentaje de cumplimiento de la meta." data-placement="right">
+                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fondocharts">
                         <canvas id="graficoMetas"></canvas>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -419,14 +549,12 @@
             </div>
         </div>
 
-        <br>
-
         <!-- Modal Todos los Operadores de la Ibero -->
         <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Operadores</strong></h5>
+                        <h5 class="modal-title" id="tituloOperadoresTotal"><strong>Estudiantes activos por operador</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -495,7 +623,7 @@
                         <canvas id="metasTotal"></canvas>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning">Descargar datos</button>
+                        <button type="button" class="btn btn-warning" id="generarExcel">Descargar datos</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -504,9 +632,10 @@
 
     </div>
 
-
     <script>
         $(document).ready(function() {
+            $('#menuAdmisiones').addClass('activo');
+
             var tabla = 'Mafi';
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -523,9 +652,37 @@
                 $('#generarReporte').prop("disabled", false);
             });
 
+            var programasSeleccionados = [];
+            var facultadesSeleccionadas = [];
+            var periodosSeleccionados = [];
             periodos();
             llamadoFunciones();
             facultades();
+            programas();
+
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            // Agregar un evento de escucha al campo de búsqueda
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
 
             /**
              * Llamado a todos los scripts
@@ -535,6 +692,7 @@
                 graficoSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTipoDeEstudiante();
                 graficoOperadores();
                 graficoProgramas();
@@ -599,6 +757,7 @@
                     async: false,
                     success: function(data) {
                         data.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
                             if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
                                 $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
                             }
@@ -614,8 +773,10 @@
                         });
                     }
                 });
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
             }
-
 
             function getPeriodos() {
                 var periodosSeleccionados = [];
@@ -624,6 +785,34 @@
                     periodosSeleccionados.push($(this).val());
                 });
                 return periodosSeleccionados;
+            }
+
+            function programas() {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: "{{ route('todosProgramas.activos') }}",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(datos) {
+                        if (datos != null) {
+                            try {
+                                datos = jQuery.parseJSON(datos);
+                            } catch {
+                                datos = datos;
+                            }
+                            $.each(datos, function(key, value) {
+                                $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
+                            });
+                        }
+                    },
+                    error: function() {
+                        $('#programas').append('<h5>No hay programas</h5>')
+                    }
+                })
             }
 
             var totalFacultades;
@@ -639,7 +828,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartProgramas, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos, chartTipoEstudiante, chartOperadores, chartMetas].forEach(chart => chart.destroy());
             }
 
             /**
@@ -649,44 +838,83 @@
                 $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
-            /**
-             * Método que trae la información de toda la Ibero 
-             * */
-            function informacionGeneral() {
-                $('#mensaje').show();
-                destruirGraficos();
-                llamadoFunciones();
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                console.log(programasSeleccionados);
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    console.log('entra');
+                    url = "{{ route('data.Mafi.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('data.Mafi.facultad') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('data.Mafi') }}",
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+
+                        var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.codprograma,
+                                item.programa,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
             }
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-                $('.todos').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-                $('.todos').prop('checked', true);
-            });
-
-            $('#deshacerFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarFacultades').on('click', function(e) {
-                $('#facultades input[type="checkbox"]').prop('checked', true);
-            });
-
-            var programasSeleccionados = [];
-            var facultadesSeleccionadas = [];
-            var periodosSeleccionados = [];
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
@@ -695,6 +923,7 @@
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
+                console.log(periodosSeleccionados);
                 if ($('#deshacerProgramas, #seleccionarProgramas').is(':hidden')) {
                     $('#deshacerProgramas, #seleccionarProgramas').show();
                 }
@@ -708,7 +937,8 @@
                         estadoUsuarioPrograma();
                         $("#colProgramas").addClass("hidden");
                         $("#colMetas").addClass("hidden");
-                        graficosporPrograma(programasSeleccionados, periodosSeleccionados);
+                        destruirGraficos();
+                        llamadoFunciones();
                     } else {
                         if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                             $('#mensaje').hide();
@@ -724,7 +954,8 @@
                             }
                             $("#colMetas").removeClass("hidden");
                             estadoUsuarioFacultad();
-                            graficosporFacultad(facultadesSeleccionadas, periodosSeleccionados);
+                            destruirGraficos();
+                            llamadoFunciones();
                         } else {
                             /** Alerta */
                             programasSeleccionados = [];
@@ -748,10 +979,9 @@
 
             function estadoUsuarioPrograma() {
                 limpiarTitulos();
-                var periodos = getPeriodos();
                 $("#mensaje").empty();
 
-                var periodosArray = Object.values(periodos);
+                var periodosArray = Object.values(periodosSeleccionados);
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
@@ -773,14 +1003,13 @@
 
             function estadoUsuarioFacultad() {
                 limpiarTitulos();
-                var periodos = getPeriodos();
                 $("#mensaje").empty();
                 var facultadesArray = Object.values(facultadesSeleccionadas);
                 var facultadesFormateadas = facultadesArray.map(function(facultad) {
                     return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
                 }).join(' - ');
 
-                var periodosArray = Object.values(periodos);
+                var periodosArray = Object.values(periodosSeleccionados);
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
@@ -816,7 +1045,7 @@
                 })
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
                 if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
@@ -849,7 +1078,7 @@
                                     datos = datos;
                                 }
                                 $.each(datos, function(key, value) {
-                                    $('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
+                                    $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                                 });
                             }
                         },
@@ -894,629 +1123,70 @@
                 }
             });
 
+            $("#todosFacultad").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#facultades input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#facultades input[type='checkbox']").prop("checked", false);
+                }
+            });
+
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
+            });
+
             /**
              * Método que muestra el total de estudiantes activos e inactivos
              */
             var chartEstudiantes;
 
             function graficoEstudiantes() {
-                var url = '/home/estudiantes';
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.estado;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantes').getContext('2d');
-                    chartEstudiantes = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                label = label.toUpperCase();
-                                return label + 'S: ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'right',
-                                    align: 'left',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                        $('#colEstudiantes').addClass('hidden');
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.activos.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.activos.facultad') }}",
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
                     } else {
-                        $('#colEstudiantes').removeClass('hidden');
+                        url = "{{ route('estudiantes.activos') }}",
+                            data = ''
                     }
-
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de sello financiero
-             */
-            var chartEstudiantesActivos;
-
-            function graficoSelloFinanciero() {
-                var url = '/home/estudiantesActivos/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('activos').getContext('2d');
-                    chartEstudiantesActivos = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 2
-                                },
-                                legend: {
-                                    position: 'right',
-                                    align: 'left',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                        $('#colSelloFinanciero').addClass('hidden');
-                    } else {
-                        $('#colSelloFinanciero').removeClass('hidden');
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de estudiantes con retención (ASP)
-             */
-            var chartRetencion;
-
-            function graficoRetencion() {
-                var url = '/home/retencionActivos/' + tabla;
-                $.getJSON(url, function(data) {
-
-                    var total = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-
-                    total = total.reduce((a, b) => a + b, 0);
-
-
-                    var labels = data.data.map(function(elemento) {
-
-                        return elemento.autorizado_asistir;
-                    });
-                    var valores = data.data.map(function(elemento) {
-
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('retencion').getContext('2d');
-                    chartRetencion = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'SIN MARCACIÓN'
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            layout: {
-                                padding: {
-                                    left: 25,
-                                    right: 20,
-                                },
-                            },
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    display: 'auto',
-                                    position: 'outside',
-                                    textMargin: 6
-                                },
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        content: 'Total: ' + total,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                        $('#colRetencion').addClass('hidden');
-                    } else {
-                        $('#colRetencion').removeClass('hidden');
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de estudiantes de primer ingreso
-             */
-            var chartSelloPrimerIngreso;
-
-            function graficoSelloPrimerIngreso() {
-                var url = '/home/estudiantesPrimerIngreso/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.sello;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('primerIngreso').getContext('2d');
-                    chartSelloPrimerIngreso = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == 'NO EXISTE') {
-                                    label = 'INACTIVO';
-                                }
-                                return label + ': ' + valores[index];
-                            }),
-                            datasets: [{
-                                label: 'Gráfico Circular',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)']
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            layout: {
-                                padding: {
-                                    left: 20,
-                                },
-                            },
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'bold',
-                                        size: 12
-                                    },
-                                },
-                                labels: {
-                                    render: 'percenteaje',
-                                    size: '14',
-                                    fontStyle: 'bolder',
-                                    position: 'outside',
-                                    textMargin: 2
-                                },
-                                legend: {
-                                    position: 'right',
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                        $('#colPrimerIngreso').addClass('hidden');
-                    } else {
-                        $('#colPrimerIngreso').removeClass('hidden');
-                    }
-                });
-
-            }
-
-            /**
-             * Método que genera el gráfico con todos los tipos de estudiantes 
-             */
-            var chartTipoEstudiante;
-
-            function graficoTipoDeEstudiante() {
-                var url = '/home/tipoEstudiantes/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.tipoestudiante;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                    chartTipoEstudiante = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label.includes("ESTUDIANTE ")) {
-                                    label = label.replace(/ESTUDIANTE\S*/i, "");
-                                }
-                                return label;
-                            }),
-                            datasets: [{
-                                label: 'Tipos de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                }
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                scales: {
-                                    y: {
-                                        max: yMax,
-                                        beginAtZero: true
-                                    }
-                                },
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels],
-                    });
-                    if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                        $('#colTipoEstudiantes').addClass('hidden');
-                    } else {
-                        $('#colTipoEstudiantes').removeClass('hidden');
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen 
-             */
-            var chartOperadores;
-
-            function graficoOperadores() {
-                var url = '/home/operadores/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.operador;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
-                    // Crear el gráfico de barras
-                    var ctx = document.getElementById('operadores').getContext('2d');
-                    chartOperadores = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label;
-                            }),
-                            datasets: [{
-                                label: 'Operadores con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                }
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    max: yMax,
-                                    beginAtZero: true
-                                }
-                            },
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                        $('#colOperadores').addClass('hidden');
-                    } else {
-                        $('#colOperadores').removeClass('hidden');
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos 
-             */
-
-            var chartProgramas;
-
-            function graficoProgramas() {
-                var url = '/home/estudiantesProgramas/' + tabla;
-                $.getJSON(url, function(data) {
-                    var labels = data.data.map(function(elemento) {
-                        return elemento.codprograma;
-                    });
-                    var valores = data.data.map(function(elemento) {
-                        return elemento.TOTAL;
-                    });
-                    var maxValor = Math.max(...valores);
-                    var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                    var yMax;
-                    if (maxValor < 50) {
-                        yMax = 100;
-                    } else if (maxValor < 100) {
-                        yMax = 120;
-                    } else if (maxValor < 500) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                    } else if (maxValor < 1000) {
-                        yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                    } else {
-                        var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                        yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                    }
-                    // Crear el gráfico circular
-                    var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
-                    chartProgramas = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels.map(function(label, index) {
-                                if (label == '') {
-                                    label = 'IBERO';
-                                }
-                                return label;
-                            }),
-                            datasets: [{
-                                label: 'Programas con mayor cantidad de estudiantes',
-                                data: valores,
-                                backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                    'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                ],
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                },
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    max: yMax,
-                                    beginAtZero: true
-                                }
-                            },
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                datalabels: {
-                                    color: 'black',
-                                    font: {
-                                        weight: 'semibold'
-                                    },
-                                    formatter: Math.round
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: {
-                                            size: 12
-                                        }
-                                    }
-                                }
-                            },
-                        },
-                        plugins: [ChartDataLabels]
-                    });
-                    if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                        $('#colProgramas').addClass('hidden');
-                    } else {
-                        $('#colProgramas').removeClass('hidden');
-                    }
-                });
-            }
-
-            /**
-             * Método que vacía el contenido de todos los gráficos una vez el usuario desea visualizar unicamente los de alguna facultad
-             */
-
-            function graficosporFacultad(facultades, periodos) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores || chartMetas) {
-                    destruirGraficos();
-                    $("#ocultarGraficoProgramas").show();
-
-                    graficoEstudiantesPorFacultades(facultades, periodos);
-                    graficoSelloFinancieroPorFacultad(facultades, periodos);
-                    graficoRetencionPorFacultad(facultades, periodos);
-                    graficoSelloPrimerIngresoPorFacultad(facultades, periodos);
-                    graficoTiposDeEstudiantesFacultad(facultades, periodos);
-                    graficoOperadoresFacultad(facultades, periodos);
-                    graficoProgramasFacultad(facultades, periodos);
-                    graficoMetasFacultad(facultades);
                 }
-            }
-
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de alguna facultad en específico
-             */
-
-            function graficoEstudiantesPorFacultades(facultades, periodos) {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.activos.facultad') }}",
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.estado;
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
                         // Crear el gráfico circular
                         var ctx = document.getElementById('estudiantes').getContext('2d');
                         chartEstudiantes = new Chart(ctx, {
@@ -1524,14 +1194,17 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
+                                    if (label != 'TOTAL') {
+                                        return label + 'S: ' + valores[index];
+                                    } else {
+                                        return label + ': ' + suma;
+                                    }
                                 }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }, ]
-
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)']
+                                }]
                             },
                             options: {
                                 maintainAspectRatio: false,
@@ -1548,7 +1221,7 @@
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
+                                        position: 'border',
                                         textMargin: 6
                                     },
                                     legend: {
@@ -1561,8 +1234,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
-
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL ESTUDIANTES: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
 
                             },
@@ -1578,49 +1259,67 @@
             }
 
             /**
-             * Método que genera el gráfico de sello financiero de alguna facultad en específico
+             * Método que genera el gráfico de sello financiero
              */
-            function graficoSelloFinancieroPorFacultad(facultades, periodos) {
+            var chartEstudiantesActivos;
+
+            function graficoSelloFinanciero() {
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('sello.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.sello.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
+                                labels: labels,
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
                                 responsive: true,
+                                maintainAspectRatio: false,
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
@@ -1628,23 +1327,20 @@
                                             weight: 'bold',
                                             size: 12
                                         },
-                                    },
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
+                                        align: 'left',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -1652,7 +1348,16 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1667,77 +1372,123 @@
             }
 
             /**
-             * Método que genera el gráfico ASP de alguna facultad en específico
+             * Método que genera el gráfico de estudiantes con retención (ASP)
              */
-            function graficoRetencionPorFacultad(facultades, periodos) {
+            var chartRetencion;
+
+            function graficoRetencion() {
+                var url, data;
+
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('retencion.activos', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.retencion.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var total = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+
+                        total = total.reduce((a, b) => a + b, 0);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
+                            if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                                return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                            } else {
+                                return elemento.autorizado_asistir;
+                            }
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('retencion').getContext('2d');
                         chartRetencion = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
                                         label = 'SIN MARCACIÓN'
                                     }
-                                    label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(208,171,75, 1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
                                         color: 'black',
                                         font: {
-                                            weight: 'bold',
-                                            size: 12
+                                            weight: 'semibold'
                                         },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -1749,51 +1500,79 @@
             }
 
             /**
-             * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de alguna facultad en específico
+             * Método que genera el gráfico de estudiantes de primer ingreso
              */
-            function graficoSelloPrimerIngresoPorFacultad(facultades, periodos) {
+            var chartSelloPrimerIngreso;
+
+            function graficoSelloPrimerIngreso() {
+                var url, data;
+
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('sello.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.primerIngreso.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
 
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
                                     }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
@@ -1801,13 +1580,16 @@
                                             weight: 'bold',
                                             size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
@@ -1818,9 +1600,17 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
-
                             },
                             plugins: [ChartDataLabels]
                         });
@@ -1831,35 +1621,178 @@
                         }
                     }
                 });
+
             }
 
-            /**
-             * Método que genera el gráfico con los tipos de estudiante por facultad
-             */
-            function graficoTiposDeEstudiantesFacultad(facultades, periodos) {
+            var chartSelloAntiguos;
+
+            function graficoSelloAntiguos() {
+                var url, data;
+
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('antiguos.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('antiguos.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('antiguos').getContext('2d');
+                        chartSelloAntiguos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
+                                    }
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'border',
+                                        textMargin: 2
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartSelloAntiguos.data.labels.length == 0 && chartSelloAntiguos.data.datasets[0].data.length == 0) {
+                            $('#colAntiguos').addClass('hidden');
+                        } else {
+                            $('#colAntiguos').removeClass('hidden');
+                        }
+                    }
+                });
+
+            }
+
+            /**
+             * Método que genera el gráfico con todos los tipos de estudiantes
+             */
+            var chartTipoEstudiante;
+
+            function graficoTipoDeEstudiante() {
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.tipo.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('tipo.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
+
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1878,18 +1811,22 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
+                                    if (label.includes("ESTUDIANTE ")) {
+                                        label = label.replace(/ESTUDIANTE\S*/i, "");
+                                    }
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: 'Tipos de estudiantes',
+                                    label: '',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
                                     }
-                                }, ]
+                                }]
                             },
                             options: {
                                 scales: {
@@ -1901,6 +1838,7 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -1909,16 +1847,11 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -1926,30 +1859,50 @@
                             $('#colTipoEstudiantes').removeClass('hidden');
                         }
                     }
-
                 });
             }
 
             /**
-             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
+             * Método que genera el gráfico con los 5 operadores que mas estudiantes traen
              */
-            function graficoOperadoresFacultad(facultades, periodos) {
+            var chartOperadores;
+
+            function graficoOperadores() {
+                var url, data;
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    if (facultadesSeleccionadas.length > 0) {
+                        url = "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
+                            data = {
+                                idfacultad: facultadesSeleccionadas,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        url = "{{ route('operadores.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                            data = ''
+                    }
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1968,6 +1921,7 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        // Crear el gráfico de barras
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -2008,12 +1962,7 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
@@ -2029,26 +1978,36 @@
             }
 
             /**
-             * Método que genera el gráfico de los 5 programas con mas estudiantes inscritos por facultad
+             * Método que genera el gráfico con los 5 programas que tienen mas estudiantes inscritos
              */
-            function graficoProgramasFacultad(facultades, periodos) {
+
+            var chartProgramas;
+
+            function graficoProgramas() {
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    url = "{{ route('programas.estudiantes', ['tabla' => ' ']) }}" + tabla,
+                        data = ''
+                }
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('programas.estudiantes.facultad',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        idfacultad: facultades,
-                        periodos: periodos
-                    },
-                    beforeSend: function() {
-                        // Deshabilitar los checkboxes antes de la solicitud AJAX
-                        $('div #facultades input[type="checkbox"]').prop('disabled', true);
-                    },
+                    url: url,
+                    data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.codprograma;
                         });
@@ -2070,549 +2029,9 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        // Crear el gráfico circular
                         var ctx = document.getElementById('estudiantesProgramas').getContext('2d');
                         chartProgramas = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    return label;
-                                }),
-                                datasets: [{
-                                    label: 'Operadores con mayor cantidad de estudiantes',
-                                    data: valores,
-                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                    }
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        max: yMax,
-                                        beginAtZero: true
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold'
-                                        },
-                                        formatter: Math.round
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
-                            $('#colProgramas').addClass('hidden');
-                        } else {
-                            $('#colProgramas').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que limpia la data de los gráficos y después invoca todos los gráficos por los 
-             * programas que seleccione el usuario
-             */
-            function graficosporPrograma(programas, periodos) {
-                if (chartProgramas || chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
-                    destruirGraficos();
-
-                    $("#ocultarGraficoProgramas").hide();
-
-                    graficoEstudiantesPorPrograma(programas, periodos);
-                    grafioSelloFinancieroPorPrograma(programas, periodos);
-                    graficoRetencionPorPrograma(programas, periodos);
-                    graficoSelloPrimerIngresoPorPrograma(programas, periodos);
-                    graficoTiposDeEstudiantesPrograma(programas, periodos);
-                    graficoOperadoresPrograma(programas, periodos);
-                }
-            }
-
-            /** 
-             * Método que muestra los estudiantes activos e inactivos de algún programa en específico
-             */
-            function graficoEstudiantesPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.activos.programa') }}",
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        align: 'left',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de sello financiero de algún programa en específico
-             */
-            function grafioSelloFinancieroPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('activos').getContext('2d');
-                        chartEstudiantesActivos = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
-                            $('#colSelloFinanciero').addClass('hidden');
-                        } else {
-                            $('#colSelloFinanciero').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico ASP de algún programa en específico
-             */
-            function graficoRetencionPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('retencion').getContext('2d');
-                        chartRetencion = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == '') {
-                                        label = 'SIN MARCACIÓN'
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
-                            $('#colRetencion').addClass('hidden');
-                        } else {
-                            $('#colRetencion').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico del sello financiero de los estudiantes de primer ingreso de algún programa en específico
-             */
-            function graficoSelloPrimerIngresoPorPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('primerIngreso').getContext('2d');
-                        chartSelloPrimerIngreso = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'INACTIVO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold',
-                                            size: 12
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
-                            $('#colPrimerIngreso').addClass('hidden');
-                        } else {
-                            $('#colPrimerIngreso').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico con los tipos de estudiante por programa
-             */
-            function graficoTiposDeEstudiantesPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
-                        });
-
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        var maxValor = Math.max(...valores);
-                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                        chartTipoEstudiante = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label;
-                                }),
-                                datasets: [{
-                                    label: 'Tipos de estudiantes',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                    }
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        max: yMax,
-                                        beginAtZero: true
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold'
-                                        },
-                                        formatter: Math.round
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                            $('#colTipoEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colTipoEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
-            }
-
-            /**
-             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
-             */
-            function graficoOperadoresPrograma(programas, periodos) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
-                    data: {
-                        programa: programas,
-                        periodos: periodos
-                    },
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.operador;
-                        });
-
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        var maxValor = Math.max(...valores);
-                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
-                        var ctx = document.getElementById('operadores').getContext('2d');
-                        chartOperadores = new Chart(ctx, {
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
@@ -2622,7 +2041,7 @@
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: 'Operadores con mayor cantidad de estudiantes',
+                                    label: 'Programas con mayor cantidad de estudiantes',
                                     data: valores,
                                     backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
                                         'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
@@ -2630,7 +2049,7 @@
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
-                                    }
+                                    },
                                 }]
                             },
                             options: {
@@ -2651,22 +2070,16 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
                             plugins: [ChartDataLabels]
                         });
-                        if (chartOperadores.data.labels.length == 0 && chartOperadores.data.datasets[0].data.length == 0) {
-                            $('#colOperadores').addClass('hidden');
+                        if (chartProgramas.data.labels.length == 0 && chartProgramas.data.datasets[0].data.length == 0) {
+                            $('#colProgramas').addClass('hidden');
                         } else {
-                            $('#colOperadores').removeClass('hidden');
+                            $('#colProgramas').removeClass('hidden');
                         }
                     }
                 });
@@ -3044,7 +2457,6 @@
             var chartMetasTotal;
             var chartMetas;
 
-
             function graficoMetas() {
 
                 var url = "{{ route('metas.programa')}}";
@@ -3154,7 +2566,7 @@
                     url: url,
                     data: {
                         idfacultad: facultades,
-                    },  
+                    },
                     success: function(data) {
                         try {
                             data = jQuery.parseJSON(data);
@@ -3267,7 +2679,6 @@
                         } catch {
                             data = data;
                         }
-
                         var labels = [];
                         var values = [];
                         var valuesSello = [];
@@ -3347,6 +2758,67 @@
 
                 });
             }
+
+            $("#generarExcel").on("click", function() {
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('metasTotalFacultad.programa')}}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                        }
+                } else {
+                    url = "{{ route('metasTotal.programa')}}";
+                    data = '';
+                }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ["Codigo Programa", "Programa", "Meta", "Sello", "% Ejecución"];
+
+                        var col1 = [];
+                        var col2 = [];
+                        var col3 = [];
+                        var col4 = [];
+
+                        Object.keys(data.metas).forEach(meta => {
+                            col1.push(meta);
+                            col2.push(data.nombres[meta]);
+                            col3.push(data.metas[meta]);
+                            col4.push(data.matriculaSello[meta]);
+                        });
+
+                        var porcentaje;
+                        newData.push(headers);
+                        for (var i = 0; i < col1.length; i++) {
+                            porcentaje = (((col4[i]) / col3[i]) * 100).toFixed(2);
+                            if (porcentaje > 100) {
+                                porcentaje = 'Meta Superada';
+                            }
+
+                            var row = [col1[i], col2[i], col3[i], col4[i], porcentaje];
+                            newData.push(row);
+                        }
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Metas");
+
+                        // Generar el archivo Excel y descargarlo
+                        XLSX.writeFile(wb, "Metas.xlsx");
+                    }
+                });
+            });
+
         });
     </script>
 

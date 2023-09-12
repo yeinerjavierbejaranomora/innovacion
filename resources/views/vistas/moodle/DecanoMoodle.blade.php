@@ -313,6 +313,11 @@
 
         </div>
 
+        <div class="text-center mt-4 mb-4">
+            <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
+        </div>
+
+
         <div class="row justify-content-start mt-3 columnas">
             <div class="col-4 text-center " id="colRiesgoAlto">
                 <div class="card shadow mb-4 graficosRiesgo">
@@ -759,6 +764,7 @@
                             if (facultadesSeleccionadas) {
                                     programasSeleccionados = [];
                                     limpiarTitulos();
+                                    estadoUsuarioFacultad();
                                     riesgo();
                                 }else {
                                 /** Alerta */
@@ -777,7 +783,7 @@
             });
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo');
+                var elementosTitulos = $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong');
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -802,7 +808,6 @@
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
-                console.log(programasSeleccionados.length);
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
@@ -813,6 +818,16 @@
                     $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong').append(': ' + programasSeleccionados);
                 }
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
+                $("#mensaje").show();
+                $("#mensaje").html(textoNuevo);
+            }
+
+            function estadoUsuarioFacultad() {
+                $("#mensaje").empty();
+                var facultadesArray = Object.values(facultadesSeleccionadas);
+                
+                var textoNuevo = "<h4><strong>Informe facultades: " + facultadesArray + "</strong></h4>";
+
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
             }

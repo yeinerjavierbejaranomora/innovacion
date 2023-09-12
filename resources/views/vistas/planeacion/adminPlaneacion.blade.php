@@ -638,14 +638,14 @@
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
-                        <br>
-                        <div class="hidden mt-3 mb-3" id="dataEstudiante">
-                            <h5 id="primerApellido"></h5>
-                            <h5 id="Sello"></h5>
-                            <h5 id="Operador"></h5>
-                            <h5 id="tipoEstudiante"></h5>
-                        </div>
                     </form class="mt-2">
+
+                    <div class="hidden mt-3 mb-3" id="dataEstudiante">
+                            <h5 id="primerApellido" class="text-black"></h5>
+                            <h5 id="Sello" class="text-black"></h5>
+                            <h5 id="Operador" class="text-black"></h5>
+                            <h5 id="tipEstudiante" class="text-black"></h5>
+                        </div>
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table" id="divTablaBuscador">
                             <table id="buscarEstudiante" class="display" style="width:100%">
@@ -2665,12 +2665,7 @@
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
-                            /*
-                            <h5 id="primerApellido"></h5>
-                            <h5 id="Sello"></h5>
-                            <h5 id="Operador"></h5>
-                            <h5 id="tipoEstudiante"></h5>
-                            */
+
                             ['#primerApellido', '#Sello', '#Operador', '#tipoEstudiante'].forEach(selector => {
                                 $(selector).empty();
                             });
@@ -2678,7 +2673,7 @@
                             $('#primerApellido').append('Primer Apellido: '+ data.estudiante.primer_apellido);
                             $('#Sello').append('Sello financiero: '+ data.estudiante.sello);
                             $('#Operador').append('Operador: '+ data.estudiante.operador);
-                            $('#tipoEstudiante').append('Tipo estudiante: '+data.estudiante.tipoestudiante);
+                            $('#tipEstudiante').append('Tipo estudiante: '+data.estudiante.tipoestudiante);
 
                             console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({

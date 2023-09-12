@@ -127,7 +127,7 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -145,19 +145,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
 
             <!-- Page Heading -->
             <div class="text-center">

@@ -646,7 +646,11 @@
                             <h5 id="Operador" class="text-black"></h5>
                             <h5 id="tipEstudiante" class="text-black"></h5>
                         </div>
+                        <br>
                         <!--Datatable con id Banner del estudiante-->
+                        <div class="text-center text-black">
+                            <h4>Materias inscritas</h4>
+                        </div>
                         <div class="table" id="divTablaBuscador">
                             <table id="buscarEstudiante" class="display" style="width:100%">
                             </table>
@@ -2395,6 +2399,7 @@
                             $("#idBanner").val("");
                             var datos = table.row($(this).parents("tr")).data();
                             programaEstudiante = datos[0];
+                            $('#dataEstudiante').addClass('hidden');
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);

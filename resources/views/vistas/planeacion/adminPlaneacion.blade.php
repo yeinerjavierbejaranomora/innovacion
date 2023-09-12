@@ -648,7 +648,7 @@
                         </div>
                         <br>
                         <!--Datatable con id Banner del estudiante-->
-                        <div class="text-center text-black">
+                        <div class="text-center text-black hidden" id='tituloTablaBuscar'>
                             <h4>Materias inscritas</h4>
                         </div>
                         <div class="table" id="divTablaBuscador">
@@ -2400,6 +2400,7 @@
                             var datos = table.row($(this).parents("tr")).data();
                             programaEstudiante = datos[0];
                             $('#dataEstudiante').addClass('hidden');
+                            $('#tituloTablaBuscar').addClass('hidden');                   
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);
@@ -2675,6 +2676,7 @@
                                 $(selector).empty();
                             });
                             $('#dataEstudiante').removeClass('hidden');
+                            $('#tituloTablaBuscar').removeClass('hidden');
                             $('#primerApellido').append('Primer Apellido: '+ data.estudiante.primer_apellido);
                             $('#Sello').append('Sello financiero: '+ data.estudiante.sello);
                             $('#Operador').append('Operador: '+ data.estudiante.operador);

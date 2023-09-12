@@ -12,7 +12,7 @@
     .activo{
     background-color: #dfc14e;
     }
-    
+
 </style>
 
 <!-- Sidebar -->
@@ -47,6 +47,7 @@
             <i class="fa-solid fa-pen"></i>
             <span>Planeación</span></a>
     </li>
+    @include('layout.alertas');
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -78,4 +79,3 @@
 <!-- End of Sidebar -->
 
 
-    

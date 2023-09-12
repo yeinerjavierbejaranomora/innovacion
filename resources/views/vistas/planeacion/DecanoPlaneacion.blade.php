@@ -667,7 +667,6 @@
              * Método que trae los periodos activos
              */
             function periodos() {
-                console.log(programasSeleccionados);
                 var datos = $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -725,8 +724,6 @@
                 periodos.forEach(function(periodo) {
                     formData.append('periodos[]', periodo);
                 });
-
-                console.log(formData);
 
                 $.ajax({
                     headers: {
@@ -1000,7 +997,6 @@
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
                 if ($('.periodos input[type="checkbox"]:checked').length) { 
-                    console.log('entra');
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
@@ -2498,7 +2494,6 @@
             $("#formBuscar").submit(function(e) {
                 limpiarModalBuscador();
                 e.preventDefault();
-                console.log(programaEstudiante);
                 var id = $("#idBanner").val();
                 var url, data;
                 data = {
@@ -2522,7 +2517,6 @@
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
-                            console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({
                                 "data": data,
                                 'pageLength': 10,

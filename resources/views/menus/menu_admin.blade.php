@@ -72,6 +72,12 @@
     right: 0;
 }
 </style>
+<script>
+    numeroAlertas();
+    function numeroAlertas(){
+        alert(Hola);
+    }
+</script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>

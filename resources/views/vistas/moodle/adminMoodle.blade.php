@@ -147,16 +147,18 @@
 
     .custom-text-right {
         position: absolute;
-        top: 40px; 
+        top: 40px; /* Ajusta la posición vertical a tu preferencia */
         right: 10px; 
         font-size: 14px;
         color: blue;
+        font-family: sans-serif;
     }
 
 .custom-text-bottom {
-        margin-top: 20px;
+        margin-top: 20px; 
         font-size: 14px;
-        color: green;
+        color: green; 
+        font-family: sans-serif;
     }
 </style>
 

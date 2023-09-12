@@ -582,7 +582,6 @@
                 });
             }
 
-
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('.listaProgramas');
             var divProgramas = $('#programas');
@@ -751,10 +750,9 @@
                 destruirTabla();
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
-                periodosSeleccionados = getPeriodos()
-                console.log($('#programas input[type="checkbox"]:checked').length);
+                periodosSeleccionados = getPeriodos();
                 if (periodosSeleccionados.length > 0) {
-                    if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
+                    if (cantidadFacultades == 1 && programasSeleccionados.length == 0) {
                         programasSeleccionados = [];
                         periodosSeleccionados = [];
                         ocultarDivs();

@@ -233,8 +233,7 @@
                             
                             <div class="card card_historial">
                                 <div class="card-body">
-                                        <div class="" style=" display: flex;">
-                                          
+                                       
                                         <p class="card-text" id="" style="text-align: center;"><span> <b>Semestre:</b> 1</span> </p>
                                     
                                 </div>

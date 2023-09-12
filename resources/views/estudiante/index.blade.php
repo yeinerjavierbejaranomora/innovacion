@@ -211,18 +211,19 @@
                         
                             <div class="card card_historial">
                             <div class="card-body">
-                            <div class="row">
+                            <div class="" style=" display: flex;">
                                 
-                                <span style="
+                                <span class="bg-danger"style="
                                 border-bottom: 2px solid;
                                 border-top: 2px solid;
                                 border-left: 2px solid;
                                 border-top-left-radius: 30px;
                                 /* border-top-right-radius: 67px; */
-                                border-bottom-left-radius: 30px;
+                                border-bottom-left-radius: 28px;
                                 /* width: 61px; */
-                                min-width: 30px;
-                                height: 50px;
+                                min-width: 27px;
+                                height: 42px;
+                                /* margin-left: -8px; */
                             ">&nbsp;&nbsp;&nbsp;<br>
                                 <br>
                                 
@@ -234,11 +235,19 @@
                                 border-right: 2px solid;
                                 border-bottom-right-radius: 30px;
                                 border-top-right-radius: 30px;
-                            ">Special title treatment</h6>
+                                margin-left: 4px;
+                                height: 42px;
+                                width: 100%;
+                            ">Codigo:<br>
+                                <span>
+                                ABV32190
+                                </span></h6>
+                            </div>
+                         
 
 
-                                </div>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                             
+                                <p class="card-text" id=""><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
                               
                             </div>
                             </div>

@@ -72,10 +72,23 @@
     right: 0;
 }
 </style>
+<script>
+    numeroAlertas();
+    function numeroAlertas(){
+        $.get("{{ route('alertas.notificaciones') }}",{},function(data){
+            total = data[0].total_alertas;
+            if (total > 99) {
+                $('#notificacionesCount').append('+99');
+            } else {
+                $('#notificacionesCount').append(`${total}`);
+            }
+        })
+    }
+</script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>
-            <span id="notificacionesCount" class="notificaciones-count">+99</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
     </li>
 

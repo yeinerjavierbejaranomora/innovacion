@@ -145,14 +145,6 @@
         background-color: #DFE0E2;
     }
 
-    .chart-title {
-        position: absolute;
-        top: 10px; /* Ajusta la cantidad de margen superior deseada */
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 14px;
-        color: red;
-    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -977,6 +969,7 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
+                                        padding: 0,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -1022,6 +1015,7 @@
                                     title: {
                                         display: true,
                                         text: data.medio + ' Matrículas',
+                                        padding: 0,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -1067,6 +1061,7 @@
                                     title: {
                                         display: true,
                                         text: data.bajo + ' Matrículas',
+                                        padding: 0,
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

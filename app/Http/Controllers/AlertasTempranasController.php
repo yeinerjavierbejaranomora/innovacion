@@ -112,11 +112,9 @@ class AlertasTempranasController extends Controller
         $idFacultad = trim($idFacultad,';');
         $idFacultades = explode(';',$idFacultad);
         $consultaFacultades = DB::table('facultad')->select('nombre')->wherein('id',$idFacultades)->get();
-        $facultades =[];
+        $facultades = array();
         foreach($consultaFacultades as $facultad):
-            $facultades =[
-                $facultad->nombre,
-            ];
+            array_push($facultades,$facultad->nombre);
         endforeach;
         var_dump($facultades);die();
         $programas = DB::table('programas')->select('codprograma')->whereIn('Facultad',$facultades)->get();

@@ -34,18 +34,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador,
@@ -59,6 +47,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #botondataTable {
@@ -71,6 +77,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {
@@ -94,8 +103,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -103,8 +112,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -115,7 +124,22 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
+    }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fondocards{
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts{
+        background-color: #DFE0E2;
     }
 
 </style>

@@ -211,7 +211,7 @@
                         <div class="card card_historial">
                                 <div class="card-body">
                                        
-                                       <h5>Semestre:<br> 1 </h5><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;">Semestre:<br> 1 </h5>
+                                     <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;">Semestre:<br> 1 </h5>
                                     
                                 </div>
                             </div>

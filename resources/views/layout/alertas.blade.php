@@ -15,15 +15,18 @@
     numeroAlertas();
     function numeroAlertas(){
         id_rol = '{{ auth()->user()->id_rol }}';
-        alert(id_rol);
-        $.get("{{ route('alertas.notificaciones') }}",{},function(data){
-            var total = data;
-            if (total > 99) {
-                $('#notificacionesCount').append('+99');
-            } else {
-                $('#notificacionesCount').append(`${total}`);
-            }
-        })
+        // alert(id_rol);
+        if (id_rol == 9 || id_rol == 19 || id_rol == 20) {
+            $.get("{{ route('alertas.notificaciones') }}",{},function(data){
+                console.log(data);
+                var total = data;
+                if (total > 99) {
+                    $('#notificacionesCount').append('+99');
+                } else {
+                    $('#notificacionesCount').append(`${total}`);
+                }
+            })
+        }
     }
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
@@ -31,4 +34,3 @@
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
-    </li>

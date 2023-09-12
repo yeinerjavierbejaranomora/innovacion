@@ -15,7 +15,7 @@
     numeroAlertas();
     function numeroAlertas(){
         id_rol = '{{ auth()->user()->id_rol }}';
-        alert(id_rol);
+        // alert(id_rol);
         $.get("{{ route('alertas.notificaciones') }}",{},function(data){
             var total = data;
             if (total > 99) {

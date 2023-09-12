@@ -211,7 +211,7 @@
                         <div class="card card_historial">
                                 <div class="card-body">
                                        
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Semestre:</b> 1</span> </p>
+                                       <h5>Semestre:<br> 1 </h5>
                                     
                                 </div>
                             </div>

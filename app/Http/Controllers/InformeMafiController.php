@@ -110,8 +110,8 @@ class InformeMafiController extends Controller
 
         $data = [
             'CON SELLO' => $selloFinanciero,
-            'TIENE RETENCION' => $Retencion,
-            'ASP' => $ASP,
+            'ASP' => $Retencion,
+            'RETENCION' => $ASP,
             'NO EXISTE' => $Vacio
         ];
 

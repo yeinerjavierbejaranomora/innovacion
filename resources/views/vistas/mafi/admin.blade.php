@@ -1450,9 +1450,13 @@
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'RETENCION'
+                                        label = 'RETENCION';
+                                        return label;
+                                    }else
+                                    {
+                                        return 'ACT. ' +label + ':' + valores[index];
                                     }
-                                    return label + ': ACT. ' + valores[index];
+                                    
                                 }),
                                 datasets: [{
                                     data: valores,

@@ -102,8 +102,12 @@ class AlertasTempranasController extends Controller
     }
 
     public function numeroAlertas(){
-        $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->get();
-        //var_dump($numeroAlertas[0]->total_alertas);die();
-        return $numeroAlertas[0]->total_alertas;
+        if(!isset($_GET)):
+            $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->get();
+            $numAlertas = $numeroAlertas[0]->total_alertas;
+        else:
+            $numAlertas = 0;
+        endif;
+        return $numAlertas;
     }
 }

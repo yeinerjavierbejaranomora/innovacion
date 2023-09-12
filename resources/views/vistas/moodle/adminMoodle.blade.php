@@ -356,7 +356,6 @@
                     </div>
                     <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
-                        <div class="chart-title">Título</div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>

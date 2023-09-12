@@ -968,7 +968,7 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
-                                        padding: -10,
+                                        padding: 0,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -1014,6 +1014,7 @@
                                     title: {
                                         display: true,
                                         text: data.medio + ' Matrículas',
+                                        padding: 0,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {

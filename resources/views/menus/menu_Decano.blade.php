@@ -12,7 +12,7 @@
     .activo{
     background-color: #dfc14e;
     }
-    
+
 </style>
 
 <!-- Sidebar -->
@@ -48,10 +48,8 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
-            <i class="fa-solid fa-bell"></i>
-            <span>Alertas Tempranas<br>(Programación-Planeación)</span></a>
-        </a>
+        {{ auth()->user(); }}
+        {{-- @include('layout.alertas'); --}}
     </li>
 
     <!-- Divider -->
@@ -84,4 +82,3 @@
 <!-- End of Sidebar -->
 
 
-    

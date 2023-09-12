@@ -132,7 +132,7 @@
 
             <br>
 
-            <div class="container-fluid" style="background-color: #858796;padding: 1%;">
+            <div class="container-fluid hidden" style="background-color: #858796;padding: 1%;" id="info_1">
                 <div class="container mt-3" id="info">
 
                 </div>
@@ -537,6 +537,7 @@
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
+                $("#info_1").removeClass('hidden')
                 $('#info').html('');
                 $('#programas').html('');
                

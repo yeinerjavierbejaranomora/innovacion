@@ -899,6 +899,7 @@
                             checkboxesProgramas.each(function() {
                                 programasSeleccionados.push($(this).val());
                             });
+                            console.log(programasSeleccionados);
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             llamadoFunciones();

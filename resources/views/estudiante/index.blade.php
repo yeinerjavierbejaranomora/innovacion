@@ -96,7 +96,9 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+        <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
+            </div>
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
@@ -111,9 +113,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
-            </div>
+          
             <br>
             <div class="text-center" id="mensaje">
                 <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
@@ -208,15 +208,16 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
                         <div class="card-deck">
-                        <div class="card card_historial" style="background-color: #dfc14e;color: #4a4848;">
+
+                            <div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;">
                                 <div class="card-body">
                                        
-                                     <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;">Semestre:<br> 1 </h5>
+                                     <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1 </span> </h5>
                                     
                                 </div>
                             </div>
                         
-                            <div class="card card_historial">
+                            <div class="card card_historial materias">
                                 <div class="card-body">
                                         <div class="" style=" display: flex;">
                                             <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
@@ -237,98 +238,12 @@
                                 </div>
                             </div>
 
-                            
-                           
-                            
-                            <div class="card card_historial">
-                                <div class="card-body">
-                                        <div class="" style=" display: flex;">
-                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                            </span>
-                                    
-                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                                <b>Codigo:</b>
-                                                <br>
-                                                <span>
-                                                ABV32190
-                                                </span>
-                                            </h6>
-                                        </div>
-                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="card card_historial">
-                                <div class="card-body">
-                                        <div class="" style=" display: flex;">
-                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                            </span>
-                                    
-                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                                <b>Codigo:</b>
-                                                <br>
-                                                <span>
-                                                ABV32190
-                                                </span>
-                                            </h6>
-                                        </div>
-                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="card card_historial">
-                                <div class="card-body">
-                                        <div class="" style=" display: flex;">
-                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                            </span>
-                                    
-                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                                <b>Codigo:</b>
-                                                <br>
-                                                <span>
-                                                ABV32190
-                                                </span>
-                                            </h6>
-                                        </div>
-                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
-                                    
-                                </div>
-                            </div>
-                            
-                            <div class="card card_historial">
-                                <div class="card-body">
-                                        <div class="" style=" display: flex;">
-                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                            </span>
-                                    
-                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                                <b>Codigo:</b>
-                                                <br>
-                                                <span>
-                                                ABV32190
-                                                </span>
-                                            </h6>
-                                        </div>
-                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
-                                    
-                                </div>
-                            </div>
                         </div>
 
 
                     </div>
 
-                    <div class="tab-pane fade"                id="Viendo"         role="tabpanel" >
+                    <div class="tab-pane fade" id="Viendo" role="tabpanel" >
 
                         <div class="container">
                             <div class="row">
@@ -494,7 +409,8 @@
                                         <td>@twitter</td>
                                         </tr>
                                     </tbody>
-                                </table></div>
+                                </table>
+                            </div>
                 </div>
             </div>
 

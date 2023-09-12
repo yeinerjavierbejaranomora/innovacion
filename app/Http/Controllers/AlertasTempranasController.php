@@ -97,12 +97,13 @@ class AlertasTempranasController extends Controller
         ->orderByDesc('TOTAL')
         ->limit(10)
         ->get();
+
         return $consulta;
     }
 
     public function numeroAlertas(){
         $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->get();
-        var_dump($numeroAlertas['total_alertas']);die();
+        var_dump($numeroAlertas[0]->total_alertas);die();
         return 50;
     }
 }

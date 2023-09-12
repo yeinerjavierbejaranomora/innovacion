@@ -1543,6 +1543,7 @@
 
             function graficoOperadores() {
                 var data;
+                var url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
                     programa: programasSeleccionados,
                     periodos: periodosSeleccionados

@@ -958,13 +958,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
-                                    },
-                                    labels: {
-                                        size: '14',
+                                        weight: 'semibold',
+                                        size: 18,
                                     },
                                     legend: {
                                         display: false

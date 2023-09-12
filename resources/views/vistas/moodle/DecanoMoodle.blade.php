@@ -802,7 +802,7 @@
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
-
+                console.log(programasSeleccionados);
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');

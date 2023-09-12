@@ -147,15 +147,15 @@
 
     .custom-text-right {
         position: absolute;
-        top: 40px; /* Ajusta la posición vertical a tu preferencia */
+        top: 100px; /* Ajusta la posición vertical a tu preferencia */
         right: 10px; 
         font-size: 14px;
-        color: blue;
+        color: black;
         font-family: sans-serif;
     }
 
 .custom-text-bottom {
-        margin-top: 20px; 
+        margin-top: 10px; 
         font-size: 14px;
         color: green; 
         font-family: sans-serif;
@@ -372,7 +372,7 @@
                     <div class="card-body center-chart fondocharts" style="position: relative; display: inline-block;">
                         <canvas id="alto"></canvas>
                         <div class="custom-text-right totalMatriculas"></div>
-                        <div class="custom-text-bottom"></div>
+                        <div class="custom-text-bottom" id="totalAlto"></div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
@@ -951,11 +951,14 @@
                         $('.totalMatriculas').empty();
                         $('.totalMatriculas').text('Total: '+ data.total);
 
+                        
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
                         var TotalBajo = data.total - data.bajo;
-
+                        
+                        $('#totalAlto').text(TotalAlto + ' Matrículas')
+                        
                         if (TotalAlto <= 0) {
                             TotalAlto = 0;
                         }
@@ -991,7 +994,7 @@
                                         display: false
                                     },
                                     title: {
-                                        display: true,
+                                        display: false,
                                         text: data.alto + ' Matrículas',
                                         color: 'red',
                                         position: 'bottom',

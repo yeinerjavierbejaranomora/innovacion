@@ -208,6 +208,13 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
                         <div class="card-deck">
+                        <div class="card card_historial">
+                                <div class="card-body">
+                                       
+                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Semestre:</b> 1</span> </p>
+                                    
+                                </div>
+                            </div>
                         
                             <div class="card card_historial">
                                 <div class="card-body">
@@ -231,13 +238,7 @@
                             </div>
 
                             
-                            <div class="card card_historial">
-                                <div class="card-body">
-                                       
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Semestre:</b> 1</span> </p>
-                                    
-                                </div>
-                            </div>
+                           
                             
                             <div class="card card_historial">
                                 <div class="card-body">

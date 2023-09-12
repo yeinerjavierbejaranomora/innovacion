@@ -108,7 +108,7 @@ class AlertasTempranasController extends Controller
     }
 
     public function numeroAlertasFacultad(){
-        var_dump($_POST);die();
+        var_dump($_GET);die();
         $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->get();
         //var_dump($numeroAlertas[0]->total_alertas);die();
         return $numeroAlertas[0]->total_alertas;

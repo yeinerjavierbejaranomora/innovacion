@@ -808,10 +808,10 @@
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
                     var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
-                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + programasFormateados);
+                    $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong').append(': ' + programasFormateados);
                 } else {
                     var textoNuevo = "<h4><strong>Informe programa " + programasSeleccionados + "</strong></h4>";
-                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + programasSeleccionados);
+                    $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong').append(': ' + programasSeleccionados);
                 }
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();

@@ -33,10 +33,7 @@
         width: 60px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador,
-    #botonModalMetas {
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -457,7 +454,7 @@
         var data;
         $(document).ready(function() {
             $('#menuMoodle').addClass('activo');
-            
+
             var tabla = <?php echo json_encode($tabla); ?>;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX

@@ -14,6 +14,7 @@
 <script>
     numeroAlertas();
     function numeroAlertas(){
+        alert('{{ auth()->user()->id_rol }}');
         $.get("{{ route('alertas.notificaciones') }}",{},function(data){
             var total = data;
             if (total > 99) {
@@ -26,7 +27,7 @@
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
-            <span>{{ auth()->user()->id_rol }}</span>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
     </li>

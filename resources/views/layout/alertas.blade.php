@@ -26,7 +26,7 @@
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
-            <span>{{ auth()->user() }}</span>
+            <span>{{ auth()->user()->id_rol }}</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
     </li>

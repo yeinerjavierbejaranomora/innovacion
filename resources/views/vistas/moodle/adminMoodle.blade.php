@@ -972,7 +972,7 @@
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1019,7 +1019,7 @@
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1066,7 +1066,7 @@
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {

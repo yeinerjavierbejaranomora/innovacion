@@ -941,7 +941,7 @@
                     data: data,
                     success: function(data) {
                         $('.totalMatriculas').empty();
-                        $('.totalMatriculas').text(data.total);
+                        $('.totalMatriculas').text('Total: '+ data.total);
 
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;

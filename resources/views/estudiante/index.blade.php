@@ -132,7 +132,7 @@
 
             <br>
 
-            <div class="container-fluid hidden" style="background-color: #858796;padding: 1%;" id="info_1">
+            <div class="container-fluid hidden" style="background-color: #858796;padding: 1%;margin-bottom: 3%;" id="info_1">
                 <div class="container mt-3" id="info" style="color:white">
 
                 </div>

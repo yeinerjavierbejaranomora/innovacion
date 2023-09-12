@@ -655,6 +655,68 @@
                 });
             });
 
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                    url = "{{ route('data.Mafi.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
+            }
+
             /**
              * Método que trae los gráficos de la vista
              */

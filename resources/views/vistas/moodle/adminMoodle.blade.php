@@ -968,7 +968,10 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
-                                        padding: 0,
+                                        padding: {
+                                            top: 10,
+                                            bottom: 30
+                                        },
                                         color: 'red',
                                         position: 'bottom',
                                         font: {

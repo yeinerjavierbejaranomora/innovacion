@@ -621,7 +621,7 @@
             }
 
             $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+                if ($('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {

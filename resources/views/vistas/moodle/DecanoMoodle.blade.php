@@ -501,9 +501,7 @@
             }
 
             function facultadesUsuario() {
-                var objeto;
-                objeto = <?php echo json_encode($facultades); ?>;
-                facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
+                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;;
             }
 
             function programas() {
@@ -622,8 +620,8 @@
                 return periodosSeleccionados;
             }
 
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"], .todos', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+            $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
+                if ($('.periodos input[type="checkbox"]:checked').length) {
                     $('#programas').empty();
                     var formData = new FormData();
                     for (var key in facultadesSeleccionadas) {
@@ -649,6 +647,7 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
+                            console.log(data);
                             if (datos != null) {
                                 try {
                                     datos = jQuery.parseJSON(datos);

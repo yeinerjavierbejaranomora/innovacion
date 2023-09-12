@@ -12,6 +12,7 @@
     .activo{
     background-color: #dfc14e;
     }
+    
 </style>
 
 <!-- Sidebar -->

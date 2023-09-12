@@ -1479,7 +1479,6 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
-
                                     datalabels: {
                                         color: 'black',
                                         font: {

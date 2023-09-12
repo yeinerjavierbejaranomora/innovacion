@@ -212,18 +212,16 @@
                             <div class="card card_historial">
                             <div class="card-body">
                            
+                                <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;">Codigo:<br>
+                                <span>
+                                ABV32190
+                                </span>
                             
-                                                            <h6 class="card-title" style="
-                                border-top: 2px solid;
-                                border-bottom: 2px solid;
-                                border-right: 2px solid;
-                                border-bottom-right-radius: 30px;
-                                border-top-right-radius: 30px;
-                            ">Special title treatment</h6>
+                            </h6>
 
 
                              
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <p class="card-text">Nombre: <span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
                               
                             </div>
                             </div>

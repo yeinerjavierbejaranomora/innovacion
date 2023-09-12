@@ -26,7 +26,7 @@
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
-            <span>Prueba include</span>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
     </li>

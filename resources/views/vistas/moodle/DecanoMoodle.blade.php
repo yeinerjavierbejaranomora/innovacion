@@ -756,7 +756,6 @@
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
                         periodosSeleccionados = [];
-                        destruirGraficos();
                         ocultarDivs();
                         alertaProgramas();
                     } else {
@@ -837,33 +836,6 @@
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
 
-            }
-
-            function estadoUsuarioFacultad() {
-                limpiarTitulos();
-                var periodos = getPeriodos();
-                $("#mensaje").empty();
-                var facultadesArray = Object.values(facultadesSeleccionadas);
-                var facultadesFormateadas = facultadesArray.map(function(facultad) {
-                    return facultad.toLowerCase().replace(/facultad de |fac /gi, '').trim();
-                }).join(' - ');
-
-                var periodosArray = Object.values(periodos);
-                var periodosFormateados = periodosArray.map(function(periodo) {
-                    return periodo.replace(/2023/, '').trim();
-                }).join(' - ');
-
-                if (facultadesSeleccionadas.length > 1) {
-                    var textoNuevo = "<h4><strong>Informe facultades: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
-                } else {
-
-                    var textoNuevo = "<h4><strong>Informe facultad: " + facultadesFormateadas + "</strong></h4>";
-                    $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo').append(': ' + facultadesFormateadas);
-                }
-                $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
-                $("#mensaje").show();
-                $("#mensaje").html(textoNuevo);
             }
 
             var chartRiesgoAlto;

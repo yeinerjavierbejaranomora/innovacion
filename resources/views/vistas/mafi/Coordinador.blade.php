@@ -712,6 +712,7 @@
                 grafioSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTiposDeEstudiantes();
                 graficoOperadores();
             }
@@ -815,7 +816,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -884,7 +885,7 @@
 
             function graficosporPrograma() {
                 if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores ) {
+                    chartTipoEstudiante || chartOperadores || chartSelloAntiguos) {
                     destruirGraficos();
                 }
                 $(".facultadtitulos").hide();
@@ -1327,7 +1328,7 @@
             }
 
             var chartSelloAntiguos;
-            
+
             function graficoSelloAntiguos() {
                 var url, data;
                 url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,

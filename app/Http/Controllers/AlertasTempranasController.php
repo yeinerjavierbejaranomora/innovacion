@@ -102,6 +102,7 @@ class AlertasTempranasController extends Controller
     }
 
     public function numeroAlertas(){
-        var_dump("Hola Noti");die();
+        $numeroAlertas = DB::table('alertas_tempranas')->where('activo',1);
+        var_dump($numeroAlertas);die();
     }
 }

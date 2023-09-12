@@ -27,6 +27,19 @@
                 }
             })
         }
+
+        if(id_rol = 1){
+            console.log('{{ auth()->user()->id_facultad }}');
+            $.get("{{ route('alertas.notificaciones') }}",{},function(data){
+                console.log(data);
+                var total = data;
+                if (total > 99) {
+                    $('#notificacionesCount').append('+99');
+                } else {
+                    $('#notificacionesCount').append(`${total}`);
+                }
+            })
+        }
     }
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">

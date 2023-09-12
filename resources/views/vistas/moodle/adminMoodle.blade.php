@@ -146,9 +146,10 @@
     }
 
     .custom-text {
-        margin-top: 25px;
+        margin-top: 30px;
         font-size: 14px;
         color: black; 
+        font-family: sans-serif;
     }
 </style>
 
@@ -940,7 +941,7 @@
                     data: data,
                     success: function(data) {
                         $('.totalMatriculas').empty();
-                        $('.totalMatriculas').text(data.total);
+                        $('.totalMatriculas').text('Total: '+ data.total);
 
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
@@ -984,12 +985,12 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
-                                        padding: 10,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
                                             size: 14,
                                         },
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -1030,7 +1031,6 @@
                                     title: {
                                         display: true,
                                         text: data.medio + ' Matrículas',
-                                        padding: 0,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -1076,7 +1076,6 @@
                                     title: {
                                         display: true,
                                         text: data.bajo + ' Matrículas',
-                                        padding: 0,
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

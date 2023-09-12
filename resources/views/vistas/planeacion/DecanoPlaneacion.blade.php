@@ -902,7 +902,6 @@
                             estadoUsuarioPrograma()
                             $("#colProgramas").addClass("hidden");
                             llamadoFunciones();
-                            dataTable(periodosSeleccionados);
                         } else {
                             if (facultadesSeleccionadas) {
                                     $('#mensaje').hide();

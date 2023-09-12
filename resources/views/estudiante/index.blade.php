@@ -211,22 +211,7 @@
                         
                             <div class="card card_historial">
                             <div class="card-body">
-                            <div class="row">
-                                
-                                <span style="
-                                border-bottom: 2px solid;
-                                border-top: 2px solid;
-                                border-left: 2px solid;
-                                border-top-left-radius: 30px;
-                                /* border-top-right-radius: 67px; */
-                                border-bottom-left-radius: 30px;
-                                /* width: 61px; */
-                                min-width: 30px;
-                                height: 50px;
-                            ">&nbsp;&nbsp;&nbsp;<br>
-                                <br>
-                                
-                            </span>
+                           
                             
                                                             <h6 class="card-title" style="
                                 border-top: 2px solid;
@@ -237,7 +222,7 @@
                             ">Special title treatment</h6>
 
 
-                                </div>
+                             
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                               
                             </div>

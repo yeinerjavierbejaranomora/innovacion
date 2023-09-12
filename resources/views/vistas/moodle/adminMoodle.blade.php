@@ -144,6 +144,15 @@
     .fondocharts {
         background-color: #DFE0E2;
     }
+
+    .chart-title {
+        position: absolute;
+        top: 10px; /* Ajusta la cantidad de margen superior deseada */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        color: red;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -353,8 +362,9 @@
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart fondocharts">
+                    <div class="card-body center-chart fondocharts" style="position: relative;>
                         <canvas id="alto"></canvas>
+                        <div class="chart-title">Título</div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>

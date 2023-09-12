@@ -76,7 +76,7 @@
     numeroAlertas();
     function numeroAlertas(){
         $.get("{{ route('alertas.notificaciones') }}",{},function(data){
-            console.log(data);
+            console.log(data.total_alertas);
         })
     }
 </script>

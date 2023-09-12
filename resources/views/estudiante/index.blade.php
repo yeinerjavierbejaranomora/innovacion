@@ -506,6 +506,8 @@
                     },
                     success: function(data){
 
+                        console.log(data);
+
                         if(data.info=="con_datos")
                         {
                                 console.log(data);

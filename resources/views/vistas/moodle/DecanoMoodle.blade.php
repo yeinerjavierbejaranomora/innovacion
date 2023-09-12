@@ -802,7 +802,7 @@
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
-                console.log(programasSeleccionados);
+                console.log(programasSeleccionados.length);
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
@@ -815,7 +815,6 @@
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
-
             }
 
             var chartRiesgoAlto;

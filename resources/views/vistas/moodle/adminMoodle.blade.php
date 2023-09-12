@@ -963,6 +963,9 @@
                                             size: 18,
                                         },
                                     },
+                                    labels: {
+                                        size: '14',
+                                    },
                                     legend: {
                                         display: false
                                     },

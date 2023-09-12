@@ -1467,12 +1467,11 @@ class InformeMafiController extends Controller
 
         if ($tabla == "planeacion") {
             $programas = DB::table('planeacion as p')
-                ->join('datosMafi as dm', 'p.codBanner', '=', 'dm.idbanner')
                 ->join('programas as pr', 'p.codprograma', '=', 'pr.codprograma')
                 ->whereIn('p.periodo', $periodos)
                 ->whereIn('pr.Facultad', $facultades)
-                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, dm.codprograma')
-                ->groupBy('dm.codprograma')
+                ->selectRaw('COUNT(DISTINCT p.codBanner) as TOTAL, p.codprograma')
+                ->groupBy('p.codprograma')
                 ->orderBy('TOTAL', 'DESC')
                 ->get();
         }

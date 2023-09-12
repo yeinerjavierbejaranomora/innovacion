@@ -313,6 +313,9 @@
                                                     <div class="custom-checkbox">
                                                         <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                        @foreach ($programas as $programa)
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
+                                                        @endforeach
                                                     </div>
                                                 </h5>
                                             </div>
@@ -612,7 +615,7 @@
 
             var programasSeleccionados = [];
 
-            var programasSelect;
+            var programasSeleccionados;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -634,7 +637,6 @@
                 }
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
-                programasSelect = programasSeleccionados;
             }
 
             /**
@@ -676,10 +678,9 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(programasSelect);
+                var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelect[key[0]];
-
+                var valorPrograma = programasSeleccionados[key[0]];
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
@@ -696,8 +697,6 @@
                 });
                 return periodosSeleccionados;
             }
-
-
 
             /**
              * Método que trae los gráficos de la vista
@@ -1471,7 +1470,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSelect,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }
@@ -1574,7 +1573,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSelect,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }

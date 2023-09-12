@@ -149,7 +149,7 @@
         margin-top: 30px;
         font-size: 14px;
         color: black; 
-        font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-family: sans-serif;
     }
 </style>
 
@@ -941,7 +941,7 @@
                     data: data,
                     success: function(data) {
                         $('.totalMatriculas').empty();
-                        $('.totalMatriculas').text(data.total);
+                        $('.totalMatriculas').text('Total: '+ data.total);
 
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
@@ -990,6 +990,8 @@
                                         font: {
                                             size: 14,
                                         },
+                                        padding: 1,
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false

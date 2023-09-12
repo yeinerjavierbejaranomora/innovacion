@@ -802,10 +802,10 @@
                 var periodosFormateados = periodosArray.map(function(periodo) {
                     return periodo.replace(/2023/, '').trim();
                 }).join(' - ');
-                console.log(programasSeleccionados.length);
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
+                    console.log(programasFormateados);
                     var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
                     $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong').append(': ' + programasFormateados);
                 } else {

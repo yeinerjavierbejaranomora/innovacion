@@ -234,20 +234,8 @@
                             <div class="card card_historial">
                                 <div class="card-body">
                                         <div class="" style=" display: flex;">
-                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                            </span>
-                                    
-                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                                <b>Codigo:</b>
-                                                <br>
-                                                <span>
-                                                ABV32190
-                                                </span>
-                                            </h6>
-                                        </div>
-                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
+                                          
+                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Semestre:</b> 1</span> </p>
                                     
                                 </div>
                             </div>

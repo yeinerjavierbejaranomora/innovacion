@@ -145,11 +145,18 @@
         background-color: #DFE0E2;
     }
 
-    .custom-text {
-        margin-top: 30px;
+    .custom-text-right {
+        position: absolute;
+        top: 40px; 
+        right: 10px; 
         font-size: 14px;
-        color: black; 
-        font-family: sans-serif;
+        color: blue;
+    }
+
+.custom-text-bottom {
+        margin-top: 20px;
+        font-size: 14px;
+        color: green;
     }
 </style>
 
@@ -360,11 +367,10 @@
                         <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
                         <h5 class="tituloPeriodo"><strong></strong></h5>
                     </div>
-                    <div class="card-body center-chart fondocharts" style="position: relative;">
+                    <div class="card-body center-chart fondocharts" style="position: relative; display: inline-block;">
                         <canvas id="alto"></canvas>
-                        <div style="flex: 1;">
-                            <div class="custom-text totalMatriculas"></div>
-                        </div>
+                        <div class="custom-text-right totalMatriculas"></div>
+                        <div class="custom-text-bottom"></div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>

@@ -211,7 +211,7 @@
                         
                             <div class="card card_historial">
                             <div class="card-body">
-                            <div class="row">
+                            <div class="" style=" display: flex;">
                                 
                                 <span style="
                                 border-bottom: 2px solid;
@@ -219,10 +219,11 @@
                                 border-left: 2px solid;
                                 border-top-left-radius: 30px;
                                 /* border-top-right-radius: 67px; */
-                                border-bottom-left-radius: 30px;
+                                border-bottom-left-radius: 28px;
                                 /* width: 61px; */
-                                min-width: 30px;
-                                height: 50px;
+                                min-width: 27px;
+                                height: 42px;
+                                /* margin-left: -8px; */
                             ">&nbsp;&nbsp;&nbsp;<br>
                                 <br>
                                 
@@ -234,14 +235,14 @@
                                 border-right: 2px solid;
                                 border-bottom-right-radius: 30px;
                                 border-top-right-radius: 30px;
-                            ">Special title treatment</h6>
-                            </div>
-                                <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;">Codigo:<br>
+                                margin-left: 4px;
+                                height: 42px;
+                            ">Codigo:<br>
                                 <span>
                                 ABV32190
-                                </span>
-                            
-                            </h6>
+                                </span></h6>
+                            </div>
+                         
 
 
                              

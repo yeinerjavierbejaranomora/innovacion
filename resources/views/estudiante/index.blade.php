@@ -97,7 +97,7 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/img_estudiantes.png');text-align: center;display: block;color: white;">
         <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
+                <h1 class="h3 mb-0 text-gray-800"> <strong style="color:white">Historial Estudiante</strong></h1>
             </div>
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

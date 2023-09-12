@@ -194,7 +194,7 @@
                                 <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
                             </div>
                             <div class="text-center col-4">
-                                <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Programas</strong></h5>
                             </div>
                         </div>
 
@@ -242,20 +242,27 @@
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card" id="cardFacultades">
-                                            <div class="card-header text-center fondocards" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link text-light">
-                                                        Facultades
+                                                        Programas
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosFacultad" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" id="facultades"></div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                        @foreach ($programas as $programa)
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,31 +310,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 text-start">
-                                        <div class="card mb-3" id="cardProgramas">
-                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link text-light">
-                                                        Programas
-                                                    </button>
-                                                    <div class="custom-checkbox">
-                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
-                                                        @foreach ($programas as $programa)
-                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
-                                                        @endforeach
-                                                    </div>
-                                                </h5>
-                                            </div>
-                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas">
-                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <ul style="list-style:none" id="programas">
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -698,6 +681,29 @@
                 return periodosSeleccionados;
             }
 
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
+
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
+
             /**
              * Método que trae los gráficos de la vista
              */
@@ -710,20 +716,12 @@
                 graficoOperadores();
             }
 
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {
@@ -790,7 +788,6 @@
                 });
             }
 
-
             function estadoUsuario() {
                 limpiarTitulos();
                 var periodos = getPeriodos();
@@ -849,7 +846,7 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                Contador();
+                
                 periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
@@ -887,7 +884,7 @@
 
             function graficosporPrograma() {
                 if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
+                    chartTipoEstudiante || chartOperadores ) {
                     destruirGraficos();
                 }
                 $(".facultadtitulos").hide();
@@ -910,71 +907,96 @@
                     periodos: periodosSeleccionados
                 }
                 $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: url,
+                        data: data,
+                        success: function(data) {
+                            try {
+                                data = jQuery.parseJSON(data);
+                            } catch {
+                                data = data;
+                            }
+                            var labels = data.data.map(function(elemento) {
+                                return elemento.estado;
+                            });
+
+                            var valores = data.data.map(function(elemento) {
+                                return elemento.TOTAL;
+                            });
+                            var suma = valores.reduce(function(acumulador, valorActual) {
+                                return acumulador + valorActual;
+                            }, 0);
+                            // Crear el gráfico circular
+                            var ctx = document.getElementById('estudiantes').getContext('2d');
+                            chartEstudiantes = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: labels.map(function(label, index) {
+                                        label = label.toUpperCase();
+                                        if (label != 'TOTAL') {
+                                            return label + 'S: ' + valores[index];
+                                        } else {
+                                            return label + ': ' + suma;
                                         }
-                                    }
+                                    }),
+                                    datasets: [{
+                                        label: 'Gráfico Circular',
+                                        data: valores,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)']
+                                    }]
                                 },
-                            },
-                            plugin: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
+                                options: {
+                                    maintainAspectRatio: false,
+                                    responsive: true,
+                                    plugins: {
+                                        datalabels: {
+                                            color: 'black',
+                                            font: {
+                                                weight: 'bold',
+                                                size: 12
+                                            },
+                                        },
+                                        labels: {
+                                            render: 'percenteaje',
+                                            size: '14',
+                                            fontStyle: 'bolder',
+                                            position: 'border',
+                                            textMargin: 6
+                                        },
+                                        legend: {
+                                            position: 'right',
+                                            align: 'left',
+                                            labels: {
+                                                usePointStyle: true,
+                                                padding: 20,
+                                                font: {
+                                                    size: 12
+                                                }
+                                            }
+                                        },
+                                        title: {
+                                        display: true,
+                                        text: 'TOTAL ESTUDIANTES: ' + suma,
+                                        font: {
+                                                size: 14,
+                                                Style: 'bold',
+                                            },
+                                        position: 'bottom'
+                                    }
+                                    },
+
+                                },
+                                plugins: [ChartDataLabels]
+                            });
+                            if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                                $('#colEstudiantes').addClass('hidden');
+                            } else {
+                                $('#colEstudiantes').removeClass('hidden');
+                            }
                         }
-                    }
                 });
             }
 
@@ -990,7 +1012,7 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -998,49 +1020,56 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
+                                labels: labels,
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
                                 responsive: true,
+                                maintainAspectRatio: false,
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
+                                        align: 'left',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -1048,10 +1077,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                             $('#colSelloFinanciero').addClass('hidden');
@@ -1075,7 +1113,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1083,61 +1121,90 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var total = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+
+                        total = total.reduce((a, b) => a + b, 0);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
+                            if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                                return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                            } else {
+                                return elemento.autorizado_asistir;
+                            }
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('retencion').getContext('2d');
                         chartRetencion = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                        label = 'SIN MARCACIÓN'
                                     }
-                                    label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(208,171,75, 1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
                                         },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -1161,7 +1228,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1169,48 +1236,63 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
 
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
                                     }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
@@ -1221,11 +1303,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
-
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             $('#colPrimerIngreso').addClass('hidden');
@@ -1234,6 +1324,112 @@
                         }
                     }
                 });
+            }
+
+            function graficoSelloAntiguos() {
+                var url, data;
+                url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
+                data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var labels = [];
+                        var valores = [];
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('antiguos').getContext('2d');
+                        chartSelloAntiguos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
+                                    }
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'border',
+                                        textMargin: 2
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartSelloAntiguos.data.labels.length == 0 && chartSelloAntiguos.data.datasets[0].data.length == 0) {
+                            $('#colAntiguos').addClass('hidden');
+                        } else {
+                            $('#colAntiguos').removeClass('hidden');
+                        }
+                    }
+                });
+
             }
 
             /**
@@ -1248,7 +1444,7 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     };
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1256,18 +1452,21 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
+
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1286,13 +1485,17 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
+                                    if (label.includes("ESTUDIANTE ")) {
+                                        label = label.replace(/ESTUDIANTE\S*/i, "");
+                                    }
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: 'Tipos de estudiantes',
+                                    label: '',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
@@ -1309,6 +1512,7 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -1317,16 +1521,11 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -1353,15 +1552,17 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                    url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1380,6 +1581,7 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        // Crear el gráfico de barras
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -1420,13 +1622,7 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },

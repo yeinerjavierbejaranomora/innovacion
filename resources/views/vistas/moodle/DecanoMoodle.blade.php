@@ -582,7 +582,6 @@
                 });
             }
 
-
             var buscador = $('#buscadorProgramas');
             var listaProgramas = $('.listaProgramas');
             var divProgramas = $('#programas');
@@ -710,15 +709,6 @@
                 }
             });
 
-            function alerta() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Debes seleccionar al menos una facultad',
-                    confirmButtonColor: '#dfc14e',
-                })
-            }
-
             function alertaPeriodos() {
                 Swal.fire({
                     icon: 'error',
@@ -751,10 +741,9 @@
                 destruirTabla();
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
-                periodosSeleccionados = getPeriodos()
-                console.log(periodosSeleccionados);
+                periodosSeleccionados = getPeriodos();
                 if (periodosSeleccionados.length > 0) {
-                    if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
+                    if (cantidadFacultades == 1 && programasSeleccionados.length == 0) {
                         programasSeleccionados = [];
                         periodosSeleccionados = [];
                         ocultarDivs();
@@ -768,22 +757,14 @@
                             estadoUsuarioPrograma();
                             riesgo();
                         } else {
-                            if ($('#facultades input[type="checkbox"]:checked').length > 0) {
-                                if ($('#facultades input[type="checkbox"]:checked').length == totalFacultades && periodosSeleccionados.length == totalPeriodos) {
-                                    location.reload();
-                                } else {
-                                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                            if (facultadesSeleccionadas) {
                                     programasSeleccionados = [];
-                                    checkboxesSeleccionados.each(function() {
-                                        facultadesSeleccionadas.push($(this).val());
-                                    });
                                     limpiarTitulos();
                                     riesgo();
-                                }
-                            } else {
+                                }else {
                                 /** Alerta */
                                 programasSeleccionados = [];
-                                alerta();
+                                periodosSeleccionados = [];
                                 limpiarTitulos();
                                 ocultarDivs();
                             }

@@ -208,10 +208,10 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
                         <div class="card-deck">
-                        <div class="card card_historial">
+                        <div class="card card_historial" style="background-color: #dfc14e;color: #4a4848;">
                                 <div class="card-body">
                                        
-                                       <h5>Semestre:<br> 1 </h5><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;">Semestre:<br> 1 </h5>
+                                     <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;">Semestre:<br> 1 </h5>
                                     
                                 </div>
                             </div>

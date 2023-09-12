@@ -146,7 +146,7 @@
     }
 
     .custom-text {
-        margin: 10px;
+        margin-top: 30px;
         font-size: 14px;
         color: black; 
     }
@@ -362,7 +362,7 @@
                     <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
                         <div style="flex: 1;">
-                            <div class="custom-text" id="totalMatriculas"></div>
+                            <div class="custom-text totalMatriculas"></div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -379,7 +379,7 @@
                     <div class="card-body center-chart fondocharts">
                         <canvas id="medio"></canvas>
                         <div style="flex: 1;">
-                            <div class="custom-text" id="totalMatriculas"></div>
+                            <div class="custom-text totalMatriculas"></div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -396,7 +396,7 @@
                     <div class="card-body center-chart fondocharts">
                         <canvas id="bajo"></canvas>
                         <div style="flex: 1;">
-                            <div class="custom-text" id="totalMatriculas"></div>
+                            <div class="custom-text totalMatriculas"></div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -939,8 +939,8 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        ('$totalMatriculas').empty();
-                        ('$totalMatriculas').text(data.total);
+                        $('.totalMatriculas').empty();
+                        $('.totalMatriculas').text(data.total);
 
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
@@ -984,7 +984,6 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas',
-                                        padding: 10,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
@@ -1030,7 +1029,6 @@
                                     title: {
                                         display: true,
                                         text: data.medio + ' Matrículas',
-                                        padding: 0,
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
@@ -1076,7 +1074,6 @@
                                     title: {
                                         display: true,
                                         text: data.bajo + ' Matrículas',
-                                        padding: 0,
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {

@@ -247,7 +247,7 @@
 
 
                              
-                                <p class="card-text" id=""><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
+                                <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
                               
                             </div>
                             </div>

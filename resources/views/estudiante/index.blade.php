@@ -137,22 +137,17 @@
 
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid" id="programas">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs" id="myTabs">
                         <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
 
-                </div>
-            </div>
+                    <div class="tab-content" id="tabContent">
+                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
+                    </div>
 
-            <div class="tab-content" id="tabContent">
-                <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
-            </div>
-
-        </div>
-
-        {{-- <div class="row justify-content-center mt-5" id="">
+                    {{-- <div class="row justify-content-center mt-5" id="">
             <div class="col-10 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -409,6 +404,15 @@
             </div>
 
         </div>
+
+                </div>
+            </div>
+
+          
+
+        </div>
+
+      
    
 
     </div>

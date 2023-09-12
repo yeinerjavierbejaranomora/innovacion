@@ -501,9 +501,7 @@
             }
 
             function facultadesUsuario() {
-                var objeto;
-                objeto = <?php echo json_encode($facultades); ?>;
-                facultadesSeleccionadas = Object.keys(objeto).map(clave => objeto[clave]);
+                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;;
             }
 
             function programas() {

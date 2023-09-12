@@ -111,7 +111,13 @@ class AlertasTempranasController extends Controller
         $idFacultad = $_GET['id_facultad'];
         $idFacultad = trim($idFacultad,';');
         $idFacultades = explode(';',$idFacultad);
-        $facultades = DB::table('facultad')->select('nombre')->wherein('id',$idFacultades)->get();
+        $consultaFacultades = DB::table('facultad')->select('nombre')->wherein('id',$idFacultades)->get();
+        $facultades =[];
+        foreach($consultaFacultades as $facultad):
+            $facultad =[
+                $facultad->nombre,
+            ];
+        endforeach;
         $programas = DB::table('programas')->select('codprograma')->whereIn('Facultad',$facultades)->get();
         var_dump($programas);die();
         $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->get();

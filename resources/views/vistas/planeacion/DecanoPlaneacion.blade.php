@@ -902,10 +902,10 @@
                             llamadoFunciones();
                         } else {
                             if (facultadesSeleccionadas) {
+                                    programasSeleccionados = []
                                     $('#mensaje').hide();
                                     limpiarTitulos();
                                     llamadoFunciones();
-                                    programasSeleccionados = []
                                 } else {
                                 /** Alerta */
                                 
@@ -1074,6 +1074,7 @@
                                 periodos: periodosSeleccionados
                             }
                         }
+                        console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

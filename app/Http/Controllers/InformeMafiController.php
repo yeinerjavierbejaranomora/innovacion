@@ -2302,7 +2302,14 @@ class InformeMafiController extends Controller
         ->distinct()
         ->get();
 
-        return $materias;
+        $datosEstudiante = DB::table('datosMafi')->where('idbanner', $id)->select('primer_apellido', 'sello', 'operador', 'tipoestudiante')->first();
+
+        $datos = [
+            'materias'=>$materias,
+            'estudiante'=>$datosEstudiante
+        ];
+
+        return $datos;
     }
 
 

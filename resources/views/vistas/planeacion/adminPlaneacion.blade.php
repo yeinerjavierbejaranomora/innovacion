@@ -2660,7 +2660,7 @@
                         }else{
                             console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({
-                                "data": data,
+                                "data": data.materias,
                                 'pageLength': 10,
                                 "columns": [{
                                         title: 'Código de materia',

@@ -968,7 +968,7 @@
                                     title: {
                                         display: true,
                                         text: data.alto + ' Matrículas <br>' + 'Total: ' + data.total + ' Matrículas',
-                                        padding: 0,
+                                        padding: 10,
                                         color: 'red',
                                         position: 'bottom',
                                         font: {

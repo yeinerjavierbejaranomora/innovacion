@@ -959,7 +959,7 @@
                                     datalabels: {
                                         color: 'black',
                                         weight: 'semibold',
-                                        size: 18,
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1003,10 +1003,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1050,10 +1048,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false

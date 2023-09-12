@@ -480,11 +480,11 @@ class InformeMafiController extends Controller
             }
 
             if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                $ASP += 1;
+                $Retencion += 1;
             }
 
             if ($sello == 'TIENE RETENCION' && !empty($estado)) {
-                $Retencion += 1;
+                $ASP += 1;
             }
 
             if ($sello == 'NO EXISTE') {
@@ -950,11 +950,11 @@ class InformeMafiController extends Controller
             }
 
             if ($sello == 'TIENE RETENCION' && empty($estado)) {
-                $ASP += 1;
+                $Retencion += 1;
             }
 
             if ($sello == 'TIENE RETENCION' && !empty($estado)) {
-                $Retencion += 1;
+                $ASP += 1;
             }
 
             if ($sello == 'NO EXISTE') {

@@ -858,16 +858,11 @@
                             periodos: periodosSeleccionados
                         }
                 } else {
-                    if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('moodle.riesgo.facultad') }}",
                             data = {
                                 idfacultad: facultadesSeleccionadas,
                                 periodos: periodosSeleccionados
                             }
-                    } else {
-                        var url = "{{ route('moodle.riesgo') }}",
-                            data = '';
-                    }
                 }
 
                 var datos = $.ajax({
@@ -1293,7 +1288,9 @@
                     $("#tituloTable").remove();
                     table.destroy();
                     $('#datatable').DataTable().destroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
             }
@@ -1313,16 +1310,11 @@
                         periodos: periodosSeleccionados
                     }
                 } else {
-                    if (facultadesSeleccionadas.length > 0) {
                         var url = "{{ route('moodle.estudiantes.facultad', ['riesgo' => ' ']) }}" + riesgo;
                         data = {
                             idfacultad: facultadesSeleccionadas,
                             periodos: periodosSeleccionados
-                        }
-                    } else {
-                        var url = "{{ route('moodle.estudiantes', ['riesgo' => ' ']) }}" + riesgo;
-                        data = '';
-                    }
+                        }          
                 }
 
                 var datos = $.ajax({

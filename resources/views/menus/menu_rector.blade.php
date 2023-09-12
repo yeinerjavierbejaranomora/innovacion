@@ -60,12 +60,13 @@
             right: 0;
         }
         </style>
-        
-        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
+
+        {{-- <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
             <span>Alertas Tempranas<br>(Programación-Planeación)</span>
             <span id="notificacionesCount" class="notificaciones-count"></span>
-        </a>
+        </a> --}}
+        @include('layout.alertas');
     </li>
 
     <!-- Divider -->

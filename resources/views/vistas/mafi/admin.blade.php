@@ -919,7 +919,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 Contador();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });

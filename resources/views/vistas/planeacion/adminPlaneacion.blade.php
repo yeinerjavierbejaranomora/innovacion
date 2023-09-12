@@ -638,6 +638,13 @@
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
+
+                        <div class="hidden">
+                            <h5 id="primerApellido"></h5>
+                            <h5 id="Sello"></h5>
+                            <h5 id="Operador"></h5>
+                            <h5 id="tipoEstudiante"></h5>
+                        </div>
                     </form>
                         <!--Datatable con id Banner del estudiante-->
                         <div class="table" id="divTablaBuscador">
@@ -2658,6 +2665,20 @@
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
+                            /*
+                            <h5 id="primerApellido"></h5>
+                            <h5 id="Sello"></h5>
+                            <h5 id="Operador"></h5>
+                            <h5 id="tipoEstudiante"></h5>
+                            */
+                            ['#primerApellido', '#Sello', '#Operador', '#tipoEstudiante'].forEach(selector => {
+                                $(selector).empty();
+                            });
+                            $('#primerApellido').append(data.estudiante.primer_apellido);
+                            $('#Sello').append(data.estudiante.sello);
+                            $('#Operador').append(data.estudiante.operador);
+                            $('#tipoEstudiante').append(data.estudiante.tipoestudiante);
+
                             console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({
                                 "data": data.materias,

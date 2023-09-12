@@ -649,6 +649,7 @@
                         contentType: false,
                         processData: false,
                         success: function(datos) {
+                            console.log(data);
                             if (datos != null) {
                                 try {
                                     datos = jQuery.parseJSON(datos);

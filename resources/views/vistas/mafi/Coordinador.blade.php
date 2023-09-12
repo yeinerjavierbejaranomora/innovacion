@@ -194,7 +194,7 @@
                                 <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
                             </div>
                             <div class="text-center col-4">
-                                <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Programas</strong></h5>
                             </div>
                         </div>
 
@@ -242,20 +242,27 @@
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card" id="cardFacultades">
-                                            <div class="card-header text-center fondocards" id="HeadingFacultades" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionFacultades" aria-expanded="false" aria-controls="acordionFacultades">
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                     <button class="btn btn-link text-light">
-                                                        Facultades
+                                                        Programas
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosFacultad" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" class="todos" id="todosFacultad" name="todosFacultad" checked>
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-                                            <div class="card-body text-start collapse shadow" id="acordionFacultades" aria-labelledby="HeadingFacultades">
-                                                <div name="facultades" id="facultades"></div>
+                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                        @foreach ($programas as $programa)
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,31 +310,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 text-start">
-                                        <div class="card mb-3" id="cardProgramas">
-                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link text-light">
-                                                        Programas
-                                                    </button>
-                                                    <div class="custom-checkbox">
-                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
-                                                        @foreach ($programas as $programa)
-                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
-                                                        @endforeach
-                                                    </div>
-                                                </h5>
-                                            </div>
-                                            <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas">
-                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
-                                                    <ul style="list-style:none" id="programas">
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                             </div>

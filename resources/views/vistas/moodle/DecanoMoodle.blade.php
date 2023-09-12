@@ -777,7 +777,7 @@
             });
 
             function limpiarTitulos() {
-                var elementosTitulos = $('#tituloRiesgoAlto, #tituloRiesgoMedio, #tituloRiesgoBajo');
+                var elementosTitulos = $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong');
                 var parteEliminar = ': ';
                 elementosTitulos.each(function() {
                     var contenidoActual = $(this).text();
@@ -805,7 +805,6 @@
                 if (programasSeleccionados.length > 1) {
                     var programasArray = Object.values(programasSeleccionados);
                     var programasFormateados = programasArray.join(' - ');
-                    console.log(programasFormateados);
                     var textoNuevo = "<h4><strong>Informe programas: " + programasFormateados + "</strong></h4>";
                     $('#tituloRiesgoAlto strong, #tituloRiesgoMedio strong, #tituloRiesgoBajo strong').append(': ' + programasFormateados);
                 } else {

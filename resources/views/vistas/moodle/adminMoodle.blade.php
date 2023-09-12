@@ -970,11 +970,10 @@
                                         display: true,
                                         text: data.alto + ' Matrículas',
                                         color: 'red',
-                                        position: 'center',
+                                        position: 'bottom',
                                         font: {
                                             size: 14,
                                         },
-                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -1018,11 +1017,10 @@
                                         display: true,
                                         text: data.medio + ' Matrículas',
                                         color: '#DCCD30',
-                                        position: 'center',
+                                        position: 'bottom',
                                         font: {
                                             size: 14,
                                         },
-                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -1066,11 +1064,10 @@
                                         display: true,
                                         text: data.bajo + ' Matrículas',
                                         color: 'Green',
-                                        position: 'center',
+                                        position: 'bottom',
                                         font: {
                                             size: 14,
                                         },
-                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false

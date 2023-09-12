@@ -148,7 +148,7 @@
     .custom-text {
         margin: 10px;
         font-size: 14px;
-        color: blue; 
+        color: black; 
     }
 </style>
 
@@ -362,9 +362,7 @@
                     <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
                         <div style="flex: 1;">
-                            <div class="custom-text">
-                                Texto a la derecha del gráfico
-                            </div>
+                            <div class="custom-text" id="totalMatriculas"></div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -380,6 +378,9 @@
                     </div>
                     <div class="card-body center-chart fondocharts">
                         <canvas id="medio"></canvas>
+                        <div style="flex: 1;">
+                            <div class="custom-text" id="totalMatriculas"></div>
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
@@ -394,6 +395,9 @@
                     </div>
                     <div class="card-body center-chart fondocharts">
                         <canvas id="bajo"></canvas>
+                        <div style="flex: 1;">
+                            <div class="custom-text" id="totalMatriculas"></div>
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
@@ -493,7 +497,6 @@
         </div>
 
     </div>
-
 
     <script>
         $('#menuMoodle').addClass('activo');
@@ -936,6 +939,9 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        ('$totalMatriculas').empty();
+                        ('$totalMatriculas').text(data.total);
+
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;

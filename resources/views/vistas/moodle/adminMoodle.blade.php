@@ -974,6 +974,7 @@
                                         font: {
                                             size: 14,
                                         },
+                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -1021,6 +1022,7 @@
                                         font: {
                                             size: 14,
                                         },
+                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -1068,6 +1070,7 @@
                                         font: {
                                             size: 14,
                                         },
+                                        rotation: 270,
                                     },
                                     tooltip: {
                                         enabled: false

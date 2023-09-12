@@ -145,6 +145,11 @@
         background-color: #DFE0E2;
     }
 
+    .custom-text {
+        margin: 10px;
+        font-size: 14px;
+        color: blue; 
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -356,6 +361,11 @@
                     </div>
                     <div class="card-body center-chart fondocharts" style="position: relative;">
                         <canvas id="alto"></canvas>
+                        <div style="flex: 1;">
+                            <div class="custom-text">
+                                Texto a la derecha del gráfico
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
@@ -967,7 +977,7 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto + ' Matrículas <br>' + 'Total: ' + data.total + ' Matrículas',
+                                        text: data.alto + ' Matrículas',
                                         padding: 10,
                                         color: 'red',
                                         position: 'bottom',

@@ -80,7 +80,7 @@
             if (total > 99) {
                 $('#notificacionesCount').append('+99');
             } else {
-                $('#notificacionesCount').append(total);
+                $('#notificacionesCount').append(${total});
             }
         })
     }

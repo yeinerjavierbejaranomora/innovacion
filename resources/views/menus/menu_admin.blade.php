@@ -77,7 +77,11 @@
     function numeroAlertas(){
         $.get("{{ route('alertas.notificaciones') }}",{},function(data){
             total = data[0].total_alertas;
-            console.log(total);
+            if (total > 99) {
+                console.log("+99");
+            } else {
+                console.log("-99");
+            }
         })
     }
 </script>

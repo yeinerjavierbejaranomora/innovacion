@@ -8,7 +8,7 @@
     #accordionSidebar {
     width: 260px!important;
     }
-    
+
     .activo{
     background-color: #dfc14e;
     }
@@ -63,6 +63,7 @@
 
 
 @include('layout.alertas');
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

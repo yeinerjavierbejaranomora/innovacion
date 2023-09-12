@@ -107,10 +107,9 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-          
-            <br>
+      
             <div class="text-center" id="mensaje">
-                <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
+                <h3>Compruebe el historial ingresando el codigo del estudiantil</h3>
             </div>
             <div class="text-center" id="">
                 {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
@@ -130,6 +129,7 @@
                 {{-- </form> --}}
 
             </div>
+            
             <br>
 
             <div class="container-fluid">

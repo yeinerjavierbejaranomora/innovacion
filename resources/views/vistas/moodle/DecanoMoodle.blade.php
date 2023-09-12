@@ -752,12 +752,12 @@
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
                 periodosSeleccionados = getPeriodos()
+                console.log(periodosSeleccionados);
                 if (periodosSeleccionados.length > 0) {
                     if (cantidadFacultades == 1 && $('#programas input[type="checkbox"]:checked').length == 0) {
                         programasSeleccionados = [];
                         periodosSeleccionados = [];
                         ocultarDivs();
-                        alertaProgramas();
                     } else {
                         if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

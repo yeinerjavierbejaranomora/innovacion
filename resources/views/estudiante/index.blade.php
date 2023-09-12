@@ -95,7 +95,7 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/img_estudiantes.png');">
         <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Historial Estudiante</strong></h1>
             </div>

@@ -2671,7 +2671,9 @@
                             <h5 id="Operador"></h5>
                             <h5 id="tipoEstudiante"></h5>
                             */
-                            ['#primerApellido','#Sello','#Operador','#tipoEstudiante'].forEach(selectores => selectores.empty());
+                            ['#primerApellido', '#Sello', '#Operador', '#tipoEstudiante'].forEach(selector => {
+                                $(selector).empty();
+                            });
                             $('#primerApellido').append(data.estudiante.primer_apellido);
                             $('#Sello').append(data.estudiante.sello);
                             $('#Operador').append(data.estudiante.operador);

@@ -1491,7 +1491,7 @@
                     console.log('entra');
                     var url = "{{ route('tabla.cursos') }}";
                     var data = '';
-                    var datos = $.ajax({
+                    $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
@@ -1499,15 +1499,17 @@
                         url: url,
                         data: data,
                         success: function(data) {
-                            var datos
-                            if (data.data) {
-                                datos = data.data;
-                            } else {
-                                var data = jQuery.parseJSON(data);
-                                datos = data.data;
+                            try{
+                                data = parseJSON(data);
                             }
-                            table = $('#tablaCursos').DataTable({
-                                "data": datos,
+                            catch{
+                                data = data;
+                            }
+
+                            console.log(data);
+                                                                                
+                            tabla = $('#tablaCursos').DataTable({
+                                "data": data,
                                 'pageLength': 10,
                                 "columns": [
                                     {
@@ -1524,7 +1526,8 @@
                                     },
                                     {
                                         data: 'Total',
-                                        title: 'Total estudiantes'
+                                        title: 'Total estudiantes',
+                                        className: "text-center",
                                     },
                                     {
                                         data: 'Sello',
@@ -1537,7 +1540,7 @@
                                         className: "text-center",
                                     },
                                     {
-                                        data: 'Inactivos',
+                                        data: 'Inactivo',
                                         title: 'Inactivos',
                                         className: "text-center",
                                     },
@@ -1551,17 +1554,6 @@
                                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                 },
                             });
-                            riesgoaux = riesgo.toLowerCase();
-                            var titulo = 'Estudiantes con riesgo ' + riesgoaux;
-                            $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
-
-                            function obtenerData(tbody, table) {
-                                $(tbody).on("click", "button.data", function() {
-                                    var datos = table.row($(this).parents("tr")).data();
-                                    dataAlumno(datos.Id_Banner);
-                                })
-                            }
-                            obtenerData("#datatable tbody", table);
                         },
 
                     });

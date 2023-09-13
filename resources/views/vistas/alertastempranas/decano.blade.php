@@ -619,119 +619,409 @@
         return periodosSeleccionados;
     }
 
+    $("#todosContinua").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Continua input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Continua input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosPregrado").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Pregrado input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Pregrado input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosEsp").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Esp input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Esp input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosMaestria").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Maestria input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Maestria input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosFacultad").change(function() {
+        if ($(this).is(":checked")) {
+            $("#facultades input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#facultades input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosPrograma").change(function() {
+        if ($(this).is(":checked")) {
+            $("#programas input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#programas input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
+        if ($('.periodos input[type="checkbox"]:checked').length) {
+            $('#programas').empty();
+            var formData = new FormData();
+            for (var key in facultadesSeleccionadas) {
+                if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                }
+            }
+            var periodosSeleccionados = getPeriodos();
+            var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+            periodos.forEach(function(periodo) {
+                formData.append('periodos[]', periodo);
+            });
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('programasPeriodo.activos') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    if (datos != null) {
+                        try {
+                            datos = jQuery.parseJSON(datos);
+                        } catch {
+                            datos = datos;
+                        }
+                        $.each(datos, function(key, value) {
+                            //$('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
+                            $('#programas').append(`<div class="checkbox-wrapper mb-1">
+                            <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
+                            <label class="cbx" for="cbx-${value.codprograma}"><span>
+                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg></span><span>${value.nombre}</span>
+                            </label>
+                        </div>`);
+                        });
+                    }
+                },
+                error: function() {
+                    $('#programas').append('<h5>No hay programas</h5>')
+                }
+            })
+        } else {
+            $('#programas').empty();
+        }
+    });
+
+    $('#deshacerProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', false);
+    });
+
+    $('#seleccionarProgramas').on('click', function(e) {
+        $('#programas input[type="checkbox"]').prop('checked', true);
+    });
+
+    $('#deshacerPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', false);
+        $('.todos').prop('checked', false);
+    });
+
+    $('#seleccionarPeriodos').on('click', function(e) {
+        $('.periodos input[type="checkbox"]').prop('checked', true);
+        $('.todos').prop('checked', true);
+    });
+
+    $('#generarReporte').on('click', function(e) {
+            e.preventDefault();
+            Contador();
+            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
+            if (periodosSeleccionados.length > 0) {
+                if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                    var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    checkboxesProgramas.each(function() {
+                        programasSeleccionados.push($(this).val());
+                    });
+                    graficoAlertas();
+                }
+                destruirTable();
+                Contador();
+                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
+                //var periodos = getPeriodos();
+                dataTable(periodosSeleccionados);
+            } else {
+                programasSeleccionados = [];
+                facultadesSeleccionadas = [];
+                periodosSeleccionados = [];
+            }
+        });
+
     // Grafico
     var chartAlertas;
     graficoAlertas();
 
-        function graficoAlertas() {
-            if (chartAlertas) { chartAlertas.destroy(); }
-    var url, data;
+    function graficoAlertas() {
+        if (chartAlertas) { chartAlertas.destroy(); }
+        var url, data;
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
+
+            //console.log(facultadesSeleccionadas);
+
+        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+            url = "{{ route('alertas.grafico.programa') }}",
+                data = {
+                    programas: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                }
+        } else {
+
+                url = "{{ route('alertas.grafico.facultad') }}",
+                    data = {
+                        facultad: facultadesSeleccionadas,
+                        periodos: periodosSeleccionados
+                    }
+
+        }
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: url,
+            data: data,
+            success: function(data) {
+                try {
+                    data = jQuery.parseJSON(data);
+                } catch {
+                    data = data;
+                }
+                console.log(data);
+                var labels = data.map(function(elemento) {
+                    return elemento.codprograma;
+                });
+                var valores = data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                var maxValor = Math.max(...valores);
+                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                var yMax;
+                if (maxValor < 50) {
+                    yMax = 100;
+                } else if (maxValor < 100) {
+                    yMax = 120;
+                } else if (maxValor < 500) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                } else if (maxValor < 1000) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                } else {
+                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                }
+                // Crear el gráfico de barras
+                var ctx = document.getElementById('graficoAlertas').getContext('2d');
+                chartAlertas = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ],
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top',
+                            }
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                max: yMax,
+                                beginAtZero: true
+                            }
+                        },
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            datalabels: {
+                                color: 'black',
+                                font: {
+                                    weight: 'semibold'
+                                },
+                                formatter: Math.round
+                            },
+                            legend: {
+                                display: false,
+                            }
+                        },
+                    },
+                    plugins: [ChartDataLabels]
+                });
+                if (chartAlertas.data.labels.length == 0 && chartAlertas.data.datasets[0].data.length == 0) {
+                    $('#colAlertas').addClass('hidden');
+                } else {
+                    $('#colAlertas').removeClass('hidden');
+                }
+            }
+        });
+    }
+
     var periodosSeleccionados = getPeriodos();
     periodosSeleccionados.forEach(function(periodo, index, array) {
         array[index] = '2023' + periodo;
     });
+    //var periodos = getPeriodos();
+    dataTable(periodosSeleccionados);
+    function dataTable(periodosSeleccionados) {
+            $('#colTabla').removeClass('hidden');
+            var url, data;
+            var table;
+            if (programasSeleccionados.length > 0) {
+                url = "{{ route('alertas.tabla.programa')}}",
+                    data = {
+                        periodos: periodosSeleccionados,
+                        programas: programasSeleccionados
+                    }
+                /*var formData = new FormData();
+                formData.append('periodos', periodos);
+                formData.append('programas', programasSeleccionados);*/
+            } else {
 
-        //console.log(facultadesSeleccionadas);
+                    url = "{{ route('alertas.tabla.facultad')}}",
+                        data = {
+                            periodos: periodosSeleccionados,
+                            facultad: facultadesSeleccionadas
+                        }
 
-    if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-        url = "{{ route('alertas.grafico.programa') }}",
-            data = {
-                programas: programasSeleccionados,
-                periodos: periodosSeleccionados
             }
-    } else {
 
-            url = "{{ route('alertas.grafico.facultad') }}",
-                data = {
-                    facultad: facultadesSeleccionadas,
-                    periodos: periodosSeleccionados
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    try {
+                        data = parseJSON(data);
+                    } catch {
+                        data = data;
+                    }
+
+                    table = $('#datatable').DataTable({
+                        "data": data,
+                        'pageLength': 10,
+                        "order": [2, 'desc'],
+                        "columns": [{
+                                title: 'Codigo Banner',
+                                data: 'idbanner',
+                            },
+                            /*{
+                                title: 'Código de programa',
+                                data: 'codprograma',
+                            },*/
+                            {
+                                title: 'Programa',
+                                render: function(data, type, row) {
+                                    // esto es lo que se va a renderizar como html
+                                    return `<b>${row.codprograma}</b> - ${row.programa}`;
+                                }
+                            },
+                            {
+                                title: 'Tipo estudiante',
+                                data: 'tipo_estudiante',
+                            },
+                            {
+                                title: 'Periodo',
+                                data: 'periodo',
+                                className: 'dt-center'
+                            },
+                            {
+                                title: 'Tipo alerta',
+                                data: 'tipo',
+                            },
+                            {
+                                title: 'Descripción',
+                                data: 'desccripcion',
+                            },
+                            {
+                                title: 'Activo',
+                                data: 'activo',
+                            },
+                            {
+                                title: 'Fecha creación',
+                                data: 'created_at',
+                            },
+                            /*{
+                                defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
+                                title: 'Estudiantes planeados',
+                                className: 'dt-center'
+                            },
+
+                            {
+                                defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
+                                title: 'Malla Curricular',
+                                className: 'dt-center'
+                            },*/
+                        ]
+                    });
+
+                    /*function tablaMalla(tbody, table) {
+                        $(tbody).on("click", "button.malla", function() {
+                            var datos = table.row($(this).parents("tr")).data();
+                            var programa = datos[0];
+                            var nombrePrograma = datos[1];
+                            mallaPrograma(programa, nombrePrograma);
+                        })
+                    }
+
+                    function tablaEstudiantes(tbody, table) {
+                        $(tbody).on("click", "button.estudiantes", function() {
+                            var datos = table.row($(this).parents("tr")).data();
+                            var programa = datos[0];
+                            var nombrePrograma = datos[1];
+                            estudiantesPlaneados(programa, nombrePrograma);
+                        })
+                    }
+
+                    tablaMalla("#datatable tbody", table);
+                    tablaEstudiantes("#datatable tbody", table);*/
                 }
 
-    }
-
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        type: 'post',
-        url: url,
-        data: data,
-        success: function(data) {
-            try {
-                data = jQuery.parseJSON(data);
-            } catch {
-                data = data;
-            }
-            console.log(data);
-            var labels = data.map(function(elemento) {
-                return elemento.codprograma;
             });
-            var valores = data.map(function(elemento) {
-                return elemento.TOTAL;
-            });
-            var maxValor = Math.max(...valores);
-            var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-            var yMax;
-            if (maxValor < 50) {
-                yMax = 100;
-            } else if (maxValor < 100) {
-                yMax = 120;
-            } else if (maxValor < 500) {
-                yMax = 100 * Math.ceil(maxValor / 100) + 100;
-            } else if (maxValor < 1000) {
-                yMax = 100 * Math.ceil(maxValor / 100) + 200;
-            } else {
-                var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-            }
-            // Crear el gráfico de barras
-            var ctx = document.getElementById('graficoAlertas').getContext('2d');
-            chartAlertas = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: valores,
-                        backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                            'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                        ],
-                        datalabels: {
-                            anchor: 'end',
-                            align: 'top',
-                        }
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            max: yMax,
-                            beginAtZero: true
-                        }
-                    },
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    plugins: {
-                        datalabels: {
-                            color: 'black',
-                            font: {
-                                weight: 'semibold'
-                            },
-                            formatter: Math.round
-                        },
-                        legend: {
-                            display: false,
-                        }
-                    },
-                },
-                plugins: [ChartDataLabels]
-            });
-            if (chartAlertas.data.labels.length == 0 && chartAlertas.data.datasets[0].data.length == 0) {
-                $('#colAlertas').addClass('hidden');
-            } else {
-                $('#colAlertas').removeClass('hidden');
-            }
         }
-    });
+
+
+        
+
+    function destruirTable() {
+        $('#colTabla').addClass('hidden');
+        if ($.fn.DataTable.isDataTable('#datatable')) {
+            $('#datatable').dataTable().fnDestroy();
+            $('#datatable tbody').empty();
+            $("#datatable tbody").off("click", "button.malla");
+            $("#datatable tbody").off("click", "button.estudiantes");
+        }
     }
 </script>
 @include('layout.footer')

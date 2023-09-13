@@ -485,28 +485,55 @@ div .show{
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<div class="container "><div class="row"> <table>');
+                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="card-deck"><div class="row"> <table>');
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
 
-                               
+                               console.log(materia.semestre);
 
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
 
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
-                                            $('<tr>').append(
-                                            $('<div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1'));
+                                            $('<tr style="display: flex;">').append(
+                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 2%;min-width: 11%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
                                               
                                         $tablas.append($filaSemestre);
                                     }
-
+                                   
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td style="color:white"><div class="card bg-primary"><div class="card card_historial materias"><div class="card-body"><div class="" style=" display: flex;color: black;"><span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br></span><h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;"><b>Codigo:</b><br><span>ABV32190</span></h6></div><p class="card-text" id="" style="text-align: center;color: black;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p><p class="card-text" id="" style="text-align: center;color: black;"><span><b>Calificación:</b> 4.5</span> </p><p class="card-text" id="" style="text-align: center;color: black;"><span> <b>Créditos:</b> 2</span>');                                    
+                                    var $filaMateria="";
+$filaMateria+='<td style="color:white;margin-right: 1%">';
+$filaMateria+='  <div class="card " style=" background-color:transparent;border: none;width:162px">'
+$filaMateria+='    <div class="card card_historial materias" style="height: 297px;">'
+$filaMateria+='      <div class="card-body">'
+$filaMateria+='        <div class="" style=" display: flex;color: black;">'
+$filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
+$filaMateria+='          </span>'
+$filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
+$filaMateria+='            <b>Codigo:</b>'
+$filaMateria+='            <br>'
+$filaMateria+='            <span>'+materia.codigo_materia+'</span>'
+$filaMateria+='          </h6>'
+$filaMateria+='        </div>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>'+materia.nombre_materia+'</span>'
+$filaMateria+='        </p>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>'
+$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span>'
+$filaMateria+='        </p>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>'
+$filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
+
+
+
+
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 

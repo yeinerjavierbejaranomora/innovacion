@@ -549,7 +549,12 @@
     periodos();
     facultades();
     programas();
-
+    var periodosSeleccionados = getPeriodos();
+    periodosSeleccionados.forEach(function(periodo, index, array) {
+        array[index] = '2023' + periodo;
+    });
+    //var periodos = getPeriodos();
+    dataTable(periodosSeleccionados);
     function periodos() {
         var datos = $.ajax({
             headers: {
@@ -1003,6 +1008,8 @@
     periodosSeleccionados.forEach(function(periodo, index, array) {
         array[index] = '2023' + periodo;
     });
+
+    
 
     if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
         url = "{{ route('alertas.grafico.programa') }}",

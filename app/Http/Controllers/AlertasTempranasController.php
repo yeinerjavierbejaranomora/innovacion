@@ -130,6 +130,9 @@ class AlertasTempranasController extends Controller
     }
 
     public function numeroAlertasPrograma(){
-        var_dump($_GET);die();
+        $idPrograma = $_GET['id_programa'];
+        $idPrograma = trim($idPrograma,';');
+        $idProgramas = explode(';',$idPrograma);
+        var_dump($idProgramas);die();
     }
 }

@@ -489,14 +489,12 @@
         $('#menuAlertas').addClass('activo');
 
         $(document).ajaxStart(function() {
-            $('div #facultades input[type="checkbox"]').prop('disabled', true);
             $('div #programas input[type="checkbox"]').prop('disabled', true);
             $('#generarReporte').prop("disabled", true);
         });
 
         // Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
         $(document).ajaxStop(function() {
-            $('div #facultades input[type="checkbox"]').prop('disabled', false);
             $('div #programas input[type="checkbox"]').prop('disabled', false);
             $('#generarReporte').prop("disabled", false);
         });
@@ -504,7 +502,6 @@
         var facultadesSeleccionadas = [];
         var periodosSeleccionados = [];
         periodos();
-        facultades();
         programas();
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {

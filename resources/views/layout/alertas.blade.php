@@ -45,7 +45,17 @@
 
         if (id_rol == 2) {
             var id_programa = '{{ auth()->user()->programa }}';
-            console.log(id_programa);
+            $.get("{{ route('alertas.notificacionesprograma') }}",{
+                id_programa:id_programa
+            },function(data){
+                console.log(data);
+                var total = data;
+                if (total > 99) {
+                    $('#notificacionesCount').append('+99');
+                } else {
+                    $('#notificacionesCount').append(`${total}`);
+                }
+            })
         }
     }
 </script>

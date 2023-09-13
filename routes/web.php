@@ -428,4 +428,5 @@ Route::controller(AlertasTempranasController::class)->group(function(){
 
     Route::get('/alertastempranas/numeroalertas','numeroAlertas')->middleware('auth')->name('alertas.notificaciones');
     Route::get('/alertastempranas/numeroalertasfacultad','numeroAlertasFacultad')->middleware('auth')->name('alertas.notificacionesfacultad');
+    Route::get('/alertastempranas/numeroalertasprograma','numeroAlertasPrograma')->middleware('auth')->name('alertas.notificacionesprograma');
 });

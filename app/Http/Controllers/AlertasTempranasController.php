@@ -128,4 +128,8 @@ class AlertasTempranasController extends Controller
         //var_dump($numeroAlertas[0]->total_alertas);die();
         return $numeroAlertas[0]->total_alertas;
     }
+
+    public function numeroAlertasPrograma(){
+        var_dump($_GET);die();
+    }
 }

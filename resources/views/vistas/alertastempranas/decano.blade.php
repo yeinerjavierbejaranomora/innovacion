@@ -671,6 +671,11 @@
         if ($('.periodos input[type="checkbox"]:checked').length) {
             $('#programas').empty();
             var formData = new FormData();
+            for (var key in facultadesSeleccionadas) {
+                if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                }
+            }
             var periodosSeleccionados = getPeriodos();
             var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
@@ -777,7 +782,7 @@
             array[index] = '2023' + periodo;
         });
 
-            //console.log(totalProgramas);
+            //console.log(facultadesSeleccionadas);
 
         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
             url = "{{ route('alertas.grafico.programa') }}",
@@ -1007,7 +1012,7 @@
         }
 
 
-
+        
 
     function destruirTable() {
         $('#colTabla').addClass('hidden');

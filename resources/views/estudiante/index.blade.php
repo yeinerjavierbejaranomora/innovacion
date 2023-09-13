@@ -452,7 +452,7 @@ div .show{
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
-             
+             console.log(tap)
                 var formData = new FormData();
                 formData.append('codBanner',idbanner);
                 formData.append('programa',programa);
@@ -687,7 +687,7 @@ div .show{
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
                         elemto.addClass("active")
-                        tap=elemto.att('data-tap')
+                        tap=elemto.attr('data-tap')
                         $(document).find("#"+tap).addClass('active show');
                      
                         elemto.click();

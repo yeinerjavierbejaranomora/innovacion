@@ -485,7 +485,7 @@
 
     </div>
 <script>
-    $(document).ready(function() {
+
         $('#menuAlertas').addClass('activo');
 
         $(document).ajaxStart(function() {
@@ -873,6 +873,46 @@
                 }
             }
         });
+        }
+
+        $('#generarReporte').on('click', function(e) {
+        e.preventDefault();
+        Contador();
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
+        if (periodosSeleccionados.length > 0) {
+            if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                graficoAlertas();
+            } else {
+                
+                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+                    programasSeleccionados = [];
+                    facultadesSeleccionadas = [];
+                    checkboxesSeleccionados.each(function() {
+                        facultadesSeleccionadas.push($(this).val());
+                    });
+                    graficoAlertas();
+                
+            }
+            destruirTable();
+            Contador();
+            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
+            //var periodos = getPeriodos();
+            dataTable(periodosSeleccionados);
+        } else {
+            programasSeleccionados = [];
+            facultadesSeleccionadas = [];
+            periodosSeleccionados = [];
         }
     });
 </script>

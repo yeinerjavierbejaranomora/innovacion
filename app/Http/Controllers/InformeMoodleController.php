@@ -417,7 +417,6 @@ class InformeMoodleController extends Controller
             ->where('Sello', 'TIENE SELLO FINANCIERO')
             ->select('IdCurso','Nombrecurso', DB::raw('COUNT(id) AS TOTAL'))
             ->get();
-
         }
 
         dd($consultaSello);

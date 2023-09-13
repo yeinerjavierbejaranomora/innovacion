@@ -538,15 +538,15 @@ div .show{
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
-                                $("#"+tap).empty();
+                                $(document).find("#"+tap).empty();
 
-                                  $("#"+tap).append( $tablas);
+                                $(document).find("#"+tap).append( $tablas);
                            
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                $("#"+tap).append( taps_internos);
+                                $(document).find("#"+tap).append( taps_internos);
 
-                                $("#"+tap).addClass("active show")
+                              
                             
                         }
                         if(data.info=="sin_datos"){
@@ -687,7 +687,9 @@ div .show{
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
                         elemto.addClass("active")
-                        console.log(elemto)
+                        tap=elemto.att('data-tap')
+                        $(document).find("#"+tap).addClass('active show');
+                     
                         elemto.click();
                     },700);
                

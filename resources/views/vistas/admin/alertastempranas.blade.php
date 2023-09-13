@@ -549,6 +549,7 @@
     periodos();
     facultades();
     programas();
+    generarAlertas();
 
     function periodos() {
         var datos = $.ajax({

@@ -663,6 +663,131 @@
             });
             return periodosSeleccionados;
         }
+
+        function dataTable(periodosSeleccionados) {
+            $('#colTabla').removeClass('hidden');
+            var url, data;
+            var table;
+            if (programasSeleccionados.length > 0) {
+                url = "{{ route('alertas.tabla.programa')}}",
+                    data = {
+                        periodos: periodosSeleccionados,
+                        programas: programasSeleccionados
+                    }
+                /*var formData = new FormData();
+                formData.append('periodos', periodos);
+                formData.append('programas', programasSeleccionados);*/
+            } else {
+                if (facultadesSeleccionadas.length > 0) {
+                    url = "{{ route('alertas.tabla.facultad')}}",
+                        data = {
+                            periodos: periodosSeleccionados,
+                            facultad: facultadesSeleccionadas
+                        }
+                } else {
+                    url = "{{ route('alertas.tabla')}}",
+                        data = {
+                            periodos: periodosSeleccionados
+                        }
+                }
+            }
+
+            var datos = $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: url,
+                data: data,
+                success: function(data) {
+                    try {
+                        data = parseJSON(data);
+                    } catch {
+                        data = data;
+                    }
+
+                    table = $('#datatable').DataTable({
+                        "data": data,
+                        'pageLength': 10,
+                        "order": [2, 'desc'],
+                        "columns": [{
+                                title: 'Codigo Banner',
+                                data: 'idbanner',
+                            },
+                            /*{
+                                title: 'Código de programa',
+                                data: 'codprograma',
+                            },*/
+                            {
+                                title: 'Programa',
+                                render: function(data, type, row) {
+                                    // esto es lo que se va a renderizar como html
+                                    return `<b>${row.codprograma}</b> - ${row.programa}`;
+                                }
+                            },
+                            {
+                                title: 'Tipo estudiante',
+                                data: 'tipo_estudiante',
+                            },
+                            {
+                                title: 'Periodo',
+                                data: 'periodo',
+                                className: 'dt-center'
+                            },
+                            {
+                                title: 'Tipo alerta',
+                                data: 'tipo',
+                            },
+                            {
+                                title: 'Descripción',
+                                data: 'desccripcion',
+                            },
+                            {
+                                title: 'Activo',
+                                data: 'activo',
+                            },
+                            {
+                                title: 'Fecha creación',
+                                data: 'created_at',
+                            },
+                            /*{
+                                defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
+                                title: 'Estudiantes planeados',
+                                className: 'dt-center'
+                            },
+
+                            {
+                                defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
+                                title: 'Malla Curricular',
+                                className: 'dt-center'
+                            },*/
+                        ]
+                    });
+
+                    /*function tablaMalla(tbody, table) {
+                        $(tbody).on("click", "button.malla", function() {
+                            var datos = table.row($(this).parents("tr")).data();
+                            var programa = datos[0];
+                            var nombrePrograma = datos[1];
+                            mallaPrograma(programa, nombrePrograma);
+                        })
+                    }
+
+                    function tablaEstudiantes(tbody, table) {
+                        $(tbody).on("click", "button.estudiantes", function() {
+                            var datos = table.row($(this).parents("tr")).data();
+                            var programa = datos[0];
+                            var nombrePrograma = datos[1];
+                            estudiantesPlaneados(programa, nombrePrograma);
+                        })
+                    }
+
+                    tablaMalla("#datatable tbody", table);
+                    tablaEstudiantes("#datatable tbody", table);*/
+                }
+
+            });
+        }
     });
 </script>
 @include('layout.footer')

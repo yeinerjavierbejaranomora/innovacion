@@ -571,29 +571,6 @@
             });
         }
 
-        function facultades() {
-            var datos = $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{ route('registro.facultades') }}",
-                method: 'post',
-                success: function(data) {
-                    data.forEach(facultad => {
-                        //$('div #facultades').append(`<label"> <input type="checkbox" value="${facultad.nombre}" checked> ${facultad.nombre}</label><br>`);
-                        $('div #facultades').append(`<div class="checkbox-wrapper mb-1">
-                                <input class="inp-cbx" id="cbx-${facultad.nombre}" type="checkbox" value="${facultad.nombre}" checked>
-                                <label class="cbx" for="cbx-${facultad.nombre}"><span>
-                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg></span><span>${facultad.nombre}</span>
-                                </label>
-                            </div>`);
-                    });
-                }
-            });
-        }
-
         function programas() {
             $.ajax({
                 headers: {
@@ -648,13 +625,6 @@
             $('.todos').prop('checked', true);
         });
 
-        $('#deshacerFacultades').on('click', function(e) {
-            $('#facultades input[type="checkbox"]').prop('checked', false);
-        });
-
-        $('#seleccionarFacultades').on('click', function(e) {
-            $('#facultades input[type="checkbox"]').prop('checked', true);
-        });
         function getPeriodos() {
             var periodosSeleccionados = [];
             var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');

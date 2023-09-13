@@ -453,7 +453,7 @@ div .show{
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
                 tap="#"+tap;
-                     console.log(tap)
+                  $(tap).empty()
                 var formData = new FormData();
                 formData.append('codBanner',idbanner);
                 formData.append('programa',programa);

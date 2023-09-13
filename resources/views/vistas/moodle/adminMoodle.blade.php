@@ -835,6 +835,7 @@
                             });
                             estadoUsuarioPrograma();
                             riesgo();
+                            tablaCursos();
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                 var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
@@ -845,6 +846,7 @@
                                 });
                                 estadoUsuarioFacultad();
                                 riesgo();
+                                tablaCursos();
                             } else {
                                 /** Alerta */
                                 programasSeleccionados = [];
@@ -1506,14 +1508,14 @@
                     var data;
 
                     if (programasSeleccionados.length > 0 && programasSeleccionados.length <totalProgramas) {
-                        var url = "{{ route('moodle.riesgo.programa') }}",
+                        var url = "{{ route('tabla.cursos.programa') }}",
                             data = {
                                 programa: programasSeleccionados,
                                 periodos: periodosSeleccionados
                             }
                     } else {
                         if (facultadesSeleccionadas.length > 0) {
-                            var url = "{{ route('moodle.riesgo.facultad') }}",
+                            var url = "{{ route('tabla.cursos.facultad') }}",
                                 data = {
                                     idfacultad: facultadesSeleccionadas,
                                     periodos: periodosSeleccionados

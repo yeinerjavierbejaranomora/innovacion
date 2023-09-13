@@ -506,7 +506,32 @@ div .show{
                                     }
 
                                     // Agrega la materia como una columna en la fila actual
-                                    const $filaMateria = $('<td style="color:white;margin-right: 1%"><div class="card " style=" background-color:transparent;border: none;"> <div class="card card_historial materias"><div class="card-body"><div class="" style=" display: flex;color: black;"><span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br></span><h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;"><b>Codigo:</b><br><span>ABV32190</span></h6></div><p class="card-text" id="" style="text-align: center;color: black;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p><p class="card-text" id="" style="text-align: center;color: black;"><span><b>Calificación:</b> 4.5</span> </p><p class="card-text" id="" style="text-align: center;color: black;"><span> <b>Créditos:</b> 2</span>');                                    
+
+$filaMateria+='<td style="color:white;margin-right: 1%">';
+$filaMateria+='  <div class="card " style=" background-color:transparent;border: none;">'
+$filaMateria+='    <div class="card card_historial materias">'
+$filaMateria+='      <div class="card-body">'
+$filaMateria+='        <div class="" style=" display: flex;color: black;">'
+$filaMateria+='          <span class="bg-danger" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
+$filaMateria+='          </span>'
+$filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;$filaMateria+ =border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
+$filaMateria+='            <b>Codigo:</b>'
+$filaMateria+='            <br>'
+$filaMateria+='            <span>ABV32190</span>'
+$filaMateria+='          </h6>'
+$filaMateria+='        </div>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>DIP SEG Y SALUD TRA RIES P VIR</span>'
+$filaMateria+='        </p>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>'
+$filaMateria+='            <b>Calificación:</b> 4.5 </span>'
+$filaMateria+='        </p>'
+$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+$filaMateria+='          <span>'
+$filaMateria+='            <b>Créditos:</b> 2 </span>'
+
+
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 

@@ -813,6 +813,10 @@
 
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();
+        generarAlertas();
+    });
+
+    function generarAlertas() {
         Contador();
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {
@@ -853,7 +857,7 @@
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
         }
-    });
+    }
 
 
     function dataTable(periodosSeleccionados) {

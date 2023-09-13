@@ -524,6 +524,22 @@
 
                 var tabla = <?php echo json_encode($tabla); ?>;
 
+                $(".content").hide();
+                $("#ausentismo").show();
+
+                $(".menuMoodle").click(function() {
+                    $(".menuMoodle").removeClass('active');
+                    $(".content").hide();
+
+                    var target = $(this).attr("href").substring(1);
+
+                    $("#" + target).show();
+                    $("#nav" + target).addClass('active');
+
+                    return false;
+                });
+
+
                 // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
                 $(document).ajaxStart(function() {
                     $('div #facultades input[type="checkbox"]').prop('disabled', true);

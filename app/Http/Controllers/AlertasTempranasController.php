@@ -119,7 +119,7 @@ class AlertasTempranasController extends Controller
         $consultaProgramas = DB::table('programas')->select('codprograma')->whereIn('Facultad',$facultades)->get();
         $programas = array();
         foreach($consultaProgramas as $programa):
-            $programas .= $programa->codprograma.',';
+            $programas = $programa->codprograma.',';
             //array_push($programas,$programa->codprograma);
         endforeach;
         $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$programas)->get();

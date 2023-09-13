@@ -437,8 +437,8 @@ class InformeMoodleController extends Controller
         $inactivos[$id] = $total - $sello[$id] - $ASP[$id];    
         }
 
-        foreach ($estudiantes as $key => $value) {
-            $data[$key] = [
+        foreach ($consultaCursos as $key => $value) {
+            $datOS[$key] = [
                 'nombreMateria' => isset($nombre[$key]) ? $nombre[$key] : 0,
                 'Total' => $value,
                 'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
@@ -446,12 +446,7 @@ class InformeMoodleController extends Controller
             ];
         }
 
-        foreach ($consultaCursos as $key){
-            echo 'entra';
-        }
-
-
-
+        $Data = (object) $datos;
         dd($Data);
     }
 

@@ -431,7 +431,7 @@
                             </div>
                             <div id="cursos" class="content">
                                 <div class="table">
-                                    <table id="tablaCursos" class="display" style="width:100%">
+                                    <table id="tablaCursos" class="display" style="width:90%">
                                     </table>
                                 </div>
                             </div>

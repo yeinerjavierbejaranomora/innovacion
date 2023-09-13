@@ -542,7 +542,7 @@ div .show{
                                 taps_internos=$("#taps_internos").clone();
                            
                                 $(document).find(tap).empty();
-                                taps_internos.removeClass("hidden").appendTo(tap)
+                                $("#taps_internos").removeClass("hidden").appendTo(tap)
                                
                            
                                 // taps_internos=$("#taps_internos").clone();

@@ -410,7 +410,7 @@ class InformeMoodleController extends Controller
         $idCursos = [];
         
         $sello = [];
-        $asp = [];
+        $ASP = [];
         $inactivos = [];
 
         foreach($consultaCursos as $Curso){

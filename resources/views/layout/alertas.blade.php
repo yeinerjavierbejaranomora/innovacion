@@ -15,7 +15,7 @@
     numeroAlertas();
     function numeroAlertas(){
         id_rol = '{{ auth()->user()->id_rol }}';
-        // alert(id_rol);
+        alert(id_rol);
         if (id_rol == 9 || id_rol == 19 || id_rol == 20) {
             $.get("{{ route('alertas.notificaciones') }}",{},function(data){
                 console.log(data);

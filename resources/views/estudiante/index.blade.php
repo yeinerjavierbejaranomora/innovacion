@@ -670,18 +670,7 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                    /*if(data.homologante != ''){
-                        $('#programas').html('');
-                        data.forEach(programa =>{
-
-                            $('#programas').append(`<li class="nav-item active">
-                                <a class="nav-link active" data-toggle="pill" href="#tap_0" role="tab" aria-controls="pills-contact" aria-selected="true">${programa.programa}</a>
-                                </li>`)
-                        })
-                    }else{
-                        $('#programas').html('');
-                        $('#codigo').prop('disabled',false);
-                    }*/
+                    $('#tab0').click();
                 }
             });
         }

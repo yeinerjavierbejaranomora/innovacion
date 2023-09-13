@@ -522,7 +522,7 @@
                                 $tablas.appendTo("#"+tap+"");
                                 taps_internos=$('#taps_internos').clone();
                                 $(taps_internos).find(".hidden").removeClass('hidden')
-                                ("#"+tap+"").append(taps_internos);
+                                $("#"+tap+"").append(taps_internos);
                                 
                             
                         }

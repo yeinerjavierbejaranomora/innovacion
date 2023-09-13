@@ -777,7 +777,7 @@
             array[index] = '2023' + periodo;
         });
 
-        console.log(facultadesSeleccionadas);
+        //console.log(facultadesSeleccionadas);
 
         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
             url = "{{ route('alertas.grafico.programa') }}",
@@ -786,16 +786,13 @@
                     periodos: periodosSeleccionados
                 }
         } else {
-            if (facultadesSeleccionadas.length > 0) {
+            
                 url = "{{ route('alertas.grafico.facultad') }}",
                     data = {
                         facultad: facultadesSeleccionadas,
                         periodos: periodosSeleccionados
                     }
-            } else {
-                url = "{{ route('alertas.grafico') }}",
-                    data = ''
-            }
+            
         }
 
         $.ajax({

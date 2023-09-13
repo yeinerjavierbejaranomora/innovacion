@@ -32,20 +32,6 @@
 @endswitch
 @endauth
 
-<style>
-    .boton {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 230px;
-        height: 50px;
-        border-radius: 10px;
-        font-weight: 600;
-        place-items: center;
-        font-size: 25px;
-    }
-</style>
-
 <!--  creamos el contenido principal body -->
 
 <!-- Content Wrapper -->

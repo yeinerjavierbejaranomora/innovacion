@@ -610,9 +610,13 @@
         totalPeriodos = $('#programas input[type="checkbox"]').length;
     }
 
-    var periodosSeleccionados = getPeriodos();
-    periodosSeleccionados.forEach(function(periodo, index, array) {
-        array[index] = '2023' + periodo;
-    });
+    function getPeriodos() {
+        var periodosSeleccionados = [];
+        var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.each(function() {
+            periodosSeleccionados.push($(this).val());
+        });
+        return periodosSeleccionados;
+    }
 </script>
 @include('layout.footer')

@@ -651,18 +651,13 @@
                 formData.append('periodos', periodos);
                 formData.append('programas', programasSeleccionados);*/
             } else {
-                if (facultadesSeleccionadas.length > 0) {
+                
                     url = "{{ route('alertas.tabla.facultad')}}",
                         data = {
                             periodos: periodosSeleccionados,
                             facultad: facultadesSeleccionadas
                         }
-                } else {
-                    url = "{{ route('alertas.tabla')}}",
-                        data = {
-                            periodos: periodosSeleccionados
-                        }
-                }
+                
             }
 
             var datos = $.ajax({

@@ -541,7 +541,7 @@ div .show{
 
                                 $tap=$(document).find(tap)
 
-                                tap.attr(id)
+                                tap.attr('id')
                                 console.log( tap.attr(id));
                                 $(tap).empty();
 

@@ -520,7 +520,8 @@
                                 $("#"+tap+"").empty();
                                 // Agrega la tabla al documento
                                 $tablas.appendTo("#"+tap+"");
-                                taps_internos=$('#taps_internos').removeClass('hidden').clone();
+                                taps_internos=$('#taps_internos').clone();
+                                taps_internos.removeClass('hidden')
                                 ("#"+tap+"").append(taps_internos);
                                 
                             

@@ -1491,7 +1491,7 @@
                     console.log('entra');
                     var url = "{{ route('tabla.cursos') }}";
                     var data = '';
-                    var datos = $.ajax({
+                    $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
@@ -1505,9 +1505,11 @@
                             catch{
                                 data = data;
                             }
+
+                            console.log(data);
                                                                                 
                             tabla = $('#tablaCursos').DataTable({
-                                "data": datos,
+                                "data": data,
                                 'pageLength': 10,
                                 "columns": [
                                     {

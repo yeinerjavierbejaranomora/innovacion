@@ -59,7 +59,7 @@
         }
     }
 </script>
-@switch(auht()->user()->id_rol)
+@switch(auth()->user()->id_rol)
     @case(1)
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>

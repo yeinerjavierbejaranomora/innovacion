@@ -452,6 +452,7 @@ div .show{
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
+                tap="#"+tap;
              console.log(tap)
                 var formData = new FormData();
                 formData.append('codBanner',idbanner);
@@ -538,9 +539,9 @@ div .show{
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
-                                $(document).find("#"+tap).empty();
+                                $(tap).empty();
 
-                                $(document).find("#"+tap).append( $tablas);
+                                $(document).find(tap).append( $tablas);
                            
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")

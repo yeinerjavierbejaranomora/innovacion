@@ -420,7 +420,6 @@ class InformeMoodleController extends Controller
 
         }
 
-
         dd($consultaSello);
     }
 

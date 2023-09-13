@@ -501,6 +501,7 @@
         var programasSeleccionados = [];
         var facultadesSeleccionadas = [];
         var periodosSeleccionados = [];
+        facultadesUsuario();
         periodos();
         programas();
         var periodosSeleccionados = getPeriodos();
@@ -755,6 +756,10 @@
 
             });
         }
+        function facultadesUsuario() {
+                periodosSeleccionados = getPeriodos();
+                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
+            }
 
         graficoAlertas();
 

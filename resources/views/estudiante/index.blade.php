@@ -537,7 +537,8 @@
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap+"");
-
+                                $tablas.appendTo("#"+tap+"");
+                                    $("#"+tap).addClass("active show")
                             
                         }
                         if(data.info=="sin_datos"){
@@ -548,8 +549,7 @@
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
                                     $("#"+tap+"").empty();
-                                    $tablas.appendTo("#"+tap+"");
-                                    $("#"+tap).addClass("active")
+                                  
                                    
                         }
                     }

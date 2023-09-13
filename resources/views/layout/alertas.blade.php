@@ -73,4 +73,28 @@
     <span id="notificacionesCount" class="notificaciones-count"></span>
 </a>
 @endif
+{{-- @switch(auth()->user()->id_rol)
+    @case(9)
+        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>
+        @break
+    @case(19)
+        <a  class="nav-link" href="{{ route('alertas.inicio.rector') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>
+        @break
+    @case(20)
+        <a  class="nav-link" href="{{ route('alertas.inicio.vicerector') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>
+        @break
+    $@default
 
+@endswitch --}}

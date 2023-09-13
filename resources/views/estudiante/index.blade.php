@@ -567,7 +567,9 @@
                
                 consultaEstudiante(codBanner.val());
                 consultaNombre(codBanner.val());
-
+                elemto = $(document).find('.datos').first()
+                    console.log(elemto)
+                    elemto.click();
                 //consultaHistorial(codBanner.val());
                 //consultaProgramacion(codBanner.val());
 
@@ -673,9 +675,7 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                  elemto = $(document).find('.datos').first()
-                    console.log(elemto)
-                    elemto.click();
+               
                 }
             });
         }

@@ -544,9 +544,9 @@ div .show{
 
                                 $(document).find(tap).append($tablas);
                            
-                                taps_internos=$("#taps_internos").clone();
-                                taps_internos.removeClass("hidden")
-                                $(document).find(tap).append( taps_internos);
+                                // taps_internos=$("#taps_internos").clone();
+                                // taps_internos.removeClass("hidden")
+                                // $(document).find(tap).append( taps_internos);
 
                               
                             

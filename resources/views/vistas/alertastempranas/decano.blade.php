@@ -609,5 +609,10 @@
         totalProgramas = $('#programas input[type="checkbox"]').length;
         totalPeriodos = $('#programas input[type="checkbox"]').length;
     }
+
+    var periodosSeleccionados = getPeriodos();
+    periodosSeleccionados.forEach(function(periodo, index, array) {
+        array[index] = '2023' + periodo;
+    });
 </script>
 @include('layout.footer')

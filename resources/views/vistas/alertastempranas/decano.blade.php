@@ -875,7 +875,7 @@
         });
         }
 
-        ("#todosContinua").change(function() {
+        $("#todosContinua").change(function() {
                 if ($(this).is(":checked")) {
                     $("#Continua input[type='checkbox']").prop("checked", true);
                 } else {

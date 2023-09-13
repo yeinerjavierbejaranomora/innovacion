@@ -687,7 +687,7 @@ div .show{
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
                         elemto.addClass("active")
-                        tap=elemto.att('data-tap')
+                        tap=elemto.attr('data-tap')
                         $(document).find("#"+tap).addClass('active show');
                      
                         elemto.click();

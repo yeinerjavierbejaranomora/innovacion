@@ -988,16 +988,6 @@
                     programasSeleccionados.push($(this).val());
                 });
                 graficoAlertas();
-            } else {
-
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    programasSeleccionados = [];
-                    facultadesSeleccionadas = [];
-                    checkboxesSeleccionados.each(function() {
-                        facultadesSeleccionadas.push($(this).val());
-                    });
-                    graficoAlertas();
-
             }
             destruirTable();
             Contador();

@@ -526,6 +526,8 @@
 
                 $(".content").hide();
                 $("#ausentismo").show();
+                $("#ausentismo").addClass('active');
+
 
                 $(".menuMoodle").click(function() {
                     $(".menuMoodle").removeClass('active');

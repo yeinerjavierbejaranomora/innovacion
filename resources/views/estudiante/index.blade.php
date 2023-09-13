@@ -98,6 +98,10 @@
 
 .datos{
     color: white;
+    
+    padding-top: 22px;
+    padding-bottom: 40px;
+
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -530,15 +534,15 @@
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
-                                $("#"+tap+"").empty();
+                                $("#"+tap).empty();
                                 // Agrega la tabla al documento
-                                $tablas.appendTo("#"+tap+"");
+                                $tablas.appendTo("#"+tap);
 
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                taps_internos.appendTo("#"+tap+"");
+                                taps_internos.appendTo("#"+tap);
                                 $tablas.appendTo("#"+tap+"");
-                                    $("#"+tap).addClass("active show")
+                                $("#"+tap).addClass("active show")
                             
                         }
                         if(data.info=="sin_datos"){

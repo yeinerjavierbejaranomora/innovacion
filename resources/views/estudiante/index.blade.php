@@ -448,7 +448,7 @@ div .show{
            
             $(document).on("click",".datos",function(){
 
-             $(document).find("div .active .show").removeClass("active show")
+             $(document).find("#tabContent div .active ").removeClass("active show")
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');

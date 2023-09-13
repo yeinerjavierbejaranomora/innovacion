@@ -504,6 +504,7 @@
         facultadesUsuario();
         periodos();
         programas();
+        
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {
             array[index] = '2023' + periodo;

@@ -350,10 +350,10 @@
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active menuMoodle" id="navAusentismo" href="#ausentismo">Informe de Ausentismo</a>
+                                    <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link menuMoodle" id="navCursos" href="#cursos">Cursos activos</a>
+                                    <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
                                 </li>
                             </ul>
                         </div>
@@ -526,8 +526,6 @@
 
                 $(".content").hide();
                 $("#ausentismo").show();
-                $("#ausentismo").addClass('active');
-
 
                 $(".menuMoodle").click(function() {
                     $(".menuMoodle").removeClass('active');

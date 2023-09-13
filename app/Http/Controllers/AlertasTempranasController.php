@@ -26,7 +26,15 @@ class AlertasTempranasController extends Controller
     }
 
     public function vistaRectorDecano(){
-        return view('vistas.alertastempranas.decano');
+        $user = auth()->user();
+        $idfacultad = trim($user->id_facultad, ',');
+        $facultades = explode(",", $idfacultad);
+        foreach ($facultades as $key => $value) {
+
+            $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+            $nombreFacultades[$value] = $consulta->nombre;
+        }
+        return view('vistas.alertastempranas.decano', ['facultades' => $nombreFacultades]);
     }
 
     public function tablaAlertasP(){

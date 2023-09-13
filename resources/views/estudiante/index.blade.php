@@ -540,7 +540,9 @@ div .show{
                                 });
 
                                 $tap=$(document).find(tap)
-                                console.log($tap);
+
+                                tap.attr(id)
+                                console.log( tap.attr(id));
                                 $(tap).empty();
 
                                 $(tap).append($tablas);

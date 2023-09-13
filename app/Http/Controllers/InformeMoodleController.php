@@ -29,24 +29,24 @@ class InformeMoodleController extends Controller
     {
 
         $riesgos = DB::table('datos_moodle')->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')->groupBy('Riesgo')->get();
-        
+
         $alto = [];
         $medio = [];
         $bajo = [];
 
-        foreach ($riesgos as $key){
+        foreach ($riesgos as $key) {
             $riesgo = $key->Riesgo;
-            if($riesgo == 'ALTO'){
+            if ($riesgo == 'ALTO') {
                 $alto[] = $key->TOTAL;
             }
-            if($riesgo == 'MEDIO'){
+            if ($riesgo == 'MEDIO') {
                 $medio[] = $key->TOTAL;
             }
-            if($riesgo == 'BAJO'){
+            if ($riesgo == 'BAJO') {
                 $bajo[] = $key->TOTAL;
             }
         }
-        
+
         $Total = DB::table('datos_moodle')->selectRaw('COUNT(Id_Banner) AS TOTAL')->get();
 
         $datos = array(
@@ -64,40 +64,40 @@ class InformeMoodleController extends Controller
         $facultades = $request->input('idfacultad');
         $periodos = $request->input('periodos');
         $riesgos = DB::table('datos_moodle')
-        ->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')
+            ->selectRaw('COUNT(Id_Banner) AS TOTAL, Riesgo')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->groupBy('Riesgo')
             ->get();
-        
-            $alto = [];
-            $medio = [];
-            $bajo = [];
-    
-            foreach ($riesgos as $key){
-                $riesgo = $key->Riesgo;
-                if($riesgo == 'ALTO'){
-                    $alto[] = $key->TOTAL;
-                }
-                if($riesgo == 'MEDIO'){
-                    $medio[] = $key->TOTAL;
-                }
-                if($riesgo == 'BAJO'){
-                    $bajo[] = $key->TOTAL;
-                }
-            }    
+
+        $alto = [];
+        $medio = [];
+        $bajo = [];
+
+        foreach ($riesgos as $key) {
+            $riesgo = $key->Riesgo;
+            if ($riesgo == 'ALTO') {
+                $alto[] = $key->TOTAL;
+            }
+            if ($riesgo == 'MEDIO') {
+                $medio[] = $key->TOTAL;
+            }
+            if ($riesgo == 'BAJO') {
+                $bajo[] = $key->TOTAL;
+            }
+        }
 
         $Total = DB::table('datos_moodle')
             ->whereIn('Facultad', $facultades)
             ->whereIn('Periodo_Rev', $periodos)
             ->selectRaw('COUNT(Id_Banner) AS TOTAL')->get();
 
-            $datos = array(
-                'alto' => $alto,
-                'medio' => $medio,
-                'bajo' => $bajo,
-                'total' => $Total[0]->TOTAL
-            );
+        $datos = array(
+            'alto' => $alto,
+            'medio' => $medio,
+            'bajo' => $bajo,
+            'total' => $Total[0]->TOTAL
+        );
         return $datos;
     }
 
@@ -113,25 +113,25 @@ class InformeMoodleController extends Controller
             ->whereIn('dm.Periodo_Rev', $periodos)
             ->selectRaw('COUNT(dm.Id_Banner) AS TOTAL, dm.Riesgo')
             ->groupBy('dm.Riesgo')
-            ->get();   
+            ->get();
 
-            $alto = [];
-            $medio = [];
-            $bajo = [];
-    
-            foreach ($riesgos as $key){
-                $riesgo = $key->Riesgo;
-                if($riesgo == 'ALTO'){
-                    $alto[] = $key->TOTAL;
-                }
-                if($riesgo == 'MEDIO'){
-                    $medio[] = $key->TOTAL;
-                }
-                if($riesgo == 'BAJO'){
-                    $bajo[] = $key->TOTAL;
-                }
+        $alto = [];
+        $medio = [];
+        $bajo = [];
+
+        foreach ($riesgos as $key) {
+            $riesgo = $key->Riesgo;
+            if ($riesgo == 'ALTO') {
+                $alto[] = $key->TOTAL;
             }
-            
+            if ($riesgo == 'MEDIO') {
+                $medio[] = $key->TOTAL;
+            }
+            if ($riesgo == 'BAJO') {
+                $bajo[] = $key->TOTAL;
+            }
+        }
+
         $Total = DB::table('datos_moodle AS dm')
             ->join('programas AS p', 'dm.Programa', '=', 'p.programa')
             ->whereIn('p.codprograma', $programas)
@@ -139,12 +139,12 @@ class InformeMoodleController extends Controller
             ->selectRaw('COUNT(dm.Id_Banner) AS TOTAL')
             ->get();
 
-            $datos = array(
-                'alto' => $alto,
-                'medio' => $medio,
-                'bajo' => $bajo,
-                'total' => $Total[0]->TOTAL
-            );
+        $datos = array(
+            'alto' => $alto,
+            'medio' => $medio,
+            'bajo' => $bajo,
+            'total' => $Total[0]->TOTAL
+        );
         return $datos;
     }
 
@@ -152,10 +152,10 @@ class InformeMoodleController extends Controller
     {
         $riesgo = trim($riesgo);
         $estudiantes = DB::table('datos_moodle')
-        ->select('Id_Banner', 'Riesgo', 'Nombre', 'Apellido', 'Facultad', 'Programa')
-        ->where('Riesgo', $riesgo)
-        ->groupBy('Id_Banner')
-        ->get();
+            ->select('Id_Banner', 'Riesgo', 'Nombre', 'Apellido', 'Facultad', 'Programa')
+            ->where('Riesgo', $riesgo)
+            ->groupBy('Id_Banner')
+            ->get();
 
         header("Content-Type: application/json");
         echo json_encode(array('data' => $estudiantes));
@@ -394,7 +394,8 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $datos));
     }
 
-    function tablaCursos(){
+    function tablaCursos()
+    {
 
         /**
          * SELECT Nombrecurso, IdCurso, NombreTutor, COUNT(id), Grupo  FROM `datos_moodle`  
@@ -404,51 +405,182 @@ class InformeMoodleController extends Controller
          */
 
         $consultaCursos = DB::table('datos_moodle')
-         ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT(id) AS TOTAL'))
-         ->groupBy('IdCurso')
-         ->get()
-        ->toArray();
+            ->select('Nombrecurso', 'IdCurso', 'NombreTutor', DB::raw('COUNT(id) AS TOTAL'))
+            ->groupBy('IdCurso')
+            ->get()
+            ->toArray();
 
-        foreach($consultaCursos as $Curso){
-        $id = $Curso->IdCurso;
-        $total = $Curso->TOTAL;  
+        foreach ($consultaCursos as $Curso) {
+            $id = $Curso->IdCurso;
+            $total = $Curso->TOTAL;
 
-        $consultaSello = DB::table('datos_moodle')
-            ->where('IdCurso', $id)
-            ->where('Sello', 'TIENE SELLO FINANCIERO')
-            ->select(DB::raw('COUNT(id) AS TOTAL'))
-            ->get();
+            $consultaSello = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->where('Sello', 'TIENE SELLO FINANCIERO')
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
 
-        $sello = $consultaSello[0]->TOTAL;    
+            $sello = $consultaSello[0]->TOTAL;
 
-        $consultaASP = DB::table('datos_moodle')
-            ->where('IdCurso', $id)
-            ->where('Sello', 'TIENE RETENCION')
-            ->select(DB::raw('COUNT(id) AS TOTAL'))
-            ->get();
+            $consultaASP = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->where('Sello', 'TIENE RETENCION')
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
 
-        $ASP = $consultaASP[0]->TOTAL;
-        $inactivos = $total - $sello - $ASP; 
-            
-        $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();    
+            $ASP = $consultaASP[0]->TOTAL;
+            $inactivos = $total - $sello - $ASP;
 
-        $grupo = $consultaGrupos->count();
+            $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();
 
-        $datos[] = [
-            'NombreCurso' => $Curso->Nombrecurso,
-            'id' => $id,
-            'Tutor' => $Curso->NombreTutor,
-            'Total' => $total,
-            'Sello' => $sello,
-            'ASP' => $ASP,
-            'Inactivo' => $inactivos,
-            'Cursos' => $grupo
-        ];
-        
+            $grupo = $consultaGrupos->count();
+
+            $datos[] = [
+                'NombreCurso' => $Curso->Nombrecurso,
+                'id' => $id,
+                'Tutor' => $Curso->NombreTutor,
+                'Total' => $total,
+                'Sello' => $sello,
+                'ASP' => $ASP,
+                'Inactivo' => $inactivos,
+                'Cursos' => $grupo
+            ];
         }
 
         return $datos;
     }
 
+    function tablaCursosFacultad()
+    {
 
+        /**
+         * SELECT Nombrecurso, IdCurso, NombreTutor, COUNT(id), Grupo  FROM `datos_moodle`  
+            WHERE Nombrecurso LIKE '%Estadística descriptiva%'
+            GROUP BY IdCurso,Grupo 
+            ORDER BY IdCurso;
+         */
+
+        $periodos = $_POST['periodos'];
+        $facultades = $_POST['idfacultad'];
+        $consultaCursos = DB::table('datos_moodle')
+            ->whereIn('Periodo_Rev', $periodos)
+            ->whereIn('Facultad', $facultades)
+            ->select('Nombrecurso', 'IdCurso', 'NombreTutor', DB::raw('COUNT(id) AS TOTAL'))
+            ->groupBy('IdCurso')
+            ->get()
+            ->toArray();
+
+        foreach ($consultaCursos as $Curso) {
+            $id = $Curso->IdCurso;
+            $total = $Curso->TOTAL;
+
+            $consultaSello = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $facultades)
+                ->where('Sello', 'TIENE SELLO FINANCIERO')
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
+
+            $sello = $consultaSello[0]->TOTAL;
+
+            $consultaASP = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->where('Sello', 'TIENE RETENCION')
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $facultades)
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
+
+            $ASP = $consultaASP[0]->TOTAL;
+            $inactivos = $total - $sello - $ASP;
+
+            $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $facultades)
+                ->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();
+
+            $grupo = $consultaGrupos->count();
+
+            $datos[] = [
+                'NombreCurso' => $Curso->Nombrecurso,
+                'id' => $id,
+                'Tutor' => $Curso->NombreTutor,
+                'Total' => $total,
+                'Sello' => $sello,
+                'ASP' => $ASP,
+                'Inactivo' => $inactivos,
+                'Cursos' => $grupo
+            ];
+        }
+
+        return $datos;
+    }
+
+    function tablaCursosProgramas()
+    {
+
+        /**
+         * SELECT Nombrecurso, IdCurso, NombreTutor, COUNT(id), Grupo  FROM `datos_moodle`  
+            WHERE Nombrecurso LIKE '%Estadística descriptiva%'
+            GROUP BY IdCurso,Grupo 
+            ORDER BY IdCurso;
+         */
+
+        $periodos = $_POST['periodos'];
+        $programas = $_POST['programa'];
+        $consultaCursos = DB::table('datos_moodle')
+            ->whereIn('Periodo_Rev', $periodos)
+            ->whereIn('Facultad', $programas)
+            ->select('Nombrecurso', 'IdCurso', 'NombreTutor', DB::raw('COUNT(id) AS TOTAL'))
+            ->groupBy('IdCurso')
+            ->get()
+            ->toArray();
+
+        foreach ($consultaCursos as $Curso) {
+            $id = $Curso->IdCurso;
+            $total = $Curso->TOTAL;
+
+            $consultaSello = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $programas)
+                ->where('Sello', 'TIENE SELLO FINANCIERO')
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
+
+            $sello = $consultaSello[0]->TOTAL;
+
+            $consultaASP = DB::table('datos_moodle')
+                ->where('IdCurso', $id)
+                ->where('Sello', 'TIENE RETENCION')
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $programas)
+                ->select(DB::raw('COUNT(id) AS TOTAL'))
+                ->get();
+
+            $ASP = $consultaASP[0]->TOTAL;
+            $inactivos = $total - $sello - $ASP;
+
+            $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)
+                ->whereIn('Periodo_Rev', $periodos)
+                ->whereIn('Facultad', $programas)
+                ->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();
+
+            $grupo = $consultaGrupos->count();
+
+            $datos[] = [
+                'NombreCurso' => $Curso->Nombrecurso,
+                'id' => $id,
+                'Tutor' => $Curso->NombreTutor,
+                'Total' => $total,
+                'Sello' => $sello,
+                'ASP' => $ASP,
+                'Inactivo' => $inactivos,
+                'Cursos' => $grupo
+            ];
+        }
+
+        return $datos;
+    }
 }

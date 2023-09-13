@@ -87,6 +87,9 @@
         border: 13px solid white;
     }
 
+.datos{
+    color: white;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div id="content-wrapper" class="d-flex flex-column">
@@ -137,7 +140,7 @@
 
                 </div>
             </div>
-            <div class="container-fluid" >
+            <div class="container-fluid" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
                 <div class="col-md-12">
 
                     <ul class="nav nav nav-pills" id="myTabs">

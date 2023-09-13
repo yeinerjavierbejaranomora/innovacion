@@ -492,7 +492,7 @@ div .show{
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
 
-                               
+                               console.log(materia);
 
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila

@@ -549,7 +549,6 @@
     periodos();
     facultades();
     programas();
-    generarAlertas();
 
     function periodos() {
         var datos = $.ajax({
@@ -814,10 +813,6 @@
 
     $('#generarReporte').on('click', function(e) {
         e.preventDefault();
-        generarAlertas();
-    });
-
-    function generarAlertas() {
         Contador();
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {
@@ -845,7 +840,7 @@
                     facultadesSeleccionadas = [];
                 }
             }
-            //destruirTable();
+            destruirTable();
             Contador();
             var periodosSeleccionados = getPeriodos();
             periodosSeleccionados.forEach(function(periodo, index, array) {
@@ -858,7 +853,7 @@
             facultadesSeleccionadas = [];
             periodosSeleccionados = [];
         }
-    }
+    });
 
 
     function dataTable(periodosSeleccionados) {

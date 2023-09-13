@@ -504,7 +504,11 @@
         facultadesUsuario();
         periodos();
         programas();
-        
+        function Contador() {
+            totalFacultades = $('#facultades input[type="checkbox"]').length;
+            totalProgramas = $('#programas input[type="checkbox"]').length;
+            totalPeriodos = $('#programas input[type="checkbox"]').length;
+        }
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {
             array[index] = '2023' + periodo;

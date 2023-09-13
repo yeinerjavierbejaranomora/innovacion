@@ -93,7 +93,85 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-<div class="" id="taps_internos">
+
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/img_estudiantes.png');text-align: center;display: block;color: white;">
+            <div class="text-center">
+                <h1 class="h3 mb-0 text-gray-800"> <strong style="color:white">Historial Estudiante</strong></h1>
+            </div>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+      
+            <div class="text-center" id="mensaje">
+                <h3>Compruebe el historial ingresando el codigo del estudiantil</h3>
+            </div>
+            <div class="text-center" id="">
+                {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
+                    {{-- @csrf --}}
+                    <div class="row">
+                        <div class="col-sm-3 text-dark">
+                            <p class="mb-0">Codigo estudiante</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required value="100039616"></p>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
+                            {{-- <button type="submit"  class="btn btn-primary mb-3">Consultar</button> --}}
+                        </div>
+                    </div>
+                {{-- </form> --}}
+
+            </div>
+
+            <br>
+
+            <div class="container-fluid hidden" style="background-color:#6e707e;padding: 1%;margin-bottom: 3%;border-radius: 19px;" id="info_1">
+                <div class="container mt-3" id="info" style="color:white">
+
+                </div>
+            </div>
+            <div class="container-fluid hidden contenedor_interno" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
+                <div class="col-md-12">
+
+                    <ul class="nav nav nav-pills" id="myTabs">
+                        <!-- Pestañas se llenarán dinámicamente aquí -->
+                    </ul>
+
+                    
+                    <div class="tab-content" id="tabContent">
+                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
+                    </div>
+          
+
+                </div>
+
+      
+   
+
+            </div>
+
+
+
+        
+
+        </div>
+    </div>
+
+    <div class="" id="taps_internos">
             
         <div class="container">
 
@@ -343,86 +421,6 @@
 
     </div>
 
-
-<div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/img_estudiantes.png');text-align: center;display: block;color: white;">
-            <div class="text-center">
-                <h1 class="h3 mb-0 text-gray-800"> <strong style="color:white">Historial Estudiante</strong></h1>
-            </div>
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-            <!-- Page Heading -->
-      
-            <div class="text-center" id="mensaje">
-                <h3>Compruebe el historial ingresando el codigo del estudiantil</h3>
-            </div>
-            <div class="text-center" id="">
-                {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
-                    {{-- @csrf --}}
-                    <div class="row">
-                        <div class="col-sm-3 text-dark">
-                            <p class="mb-0">Codigo estudiante</p>
-                        </div>
-                        <div class="col-sm-3">
-                            <p class="text-muted mb-0"><input class="form-control" type="text" name="codigo" placeholder="Codigo estudiante" id="codigo" required value="100039616"></p>
-                        </div>
-                        <div class="col-auto">
-                            <button type="button" onclick="consultarEstudiante()" class="btn btn-primary mb-3">Consultar</button>
-                            {{-- <button type="submit"  class="btn btn-primary mb-3">Consultar</button> --}}
-                        </div>
-                    </div>
-                {{-- </form> --}}
-
-            </div>
-
-            <br>
-
-            <div class="container-fluid hidden" style="background-color:#6e707e;padding: 1%;margin-bottom: 3%;border-radius: 19px;" id="info_1">
-                <div class="container mt-3" id="info" style="color:white">
-
-                </div>
-            </div>
-            <div class="container-fluid hidden contenedor_interno" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
-                <div class="col-md-12">
-
-                    <ul class="nav nav nav-pills" id="myTabs">
-                        <!-- Pestañas se llenarán dinámicamente aquí -->
-                    </ul>
-
-                    
-                    <div class="tab-content" id="tabContent">
-                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
-                    </div>
-          
-
-                </div>
-
-      
-   
-
-            </div>
-
-
-          
-
-                
-        <br>
-
-        
-
-                </div>
-            </div>
-
     <script>
 
 
@@ -524,6 +522,10 @@
                                 $("#"+tap+"").empty();
                                 // Agrega la tabla al documento
                                 $tablas.appendTo("#"+tap+"");
+
+                                taps_internos=$("#taps_internos").clone();
+                                taps_internos.appendTo("#"+tap+"");
+
                             
                         }
                         if(data.info=="sin_datos"){

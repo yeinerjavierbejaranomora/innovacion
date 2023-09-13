@@ -117,7 +117,7 @@ class AlertasTempranasController extends Controller
             array_push($facultades,$facultad->nombre);
         endforeach;
         $consultaProgramas = DB::table('programas')->select('codprograma')->whereIn('Facultad',$facultades)->get();
-        $programas = array();
+        $programas ='';
         foreach($consultaProgramas as $programa):
             $programas = $programas.','.$programa->codprograma;
             //array_push($programas,$programa->codprograma);

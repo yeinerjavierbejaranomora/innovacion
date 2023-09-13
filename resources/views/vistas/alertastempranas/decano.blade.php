@@ -667,22 +667,21 @@
         }
     });
 
-    $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
-        if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+    $('body').on('change', '.periodos input[type="checkbox"], .todos', function() {
+        if ($('.periodos input[type="checkbox"]:checked').length) {
             $('#programas').empty();
             var formData = new FormData();
-            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-            checkboxesSeleccionados.each(function() {
-                formData.append('idfacultad[]', $(this).val());
-            });
-
-                    periodosSeleccionados = getPeriodos();
+            for (var key in facultadesSeleccionadas) {
+                if (facultadesSeleccionadas.hasOwnProperty(key)) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                }
+            }
+            var periodosSeleccionados = getPeriodos();
             var periodos = periodosSeleccionados.map(item => item.slice(-2));
 
             periodos.forEach(function(periodo) {
                 formData.append('periodos[]', periodo);
             });
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -699,16 +698,9 @@
                             datos = jQuery.parseJSON(datos);
                         } catch {
                             datos = datos;
-                                }
+                        }
                         $.each(datos, function(key, value) {
-                            $('#programas').append(`<div class="checkbox-wrapper mb-1">
-                                <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
-                                <label class="cbx" for="cbx-${value.codprograma}"><span>
-                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg></span><span>${value.nombre}</span>
-                                </label>
-                            </div>`);
+                            $('#programas').append(`<li id="Checkbox${value.codprograma}" data-codigo="${value.codprograma}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label></li>`);
                         });
                     }
                 },

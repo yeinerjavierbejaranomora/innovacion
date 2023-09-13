@@ -16,6 +16,10 @@ class AlertasTempranasController extends Controller
         return view('vistas.alertastempranas.admin');
     }
 
+    public function vistaRectorVicerector(){
+        return view('vistas.alertastempranas.rector');
+    }
+
     public function tablaAlertasP(){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];

@@ -422,13 +422,13 @@ Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
 
     Route::get('/alertastempranas/rector','vistaRectorVicerector')->middleware('auth')->name('alertas.inicio.rector');
-    Route::post('/alertastempranas/tablaAlertasP','tablaAlertasP')->middleware('auth', 'admin')->name('alertas.tabla.programa');
-    Route::post('/alertastempranas/tablaAlertasFacultad','tablaAlertasFacultad')->middleware('auth', 'admin')->name('alertas.tabla.facultad');
-    Route::post('/alertastempranas/tablaAlertas','tablaAlertas')->middleware('auth', 'admin')->name('alertas.tabla');
+    Route::post('/alertastempranas/tablaAlertasP','tablaAlertasP')->middleware('auth')->name('alertas.tabla.programa');
+    Route::post('/alertastempranas/tablaAlertasFacultad','tablaAlertasFacultad')->middleware('auth')->name('alertas.tabla.facultad');
+    Route::post('/alertastempranas/tablaAlertas','tablaAlertas')->middleware('auth')->name('alertas.tabla');
 
-    Route::post('/alertastempranas/graficoAlertas','graficaAlertas')->middleware('auth', 'admin')->name('alertas.grafico');
-    Route::post('/alertastempranas/graficoAlertasFacultad','graficaAlertasFacultad')->middleware('auth', 'admin')->name('alertas.grafico.facultad');
-    Route::post('/alertastempranas/graficoAlertasPrograma','graficaAlertasProgramas')->middleware('auth', 'admin')->name('alertas.grafico.programa');
+    Route::post('/alertastempranas/graficoAlertas','graficaAlertas')->middleware('auth')->name('alertas.grafico');
+    Route::post('/alertastempranas/graficoAlertasFacultad','graficaAlertasFacultad')->middleware('auth')->name('alertas.grafico.facultad');
+    Route::post('/alertastempranas/graficoAlertasPrograma','graficaAlertasProgramas')->middleware('auth')->name('alertas.grafico.programa');
 
     Route::get('/alertastempranas/numeroalertas','numeroAlertas')->middleware('auth')->name('alertas.notificaciones');
     Route::get('/alertastempranas/numeroalertasfacultad','numeroAlertasFacultad')->middleware('auth')->name('alertas.notificacionesfacultad');

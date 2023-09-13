@@ -228,7 +228,10 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para obtener los cursos en riesgo de un alumno */
     Route::post('/home/Moodle/riesgoAsistencia', 'riesgoAsistencia')->middleware('auth')->name('moodle.riesgo.asistencia');
 
-    Route::get('/home/Moodle/probar', 'tablaCursos')->middleware('auth', 'admin')->name('moodle.probar');
+    // Route::get('/home/Moodle/probar', 'tablaCursos')->middleware('auth', 'admin')->name('moodle.probar');
+    
+    /**Ruta para generar la tabla de los cursos */
+    Route::post('/home/Moodle/probar', 'tablaCursos')->middleware('auth')->name('tabla.cursos');
 
 });
 

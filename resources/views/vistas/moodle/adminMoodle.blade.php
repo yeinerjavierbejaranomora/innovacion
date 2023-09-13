@@ -1506,7 +1506,7 @@
                                 data = data;
                             }
                                                                                 
-                            table = $('#tablaCursos').DataTable({
+                            tabla = $('#tablaCursos').DataTable({
                                 "data": datos,
                                 'pageLength': 10,
                                 "columns": [

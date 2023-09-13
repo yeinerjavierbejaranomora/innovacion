@@ -103,7 +103,7 @@
 
 }
 
-.tab-pane .fade .datos .active .show{
+div .show{
     padding-top: 22px;
     padding-bottom: 40px;
 }

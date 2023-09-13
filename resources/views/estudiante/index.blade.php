@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <div class="" id="taps_internos">
+    <div class="hidden" id="taps_internos">
             
         <div class="container">
 
@@ -533,6 +533,7 @@
                                 $tablas.appendTo("#"+tap+"");
 
                                 taps_internos=$("#taps_internos").clone();
+                                taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap+"");
 
                             

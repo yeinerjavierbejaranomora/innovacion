@@ -59,5 +59,8 @@
         }
     }
 </script>
-
-<span id="notificacionesCount" class="notificaciones-count"></span>       
+        <a  class="nav-link" href="{{ route('alertas.inicio') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>

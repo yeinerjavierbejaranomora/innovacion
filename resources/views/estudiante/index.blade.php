@@ -539,10 +539,11 @@ div .show{
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
+                                taps_internos=$("#taps_internos").clone();
                            
                                 $(document).find(tap).empty();
-
-                                $(document).find(tap).append($tablas);
+                                taps_internos.removeClass("hidden").appendTo(tap)
+                               
                            
                                 // taps_internos=$("#taps_internos").clone();
                                 // taps_internos.removeClass("hidden")

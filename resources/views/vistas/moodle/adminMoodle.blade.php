@@ -566,7 +566,7 @@
                 programas();
                 riesgo();
                 tablaCursos();
-                
+
                 function Contador() {
                     totalFacultades = $('#facultades input[type="checkbox"]').length;
                     totalProgramas = $('#programas input[type="checkbox"]').length;
@@ -827,7 +827,6 @@
                     periodosSeleccionados.forEach(function(periodo, index, array) {
                         array[index] = '2023' + periodo;
                     });
-                    console.log(periodosSeleccionados);
                     if (periodosSeleccionados.length > 0) {
                         if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                             var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
@@ -840,7 +839,6 @@
                         } else {
                             if ($('#facultades input[type="checkbox"]:checked').length > 0) {
                                 var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                                console.log('entra');
                                 programasSeleccionados = [];
                                 facultadesSeleccionadas = [];
                                 checkboxesSeleccionados.each(function() {
@@ -1490,6 +1488,7 @@
 
 
                 function tablaCursos(){
+                    console.log('entra');
                     var url = "{{ route('tabla.cursos') }}";
                     var data = '';
                     var datos = $.ajax({

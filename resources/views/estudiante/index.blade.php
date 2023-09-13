@@ -440,7 +440,7 @@
            
             $(document).on("click",".datos",function(){
 
-               
+                $(this).addClass('active')
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -549,6 +549,8 @@
                                     $tablas.children('tr:last').append($filaMateria);
                                     $("#"+tap+"").empty();
                                     $tablas.appendTo("#"+tap+"");
+                                    $("#"+tap+"").addClass(" active show")
+                                   
                         }
                     }
                 });

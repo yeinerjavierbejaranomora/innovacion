@@ -2,7 +2,7 @@
 @include('layout.header')
 
 <!-- incluimos el menu -->
-@include('menus.menu_admin')
+@include('menus.menu_rector')
 <style>
     #facultades {
         font-size: 14px;
@@ -1005,7 +1005,7 @@
         array[index] = '2023' + periodo;
     });
 
-    
+
 
     if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
         url = "{{ route('alertas.grafico.programa') }}",

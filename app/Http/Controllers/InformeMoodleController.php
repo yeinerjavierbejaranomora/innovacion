@@ -394,4 +394,21 @@ class InformeMoodleController extends Controller
         echo json_encode(array('data' => $datos));
     }
 
+    function tablaCursos(){
+
+        /**
+         * SELECT Nombrecurso, IdCurso, NombreTutor, COUNT(id), Grupo  FROM `datos_moodle`  
+            WHERE Nombrecurso LIKE '%Estadística descriptiva%'
+            GROUP BY IdCurso,Grupo 
+            ORDER BY IdCurso;
+         */
+
+         $consultaCursos = DB::table('datos_moodle')
+         ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT id AS TOTAL'))
+         ->groupBy('IdCurso')->get();
+
+        dd($consultaCursos);
+    }
+
+
 }

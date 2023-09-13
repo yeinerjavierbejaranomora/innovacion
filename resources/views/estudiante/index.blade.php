@@ -220,13 +220,7 @@ div .show{
                     <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
                         <div class="card-deck">
 
-                            <div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;">
-                                <div class="card-body">
-                                    
-                                    <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1 </span> </h5>
-                                    
-                                </div>
-                            </div>
+                          
                         
                             <div class="card card_historial materias">
                                 <div class="card-body">
@@ -521,15 +515,12 @@ div .show{
 
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
-                                       
 
-                                       
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr>').append(
-                                                $('<div class="card bg-primary">  <div class="card-body text-center"> <p class="card-text">').text(`Semestre ${currentSemestre}`)
-                                                .attr('colspan', 4)
-                                                );
+                                            $('<div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1'));
+                                              
                                         $tablas.append($filaSemestre);
                                     }
 
@@ -551,7 +542,6 @@ div .show{
                             const $filaMateria = $('<td>')
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
-                                    $("#"+tap+"").empty();
                                   
                                    
                         }

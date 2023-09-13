@@ -13,7 +13,7 @@ class AlertasTempranasController extends Controller
     }
 
     public function index(){
-        return view('vistas.admin.alertastempranas');
+        return view('alertastempranas.admin.alertastempranas');
     }
 
     public function tablaAlertasP(){

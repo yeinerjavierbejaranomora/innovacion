@@ -618,5 +618,120 @@
         });
         return periodosSeleccionados;
     }
+
+    // Grafico
+    var chartAlertas;
+        graficoAlertas();
+
+        function graficoAlertas() {
+            if (chartAlertas) { chartAlertas.destroy(); }
+        var url, data;
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
+
+        //console.log(facultadesSeleccionadas);
+
+        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+            url = "{{ route('alertas.grafico.programa') }}",
+                data = {
+                    programas: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                }
+        } else {
+
+                url = "{{ route('alertas.grafico.facultad') }}",
+                    data = {
+                        facultad: facultadesSeleccionadas,
+                        periodos: periodosSeleccionados
+                    }
+
+        }
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: url,
+            data: data,
+            success: function(data) {
+                try {
+                    data = jQuery.parseJSON(data);
+                } catch {
+                    data = data;
+                }
+                console.log(data);
+                var labels = data.map(function(elemento) {
+                    return elemento.codprograma;
+                });
+                var valores = data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                var maxValor = Math.max(...valores);
+                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                var yMax;
+                if (maxValor < 50) {
+                    yMax = 100;
+                } else if (maxValor < 100) {
+                    yMax = 120;
+                } else if (maxValor < 500) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                } else if (maxValor < 1000) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                } else {
+                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                }
+                // Crear el gráfico de barras
+                var ctx = document.getElementById('graficoAlertas').getContext('2d');
+                chartAlertas = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ],
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top',
+                            }
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                max: yMax,
+                                beginAtZero: true
+                            }
+                        },
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            datalabels: {
+                                color: 'black',
+                                font: {
+                                    weight: 'semibold'
+                                },
+                                formatter: Math.round
+                            },
+                            legend: {
+                                display: false,
+                            }
+                        },
+                    },
+                    plugins: [ChartDataLabels]
+                });
+                if (chartAlertas.data.labels.length == 0 && chartAlertas.data.datasets[0].data.length == 0) {
+                    $('#colAlertas').addClass('hidden');
+                } else {
+                    $('#colAlertas').removeClass('hidden');
+                }
+            }
+        });
+        }
 </script>
 @include('layout.footer')

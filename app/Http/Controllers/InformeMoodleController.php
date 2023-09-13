@@ -404,7 +404,7 @@ class InformeMoodleController extends Controller
          */
 
          $consultaCursos = DB::table('datos_moodle')
-         ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT id AS TOTAL'))
+         ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT(id) AS TOTAL'))
          ->groupBy('IdCurso')->get();
 
         dd($consultaCursos);

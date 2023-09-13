@@ -403,11 +403,25 @@ class InformeMoodleController extends Controller
             ORDER BY IdCurso;
          */
 
-         $consultaCursos = DB::table('datos_moodle')
+        $consultaCursos = DB::table('datos_moodle')
          ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT(id) AS TOTAL'))
          ->groupBy('IdCurso')->get();
 
-        dd($consultaCursos);
+        $idCursos = [];
+        
+        foreach($consultaCursos as $Curso){
+            $id = $Curso->IdCurso;
+
+        $consultaSello = DB::table('datos_moodle')
+        ->where('IdCurso', $id)
+        ->where('Sello', 'TIENE SELLO FINANCIERO')
+        ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
+        ->get();    
+
+        }
+
+
+        dd($consultaSello);
     }
 
 

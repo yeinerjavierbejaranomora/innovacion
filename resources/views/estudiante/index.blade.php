@@ -517,13 +517,13 @@
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
-                                $("#"+tap+"").empty();
+                                $(document).find("#"+tap).empty();
                                 // Agrega la tabla al documento
-                                $tablas.appendTo("#"+tap+"");
+                                $(document).find("#"+tap).append($tablas);
                                 console.log("#"+tap);
-                                // taps_internos=$('#taps_internos').clone();
-                                // taps_internos.removeClass('hidden').appendTo("#"+tap+"");
-                               
+                               taps_internos=$('#taps_internos').clone();
+                                taps_internos.removeClass('hidden')
+                                $(document).find("#"+tap).append( taps_internos);
                                 
                             
                         }

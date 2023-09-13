@@ -440,7 +440,7 @@
            
             $(document).on("click",".datos",function(){
 
-               
+                $(this).addClass('active')
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -537,7 +537,8 @@
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap+"");
-
+                                $tablas.appendTo("#"+tap+"");
+                                    $("#"+tap).addClass("active show")
                             
                         }
                         if(data.info=="sin_datos"){
@@ -548,7 +549,8 @@
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
                                     $("#"+tap+"").empty();
-                                    $tablas.appendTo("#"+tap+"");
+                                  
+                                   
                         }
                     }
                 });
@@ -676,9 +678,10 @@
                     });
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
-                    console.log(elemto)
-                    elemto.click();
-                    },2000);
+                        elemto.addClass("active")
+                        console.log(elemto)
+                        elemto.click();
+                    },1000);
                
                 }
 

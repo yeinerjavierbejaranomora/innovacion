@@ -420,6 +420,8 @@ Route::controller(EstudianteController::class)->group(function(){
 
 Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
+
+    Route::get('/alertastempranas','vistaRectorVicerector')->middleware('auth')->name('alertas.inicio.rector');
     Route::post('/alertastempranas/tablaAlertasP','tablaAlertasP')->middleware('auth', 'admin')->name('alertas.tabla.programa');
     Route::post('/alertastempranas/tablaAlertasFacultad','tablaAlertasFacultad')->middleware('auth', 'admin')->name('alertas.tabla.facultad');
     Route::post('/alertastempranas/tablaAlertas','tablaAlertas')->middleware('auth', 'admin')->name('alertas.tabla');

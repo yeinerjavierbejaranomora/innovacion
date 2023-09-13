@@ -2,11 +2,10 @@
 
 <style>
 
-    .card_historial{
-        border-radius: 2rem;
-    box-shadow: 5px 5px;
-    
-    }
+.card_historial {
+    border-radius: 2rem;
+    box-shadow: 5px 5px #4a4848;
+}
     #facultades {
         font-size: 14px;
     }
@@ -86,6 +85,16 @@
     .table td, .table th {
         border: 13px solid white;
     }
+    .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(255 255 255 / 66%);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #000;
+    background-color: darkgray;
+}
 
 .datos{
     color: white;
@@ -93,255 +102,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-<div class="hidden" id="taps_internos">
-            
-    <div class="container">
 
-        <div class="">
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-                <li class="nav-item">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
-                </li>
-            </ul>
-
-            <div class="tab-content" id="pills-tabContent">
-
-                <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
-                    <div class="card-deck">
-
-                        <div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;">
-                            <div class="card-body">
-                                
-                                <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1 </span> </h5>
-                                
-                            </div>
-                        </div>
-                    
-                        <div class="card card_historial materias">
-                            <div class="card-body">
-                                    <div class="" style=" display: flex;">
-                                        <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
-                                        </span>
-                                
-                                        <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
-                                            <b>Codigo:</b>
-                                            <br>
-                                            <span>
-                                            ABV32190
-                                            </span>
-                                        </h6>
-                                    </div>
-                                    <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
-                                    <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
-                                    <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
-                                
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="tab-pane fade" id="Viendo" role="tabpanel" >
-
-                    <div class="container">
-                        <div class="row">
-                            <table class="table table-striped">
-                                <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                    <tr style="border: 13px solid;">
-                                        <th scope="col">Codigo Materia</th>
-                                        <th scope="col">Materias</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Ciclo</th>
-                                        <th scope="col">Creditos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">ABV32190</th>
-                                        <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="proyectadas" role="tabpanel" >
-                    <div class="table-responsive-xl">
-                        <table class="table table-striped">
-                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                <tr style="border: 13px solid;">
-                                    <th scope="col">Codigo Materia</th>
-                                    <th scope="col">Materias</th>
-                                    <th scope="col">Semestre</th>
-                                    <th scope="col">Ciclo</th>
-                                    <th scope="col">Creditos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>  
-                </div>
-
-                <div class="tab-pane fade"  id="por_ver"  role="tabpanel" > 
-                    <table class="table table-striped">
-                        <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                            <tr style="border: 13px solid;">
-                                <th scope="col">Codigo Materia</th>
-                                <th scope="col">Materias</th>
-                                <th scope="col">Semestre</th>
-                                <th scope="col">Ciclo</th>
-                                <th scope="col">Creditos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">ABV32190</th>
-                                <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="tab-pane fade"   id="vistas" role="tabpanel" > 
-                    <table class="table table-striped">
-                        <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                            <tr style="border: 13px solid;">
-                                <th scope="col">Codigo Materia</th>
-                                <th scope="col">Materias</th>
-                                <th scope="col">Semestre</th>
-                                <th scope="col">Ciclo</th>
-                                <th scope="col">Creditos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">ABV32190</th>
-                                <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="tab-pane fade"  id="Historial"   role="tabpanel"> 
-                    <table class="table table-striped">
-                        <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                            <tr style="border: 13px solid;">
-                                <th scope="col">Codigo Materia</th>
-                                <th scope="col">Materias</th>
-                                <th scope="col">Semestre</th>
-                                <th scope="col">Ciclo</th>
-                                <th scope="col">Creditos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">ABV32190</th>
-                                <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-</div>
 
 
 <div id="content-wrapper" class="d-flex flex-column">
@@ -392,7 +153,6 @@
 
                 </div>
             </div>
-
             <div class="container-fluid hidden contenedor_interno" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
                 <div class="col-md-12">
 
@@ -414,9 +174,260 @@
             </div>
 
 
+
         
 
         </div>
+    </div>
+
+    <div class="" id="taps_internos">
+            
+        <div class="container">
+
+            <div class="">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+
+                    <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
+                        <div class="card-deck">
+
+                            <div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;">
+                                <div class="card-body">
+                                    
+                                    <h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1 </span> </h5>
+                                    
+                                </div>
+                            </div>
+                        
+                            <div class="card card_historial materias">
+                                <div class="card-body">
+                                        <div class="" style=" display: flex;">
+                                            <span class="bg-danger"style="border-bottom: 2px solid;border-top: 2px solid;order-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>                                            
+                                            </span>
+                                    
+                                            <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">
+                                                <b>Codigo:</b>
+                                                <br>
+                                                <span>
+                                                ABV32190
+                                                </span>
+                                            </h6>
+                                        </div>
+                                        <p class="card-text" id="" style="text-align: center;"><span>DIP SEG Y SALUD TRA RIES P VIR</span> </p>
+                                        <p class="card-text" id="" style="text-align: center;"><span><b>Calificación:</b> 4.5</span> </p>
+                                        <p class="card-text" id="" style="text-align: center;"><span> <b>Créditos:</b> 2</span> </p>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Viendo" role="tabpanel" >
+
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-striped">
+                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                        <tr style="border: 13px solid;">
+                                            <th scope="col">Codigo Materia</th>
+                                            <th scope="col">Materias</th>
+                                            <th scope="col">Semestre</th>
+                                            <th scope="col">Ciclo</th>
+                                            <th scope="col">Creditos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">ABV32190</th>
+                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="proyectadas" role="tabpanel" >
+                        <div class="table-responsive-xl">
+                            <table class="table table-striped">
+                                <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                    <tr style="border: 13px solid;">
+                                        <th scope="col">Codigo Materia</th>
+                                        <th scope="col">Materias</th>
+                                        <th scope="col">Semestre</th>
+                                        <th scope="col">Ciclo</th>
+                                        <th scope="col">Creditos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+
+                    <div class="tab-pane fade"  id="por_ver"  role="tabpanel" > 
+                        <table class="table table-striped">
+                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                <tr style="border: 13px solid;">
+                                    <th scope="col">Codigo Materia</th>
+                                    <th scope="col">Materias</th>
+                                    <th scope="col">Semestre</th>
+                                    <th scope="col">Ciclo</th>
+                                    <th scope="col">Creditos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">ABV32190</th>
+                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade"   id="vistas" role="tabpanel" > 
+                        <table class="table table-striped">
+                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                <tr style="border: 13px solid;">
+                                    <th scope="col">Codigo Materia</th>
+                                    <th scope="col">Materias</th>
+                                    <th scope="col">Semestre</th>
+                                    <th scope="col">Ciclo</th>
+                                    <th scope="col">Creditos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">ABV32190</th>
+                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade"  id="Historial"   role="tabpanel"> 
+                        <table class="table table-striped">
+                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
+                                <tr style="border: 13px solid;">
+                                    <th scope="col">Codigo Materia</th>
+                                    <th scope="col">Materias</th>
+                                    <th scope="col">Semestre</th>
+                                    <th scope="col">Ciclo</th>
+                                    <th scope="col">Creditos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">ABV32190</th>
+                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <script>
@@ -520,10 +531,10 @@
                                 $("#"+tap+"").empty();
                                 // Agrega la tabla al documento
                                 $tablas.appendTo("#"+tap+"");
-                                taps_internos=$('#taps_internos').clone();
-                                taps_internos.removeClass('hidden')
-                                ("#"+tap+"").append(taps_internos);
-                                
+
+                                taps_internos=$("#taps_internos").clone();
+                                taps_internos.appendTo("#"+tap+"");
+
                             
                         }
                         if(data.info=="sin_datos"){

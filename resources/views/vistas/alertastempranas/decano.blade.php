@@ -671,11 +671,6 @@
         if ($('.periodos input[type="checkbox"]:checked').length) {
             $('#programas').empty();
             var formData = new FormData();
-            for (var key in facultadesSeleccionadas) {
-                if (facultadesSeleccionadas.hasOwnProperty(key)) {
-                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
-                }
-            }
             var periodosSeleccionados = getPeriodos();
             var periodos = periodosSeleccionados.map(item => item.slice(-2));
 

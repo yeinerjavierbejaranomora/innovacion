@@ -405,21 +405,52 @@ class InformeMoodleController extends Controller
 
         $consultaCursos = DB::table('datos_moodle')
          ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT(id) AS TOTAL'))
-         ->groupBy('IdCurso')->get();
-
-        $idCursos = [];
+         ->groupBy('IdCurso')->toArray();
         
-        foreach($consultaCursos as $Curso){
-            $id = $Curso->IdCurso;
+        $sello = [];
+        $ASP = [];
+        $inactivos = [];
 
-        $consultaSello[] = DB::table('datos_moodle')
+        foreach($consultaCursos as $Curso){
+        $id = $Curso->IdCurso;
+        $total = $Curso->TOTAL;
+
+        $datos[$id] = [$Curso->Nombrecurso, $Curso->NombreTutor, $Curso->TOTAL];    
+
+        $consultaSello = DB::table('datos_moodle')
             ->where('IdCurso', $id)
             ->where('Sello', 'TIENE SELLO FINANCIERO')
-            ->select('IdCurso','Nombrecurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
             ->get();
+
+        $sello[$id] = $consultaSello[0]->TOTAL;    
+
+        $consultaASP = DB::table('datos_moodle')
+            ->where('IdCurso', $id)
+            ->where('Sello', 'TIENE RETENCION')
+            ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->get();
+
+        $ASP[$id] = $consultaASP[0]->TOTAL;
+        $inactivos[$id] = $total - $sello[$id] - $ASP[$id];    
         }
 
-        dd($consultaSello);
+        foreach ($estudiantes as $key => $value) {
+            $data[$key] = [
+                'nombreMateria' => isset($nombre[$key]) ? $nombre[$key] : 0,
+                'Total' => $value,
+                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
+                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            ];
+        }
+
+        foreach ($consultaCursos as $key){
+            echo 'entra';
+        }
+
+
+
+        dd($Data);
     }
 
 

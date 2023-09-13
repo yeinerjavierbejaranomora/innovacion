@@ -139,7 +139,8 @@
             </div>
             <div class="container-fluid" >
                 <div class="col-md-12">
-                    <ul class="nav nav-tabs" id="myTabs">
+
+                    <ul class="nav nav nav-pills" id="myTabs">
                         <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
 

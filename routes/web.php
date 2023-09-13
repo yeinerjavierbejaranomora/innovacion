@@ -233,9 +233,9 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /**Ruta para generar la tabla de los cursos */
     Route::post('/home/Moodle/tablaCursos', 'tablaCursos')->middleware('auth')->name('tabla.cursos');
 
-    Route::post('/home/Moodle/tablaCursosFacultad', 'tablaCursoFacultad')->middleware('auth')->name('tabla.cursos.facultad');
+    Route::post('/home/Moodle/tablaCursosFacultad', 'tablaCursosFacultad')->middleware('auth')->name('tabla.cursos.facultad');
 
-    Route::post('/home/Moodle/tablaCursosPrograma', 'tablaCursosPrograma')->middleware('auth')->name('tabla.cursos.programa');
+    Route::post('/home/Moodle/tablaCursosProgramas', 'tablaCursosProgramas')->middleware('auth')->name('tabla.cursos.programa');
 
 });
 

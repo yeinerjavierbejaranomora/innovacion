@@ -416,7 +416,7 @@ class InformeMoodleController extends Controller
         $consultaSello = DB::table('datos_moodle')
             ->where('IdCurso', $id)
             ->where('Sello', 'TIENE SELLO FINANCIERO')
-            ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->select(DB::raw('COUNT(id) AS TOTAL'))
             ->get();
 
         $sello = $consultaSello[0]->TOTAL;    
@@ -424,12 +424,16 @@ class InformeMoodleController extends Controller
         $consultaASP = DB::table('datos_moodle')
             ->where('IdCurso', $id)
             ->where('Sello', 'TIENE RETENCION')
-            ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->select(DB::raw('COUNT(id) AS TOTAL'))
             ->get();
 
         $ASP = $consultaASP[0]->TOTAL;
         $inactivos = $total - $sello - $ASP; 
             
+        $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();    
+
+        $grupo = $consultaGrupos[0]->TOTAL;
+
         $datos[] = [
             'NombreCurso' => $Curso->Nombrecurso,
             'id' => $id,
@@ -438,6 +442,7 @@ class InformeMoodleController extends Controller
             'Sello' => $sello,
             'ASP' => $ASP,
             'Inactivo' => $inactivos,
+            'Cursos' => $grupo
         ];
         
         }

@@ -452,7 +452,8 @@ div .show{
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
-             
+                tap="#"+tap;
+             console.log(tap)
                 var formData = new FormData();
                 formData.append('codBanner',idbanner);
                 formData.append('programa',programa);
@@ -538,15 +539,15 @@ div .show{
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
-                                $("#"+tap).empty();
+                                $(tap).empty();
 
-                                  $("#"+tap).append( $tablas);
+                                $(document).find(tap).append( $tablas);
                            
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                $("#"+tap).append( taps_internos);
+                                $(document).find("#"+tap).append( taps_internos);
 
-                                $("#"+tap).addClass("active show")
+                              
                             
                         }
                         if(data.info=="sin_datos"){
@@ -687,7 +688,9 @@ div .show{
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
                         elemto.addClass("active")
-                        console.log(elemto)
+                        tap=elemto.attr('data-tap')
+                        $(document).find("#"+tap).addClass('active show');
+                     
                         elemto.click();
                     },700);
                

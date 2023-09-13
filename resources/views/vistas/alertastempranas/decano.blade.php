@@ -139,7 +139,94 @@
     }
 
 </style>
+<style>
+    .checkbox-wrapper input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+    }
 
+    .checkbox-wrapper .cbx {
+        margin: auto;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .checkbox-wrapper .cbx span {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        transform: scale(1);
+        vertical-align: middle;
+        border: 1px solid #f6c23e;
+        background: #FFFFFF;
+        transition: all 0.2s ease;
+    }
+
+    .checkbox-wrapper .cbx span:first-child svg {
+        position: absolute;
+        top: 3px;
+        left: 2px;
+        fill: none;
+        stroke: #FFFFFF;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 16px;
+        stroke-dashoffset: 16px;
+        transition: all 0.3s ease;
+        transition-delay: 0.1s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #f6c23e;
+        display: block;
+        transform: scale(0);
+        opacity: 1;
+        border-radius: 50%;
+    }
+
+    .checkbox-wrapper .cbx span:last-child {
+        padding-left: 8px;
+    }
+
+    .checkbox-wrapper .cbx:hover span:first-child {
+        border-color: #f6c23e;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child {
+        background: #f6c23e;
+        border-color: #f6c23e;
+        animation: wave 0.4s ease;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child svg {
+        stroke-dashoffset: 0;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child:before {
+        transform: scale(3.5);
+        opacity: 0;
+        transition: all 0.6s ease;
+    }
+
+    @keyframes wave {
+        50% {
+            transform: scale(0.9);
+        }
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -206,9 +293,18 @@
                                                     <button class="btn btn-link text-light">
                                                         For. Contínua
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosContinua" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosContinua" type="checkbox" checked>
+                                                        <label class="cbx" for="todosContinua"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>

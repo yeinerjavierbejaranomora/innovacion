@@ -338,14 +338,14 @@
 
             </div>
 
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center mb-3">
                 <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-10">
+            <div class="row justify-content-center mt-3">
+                <div class="col-11">
                     <div class="card">
                         <div class="card-header text-center">
                             <ul class="nav nav-tabs card-header-tabs">
@@ -523,6 +523,22 @@
             $(document).ready(function() {
 
                 var tabla = <?php echo json_encode($tabla); ?>;
+
+                $(".content").hide();
+                $("#ausentismo").show();
+
+                $(".menuMoodle").click(function() {
+                    $(".menuMoodle").removeClass('active');
+                    $(".content").hide();
+
+                    var target = $(this).attr("href").substring(1);
+
+                    $("#" + target).show();
+                    $("#nav" + target).addClass('active');
+
+                    return false;
+                });
+
 
                 // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
                 $(document).ajaxStart(function() {

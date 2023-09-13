@@ -682,7 +682,7 @@
                     });
                 });
 
-                /**
+                /*
                  * Método para verificar los periodos seleccionados
                  */
                 function getPeriodos() {
@@ -745,10 +745,9 @@
                     }
                 });
 
-                /**
+                /*
                  * Botones
                  */
-
                 $("#todosContinua").change(function() {
                     if ($(this).is(":checked")) {
                         $("#Continua input[type='checkbox']").prop("checked", true);
@@ -937,7 +936,7 @@
                 var chartRiesgoMedio;
                 var chartRiesgoBajo;
 
-                /**
+                /*
                  * Método para obtener gráficos de riesgo alto, medio y bajo 
                  * */
                 function riesgo() {
@@ -1143,7 +1142,7 @@
                     });
                 }
 
-                /** 
+                /**
                  * Botones de Riesgo 
                  */
                 $('#botonAlto, #botonMedio, #botonBajo').on('click', function(e) {
@@ -1153,7 +1152,8 @@
 
                 var chartRiesgoIngreso;
                 var chartRiesgoNotas;
-                /**
+
+                /*
                  * Método para obtner los datos de un alumno según su id Banner y llena el Modal
                  */
                 function dataAlumno(id) {
@@ -1210,7 +1210,7 @@
                     graficosModal(id);
                 }
 
-                /**
+                /*
                  * Método que grafica los datos en el Modal
                  */
                 function graficosModal(id) {
@@ -1383,7 +1383,7 @@
 
                 }
 
-                /**
+                /*
                  * Método para destruir DataTable
                  */
                 function destruirTabla() {
@@ -1409,7 +1409,8 @@
                         $('#tablaCursos tfooter').empty();
                     }
                 }
-                /**
+
+                /*
                  * Método para construir dataTable, según el tipo de riesgo
                  */
                 function dataTable(riesgo) {
@@ -1502,8 +1503,26 @@
                 function tablaCursos(){
                     destruirTablaCurso();
                     console.log('entra');
-                    var url = "{{ route('tabla.cursos') }}";
-                    var data = '';
+                    var data;
+
+                    if (programasSeleccionados.length > 0 && programasSeleccionados.length <totalProgramas) {
+                        var url = "{{ route('moodle.riesgo.programa') }}",
+                            data = {
+                                programa: programasSeleccionados,
+                                periodos: periodosSeleccionados
+                            }
+                    } else {
+                        if (facultadesSeleccionadas.length > 0) {
+                            var url = "{{ route('moodle.riesgo.facultad') }}",
+                                data = {
+                                    idfacultad: facultadesSeleccionadas,
+                                    periodos: periodosSeleccionados
+                                }
+                        } else {
+                            var url = "{{ route('tabla.cursos') }}";
+                                data = '';
+                        }
+                    }
                     $('#tablaCursos').empty();
                     var mensaje = 'Cargando, por favor espere...';
                     $('#tablaCursos').append(mensaje);
@@ -1574,7 +1593,7 @@
                     });
                 }
 
-                /**
+                /*
                  * Método para limpiar información del Modal
                  */
                 function limpiarModal() {

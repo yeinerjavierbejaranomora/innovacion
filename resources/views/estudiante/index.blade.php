@@ -678,9 +678,10 @@
                     });
                     window.setTimeout(function(){
                         elemto = $(document).find('.datos').first()
-                    console.log(elemto)
-                    elemto.click();
-                    },2000);
+                        elemto.addClass("active")
+                        console.log(elemto)
+                        elemto.click();
+                    },1000);
                
                 }
 

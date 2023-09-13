@@ -140,7 +140,7 @@
 
                 </div>
             </div>
-            <div class="container-fluid" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
+            <div class="container-fluid hidden contenedor_interno" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
                 <div class="col-md-12">
 
                     <ul class="nav nav nav-pills" id="myTabs">
@@ -613,6 +613,7 @@
                 },
                 success: function(data){
                     console.log(data);
+                    $('. contenedor_interno'),removeClass('hidden');
                     $('#myTabs').empty();
                     $('#codigo').prop('disabled',false);
                     data.forEach(function(tab, index) {

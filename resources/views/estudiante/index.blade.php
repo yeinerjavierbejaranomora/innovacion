@@ -549,7 +549,7 @@
                                     $tablas.children('tr:last').append($filaMateria);
                                     $("#"+tap+"").empty();
                                     $tablas.appendTo("#"+tap+"");
-                                    $("#"+tap+"").addClass(" active show")
+                                    $("#"+tap).addClass("active")
                                    
                         }
                     }

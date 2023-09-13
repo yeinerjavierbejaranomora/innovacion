@@ -422,6 +422,7 @@ Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas','index')->middleware('auth', 'admin')->name('alertas.inicio');
 
     Route::get('/alertastempranas/rector','vistaRectorVicerector')->middleware('auth')->name('alertas.inicio.rector');
+    Route::get('/alertastempranas/decano','vistaRectorDecano')->middleware('auth')->name('alertas.inicio.decano');
     Route::post('/alertastempranas/tablaAlertasP','tablaAlertasP')->middleware('auth')->name('alertas.tabla.programa');
     Route::post('/alertastempranas/tablaAlertasFacultad','tablaAlertasFacultad')->middleware('auth')->name('alertas.tabla.facultad');
     Route::post('/alertastempranas/tablaAlertas','tablaAlertas')->middleware('auth')->name('alertas.tabla');

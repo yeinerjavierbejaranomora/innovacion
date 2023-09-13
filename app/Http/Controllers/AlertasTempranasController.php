@@ -25,6 +25,10 @@ class AlertasTempranasController extends Controller
         endif;
     }
 
+    public function vistaRectorDecano(){
+        return view('vistas.alertastempranas.decano');
+    }
+
     public function tablaAlertasP(){
         $periodos = $_POST['periodos'];
         $programas = $_POST['programas'];

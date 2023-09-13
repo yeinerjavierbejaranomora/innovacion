@@ -2,11 +2,10 @@
 
 <style>
 
-    .card_historial{
-        border-radius: 2rem;
-    box-shadow: 5px 5px;
-    
-    }
+.card_historial {
+    border-radius: 2rem;
+    box-shadow: 5px 5px #4a4848;
+}
     #facultades {
         font-size: 14px;
     }

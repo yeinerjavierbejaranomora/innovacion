@@ -228,6 +228,8 @@ Route::controller(InformeMoodleController::class)->group(function () {
     /** Ruta para obtener los cursos en riesgo de un alumno */
     Route::post('/home/Moodle/riesgoAsistencia', 'riesgoAsistencia')->middleware('auth')->name('moodle.riesgo.asistencia');
 
+    Route::get('/home/Moodle/probar', 'tablaCursos')->middleware('auth', 'admin')->name('moodle.probar');
+
 });
 
 Route::controller(MafiController::class)->group(function () {

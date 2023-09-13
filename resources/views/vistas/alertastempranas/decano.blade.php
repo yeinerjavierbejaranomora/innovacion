@@ -139,7 +139,94 @@
     }
 
 </style>
+<style>
+    .checkbox-wrapper input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+    }
 
+    .checkbox-wrapper .cbx {
+        margin: auto;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .checkbox-wrapper .cbx span {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        transform: scale(1);
+        vertical-align: middle;
+        border: 1px solid #f6c23e;
+        background: #FFFFFF;
+        transition: all 0.2s ease;
+    }
+
+    .checkbox-wrapper .cbx span:first-child svg {
+        position: absolute;
+        top: 3px;
+        left: 2px;
+        fill: none;
+        stroke: #FFFFFF;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 16px;
+        stroke-dashoffset: 16px;
+        transition: all 0.3s ease;
+        transition-delay: 0.1s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .checkbox-wrapper .cbx span:first-child:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #f6c23e;
+        display: block;
+        transform: scale(0);
+        opacity: 1;
+        border-radius: 50%;
+    }
+
+    .checkbox-wrapper .cbx span:last-child {
+        padding-left: 8px;
+    }
+
+    .checkbox-wrapper .cbx:hover span:first-child {
+        border-color: #f6c23e;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child {
+        background: #f6c23e;
+        border-color: #f6c23e;
+        animation: wave 0.4s ease;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child svg {
+        stroke-dashoffset: 0;
+    }
+
+    .checkbox-wrapper .inp-cbx:checked+.cbx span:first-child:before {
+        transform: scale(3.5);
+        opacity: 0;
+        transition: all 0.6s ease;
+    }
+
+    @keyframes wave {
+        50% {
+            transform: scale(0.9);
+        }
+    }
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -206,9 +293,18 @@
                                                     <button class="btn btn-link text-light">
                                                         For. Contínua
                                                     </button>
-                                                    <div class="custom-checkbox">
+                                                    {{-- <div class="custom-checkbox">
                                                         <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
                                                         <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
+                                                    </div> --}}
+                                                    <div class="checkbox-wrapper">
+                                                        <label for="todosContinua" style="font-size:12px;">Selec. Todos</label>
+                                                        <input class="inp-cbx" id="todosContinua" type="checkbox" checked>
+                                                        <label class="cbx" for="todosContinua"><span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg></span><span style="display: none;">Selec. Todos</span>
+                                                        </label>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -312,324 +408,6 @@
                 </button>
             </div>
 
-        </div>
-
-        <div class="row justify-content-start mt-5 columnas">
-            <div class="col-6 text-center " id="colSelloFinanciero">
-                <div class="card shadow mb-6 graficos">
-                <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes proyectados o programados." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="activos"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colRetencion">
-                <div class="card shadow mb-6 graficos">
-                <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes proyectados o programados que su estado financiero se encuentra en retención." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="retencion"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colPrimerIngreso">
-                <div class="card shadow mb-6 graficos">
-                <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes proyectados o programados de primer ingreso y transferentes." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="primerIngreso"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colAntiguos">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body center-chart fondocharts">
-                        <canvas id="antiguos"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colTipoEstudiantes">
-                <div class="card shadow mb-6 graficosBarra">
-                    <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="tipoEstudiante"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalTiposEstudiantes" class="btn botonModal" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colOperadores">
-                <div class="card shadow mb-6 graficosBarra">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="operadores" style="height: 400px;"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a href="" id="botonModalOperador" class="btn botonModal" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 text-center " id="colProgramas">
-                <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-8 d-flex align-items-center justify-content-center">
-                                <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                            </div>
-                            <div class="col-2 text-right">
-                                <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'. Adicionalente permite ver un informe detallad" data-placement="right">
-                                    <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body fondocharts">
-                        <canvas id="estudiantesProgramas"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <div class="mr-3">
-                            <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
-                        </div>
-                        <div class="ml-1">
-                            <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card shadow mt-4 hidden" id="colTabla">
-            <!-- Card Body -->
-            <div class="card-body">
-                <!--Datatable-->
-                <div class="table">
-                    <table id="datatable" class="display" style="width:100%">
-                    </table>
-                </div>
-            </div>
-            <br>
-        </div>
-
-        <br>
-        <!-- Modal Todos los Tipos de estudiantes -->
-        <div class="modal fade" id="modalTiposEstudiantes" tabindex="-1" role="dialog" aria-labelledby="modalTiposEstudiantes" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Tipos de estudiantes</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="tiposEstudiantesTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Todos los Operadores de la Ibero -->
-        <div class="modal fade" id="modalOperadoresTotal" tabindex="-1" role="dialog" aria-labelledby="modalOperadoresTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Operadores</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="operadoresTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Todos los Programas de la Ibero -->
-        <div class="modal fade" id="modalProgramasTotal" tabindex="-1" role="dialog" aria-labelledby="modalProgramasTotal" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="title">Programas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="programasTotal"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Tabla Malla Curricular -->
-        <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!--Datatable-->
-                        <div class="table">
-                            <table id="mallaCurricular" class="display" style="width:100%">
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Estudiantes planeados -->
-        <div class="modal fade" id="modalEstudiantesPlaneados" tabindex="-1" role="dialog" aria-labelledby="modalEstudiantesPlaneados" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloEstudiantes"><strong></strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!--Datatable-->
-                        <div class="table">
-                            <table id="estudiantesPlaneados" class="display" style="width:100%">
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Buscar estudiante -->
-        <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title" id="tituloBuscar"><strong>Buscar estudiante</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    <form class="form-inline" id="formBuscar">
-                        @csrf
-                        <h5>Id banner del estudiante</h5>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="idBanner" class="sr-only">Id Banner</label>
-                            <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
-                        </div>
-                        <button type="submit" class="btn botonModal mb-2">Buscar</button>
-                    </form>
-                        <!--Datatable con id Banner del estudiante-->
-                        <div class="table" id="divTablaBuscador">
-                            <table id="buscarEstudiante" class="display" style="width:100%">
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>

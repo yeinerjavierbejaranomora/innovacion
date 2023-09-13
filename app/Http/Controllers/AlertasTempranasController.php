@@ -133,6 +133,7 @@ class AlertasTempranasController extends Controller
         $idPrograma = $_GET['id_programa'];
         $idPrograma = trim($idPrograma,';');
         $idProgramas = explode(';',$idPrograma);
-        var_dump($idProgramas);die();
+        $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$idProgramas)->get();
+        var_dump($numeroAlertas);die();
     }
 }

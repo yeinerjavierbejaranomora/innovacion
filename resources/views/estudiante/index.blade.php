@@ -144,7 +144,9 @@
                     </ul>
 
                     
-
+                    <div class="tab-content" id="tabContent">
+                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
+                    </div>
           
 
                 </div>
@@ -155,9 +157,7 @@
             </div>
 
 
-            <div class="tab-content" id="tabContent">
-                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
-                    </div>
+          
 
                     {{-- <div class="row justify-content-center mt-5" id="">
                             <div class="col-10 text-center" id="colSelloFinanciero">

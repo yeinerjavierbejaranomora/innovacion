@@ -504,8 +504,8 @@
         facultadesUsuario();
         periodos();
         programas();
+        Contador();
         function Contador() {
-            totalFacultades = $('#facultades input[type="checkbox"]').length;
             totalProgramas = $('#programas input[type="checkbox"]').length;
             totalPeriodos = $('#programas input[type="checkbox"]').length;
         }

@@ -17,6 +17,7 @@ class AlertasTempranasController extends Controller
     }
 
     public function vistaRectorVicerector(){
+        var_dump(auth()->user());die();
         return view('vistas.alertastempranas.rector');
     }
 

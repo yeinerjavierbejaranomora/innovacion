@@ -86,6 +86,16 @@
     .table td, .table th {
         border: 13px solid white;
     }
+    .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(255 255 255 / 66%);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #000;
+    background-color: darkgray;
+}
 
 .datos{
     color: white;

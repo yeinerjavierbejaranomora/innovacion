@@ -59,6 +59,5 @@
         }
     }
 </script>
-<i class="fa-solid fa-bell"></i>
-<span>Alertas Tempranas<br>(Programación-Planeación)</span>
+
 <span id="notificacionesCount" class="notificaciones-count"></span>       

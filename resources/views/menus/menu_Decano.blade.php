@@ -49,7 +49,7 @@
     </li>
     <li class="nav-item" id="menuAlertas">
         {{-- {{ auth()->user(); }} --}}
-        @include('layout.alertas');
+        @include('layout.alertas')
     </li>
 
     <!-- Divider -->

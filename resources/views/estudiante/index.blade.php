@@ -671,7 +671,9 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                    $(document).find('.datos').first().click();
+                  elemto = $(document).find('.datos').first()
+                    console.log(elemto)
+                    elemto.click();
                 }
             });
         }

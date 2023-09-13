@@ -141,7 +141,7 @@ class AlertasTempranasController extends Controller
             array_push($programas,$programa->codprograma);
         endforeach;
         //var_dump($programas);die();
-        $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$idProgramas)->get();
+        $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$programas)->get();
         var_dump($numeroAlertas[0]->total_alertas);die();
         return $numeroAlertas[0]->total_alertas;
     }

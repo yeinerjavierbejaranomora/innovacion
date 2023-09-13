@@ -485,7 +485,7 @@ div .show{
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<div class="container style="max-width: 100%;"><div class="row"> <table>');
+                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="row"> <table>');
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 

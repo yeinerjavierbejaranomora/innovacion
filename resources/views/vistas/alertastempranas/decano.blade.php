@@ -971,5 +971,47 @@
 
             });
         }
+
+
+        $('#generarReporte').on('click', function(e) {
+        e.preventDefault();
+        Contador();
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
+        if (periodosSeleccionados.length > 0) {
+            if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
+                programasSeleccionados = [];
+                checkboxesProgramas.each(function() {
+                    programasSeleccionados.push($(this).val());
+                });
+                graficoAlertas();
+            }
+            destruirTable();
+            Contador();
+            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados.forEach(function(periodo, index, array) {
+                array[index] = '2023' + periodo;
+            });
+            //var periodos = getPeriodos();
+            dataTable(periodosSeleccionados);
+        } else {
+            programasSeleccionados = [];
+            facultadesSeleccionadas = [];
+            periodosSeleccionados = [];
+        }
+    });
+
+    function destruirTable() {
+        $('#colTabla').addClass('hidden');
+        if ($.fn.DataTable.isDataTable('#datatable')) {
+            $('#datatable').dataTable().fnDestroy();
+            $('#datatable tbody').empty();
+            $("#datatable tbody").off("click", "button.malla");
+            $("#datatable tbody").off("click", "button.estudiantes");
+        }
+    }
 </script>
 @include('layout.footer')

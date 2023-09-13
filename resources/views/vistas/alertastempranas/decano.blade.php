@@ -777,7 +777,7 @@
             array[index] = '2023' + periodo;
         });
 
-
+        console.log(facultadesSeleccionadas);
 
         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
             url = "{{ route('alertas.grafico.programa') }}",

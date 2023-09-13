@@ -689,7 +689,7 @@
                         elemto.addClass("active")
                         console.log(elemto)
                         elemto.click();
-                    },500);
+                    },700);
                
                 }
 

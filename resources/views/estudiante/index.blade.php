@@ -103,7 +103,7 @@
 
 }
 
-.tab-pane .fade .datos .active .show{
+div .show{
     padding-top: 22px;
     padding-bottom: 40px;
 }
@@ -448,7 +448,7 @@
            
             $(document).on("click",".datos",function(){
 
-                $(this).addClass('active')
+             
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -545,7 +545,7 @@
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap);
-                                $tablas.appendTo("#"+tap+"");
+                                $tablas.appendTo("#"+tap);
                                 $("#"+tap).addClass("active show")
                             
                         }

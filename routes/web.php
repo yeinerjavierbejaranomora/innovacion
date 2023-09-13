@@ -231,7 +231,7 @@ Route::controller(InformeMoodleController::class)->group(function () {
     // Route::get('/home/Moodle/probar', 'tablaCursos')->middleware('auth', 'admin')->name('moodle.probar');
     
     /**Ruta para generar la tabla de los cursos */
-    Route::post('/home/Moodle/probar', 'tablaCursos')->middleware('auth')->name('tabla.cursos');
+    Route::post('/home/Moodle/tablaCursos', 'tablaCursos')->middleware('auth')->name('tabla.cursos');
 
 });
 

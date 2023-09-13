@@ -565,7 +565,8 @@
                 facultades();
                 programas();
                 riesgo();
-
+                tablaCursos();
+                
                 function Contador() {
                     totalFacultades = $('#facultades input[type="checkbox"]').length;
                     totalProgramas = $('#programas input[type="checkbox"]').length;

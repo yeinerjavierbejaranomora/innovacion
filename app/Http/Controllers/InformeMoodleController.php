@@ -415,9 +415,7 @@ class InformeMoodleController extends Controller
 
         foreach($consultaCursos as $Curso){
         $id = $Curso->IdCurso;
-        $total = $Curso->TOTAL;
-
-        $datos[$id] = [$Curso->Nombrecurso, $Curso->NombreTutor, $Curso->TOTAL];    
+        $total = $Curso->TOTAL;  
 
         $consultaSello = DB::table('datos_moodle')
             ->where('IdCurso', $id)
@@ -438,11 +436,14 @@ class InformeMoodleController extends Controller
         }
 
         foreach ($consultaCursos as $key => $value) {
-            $datOS[$key] = [
-                'nombreMateria' => isset($nombre[$key]) ? $nombre[$key] : 0,
-                'Total' => $value,
-                'Sello' => isset($estudiantesSello[$key]) ? $estudiantesSello[$key] : 0,
-                'Retencion' => isset($estudiantesRetencion[$key]) ? $estudiantesRetencion[$key] : 0,
+            $datos[$key] = [
+                'NombreCurso' =>$value->Nombrecurso,
+                'id' => $value,
+                'Tutor' => $value->NombreTutor,
+                'Total'=> $value->TOTAL,
+                'Sello' => isset($sello[$key]) ? $sello[$key] : 0,
+                'ASP' => isset($ASP[$key]) ? $ASP[$key] : 0,
+                'Inactivo' => isset($inactivos[$key]) ? $inactivos[$key] : 0,
             ];
         }
 

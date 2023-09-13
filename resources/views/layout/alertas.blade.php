@@ -43,7 +43,7 @@
             })
         }
 
-        if (id_rol == 2) {
+        if (id_rol == 2 || id_rol == 3 || id_rol == 4) {
             var id_programa = '{{ auth()->user()->programa }}';
             $.get("{{ route('alertas.notificacionesprograma') }}",{
                 id_programa:id_programa

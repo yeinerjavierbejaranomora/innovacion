@@ -448,12 +448,12 @@ div .show{
            
             $(document).on("click",".datos",function(){
 
-             
+             $(document).find("#tabContent div .active ").removeClass("active show")
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
                 tap="#"+tap;
-             console.log(tap)
+                     console.log(tap)
                 var formData = new FormData();
                 formData.append('codBanner',idbanner);
                 formData.append('programa',programa);
@@ -541,11 +541,11 @@ div .show{
 
                                 $(tap).empty();
 
-                                $(document).find(tap).append( $tablas);
+                                $(tap).append($tablas);
                            
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                $(document).find("#"+tap).append( taps_internos);
+                                $(tap).append( taps_internos);
 
                               
                             

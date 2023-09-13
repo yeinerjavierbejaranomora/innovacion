@@ -545,7 +545,7 @@ div .show{
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap);
-                                $tablas.appendTo("#"+tap+"");
+                                $tablas.appendTo("#"+tap);
                                 $("#"+tap).addClass("active show")
                             
                         }

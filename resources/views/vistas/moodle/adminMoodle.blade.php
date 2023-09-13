@@ -1491,6 +1491,9 @@
                     console.log('entra');
                     var url = "{{ route('tabla.cursos') }}";
                     var data = '';
+                    $('#tablaCursos').empty();
+                    var mensaje = 'Cargando, por favor espere...';
+                    $('#tablaCursos').append(mensaje);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1505,9 +1508,8 @@
                             catch{
                                 data = data;
                             }
-
                             console.log(data);
-                                                                                
+                            $('#tablaCursos').empty();                                                      
                             tabla = $('#tablaCursos').DataTable({
                                 "data": data,
                                 'pageLength': 10,

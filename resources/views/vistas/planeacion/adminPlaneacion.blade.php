@@ -2547,28 +2547,6 @@
                             data = data;
                         }
                         console.log(data);
-
-                        // var estudiantes = data.estudiantes;
-                        // var nombres = data.nombres;
-                        // var nombreCompleto;
-                        // var dataTableData = [];
-
-                        // for (var i = 0; i < estudiantes.length; i++) {
-                        //     var estudiante = estudiantes[i];
-                        //     var nombre = nombres[i];
-
-                        //     console.log(estudiante.codBanner, nombre.Nombre);
-
-                        //     var rowData = [
-                        //     estudiante.codBanner,
-                        //     nombre.Nombre,
-                        //     nombre.Apellido,
-                        //     estudiante.codMateria,
-                        //     estudiante.curso
-                        // ];
-                        //     dataTableData.push(rowData);
-                        // }
-
                         $('#estudiantesPlaneados').empty();
                         tabla = $('#estudiantesPlaneados').DataTable({
                             "dom": 'Bfrtip',

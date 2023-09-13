@@ -430,7 +430,7 @@ class InformeMoodleController extends Controller
         $ASP = $consultaASP[0]->TOTAL;
         $inactivos = $total - $sello - $ASP; 
             
-        $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo');    
+        $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();    
 
         $grupo = $consultaGrupos[0]->TOTAL;
 

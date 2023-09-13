@@ -761,7 +761,7 @@
             facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
         }
 
-
+        var chartAlertas;
         graficoAlertas();
 
         function graficoAlertas() {

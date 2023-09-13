@@ -678,10 +678,12 @@
                
                 }
 
-                elemto = $(document).find('.datos').first()
+            });
+
+            
+            elemto = $(document).find('.datos').first()
                     console.log(elemto)
                     elemto.click();
-            });
         }
 
 

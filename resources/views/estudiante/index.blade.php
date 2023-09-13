@@ -539,6 +539,8 @@ div .show{
                                     $tablas.children('tr:last').append($filaMateria);
                                 });
 
+                                $tap=$(document).find(tap)
+                                console.log($tap);
                                 $(tap).empty();
 
                                 $(tap).append($tablas);

@@ -674,16 +674,18 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                   
+                    window.setTimeout(function(){
+                        elemto = $(document).find('.datos').first()
+                    console.log(elemto)
+                    elemto.click();
+                    },2000);
                
                 }
 
             });
 
             
-            elemto = $(document).find('.datos').first()
-                    console.log(elemto)
-                    elemto.click();
+           
         }
 
 

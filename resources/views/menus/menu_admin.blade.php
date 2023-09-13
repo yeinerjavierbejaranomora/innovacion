@@ -62,7 +62,7 @@
         </div> --}}
 
 
-@include('layout.alertas');
+@include('layout.alertas')
     </li>
 
     <!-- Divider -->

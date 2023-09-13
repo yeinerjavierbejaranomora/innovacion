@@ -99,9 +99,13 @@
 .datos{
     color: white;
     
+  
+
+}
+
+div .show{
     padding-top: 22px;
     padding-bottom: 40px;
-
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -444,7 +448,7 @@
            
             $(document).on("click",".datos",function(){
 
-                $(this).addClass('active')
+             
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -535,13 +539,13 @@
                                 });
 
                                 $("#"+tap).empty();
-                                // Agrega la tabla al documento
-                                $tablas.appendTo("#"+tap);
 
+                                  $("#"+tap).append( $tablas);
+                           
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                taps_internos.appendTo("#"+tap);
-                                $tablas.appendTo("#"+tap+"");
+                                $("#"+tap).append( taps_internos);
+
                                 $("#"+tap).addClass("active show")
                             
                         }
@@ -685,7 +689,7 @@
                         elemto.addClass("active")
                         console.log(elemto)
                         elemto.click();
-                    },1000);
+                    },700);
                
                 }
 

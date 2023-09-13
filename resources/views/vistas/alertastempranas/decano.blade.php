@@ -655,6 +655,14 @@
     $('#seleccionarFacultades').on('click', function(e) {
         $('#facultades input[type="checkbox"]').prop('checked', true);
     });
+    function getPeriodos() {
+        var periodosSeleccionados = [];
+        var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.each(function() {
+            periodosSeleccionados.push($(this).val());
+        });
+        return periodosSeleccionados;
+    }
     });
 </script>
 @include('layout.footer')

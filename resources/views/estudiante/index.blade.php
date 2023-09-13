@@ -439,6 +439,8 @@
             new DataTable('#example');
            
             $(document).on("click",".datos",function(){
+
+                alert('entro');
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -671,7 +673,9 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                    $(document).find('.datos').first().click();
+                  elemto = $(document).find('.datos').first()
+                    console.log(elemto)
+                    elemto.click();
                 }
             });
         }

@@ -412,12 +412,11 @@ class InformeMoodleController extends Controller
         foreach($consultaCursos as $Curso){
             $id = $Curso->IdCurso;
 
-        $consultaSello = DB::table('datos_moodle')
-        ->where('IdCurso', $id)
-        ->where('Sello', 'TIENE SELLO FINANCIERO')
-        ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
-        ->get();    
-
+        $consultaSello[] = DB::table('datos_moodle')
+            ->where('IdCurso', $id)
+            ->where('Sello', 'TIENE SELLO FINANCIERO')
+            ->select('IdCurso','Nombrecurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->get();
         }
 
         dd($consultaSello);

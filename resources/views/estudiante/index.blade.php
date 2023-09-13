@@ -655,7 +655,7 @@
                         .attr('data-id',codBanner )
                         .attr('data-programa',tab.cod_programa)
                         .attr('data-tap', 'tab' + index)
-                        .attr('href', '#tab' + index)
+                        .attr('href', 'tab' + index)
                         .text(tab.programa);
                         
                         $(tabContent).append()

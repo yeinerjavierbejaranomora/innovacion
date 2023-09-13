@@ -447,8 +447,7 @@ class InformeMoodleController extends Controller
         
         }
 
-        $Data = (object) $datos;
-        return $Data;
+        return $datos;
     }
 
 

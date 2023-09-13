@@ -484,5 +484,19 @@
         </div>
 
     </div>
-<script></script>
+<script>
+$('#menuAlertas').addClass('activo');
+
+$(document).ajaxStart(function() {
+    $('div #programas input[type="checkbox"]').prop('disabled', true);
+    $('#generarReporte').prop("disabled", true);
+});
+
+// Volver a habilitar los checkboxes cuando finaliza una solicitud AJAX
+$(document).ajaxStop(function() {
+    $('div #programas input[type="checkbox"]').prop('disabled', false);
+    $('#generarReporte').prop("disabled", false);
+});
+
+</script>
 @include('layout.footer')

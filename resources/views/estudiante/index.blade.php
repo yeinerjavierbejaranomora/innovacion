@@ -107,10 +107,9 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-          
-            <br>
+      
             <div class="text-center" id="mensaje">
-                <h3>Compruebe su historial ingresando su codigo de estudiante</h3>
+                <h3>Compruebe el historial ingresando el codigo del estudiantil</h3>
             </div>
             <div class="text-center" id="">
                 {{-- <form action="{{ route('historial.consulta') }}" method="post"> --}}
@@ -130,29 +129,25 @@
                 {{-- </form> --}}
 
             </div>
+
             <br>
 
-            <div class="container-fluid">
-                <div class="container mt-3" id="info">
+            <div class="container-fluid hidden" style="background-color:#6e707e;padding: 1%;margin-bottom: 3%;border-radius: 19px;" id="info_1">
+                <div class="container mt-3" id="info" style="color:white">
 
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid" id="programas">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs" id="myTabs">
                         <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
 
-                </div>
-            </div>
+                    <div class="tab-content" id="tabContent">
+                        <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
+                    </div>
 
-            <div class="tab-content" id="tabContent">
-                <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
-            </div>
-
-        </div>
-
-        {{-- <div class="row justify-content-center mt-5" id="">
+                    {{-- <div class="row justify-content-center mt-5" id="">
             <div class="col-10 text-center" id="colSelloFinanciero">
                 <div class="card shadow mb-6 graficos">
                     <div class="card-header">
@@ -409,6 +404,15 @@
             </div>
 
         </div>
+
+                </div>
+            </div>
+
+          
+
+        </div>
+
+      
    
 
     </div>
@@ -537,6 +541,7 @@
         function consultarEstudiante() {
             codBanner = $('#codigo');
             if (codBanner.val() != '') {
+                $("#info_1").removeClass('hidden')
                 $('#info').html('');
                 $('#programas').html('');
                

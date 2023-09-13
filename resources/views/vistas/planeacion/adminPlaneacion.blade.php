@@ -638,8 +638,19 @@
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
-                    </form>
+                    </form class="mt-2">
+
+                    <div class="hidden mt-3 mb-3" id="dataEstudiante">
+                            <h5 id="primerApellido" class="text-black"></h5>
+                            <h5 id="Sello" class="text-black"></h5>
+                            <h5 id="Operador" class="text-black"></h5>
+                            <h5 id="tipEstudiante" class="text-black"></h5>
+                        </div>
+                        <br>
                         <!--Datatable con id Banner del estudiante-->
+                        <div class="text-center text-black hidden" id='tituloTablaBuscar'>
+                            <h4>Materias inscritas</h4>
+                        </div>
                         <div class="table" id="divTablaBuscador">
                             <table id="buscarEstudiante" class="display" style="width:100%">
                             </table>
@@ -2388,6 +2399,8 @@
                             $("#idBanner").val("");
                             var datos = table.row($(this).parents("tr")).data();
                             programaEstudiante = datos[0];
+                            $('#dataEstudiante').addClass('hidden');
+                            $('#tituloTablaBuscar').addClass('hidden');                   
                             })
                         }
                         buscarEstudiante("#datatable tbody", table);
@@ -2658,9 +2671,20 @@
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
+
+                            ['#primerApellido', '#Sello', '#Operador', '#tipEstudiante'].forEach(selector => {
+                                $(selector).empty();
+                            });
+                            $('#dataEstudiante').removeClass('hidden');
+                            $('#tituloTablaBuscar').removeClass('hidden');
+                            $('#primerApellido').append('Primer Apellido: '+ data.estudiante.primer_apellido);
+                            $('#Sello').append('Sello financiero: '+ data.estudiante.sello);
+                            $('#Operador').append('Operador: '+ data.estudiante.operador);
+                            $('#tipEstudiante').append('Tipo estudiante: '+data.estudiante.tipoestudiante);
+
                             console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({
-                                "data": data,
+                                "data": data.materias,
                                 'pageLength': 10,
                                 "columns": [{
                                         title: 'Código de materia',

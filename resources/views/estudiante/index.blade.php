@@ -540,10 +540,10 @@ div .show{
                                 });
 
                                 taps_internos=$("#taps_internos").clone();
-                                taps_internos.removeClass("hidden")
+                           
                                 $(document).find(tap).empty();
-
-                                $(document).find(tap).append(taps_internos);
+                                taps_internos.removeClass("hidden").appendTo(tap)
+                               
                            
                                 // taps_internos=$("#taps_internos").clone();
                                 // taps_internos.removeClass("hidden")

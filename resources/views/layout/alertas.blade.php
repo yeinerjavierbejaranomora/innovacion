@@ -42,6 +42,11 @@
                 }
             })
         }
+
+        if (id_rol == 2) {
+            var id_programa = '{{ auth()->user()->programa }}';
+            console.log(id_programa);
+        }
     }
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">

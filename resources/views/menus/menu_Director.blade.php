@@ -31,8 +31,8 @@
             <span>Panel de Control</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        {{ auth()->user(); }}
-        {{-- @include('layout.alertas'); --}}
+        {{-- {{ auth()->user(); }} --}}
+        @include('layout.alertas');
     </li>
 
     <!-- Divider -->

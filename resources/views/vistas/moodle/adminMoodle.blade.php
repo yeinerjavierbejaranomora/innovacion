@@ -1499,13 +1499,13 @@
                         url: url,
                         data: data,
                         success: function(data) {
-                            var datos
-                            if (data.data) {
-                                datos = data.data;
-                            } else {
-                                var data = jQuery.parseJSON(data);
-                                datos = data.data;
+                            try{
+                                data = parseJSON(data);
                             }
+                            catch{
+                                data = data;
+                            }
+                                                                                
                             table = $('#tablaCursos').DataTable({
                                 "data": datos,
                                 'pageLength': 10,

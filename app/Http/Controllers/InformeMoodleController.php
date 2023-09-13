@@ -414,23 +414,23 @@ class InformeMoodleController extends Controller
         $inactivos = [];
 
         foreach($consultaCursos as $Curso){
-            $id = $Curso->IdCurso;
-            $total = $Curso->TOTAL;
-            $consultaSello = DB::table('datos_moodle')
+        $id = $Curso->IdCurso;
+        $total = $Curso->TOTAL;
+        $consultaSello = DB::table('datos_moodle')
             ->where('IdCurso', $id)
             ->where('Sello', 'TIENE SELLO FINANCIERO')
             ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
             ->get();
 
-        $sello[$id] = $consultaSello->TOTAL;    
+        $sello[$id] = $consultaSello[0]->TOTAL;    
 
         $consultaASP = DB::table('datos_moodle')
-        ->where('IdCurso', $id)
-        ->where('Sello', 'TIENE RETENCION')
-        ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
-        ->get();
+            ->where('IdCurso', $id)
+            ->where('Sello', 'TIENE RETENCION')
+            ->select('IdCurso', DB::raw('COUNT(id) AS TOTAL'))
+            ->get();
 
-        $ASP[$id] = $consultaASP->TOTAL;
+        $ASP[$id] = $consultaASP[0]->TOTAL;
 
         $inactivos[$id] = $total - $sello[$id] - $ASP[$id];    
 

@@ -1392,11 +1392,23 @@
                         $("#tituloTable").remove();
                         table.destroy();
                         $('#datatable').DataTable().destroy();
+                        $('#datatable thead').empty();
                         $('#datatable tbody').empty();
+                        $('#datatable tfooter').empty();
                         $("#datatable tbody").off("click", "button.data");
                     }
                 }
 
+
+                function destruirTablaCurso() {
+                    if ($.fn.DataTable.isDataTable('#tablaCursos')) {
+                        tabla.destroy();
+                        $('#tablaCursos').DataTable().destroy();
+                        $('#tablaCursos thead').empty();
+                        $('#tablaCursos tbody').empty();
+                        $('#tablaCursos tfooter').empty();
+                    }
+                }
                 /**
                  * Método para construir dataTable, según el tipo de riesgo
                  */
@@ -1488,9 +1500,13 @@
 
 
                 function tablaCursos(){
+                    destruirTablaCurso();
                     console.log('entra');
                     var url = "{{ route('tabla.cursos') }}";
                     var data = '';
+                    $('#tablaCursos').empty();
+                    var mensaje = 'Cargando, por favor espere...';
+                    $('#tablaCursos').append(mensaje);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1505,9 +1521,8 @@
                             catch{
                                 data = data;
                             }
-
                             console.log(data);
-                                                                                
+                            $('#tablaCursos').empty();                                                      
                             tabla = $('#tablaCursos').DataTable({
                                 "data": data,
                                 'pageLength': 10,

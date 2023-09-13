@@ -137,33 +137,45 @@
 
                 </div>
             </div>
-            <div class="container-fluid" id="programas">
+            <div class="container-fluid" >
                 <div class="col-md-12">
                     <ul class="nav nav-tabs" id="myTabs">
                         <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
 
-                    <div class="tab-content" id="tabContent">
+                    
+
+          
+
+                </div>
+
+      
+   
+
+            </div>
+
+
+            <div class="tab-content" id="tabContent">
                         <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
                     </div>
 
                     {{-- <div class="row justify-content-center mt-5" id="">
-            <div class="col-10 text-center" id="colSelloFinanciero">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Malla Curricular</strong></h5></div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <table class="table">
-                                <tbody id="contenido">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div class="col-10 text-center" id="colSelloFinanciero">
+                                <div class="card shadow mb-6 graficos">
+                                    <div class="card-header">
+                                        <h5 class="titulos"><strong>Malla Curricular</strong></h5></div>
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <table class="table">
+                                                <tbody id="contenido">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        </div> --}}
+                    </div> --}}
 
         <br>
 
@@ -407,15 +419,6 @@
 
                 </div>
             </div>
-
-          
-
-        </div>
-
-      
-   
-
-    </div>
 
     <script>
 

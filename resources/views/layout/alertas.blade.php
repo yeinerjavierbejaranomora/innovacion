@@ -15,7 +15,7 @@
     numeroAlertas();
     function numeroAlertas(){
         id_rol = '{{ auth()->user()->id_rol }}';
-        // alert(id_rol);
+        //alert(id_rol);
         if (id_rol == 9 || id_rol == 19 || id_rol == 20) {
             $.get("{{ route('alertas.notificaciones') }}",{},function(data){
                 console.log(data);
@@ -60,7 +60,20 @@
     }
 </script>
 
-@switch(auth()->user()->id_rol)
+@if(auth()->user()->id_rol == 9)
+<a  class="nav-link" href="{{ route('alertas.inicio') }}">
+    <i class="fa-solid fa-bell"></i>
+    <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+    <span id="notificacionesCount" class="notificaciones-count"></span>
+</a>
+@elseif(auth()->user()->id_rol == 19 || auth()->user()->id_rol == 20)
+<a  class="nav-link" href="{{ route('alertas.inicio.rector') }}">
+    <i class="fa-solid fa-bell"></i>
+    <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+    <span id="notificacionesCount" class="notificaciones-count"></span>
+</a>
+@endif
+{{-- @switch(auth()->user()->id_rol)
     @case(9)
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">
             <i class="fa-solid fa-bell"></i>
@@ -68,7 +81,20 @@
             <span id="notificacionesCount" class="notificaciones-count"></span>
         </a>
         @break
+    @case(19)
+        <a  class="nav-link" href="{{ route('alertas.inicio.rector') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>
+        @break
+    @case(20)
+        <a  class="nav-link" href="{{ route('alertas.inicio.vicerector') }}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+            <span id="notificacionesCount" class="notificaciones-count"></span>
+        </a>
+        @break
     $@default
-        
-@endswitch
-        
+
+@endswitch --}}

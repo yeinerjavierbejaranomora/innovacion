@@ -439,6 +439,8 @@
             new DataTable('#example');
            
             $(document).on("click",".datos",function(){
+
+                $(this).addClass('active')
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');
@@ -535,7 +537,8 @@
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
                                 taps_internos.appendTo("#"+tap+"");
-
+                                $tablas.appendTo("#"+tap+"");
+                                    $("#"+tap).addClass("active show")
                             
                         }
                         if(data.info=="sin_datos"){
@@ -546,7 +549,8 @@
                                         .text('En estos momentos no contamos Con información contacta con soporte');
                                     $tablas.children('tr:last').append($filaMateria);
                                     $("#"+tap+"").empty();
-                                    $tablas.appendTo("#"+tap+"");
+                                  
+                                   
                         }
                     }
                 });
@@ -566,6 +570,7 @@
                 consultaEstudiante(codBanner.val());
                 consultaNombre(codBanner.val());
 
+               
                 //consultaHistorial(codBanner.val());
                 //consultaProgramacion(codBanner.val());
 
@@ -671,9 +676,19 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                    $(document).find('.datos').first().click();
+                    window.setTimeout(function(){
+                        elemto = $(document).find('.datos').first()
+                        elemto.addClass("active")
+                        console.log(elemto)
+                        elemto.click();
+                    },1000);
+               
                 }
+
             });
+
+            
+           
         }
 
 

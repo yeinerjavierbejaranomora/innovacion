@@ -2,7 +2,7 @@
 @include('layout.header')
 
 <!-- incluimos el menu -->
-@include('menus.menu_rector')
+@include('menus.menu_Vicerrector')
 <style>
     #facultades {
         font-size: 14px;

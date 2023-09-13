@@ -17,7 +17,12 @@ class AlertasTempranasController extends Controller
     }
 
     public function vistaRectorVicerector(){
-        return view('vistas.alertastempranas.rector');
+        if(auth()->user()->id_rol == 19):
+            return view('vistas.alertastempranas.rector');
+        endif;
+        if(auth()->user()->id_rol == 20):
+            return view('vistas.alertastempranas.vicerector');
+        endif;
     }
 
     public function tablaAlertasP(){

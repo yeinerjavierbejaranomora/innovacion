@@ -501,8 +501,14 @@
         var programasSeleccionados = [];
         var facultadesSeleccionadas = [];
         var periodosSeleccionados = [];
+        facultadesUsuario();
         periodos();
         programas();
+        Contador();
+        function Contador() {
+            totalProgramas = $('#programas input[type="checkbox"]').length;
+            totalPeriodos = $('#programas input[type="checkbox"]').length;
+        }
         var periodosSeleccionados = getPeriodos();
         periodosSeleccionados.forEach(function(periodo, index, array) {
             array[index] = '2023' + periodo;
@@ -755,7 +761,12 @@
 
             });
         }
+        function facultadesUsuario() {
+            periodosSeleccionados = getPeriodos();
+            facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
+        }
 
+        var chartAlertas;
         graficoAlertas();
 
         function graficoAlertas() {

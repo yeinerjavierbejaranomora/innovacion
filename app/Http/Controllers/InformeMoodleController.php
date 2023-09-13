@@ -403,7 +403,7 @@ class InformeMoodleController extends Controller
             ORDER BY IdCurso;
          */
 
-        $ = DB::table('datos_moodle')
+        $consultaCursos = DB::table('datos_moodle')
          ->select('Nombrecurso', 'IdCurso', 'NombreTutor',DB::raw('COUNT(id) AS TOTAL'))
          ->groupBy('IdCurso')->toArray();
         

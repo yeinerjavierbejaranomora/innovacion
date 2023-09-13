@@ -846,6 +846,12 @@
         });
     }
 
+    var periodosSeleccionados = getPeriodos();
+    periodosSeleccionados.forEach(function(periodo, index, array) {
+        array[index] = '2023' + periodo;
+    });
+    //var periodos = getPeriodos();
+    dataTable(periodosSeleccionados);
     function dataTable(periodosSeleccionados) {
             $('#colTabla').removeClass('hidden');
             var url, data;

@@ -539,13 +539,13 @@ div .show{
                                 });
 
                                 $("#"+tap).empty();
-                                // Agrega la tabla al documento
-                                $tablas.appendTo("#"+tap);
 
+                                  $("#"+tap).append( $tablas);
+                           
                                 taps_internos=$("#taps_internos").clone();
                                 taps_internos.removeClass("hidden")
-                                taps_internos.appendTo("#"+tap);
-                                $tablas.appendTo("#"+tap);
+                                $("#"+tap).append( taps_internos);
+
                                 $("#"+tap).addClass("active show")
                             
                         }

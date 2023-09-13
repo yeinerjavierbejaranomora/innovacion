@@ -636,7 +636,7 @@
                         .attr('data-programa',tab.cod_programa)
                         .attr('data-tap', 'tab' + index)
                         .attr('href', '#tab' + index)
-                        .attr('id', '#tab_li' + index)
+                        .attr('id', 'tab_li' + index)
                         .text(tab.programa); // Suponiendo que cada objeto tiene una propiedad 'title'
 
                         // Agregar la pestaña a la lista de pestañas
@@ -655,7 +655,7 @@
                         .attr('data-id',codBanner )
                         .attr('data-programa',tab.cod_programa)
                         .attr('data-tap', 'tab' + index)
-                        .attr('href', 'tab' + index)
+                        .attr('href', '#tab' + index)
                         .text(tab.programa);
                         
                         $(tabContent).append()

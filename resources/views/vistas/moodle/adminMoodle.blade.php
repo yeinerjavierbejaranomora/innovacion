@@ -146,7 +146,7 @@
     }
 
     .custom-text {
-        margin-top: 30px;
+        margin-top: 40px;
         font-size: 14px;
         color: black;
         font-family: sans-serif;
@@ -957,7 +957,7 @@
                         data: data,
                         success: function(data) {
                             $('.totalMatriculas').empty();
-                            $('.totalMatriculas').text('Total: ' + data.total);
+                            $('.totalMatriculas').text(data.total);
 
                             var ctx = document.getElementById('alto').getContext('2d');
                             var TotalAlto = data.total - data.alto;

@@ -757,9 +757,10 @@
             });
         }
         function facultadesUsuario() {
-                periodosSeleccionados = getPeriodos();
-                facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-            }
+            periodosSeleccionados = getPeriodos();
+            facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
+        }
+
 
         graficoAlertas();
 

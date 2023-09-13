@@ -671,7 +671,7 @@
                         var targetTab = $(event.target).attr('href');
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
-                    $('#tab_li0').click();
+                    $(document).find('#tab_li0').click();
                 }
             });
         }

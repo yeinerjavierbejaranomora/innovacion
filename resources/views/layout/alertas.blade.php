@@ -42,6 +42,21 @@
                 }
             })
         }
+
+        if (id_rol == 2 || id_rol == 3 || id_rol == 4) {
+            var id_programa = '{{ auth()->user()->programa }}';
+            $.get("{{ route('alertas.notificacionesprograma') }}",{
+                id_programa:id_programa
+            },function(data){
+                console.log(data);
+                var total = data;
+                if (total > 99) {
+                    $('#notificacionesCount').append('+99');
+                } else {
+                    $('#notificacionesCount').append(`${total}`);
+                }
+            })
+        }
     }
 </script>
         <a  class="nav-link" href="{{ route('alertas.inicio') }}">

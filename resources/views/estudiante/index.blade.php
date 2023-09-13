@@ -87,6 +87,9 @@
         border: 13px solid white;
     }
 
+.datos{
+    color: white;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div id="content-wrapper" class="d-flex flex-column">
@@ -137,34 +140,30 @@
 
                 </div>
             </div>
-            <div class="container-fluid" id="programas">
+            <div class="container-fluid hidden contenedor_interno" style="background-color: #6e707e;border-radius: 15px;padding-top: 20px;color: white;" >
                 <div class="col-md-12">
-                    <ul class="nav nav-tabs" id="myTabs">
+
+                    <ul class="nav nav nav-pills" id="myTabs">
                         <!-- Pestañas se llenarán dinámicamente aquí -->
                     </ul>
 
+                    
                     <div class="tab-content" id="tabContent">
                         <!-- Contenidos de pestañas se llenarán dinámicamente aquí -->
                     </div>
+          
 
-                    {{-- <div class="row justify-content-center mt-5" id="">
-            <div class="col-10 text-center" id="colSelloFinanciero">
-                <div class="card shadow mb-6 graficos">
-                    <div class="card-header">
-                        <h5 class="titulos"><strong>Malla Curricular</strong></h5></div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <table class="table">
-                                <tbody id="contenido">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
+
+      
+   
+
             </div>
 
-        </div> --}}
 
+          
+
+                
         <br>
 
         <div class="" id="taps_internos">
@@ -408,15 +407,6 @@
                 </div>
             </div>
 
-          
-
-        </div>
-
-      
-   
-
-    </div>
-
     <script>
 
 
@@ -606,6 +596,7 @@
                 },
                 success: function(data){
                     console.log(data);
+                    $('.contenedor_interno').removeClass('hidden');
                     $('#myTabs').empty();
                     $('#codigo').prop('disabled',false);
                     data.forEach(function(tab, index) {

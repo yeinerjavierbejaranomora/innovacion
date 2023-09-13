@@ -49,7 +49,7 @@
             <span>Planeación</span></a>
     </li>
     <li class="nav-item" id="menuAlertas">
-        @include('layout.alertas');
+        @include('layout.alertas')
     </li>
 
     <!-- Divider -->

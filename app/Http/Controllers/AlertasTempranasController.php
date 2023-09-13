@@ -117,12 +117,31 @@ class AlertasTempranasController extends Controller
             array_push($facultades,$facultad->nombre);
         endforeach;
         $consultaProgramas = DB::table('programas')->select('codprograma')->whereIn('Facultad',$facultades)->get();
+        //$programas = '';
         $programas = array();
         foreach($consultaProgramas as $programa):
+            //$programas = $programas.','.$programa->codprograma;
             array_push($programas,$programa->codprograma);
         endforeach;
+        //var_dump($programas);die();
         $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$programas)->get();
-        //var_dump($numeroAlertas);die();
+        //var_dump($numeroAlertas[0]->total_alertas);die();
+        return $numeroAlertas[0]->total_alertas;
+    }
+
+    public function numeroAlertasPrograma(){
+        $idPrograma = $_GET['id_programa'];
+        $idPrograma = trim($idPrograma,';');
+        $idProgramas = explode(';',$idPrograma);
+        $consultaProgramas = DB::table('programas')->select('codprograma')->whereIn('id',$idProgramas)->get();
+        //$programas = '';
+        $programas = array();
+        foreach($consultaProgramas as $programa):
+            //$programas = $programas.','.$programa->codprograma;
+            array_push($programas,$programa->codprograma);
+        endforeach;
+        //var_dump($programas);die();
+        $numeroAlertas = DB::table('alertas_tempranas')->select(DB::raw('count(id) as total_alertas'))->where('activo',1)->whereIn('codprograma',$programas)->get();
         //var_dump($numeroAlertas[0]->total_alertas);die();
         return $numeroAlertas[0]->total_alertas;
     }

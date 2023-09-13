@@ -440,7 +440,7 @@
            
             $(document).on("click",".datos",function(){
 
-                alert('entro');
+               
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
                 tap=$(this).attr('data-tap');

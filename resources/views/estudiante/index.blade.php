@@ -596,7 +596,7 @@
                 },
                 success: function(data){
                     console.log(data);
-                    $('.contenedor_interno'),removeClass('hidden');
+                    $('.contenedor_interno').removeClass('hidden');
                     $('#myTabs').empty();
                     $('#codigo').prop('disabled',false);
                     data.forEach(function(tab, index) {

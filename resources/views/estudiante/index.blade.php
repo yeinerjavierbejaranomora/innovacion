@@ -500,36 +500,38 @@ div .show{
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr style="display: flex;">').append(
-                                            $('<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 2%;min-width: 11%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> 1'));
+                                            $('<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 2%;min-width: 11%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre"> '+materia.semestre+''));
                                               
                                         $tablas.append($filaSemestre);
                                     }
-
+                                   
                                     // Agrega la materia como una columna en la fila actual
                                     var $filaMateria="";
 $filaMateria+='<td style="color:white;margin-right: 1%">';
 $filaMateria+='  <div class="card " style=" background-color:transparent;border: none;">'
 $filaMateria+='    <div class="card card_historial materias">'
 $filaMateria+='      <div class="card-body">'
-$filaMateria+='        <div class="" style=" display: flex;color: black;">'
+$filaMateria+='        <div class="'+materia.color+'" style=" display: flex;color: black;">'
 $filaMateria+='          <span class="bg-danger" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
 $filaMateria+='          </span>'
 $filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
 $filaMateria+='            <b>Codigo:</b>'
 $filaMateria+='            <br>'
-$filaMateria+='            <span>ABV32190</span>'
+$filaMateria+='            <span>'+materia.codigo_materia+'</span>'
 $filaMateria+='          </h6>'
 $filaMateria+='        </div>'
 $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>DIP SEG Y SALUD TRA RIES P VIR</span>'
+$filaMateria+='          <span>'+materia.nombre_materia+'</span>'
 $filaMateria+='        </p>'
 $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
 $filaMateria+='          <span>'
-$filaMateria+='            <b>Calificación:</b> 4.5 </span>'
+$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span>'
 $filaMateria+='        </p>'
 $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
 $filaMateria+='          <span>'
-$filaMateria+='            <b>Créditos:</b> 2 </span>'
+$filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
+
+
 
 
                                     $tablas.children('tr:last').append($filaMateria);

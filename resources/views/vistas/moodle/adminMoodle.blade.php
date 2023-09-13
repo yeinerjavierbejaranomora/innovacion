@@ -430,7 +430,10 @@
                                 </div>
                             </div>
                             <div id="cursos" class="content">
-
+                                <div class="table">
+                                    <table id="tablaCursos" class="display" style="width:100%">
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1484,6 +1487,87 @@
 
                     });
                 }
+
+
+                function tablaCursos(){
+                    var url = "{{ route('tabla.cursos') }}";
+                    var data = '';
+                    var datos = $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: url,
+                        data: data,
+                        success: function(data) {
+                            var datos
+                            if (data.data) {
+                                datos = data.data;
+                            } else {
+                                var data = jQuery.parseJSON(data);
+                                datos = data.data;
+                            }
+                            table = $('#tablaCursos').DataTable({
+                                "data": datos,
+                                'pageLength': 10,
+                                "columns": [
+                                    {
+                                        data: 'id',
+                                        title: 'Id Curso'
+                                    },
+                                    {
+                                        data: 'NombreCurso',
+                                        title: 'Nombre Curso'
+                                    },
+                                    {
+                                        data: 'Tutor',
+                                        title: 'Tutor'
+                                    },
+                                    {
+                                        data: 'Total',
+                                        title: 'Total estudiantes'
+                                    },
+                                    {
+                                        data: 'Sello',
+                                        title: 'Con sello',
+                                        className: "text-center",
+                                    },
+                                    {
+                                        data: 'ASP',
+                                        title: 'ASP',
+                                        className: "text-center",
+                                    },
+                                    {
+                                        data: 'Inactivos',
+                                        title: 'Inactivos',
+                                        className: "text-center",
+                                    },
+                                    {
+                                        data: 'Cursos',
+                                        title: 'Cursos abiertos',
+                                        className: "text-center",
+                                    },
+                                ],
+                                "language": {
+                                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                },
+                            });
+                            riesgoaux = riesgo.toLowerCase();
+                            var titulo = 'Estudiantes con riesgo ' + riesgoaux;
+                            $('<div id="tituloTable" class="dataTables_title text-center"> <h4>' + titulo + '</h4></div>').insertBefore('#datatable');
+
+                            function obtenerData(tbody, table) {
+                                $(tbody).on("click", "button.data", function() {
+                                    var datos = table.row($(this).parents("tr")).data();
+                                    dataAlumno(datos.Id_Banner);
+                                })
+                            }
+                            obtenerData("#datatable tbody", table);
+                        },
+
+                    });
+                }
+
                 /**
                  * Método para limpiar información del Modal
                  */

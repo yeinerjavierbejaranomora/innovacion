@@ -104,6 +104,11 @@
         max-height: 450px;
     }
 
+    .graficosRiesgo {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
     #cardProgramas {
         max-height: 500px;
     }
@@ -137,6 +142,13 @@
 
     .fondocharts {
         background-color: #DFE0E2;
+    }
+
+    .custom-text {
+        margin-top: 40px;
+        font-size: 14px;
+        color: black;
+        font-family: sans-serif;
     }
 </style>
 
@@ -550,6 +562,19 @@
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
             }
+
+            $(".menuMoodle").click(function() {
+                    $(".menuMoodle").removeClass('active');
+                    $(".content").hide();
+
+                    var target = $(this).attr("href").substring(1);
+
+                    $("#" + target).show();
+                    $("#nav" + target).addClass('active');
+
+                    return false;
+            });
+
 
             /**
              * Método que trae los periodos activos

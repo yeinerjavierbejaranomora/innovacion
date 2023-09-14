@@ -41,7 +41,6 @@ class AlertasTempranasController extends Controller
         $user = auth()->user();
         $idfacultad = trim($user->id_facultad, ',');
         $facultades = explode(",", $idfacultad);
-        dd($facultades);
         foreach ($facultades as $key => $value) {
             $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
             $nombreFacultades[$value] = $consulta->nombre;

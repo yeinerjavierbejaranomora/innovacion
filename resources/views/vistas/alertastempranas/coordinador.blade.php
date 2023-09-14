@@ -370,15 +370,18 @@
                                                 <div name="programas">
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                     <ul style="list-style:none" id="programas">
-                                                        @foreach ($programas as $programa)
+                                                    @foreach ($programas as $programa)
                                                         <div class="checkbox-wrapper mb-1">
-                                                            <input class="inp-cbx" id="cbx-{{$programa->codprograma}}" type="checkbox" name="programa[]" value="{{programa->codprograma}}" checked>
-                                                                <label class="cbx" for="cbx-{{$programa->codprograma}}"><span>
+                                                            <input class="inp-cbx" id="cbx-{{$programa->codprograma}}" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked>
+                                                            <label class="cbx" for="cbx-{{$programa->codprograma}}">
+                                                                <span>
                                                                     <svg width="12px" height="10px" viewbox="0 0 12 10">
                                                                         <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                                                    </svg></span><span>{{$programa->programa}}</span>
-                                                                </label>
-                                                            </div>
+                                                                    </svg>
+                                                                </span>
+                                                                <span>{{$programa->programa}}</span>
+                                                            </label>
+                                                        </div>
                                                         @endforeach
                                                     </ul>
                                                 </div>

@@ -808,7 +808,7 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                var periodosSeleccionados = getPeriodos();
+                periodosSeleccionados = getPeriodos();
                 Contador();
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0) {

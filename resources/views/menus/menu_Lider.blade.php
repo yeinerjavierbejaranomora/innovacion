@@ -7,7 +7,11 @@
 
     #accordionSidebar {
     width: 260px!important;
-}
+    }
+
+    .activo{
+    background-color: #dfc14e;
+    }
 </style>
 
 <!-- Sidebar -->

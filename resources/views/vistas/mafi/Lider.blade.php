@@ -34,18 +34,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
     #botonModalOperador,
@@ -59,6 +47,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #botondataTable {
@@ -71,6 +77,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {
@@ -94,8 +103,8 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #cardProgramas {
@@ -103,8 +112,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -115,9 +124,23 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
 
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fondocards {
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts {
+        background-color: #DFE0E2;
+    }
 </style>
 
 <!-- Content Wrapper -->
@@ -127,7 +150,7 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-image: url('/public/assets/images/fondo cabecera.png');">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -146,19 +169,6 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.moodle') }}">
-                        Moodle
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
-
             <!-- Page Heading -->
             <div class="text-center">
                 <h1 class="h3 mb-0 text-gray-800"> <strong>Informe Programas</strong></h1>
@@ -166,7 +176,6 @@
             <br>
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
-
                     @foreach ($programas as $programa)
                     {{$programa->codprograma}} -
                     @endforeach
@@ -176,49 +185,53 @@
 
             <!-- Checkbox Periodos -->
             <div class="row justify-content-start mb-3" id="seccion">
+
                 <!--Columna Niveles de Formación-->
-                <div class="col-12 text-start mt-3">
-                    <div class="card-body" id="cardNivel">
-                        <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                <div class="col-12 text-start mt-1">
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
+                            </div>
+                            <div class="text-center col-4">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Programas</strong></h5>
+                            </div>
                         </div>
+
                         <div class="text-start">
-                            <!--Accordion-->
                             <div id="periodos">
-                                <div class="row mb-2">
+                                <!--Accordion-->
+                                <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
-                                                        For. continua
+                                                    <button class="btn btn-link text-light">
+                                                        For. Contínua
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosContinua" name="todosContinua" checked>
+                                                        <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Continua">
-
-                                                </div>
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                            <div class="card-header fondocards" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Pregrado
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                                        <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -229,20 +242,27 @@
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card" id="cardProgramas">
-                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas">
-                                                    @foreach ($programas as $programa)
-                                                    <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
-                                                    @endforeach
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                        @foreach ($programas as $programa)
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
-                                            </div>
-                                            <div class="card-footer text-end" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>
@@ -251,36 +271,34 @@
                                     <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
-                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <div class="card-header fondocards" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
-                                                <div class="card-body periodos" style="width:100%;" id="Esp">
-
-                                                </div>
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
-                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <div class="card-header fondocards" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Maestría
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
+                                                        <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>
@@ -292,12 +310,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
+
                             </div>
-                        </div>
-                        <div class="text-center col-8 mt-3" style="height: 30px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -311,76 +327,160 @@
                 </button>
             </div>
 
-            <div class="row justify-content-start mt-5">
-                <div class=" col-6 text-center" id="colEstudiantes">
-                    <div class="card shadow mb-5 graficos">
+            <div class="row justify-content-start mt-5 columnas">
+                <div class="col-6 text-center" id="colEstudiantes">
+                    <div class="card shadow mb-5 graficos" id="chartEstudiantes">
                         <div class="card-header">
-                            <h5 id="tituloEstudiantes"><strong>Total estudiantes Banner</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloEstudiantes"><strong>Total estudiantes Argos</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Este gráfico muestra el total de los estudiantes y los clásifica en activos e inactivos. Adicionalmente cuenta con la opción 'Descargar datos Banner' la cual genera un Excel con los datos de Banner." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body center-chart fondocharts">
                             <canvas id="estudiantes"></canvas>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" class="btn botonMafi" id="descargarMafi">Descargar datos Banner</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 text-center" id="colSelloFinanciero">
                     <div class="card shadow mb-6 graficos">
                         <div class="card-header">
-                            <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloEstadoFinanciero"><strong>Estado Financiero</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado financiero (con sello, con retención o ASP) de los estudiantes activos." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body center-chart fondocharts">
                             <canvas id="activos"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center" id="colRetencion">
+                <div class="col-6 text-center " id="colRetencion">
                     <div class="card shadow mb-6 graficos">
                         <div class="card-header">
-                            <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloRetencion"><strong>Estado Financiero - Retención</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Aquí se muestra un resumen del estado en plataforma de los estudiantes activos que su estado financiero se encuentra en retención." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body fondocharts">
                             <canvas id="retencion"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center" id="colPrimerIngreso">
+                <div class=" col-6 text-center " id="colPrimerIngreso">
                     <div class="card shadow mb-6 graficos">
                         <div class="card-header">
-                            <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloEstudiantesNuevos"><strong>Estudiantes nuevos - Estado Financiero</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes activos de primer ingreso y transferentes." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body center-chart fondocharts">
                             <canvas id="primerIngreso"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center" id="colTipoEstudiantes">
-                    <div class="card shadow mb-6 graficosBarra">
+                <div class="col-6 text-center " id="colAntiguos">
+                    <div class="card shadow mb-6 graficos">
                         <div class="card-header">
-                            <h5 id="tituloTipos"><strong>Tipos de estudiantes</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloEstudiantesAntiguos"><strong>Estudiantes antiguos - Estado Financiero</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="En este gráfico se puede visualizar el Estado financiero de todos los estudiantes antiguos." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <canvas id="tipoEstudiante"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalTiposEstudiantes" class="btn" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                        <div class="card-body center-chart fondocharts">
+                            <canvas id="antiguos"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center" id="colOperadores">
+                <div class="col-6 text-center " id="colTipoEstudiantes">
                     <div class="card shadow mb-6 graficosBarra">
                         <div class="card-header">
-                            <h5 id="tituloOperadores"><strong>Operadores</strong></h5>
-                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloTipos"><strong>Tipos de estudiantes activos</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Ilustra los tipos de estudiantes activos, además cuenta la opción 'Ver más' para ampliar la cantidad de datos mostrados." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <canvas id="operadores"></canvas>
+                        <div class="card-body fondocharts">
+                            <canvas id="tipoEstudiante"></canvas>
                         </div>
                         <div class="card-footer d-flex justify-content-end">
-                            <a href="" id="botonModalOperador" class="btn" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
+                            <a href="" id="botonModalTiposEstudiantes" class="btn botonModal" data-toggle="modal" data-target="#modalTiposEstudiantes"> Ver más </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 text-center " id="colOperadores">
+                    <div class="card shadow mb-6 graficosBarra">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 d-flex align-items-center justify-content-center">
+                                    <h5 id="tituloOperadores"><strong>Estudiantes activos por operador</strong></h5>
+                                    <h5 class="tituloPeriodo"><strong></strong></h5>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos por cada operador, también cuenta con la opción de 'Ver más'." data-placement="right">
+                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body fondocharts">
+                            <canvas id="operadores" style="height: 400px;"></canvas>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+                            <a href="" id="botonModalOperador" class="btn botonModal" data-toggle="modal" data-target="#modalOperadoresTotal"> Ver más </a>
                         </div>
                     </div>
                 </div>
@@ -432,24 +532,18 @@
 
     <script>
         $(document).ready(function() {
-
+            $('#menuAdmisiones').addClass('activo');
             var tabla = 'Mafi';
+            var programasSeleccionados = [];
+            var periodosSeleccionados = [];
 
             programasUsuario();
+            console.log(programasSeleccionados);
             Contador();
-            vistaEntrada();
-
-            var periodosSeleccionados = [];
             periodos();
             invocarGraficos();
             getPeriodos();
-
-            var totalSeleccionado;
-            var totalPeriodos;
-
-            var programasSeleccionados = [];
-
-            var programasSelect;
+            vistaEntrada(); 
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -471,7 +565,6 @@
                 }
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
-                programasSelect = programasSeleccionados;
             }
 
             /**
@@ -513,10 +606,9 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(programasSelect);
+                var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelect[key[0]];
-
+                var valorPrograma = programasSeleccionados[key[0]];
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();
                     var textoNuevo = "<h3>A continuación podrás visualizar los datos de tu Programa: " + valorPrograma + " </h3>";
@@ -534,7 +626,90 @@
                 return periodosSeleccionados;
             }
 
+            var buscador = $('#buscadorProgramas');
+            var listaProgramas = $('.listaProgramas');
+            var divProgramas = $('#programas');
 
+            buscador.on('input', function() {
+                var query = $(this).val().toLowerCase();
+                divProgramas.find('li').each(function() {
+                    var label = $(this);
+                    var etiqueta = label.text().toLowerCase();
+                    var $checkbox = label.find('input[type="checkbox"]');
+
+                    if (etiqueta.includes(query)) {
+                        label.removeClass('d-none');
+                        //label.removeAttr('d-none');
+                        //$checkbox.removeClass('d-none');
+                    } else {
+                        label.addClass('d-none');
+                        //label.addClass('hidden');
+                        //$checkbox.addClass('d-none');
+                    }
+                });
+            });
+
+            $('#descargarMafi').on('click', function(e) {
+                Swal.fire({
+                    title: 'Descargar datos',
+                    text: "La datos generados se actualizan una vez al día, para obtener la información completamente actualizada dirigete directamente a Banner",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Descargar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Descargando',
+                            icon: 'success'
+                        })
+                        ExcelBanner();
+                    }
+                })
+            });
+
+            function ExcelBanner(){
+                    url = "{{ route('data.Mafi.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var newData = [];
+                        var headers = ['Id Banner', 'Primer apellido', 'Codigo Programa', 'Programa', 'Cadena'];
+                        newData.push(headers);
+                        data.forEach(function(item) {
+                            var fila = [
+                                item.idbanner,
+                                item.primer_apellido,
+                                item.programa,
+                                item.codprograma,
+                                item.cadena
+                            ];
+                            newData.push(fila);
+                        });
+                        var wb = XLSX.utils.book_new();
+                        var ws = XLSX.utils.aoa_to_sheet(newData);
+                        XLSX.utils.book_append_sheet(wb, ws, "Informe");
+                        XLSX.writeFile(wb, "informe banner.xlsx");
+                    }
+                });
+            }
 
             /**
              * Método que trae los gráficos de la vista
@@ -544,24 +719,17 @@
                 grafioSelloFinanciero();
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
+                graficoSelloAntiguos();
                 graficoTiposDeEstudiantes();
                 graficoOperadores();
             }
 
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('.periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {
@@ -600,15 +768,17 @@
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
             function ocultarDivs() {
-                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colAntiguos ,#colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
             /**
              * Método que cuenta la cantidad de programas de la facultad correspondiente
              */
+            var totalProgramas;
+
             function Contador() {
-                totalSeleccionado = $('#programas input[type="checkbox"]').length;
-                totalPeriodos = $('#periodos input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
+                
             }
 
             function limpiarTitulos() {
@@ -627,7 +797,6 @@
                     $(this).text(contenidoLimpio);
                 });
             }
-
 
             function estadoUsuario() {
                 limpiarTitulos();
@@ -656,7 +825,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantes, chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartSelloAntiguos,chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -686,17 +855,13 @@
              */
 
             $('#generarReporte').on('click', function(e) {
-                e.preventDefault();
-                Contador();
+                e.preventDefault();          
                 periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos == totalPeriodos) {
-                            location.reload();
-                        }
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
@@ -725,7 +890,7 @@
 
             function graficosporPrograma() {
                 if (chartEstudiantes || chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
+                    chartTipoEstudiante || chartOperadores || chartSelloAntiguos) {
                     destruirGraficos();
                 }
                 $(".facultadtitulos").hide();
@@ -748,71 +913,96 @@
                     periodos: periodosSeleccionados
                 }
                 $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.estado;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('estudiantes').getContext('2d');
-                        chartEstudiantes = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label + 'S: ' + valores[index];
-                                }),
-                                datasets: [{
-                                    label: 'Gráfico Circular',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)']
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
-                                        },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: url,
+                        data: data,
+                        success: function(data) {
+                            try {
+                                data = jQuery.parseJSON(data);
+                            } catch {
+                                data = data;
+                            }
+                            var labels = data.data.map(function(elemento) {
+                                return elemento.estado;
+                            });
+
+                            var valores = data.data.map(function(elemento) {
+                                return elemento.TOTAL;
+                            });
+                            var suma = valores.reduce(function(acumulador, valorActual) {
+                                return acumulador + valorActual;
+                            }, 0);
+                            // Crear el gráfico circular
+                            var ctx = document.getElementById('estudiantes').getContext('2d');
+                            chartEstudiantes = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: labels.map(function(label, index) {
+                                        label = label.toUpperCase();
+                                        if (label != 'TOTAL') {
+                                            return label + 'S: ' + valores[index];
+                                        } else {
+                                            return label + ': ' + suma;
                                         }
-                                    }
+                                    }),
+                                    datasets: [{
+                                        label: 'Gráfico Circular',
+                                        data: valores,
+                                        backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 0.5)']
+                                    }]
                                 },
-                            },
-                            plugin: [ChartDataLabels]
-                        });
-                        if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
-                            $('#colEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colEstudiantes').removeClass('hidden');
+                                options: {
+                                    maintainAspectRatio: false,
+                                    responsive: true,
+                                    plugins: {
+                                        datalabels: {
+                                            color: 'black',
+                                            font: {
+                                                weight: 'bold',
+                                                size: 12
+                                            },
+                                        },
+                                        labels: {
+                                            render: 'percenteaje',
+                                            size: '14',
+                                            fontStyle: 'bolder',
+                                            position: 'border',
+                                            textMargin: 6
+                                        },
+                                        legend: {
+                                            position: 'right',
+                                            align: 'left',
+                                            labels: {
+                                                usePointStyle: true,
+                                                padding: 20,
+                                                font: {
+                                                    size: 12
+                                                }
+                                            }
+                                        },
+                                        title: {
+                                        display: true,
+                                        text: 'TOTAL ESTUDIANTES: ' + suma,
+                                        font: {
+                                                size: 14,
+                                                Style: 'bold',
+                                            },
+                                        position: 'bottom'
+                                    }
+                                    },
+
+                                },
+                                plugins: [ChartDataLabels]
+                            });
+                            if (chartEstudiantes.data.labels.length == 0 && chartEstudiantes.data.datasets[0].data.length == 0) {
+                                $('#colEstudiantes').addClass('hidden');
+                            } else {
+                                $('#colEstudiantes').removeClass('hidden');
+                            }
                         }
-                    }
                 });
             }
 
@@ -828,7 +1018,7 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -836,49 +1026,56 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
+                                labels: labels,
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
                                 responsive: true,
+                                maintainAspectRatio: false,
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
+                                        align: 'left',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -886,10 +1083,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                             $('#colSelloFinanciero').addClass('hidden');
@@ -913,7 +1119,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -921,61 +1127,90 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var total = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+
+                        total = total.reduce((a, b) => a + b, 0);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
+                            if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                                return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                            } else {
+                                return elemento.autorizado_asistir;
+                            }
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('retencion').getContext('2d');
                         chartRetencion = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                        label = 'SIN MARCACIÓN'
                                     }
-                                    label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(208,171,75, 1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
                                         },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -999,7 +1234,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1007,48 +1242,63 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
 
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
                                     }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
@@ -1059,11 +1309,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
-
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             $('#colPrimerIngreso').addClass('hidden');
@@ -1072,6 +1330,114 @@
                         }
                     }
                 });
+            }
+
+            var chartSelloAntiguos;
+
+            function graficoSelloAntiguos() {
+                var url, data;
+                url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
+                data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        var labels = [];
+                        var valores = [];
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('antiguos').getContext('2d');
+                        chartSelloAntiguos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
+                                    }
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'border',
+                                        textMargin: 2
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartSelloAntiguos.data.labels.length == 0 && chartSelloAntiguos.data.datasets[0].data.length == 0) {
+                            $('#colAntiguos').addClass('hidden');
+                        } else {
+                            $('#colAntiguos').removeClass('hidden');
+                        }
+                    }
+                });
+
             }
 
             /**
@@ -1086,7 +1452,7 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     };
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1094,18 +1460,21 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
+
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1124,13 +1493,17 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
+                                    if (label.includes("ESTUDIANTE ")) {
+                                        label = label.replace(/ESTUDIANTE\S*/i, "");
+                                    }
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: 'Tipos de estudiantes',
+                                    label: '',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
@@ -1147,6 +1520,7 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -1155,16 +1529,11 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -1182,6 +1551,7 @@
 
             function graficoOperadores() {
                 var data;
+                var url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
                     programa: programasSeleccionados,
                     periodos: periodosSeleccionados
@@ -1191,15 +1561,17 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
-                    url: "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                    url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1218,6 +1590,7 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        // Crear el gráfico de barras
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -1258,13 +1631,7 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
@@ -1308,7 +1675,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSelect,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }
@@ -1411,7 +1778,7 @@
                     }
                 } else {
                     data = {
-                        programa: programasSelect,
+                        programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
                 }

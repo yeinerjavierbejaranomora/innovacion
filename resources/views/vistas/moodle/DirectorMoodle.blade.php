@@ -34,18 +34,6 @@
         width: 60px;
     }
 
-    .deshacer {
-        background-color: #dfc14e;
-        border-color: #dfc14e;
-        color: white;
-        width: 140px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 800;
-        place-items: center;
-        font-size: 11px;
-    }
-
     .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
@@ -56,6 +44,24 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     #botondataTable {
@@ -68,6 +74,9 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .boton {
@@ -91,8 +100,13 @@
     }
 
     .graficos {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
+    }
+
+    .graficosRiesgo {
+        min-height: 350px;
+        max-height: 350px;
     }
 
     #cardProgramas {
@@ -100,8 +114,8 @@
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
@@ -112,13 +126,29 @@
     }
 
     #seccion {
-        background: #FFFFFF;
+        background: #DFE0E2;
     }
 
     .center-chart {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .fondocards {
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts {
+        background-color: #DFE0E2;
+    }
+
+    .custom-text {
+        margin-top: 40px;
+        font-size: 14px;
+        color: black;
+        font-family: sans-serif;
     }
 </style>
 
@@ -146,19 +176,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.mafi') }}">
-                        Admisiones
-                    </a>
-                </div>
-                <div class="col 4 text-center">
-                    <a type="button" class="btn boton" href="{{ route('home.planeacion') }}">
-                        Planeación
-                    </a>
-                </div>
-            </div>
+
 
             <!-- Page Heading -->
             <div class="text-center">
@@ -175,75 +193,86 @@
             </div>
             <br>
 
-            <!-- Checkbox Periodos -->
+            <!-- Checkbox Facultades -->
             <div class="row justify-content-start mb-3" id="seccion">
+
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
-                    <div class="card-body" id="cardNivel">
-                        <div class="text-center col-8">
-                            <h5 id="tituloNiveles"><strong>Periodos Activos</strong></h5>
+                    <div class="card-body mb-3" id="cardNivel">
+                        <div class="row">
+                            <div class="text-center col-8">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
+                            </div>
+                            <div class="text-center col-4">
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Programas</strong></h5>
+                            </div>
                         </div>
+
                         <div class="text-start">
-                            <!--Accordion-->
                             <div id="periodos">
-                                <div class="row mb-2">
+                                <!--Accordion-->
+                                <div class="row mb-3">
                                     <div class="col-4">
                                         <!--Formación continua-->
                                         <div class="card">
-                                            <div class="card-header" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            <div class="card-header fondocards" id="heading2" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
-                                                        Formación continua
+                                                    <button class="btn btn-link text-light">
+                                                        For. Contínua
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosContinua" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosContinua" name="todosContinua" checked>
+                                                        <label for="todosContinua" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos inputTodos" id="todosContinua" name="todosContinua" checked>
                                                     </div>
                                                 </h5>
                                             </div>
-
-                                            <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Continua">
-
-                                                </div>
+                                            <div id="collapse2" class="collapse shadow" aria-labelledby="heading2" data-parent="#periodos">
+                                                <div class="card-body periodos" style="width:100%;" id="Continua"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <!--Pregrado-->
                                         <div class="card">
-                                            <div class="card-header" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                            <div class="card-header fondocards" id="heading1" style="width:100%;cursor:pointer;" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Pregrado
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosPregrado" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosPregrado" name="todosPregrado" checked>
+                                                        <label for="todosPregrado" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosPregrado" name="todosPregrado" checked>
                                                     </div>
                                                 </h5>
                                             </div>
 
                                             <div id="collapse1" class="collapse shadow" aria-labelledby="heading1" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Pregrado"></div>
+                                                <div class="card-body periodos" style="width:100%;" id="Pregrado"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <div class="card" id="cardProgramas">
-                                            <div class="card-header text-center" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
-                                                <h5><strong>Seleccionar Programas</strong></h5>
+                                        <div class="card mb-3" id="cardProgramas">
+                                            <div class="card-header text-center fondocards" id="HeadingProgramas" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#acordionProgramas" aria-expanded="false" aria-controls="acordionProgramas">
+                                                <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                    <button class="btn btn-link text-light">
+                                                        Programas
+                                                    </button>
+                                                    <div class="custom-checkbox">
+                                                        <label for="todosPrograma" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" id="todosPrograma" name="todosPrograma" checked>
+                                                    </div>
+                                                </h5>
                                             </div>
                                             <div class="card-body text-start collapse shadow" id="acordionProgramas" aria-labelledby="headingProgramas" style="overflow: auto;">
-                                                <div name="programas" id="programas">
-                                                    @foreach ($programas as $programa)
-                                                    <label class="idProgramas"> <input type="checkbox" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label><br>
-                                                    @endforeach
+                                                <div name="programas">
+                                                    <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
+                                                    <ul style="list-style:none" id="programas">
+                                                        @foreach ($programas as $programa)
+                                                        <li id="Checkbox{{$programa->codprograma}}" data-codigo="{{$programa->codprograma}}"><label><input id="checkboxProgramas" type="checkbox" name="programa[]" value="{{$programa->codprograma}}" checked> {{$programa->programa}}</label></li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
-                                            </div>
-                                            <div class="card-footer text-end" style="height: 55px;">
-                                                <button type="button" id="deshacerProgramas" class="btn deshacer col-5">Deshacer Todos</button>
-                                                <button type="button" id="seleccionarProgramas" class="btn deshacer col-6">Seleccionar Todos</button>
                                             </div>
                                         </div>
                                     </div>
@@ -252,53 +281,49 @@
                                     <div class="col-4">
                                         <!--Especialización-->
                                         <div class="card">
-                                            <div class="card-header" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                            <div class="card-header fondocards" id="heading3" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Especialización
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosEsp" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosEsp" name="todosEsp" checked>
+                                                        <label for="todosEsp" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosEsp" name="todosEsp" checked>
                                                     </div>
                                                 </h5>
                                             </div>
 
                                             <div id="collapse3" class="collapse shadow" aria-labelledby="heading3" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Esp">
-
-                                                </div>
+                                                <div class="card-body periodos" style="width:100%;" id="Esp"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <!--Maestría-->
                                         <div class="card">
-                                            <div class="card-header" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                            <div class="card-header fondocards" id="heading4" style="width:100%; cursor:pointer;" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
                                                 <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link">
+                                                    <button class="btn btn-link text-light">
                                                         Maestría
                                                     </button>
                                                     <div class="custom-checkbox">
-                                                        <label for="todosMaestria" class="text-muted" style="font-size:12px;"> Selec. Todos</label>
-                                                        <input type="checkbox" id="todosMaestria" name="todosMaestria" checked>
+                                                        <label for="todosMaestria" class="text-light" style="font-size:12px;"> Selec. Todos</label>
+                                                        <input type="checkbox" class="todos" id="todosMaestria" name="todosMaestria" checked>
                                                     </div>
                                                 </h5>
                                             </div>
 
                                             <div id="collapse4" class="collapse shadow" aria-labelledby="heading4" data-parent="#periodos">
-                                                <div class="card-body" style="width:100%;" id="Maestria">
+                                                <div class="card-body periodos" style="width:100%;" id="Maestria">
 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
-                        </div>
-                        <div class="text-center col-8 mt-3" style="height: 30px;">
-                            <button type="button" id="deshacerPeriodos" class="btn deshacer">Deshacer Todos</button>
-                            <button type="button" id="seleccionarPeriodos" class="btn deshacer">Seleccionar Todos</button>
                         </div>
                     </div>
                 </div>
@@ -313,65 +338,100 @@
 
         </div>
 
-        <div class="text-center mt-4 mb-4">
-            <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
-        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div id="ausentismo" class="content">
+                            <div class="text-center mt-4 mb-4">
+                                <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
+                            </div>
 
-        <div class="row justify-content-start mt-3 columnas">
-            <div class="col-4 text-center " id="colRiesgoAlto">
-                <div class="card shadow mb-4 graficosRiesgo">
-                    <div class="card-header">
-                        <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body center-chart">
-                        <canvas id="alto"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 text-center " id="colRiesgoMedio">
-                <div class="card shadow mb-4 graficosRiesgo">
-                    <div class="card-header">
-                        <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body center-chart">
-                        <canvas id="medio"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 text-center " id="colRiesgoBajo">
-                <div class="card shadow mb-4 graficosRiesgo">
-                    <div class="card-header">
-                        <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
-                        <h5 class="tituloPeriodo"><strong></strong></h5>
-                    </div>
-                    <div class="card-body center-chart">
-                        <canvas id="bajo"></canvas>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="row justify-content-start mt-3 columnas">
+                                <div class="col-4 text-center " id="colRiesgoAlto">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts" style="position: relative;">
+                                            <canvas id="alto"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center " id="colRiesgoMedio">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="medio"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center " id="colRiesgoBajo">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="bajo"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="card shadow mt-4 hidden" id="colTabla">
-            <!-- Card Body -->
-            <div class="card-body">
-                <!--Datatable-->
-                <div class="table">
-                    <table id="datatable" class="display" style="width:100%">
-                    </table>
+                            <div class="card shadow mt-4 hidden" id="colTabla">
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!--Datatable-->
+                                    <div class="table">
+                                        <table id="datatable" class="display" style="width:100%">
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div id="cursos" class="content">
+                            <div class="table">
+                                <table id="tablaCursos" class="display" style="width:90%">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br>
         </div>
 
         <br>
@@ -441,7 +501,7 @@
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -454,23 +514,18 @@
     <script>
         $(document).ready(function() {
 
+            $('#menuMoodle').addClass('activo');
             var tabla = <?php echo json_encode($tabla); ?>;
+            var programasSeleccionados = [];
+            var periodosSeleccionados = [];
             programasUsuario();
             Contador();
             vistaEntrada();
 
-            var periodosSeleccionados = [];
             periodos();
             getPeriodos();
             riesgo();
-            estadoUsuarioPeriodos();
-
-            var totalSeleccionado;
-            var totalPeriodos;
-
-            var programasSeleccionados = [];
-
-            var programasSelect;
+            tablaCursos();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -492,8 +547,22 @@
                 }
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
-                programasSelect = programasSeleccionados;
             }
+
+            $(".content").hide();
+            $("#ausentismo").show();
+
+            $(".menuMoodle").click(function() {
+                $(".menuMoodle").removeClass('active');
+                $(".content").hide();
+
+                var target = $(this).attr("href").substring(1);
+
+                $("#" + target).show();
+                $("#nav" + target).addClass('active');
+
+                return false;
+            });
 
             /**
              * Método que trae los periodos activos
@@ -533,9 +602,9 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(programasSelect);
+                var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelect[key[0]];
+                var valorPrograma = programasSeleccionados[key[0]];
 
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();
@@ -557,37 +626,12 @@
                 return periodosSeleccionados;
             }
 
-            function estadoUsuarioPeriodos() {
-                if (($('#Continua').text()).trim() == '') {
-                    $('#Continua').html('No hay periodos')
+            $("#todosPrograma").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
                 }
-                if (($('#Pregrado').text()).trim() == '') {
-                    $('#Pregrado').html('No hay periodos')
-                }
-                if (($('#Esp').text()).trim() == '') {
-                    console.log('entra');
-                    $('#Esp').html('No hay periodos')
-                }
-                if (($('#Maestria').text()).trim() == '') {
-                    $('#Maestria').html('No hay periodos')
-                }
-            }
-
-
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
-            });
-
-            $('#deshacerProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarProgramas').on('click', function(e) {
-                $('#programas input[type="checkbox"]').prop('checked', true);
             });
 
             $("#todosContinua").change(function() {
@@ -625,15 +669,16 @@
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
             function ocultarDivs() {
-                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colAntiguos,#colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
             /**
              * Método que cuenta la cantidad de programas de la facultad correspondiente
              */
+            var totalProgramas;
+
             function Contador() {
-                totalSeleccionado = $('#programas input[type="checkbox"]').length;
-                totalPeriodos = $('#periodos input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
             }
 
             function limpiarTitulos() {
@@ -652,7 +697,6 @@
                     $(this).text(contenidoLimpio);
                 });
             }
-
 
             function estadoUsuario() {
                 limpiarTitulos();
@@ -675,13 +719,6 @@
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
-            }
-
-            /**
-             * Método para destruir todos los gráficos
-             */
-            function destruirGraficos() {
-                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -712,23 +749,23 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                var periodosSeleccionados = getPeriodos();
-                Contador();
+                periodosSeleccionados = getPeriodos();
+                destruirTabla();
+                destruirTablaCurso();
+
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
-                            location.reload();
-                        }
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
                         estadoUsuario();
+                        riesgo();
+                        tablaCursos();
                     } else {
                         programasSeleccionados = [];
                         $("#mensaje").empty();
-                        destruirGraficos();
                         ocultarDivs();
                         alerta();
                     }
@@ -736,7 +773,6 @@
                     programasSeleccionados = [];
                     periodosSeleccionados = [];
                     $("#mensaje").empty();
-                    destruirGraficos();
                     ocultarDivs();
                     alertaPeriodo();
                 }
@@ -769,6 +805,8 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        $('.totalMatriculas').empty();
+                        $('.totalMatriculas').text(data.total);
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
@@ -783,6 +821,7 @@
                         if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
+
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -802,22 +841,21 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto + ' Estudiantes',
+                                        text: data.alto + ' Matrículas',
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -830,6 +868,7 @@
                         });
 
                         ctx = document.getElementById('medio').getContext('2d');
+
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -842,36 +881,31 @@
                                     rotation: 270,
                                 }, ],
                             },
-
                             options: {
                                 responsive: true,
                                 cutoutPercentage: 50,
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.medio + ' Estudiantes',
+                                        text: data.medio + ' Matrículas',
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
                                         enabled: false
                                     },
-
                                 },
-
                             },
                             plugins: [ChartDataLabels]
                         });
@@ -896,21 +930,19 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.bajo + ' Estudiantes',
+                                        text: data.bajo + ' Matrículas',
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -922,6 +954,7 @@
                             },
                             plugins: [ChartDataLabels]
                         });
+
                         if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
                             $('#colRiesgoAlto').addClass('hidden');
                         } else {
@@ -950,7 +983,6 @@
                 });
                 dataTable(riesgo);
             });
-
 
             var chartRiesgoIngreso;
             var chartRiesgoNotas;
@@ -1078,8 +1110,95 @@
                 });
 
                 graficosModal(id);
+
             }
 
+            function tablaCursos() {
+                destruirTablaCurso();
+                console.log('entra');
+                var data;
+                var url = "{{ route('tabla.cursos.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    };
+                $('#tablaCursos').empty();
+                var mensaje = 'Cargando, por favor espere...';
+                $('#tablaCursos').append(mensaje);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+                        $('#tablaCursos').empty();
+                        tabla = $('#tablaCursos').DataTable({
+                            "data": data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'id',
+                                    title: 'Id Curso'
+                                },
+                                {
+                                    data: 'NombreCurso',
+                                    title: 'Nombre Curso'
+                                },
+                                {
+                                    data: 'Tutor',
+                                    title: 'Tutor'
+                                },
+                                {
+                                    data: 'Total',
+                                    title: 'Total estudiantes',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Sello',
+                                    title: 'Con sello',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'ASP',
+                                    title: 'ASP',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Inactivo',
+                                    title: 'Inactivos',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Cursos',
+                                    title: 'Cursos abiertos',
+                                    className: "text-center",
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    },
+
+                });
+            }
+
+            function destruirTablaCurso() {
+                if ($.fn.DataTable.isDataTable('#tablaCursos')) {
+                    tabla.destroy();
+                    $('#tablaCursos').DataTable().destroy();
+                    $('#tablaCursos thead').empty();
+                    $('#tablaCursos tbody').empty();
+                    $('#tablaCursos tfooter').empty();
+                }
+            }
             /**
              * Método que grafica los datos en el Modal
              */
@@ -1273,7 +1392,9 @@
                     $("#tituloTable").remove();
                     table.destroy();
                     $('#datatable').DataTable().destroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
             }

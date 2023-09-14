@@ -724,8 +724,7 @@
 
     $('#generarReporte').on('click', function(e) {
             e.preventDefault();
-            Contador();
-            var periodosSeleccionados = getPeriodos();
+            periodosSeleccionados = getPeriodos();
             periodosSeleccionados.forEach(function(periodo, index, array) {
                 array[index] = '2023' + periodo;
             });
@@ -737,21 +736,20 @@
                         programasSeleccionados.push($(this).val());
                     });
                     graficoAlertas();
+
                 }
                 destruirTable();
-                Contador();
                 var periodosSeleccionados = getPeriodos();
                 periodosSeleccionados.forEach(function(periodo, index, array) {
                     array[index] = '2023' + periodo;
                 });
-                //var periodos = getPeriodos();
                 dataTable(periodosSeleccionados);
             } else {
                 programasSeleccionados = [];
                 facultadesSeleccionadas = [];
                 periodosSeleccionados = [];
             }
-        });
+    });
 
     // Grafico
     var chartAlertas;
@@ -764,9 +762,8 @@
         periodosSeleccionados.forEach(function(periodo, index, array) {
             array[index] = '2023' + periodo;
         });
-
+       
             //console.log(facultadesSeleccionadas);
-
         if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
             url = "{{ route('alertas.grafico.programa') }}",
                 data = {

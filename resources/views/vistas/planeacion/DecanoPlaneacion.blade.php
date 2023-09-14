@@ -599,8 +599,8 @@
             </div>
         </div>
 
-        <!-- Modal Buscar estudiante -->
-        <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
+         <!-- Modal Buscar estudiante -->
+         <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -618,8 +618,19 @@
                             <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
                         </div>
                         <button type="submit" class="btn botonModal mb-2">Buscar</button>
-                    </form>
+                    </form class="mt-2">
+
+                    <div class="hidden mt-3 mb-3" id="dataEstudiante">
+                            <h5 id="primerApellido" class="text-black"></h5>
+                            <h5 id="Sello" class="text-black"></h5>
+                            <h5 id="Operador" class="text-black"></h5>
+                            <h5 id="tipEstudiante" class="text-black"></h5>
+                        </div>
+                        <br>
                         <!--Datatable con id Banner del estudiante-->
+                        <div class="text-center text-black hidden" id='tituloTablaBuscar'>
+                            <h4>Materias inscritas</h4>
+                        </div>
                         <div class="table" id="divTablaBuscador">
                             <table id="buscarEstudiante" class="display" style="width:100%">
                             </table>
@@ -809,8 +820,8 @@
 
             /**
              * Método que trae la información de toda la Ibero 
-             * */
-    
+             * 
+             */
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();
                 facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
@@ -2178,6 +2189,8 @@
                 dataTable(periodos);
             });
 
+            var programaEstudiante;
+
             function dataTable(periodos) {
                 $('#colTabla').removeClass('hidden');
                 var url, data;
@@ -2501,6 +2514,7 @@
             $("#formBuscar").submit(function(e) {
                 limpiarModalBuscador();
                 e.preventDefault();
+                console.log(programaEstudiante);
                 var id = $("#idBanner").val();
                 var url, data;
                 data = {
@@ -2524,8 +2538,20 @@
                         if(data.length === 0){
                             $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
                         }else{
+
+                            ['#primerApellido', '#Sello', '#Operador', '#tipEstudiante'].forEach(selector => {
+                                $(selector).empty();
+                            });
+                            $('#dataEstudiante').removeClass('hidden');
+                            $('#tituloTablaBuscar').removeClass('hidden');
+                            $('#primerApellido').append('Primer Apellido: '+ data.estudiante.primer_apellido);
+                            $('#Sello').append('Sello financiero: '+ data.estudiante.sello);
+                            $('#Operador').append('Operador: '+ data.estudiante.operador);
+                            $('#tipEstudiante').append('Tipo estudiante: '+data.estudiante.tipoestudiante);
+
+                            console.log(data);
                             estudiante = $('#buscarEstudiante').DataTable({
-                                "data": data,
+                                "data": data.materias,
                                 'pageLength': 10,
                                 "columns": [{
                                         title: 'Código de materia',

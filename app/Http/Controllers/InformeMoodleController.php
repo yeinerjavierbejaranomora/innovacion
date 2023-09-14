@@ -529,11 +529,12 @@ class InformeMoodleController extends Controller
 
         $periodos = $_POST['periodos'];
         $programas = $_POST['programa'];
-        $consultaCursos = DB::table('datos_moodle')
-            ->whereIn('Periodo_Rev', $periodos)
-            ->whereIn('Facultad', $programas)
-            ->select('Nombrecurso', 'IdCurso', 'NombreTutor', DB::raw('COUNT(id) AS TOTAL'))
-            ->groupBy('IdCurso')
+        $consultaCursos = DB::table('datos_moodle as d')
+            ->join('programas as p','d.Programa', '=', 'p.programa')
+            ->whereIn('d.Periodo_Rev', $periodos)
+            ->whereIn('p.codprograma', $programas)
+            ->select('d.Nombrecurso', 'd.IdCurso', 'd.NombreTutor', DB::raw('COUNT(d.id) AS TOTAL'))
+            ->groupBy('d.IdCurso')
             ->get()
             ->toArray();
 
@@ -541,31 +542,35 @@ class InformeMoodleController extends Controller
             $id = $Curso->IdCurso;
             $total = $Curso->TOTAL;
 
-            $consultaSello = DB::table('datos_moodle')
-                ->where('IdCurso', $id)
-                ->whereIn('Periodo_Rev', $periodos)
-                ->whereIn('Facultad', $programas)
-                ->where('Sello', 'TIENE SELLO FINANCIERO')
-                ->select(DB::raw('COUNT(id) AS TOTAL'))
+            $consultaSello = DB::table('datos_moodle as d')
+                ->join('programas as p','d.Programa', '=', 'p.programa')
+                ->whereIn('d.Periodo_Rev', $periodos)
+                ->whereIn('p.codprograma', $programas)
+                ->where('d.IdCurso', $id)
+                ->where('d.Sello', 'TIENE SELLO FINANCIERO')
+                ->select(DB::raw('COUNT(d.id) AS TOTAL'))
                 ->get();
 
             $sello = $consultaSello[0]->TOTAL;
 
-            $consultaASP = DB::table('datos_moodle')
-                ->where('IdCurso', $id)
-                ->where('Sello', 'TIENE RETENCION')
-                ->whereIn('Periodo_Rev', $periodos)
-                ->whereIn('Facultad', $programas)
-                ->select(DB::raw('COUNT(id) AS TOTAL'))
+            $consultaASP = DB::table('datos_moodle as d')
+                ->join('programas as p','d.Programa', '=', 'p.programa')
+                ->whereIn('d.Periodo_Rev', $periodos)
+                ->whereIn('p.codprograma', $programas)
+                ->where('d.IdCurso', $id)
+                ->where('d.Sello', 'TIENE RETENCION')
+                ->select(DB::raw('COUNT(d.id) AS TOTAL'))
                 ->get();
 
             $ASP = $consultaASP[0]->TOTAL;
             $inactivos = $total - $sello - $ASP;
 
-            $consultaGrupos =  DB::table('datos_moodle')->where('IdCurso', $id)
-                ->whereIn('Periodo_Rev', $periodos)
-                ->whereIn('Facultad', $programas)
-                ->selectRaw('COUNT(Grupo) AS TOTAL')->groupBy('Grupo')->get();
+            $consultaGrupos =  DB::table('datos_moodle as d')
+                ->where('d.IdCurso', $id)
+                ->join('programas as p','d.Programa', '=', 'p.programa')
+                ->whereIn('d.Periodo_Rev', $periodos)
+                ->whereIn('p.codprograma', $programas)
+                ->selectRaw('COUNT(d.Grupo) AS TOTAL')->groupBy('d.Grupo')->get();
 
             $grupo = $consultaGrupos->count();
 

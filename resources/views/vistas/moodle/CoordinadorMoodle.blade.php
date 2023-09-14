@@ -517,7 +517,7 @@
 
     <script>
         $(document).ready(function() {
-            ('#menuMoodle').addClass('activo');
+            $('#menuMoodle').addClass('activo');
             var tabla = <?php echo json_encode($tabla); ?>;
             var programasSeleccionados = [];
             var periodosSeleccionados = [];

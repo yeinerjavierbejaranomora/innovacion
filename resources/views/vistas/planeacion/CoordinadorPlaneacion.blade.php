@@ -457,35 +457,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 text-center " id="colProgramas">
-                    <div class="card shadow mb-4 graficosBarra" id="ocultarGraficoProgramas">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8 d-flex align-items-center justify-content-center">
-                                    <h5 id="tituloProgramas"><strong>Programas con mayor cantidad de admitidos Activos</strong></h5>
-                                    <h5 class="tituloPeriodo"><strong></strong></h5>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <span data-toggle="tooltip" title="Muestra la cantidad de estudiantes inscritos en cada programa, cuenta con la opción de 'Ver más'. Adicionalente permite ver un informe detallad" data-placement="right">
-                                        <button type="button" class="btn" style="background-color: #dfc14e;border-color: #dfc14e;; color:white;" data-toggle="tooltip" data-placement="bottom"><i class="fa-solid fa-circle-question"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body fondocharts">
-                            <canvas id="estudiantesProgramas"></canvas>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end">
-                            <div class="mr-3">
-                                <a href="" id="botondataTable" class="btn botonModal">Ver informe detallado </a>
-                            </div>
-                            <div class="ml-1">
-                                <a href="" id="botonModalProgramas" class="btn botonModal" data-toggle="modal" data-target="#modalProgramasTotal"> Ver más </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="card shadow mt-4 hidden" id="colTabla">

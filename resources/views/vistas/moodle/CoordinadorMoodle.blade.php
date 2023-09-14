@@ -338,10 +338,6 @@
 
         </div>
 
-        <div class="text-center mt-4 mb-4">
-            <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
-        </div>
-
         <div class="row justify-content-center mt-3">
             <div class="col-11">
                 <div class="card">
@@ -360,7 +356,6 @@
                             <div class="text-center mt-4 mb-4">
                                 <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
                             </div>
-
                             <div class="row justify-content-start mt-3 columnas">
                                 <div class="col-4 text-center " id="colRiesgoAlto">
                                     <div class="card shadow mb-4 graficosRiesgo">
@@ -437,18 +432,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card shadow mt-4 hidden" id="colTabla">
-            <!-- Card Body -->
-            <div class="card-body">
-                <!--Datatable-->
-                <div class="table">
-                    <table id="datatable" class="display" style="width:100%">
-                    </table>
-                </div>
-            </div>
-            <br>
         </div>
 
         <br>
@@ -1145,9 +1128,7 @@
                     data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
-                    }
-
-
+                    };
                 $('#tablaCursos').empty();
                 var mensaje = 'Cargando, por favor espere...';
                 $('#tablaCursos').append(mensaje);
@@ -1418,7 +1399,9 @@
                     $("#tituloTable").remove();
                     table.destroy();
                     $('#datatable').DataTable().destroy();
+                    $('#datatable thead').empty();
                     $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
                     $("#datatable tbody").off("click", "button.data");
                 }
             }

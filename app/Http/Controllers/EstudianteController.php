@@ -125,12 +125,6 @@ class EstudianteController extends Controller
             $historial=[];
             $proyectada=[]; 
 
-          
-
-        
-            
-
-        
             $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
             $materiasPorVer=DB::table('materiasPorVer')->where('codBanner', '=', $idbanner)->get()->toArray();
 
@@ -153,7 +147,7 @@ class EstudianteController extends Controller
                     'semestre'=>$value_mallaCurricular->semestre,
                     'creditos'=>$value_mallaCurricular->creditos,
                     'ciclo'=>$value_mallaCurricular->ciclo,
-                    'nombre_materia'=>$value_mallaCurricular->curso,
+                    'nombre_materia'=>strtolower($value_mallaCurricular->curso),
                     'calificacion'=>"",
                     'color'=>'bg-secondary',
                     'cursada'=>'',
@@ -284,7 +278,7 @@ class EstudianteController extends Controller
                             'semestre'=> $semestre,
                             'creditos'=>$value_historialAcademico['creditos'],
                             'ciclo'=>'',
-                            'nombre_materia'=>$value_historialAcademico['materia'],
+                            'nombre_materia'=>strtolower($value_historialAcademico['materia']),
                             'calificacion'=>$value_historialAcademico['calificacion'],
                             'color'=>$color,
                             'cursada'=>$Cursada,

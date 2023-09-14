@@ -2,18 +2,6 @@
 @section('title', 'Nueva Contrasena')
 @section('content')
 
-<script>
-    Swal.fire({
-        title: 'Aviso Usuario',
-        text: "Una vez cambies tu constraseña, serás redirigido al formulario de ingreso para que inicies sesión con tu nueva contraseña",
-        icon: 'info',
-        color: 'white',
-        showCancelButton: false,
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK',
-    })
-</script>
-
 <div class="limiter">
     <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-02.jpg')}});">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -62,5 +50,17 @@
         </div>
     </div>
 </div>
-
+<script>
+$(document).ready(function() {
+    Swal.fire({
+        title: 'Aviso Usuario',
+        text: "Una vez cambies tu constraseña, serás redirigido al formulario de ingreso para que inicies sesión con tu nueva contraseña",
+        icon: 'info',
+        color: 'white',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+    })
+})
+</script>
 @endsection

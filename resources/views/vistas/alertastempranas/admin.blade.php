@@ -895,7 +895,6 @@
                 } catch {
                     data = data;
                 }
-                console.log(data);
                 table = $('#datatable').DataTable({
                     "data": data,
                     'pageLength': 10,
@@ -927,10 +926,6 @@
                         {
                             title: 'Descripción',
                             data: 'desccripcion',
-                        },
-                        {
-                            title: 'Activo',
-                            data: 'activo',
                         },
                         {
                             title: 'Fecha creación',

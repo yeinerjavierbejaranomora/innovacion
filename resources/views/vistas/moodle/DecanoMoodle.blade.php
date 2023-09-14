@@ -103,6 +103,11 @@
         max-height: 450px;
     }
 
+    .graficosRiesgo {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
     #cardProgramas {
         max-height: 500px;
     }
@@ -136,6 +141,13 @@
 
     .fondocharts {
         background-color: #DFE0E2;
+    }
+
+    .custom-text {
+        margin-top: 40px;
+        font-size: 14px;
+        color: black;
+        font-family: sans-serif;
     }
 </style>
 

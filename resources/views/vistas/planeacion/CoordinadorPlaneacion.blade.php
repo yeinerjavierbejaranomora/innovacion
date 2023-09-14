@@ -537,21 +537,19 @@
         $(document).ready(function() {
             $('#menuPlaneacion').addClass('activo');
             var tabla = <?php echo json_encode($tabla); ?>;
+            var programasSeleccionados = [];
+            var periodosSeleccionados = [];
             console.log(tabla);
             programasUsuario();
             Contador();
             vistaEntrada();
 
-            var periodosSeleccionados = [];
+           
             periodos();
             invocarGraficos();
             getPeriodos();
 
-            var totalSeleccionado;
-            var totalPeriodos;
-
-            var programasSeleccionados = [];
-
+        
             var programasSelect;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -648,14 +646,6 @@
                 graficoOperadores();
             }
 
-            $('#deshacerPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', false);
-            });
-
-            $('#seleccionarPeriodos').on('click', function(e) {
-                $('#periodos input[type="checkbox"]').prop('checked', true);
-            });
-
             /**
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
@@ -666,9 +656,10 @@
             /**
              * Método que cuenta la cantidad de programas de la facultad correspondiente
              */
+            var totalProgramas;
+
             function Contador() {
-                totalSeleccionado = $('#programas input[type="checkbox"]').length;
-                totalPeriodos = $('#periodos input[type="checkbox"]').length;
+                totalProgramas= $('#programas input[type="checkbox"]').length;
             }
 
             function limpiarTitulos() {
@@ -687,7 +678,6 @@
                     $(this).text(contenidoLimpio);
                 });
             }
-
 
             function estadoUsuario() {
                 limpiarTitulos();
@@ -716,7 +706,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartSelloAntiguos,chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -750,10 +740,7 @@
                 var periodosSeleccionados = getPeriodos();
                 Contador();
                 if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
-                            location.reload();
-                        }
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length<totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
@@ -779,9 +766,10 @@
                 }
             });
 
+
             function graficosporPrograma() {
                 if (chartEstudiantesActivos || chartRetencion || chartSelloPrimerIngreso ||
-                    chartTipoEstudiante || chartOperadores) {
+                    chartTipoEstudiante || chartOperadores || chartSelloAntiguos) {
                     destruirGraficos();
                 }
                 $(".facultadtitulos").hide();
@@ -797,12 +785,13 @@
             var chartEstudiantesActivos;
 
             function grafioSelloFinanciero() {
-                var url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla;
-                var data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                }
-                $.ajax({
+                var data;
+                var url = "{{ route('estudiantes.sello.programa',['tabla' => ' ']) }}" + tabla,
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -810,49 +799,56 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var labels = [];
+                        var valores = [];
+
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
+
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('activos').getContext('2d');
                         chartEstudiantesActivos = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
-                                    }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
-                                }),
+                                labels: labels,
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
-                                maintainAspectRatio: false,
                                 responsive: true,
+                                maintainAspectRatio: false,
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
+                                        align: 'left',
                                         labels: {
                                             usePointStyle: true,
                                             padding: 20,
@@ -860,10 +856,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartEstudiantesActivos.data.labels.length == 0 && chartEstudiantesActivos.data.datasets[0].data.length == 0) {
                             $('#colSelloFinanciero').addClass('hidden');
@@ -880,14 +885,14 @@
             var chartRetencion;
 
             function graficoRetencion() {
+                var data;
+                var url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla,
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
 
-                var url = "{{ route('estudiantes.retencion.programa',['tabla' => ' ']) }}" + tabla;
-                var data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                }
-
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -895,61 +900,90 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var total = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+
+                        total = total.reduce((a, b) => a + b, 0);
 
                         var labels = data.data.map(function(elemento) {
-                            return elemento.autorizado_asistir;
+                            if (elemento.autorizado_asistir.startsWith('ACTIVO EN ')) {
+                                return elemento.autorizado_asistir.replace('ACTIVO EN ', '').trim();
+                            } else {
+                                return elemento.autorizado_asistir;
+                            }
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
                         // Crear el gráfico circular
                         var ctx = document.getElementById('retencion').getContext('2d');
                         chartRetencion = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
                                     if (label == '') {
-                                        label = 'NO AUTORIZADO A PLATAFORMA'
+                                        label = 'SIN MARCACIÓN'
                                     }
-                                    label = label.toUpperCase();
                                     return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
-                                    label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(208,171,75, 1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
                                 }]
                             },
                             options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
+
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
                                         },
-                                    },
-                                    labels: {
-                                        render: 'percenteaje',
-                                        size: '14',
-                                        fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'right',
-                                        labels: {
-                                            usePointStyle: true,
-                                            padding: 20,
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels],
                         });
                         if (chartRetencion.data.labels.length == 0 && chartRetencion.data.datasets[0].data.length == 0) {
                             $('#colRetencion').addClass('hidden');
@@ -966,14 +1000,14 @@
             var chartSelloPrimerIngreso;
 
             function graficoSelloPrimerIngreso() {
+                var data;
+                var url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla,
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
 
-                var url = "{{ route('estudiantes.primerIngreso.programa',['tabla' => ' ']) }}" + tabla;
-                var data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                }
-
-                $.ajax({
+                    $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -981,48 +1015,63 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
 
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.sello;
-                        });
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
                         // Crear el gráfico circular
                         var ctx = document.getElementById('primerIngreso').getContext('2d');
                         chartSelloPrimerIngreso = new Chart(ctx, {
                             type: 'pie',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    if (label == 'NO EXISTE') {
-                                        label = 'SIN SELLO';
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
                                     }
-                                    label = label.toUpperCase();
-                                    return label + ': ' + valores[index];
                                 }),
                                 datasets: [{
                                     label: 'Gráfico Circular',
                                     data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)']
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
                                 }]
                             },
                             options: {
                                 maintainAspectRatio: false,
                                 responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
                                 plugins: {
                                     datalabels: {
-                                        formatter: function(value, context) {
-                                            return value;
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
                                         },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
                                     },
                                     labels: {
                                         render: 'percenteaje',
                                         size: '14',
                                         fontStyle: 'bolder',
-                                        position: 'outside',
-                                        textMargin: 6
+                                        position: 'border',
+                                        textMargin: 2
                                     },
                                     legend: {
                                         position: 'right',
@@ -1033,11 +1082,19 @@
                                                 size: 12
                                             }
                                         }
-                                    }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
                                 },
-
                             },
-                            plugin: [ChartDataLabels]
+                            plugins: [ChartDataLabels]
                         });
                         if (chartSelloPrimerIngreso.data.labels.length == 0 && chartSelloPrimerIngreso.data.datasets[0].data.length == 0) {
                             $('#colPrimerIngreso').addClass('hidden');
@@ -1149,17 +1206,16 @@
                 });
             }
 
-            /**
-             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
-             */
-            var chartOperadores;
+            var chartSelloAntiguos;
 
-            function graficoOperadores() {
-                url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla;
+            function graficoSelloAntiguos() {
+                var url, data;
+                url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
                 data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                }
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1168,12 +1224,225 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        data = jQuery.parseJSON(data);
+                        var labels = [];
+                        var valores = [];
+                        for (var propiedad in data) {
+                            if (data.hasOwnProperty(propiedad)) {
+                                labels.push(propiedad + ': ' + data[propiedad]);
+                                valores.push(data[propiedad]);
+                            }
+                        }
 
+                        var suma = valores.reduce(function(acumulador, valorActual) {
+                            return acumulador + valorActual;
+                        }, 0);
+
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('antiguos').getContext('2d');
+                        chartSelloAntiguos = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label == 'TOTAL') {
+                                        return label + ': ' + suma;
+                                    } else {
+                                        return label;
+                                    }
+                                }),
+                                datasets: [{
+                                    label: 'Gráfico Circular',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 0.5)', 'rgba(223, 193, 78, 1)', 'rgba(56,101,120,1)', 'rgba(208,171,75, 1)']
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 20,
+                                    },
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold',
+                                            size: 12
+                                        },
+                                        formatter: function(value, context) {
+                                            return context.chart.data.datasets[0].data[context.dataIndex] >= 10 ? value : '';
+                                        }
+                                    },
+                                    labels: {
+                                        render: 'percenteaje',
+                                        size: '14',
+                                        fontStyle: 'bolder',
+                                        position: 'border',
+                                        textMargin: 2
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 20,
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
+                                    },
+                                    title: {
+                                    display: true,
+                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                    font: {
+                                            size: 14,
+                                            Style: 'bold',
+                                        },
+                                    position: 'bottom'
+                                }
+                                },
+                            },
+                            plugins: [ChartDataLabels]
+                        });
+                        if (chartSelloAntiguos.data.labels.length == 0 && chartSelloAntiguos.data.datasets[0].data.length == 0) {
+                            $('#colAntiguos').addClass('hidden');
+                        } else {
+                            $('#colAntiguos').removeClass('hidden');
+                        }
+                    }
+                });
+
+            }
+
+
+            var chartTipoEstudiante;
+
+            function graficoTiposDeEstudiantes() {
+                var data;
+                var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    };
+                    $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var labels = data.data.map(function(elemento) {
+                            return elemento.tipoestudiante;
+                        });
+                        var valores = data.data.map(function(elemento) {
+                            return elemento.TOTAL;
+                        });
+                        var maxValor = Math.max(...valores);
+                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                        var yMax;
+
+                        if (maxValor < 50) {
+                            yMax = 100;
+                        } else if (maxValor < 100) {
+                            yMax = 120;
+                        } else if (maxValor < 500) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                        } else if (maxValor < 1000) {
+                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                        } else {
+                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                        }
+                        // Crear el gráfico circular
+                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
+                        chartTipoEstudiante = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels.map(function(label, index) {
+                                    if (label.includes("ESTUDIANTE ")) {
+                                        label = label.replace(/ESTUDIANTE\S*/i, "");
+                                    }
+                                    return label;
+                                }),
+                                datasets: [{
+                                    label: '',
+                                    data: valores,
+                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                                    ],
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                    }
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        max: yMax,
+                                        beginAtZero: true
+                                    }
+                                },
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                plugins: {
+
+                                    datalabels: {
+                                        color: 'black',
+                                        font: {
+                                            weight: 'semibold'
+                                        },
+                                        formatter: Math.round
+                                    },
+                                    legend: {
+                                        display: false,
+                                    }
+                                },
+                            },
+                            plugins: [ChartDataLabels],
+                        });
+                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
+                            $('#colTipoEstudiantes').addClass('hidden');
+                        } else {
+                            $('#colTipoEstudiantes').removeClass('hidden');
+                        }
+                    }
+                });
+            }
+            /**
+             * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
+             */
+            var chartOperadores;
+
+            function graficoOperadores() {
+                var data;
+                var url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
+                data = {
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = jQuery.parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
                         var labels = data.data.map(function(elemento) {
                             return elemento.operador;
                         });
-
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
@@ -1192,6 +1461,7 @@
                             var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
                             yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
                         }
+                        // Crear el gráfico de barras
                         var ctx = document.getElementById('operadores').getContext('2d');
                         chartOperadores = new Chart(ctx, {
                             type: 'bar',
@@ -1232,13 +1502,7 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        position: 'bottom',
-                                        labels: {
-
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
+                                        display: false,
                                     }
                                 },
                             },

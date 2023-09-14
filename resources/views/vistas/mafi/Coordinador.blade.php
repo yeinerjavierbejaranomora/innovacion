@@ -534,22 +534,15 @@
         $(document).ready(function() {
             $('#menuAdmisiones').addClass('activo');
             var tabla = 'Mafi';
+            var programasSeleccionados = [];
+            var periodosSeleccionados = [];
 
             programasUsuario();
             Contador();
-            vistaEntrada();
-
-            var periodosSeleccionados = [];
+            vistaEntrada(); 
             periodos();
             invocarGraficos();
             getPeriodos();
-
-            var totalSeleccionado;
-            var totalPeriodos;
-
-            var programasSeleccionados = [];
-
-            var programasSeleccionados;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -867,7 +860,6 @@
                 });
                 if (periodosSeleccionados.length > 0) {
                     if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length<totalProgramas) {
-
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {

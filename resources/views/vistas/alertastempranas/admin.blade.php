@@ -124,12 +124,12 @@
         align-items: center;
     }
 
-    .fondocards{
+    .fondocards {
         color: white;
         background-color: #3A6577;
     }
 
-    .fondocharts{
+    .fondocharts {
         background-color: #DFE0E2;
     }
 </style>
@@ -274,8 +274,8 @@
                                 <h5 id="tituloNiveles" class="text-dark"><strong>Periodos Activos</strong></h5>
                             </div>
                             <div class="text-center col-4">
-                            <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
-                        </div>
+                                <h5 id="tituloNiveles" class="text-dark"><strong>Facultades y Programas</strong></h5>
+                            </div>
                         </div>
 
                         <div class="text-start">
@@ -528,7 +528,6 @@
 </a>
 
 <script>
-
     $('#menuAlertas').addClass('activo');
 
     $(document).ajaxStart(function() {
@@ -543,18 +542,22 @@
         $('div #programas input[type="checkbox"]').prop('disabled', false);
         $('#generarReporte').prop("disabled", false);
     });
+
     var programasSeleccionados = [];
     var facultadesSeleccionadas = [];
     var periodosSeleccionados = [];
     periodos();
     facultades();
     programas();
+
     var periodosSeleccionados = getPeriodos();
     periodosSeleccionados.forEach(function(periodo, index, array) {
         array[index] = '2023' + periodo;
     });
+
     //var periodos = getPeriodos();
     dataTable(periodosSeleccionados);
+
     function periodos() {
         var datos = $.ajax({
             headers: {
@@ -709,88 +712,88 @@
     }
 
     $("#todosContinua").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#Continua input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#Continua input[type='checkbox']").prop("checked", false);
-                }
+        if ($(this).is(":checked")) {
+            $("#Continua input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Continua input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosPregrado").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Pregrado input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Pregrado input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosEsp").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Esp input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Esp input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosMaestria").change(function() {
+        if ($(this).is(":checked")) {
+            $("#Maestria input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#Maestria input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosFacultad").change(function() {
+        if ($(this).is(":checked")) {
+            $("#facultades input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#facultades input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $("#todosPrograma").change(function() {
+        if ($(this).is(":checked")) {
+            $("#programas input[type='checkbox']").prop("checked", true);
+        } else {
+            $("#programas input[type='checkbox']").prop("checked", false);
+        }
+    });
+
+    $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
+        if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
+            $('#programas').empty();
+            var formData = new FormData();
+            var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
+            checkboxesSeleccionados.each(function() {
+                formData.append('idfacultad[]', $(this).val());
             });
 
-            $("#todosPregrado").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#Pregrado input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#Pregrado input[type='checkbox']").prop("checked", false);
-                }
+            periodosSeleccionados = getPeriodos();
+            var periodos = periodosSeleccionados.map(item => item.slice(-2));
+
+            periodos.forEach(function(periodo) {
+                formData.append('periodos[]', periodo);
             });
 
-            $("#todosEsp").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#Esp input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#Esp input[type='checkbox']").prop("checked", false);
-                }
-            });
-
-            $("#todosMaestria").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#Maestria input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#Maestria input[type='checkbox']").prop("checked", false);
-                }
-            });
-
-            $("#todosFacultad").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#facultades input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#facultades input[type='checkbox']").prop("checked", false);
-                }
-            });
-
-            $("#todosPrograma").change(function() {
-                if ($(this).is(":checked")) {
-                    $("#programas input[type='checkbox']").prop("checked", true);
-                } else {
-                    $("#programas input[type='checkbox']").prop("checked", false);
-                }
-            });
-
-            $('body').on('change', '#facultades input[type="checkbox"], .periodos input[type="checkbox"]', function() {
-                if ($('#facultades input[type="checkbox"]:checked').length > 0 && $('.periodos input[type="checkbox"]:checked').length) {
-                    $('#programas').empty();
-                    var formData = new FormData();
-                    var checkboxesSeleccionados = $('#facultades input[type="checkbox"]:checked');
-                    checkboxesSeleccionados.each(function() {
-                        formData.append('idfacultad[]', $(this).val());
-                    });
-
-                    periodosSeleccionados = getPeriodos();
-                    var periodos = periodosSeleccionados.map(item => item.slice(-2));
-
-                    periodos.forEach(function(periodo) {
-                        formData.append('periodos[]', periodo);
-                    });
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'post',
-                        url: "{{ route('programasPeriodo.activos') }}",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(datos) {
-                            if (datos != null) {
-                                try {
-                                    datos = jQuery.parseJSON(datos);
-                                } catch {
-                                    datos = datos;
-                                }
-                                $.each(datos, function(key, value) {
-                                    $('#programas').append(`<div class="checkbox-wrapper mb-1">
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "{{ route('programasPeriodo.activos') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    if (datos != null) {
+                        try {
+                            datos = jQuery.parseJSON(datos);
+                        } catch {
+                            datos = datos;
+                        }
+                        $.each(datos, function(key, value) {
+                            $('#programas').append(`<div class="checkbox-wrapper mb-1">
                                         <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
                                         <label class="cbx" for="cbx-${value.codprograma}"><span>
                                                 <svg width="12px" height="10px" viewbox="0 0 12 10">
@@ -798,17 +801,17 @@
                                                 </svg></span><span>${value.nombre}</span>
                                         </label>
                                     </div>`);
-                                });
-                            }
-                        },
-                        error: function() {
-                            $('#programas').append('<h5>No hay programas</h5>')
-                        }
-                    })
-                } else {
-                    $('#programas').empty();
+                        });
+                    }
+                },
+                error: function() {
+                    $('#programas').append('<h5>No hay programas</h5>')
                 }
-            });
+            })
+        } else {
+            $('#programas').empty();
+        }
+    });
 
     function Contador() {
         totalFacultades = $('#facultades input[type="checkbox"]').length;
@@ -860,7 +863,6 @@
         }
     });
 
-
     function dataTable(periodosSeleccionados) {
         $('#colTabla').removeClass('hidden');
         var url, data;
@@ -871,9 +873,6 @@
                     periodos: periodosSeleccionados,
                     programas: programasSeleccionados
                 }
-            /*var formData = new FormData();
-            formData.append('periodos', periodos);
-            formData.append('programas', programasSeleccionados);*/
         } else {
             if (facultadesSeleccionadas.length > 0) {
                 url = "{{ route('alertas.tabla.facultad')}}",
@@ -911,10 +910,6 @@
                             title: 'Codigo Banner',
                             data: 'idbanner',
                         },
-                        /*{
-                            title: 'Código de programa',
-                            data: 'codprograma',
-                        },*/
                         {
                             title: 'Programa',
                             render: function(data, type, row) {
@@ -947,40 +942,98 @@
                             title: 'Fecha creación',
                             data: 'created_at',
                         },
-                        /*{
-                            defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
-                            title: 'Estudiantes planeados',
-                            className: 'dt-center'
-                        },
-
                         {
-                            defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
-                            title: 'Malla Curricular',
-                            className: 'dt-center'
-                        },*/
+                            data: 'activo',
+                            defaultContent: "",
+                            title: 'Inactivar / Activar',
+                            className: "text-center",
+                            render: function(data, type, row) {
+                                if (data == '1') {
+                                    return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-solid fa-unlock'></i></button>";
+                                } else if (data == '0') {
+                                    return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-solid fa-lock'></i></button>";
+                                }
+                            }
+                        }
                     ]
                 });
 
-                /*function tablaMalla(tbody, table) {
-                    $(tbody).on("click", "button.malla", function() {
-                        var datos = table.row($(this).parents("tr")).data();
-                        var programa = datos[0];
-                        var nombrePrograma = datos[1];
-                        mallaPrograma(programa, nombrePrograma);
-                    })
+                function obtener_data_inactivar(tbody, table) {
+                    $(tbody).on("click", "button.inactivar", function(event) {
+                        var data = table.row($(this).parents("tr")).data();
+                        if (data.activo == 1) {
+                            Swal.fire({
+                                title: "¿Desea inactivar el usuario " + data.nombre + "?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                showCloseButton: true,
+                                cancelButtonColor: '#DC3545',
+                                cancelButtonText: "No, Cancelar",
+                                confirmButtonText: "Si"
+                            }).then(result => {
+                                if (result.value) {
+                                    $.post("{{ route('user.inactivar') }}", {
+                                            '_token': $('meta[name=csrf-token]').attr('content'),
+                                            id: data.id,
+                                        },
+                                        function(result) {
+                                            console.log(result);
+                                            if (result == "deshabilitado") {
+                                                Swal.fire({
+                                                    title: "Usuario deshabilitado",
+                                                    html: "El programa <strong>" + data.nombre +
+                                                        "</strong> ha sido inactivado",
+                                                    icon: 'info',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: "Aceptar",
+                                                }).then(result => {
+                                                    if (result.value) {
+                                                        location.reload();
+                                                    };
+                                                })
+                                            }
+                                        })
+                                }
+                            });
+
+                        } else {
+                            Swal.fire({
+                                title: "¿Desea activar el usuario " + data.nombre + "?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                showCloseButton: true,
+                                cancelButtonColor: '#DC3545',
+                                cancelButtonText: "No, Cancelar",
+                                confirmButtonText: "Si"
+                            }).then(result => {
+                                if (result.value) {
+                                    $.post("{{ route('user.activar') }}", {
+                                            '_token': $('meta[name=csrf-token]').attr('content'),
+                                            id: data.id,
+                                        },
+                                        function(result) {
+                                            if (result == "habilitado") {
+                                                Swal.fire({
+                                                    title: "Usuario habilitado",
+                                                    html: "El usuario <strong>" + data.nombre +
+                                                        "</strong> ha sido habilitado",
+                                                    icon: 'info',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: "Aceptar",
+                                                }).then(result => {
+                                                    if (result.value) {
+                                                        location.reload();
+                                                    };
+                                                })
+                                            }
+                                        })
+                                }
+                            });
+                        }
+                    });
                 }
 
-                function tablaEstudiantes(tbody, table) {
-                    $(tbody).on("click", "button.estudiantes", function() {
-                        var datos = table.row($(this).parents("tr")).data();
-                        var programa = datos[0];
-                        var nombrePrograma = datos[1];
-                        estudiantesPlaneados(programa, nombrePrograma);
-                    })
-                }
-
-                tablaMalla("#datatable tbody", table);
-                tablaEstudiantes("#datatable tbody", table);*/
+                obtener_data_inactivar("#example tbody", table);
             }
 
         });
@@ -1002,117 +1055,119 @@
     graficoAlertas();
 
     function graficoAlertas() {
-        if (chartAlertas) { chartAlertas.destroy(); }
-    var url, data;
-    var periodosSeleccionados = getPeriodos();
-    periodosSeleccionados.forEach(function(periodo, index, array) {
-        array[index] = '2023' + periodo;
-    });
+        if (chartAlertas) {
+            chartAlertas.destroy();
+        }
+        var url, data;
+        var periodosSeleccionados = getPeriodos();
+        periodosSeleccionados.forEach(function(periodo, index, array) {
+            array[index] = '2023' + periodo;
+        });
 
-    
 
-    if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-        url = "{{ route('alertas.grafico.programa') }}",
-            data = {
-                programas: programasSeleccionados,
-                periodos: periodosSeleccionados
-            }
-    } else {
-        if (facultadesSeleccionadas.length > 0) {
-            url = "{{ route('alertas.grafico.facultad') }}",
+
+        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+            url = "{{ route('alertas.grafico.programa') }}",
                 data = {
-                    facultad: facultadesSeleccionadas,
+                    programas: programasSeleccionados,
                     periodos: periodosSeleccionados
                 }
         } else {
-            url = "{{ route('alertas.grafico') }}",
-                data = ''
+            if (facultadesSeleccionadas.length > 0) {
+                url = "{{ route('alertas.grafico.facultad') }}",
+                    data = {
+                        facultad: facultadesSeleccionadas,
+                        periodos: periodosSeleccionados
+                    }
+            } else {
+                url = "{{ route('alertas.grafico') }}",
+                    data = ''
+            }
         }
-    }
 
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        type: 'post',
-        url: url,
-        data: data,
-        success: function(data) {
-            try {
-                data = jQuery.parseJSON(data);
-            } catch {
-                data = data;
-            }
-            console.log(data);
-            var labels = data.map(function(elemento) {
-                return elemento.codprograma;
-            });
-            var valores = data.map(function(elemento) {
-                return elemento.TOTAL;
-            });
-            var maxValor = Math.max(...valores);
-            var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-            var yMax;
-            if (maxValor < 50) {
-                yMax = 100;
-            } else if (maxValor < 100) {
-                yMax = 120;
-            } else if (maxValor < 500) {
-                yMax = 100 * Math.ceil(maxValor / 100) + 100;
-            } else if (maxValor < 1000) {
-                yMax = 100 * Math.ceil(maxValor / 100) + 200;
-            } else {
-                var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-            }
-            // Crear el gráfico de barras
-            var ctx = document.getElementById('graficoAlertas').getContext('2d');
-            chartAlertas = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: valores,
-                        backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                            'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                        ],
-                        datalabels: {
-                            anchor: 'end',
-                            align: 'top',
-                        }
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            max: yMax,
-                            beginAtZero: true
-                        }
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: url,
+            data: data,
+            success: function(data) {
+                try {
+                    data = jQuery.parseJSON(data);
+                } catch {
+                    data = data;
+                }
+                console.log(data);
+                var labels = data.map(function(elemento) {
+                    return elemento.codprograma;
+                });
+                var valores = data.map(function(elemento) {
+                    return elemento.TOTAL;
+                });
+                var maxValor = Math.max(...valores);
+                var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
+                var yMax;
+                if (maxValor < 50) {
+                    yMax = 100;
+                } else if (maxValor < 100) {
+                    yMax = 120;
+                } else if (maxValor < 500) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 100;
+                } else if (maxValor < 1000) {
+                    yMax = 100 * Math.ceil(maxValor / 100) + 200;
+                } else {
+                    var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
+                    yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
+                }
+                // Crear el gráfico de barras
+                var ctx = document.getElementById('graficoAlertas').getContext('2d');
+                chartAlertas = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: valores,
+                            backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
+                                'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
+                            ],
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top',
+                            }
+                        }]
                     },
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    plugins: {
-                        datalabels: {
-                            color: 'black',
-                            font: {
-                                weight: 'semibold'
-                            },
-                            formatter: Math.round
+                    options: {
+                        scales: {
+                            y: {
+                                max: yMax,
+                                beginAtZero: true
+                            }
                         },
-                        legend: {
-                            display: false,
-                        }
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            datalabels: {
+                                color: 'black',
+                                font: {
+                                    weight: 'semibold'
+                                },
+                                formatter: Math.round
+                            },
+                            legend: {
+                                display: false,
+                            }
+                        },
                     },
-                },
-                plugins: [ChartDataLabels]
-            });
-            if (chartAlertas.data.labels.length == 0 && chartAlertas.data.datasets[0].data.length == 0) {
-                $('#colAlertas').addClass('hidden');
-            } else {
-                $('#colAlertas').removeClass('hidden');
+                    plugins: [ChartDataLabels]
+                });
+                if (chartAlertas.data.labels.length == 0 && chartAlertas.data.datasets[0].data.length == 0) {
+                    $('#colAlertas').addClass('hidden');
+                } else {
+                    $('#colAlertas').removeClass('hidden');
+                }
             }
-        }
-    });
+        });
     }
 </script>
 

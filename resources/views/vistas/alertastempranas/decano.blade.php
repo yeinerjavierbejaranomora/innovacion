@@ -579,6 +579,7 @@
             url: "{{ route('todosProgramas.activos') }}",
             cache: false,
             contentType: false,
+            async: false,
             processData: false,
             success: function(datos) {
                 if (datos != null) {

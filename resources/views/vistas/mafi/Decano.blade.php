@@ -773,7 +773,7 @@
                     url: "{{ route('programasPeriodo.activos') }}",
                     data: formData,
                     cache: false,
-
+                    async: false,
                     contentType: false,
                     processData: false,
                     success: function(datos) {

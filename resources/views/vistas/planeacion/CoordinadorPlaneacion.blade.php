@@ -1111,7 +1111,6 @@
              * Método que genera el gráfico con los tipos de estudiante por programa
              */
             
-
             var chartSelloAntiguos;
 
             function graficoSelloAntiguos() {

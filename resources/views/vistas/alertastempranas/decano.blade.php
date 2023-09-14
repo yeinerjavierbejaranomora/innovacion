@@ -785,13 +785,12 @@
 
             //console.log(facultadesSeleccionadas);
 
-        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+
             url = "{{ route('alertas.grafico.programa') }}",
                 data = {
                     programas: programasSeleccionados,
                     periodos: periodosSeleccionados
                 }
-        } 
 
         $.ajax({
             headers: {

@@ -641,6 +641,7 @@
             periodos();
             invocarGraficos();
             getPeriodos();
+            dataTable();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -1542,7 +1543,7 @@
                     success: function(data) {
                         data = jQuery.parseJSON(data);
                         var labels = data.data.map(function(elemento) {
-                            return elemento.tipo_estudiante;
+                            return elemento.tipoestudiante;
                         });
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
@@ -1723,13 +1724,13 @@
 
             var programaEstudiante;
 
-            function dataTable(periodos) {
+            function dataTable() {
                 $('#colTabla').removeClass('hidden');
                 var url, data;
                 var table;
                     url = "{{ route('planeacionProgramas.tabla.programa')}}",
                     data = {
-                        periodos: periodos,
+                        periodos: periodosSeleccionados,
                         programas: programasSeleccionados
                     }
                 var datos = $.ajax({

@@ -608,7 +608,7 @@
 
     var totalProgramas;
     var totalPeriodos;
-    
+
     function Contador() {
         totalProgramas = $('#programas input[type="checkbox"]').length;
         totalPeriodos = $('#programas input[type="checkbox"]').length;
@@ -732,6 +732,7 @@
                 array[index] = '2023' + periodo;
             });
             console.log($('#programas input[type="checkbox"]:checked').length);
+            console.log(totalProgramas);
             if (periodosSeleccionados.length > 0) {
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');

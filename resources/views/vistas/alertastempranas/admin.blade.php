@@ -1,6 +1,7 @@
 <!-- incluimos el header para el html -->
 @include('layout.header')
 
+
 <!-- incluimos el menu -->
 @include('menus.menu_admin')
 <style>
@@ -133,6 +134,8 @@
         background-color: #DFE0E2;
     }
 </style>
+
+@include('layout.alertas')
 
 {{-- estilos checkbox --}}
 <style>

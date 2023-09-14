@@ -693,7 +693,7 @@
             var totalProgramas;
 
             function Contador() {
-                totalProgramas = $('#programas input[type="checkbox"]').length;
+                totalProgramas = $('ul #programas input[type="checkbox"]').length;
             }
 
             var buscador = $('#buscadorProgramas');

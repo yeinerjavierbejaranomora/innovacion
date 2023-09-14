@@ -513,6 +513,7 @@
 
     <script>
         $(document).ready(function() {
+
             $('#menuMoodle').addClass('activo');
             var tabla = <?php echo json_encode($tabla); ?>;
             var programasSeleccionados = [];
@@ -548,6 +549,9 @@
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
             }
 
+            $(".content").hide();
+            $("#ausentismo").show();
+            
             $(".menuMoodle").click(function() {
                 $(".menuMoodle").removeClass('active');
                 $(".content").hide();

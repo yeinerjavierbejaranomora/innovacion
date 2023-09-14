@@ -343,99 +343,99 @@
         </div>
 
         <div class="row justify-content-center mt-3">
-                <div class="col-11">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <div id="ausentismo" class="content">
-                                <div class="text-center mt-4 mb-4">
-                                    <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
-                                </div>
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div id="ausentismo" class="content">
+                            <div class="text-center mt-4 mb-4">
+                                <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
+                            </div>
 
-                                <div class="row justify-content-start mt-3 columnas">
-                                    <div class="col-4 text-center " id="colRiesgoAlto">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts" style="position: relative;">
-                                                <canvas id="alto"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
+                            <div class="row justify-content-start mt-3 columnas">
+                                <div class="col-4 text-center " id="colRiesgoAlto">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts" style="position: relative;">
+                                            <canvas id="alto"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4 text-center " id="colRiesgoMedio">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts">
-                                                <canvas id="medio"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-center " id="colRiesgoBajo">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts">
-                                                <canvas id="bajo"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
-                                            </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="card shadow mt-4 hidden" id="colTabla">
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <!--Datatable-->
-                                        <div class="table">
-                                            <table id="datatable" class="display" style="width:100%">
-                                            </table>
+                                <div class="col-4 text-center " id="colRiesgoMedio">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="medio"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
                                         </div>
                                     </div>
-                                    <br>
+                                </div>
+                                <div class="col-4 text-center " id="colRiesgoBajo">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="bajo"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="cursos" class="content">
-                                <div class="table">
-                                    <table id="tablaCursos" class="display" style="width:90%">
-                                    </table>
+
+                            <div class="card shadow mt-4 hidden" id="colTabla">
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!--Datatable-->
+                                    <div class="table">
+                                        <table id="datatable" class="display" style="width:100%">
+                                        </table>
+                                    </div>
                                 </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div id="cursos" class="content">
+                            <div class="table">
+                                <table id="tablaCursos" class="display" style="width:90%">
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
 
         <div class="card shadow mt-4 hidden" id="colTabla">
@@ -517,7 +517,7 @@
                                 <canvas id="riesgoIngreso"></canvas>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -564,15 +564,15 @@
             }
 
             $(".menuMoodle").click(function() {
-                    $(".menuMoodle").removeClass('active');
-                    $(".content").hide();
+                $(".menuMoodle").removeClass('active');
+                $(".content").hide();
 
-                    var target = $(this).attr("href").substring(1);
+                var target = $(this).attr("href").substring(1);
 
-                    $("#" + target).show();
-                    $("#nav" + target).addClass('active');
+                $("#" + target).show();
+                $("#nav" + target).addClass('active');
 
-                    return false;
+                return false;
             });
 
 
@@ -639,11 +639,11 @@
             }
 
             $("#todosPrograma").change(function() {
-                    if ($(this).is(":checked")) {
-                        $("#programas input[type='checkbox']").prop("checked", true);
-                    } else {
-                        $("#programas input[type='checkbox']").prop("checked", false);
-                    }
+                if ($(this).is(":checked")) {
+                    $("#programas input[type='checkbox']").prop("checked", true);
+                } else {
+                    $("#programas input[type='checkbox']").prop("checked", false);
+                }
             });
 
             $("#todosContinua").change(function() {
@@ -688,8 +688,9 @@
              * Método que cuenta la cantidad de programas de la facultad correspondiente
              */
             var totalProgramas;
+
             function Contador() {
-                totalProgramas= $('#programas input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
             }
 
             function limpiarTitulos() {
@@ -825,6 +826,8 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        $('.totalMatriculas').empty();
+                        $('.totalMatriculas').text(data.total);
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
@@ -839,6 +842,7 @@
                         if (TotalBajo <= 0) {
                             TotalBajo = 0;
                         }
+
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -858,22 +862,21 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.alto + ' Estudiantes',
+                                        text: data.alto + ' Matrículas',
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -886,6 +889,7 @@
                         });
 
                         ctx = document.getElementById('medio').getContext('2d');
+                        
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -898,36 +902,31 @@
                                     rotation: 270,
                                 }, ],
                             },
-
                             options: {
                                 responsive: true,
                                 cutoutPercentage: 50,
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.medio + ' Estudiantes',
+                                        text: data.medio + ' Matrículas',
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
                                         enabled: false
                                     },
-
                                 },
-
                             },
                             plugins: [ChartDataLabels]
                         });
@@ -952,21 +951,19 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
                                     },
                                     title: {
                                         display: true,
-                                        text: data.bajo + ' Estudiantes',
+                                        text: data.bajo + ' Matrículas',
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -978,6 +975,7 @@
                             },
                             plugins: [ChartDataLabels]
                         });
+
                         if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
                             $('#colRiesgoAlto').addClass('hidden');
                         } else {

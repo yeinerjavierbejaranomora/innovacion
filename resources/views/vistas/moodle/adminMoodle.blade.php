@@ -991,6 +991,7 @@
                             if (TotalBajo <= 0) {
                                 TotalBajo = 0;
                             }
+                            
                             chartRiesgoAlto = new Chart(ctx, {
                                 type: 'doughnut',
                                 data: {
@@ -1125,6 +1126,7 @@
                                 },
                                 plugins: [ChartDataLabels]
                             });
+
                             if (chartRiesgoAlto.data.labels.length == 0 && chartRiesgoAlto.data.datasets[0].data.length == 0) {
                                 $('#colRiesgoAlto').addClass('hidden');
                             } else {

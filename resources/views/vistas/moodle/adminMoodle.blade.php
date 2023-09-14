@@ -524,7 +524,7 @@
             var table;
             var data;
             $(document).ready(function() {
-                ('#menuMoodle').addClass('activo');
+
                 var tabla = <?php echo json_encode($tabla); ?>;
 
                 $(".content").hide();

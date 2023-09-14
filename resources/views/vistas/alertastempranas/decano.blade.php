@@ -730,19 +730,15 @@
             });
             if (periodosSeleccionados.length > 0) {
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
+                    
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                     programasSeleccionados = [];
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
                     graficoAlertas();
-
                 }
                 destruirTable();
-                var periodosSeleccionados = getPeriodos();
-                periodosSeleccionados.forEach(function(periodo, index, array) {
-                    array[index] = '2023' + periodo;
-                });
                 dataTable(periodosSeleccionados);
             } else {
                 programasSeleccionados = [];
@@ -869,19 +865,20 @@
     });
     //var periodos = getPeriodos();
     dataTable(periodosSeleccionados);
+
     function dataTable(periodosSeleccionados) {
             $('#colTabla').removeClass('hidden');
             var url, data;
             var table;
+            console.log(programasSeleccionados);
             if (programasSeleccionados.length > 0) {
+                console.log('entra');
                 url = "{{ route('alertas.tabla.programa')}}",
                     data = {
                         periodos: periodosSeleccionados,
                         programas: programasSeleccionados
                     }
-                /*var formData = new FormData();
-                formData.append('periodos', periodos);
-                formData.append('programas', programasSeleccionados);*/
+
             } else {
 
                     url = "{{ route('alertas.tabla.facultad')}}",

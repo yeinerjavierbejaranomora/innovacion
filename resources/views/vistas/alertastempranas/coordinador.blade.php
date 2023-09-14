@@ -1,6 +1,8 @@
 @include('layout.header')
 
-@include('menus.menu_Decano')
+@include('menus.menu_Coordinador')
+
+
 <!--  creamos el contenido principal body -->
 <style>
     #facultades {

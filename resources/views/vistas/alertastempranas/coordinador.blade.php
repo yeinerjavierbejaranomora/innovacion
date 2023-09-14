@@ -262,7 +262,7 @@
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
                     @foreach ($programas as $programa)
-                    {{$programa}} -
+                    {{$programa->codprograma}} -
                     @endforeach
                 </h3>
 
@@ -581,7 +581,7 @@
                 <?php
                 $datos = array();
                 foreach ($programas as $programa) {
-                    $datos[] = $programa->codprograma;
+                    $datos[] = $programa;
                 }
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;

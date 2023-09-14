@@ -54,10 +54,16 @@ class AlertasTempranasController extends Controller
         $programa = trim($user->programa, ';');
         $programas = explode(";", $programa);
         foreach ($programas as $key => $value) {
-            $consulta = DB::table('programas')->where('id', $value)->select('codprograma')->first();
+            $consulta = DB::table('programas')->where('id', $value)->select('codprograma','programa')->first();
             $nombreProgramas[$value] = $consulta->codprograma;
+            $programas[$value] = $consulta->programa;
         }
-        return view('vistas.alertastempranas.coordinador', ['programas' => $nombreProgramas]);
+        $data = [
+            'codprograma'=>$nombreProgramas,
+            'programa'=>$programas
+        ];
+        
+        return view('vistas.alertastempranas.coordinador', ['programas' => $data]);
     }
 
     public function tablaAlertasP(){

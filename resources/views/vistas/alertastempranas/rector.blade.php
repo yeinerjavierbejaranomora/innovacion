@@ -943,40 +943,62 @@
                             title: 'Fecha creación',
                             data: 'created_at',
                         },
-                        /*{
-                            defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
-                            title: 'Estudiantes planeados',
-                            className: 'dt-center'
-                        },
-
                         {
-                            defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
-                            title: 'Malla Curricular',
-                            className: 'dt-center'
-                        },*/
+                            data: 'activo',
+                            defaultContent: "",
+                            title: 'Inactivar / Activar',
+                            className: "text-center",
+                            render: function(data, type, row) {
+                                if (data == '1') {
+                                    return "<button class='inactivar btn btn-success' type='button' id='boton'><i class='fa-regular fa-eye-slash'></i></button>";
+                                } else if (data == '0') {
+                                    return "<button class='inactivar btn btn-danger' type='button' id='boton'><i class='fa-regular fa-eye-slash'></i></button>";
+                                }
+                            }
+                        }
                     ]
                 });
 
-                /*function tablaMalla(tbody, table) {
-                    $(tbody).on("click", "button.malla", function() {
-                        var datos = table.row($(this).parents("tr")).data();
-                        var programa = datos[0];
-                        var nombrePrograma = datos[1];
-                        mallaPrograma(programa, nombrePrograma);
-                    })
+                function obtener_data_inactivar(tbody, table) {
+                    $(tbody).on("click", "button.inactivar", function(event) {
+                        var data = table.row($(this).parents("tr")).data();
+                        if (data.activo == 1) {
+                            Swal.fire({
+                                title: "¿Ya se ha resuelto la alerta temprana " + data.desccripcion + "?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                showCloseButton: true,
+                                cancelButtonColor: '#DC3545',
+                                cancelButtonText: "No, Cancelar",
+                                confirmButtonText: "Si"
+                            }).then(result => {
+                                if (result.value) {
+                                    $.post("{{ route('alerta.resuelta') }}", {
+                                            '_token': $('meta[name=csrf-token]').attr('content'),
+                                            id: encodeURIComponent(window.btoa(data.id)),
+                                        },
+                                        function(result) {
+                                            console.log(result);
+                                            if (result == "deshabilitado") {
+                                                Swal.fire({
+                                                    title: "Alerta solucionada",
+                                                    icon: 'info',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: "Aceptar",
+                                                }).then(result => {
+                                                    if (result.value) {
+                                                        location.reload();
+                                                    };
+                                                })
+                                            }
+                                        })
+                                    }
+                                });
+                            }
+                        });
                 }
 
-                function tablaEstudiantes(tbody, table) {
-                    $(tbody).on("click", "button.estudiantes", function() {
-                        var datos = table.row($(this).parents("tr")).data();
-                        var programa = datos[0];
-                        var nombrePrograma = datos[1];
-                        estudiantesPlaneados(programa, nombrePrograma);
-                    })
-                }
-
-                tablaMalla("#datatable tbody", table);
-                tablaEstudiantes("#datatable tbody", table);*/
+                obtener_data_inactivar("#datatable tbody", table);
             }
 
         });

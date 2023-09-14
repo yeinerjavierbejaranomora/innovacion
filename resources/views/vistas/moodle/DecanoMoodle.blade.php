@@ -313,100 +313,100 @@
         </div>
 
         <div class="row justify-content-center mt-3">
-                <div class="col-11">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <div id="ausentismo" class="content">
-                                <div class="text-center mt-4 mb-4">
-                                    <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
-                                </div>
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active menuMoodle" id="navausentismo" href="#ausentismo">Informe de Ausentismo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menuMoodle" id="navcursos" href="#cursos">Cursos activos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div id="ausentismo" class="content">
+                            <div class="text-center mt-4 mb-4">
+                                <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
+                            </div>
 
-                                <div class="row justify-content-start mt-3 columnas">
-                                    <div class="col-4 text-center " id="colRiesgoAlto">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts" style="position: relative;">
-                                                <canvas id="alto"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
+                            <div class="row justify-content-start mt-3 columnas">
+                                <div class="col-4 text-center " id="colRiesgoAlto">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoAlto"><strong>Riesgo alto</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts" style="position: relative;">
+                                            <canvas id="alto"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4 text-center " id="colRiesgoMedio">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts">
-                                                <canvas id="medio"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-center " id="colRiesgoBajo">
-                                        <div class="card shadow mb-4 graficosRiesgo">
-                                            <div class="card-header">
-                                                <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
-                                                <h5 class="tituloPeriodo"><strong></strong></h5>
-                                            </div>
-                                            <div class="card-body center-chart fondocharts">
-                                                <canvas id="bajo"></canvas>
-                                                <div style="flex: 1;">
-                                                    <div class="custom-text totalMatriculas"></div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer d-flex justify-content-end">
-                                                <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
-                                            </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonAlto" class="btn botonModal" data-value="ALTO"> Ver más </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="card shadow mt-4 hidden" id="colTabla">
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <!--Datatable-->
-                                        <div class="table">
-                                            <table id="datatable" class="display" style="width:100%">
-                                            </table>
+                                <div class="col-4 text-center " id="colRiesgoMedio">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoMedio"><strong>Riesgo medio</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="medio"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonMedio" class="btn botonModal" data-value="MEDIO"> Ver más </a>
                                         </div>
                                     </div>
-                                    <br>
+                                </div>
+                                <div class="col-4 text-center " id="colRiesgoBajo">
+                                    <div class="card shadow mb-4 graficosRiesgo">
+                                        <div class="card-header">
+                                            <h5 id="tituloRiesgoBajo"><strong>Riesgo bajo</strong></h5>
+                                            <h5 class="tituloPeriodo"><strong></strong></h5>
+                                        </div>
+                                        <div class="card-body center-chart fondocharts">
+                                            <canvas id="bajo"></canvas>
+                                            <div style="flex: 1;">
+                                                <div class="custom-text totalMatriculas"></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-end">
+                                            <a id="botonBajo" class="btn botonModal" data-value="BAJO"> Ver más </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="cursos" class="content">
-                                <div class="table">
-                                    <table id="tablaCursos" class="display" style="width:90%">
-                                    </table>
+
+                            <div class="card shadow mt-4 hidden" id="colTabla">
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!--Datatable-->
+                                    <div class="table">
+                                        <table id="datatable" class="display" style="width:100%">
+                                        </table>
+                                    </div>
                                 </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div id="cursos" class="content">
+                            <div class="table">
+                                <table id="tablaCursos" class="display" style="width:90%">
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <br>
 
@@ -790,6 +790,7 @@
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
                 destruirTabla();
+                destruirTablaCurso();
                 var key = Object.keys(facultadesSeleccionadas);
                 var cantidadFacultades = key.length;
                 periodosSeleccionados = getPeriodos();
@@ -805,13 +806,17 @@
                             checkboxesProgramas.each(function() {
                                 programasSeleccionados.push($(this).val());
                             });
+                            limpiarTitulos();
                             estadoUsuarioPrograma();
                             riesgo();
+                            tablaCursos();
+
                         } else {
                             if (facultadesSeleccionadas) {
                                 programasSeleccionados = [];
                                 limpiarTitulos();
                                 estadoUsuarioFacultad();
+                                tablaCursos();
                                 riesgo();
                             } else {
                                 /** Alerta */
@@ -914,6 +919,8 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        $('.totalMatriculas').empty();
+                        $('.totalMatriculas').text(data.total);
                         var ctx = document.getElementById('alto').getContext('2d');
                         var TotalAlto = data.total - data.alto;
                         var TotalMedio = data.total - data.medio;
@@ -1431,6 +1438,103 @@
                 }
 
             }
+
+            function tablaCursos() {
+                destruirTablaCurso();
+                console.log('entra');
+                var data;
+
+                if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
+                    var url = "{{ route('tabla.cursos.programa') }}",
+                        data = {
+                            programa: programasSeleccionados,
+                            periodos: periodosSeleccionados
+                        }
+                } else {
+                    var url = "{{ route('tabla.cursos.facultad') }}",
+                        data = {
+                            idfacultad: facultadesSeleccionadas,
+                            periodos: periodosSeleccionados
+                        }
+                }
+                $('#tablaCursos').empty();
+                var mensaje = 'Cargando, por favor espere...';
+                $('#tablaCursos').append(mensaje);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+                        $('#tablaCursos').empty();
+                        tabla = $('#tablaCursos').DataTable({
+                            "data": data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'id',
+                                    title: 'Id Curso'
+                                },
+                                {
+                                    data: 'NombreCurso',
+                                    title: 'Nombre Curso'
+                                },
+                                {
+                                    data: 'Tutor',
+                                    title: 'Tutor'
+                                },
+                                {
+                                    data: 'Total',
+                                    title: 'Total estudiantes',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Sello',
+                                    title: 'Con sello',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'ASP',
+                                    title: 'ASP',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Inactivo',
+                                    title: 'Inactivos',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Cursos',
+                                    title: 'Cursos abiertos',
+                                    className: "text-center",
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    },
+
+                });
+            }
+
+            function destruirTablaCurso() {
+                if ($.fn.DataTable.isDataTable('#tablaCursos')) {
+                    tabla.destroy();
+                    $('#tablaCursos').DataTable().destroy();
+                    $('#tablaCursos thead').empty();
+                    $('#tablaCursos tbody').empty();
+                    $('#tablaCursos tfooter').empty();
+                }
+            }
+
         });
     </script>
 

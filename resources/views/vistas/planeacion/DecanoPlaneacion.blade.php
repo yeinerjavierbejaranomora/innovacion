@@ -810,11 +810,6 @@
             /**
              * Método que trae la información de toda la Ibero 
              * */
-            function informacionGeneral() {
-                $('#mensaje').show();
-                destruirGraficos();
-                llamadoFunciones();
-            }
     
             function facultadesUsuario() {
                 periodosSeleccionados = getPeriodos();

@@ -2278,7 +2278,6 @@
                 dataTable(periodos);
             });
 
-
             var programaEstudiante;
 
             function dataTable(periodos) {

@@ -1404,7 +1404,6 @@
                     }
                 }
 
-
                 function destruirTablaCurso() {
                     if ($.fn.DataTable.isDataTable('#tablaCursos')) {
                         tabla.destroy();

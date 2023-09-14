@@ -12,13 +12,7 @@
         font-size: 14px;
     }
 
-    #generarReporte {
-        width: 250px;
-        height: 45px;
-        font-size: 20px;
-    }
-
-    .btn {
+    .button-informe {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -30,9 +24,20 @@
         font-size: 14px;
     }
 
+    #generarReporte {
+        width: 250px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    #btn-table {
+        width: 60px;
+    }
+
     #botonModalTiposEstudiantes,
     #botonModalProgramas,
-    #botonModalOperador {
+    #botonModalOperador,
+    #botonModalMetas {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -42,12 +47,51 @@
         font-weight: bold;
         place-items: center;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    #cardProgramas,
-    #cardPeriodos {
-        min-height: 250px;
-        max-height: 250px;
+    .botonMafi {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #botondataTable {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 250px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .boton {
+        background-color: #dfc14e;
+        border-color: #dfc14e;
+        color: white;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        place-items: center;
+        font-size: 14px;
     }
 
     .card {
@@ -58,29 +102,46 @@
         display: none;
     }
 
-    #chartEstudiantes {
-        min-height: 405.6px;
-        max-height: 405.6px;
+    .graficos {
+        min-height: 450px;
+        max-height: 450px;
     }
 
-
-    .graficos {
-        min-height: 460px;
-        max-height: 460px;
+    #cardProgramas {
+        max-height: 500px;
     }
 
     .graficosBarra {
-        min-height: 600px;
-        max-height: 600px;
+        min-height: 450px;
+        max-height: 450px;
     }
 
     #tiposEstudiantesTotal,
     #operadoresTotal,
-    #programasTotal {
+    #programasTotal,
+    #metasTotal {
         height: 600px !important;
     }
-</style>
 
+    #seccion {
+        background: #DFE0E2;
+    }
+
+    .center-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fondocards {
+        color: white;
+        background-color: #3A6577;
+    }
+
+    .fondocharts {
+        background-color: #DFE0E2;
+    }
+</style>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">

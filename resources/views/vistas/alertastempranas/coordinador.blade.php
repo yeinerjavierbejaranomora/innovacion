@@ -368,6 +368,16 @@
                                                 <div name="programas">
                                                     <input type="text" class="form-control mb-2" id="buscadorProgramas" placeholder="Buscar programas">
                                                     <ul style="list-style:none" id="programas">
+                                                        @foreach ($programas as $programa)
+                                                        <div class="checkbox-wrapper mb-1">
+                                                            <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
+                                                                <label class="cbx" for="cbx-${value.codprograma}"><span>
+                                                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                    </svg></span><span>${value.nombre}</span>
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -501,15 +511,10 @@
     var programasSeleccionados = [];
     var facultadesSeleccionadas = [];
     var periodosSeleccionados = [];
-    facultadesUsuario();
-    periodos();
-    programas();
-    Contador();
 
-    function facultadesUsuario() {
-        periodosSeleccionados = getPeriodos();
-        facultadesSeleccionadas = <?php echo json_encode($facultades); ?>;
-    }
+    programasUsuario();
+    periodos();
+    Contador();
 
     function periodos() {
         var datos = $.ajax({
@@ -570,52 +575,14 @@
         });
     }
 
-    function programas() {
-        console.log(facultadesSeleccionadas);
-        var formData = new FormData();
-                var periodos = ['06','07','13','16','33','34','43','44','53','54'];
-                for (const key in facultadesSeleccionadas) {
-                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+    function programasUsuario() {
+                <?php
+                $datos = array();
+                foreach ($programas as $programa) {
+                    $datos[] = $programa->codprograma;
                 }
-
-                periodos.forEach(function(periodo) {
-                    formData.append('periodos[]', periodo);
-                });
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            url: "{{ route('programasPeriodo.activos') }}",
-            data: formData,
-            cache: false,
-            contentType: false,
-            async: false,
-            processData: false,
-            success: function(datos) {
-                if (datos != null) {
-                    try {
-                        datos = jQuery.parseJSON(datos);
-                    } catch {
-                        datos = datos;
-                    }
-                    $.each(datos, function(key, value) {
-                        //$('#programas').append(`<label><input type="checkbox" id="" name="programa[]" value="${value.codprograma}" checked> ${value.nombre}</label><br>`);
-                        $('#programas').append(`<div class="checkbox-wrapper mb-1">
-                            <input class="inp-cbx" id="cbx-${value.codprograma}" type="checkbox" name="programa[]" value="${value.codprograma}" checked>
-                            <label class="cbx" for="cbx-${value.codprograma}"><span>
-                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                    </svg></span><span>${value.nombre}</span>
-                            </label>
-                        </div>`);
-                    });
-                }
-            },
-            error: function() {
-                $('#programas').append('<h5>No hay programas</h5>')
-            }
-        })
+                ?>;
+                programasSeleccionados = <?php echo json_encode($datos); ?>;
     }
 
     var totalProgramas;
@@ -663,14 +630,6 @@
             $("#Maestria input[type='checkbox']").prop("checked", true);
         } else {
             $("#Maestria input[type='checkbox']").prop("checked", false);
-        }
-    });
-
-    $("#todosFacultad").change(function() {
-        if ($(this).is(":checked")) {
-            $("#facultades input[type='checkbox']").prop("checked", true);
-        } else {
-            $("#facultades input[type='checkbox']").prop("checked", false);
         }
     });
 
@@ -742,8 +701,6 @@
             periodosSeleccionados.forEach(function(periodo, index, array) {
                 array[index] = '2023' + periodo;
             });
-            console.log($('#programas input[type="checkbox"]:checked').length);
-            console.log(totalProgramas);
             if (periodosSeleccionados.length > 0) {
                 if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                     var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
@@ -751,11 +708,6 @@
                     checkboxesProgramas.each(function() {
                         programasSeleccionados.push($(this).val());
                     });
-                    graficoAlertas();
-                    destruirTable();
-                    dataTable(periodosSeleccionados);
-                }else{
-                    programasSeleccionados = [];
                     graficoAlertas();
                     destruirTable();
                     dataTable(periodosSeleccionados);

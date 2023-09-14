@@ -780,9 +780,10 @@
             /**
              * Método que cuenta la cantidad de programas de la facultad correspondiente
              */
+            var totalProgramas;
             function Contador() {
-                totalSeleccionado = $('#programas input[type="checkbox"]').length;
-                totalPeriodos = $('#periodos input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
+                
             }
 
             function limpiarTitulos() {
@@ -865,10 +866,8 @@
                     array[index] = '2023' + periodo;
                 });
                 if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos == totalPeriodos) {
-                            location.reload();
-                        }
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length<totalProgramas) {
+
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {

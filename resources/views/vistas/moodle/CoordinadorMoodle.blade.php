@@ -984,7 +984,6 @@
                 dataTable(riesgo);
             });
 
-
             var chartRiesgoIngreso;
             var chartRiesgoNotas;
 

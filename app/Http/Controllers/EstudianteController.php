@@ -86,8 +86,8 @@ class EstudianteController extends Controller
             $consultaNombre = json_decode(file_get_contents($url), true);
 
             if ($consultaNombre != NULL) :
-                dd($consultaNombre[0]["estudiante"]);
-                $nombre = $consultaNombre->nombreEst;
+              
+                $nombre = $consultaNombre[0]["estudiante"];
             else :
                 $consultaNombre = DB::table('estudiantes')->where('homologante', '=', $estudiante)->select('nombre')->first();
                 $nombre = $consultaNombre->nombre;

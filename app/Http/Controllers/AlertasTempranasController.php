@@ -25,7 +25,31 @@ class AlertasTempranasController extends Controller
         endif;
     }
 
+    public function vistaCoordinador(){
+        if(auth()->user()->id_rol == 2):
+            return view('vistas.alertastempranas.director');
+        endif;
+        if(auth()->user()->id_rol == 3):
+            return view('vistas.alertastempranas.coordinador');
+        endif;
+        if(auth()->user()->id_rol == 4):
+            return view('vistas.alertastempranas.lider');
+        endif;  
+    }
+
     public function vistaRectorDecano(){
+        $user = auth()->user();
+        $idfacultad = trim($user->id_facultad, ',');
+        $facultades = explode(",", $idfacultad);
+        foreach ($facultades as $key => $value) {
+
+            $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
+            $nombreFacultades[$value] = $consulta->nombre;
+        }
+        return view('vistas.alertastempranas.decano', ['facultades' => $nombreFacultades]);
+    }
+
+    public function vistaRectorCoordinador(){
         $user = auth()->user();
         $idfacultad = trim($user->id_facultad, ',');
         $facultades = explode(",", $idfacultad);

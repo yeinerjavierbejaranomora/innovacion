@@ -78,6 +78,12 @@
     <span>Alertas Tempranas<br>(Programación-Planeación)</span>
     <span id="notificacionesCount" class="notificaciones-count"></span>
 </a>
+@elseif(auth()->user()->id_rol == 2 || auth()->user()->id_rol == 3 || auth()->user()->id_rol == 4)
+<a  class="nav-link" href="{{ route('alertas.inicio.decano') }}">
+    <i class="fa-solid fa-bell"></i>
+    <span>Alertas Tempranas<br>(Programación-Planeación)</span>
+    <span id="notificacionesCount" class="notificaciones-count"></span>
+</a>
 @endif
 {{-- @switch(auth()->user()->id_rol)
     @case(9)

@@ -643,6 +643,8 @@
                 graficoRetencion();
                 graficoSelloPrimerIngreso();
                 graficoTiposDeEstudiantes();
+                graficoSelloAntiguos();
+                graficoTiposDeEstudiantes();
                 graficoOperadores();
             }
 

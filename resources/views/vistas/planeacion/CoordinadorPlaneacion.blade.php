@@ -271,7 +271,7 @@
 <script>
     
     $(document).ready(function() {
-
+        $('#menuPlaneacion').addClass('activo');
         var tabla = <?php echo json_encode($tabla); ?>;
         console.log(tabla);
         programasUsuario();

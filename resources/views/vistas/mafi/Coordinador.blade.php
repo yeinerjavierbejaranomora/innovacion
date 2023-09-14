@@ -532,7 +532,7 @@
 
     <script>
         $(document).ready(function() {
-
+            $('#menuAdmisiones').addClass('activo');
             var tabla = 'Mafi';
 
             programasUsuario();

@@ -453,7 +453,7 @@
 
     <script>
         $(document).ready(function() {
-
+            ('#menuMoodle').addClass('activo');
             var tabla = <?php echo json_encode($tabla); ?>;
             programasUsuario();
             Contador();

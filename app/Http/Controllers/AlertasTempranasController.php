@@ -51,8 +51,8 @@ class AlertasTempranasController extends Controller
 
     public function vistaCoordinadorLider(){
         $user = auth()->user();
-        $programa = trim($user->programa, ',');
-        $programas = explode(",", $programa);
+        $programa = trim($user->programa, ';');
+        $programas = explode(";", $programa);
         foreach ($programas as $key => $value) {
             $consulta = DB::table('programas')->where('id', $value)->select('codprograma')->first();
             $nombreProgramas[$value] = $consulta->codprograma;

@@ -526,7 +526,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{ route('programas.activos') }}",
+            url: "{{ route('periodosPrograma.activos') }}",
             method: 'post',
             async: false,
             success: function(data) {

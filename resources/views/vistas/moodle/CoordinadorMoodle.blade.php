@@ -889,7 +889,7 @@
                         });
 
                         ctx = document.getElementById('medio').getContext('2d');
-                        
+
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -1132,8 +1132,97 @@
                 });
 
                 graficosModal(id);
+
             }
 
+            function tablaCursos() {
+                destruirTablaCurso();
+                console.log('entra');
+                var data;
+                var url = "{{ route('tabla.cursos.programa') }}",
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    }
+
+
+                $('#tablaCursos').empty();
+                var mensaje = 'Cargando, por favor espere...';
+                $('#tablaCursos').append(mensaje);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+                        $('#tablaCursos').empty();
+                        tabla = $('#tablaCursos').DataTable({
+                            "data": data,
+                            'pageLength': 10,
+                            "columns": [{
+                                    data: 'id',
+                                    title: 'Id Curso'
+                                },
+                                {
+                                    data: 'NombreCurso',
+                                    title: 'Nombre Curso'
+                                },
+                                {
+                                    data: 'Tutor',
+                                    title: 'Tutor'
+                                },
+                                {
+                                    data: 'Total',
+                                    title: 'Total estudiantes',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Sello',
+                                    title: 'Con sello',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'ASP',
+                                    title: 'ASP',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Inactivo',
+                                    title: 'Inactivos',
+                                    className: "text-center",
+                                },
+                                {
+                                    data: 'Cursos',
+                                    title: 'Cursos abiertos',
+                                    className: "text-center",
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    },
+
+                });
+            }
+
+            function destruirTablaCurso() {
+                if ($.fn.DataTable.isDataTable('#tablaCursos')) {
+                    tabla.destroy();
+                    $('#tablaCursos').DataTable().destroy();
+                    $('#tablaCursos thead').empty();
+                    $('#tablaCursos tbody').empty();
+                    $('#tablaCursos tfooter').empty();
+                }
+            }
             /**
              * Método que grafica los datos en el Modal
              */

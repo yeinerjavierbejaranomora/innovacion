@@ -54,7 +54,7 @@
 $(document).ready(function() {
     Swal.fire({
         title: 'Aviso Usuario',
-        text: "Una vez cambies tu constraseña, serás redirigido al formulario de ingreso para que inicies sesión con tu nueva contraseña",
+        text: "Una vez cambies tu constraseña, serás redirigido al formulario de ingreso para que inicies sesión con tu nueva contraseña.",
         icon: 'info',
         color: 'white',
         showCancelButton: false,

@@ -261,9 +261,8 @@
 
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
-
                     @foreach ($programas as $programa)
-                    {{$programa-}} -
+                    {{$programa}} -
                     @endforeach
                 </h3>
 

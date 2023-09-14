@@ -587,6 +587,7 @@
             },
             type: 'post',
             url: "{{ route('programasPeriodo.activos') }}",
+            data: formData,
             cache: false,
             contentType: false,
             async: false,

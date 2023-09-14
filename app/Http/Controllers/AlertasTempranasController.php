@@ -67,6 +67,7 @@ class AlertasTempranasController extends Controller
                         ->join('programas as p','p.codprograma','=','a.codprograma')
                         ->select('a.*','p.programa')
                         ->whereIn('a.periodo',$periodos)
+                        ->where('a.activo', 1)
                         ->whereIn('a.codprograma',$programas)
                         ->orderBy('a.created_at','desc')
                         ->get();
@@ -81,6 +82,7 @@ class AlertasTempranasController extends Controller
                         ->join('programas as p','p.codprograma','=','a.codprograma')
                         ->select('a.*','p.programa')
                         ->whereIn('a.periodo',$periodos)
+                        ->where('a.activo', 1)
                         ->whereIn('p.Facultad',$facultades)
                         ->orderBy('a.created_at','desc')
                         ->get();
@@ -93,6 +95,7 @@ class AlertasTempranasController extends Controller
         $consultaAlertas = DB::table('alertas_tempranas as a')
                         ->join('programas as p','p.codprograma','=','a.codprograma')
                         ->select('a.*','p.programa')
+                        ->where('a.activo', 1)
                         ->whereIn('a.periodo',$periodos)
                         ->orderBy('a.created_at','desc')
                         ->get();
@@ -103,6 +106,7 @@ class AlertasTempranasController extends Controller
 
         $consulta = DB::table('alertas_tempranas')
         ->select(DB::raw('COUNT(idbanner) as TOTAL'), 'codprograma')
+        ->where('activo', 1)
         ->groupBy('codprograma')
         ->orderByDesc('TOTAL')
         ->limit(10)
@@ -119,6 +123,7 @@ class AlertasTempranasController extends Controller
         ->join('programas as p','p.codprograma','=','a.codprograma')
         ->whereIn('a.periodo',$periodos)
         ->whereIn('p.Facultad',$facultades)
+        ->where('a.activo', 1)
         ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')
         ->groupBy('a.codprograma')
         ->orderByDesc('TOTAL')
@@ -134,6 +139,7 @@ class AlertasTempranasController extends Controller
 
         $consulta = DB::table('alertas_tempranas as a')
         ->join('programas as p','p.codprograma','=','a.codprograma')
+        ->where('a.activo', 1)
         ->whereIn('a.periodo',$periodos)
         ->whereIn('a.codprograma',$programas)
         ->select(DB::raw('COUNT(a.idbanner) as TOTAL'), 'a.codprograma')

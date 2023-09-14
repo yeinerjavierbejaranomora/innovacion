@@ -263,7 +263,7 @@
                 <h3>A continuación podrás visualizar los datos de tus Programas:   
                 @foreach ($programas as $programa)
                     {{$programa->codprograma}} -
-                    @endforeach
+                @endforeach
                 </h3>
 
             </div>

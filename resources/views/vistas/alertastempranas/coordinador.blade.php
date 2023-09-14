@@ -261,6 +261,7 @@
 
             <div class="text-center" id="mensaje">
                 <h3>A continuación podrás visualizar los datos de tus Programas:
+                    <?php dd($programas); ?>
                     @foreach ($programas as $programa)
                     {{$programa->codprograma}} -
                     @endforeach

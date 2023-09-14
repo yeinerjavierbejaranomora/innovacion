@@ -538,6 +538,7 @@
             var periodosSeleccionados = [];
 
             programasUsuario();
+            console.log(programasSeleccionados);
             Contador();
             periodos();
             invocarGraficos();

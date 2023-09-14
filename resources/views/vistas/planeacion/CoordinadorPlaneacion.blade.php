@@ -638,12 +638,9 @@
             Contador();
             vistaEntrada();
 
-
             periodos();
             invocarGraficos();
             getPeriodos();
-
-            var programasSelect;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -708,7 +705,7 @@
             function vistaEntrada() {
                 var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelecccionados[key[0]];
+                var valorPrograma = programasSeleccionados[key[0]];
 
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();

@@ -485,6 +485,7 @@
 
     </div>
 <script>
+    $(document).ready(function() {
     $('#menuAlertas').addClass('activo');
 
     $(document).ajaxStart(function() {
@@ -969,5 +970,6 @@
             $("#datatable tbody").off("click", "button.estudiantes");
         }
     }
+});
 </script>
 @include('layout.footer')

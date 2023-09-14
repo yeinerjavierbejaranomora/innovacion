@@ -82,9 +82,12 @@ class EstudianteController extends Controller
         if ($consultaNombre != NULL) :
             $nombre = $consultaNombre->Nombre . " " . $consultaNombre->Apellido;
         else :
-            $consultaNombre = DB::table('historialAcademico')->where('codBanner', '=', $estudiante)->select('nombreEst')->first();
+            $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
+            $consultaNombre = json_decode(file_get_contents($url), true);
+
             if ($consultaNombre != NULL) :
-                $nombre = $consultaNombre->nombreEst;
+              
+                $nombre = $consultaNombre[0]["estudiante"];
             else :
                 $consultaNombre = DB::table('estudiantes')->where('homologante', '=', $estudiante)->select('nombre')->first();
                 $nombre = $consultaNombre->nombre;
@@ -122,12 +125,6 @@ class EstudianteController extends Controller
             $historial=[];
             $proyectada=[]; 
 
-          
-
-        
-            
-
-        
             $proyectada=DB::table('programacion')->where('codBanner', '=', $idbanner)->get()->toArray();
             $materiasPorVer=DB::table('materiasPorVer')->where('codBanner', '=', $idbanner)->get()->toArray();
 
@@ -150,7 +147,7 @@ class EstudianteController extends Controller
                     'semestre'=>$value_mallaCurricular->semestre,
                     'creditos'=>$value_mallaCurricular->creditos,
                     'ciclo'=>$value_mallaCurricular->ciclo,
-                    'nombre_materia'=>$value_mallaCurricular->curso,
+                    'nombre_materia'=>strtolower($value_mallaCurricular->curso),
                     'calificacion'=>"",
                     'color'=>'bg-secondary',
                     'cursada'=>'',
@@ -281,7 +278,7 @@ class EstudianteController extends Controller
                             'semestre'=> $semestre,
                             'creditos'=>$value_historialAcademico['creditos'],
                             'ciclo'=>'',
-                            'nombre_materia'=>$value_historialAcademico['materia'],
+                            'nombre_materia'=>strtolower($value_historialAcademico['materia']),
                             'calificacion'=>$value_historialAcademico['calificacion'],
                             'color'=>$color,
                             'cursada'=>$Cursada,

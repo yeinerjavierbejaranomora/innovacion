@@ -260,9 +260,9 @@
             <br>
 
             <div class="text-center" id="mensaje">
-                <h3>A continuación podrás visualizar los datos de tus Facultades:
-                    @foreach ($facultades as $facultad)
-                    {{$facultad}} -
+                <h3>A continuación podrás visualizar los datos de tus Programas:
+                    @foreach ($programas as $programa)
+                    {{$programa->codprograma}} -
                     @endforeach
                 </h3>
 

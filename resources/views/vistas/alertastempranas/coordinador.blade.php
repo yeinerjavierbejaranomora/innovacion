@@ -733,20 +733,12 @@
             array[index] = '2023' + periodo;
         });
        
-
-        if (programasSeleccionados.length > 0 && programasSeleccionados.length < totalProgramas) {
-            url = "{{ route('alertas.grafico.programa') }}",
-                data = {
+        url = "{{ route('alertas.grafico.programa') }}",
+            data = {
                     programas: programasSeleccionados,
                     periodos: periodosSeleccionados
-                }
-        } else {
-            url = "{{ route('alertas.grafico.facultad') }}",
-                data = {
-                    facultad: facultadesSeleccionadas,
-                    periodos: periodosSeleccionados
-                }
-        }
+            }
+            
 
         $.ajax({
             headers: {
@@ -837,31 +829,18 @@
         array[index] = '2023' + periodo;
     });
 
-    //var periodos = getPeriodos();
     dataTable(periodosSeleccionados);
 
     function dataTable(periodosSeleccionados) {
             $('#colTabla').removeClass('hidden');
             var url, data;
             var table;
-            console.log(programasSeleccionados);
-            if (programasSeleccionados.length > 0) {
-                console.log('entra');
-                url = "{{ route('alertas.tabla.programa')}}",
-                    data = {
-                        periodos: periodosSeleccionados,
-                        programas: programasSeleccionados
-                    }
 
-            } else {
-
-                    url = "{{ route('alertas.tabla.facultad')}}",
-                        data = {
-                            periodos: periodosSeleccionados,
-                            facultad: facultadesSeleccionadas
-                        }
-
-            }
+            url = "{{ route('alertas.tabla.programa')}}",
+                data = {
+                    periodos: periodosSeleccionados,
+                    programas: programasSeleccionados
+                }
 
             var datos = $.ajax({
                 headers: {

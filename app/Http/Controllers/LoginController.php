@@ -43,9 +43,6 @@ class LoginController extends Controller
             $nombre_rol=$rol_db[0]->nombreRol;
             auth()->user()->nombre_rol=$nombre_rol;
 
-
-
-
             return redirect()->route('home.index');
         endif;
 
@@ -60,15 +57,11 @@ class LoginController extends Controller
     /** funcion para realizar el  cambio de la contraseña */
     public function cambioPass(CambioPassRequest $request){
 
-        /** verificamos la base de datos  con los datos necesarios para realizar el cambio de contraseña */
-        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();
-        /** varificamos si la contraseña actual es identica a la guarda en la DB cuando se creo el usuario, se usa Hash::check para decifrar la contraseña guardada */
-        if(Hash::check($request->password_actual,$user[0]->password)):
-            /** Se realiza el update de la password si el id y el documento son iguales a los datos que vienen del formulario  */
+        $user = DB::table('users')->select('users.email','users.password')->where('id','=',$request->id)->where('documento','=',$request->password_actual)->get();       
+        if(Hash::check($request->password_actual,$user[0]->password)):  
             $cambioPass = User::where('id','=',$request->id)->where('documento','=',$request->password_actual)->update(['password'=> bcrypt($request->password),'ingreso_plataforma'=>1]);
-            /**si el update se hace correctamente se redirige al formulario de login */
             if($cambioPass):
-                return redirect()->route('login.index');
+                return redirect()->route('home.index');
             endif;
         endif;
     }
@@ -105,10 +98,7 @@ class LoginController extends Controller
 
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-
-
             Auth::login($user, $remember = true);
-
 
             /**se llama el metodo authenticated para realizar el redireccionamiento al home  */
             return $this->authenticated($req, $user);

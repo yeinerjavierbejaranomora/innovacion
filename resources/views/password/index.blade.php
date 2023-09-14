@@ -54,10 +54,9 @@
 
 <script>
     // * Función para enviar alerta al usuario *
-    function validacion() {
 
-        // * Validación para verificar que todos los campos contengan información *
-        if ($('#contraseña').val() && $('#nueva').val() && $('#confirmar').val()) {
+    $(document).ready(function() {
+        console.log('hola');
             $("#miForm").submit(function(e) {
                 e.preventDefault();
                 // * Sweet alert *
@@ -82,7 +81,7 @@
                     }
                 })
             });
-        }
-    }
+        
+    });
 </script>
 @endsection

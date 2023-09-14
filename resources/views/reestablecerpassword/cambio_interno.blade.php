@@ -58,6 +58,12 @@
     </div>
 </div>
 
+@if($errors->any())
+<script>
+    Swal.fire("Error", "{{ $errors->first() }}", "error");
+</script>
+@endif
+
 <script>
     // * Función para enviar alerta al usuario *
     function validacion() {

@@ -589,9 +589,9 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(programasSelect);
+                var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelect[key[0]];
+                var valorPrograma = programasSeleccionados[key[0]];
 
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();

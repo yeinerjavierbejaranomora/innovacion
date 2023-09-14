@@ -665,7 +665,6 @@
 
     </div>
 
-
     <script>
         $(document).ready(function() {
             $('#menuPlaneacion').addClass('activo');

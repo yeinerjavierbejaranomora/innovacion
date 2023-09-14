@@ -485,6 +485,9 @@
 
     </div>
 <script>
+    var programasSeleccionados = [];
+    var facultadesSeleccionadas = [];
+    var periodosSeleccionados = [];
     $(document).ready(function() {
         $('#menuAlertas').addClass('activo');
 
@@ -498,9 +501,7 @@
             $('div #programas input[type="checkbox"]').prop('disabled', false);
             $('#generarReporte').prop("disabled", false);
         });
-        var programasSeleccionados = [];
-        var facultadesSeleccionadas = [];
-        var periodosSeleccionados = [];
+
         facultadesUsuario();
         periodos();
         programas();

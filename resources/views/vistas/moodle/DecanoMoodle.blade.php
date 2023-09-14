@@ -532,6 +532,7 @@
             riesgo();
             vistaEntrada();
             Contador();
+            tablaCursos();
 
             var totalProgramas;
             var totalPeriodos;

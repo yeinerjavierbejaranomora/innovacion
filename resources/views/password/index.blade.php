@@ -2,6 +2,17 @@
 @section('title', 'Nueva Contrasena')
 @section('content')
 
+<script>
+    Swal.fire({
+        title: 'Aviso Usuario',
+        text: "Una vez cambies tu constraseña, serás redirigido al formulario de ingreso para que inicies sesión con tu nueva contraseña",
+        icon: 'info',
+        color: 'white',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK',
+    })
+</script>
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url({{asset('public/assets/images/bg-02.jpg')}});">
@@ -52,36 +63,4 @@
     </div>
 </div>
 
-<script>
-    // * Función para enviar alerta al usuario *
-
-    $(document).ready(function() {
-        console.log('hola');
-            $("#miForm").submit(function(e) {
-                e.preventDefault();
-                // * Sweet alert *
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "¡No podrás deshacer este cambio!",
-                    icon: 'warning',
-                    color: 'white',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, cambiar!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        color: 'white'
-                        Swal.fire(
-                            'Cambio exitoso',
-                            'Tu contraseña fue cambiada.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        
-    });
-</script>
 @endsection

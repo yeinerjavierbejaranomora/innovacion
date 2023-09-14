@@ -427,6 +427,7 @@
                                 <br>
                             </div>
                         </div>
+
                         <div id="cursos" class="content">
                             <div class="table">
                                 <table id="tablaCursos" class="display" style="width:90%">
@@ -575,7 +576,6 @@
 
                 return false;
             });
-
 
             /**
              * Método que trae los periodos activos

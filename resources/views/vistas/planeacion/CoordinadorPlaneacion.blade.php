@@ -531,7 +531,101 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Tabla Malla Curricular -->
+        <div class="modal fade" id="modalMallaCurricular" tabindex="-1" role="dialog" aria-labelledby="modalMallaCurricular" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloMalla"><strong></strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Datatable-->
+                        <div class="table">
+                            <table id="mallaCurricular" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Estudiantes planeados -->
+        <div class="modal fade" id="modalEstudiantesPlaneados" tabindex="-1" role="dialog" aria-labelledby="modalEstudiantesPlaneados" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloEstudiantes"><strong></strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Datatable-->
+                        <div class="table">
+                            <table id="estudiantesPlaneados" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Modal Buscar estudiante -->
+         <div class="modal fade" id="modalBuscarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarEstudiante" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document" style="height:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="tituloBuscar"><strong>Buscar estudiante</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <form class="form-inline" id="formBuscar">
+                        @csrf
+                        <h5>Id banner del estudiante</h5>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="idBanner" class="sr-only">Id Banner</label>
+                            <input type="text" class="form-control" id="idBanner" placeholder="Id Banner">
+                        </div>
+                        <button type="submit" class="btn botonModal mb-2">Buscar</button>
+                    </form class="mt-2">
+
+                    <div class="hidden mt-3 mb-3" id="dataEstudiante">
+                            <h5 id="primerApellido" class="text-black"></h5>
+                            <h5 id="Sello" class="text-black"></h5>
+                            <h5 id="Operador" class="text-black"></h5>
+                            <h5 id="tipEstudiante" class="text-black"></h5>
+                        </div>
+                        <br>
+                        <!--Datatable con id Banner del estudiante-->
+                        <div class="text-center text-black hidden" id='tituloTablaBuscar'>
+                            <h4>Materias inscritas</h4>
+                        </div>
+                        <div class="table" id="divTablaBuscador">
+                            <table id="buscarEstudiante" class="display" style="width:100%">
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
     <script>
         $(document).ready(function() {
@@ -544,12 +638,11 @@
             Contador();
             vistaEntrada();
 
-           
+
             periodos();
             invocarGraficos();
             getPeriodos();
 
-        
             var programasSelect;
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
@@ -572,7 +665,6 @@
                 }
                 ?>;
                 programasSeleccionados = <?php echo json_encode($datos); ?>;
-                programasSelect = programasSeleccionados;
             }
 
             /**
@@ -614,9 +706,9 @@
             }
 
             function vistaEntrada() {
-                var key = Object.keys(programasSelect);
+                var key = Object.keys(programasSeleccionados);
                 var cantidadProgramas = key.length;
-                var valorPrograma = programasSelect[key[0]];
+                var valorPrograma = programasSelecccionados[key[0]];
 
                 if (cantidadProgramas === 1) {
                     $('#colCardProgramas').hide();
@@ -644,7 +736,6 @@
                 graficoSelloPrimerIngreso();
                 graficoTiposDeEstudiantes();
                 graficoSelloAntiguos();
-                graficoTiposDeEstudiantes();
                 graficoOperadores();
             }
 
@@ -661,7 +752,7 @@
             var totalProgramas;
 
             function Contador() {
-                totalProgramas= $('#programas input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
             }
 
             function limpiarTitulos() {
@@ -708,7 +799,7 @@
              * Método para destruir todos los gráficos
              */
             function destruirGraficos() {
-                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartSelloAntiguos,chartOperadores].forEach(chart => chart.destroy());
+                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartSelloAntiguos, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**
@@ -742,7 +833,7 @@
                 var periodosSeleccionados = getPeriodos();
                 Contador();
                 if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length<totalProgramas) {
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
@@ -776,7 +867,6 @@
                 }
                 $(".facultadtitulos").hide();
                 $(".programastitulos").show();
-                $("#ocultarGraficoProgramas").hide();
 
                 invocarGraficos();
             }
@@ -793,7 +883,7 @@
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                    $.ajax({
+                $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -860,14 +950,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO: ' + suma,
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -894,7 +984,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                    $.ajax({
+                $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1009,7 +1099,7 @@
                         periodos: periodosSeleccionados
                     }
 
-                    $.ajax({
+                $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1086,14 +1176,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO ESTUDIANTES PRIMER INGRESO: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1110,13 +1200,13 @@
             /**
              * Método que genera el gráfico con los tipos de estudiante por programa
              */
-            
+
             var chartSelloAntiguos;
 
             function graficoSelloAntiguos() {
                 var url, data;
                 url = "{{ route('antiguos.estudiantes.programa',['tabla' => ' ']) }}" + tabla,
-                data = {
+                    data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
@@ -1197,14 +1287,14 @@
                                         }
                                     },
                                     title: {
-                                    display: true,
-                                    text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
-                                    font: {
+                                        display: true,
+                                        text: 'TOTAL SELLO ESTUDIANTES ANTIGUOS: ' + suma,
+                                        font: {
                                             size: 14,
                                             Style: 'bold',
                                         },
-                                    position: 'bottom'
-                                }
+                                        position: 'bottom'
+                                    }
                                 },
                             },
                             plugins: [ChartDataLabels]
@@ -1222,7 +1312,6 @@
             var chartTipoEstudiante;
 
             function graficoTiposDeEstudiantes() {
-
                 var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla;
                 var data = {
                     programa: programasSeleccionados,
@@ -1325,10 +1414,10 @@
             function graficoOperadores() {
                 var data;
                 var url = "{{ route('estudiantes.operador.programa',['tabla' => ' ']) }}" + tabla,
-                data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                };
+                    data = {
+                        programa: programasSeleccionados,
+                        periodos: periodosSeleccionados
+                    };
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1441,17 +1530,11 @@
             function tiposEstudiantesTotal() {
                 var data;
                 var url = "{{ route('tiposEstudiantes.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
-                if (programasSeleccionados.length > 0) {
                     data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                } else {
-                    data = {
-                        programa: programasSelect,
-                        periodos: periodosSeleccionados
-                    }
-                }
+                
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1544,17 +1627,11 @@
             function graficoOperadoresTotal() {
                 var data;
                 var url = "{{ route('operadores.programa.estudiantes',['tabla' => ' ']) }}" + tabla;
-                if (programasSeleccionados.length > 0) {
                     data = {
                         programa: programasSeleccionados,
                         periodos: periodosSeleccionados
                     }
-                } else {
-                    data = {
-                        programa: programasSelect,
-                        periodos: periodosSeleccionados
-                    }
-                }
+                          
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1646,6 +1723,394 @@
                 });
 
             }
+
+            var programaEstudiante;
+
+            function dataTable(periodos) {
+                $('#colTabla').removeClass('hidden');
+                var url, data;
+                var table;
+                    url = "{{ route('planeacionProgramas.tabla.programa')}}",
+                    data = {
+                        periodos: periodos,
+                        programas: programasSeleccionados
+                    }
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var dataTableData = [];
+                        for (const programaKey in data) {
+                            if (data.hasOwnProperty(programaKey)) {
+                                const programa = data[programaKey];
+                                var rowData = [
+                                    programaKey,
+                                    programa.programa,
+                                    programa.Total,
+                                    programa.Sello,
+                                    programa.Retencion,
+                                ];
+                                dataTableData.push(rowData);
+                            }
+                        }
+
+                        table = $('#datatable').DataTable({
+                            "data": dataTableData,
+                            'pageLength': 10,
+                            "order": [2, 'desc'],
+                            "columns": [{
+                                    title: 'Código de programa'
+                                },
+                                {
+                                    title: 'Programa'
+                                },
+                                {
+                                    title: 'Matrículas planeadas',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con Sello Financiero',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'ASP',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
+                                    title: 'Estudiantes planeados',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='buscar btn btn-warning' data-toggle='modal' data-target='#modalBuscarEstudiante'><i class='fa-solid fa-magnifying-glass'></i></button>",
+                                    title: 'Buscar estudiante',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
+                                    title: 'Malla Curricular',
+                                    className: 'dt-center'
+                                },
+                            ]
+                        });
+
+                        function tablaMalla(tbody, table) {
+                            $(tbody).on("click", "button.malla", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                var programa = datos[0];
+                                var nombrePrograma = datos[1];
+                                mallaPrograma(programa, nombrePrograma);
+                            })
+                        }
+
+                        function tablaEstudiantes(tbody, table) {
+                            $(tbody).on("click", "button.estudiantes", function() {
+                                var datos = table.row($(this).parents("tr")).data();
+                                var programa = datos[0];
+                                var nombrePrograma = datos[1];
+                                estudiantesPlaneados(programa, nombrePrograma);
+                            })
+                        }
+
+                        function buscarEstudiante(tbody, table) {
+                            $(tbody).on("click", "button.buscar", function() {
+                                limpiarModalBuscador();
+                                $("#idBanner").val("");
+                                var datos = table.row($(this).parents("tr")).data();
+                                programaEstudiante = datos[0];
+                                $('#dataEstudiante').addClass('hidden');
+                                $('#tituloTablaBuscar').addClass('hidden');
+                            })
+                        }
+                        buscarEstudiante("#datatable tbody", table);
+                        tablaMalla("#datatable tbody", table);
+                        tablaEstudiantes("#datatable tbody", table);
+                    }
+
+                });
+            }
+
+            function mallaPrograma(programa, nombrePrograma) {
+                limpiarModalMalla();
+                $('#tituloMalla').empty();
+                $('#tituloMalla').append('Materias programa ' + nombrePrograma);
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('mallaPrograma.tabla') }}",
+                    data: {
+                        programa: programa
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        var dataTableData = [];
+
+                        for (const cursoKey in data) {
+                            if (data.hasOwnProperty(cursoKey)) {
+                                const curso = data[cursoKey];
+                                var rowData = [
+                                    cursoKey,
+                                    curso.nombreMateria,
+                                    curso.Total,
+                                    curso.Sello,
+                                    curso.Retencion,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ];
+                                dataTableData.push(rowData);
+                            }
+                        }
+
+                        table = $('#mallaCurricular').DataTable({
+                            "dom": 'Bfrtip',
+                            "data": dataTableData,
+                            'pageLength': 10,
+                            "buttons": [
+                                'copy', 'excel', 'pdf', 'print'
+                            ],
+                            "columns": [{
+                                    title: 'Codigo de Materia'
+                                },
+                                {
+                                    title: 'Nombre Materia',
+                                },
+                                {
+                                    title: 'Matrículas planeadas',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Con sello Financiero',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'ASP',
+                                    className: 'dt-center'
+                                },
+                                {
+                                    title: 'Cantidad de cursos',
+                                    render: function(data, type, row) {
+                                        if (type === 'display') {
+                                            var conSello = parseFloat(row[3]);
+                                            var curso = (conSello / 85).toFixed(2);
+                                            return curso;
+                                        }
+                                        return data;
+                                    },
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 1',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 1',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 2',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 2',
+                                    visible: false
+                                },
+                                {
+                                    title: 'tutor 3',
+                                    visible: false
+                                },
+                                {
+                                    title: 'correo tutor 3',
+                                    visible: false
+                                },
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    }
+                });
+            }
+
+            function estudiantesPlaneados(programa, nombrePrograma) {
+                limpiarModalEstudiantes();
+                $('#tituloEstudiantes').empty();
+                $('#estudiantesPlaneados').empty();
+                $('#tituloEstudiantes').append('Estudiantes planeados ' + nombrePrograma + ' - ' + programa);
+                var mensaje = 'Cargando, por favor espere...';
+
+                $('#estudiantesPlaneados').append(mensaje);
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('estudiantesMateria.tabla') }}",
+                    data: {
+                        programa: programa
+                    },
+                    method: 'post',
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        console.log(data);
+                        $('#estudiantesPlaneados').empty();
+                        tabla = $('#estudiantesPlaneados').DataTable({
+                            "dom": 'Bfrtip',
+                            "data": data,
+                            "buttons": [
+                                'copy', 'excel', 'pdf', 'print'
+                            ],
+                            "columns": [{
+                                    title: 'Codigo Banner',
+                                    data: 'codBanner'
+                                },
+                                {
+                                    title: 'Codigo Materia',
+                                    data: 'codMateria'
+                                },
+                                {
+                                    title: 'Materia',
+                                    data: 'curso'
+                                }
+                            ],
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                            },
+                        });
+                    }
+                });
+            }
+
+            function limpiarModalMalla() {
+                if ($.fn.DataTable.isDataTable('#mallaCurricular')) {
+                    $("#mallaCurricular").remove();
+                    table.destroy();
+                    $('#mallaCurricular').DataTable().destroy();
+                    $('#mallaCurricular thead').empty();
+                    $('#mallaCurricular tbody').empty();
+                    $('#mallaCurricular tfooter').empty();
+                }
+            }
+
+            function limpiarModalEstudiantes() {
+                if ($.fn.DataTable.isDataTable('#estudiantesPlaneados')) {
+                    $("#estudiantesPlaneados").remove();
+                    tabla.destroy();
+                    $('#estudiantesPlaneados').DataTable().destroy();
+                    $('#estudiantesPlaneados thead').empty();
+                    $('#estudiantesPlaneados tbody').empty();
+                    $('#estudiantesPlaneados tfooter').empty();
+                }
+            }
+
+            function limpiarModalBuscador() {
+                if ($.fn.DataTable.isDataTable('#buscarEstudiante')) {
+                    $("#buscarEstudiante").remove();
+                    estudiante.destroy();
+                    $('#buscarEstudiante').DataTable().destroy();
+                    $('#buscarEstudiante thead').empty();
+                    $('#buscarEstudiante tbody').empty();
+                    $('#buscarEstudiante tfooter').empty();
+                }
+            }
+
+            function destruirTable() {
+                $('#colTabla').addClass('hidden');
+                if ($.fn.DataTable.isDataTable('#datatable')) {
+                    $('#datatable').dataTable().fnDestroy();
+                    $('#datatable thead').empty();
+                    $('#datatable tbody').empty();
+                    $('#datatable tfooter').empty();
+                    $("#datatable tbody").off("click", "button.malla");
+                    $("#datatable tbody").off("click", "button.estudiantes");
+                    $("#datatable tbody").off("click", "button.buscar");
+                }
+            }
+
+            $("#formBuscar").submit(function(e) {
+                limpiarModalBuscador();
+                e.preventDefault();
+                console.log(programaEstudiante);
+                var id = $("#idBanner").val();
+                var url, data;
+                data = {
+                    id: id,
+                    programa: programaEstudiante
+                };
+                url = "{{ route('materias.estudiante') }}";
+                var datos = $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        try {
+                            data = parseJSON(data);
+                        } catch {
+                            data = data;
+                        }
+                        if (data.length === 0) {
+                            $('#divTablaBuscador').append('<h5 class="text-center">No hay datos por mostrar</h5>');
+                        } else {
+
+                            ['#primerApellido', '#Sello', '#Operador', '#tipEstudiante'].forEach(selector => {
+                                $(selector).empty();
+                            });
+                            $('#dataEstudiante').removeClass('hidden');
+                            $('#tituloTablaBuscar').removeClass('hidden');
+                            $('#primerApellido').append('Primer Apellido: ' + data.estudiante.primer_apellido);
+                            $('#Sello').append('Sello financiero: ' + data.estudiante.sello);
+                            $('#Operador').append('Operador: ' + data.estudiante.operador);
+                            $('#tipEstudiante').append('Tipo estudiante: ' + data.estudiante.tipoestudiante);
+
+                            console.log(data);
+                            estudiante = $('#buscarEstudiante').DataTable({
+                                "data": data.materias,
+                                'pageLength': 10,
+                                "columns": [{
+                                        title: 'Código de materia',
+                                        data: 'codMateria'
+                                    },
+                                    {
+                                        title: 'Nombre materia',
+                                        data: 'curso'
+                                    },
+                                    {
+                                        title: 'Semestre',
+                                        data: 'semestre',
+                                        className: 'dt-center'
+                                    },
+                                ]
+                            });
+                        }
+                    }
+                });
+            });
+
         });
     </script>
 

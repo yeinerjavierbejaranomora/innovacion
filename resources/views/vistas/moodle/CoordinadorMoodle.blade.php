@@ -669,7 +669,7 @@
              * Método que oculta todos los divs de los gráficos, antes de generar algún reporte
              */
             function ocultarDivs() {
-                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
+                $('#colEstudiantes, #colSelloFinanciero, #colRetencion, #colPrimerIngreso, #colAntiguos,#colTipoEstudiantes, #colOperadores, #colProgramas').addClass('hidden');
             }
 
             /**

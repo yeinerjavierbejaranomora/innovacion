@@ -585,17 +585,34 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('periodos.activos') }}",
+                    url: "{{ route('periodosPrograma.activos') }}",
+                    data: {
+                        programas: programasSeleccionados,
+                    },
                     method: 'post',
                     async: false,
-                    success: function(data) {
-                        data.forEach(periodo => {
-                            periodosSeleccionados.push(periodo.periodos);
-                            $('div #periodos').append(`<label"> <input type="checkbox" value="${periodo.periodos}" checked> ${periodo.periodos}</label><br>`);
+                    success: function(datos) {
+                        console.log(datos);
+                        datos.forEach(periodo => {
+                            periodosSeleccionados.push(periodo.periodo);
+                            if (periodo.nivelFormacion == "EDUCACION CONTINUA") {
+                                $('#Continua').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "PROFESIONAL") {
+                                $('#Pregrado').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "ESPECIALISTA") {
+                                $('#Esp').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
+                            if (periodo.nivelFormacion == "MAESTRIA") {
+                                $('#Maestria').append(`<label"> <input type="checkbox" value="${periodo.periodo}" checked> ${periodo.periodo}</label><br>`);
+                            }
                         });
                     }
                 });
-                console.log(periodosSeleccionados);
+                periodosSeleccionados.forEach(function(periodo, index, array) {
+                    array[index] = '2023' + periodo;
+                });
             }
 
             function vistaEntrada() {
@@ -612,8 +629,8 @@
             }
 
             function getPeriodos() {
-                periodosSeleccionados = [];
-                var checkboxesSeleccionados = $('#periodos input[type="checkbox"]:checked');
+                var periodosSeleccionados = [];
+                var checkboxesSeleccionados = $('#Continua, #Pregrado, #Esp, #Maestria').find('input[type="checkbox"]:checked');
                 checkboxesSeleccionados.each(function() {
                     periodosSeleccionados.push($(this).val());
                 });

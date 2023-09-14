@@ -571,12 +571,21 @@
     }
 
     function programas() {
+        var formData = new FormData();
+                var periodos = ['06','07','13','16','33','34','43','44','53','54'];
+                for (const key in facultadesSeleccionadas) {
+                    formData.append('idfacultad[]', facultadesSeleccionadas[key]);
+                }
+
+                periodos.forEach(function(periodo) {
+                    formData.append('periodos[]', periodo);
+                });
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'post',
-            url: "{{ route('todosProgramas.activos') }}",
+            url: "{{ route('programasPeriodo.activos') }}",
             cache: false,
             contentType: false,
             async: false,

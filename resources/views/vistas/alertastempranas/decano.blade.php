@@ -960,7 +960,6 @@
             });
     }
     
-
     function destruirTable() {
         $('#colTabla').addClass('hidden');
         if ($.fn.DataTable.isDataTable('#datatable')) {

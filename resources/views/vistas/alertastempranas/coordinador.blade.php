@@ -527,6 +527,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: "{{ route('periodosPrograma.activos') }}",
+            data: {
+                        programas: programasSeleccionados,
+            },
             method: 'post',
             async: false,
             success: function(data) {

@@ -82,8 +82,11 @@ class EstudianteController extends Controller
         if ($consultaNombre != NULL) :
             $nombre = $consultaNombre->Nombre . " " . $consultaNombre->Apellido;
         else :
-            $consultaNombre = DB::table('historialAcademico')->where('codBanner', '=', $estudiante)->select('nombreEst')->first();
+            $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
+            $consultaNombre = json_decode(file_get_contents($url), true);
+
             if ($consultaNombre != NULL) :
+                dd($consultaNombre);
                 $nombre = $consultaNombre->nombreEst;
             else :
                 $consultaNombre = DB::table('estudiantes')->where('homologante', '=', $estudiante)->select('nombre')->first();

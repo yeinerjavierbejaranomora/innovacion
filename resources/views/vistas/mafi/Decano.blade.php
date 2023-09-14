@@ -693,7 +693,7 @@
             var totalProgramas;
 
             function Contador() {
-                totalProgramas = $('ul #programas input[type="checkbox"]').length;
+                totalProgramas = $('#programas input[type="checkbox"]').length;
             }
 
             var buscador = $('#buscadorProgramas');
@@ -773,7 +773,7 @@
                     url: "{{ route('programasPeriodo.activos') }}",
                     data: formData,
                     cache: false,
-                    async: false,
+
                     contentType: false,
                     processData: false,
                     success: function(datos) {

@@ -133,6 +133,7 @@
         background-color: #DFE0E2;
     }
 </style>
+
 {{-- estilos checkbox --}}
 <style>
     .checkbox-wrapper input[type="checkbox"] {
@@ -262,8 +263,6 @@
             </div>
 
             <!-- Content Row -->
-
-
             <div class="row justify-content-start mb-3" id="seccion">
 
                 <!--Columna Niveles de Formación-->

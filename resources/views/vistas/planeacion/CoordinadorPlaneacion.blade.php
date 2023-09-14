@@ -488,6 +488,18 @@
                 </div>
             </div>
 
+            <div class="card shadow mt-4 hidden" id="colTabla">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!--Datatable-->
+                    <div class="table">
+                        <table id="datatable" class="display" style="width:100%">
+                        </table>
+                    </div>
+                </div>
+                <br>
+            </div>
+
         </div>
 
         <br>

@@ -49,7 +49,7 @@ class AlertasTempranasController extends Controller
         return view('vistas.alertastempranas.decano', ['facultades' => $nombreFacultades]);
     }
 
-    public function vistaRectorCoordinador(){
+    public function vistaCoordinadorLider(){
         $user = auth()->user();
         $idfacultad = trim($user->id_facultad, ',');
         $facultades = explode(",", $idfacultad);

@@ -51,14 +51,13 @@ class AlertasTempranasController extends Controller
 
     public function vistaCoordinadorLider(){
         $user = auth()->user();
-        $idfacultad = trim($user->id_facultad, ',');
-        $facultades = explode(",", $idfacultad);
-        foreach ($facultades as $key => $value) {
-
-            $consulta = DB::table('facultad')->where('id', $value)->select('nombre')->first();
-            $nombreFacultades[$value] = $consulta->nombre;
+        $programa = trim($user->programa, ',');
+        $programas = explode(",", $programa);
+        foreach ($programas as $key => $value) {
+            $consulta = DB::table('programas')->where('id', $value)->select('codprograma')->first();
+            $nombreProgramas[$value] = $consulta->codprograma;
         }
-        return view('vistas.alertastempranas.decano', ['facultades' => $nombreFacultades]);
+        return view('vistas.alertastempranas.coordinador', ['programas' => $nombreProgramas]);
     }
 
     public function tablaAlertasP(){

@@ -265,7 +265,6 @@
 
             <!-- Content Row -->
             <div class="row justify-content-start mb-3" id="seccion">
-
                 <!--Columna Niveles de Formación-->
                 <div class="col-12 text-start mt-1">
                     <div class="card-body mb-3" id="cardNivel">
@@ -473,6 +472,7 @@
                     Generar Reporte
                 </button>
             </div>
+
             <div class="row d-flex align-items-center mt-3">
                 <div class="col text-center" id="colAlertas">
                     <div class="card shadow mb-4" style="min-height: 450px; max-height: 450px;">
@@ -497,7 +497,6 @@
                 </div>
             </div>
 
-
             <div class="card shadow mt-4 hidden" id="colTabla">
                 <!-- Card Body -->
                 <div class="card-body">
@@ -509,15 +508,11 @@
                 </div>
                 <br>
             </div>
-
         </div>
         <!-- /.container-fluid -->
-
     </div>
-
 </div>
 <!-- End of Content Wrapper -->
-
 </div>
 
 <!-- End of Page Wrapper -->
@@ -887,7 +882,6 @@
                     }
             }
         }
-
         var datos = $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -901,7 +895,7 @@
                 } catch {
                     data = data;
                 }
-
+                console.log(data);
                 table = $('#datatable').DataTable({
                     "data": data,
                     'pageLength': 10,
@@ -963,7 +957,7 @@
                         var data = table.row($(this).parents("tr")).data();
                         if (data.activo == 1) {
                             Swal.fire({
-                                title: "¿Desea inactivar el usuario " + data.nombre + "?",
+                                title: "¿Ya se ha resuelto la alerta temprana " + data.desccripcion + "?",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 showCloseButton: true,
@@ -980,9 +974,7 @@
                                             console.log(result);
                                             if (result == "deshabilitado") {
                                                 Swal.fire({
-                                                    title: "Usuario deshabilitado",
-                                                    html: "El programa <strong>" + data.nombre +
-                                                        "</strong> ha sido inactivado",
+                                                    title: "Alerta solucionada",
                                                     icon: 'info',
                                                     showCancelButton: true,
                                                     confirmButtonText: "Aceptar",
@@ -993,47 +985,13 @@
                                                 })
                                             }
                                         })
-                                }
-                            });
-
-                        } else {
-                            Swal.fire({
-                                title: "¿Desea activar el usuario " + data.nombre + "?",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                showCloseButton: true,
-                                cancelButtonColor: '#DC3545',
-                                cancelButtonText: "No, Cancelar",
-                                confirmButtonText: "Si"
-                            }).then(result => {
-                                if (result.value) {
-                                    $.post("{{ route('user.activar') }}", {
-                                            '_token': $('meta[name=csrf-token]').attr('content'),
-                                            id: data.id,
-                                        },
-                                        function(result) {
-                                            if (result == "habilitado") {
-                                                Swal.fire({
-                                                    title: "Usuario habilitado",
-                                                    html: "El usuario <strong>" + data.nombre +
-                                                        "</strong> ha sido habilitado",
-                                                    icon: 'info',
-                                                    showCancelButton: true,
-                                                    confirmButtonText: "Aceptar",
-                                                }).then(result => {
-                                                    if (result.value) {
-                                                        location.reload();
-                                                    };
-                                                })
-                                            }
-                                        })
-                                }
-                            });
-                        }
-                    });
+                                    }
+                                });
+                            }
+                        });
                 }
 
-                obtener_data_inactivar("#example tbody", table);
+                obtener_data_inactivar("#datatable tbody", table);
             }
 
         });
@@ -1043,12 +1001,13 @@
         $('#colTabla').addClass('hidden');
         if ($.fn.DataTable.isDataTable('#datatable')) {
             $('#datatable').dataTable().fnDestroy();
+            $('#datatable thead').empty();
             $('#datatable tbody').empty();
+            $('#datatable tfooter').empty();
             $("#datatable tbody").off("click", "button.malla");
             $("#datatable tbody").off("click", "button.estudiantes");
         }
     }
-
 
     var chartAlertas;
 

@@ -950,7 +950,6 @@
                         chartRiesgoAlto = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.alto, TotalAlto],
                                     backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(181, 178, 178, 0.5)'],
@@ -967,10 +966,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -981,8 +978,9 @@
                                         color: 'red',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
+                                        fullSize: false,
                                     },
                                     tooltip: {
                                         enabled: false
@@ -998,7 +996,6 @@
                         chartRiesgoMedio = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.medio, TotalMedio], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(220, 205, 48, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -1015,10 +1012,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1029,7 +1024,7 @@
                                         color: '#DCCD30',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {
@@ -1046,7 +1041,6 @@
                         chartRiesgoBajo = new Chart(ctx, {
                             type: 'doughnut',
                             data: {
-                                labels: ['Score', 'Gray Area'],
                                 datasets: [{
                                     data: [data.bajo, TotalBajo], // Aquí puedes ajustar el valor para representar la semicircunferencia deseada
                                     backgroundColor: ['rgba(0, 255, 0, 1)', 'rgba(181, 178, 178, 0.5)'], // Color de fondo para la semicircunferencia
@@ -1063,10 +1057,8 @@
                                 plugins: {
                                     datalabels: {
                                         color: 'black',
-                                        font: {
-                                            weight: 'semibold',
-                                            size: 18,
-                                        },
+                                        weight: 'semibold',
+                                        size: 16,
                                     },
                                     legend: {
                                         display: false
@@ -1077,7 +1069,7 @@
                                         color: 'Green',
                                         position: 'bottom',
                                         font: {
-                                            size: 20,
+                                            size: 14,
                                         },
                                     },
                                     tooltip: {

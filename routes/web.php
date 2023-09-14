@@ -444,5 +444,5 @@ Route::controller(AlertasTempranasController::class)->group(function(){
     Route::get('/alertastempranas/numeroalertasprograma','numeroAlertasPrograma')->middleware('auth')->name('alertas.notificacionesprograma');
     
     
-    Route::post('/alertastempranas/alertaResulta','inactivarAlerta')->middleware('auth')->name('alertas.resuelta');
+    Route::post('/alertastempranas/alertaResulta','inactivarAlerta')->middleware('auth')->name('alerta.resuelta');
 });

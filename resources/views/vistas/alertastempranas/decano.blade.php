@@ -607,11 +607,10 @@
     }
 
     var totalProgramas;
-    var totalPeriodos;
 
     function Contador() {
         totalProgramas = $('#programas input[type="checkbox"]').length;
-        totalPeriodos = $('#programas input[type="checkbox"]').length;
+        console.log(totalProgramas);
     }
 
     function getPeriodos() {

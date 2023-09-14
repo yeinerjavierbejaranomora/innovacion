@@ -822,6 +822,7 @@
                     e.preventDefault();
                     Contador();
                     destruirTabla();
+                    destruirTablaCurso();
                     periodosSeleccionados = getPeriodos();
                     periodosSeleccionados.forEach(function(periodo, index, array) {
                         array[index] = '2023' + periodo;
@@ -991,7 +992,7 @@
                             if (TotalBajo <= 0) {
                                 TotalBajo = 0;
                             }
-                            
+
                             chartRiesgoAlto = new Chart(ctx, {
                                 type: 'doughnut',
                                 data: {

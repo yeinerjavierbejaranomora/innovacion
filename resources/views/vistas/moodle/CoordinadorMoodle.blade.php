@@ -540,6 +540,7 @@
             periodos();
             getPeriodos();
             riesgo();
+            tablaCursos();
 
             // Deshabilitar los checkboxes cuando comienza una solicitud AJAX
             $(document).ajaxStart(function() {
@@ -769,19 +770,20 @@
 
             $('#generarReporte').on('click', function(e) {
                 e.preventDefault();
-                var periodosSeleccionados = getPeriodos();
-                Contador();
+                periodosSeleccionados = getPeriodos();
+                destruirTabla();
+                destruirTablaCurso();
+
                 if (periodosSeleccionados.length > 0) {
-                    if ($('#programas input[type="checkbox"]:checked').length > 0) {
-                        if ($('#programas input[type="checkbox"]:checked').length == totalSeleccionado && periodosSeleccionados.length == totalPeriodos) {
-                            location.reload();
-                        }
+                    if ($('#programas input[type="checkbox"]:checked').length > 0 && $('#programas input[type="checkbox"]:checked').length < totalProgramas) {
                         var checkboxesProgramas = $('#programas input[type="checkbox"]:checked');
                         programasSeleccionados = [];
                         checkboxesProgramas.each(function() {
                             programasSeleccionados.push($(this).val());
                         });
                         estadoUsuario();
+                        riesgo();
+                        tablaCursos();
                     } else {
                         programasSeleccionados = [];
                         $("#mensaje").empty();

@@ -551,7 +551,7 @@
 
             $(".content").hide();
             $("#ausentismo").show();
-            
+
             $(".menuMoodle").click(function() {
                 $(".menuMoodle").removeClass('active');
                 $(".content").hide();
@@ -720,13 +720,6 @@
                 $('.tituloPeriodo strong').append('Periodo: ' + periodosFormateados);
                 $("#mensaje").show();
                 $("#mensaje").html(textoNuevo);
-            }
-
-            /**
-             * Método para destruir todos los gráficos
-             */
-            function destruirGraficos() {
-                [chartEstudiantesActivos, chartRetencion, chartSelloPrimerIngreso, chartTipoEstudiante, chartOperadores].forEach(chart => chart.destroy());
             }
 
             /**

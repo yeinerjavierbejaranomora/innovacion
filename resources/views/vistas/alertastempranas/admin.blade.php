@@ -135,8 +135,6 @@
     }
 </style>
 
-@include('layout.alertas')
-
 {{-- estilos checkbox --}}
 <style>
     .checkbox-wrapper input[type="checkbox"] {

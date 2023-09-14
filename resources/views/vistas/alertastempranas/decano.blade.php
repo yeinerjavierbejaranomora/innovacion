@@ -721,24 +721,6 @@
         }
     });
 
-    $('#deshacerProgramas').on('click', function(e) {
-        $('#programas input[type="checkbox"]').prop('checked', false);
-    });
-
-    $('#seleccionarProgramas').on('click', function(e) {
-        $('#programas input[type="checkbox"]').prop('checked', true);
-    });
-
-    $('#deshacerPeriodos').on('click', function(e) {
-        $('.periodos input[type="checkbox"]').prop('checked', false);
-        $('.todos').prop('checked', false);
-    });
-
-    $('#seleccionarPeriodos').on('click', function(e) {
-        $('.periodos input[type="checkbox"]').prop('checked', true);
-        $('.todos').prop('checked', true);
-    });
-
     $('#generarReporte').on('click', function(e) {
             e.preventDefault();
             Contador();
@@ -791,13 +773,11 @@
                     periodos: periodosSeleccionados
                 }
         } else {
-
-                url = "{{ route('alertas.grafico.facultad') }}",
-                    data = {
-                        facultad: facultadesSeleccionadas,
-                        periodos: periodosSeleccionados
-                    }
-
+            url = "{{ route('alertas.grafico.facultad') }}",
+                data = {
+                    facultad: facultadesSeleccionadas,
+                    periodos: periodosSeleccionados
+                }
         }
 
         $.ajax({
@@ -972,47 +952,13 @@
                                 title: 'Fecha creación',
                                 data: 'created_at',
                             },
-                            /*{
-                                defaultContent: "<button type='button' id='btn-table' class='estudiantes btn btn-warning' data-toggle='modal' data-target='#modalEstudiantesPlaneados'><i class='fa-regular fa-circle-user'></i></button>",
-                                title: 'Estudiantes planeados',
-                                className: 'dt-center'
-                            },
-
-                            {
-                                defaultContent: "<button type='button' id='btn-table' class='malla btn btn-warning' data-toggle='modal' data-target='#modalMallaCurricular'><i class='fa-solid fa-bars'></i></button>",
-                                title: 'Malla Curricular',
-                                className: 'dt-center'
-                            },*/
                         ]
                     });
-
-                    /*function tablaMalla(tbody, table) {
-                        $(tbody).on("click", "button.malla", function() {
-                            var datos = table.row($(this).parents("tr")).data();
-                            var programa = datos[0];
-                            var nombrePrograma = datos[1];
-                            mallaPrograma(programa, nombrePrograma);
-                        })
-                    }
-
-                    function tablaEstudiantes(tbody, table) {
-                        $(tbody).on("click", "button.estudiantes", function() {
-                            var datos = table.row($(this).parents("tr")).data();
-                            var programa = datos[0];
-                            var nombrePrograma = datos[1];
-                            estudiantesPlaneados(programa, nombrePrograma);
-                        })
-                    }
-
-                    tablaMalla("#datatable tbody", table);
-                    tablaEstudiantes("#datatable tbody", table);*/
                 }
 
             });
-        }
-
-
-        
+    }
+    
 
     function destruirTable() {
         $('#colTabla').addClass('hidden');

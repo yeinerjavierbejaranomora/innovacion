@@ -961,9 +961,9 @@
                                 confirmButtonText: "Si"
                             }).then(result => {
                                 if (result.value) {
-                                    $.post("{{ route('user.inactivar') }}", {
+                                    $.post("{{ route('alerta.resuelta') }}", {
                                             '_token': $('meta[name=csrf-token]').attr('content'),
-                                            id: data.id,
+                                            id: encodeURIComponent(window.btoa(data.id)),
                                         },
                                         function(result) {
                                             console.log(result);

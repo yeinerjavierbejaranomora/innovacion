@@ -189,4 +189,30 @@ class AlertasTempranasController extends Controller
         //var_dump($numeroAlertas[0]->total_alertas);die();
         return $numeroAlertas[0]->total_alertas;
     }
+
+    public function updateLogUsuarios($mensaje, $tabla, $informacionOriginal, $informacionActualizada)
+    {
+        LogUsuariosController::registrarLog('UPDATE', $mensaje, $tabla, json_encode($informacionOriginal), json_encode($informacionActualizada));
+    }
+
+    public function inactivarAlerta()
+    {
+        $id_llegada = $_POST['id'];
+        $id = base64_decode(urldecode($id_llegada));
+        if (!is_numeric($id)) {
+            $id = decrypt($id_llegada);
+        }
+        $informacionOriginal = DB::table('alertas_tempranas')->where('id', '=', $id)->select('codPrograma','desccripcion' ,'id', 'periodo', 'estado')->get();
+        $inactivarAlerta = DB::table('alertas_tempranas')->where('id', '=', $id)->update(['estado' => 0]);
+        $informacionActualizada = DB::table('alertas_tempranas')->where('id', '=', $id)->select('codPrograma','desccripcion' ,'id', 'periodo', 'estado')->get();
+        if ($inactivarAlerta) :
+            $this->updateLogUsuarios("La alerta temprana" . $informacionOriginal[0]->desccripcion . " fue inactivada ", 'alertas_tempranas', $informacionOriginal, $informacionActualizada);
+            return  "deshabilitado";
+        else :
+            return "false";
+        endif;
+    }
+
+
+
 }

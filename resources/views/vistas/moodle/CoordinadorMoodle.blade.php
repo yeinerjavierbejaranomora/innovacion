@@ -356,6 +356,7 @@
                             <div class="text-center mt-4 mb-4">
                                 <h4><strong>Informe de estudiantes en riesgo por Ausentismo</strong></h4>
                             </div>
+
                             <div class="row justify-content-start mt-3 columnas">
                                 <div class="col-4 text-center " id="colRiesgoAlto">
                                     <div class="card shadow mb-4 graficosRiesgo">
@@ -422,7 +423,6 @@
                                 <br>
                             </div>
                         </div>
-
                         <div id="cursos" class="content">
                             <div class="table">
                                 <table id="tablaCursos" class="display" style="width:90%">

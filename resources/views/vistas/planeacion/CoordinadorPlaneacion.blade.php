@@ -1110,103 +1110,7 @@
             /**
              * Método que genera el gráfico con los tipos de estudiante por programa
              */
-            var chartTipoEstudiante;
-
-            function graficoTiposDeEstudiantes() {
-
-                var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla;
-                var data = {
-                    programa: programasSeleccionados,
-                    periodos: periodosSeleccionados
-                }
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: url,
-                    data: data,
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-
-                        var labels = data.data.map(function(elemento) {
-                            return elemento.tipoestudiante;
-                        });
-
-                        var valores = data.data.map(function(elemento) {
-                            return elemento.TOTAL;
-                        });
-                        var maxValor = Math.max(...valores);
-                        var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
-                        var yMax;
-                        if (maxValor < 50) {
-                            yMax = 100;
-                        } else if (maxValor < 100) {
-                            yMax = 120;
-                        } else if (maxValor < 500) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 100;
-                        } else if (maxValor < 1000) {
-                            yMax = 100 * Math.ceil(maxValor / 100) + 200;
-                        } else {
-                            var maxValorAux = 1000 * Math.ceil(maxValor / 1000);
-                            yMax = (maxValorAux - maxValor) < 600 ? maxValorAux + 1000 : maxValorAux;
-                        }
-                        // Crear el gráfico circular
-                        var ctx = document.getElementById('tipoEstudiante').getContext('2d');
-                        chartTipoEstudiante = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels.map(function(label, index) {
-                                    label = label.toUpperCase();
-                                    return label;
-                                }),
-                                datasets: [{
-                                    label: 'Tipos de estudiantes',
-                                    data: valores,
-                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                    }
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        max: yMax,
-                                        beginAtZero: true
-                                    }
-                                },
-                                maintainAspectRatio: false,
-                                responsive: true,
-                                plugins: {
-                                    datalabels: {
-                                        color: 'black',
-                                        font: {
-                                            weight: 'semibold'
-                                        },
-                                        formatter: Math.round
-                                    },
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            font: {
-                                                size: 12
-                                            }
-                                        }
-                                    }
-                                },
-                            },
-                            plugins: [ChartDataLabels]
-                        });
-                        if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
-                            $('#colTipoEstudiantes').addClass('hidden');
-                        } else {
-                            $('#colTipoEstudiantes').removeClass('hidden');
-                        }
-                    }
-                });
-            }
+            
 
             var chartSelloAntiguos;
 
@@ -1316,17 +1220,16 @@
 
             }
 
-
             var chartTipoEstudiante;
 
             function graficoTiposDeEstudiantes() {
-                var data;
-                var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla,
-                    data = {
-                        programa: programasSeleccionados,
-                        periodos: periodosSeleccionados
-                    };
-                    $.ajax({
+
+                var url = "{{ route('estudiantes.tipo.programa',['tabla' => ' ']) }}" + tabla;
+                var data = {
+                    programa: programasSeleccionados,
+                    periodos: periodosSeleccionados
+                }
+                $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1334,21 +1237,18 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        try {
-                            data = jQuery.parseJSON(data);
-                        } catch {
-                            data = data;
-                        }
+                        data = jQuery.parseJSON(data);
+
                         var labels = data.data.map(function(elemento) {
                             return elemento.tipoestudiante;
                         });
+
                         var valores = data.data.map(function(elemento) {
                             return elemento.TOTAL;
                         });
                         var maxValor = Math.max(...valores);
                         var maxValorAux = Math.ceil(maxValor / 1000) * 1000;
                         var yMax;
-
                         if (maxValor < 50) {
                             yMax = 100;
                         } else if (maxValor < 100) {
@@ -1367,17 +1267,13 @@
                             type: 'bar',
                             data: {
                                 labels: labels.map(function(label, index) {
-                                    if (label.includes("ESTUDIANTE ")) {
-                                        label = label.replace(/ESTUDIANTE\S*/i, "");
-                                    }
+                                    label = label.toUpperCase();
                                     return label;
                                 }),
                                 datasets: [{
-                                    label: '',
+                                    label: 'Tipos de estudiantes',
                                     data: valores,
-                                    backgroundColor: ['rgba(74, 72, 72, 1)', 'rgba(223, 193, 78, 1)', 'rgba(208,171,75, 1)',
-                                        'rgba(186,186,186,1)', 'rgba(56,101,120,1)', 'rgba(229,137,7,1)'
-                                    ],
+                                    backgroundColor: ['rgba(223, 193, 78, 1)', 'rgba(74, 72, 72, 1)', 'rgba(56,101,120,1)'],
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
@@ -1394,7 +1290,6 @@
                                 maintainAspectRatio: false,
                                 responsive: true,
                                 plugins: {
-
                                     datalabels: {
                                         color: 'black',
                                         font: {
@@ -1403,11 +1298,16 @@
                                         formatter: Math.round
                                     },
                                     legend: {
-                                        display: false,
+                                        position: 'bottom',
+                                        labels: {
+                                            font: {
+                                                size: 12
+                                            }
+                                        }
                                     }
                                 },
                             },
-                            plugins: [ChartDataLabels],
+                            plugins: [ChartDataLabels]
                         });
                         if (chartTipoEstudiante.data.labels.length == 0 && chartTipoEstudiante.data.datasets[0].data.length == 0) {
                             $('#colTipoEstudiantes').addClass('hidden');
@@ -1417,6 +1317,7 @@
                     }
                 });
             }
+
             /**
              * Método que genera el gráfico de los 5 operadores que mas estudiantes traen por facultad
              */

@@ -82,7 +82,7 @@ class EstudianteController extends Controller
         if ($consultaNombre != NULL) :
             $nombre = $consultaNombre->Nombre . " " . $consultaNombre->Apellido;
         else :
-            $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$idbanner;
+            $url = "https://services.ibero.edu.co/utilitary/v1/MoodleAulaVirtual/GetPersonByIdBannerQuery/".$estudiante;
             $consultaNombre = json_decode(file_get_contents($url), true);
 
             if ($consultaNombre != NULL) :

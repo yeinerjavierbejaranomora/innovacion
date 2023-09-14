@@ -34,10 +34,7 @@
         width: 60px;
     }
 
-    #botonModalTiposEstudiantes,
-    #botonModalProgramas,
-    #botonModalOperador,
-    #botonModalMetas {
+    .botonModal {
         background-color: #dfc14e;
         border-color: #dfc14e;
         color: white;
@@ -319,7 +316,7 @@
             </div>
 
             <div class="row text-center justify-content-center">
-                <button class="btn" type="button" id="generarReporte">
+                <button class="btn button-informe" type="button" id="generarReporte">
                     Generar Reporte
                 </button>
             </div>

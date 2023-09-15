@@ -190,43 +190,9 @@ div .show{
 
     <div class="hidden" id="taps_internos">
             
-        <div class="container">
-
-            <div class="">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content" id="pills-tabContent">
-
-                    <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
-                        <div class="card-deck">
-
-                          
-                        
-                          
+        
 
                         </div>
-
-
                     </div>
 
                     <div class="tab-pane fade" id="Viendo" role="tabpanel" >
@@ -500,7 +466,7 @@ div .show{
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr style="display: flex;">').append(
-                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;margin-top: 0%;min-width: 10%;margin-right: 1%;margin-left: -3%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
+                                            '<div class="container"><div class="">                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">                    <li class="nav-item">                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" ria-controls="pills-home" aria-selected="true">malla</a>                    </li>                    <li class="nav-item">                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" ria-controls="pills-profile" aria-selected="false">Viendo en aula</a>                    </li>                    <li class="nav-item">                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" ria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>                    </li>                    <li class="nav-item">                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" ria-controls="pills-contact" aria-selected="false">Materias por ver</a>                    </li>                    <li class="nav-item">                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" ria-controls="pills-contact" aria-selected="false">Materias vistas</a>                    </li>                    <li class="nav-item">                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" ria-controls="pills-contact" aria-selected="false">Historial completo</a>                    </li>                </ul>                <div class="tab-content" id="pills-tabContent">                    <div class="tab-pane fade show active" id="malla"  role="tabpanel" >                        <div class="card-deck"><div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;margin-top: 0%;min-width: 10%;margin-right: 1%;margin-left: -3%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
                                               
                                         $tablas.append($filaSemestre);
                                     }

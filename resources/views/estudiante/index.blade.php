@@ -700,7 +700,7 @@ div .show{
                         elemto = $(document).find('#tab_li0')
                         elemto.addClass("active")
                     
-                        $(document).find("tab0").addClass('active show');
+                        $(document).find("#tab0").addClass('active show');
                      
                         elemto.click();
                     },700);

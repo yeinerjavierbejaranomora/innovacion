@@ -397,9 +397,8 @@ div .show{
             new DataTable('#example');
            
             $(document).on("click",".datos",function(){
-                alert("entro");
-                console.log($(this))
-
+            
+                $(document).find('.taps_programas').empty()
              $(document).find("#tabContent div .active ").removeClass("active show")
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
@@ -674,7 +673,7 @@ div .show{
 
                         // Crear el contenido de la pestaña
                         var tabContent = $('<div>')
-                        .addClass('tab-pane fade ')
+                        .addClass('tab-pane fade taps_programas ')
                         .attr('id', 'tab' + index); 
 
                         var tabLink = $('<a>')

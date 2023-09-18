@@ -472,22 +472,22 @@ div .show{
                                 $li_taps_internos+='<div class="">'
                                 $li_taps_internos+='<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link active" id="pills-home-tab" data-toggle="pill"href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>'
+                                $li_taps_internos+='        <a class="nav-link active taps_inter" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='    <li class="nav-item">'
-                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>'
                                 $li_taps_internos+='    </li>'
                                 $li_taps_internos+='</ul>'
                                 $li_taps_internos+='<div class="tab-content" id="pills-tabContent">'
@@ -560,6 +560,15 @@ div .show{
                     }
                 });
             });
+
+
+
+            $(document).on('click','.taps_inter',function(){
+
+                alert('entro');
+            })
+
+            
             
 
         })

@@ -525,11 +525,9 @@ $filaMateria+='          <span>'+materia.nombre_materia+'</span>'
 $filaMateria+='        </p>'
 $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
 $filaMateria+='          <span>'
-$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span>'
+$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span> <br><b>Créditos:</b> '+materia.creditos+' </span>'
 $filaMateria+='        </p>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'
-$filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
+        
 
 
 

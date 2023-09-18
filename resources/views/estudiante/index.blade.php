@@ -567,7 +567,8 @@ div .show{
 
                
                 $id=$(this).attr('href');
-                $(document).find(''+$id+'').addClass('active show');
+                $(document).find($id).addClass('active');
+                $(document).find($id).addClass('show');
                 alert( $id);
             })
 

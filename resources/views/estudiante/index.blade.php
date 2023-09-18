@@ -699,7 +699,7 @@ div .show{
                     window.setTimeout(function(){
                         elemto = $(document).find('#tab_li0')
                         elemto.addClass("active")
-                        tap=elemto.attr('data-tap')
+                    
                         $(document).find("tab0").addClass('active show');
                      
                         elemto.click();

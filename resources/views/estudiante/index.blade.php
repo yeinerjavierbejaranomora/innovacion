@@ -539,7 +539,7 @@ div .show{
 
 
 
-                                    $tap_malla.children('tr:last').append($filaMateria);
+                                    $tap_malla.append($filaMateria);
                                 });
                                 $tablas.append($tap_malla);
                                 $(document).find(tap).append($tablas);

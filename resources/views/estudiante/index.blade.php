@@ -570,6 +570,8 @@ div .show{
                $(document).find('.inter').removeClass('active')
                $(document).find('.inter').removeClass('show')
                 $id=$(this).attr('href');
+
+                console.log( $(document).find($id))
                 $(document).find($id).addClass('active');
                 $(document).find($id).addClass('show');
                 alert( $id);

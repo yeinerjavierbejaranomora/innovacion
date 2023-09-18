@@ -516,9 +516,9 @@ div .show{
                                     // Agrega la materia como una columna en la fila actual
                                     var $filaMateria="";
                                         $filaMateria+='<td style="color:white;margin-right: 1%">';
-                                        $filaMateria+='  <div class="card " style="background-color:transparent;border: none;width: 100%;padding: 6%;">'
-                                        $filaMateria+='    <div class="card card_historial materias" style="height: 297px;">'
-                                        $filaMateria+='      <div class="card-body" style="padding: 0.5rem;">'
+                                        $filaMateria+='  <div class="card " style="background-color:transparent;border: none;width: 250px;padding: 6%;">'
+                                        $filaMateria+='    <div class="card card_historial materias" style="height: 230px;">'
+                                        $filaMateria+='      <div class="card-body" style="padding: 1.2rem;">'
                                         $filaMateria+='        <div class="" style=" display: flex;color: black;">'
                                         $filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
                                         $filaMateria+='          </span>'

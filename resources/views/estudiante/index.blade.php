@@ -565,9 +565,10 @@ div .show{
 
             $(document).on('click','.taps_inter',function(){
 
-                alert('entro');
+               
                 $id=$(this).attr('href');
                 $('#'+$id).addClass('active show');
+                alert( $id);
             })
 
             

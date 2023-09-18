@@ -397,6 +397,8 @@ div .show{
             new DataTable('#example');
            
             $(document).on("click",".datos",function(){
+                alert("entro");
+                console.log($(this))
 
              $(document).find("#tabContent div .active ").removeClass("active show")
                 idbanner=$(this).attr('data-id');

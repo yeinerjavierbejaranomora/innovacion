@@ -188,34 +188,9 @@ div .show{
         </div>
     </div>
 
-    <div class="hidden" id="taps_internos">
+    <!-- <div class="hidden" id="taps_internos">
             
-        <div class="container">
 
-            <div class="">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content" id="pills-tabContent">
 
                     <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
                         <div class="card-deck">
@@ -411,7 +386,7 @@ div .show{
 
         </div>
 
-    </div>
+    </div> -->
 
     <script>
 
@@ -485,14 +460,46 @@ div .show{
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="card-deck"><div class="row"> <table>');
+                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="card-deck"><div class="row"> ');
+
+
+                                
+
+                                const $li_taps_internos="";
+
+
+                                $li_taps_internos+='<div class="container">'
+                                $li_taps_internos+='<div class="">'
+                                $li_taps_internos+='<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link active" id="pills-home-tab" data-toggle="pill"href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='</ul>'
+                                $li_taps_internos+='<div class="tab-content" id="pills-tabContent">'
+                                
+                                $tap_malla= '<div class="tab-pane fade show active" id="malla"  role="tabpanel" ><div class="card-deck"><table>'
+
+                                $tablas.append($li_taps_internos);
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
-
-                               console.log(materia.semestre);
 
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
@@ -502,39 +509,39 @@ div .show{
                                             $('<tr style="display: flex;">').append(
                                             '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 0%;min-width: 11%;margin-right: 1%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
                                               
-                                        $tablas.append($filaSemestre);
+                                        $tap_malla.append($filaSemestre);
                                     }
                                    
                                     // Agrega la materia como una columna en la fila actual
                                     var $filaMateria="";
-$filaMateria+='<td style="color:white;margin-right: 1%">';
-$filaMateria+='  <div class="card " style=" background-color:transparent;border: none;width:162px">'
-$filaMateria+='    <div class="card card_historial materias" style="height: 297px;">'
-$filaMateria+='      <div class="card-body" style="padding: 0.5rem;">'
-$filaMateria+='        <div class="" style=" display: flex;color: black;">'
-$filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
-$filaMateria+='          </span>'
-$filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
-$filaMateria+='            <b>Codigo:</b>'
-$filaMateria+='            <br>'
-$filaMateria+='            <span>'+materia.codigo_materia+'</span>'
-$filaMateria+='          </h6>'
-$filaMateria+='        </div>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'+materia.nombre_materia+'</span>'
-$filaMateria+='        </p>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'
-$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span> <br><b>Créditos:</b> '+materia.creditos+' </span>'
-$filaMateria+='        </p>'
+                                        $filaMateria+='<td style="color:white;margin-right: 1%">';
+                                        $filaMateria+='  <div class="card " style=" background-color:transparent;border: none;width:162px">'
+                                        $filaMateria+='    <div class="card card_historial materias" style="height: 297px;">'
+                                        $filaMateria+='      <div class="card-body" style="padding: 0.5rem;">'
+                                        $filaMateria+='        <div class="" style=" display: flex;color: black;">'
+                                        $filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
+                                        $filaMateria+='          </span>'
+                                        $filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
+                                        $filaMateria+='            <b>Codigo:</b>'
+                                        $filaMateria+='            <br>'
+                                        $filaMateria+='            <span>'+materia.codigo_materia+'</span>'
+                                        $filaMateria+='          </h6>'
+                                        $filaMateria+='        </div>'
+                                        $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+                                        $filaMateria+='          <span>'+materia.nombre_materia+'</span>'
+                                        $filaMateria+='        </p>'
+                                        $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+                                        $filaMateria+='          <span>'
+                                        $filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span> <br><b>Créditos:</b> '+materia.creditos+' </span>'
+                                        $filaMateria+='        </p>'
         
 
 
 
 
-                                    $tablas.children('tr:last').append($filaMateria);
+                                    $tap_malla.children('tr:last').append($filaMateria);
                                 });
-
+                                $tablas.append($tap_malla);
                                 $(document).find(tap).append($tablas);
 
                               

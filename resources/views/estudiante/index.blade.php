@@ -494,7 +494,7 @@ div .show{
                                 $li_taps_internos+='</ul>'
                                 $li_taps_internos+='<div class="tab-content" id="pills-tabContent">'
                                 
-                                $tap_malla= $('<div class="tab-pane fade show active" id="malla"  role="tabpanel" ><div class="card-deck"><table>');
+                                $tap_malla= $('<div class="tab-pane fade show active inter" id="malla"  role="tabpanel" ><div class="card-deck"><table>');
 
                                 $tablas.append($li_taps_internos);
 
@@ -567,8 +567,8 @@ div .show{
 
             $(document).on('click','.taps_inter',function(){
 
-               $(document).find('.active').removeClass('active')
-               $(document).find('.show').removeClass('show')
+               $(document).find('.inter').removeClass('active')
+               $(document).find('.inter').removeClass('show')
                 $id=$(this).attr('href');
                 $(document).find($id).addClass('active');
                 $(document).find($id).addClass('show');

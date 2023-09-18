@@ -671,7 +671,7 @@ div .show{
 
                         // Crear el contenido de la pestaña
                         var tabContent = $('<div>')
-                        .addClass('tab-pane fade datos')
+                        .addClass('tab-pane fade ')
                         .attr('id', 'tab' + index); 
 
                         var tabLink = $('<a>')

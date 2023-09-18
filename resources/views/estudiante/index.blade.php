@@ -697,10 +697,10 @@ div .show{
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
                     window.setTimeout(function(){
-                        elemto = $(document).find('.datos').first()
+                        elemto = $(document).find('#tab_li0')
                         elemto.addClass("active")
                         tap=elemto.attr('data-tap')
-                        $(document).find("#"+tap).addClass('active show');
+                        $(document).find("tab0").addClass('active show');
                      
                         elemto.click();
                     },700);

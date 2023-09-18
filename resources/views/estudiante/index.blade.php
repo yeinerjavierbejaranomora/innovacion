@@ -192,149 +192,7 @@ div .show{
             
 
 
-                   
-                    <div class="tab-pane fade" id="Viendo" role="tabpanel" >
-
-                        <div class="container">
-                            <div class="row">
-                                <table class="table table-striped" id="tabla_Viendo">
-                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                        <tr style="border: 13px solid;">
-                                            <th scope="col">Codigo Materia</th>
-                                            <th scope="col">Materias</th>
-                                            <th scope="col">Semestre</th>
-                                            <th scope="col">Ciclo</th>
-                                            <th scope="col">Creditos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">ABV32190</th>
-                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="proyectadas" role="tabpanel" >
-                        <div class="table-responsive-xl">
-                            <table class="table table-striped">
-                                <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                    <tr style="border: 13px solid;">
-                                        <th scope="col">Codigo Materia</th>
-                                        <th scope="col">Materias</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Ciclo</th>
-                                        <th scope="col">Creditos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>  
-                    </div>
-
-                    <div class="tab-pane fade"  id="por_ver"  role="tabpanel" > 
-                        <table class="table table-striped">
-                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                <tr style="border: 13px solid;">
-                                    <th scope="col">Codigo Materia</th>
-                                    <th scope="col">Materias</th>
-                                    <th scope="col">Semestre</th>
-                                    <th scope="col">Ciclo</th>
-                                    <th scope="col">Creditos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">ABV32190</th>
-                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="tab-pane fade"   id="vistas" role="tabpanel" > 
-                        <table class="table table-striped">
-                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                <tr style="border: 13px solid;">
-                                    <th scope="col">Codigo Materia</th>
-                                    <th scope="col">Materias</th>
-                                    <th scope="col">Semestre</th>
-                                    <th scope="col">Ciclo</th>
-                                    <th scope="col">Creditos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">ABV32190</th>
-                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                 
                     <div class="tab-pane fade"  id="Historial"   role="tabpanel"> 
                         <table class="table table-striped">
                             <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
@@ -485,8 +343,20 @@ div .show{
                                 $tap_malla= $('<div class="tab-pane fade show active inter" id="malla"  role="tabpanel" ><div class="card-deck"><table>');
 
                               
-                                $tap_viendo+=$('<div class="tab-pane fade inter" id="Viendo" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Viendo">')
+                                $tap_viendo=$('<div class="tab-pane fade inter" id="Viendo" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Viendo">')
 
+
+                                $tap_proyectadas=$('<div class="tab-pane fade inter" id="proyectadas" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_proyectadas">')
+
+                                $tap_por_ver=$('<div class="tab-pane fade inter" id="por_ver" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_por_ver">')
+
+                                $tap_vistas=$('<div class="tab-pane fade inter" id="vistas" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_vistas">')
+
+                                $tap_Historial=$('<div class="tab-pane fade inter" id="Historial" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Historial">')
+                                
+
+
+                                
                                 $tablas.append($li_taps_internos);
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
@@ -536,10 +406,10 @@ div .show{
                                 });
                                 $tablas.append($tap_malla);
                                 $tablas.append($tap_viendo);
-                                $tablas.append($tap_malla);
-                                $tablas.append($tap_malla);
-                                $tablas.append($tap_malla);
-                                $tablas.append($tap_malla);
+                                $tablas.append($tap_proyectadas);
+                                $tablas.append($tap_por_ver);
+                                $tablas.append($tap_vistas);
+                                $tablas.append($tap_Historial);
                                 $(document).find(tap).append($tablas);
 
                               

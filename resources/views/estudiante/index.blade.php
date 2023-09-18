@@ -567,7 +567,8 @@ div .show{
 
             $(document).on('click','.taps_inter',function(){
 
-               
+               $(document).find('.active').removeClass('active')
+               $(document).find('.show').removeClass('show')
                 $id=$(this).attr('href');
                 $(document).find($id).addClass('active');
                 $(document).find($id).addClass('show');

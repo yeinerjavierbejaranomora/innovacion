@@ -508,7 +508,7 @@ div .show{
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr style="display: flex;">').append(
-                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 0%;min-width: 11%;margin-right: 1%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
+                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 0%;min-width: 100%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><span id="semestre">'+materia.semestre);
                                               
                                         $tap_malla.append($filaSemestre);
                                     }

@@ -465,7 +465,7 @@ div .show{
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr style="display: flex;">').append(
-                                            '<div class="container"><div class=""><div class="card-deck"><div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;margin-top: 0%;min-width: 10%;margin-right: 1%;margin-left: -3%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
+                                            '<div class="container"><div class=""><div class="card-deck"><div class="card card_historial semestre" style="background-color: #dfc14e;color: #4a4848;margin-top: 0%;max-width: 150px;margin-right: 1%;margin-left: -3%;height: 300px;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
                                               
                                         $tablas.append($filaSemestre);
                                     }

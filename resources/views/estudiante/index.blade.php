@@ -192,23 +192,12 @@ div .show{
             
 
 
-                    <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
-                        <div class="card-deck">
-
-                          
-                        
-                          
-
-                        </div>
-
-
-                    </div>
-
+                   
                     <div class="tab-pane fade" id="Viendo" role="tabpanel" >
 
                         <div class="container">
                             <div class="row">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="tabla_Viendo">
                                     <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
                                         <tr style="border: 13px solid;">
                                             <th scope="col">Codigo Materia</th>
@@ -495,6 +484,9 @@ div .show{
                                 
                                 $tap_malla= $('<div class="tab-pane fade show active inter" id="malla"  role="tabpanel" ><div class="card-deck"><table>');
 
+                              
+                                $tap_viendo+=$('<div class="tab-pane fade inter" id="Viendo" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Viendo">')
+
                                 $tablas.append($li_taps_internos);
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
@@ -542,6 +534,11 @@ div .show{
 
                                     $tap_malla.append($filaMateria);
                                 });
+                                $tablas.append($tap_malla);
+                                $tablas.append($tap_viendo);
+                                $tablas.append($tap_malla);
+                                $tablas.append($tap_malla);
+                                $tablas.append($tap_malla);
                                 $tablas.append($tap_malla);
                                 $(document).find(tap).append($tablas);
 

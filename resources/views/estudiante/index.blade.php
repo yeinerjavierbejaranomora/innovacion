@@ -489,7 +489,9 @@ console.log(data.historial)
 
 
             $(document).on('click','.taps_inter',function(){
-
+                const dataSet = [
+    ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
+    ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']]
                $(document).find('.inter').removeClass('active')
                $(document).find('.inter').removeClass('show')
                 $id=$(this).attr('href');
@@ -508,7 +510,7 @@ console.log(data.historial)
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                   
+                                   data: dataSet
                                 });
 
 

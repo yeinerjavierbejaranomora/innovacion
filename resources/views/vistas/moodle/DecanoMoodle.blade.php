@@ -1517,7 +1517,7 @@
                                 },
                                 {
                                     data: 'Cursos',
-                                    title: 'Cursos abiertos',
+                                    title: 'Grupos abiertos',
                                     className: "text-center",
                                 },
                             ],

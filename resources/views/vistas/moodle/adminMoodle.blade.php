@@ -1584,7 +1584,7 @@
                                     },
                                     {
                                         data: 'Cursos',
-                                        title: 'Cursos abiertos',
+                                        title: 'Grupos abiertos',
                                         className: "text-center",
                                     },
                                 ],
@@ -1614,4 +1614,4 @@
 
         <!-- incluimos el footer -->
         @include('layout.footer')
-    </div>
+</div>

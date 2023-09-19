@@ -146,7 +146,7 @@
     }
 
     .custom-text {
-        margin-top: 5%; 
+        margin-top: 7%; 
         font-size: 1em; 
         color: black;
         font-family: sans-serif;

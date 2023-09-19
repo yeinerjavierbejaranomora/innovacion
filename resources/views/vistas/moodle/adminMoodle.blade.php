@@ -389,7 +389,7 @@
                                             </div>
                                             <div class="card-body center-chart fondocharts">
                                                 <canvas id="medio"></canvas>
-                                                <div style="flex: 1;">
+                                                <div>
                                                     <div class="custom-text totalMatriculas"></div>
                                                 </div>
                                             </div>
@@ -406,7 +406,7 @@
                                             </div>
                                             <div class="card-body center-chart fondocharts">
                                                 <canvas id="bajo"></canvas>
-                                                <div style="flex: 1;">
+                                                <div>
                                                     <div class="custom-text totalMatriculas"></div>
                                                 </div>
                                             </div>

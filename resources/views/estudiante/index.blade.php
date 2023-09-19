@@ -423,7 +423,7 @@ div .show{
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                    data: dataSet
+                                    data: data.historial
                                 });
 
 
@@ -436,7 +436,7 @@ div .show{
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                    data: dataSet
+                                    data: data.historial
                                 });
 
                                 new DataTable('#tabla_por_ver', {
@@ -448,7 +448,7 @@ div .show{
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                    data: dataSet
+                                    data: data.historial
                                 });
 
                                 new DataTable('#tabla_vistas', {
@@ -460,7 +460,7 @@ div .show{
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                    data: dataSet
+                                    data: data.historial
                                 });
 
                                 new DataTable('#tabla_Historial', {
@@ -472,7 +472,7 @@ div .show{
                                         { title: 'Start date' },
                                         { title: 'Salary' }
                                     ],
-                                    data: dataSet
+                                    data: data.historial
                                 });
 
                         

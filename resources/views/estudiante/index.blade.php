@@ -412,7 +412,7 @@ div .show{
                                 $tablas.append($tap_Historial);
 
                                 
-
+console.log(data.historial)
 
                                 new DataTable('#tabla_Viendo', {
                                     columns: [

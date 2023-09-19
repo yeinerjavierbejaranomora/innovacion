@@ -414,17 +414,7 @@ div .show{
                                 
 console.log(data.historial)
 
-                                new DataTable('#tabla_Viendo', {
-                                    columns: [
-                                        { title: 'Name' },
-                                        { title: 'Position' },
-                                        { title: 'Office' },
-                                        { title: 'Extn.' },
-                                        { title: 'Start date' },
-                                        { title: 'Salary' }
-                                    ],
-                                    data: data.historial
-                                });
+                            
 
 
                                 new DataTable('#tabla_proyectadas', {
@@ -508,6 +498,20 @@ console.log(data.historial)
                 $(document).find($id).addClass('active');
                 $(document).find($id).addClass('show');
                 alert( $id);
+
+                new DataTable($id, {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                   
+                                });
+
+
             })
 
             

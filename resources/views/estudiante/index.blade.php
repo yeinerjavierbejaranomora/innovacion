@@ -414,13 +414,67 @@ div .show{
                                 
 
 
+                                new DataTable('#tabla_Viendo', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: dataSet
+                                });
 
 
-                                new DataTable('#tabla_Viendo');
-                                new DataTable('#tabla_proyectadas');
-                                new DataTable('#tabla_por_ver');
-                                new DataTable('#tabla_vistas');
-                                new DataTable('#tabla_Historial');
+                                new DataTable('#tabla_proyectadas', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: dataSet
+                                });
+
+                                new DataTable('#tabla_por_ver', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: dataSet
+                                });
+
+                                new DataTable('#tabla_vistas', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: dataSet
+                                });
+
+                                new DataTable('#tabla_Historial', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: dataSet
+                                });
+
                         
 
                                 $(document).find(tap).append($tablas);

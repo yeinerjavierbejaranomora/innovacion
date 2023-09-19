@@ -188,189 +188,11 @@ div .show{
         </div>
     </div>
 
-    <div class="hidden" id="taps_internos">
+    <!-- <div class="hidden" id="taps_internos">
             
-        <div class="container">
-
-            <div class="">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content" id="pills-tabContent">
-
-                    <div class="tab-pane fade show active" id="malla"  role="tabpanel" >
-                        <div class="card-deck">
-
-                          
-                        
-                          
-
-                        </div>
 
 
-                    </div>
-
-                    <div class="tab-pane fade" id="Viendo" role="tabpanel" >
-
-                        <div class="container">
-                            <div class="row">
-                                <table class="table table-striped">
-                                    <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                        <tr style="border: 13px solid;">
-                                            <th scope="col">Codigo Materia</th>
-                                            <th scope="col">Materias</th>
-                                            <th scope="col">Semestre</th>
-                                            <th scope="col">Ciclo</th>
-                                            <th scope="col">Creditos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">ABV32190</th>
-                                            <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="proyectadas" role="tabpanel" >
-                        <div class="table-responsive-xl">
-                            <table class="table table-striped">
-                                <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                    <tr style="border: 13px solid;">
-                                        <th scope="col">Codigo Materia</th>
-                                        <th scope="col">Materias</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Ciclo</th>
-                                        <th scope="col">Creditos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>  
-                    </div>
-
-                    <div class="tab-pane fade"  id="por_ver"  role="tabpanel" > 
-                        <table class="table table-striped">
-                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                <tr style="border: 13px solid;">
-                                    <th scope="col">Codigo Materia</th>
-                                    <th scope="col">Materias</th>
-                                    <th scope="col">Semestre</th>
-                                    <th scope="col">Ciclo</th>
-                                    <th scope="col">Creditos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">ABV32190</th>
-                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="tab-pane fade"   id="vistas" role="tabpanel" > 
-                        <table class="table table-striped">
-                            <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
-                                <tr style="border: 13px solid;">
-                                    <th scope="col">Codigo Materia</th>
-                                    <th scope="col">Materias</th>
-                                    <th scope="col">Semestre</th>
-                                    <th scope="col">Ciclo</th>
-                                    <th scope="col">Creditos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">ABV32190</th>
-                                    <td>ALGORITMOS Y VISUALIZACIÓN DE DATOS</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                 
                     <div class="tab-pane fade"  id="Historial"   role="tabpanel"> 
                         <table class="table table-striped">
                             <thead style="background-color: #d5b94b;color: white;border: 1px solid black;">
@@ -411,7 +233,7 @@ div .show{
 
         </div>
 
-    </div>
+    </div> -->
 
     <script>
 
@@ -422,7 +244,8 @@ div .show{
             new DataTable('#example');
            
             $(document).on("click",".datos",function(){
-
+            
+                $(document).find('.taps_programas').empty()
              $(document).find("#tabContent div .active ").removeClass("active show")
                 idbanner=$(this).attr('data-id');
                 programa=$(this).attr('data-programa');
@@ -485,14 +308,61 @@ div .show{
 
                                                         
                                 // Crea la tabla y agrega las filas
-                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="card-deck"><div class="row"> <table>');
+                                const $tablas = $('<div class="container" style="max-width: 100%;"><div class="card-deck"><div class="row"> ');
+
+
+                                
+
+                                 $li_taps_internos="";
+
+
+                                $li_taps_internos+='<div class="container">'
+                                $li_taps_internos+='<div class="">'
+                                $li_taps_internos+='<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link active taps_inter" id="pills-home-tab" data-toggle="pill" href="#malla" role="tab" aria-controls="pills-home" aria-selected="true">malla</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-profile-tab" data-toggle="pill" href="#Viendo" role="tab" aria-controls="pills-profile" aria-selected="false">Viendo en aula</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#proyectadas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias proyectadas - programadas</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#por_ver" role="tab" aria-controls="pills-contact" aria-selected="false">Materias por ver</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#vistas" role="tab" aria-controls="pills-contact" aria-selected="false">Materias vistas</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='    <li class="nav-item">'
+                                $li_taps_internos+='        <a class="nav-link taps_inter" id="pills-contact-tab" data-toggle="pill" href="#Historial" role="tab" aria-controls="pills-contact" aria-selected="false">Historial completo</a>'
+                                $li_taps_internos+='    </li>'
+                                $li_taps_internos+='</ul>'
+                                $li_taps_internos+='<div class="tab-content" id="pills-tabContent">'
+                                
+                                $tap_malla= $('<div class="tab-pane fade show active inter" id="malla"  role="tabpanel" ><div class="card-deck"><table>');
+
+                              
+                                $tap_viendo=$('<div class="tab-pane fade inter" id="Viendo" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Viendo">')
+
+
+                                $tap_proyectadas=$('<div class="tab-pane fade inter" id="proyectadas" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_proyectadas">')
+
+                                $tap_por_ver=$('<div class="tab-pane fade inter" id="por_ver" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_por_ver">')
+
+                                $tap_vistas=$('<div class="tab-pane fade inter" id="vistas" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_vistas">')
+
+                                $tap_Historial=$('<div class="tab-pane fade inter" id="Historial" role="tabpanel" ><div class="container"><div class="row"><table class="table table-striped" id="tabla_Historial">')
+                                
+
+
+                                
+                                $tablas.append($li_taps_internos);
 
                                 let currentSemestre = null; // Para mantener un seguimiento del semestre actual
 
                                 // Recorre las materias y crea filas
                                 $.each(materiasArray, function(index, materia) {
-
-                               console.log(materia.semestre);
 
                                     if (materia.semestre !== currentSemestre) {
                                         // Si es un nuevo semestre, crea una nueva fila
@@ -500,42 +370,102 @@ div .show{
                                         currentSemestre = materia.semestre;
                                         const $filaSemestre = 
                                             $('<tr style="display: flex;">').append(
-                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 2%;min-width: 11%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><br><span id="semestre">'+materia.semestre);
+                                            '<div class="card card_historial semestre" style="background-color: #dfc14e;color:#4a4848;margin-top: 0%;min-width: 100%;margin-right: 1%;"><div class="card-body"><h5 style="position: relative;top: 50%;transform: translateY(-50%);text-align: center;"><b>Semestre:</b><span id="semestre">'+materia.semestre);
                                               
-                                        $tablas.append($filaSemestre);
+                                        $tap_malla.append($filaSemestre);
                                     }
                                    
                                     // Agrega la materia como una columna en la fila actual
                                     var $filaMateria="";
-$filaMateria+='<td style="color:white;margin-right: 1%">';
-$filaMateria+='  <div class="card " style=" background-color:transparent;border: none;width:162px">'
-$filaMateria+='    <div class="card card_historial materias" style="height: 297px;">'
-$filaMateria+='      <div class="card-body">'
-$filaMateria+='        <div class="" style=" display: flex;color: black;">'
-$filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
-$filaMateria+='          </span>'
-$filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
-$filaMateria+='            <b>Codigo:</b>'
-$filaMateria+='            <br>'
-$filaMateria+='            <span>'+materia.codigo_materia+'</span>'
-$filaMateria+='          </h6>'
-$filaMateria+='        </div>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'+materia.nombre_materia+'</span>'
-$filaMateria+='        </p>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'
-$filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span>'
-$filaMateria+='        </p>'
-$filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
-$filaMateria+='          <span>'
-$filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
+                                        $filaMateria+='<td style="color:white;margin-right: 1%">';
+                                        $filaMateria+='  <div class="card " style="background-color:transparent;border: none;width: 189px;padding: 2%;">'
+                                        $filaMateria+='    <div class="card card_historial materias" style="height: 310px;">'
+                                        $filaMateria+='      <div class="card-body" style="padding: 1.2rem;">'
+                                        $filaMateria+='        <div class="" style=" display: flex;color: black;">'
+                                        $filaMateria+='          <span class="'+materia.color+'" style="border-bottom: 2px solid;border-top: 2px solid;border-left:2px solid;border-top-left-radius: 30px;border-bottom-left-radius: 28px;min-width: 27px;height: 42px;">&nbsp;&nbsp;&nbsp;<br><br>'
+                                        $filaMateria+='          </span>'
+                                        $filaMateria+='          <h6 class="card-title" style="border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;border-bottom-right-radius: 30px;border-top-right-radius: 30px;margin-left: 4px;height: 42px;width: 100%;">'
+                                        $filaMateria+='            <b>Codigo:</b>'
+                                        $filaMateria+='            <br>'
+                                        $filaMateria+='            <span>'+materia.codigo_materia+'</span>'
+                                        $filaMateria+='          </h6>'
+                                        $filaMateria+='        </div>'
+                                        $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+                                        $filaMateria+='          <span>'+materia.nombre_materia+'</span>'
+                                        $filaMateria+='        </p>'
+                                        $filaMateria+='        <p class="card-text" id="" style="text-align: center;color: black;">'
+                                        $filaMateria+='          <span>'
+                                        $filaMateria+='            <b>Calificación:</b> '+materia.calificacion+'</span> <br><b>Créditos:</b> '+materia.creditos+' </span>'
+                                        $filaMateria+='        </p>'
+        
 
 
 
 
-                                    $tablas.children('tr:last').append($filaMateria);
+                                    $tap_malla.append($filaMateria);
                                 });
+                                $tablas.append($tap_malla);
+                                $tablas.append($tap_viendo);
+                                $tablas.append($tap_proyectadas);
+                                $tablas.append($tap_por_ver);
+                                $tablas.append($tap_vistas);
+                                $tablas.append($tap_Historial);
+
+                                
+console.log(data.historial)
+
+                            
+
+
+                                new DataTable('#tabla_proyectadas', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: data.historial
+                                });
+
+                                new DataTable('#tabla_por_ver', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: data.historial
+                                });
+
+                                new DataTable('#tabla_vistas', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: data.historial
+                                });
+
+                                new DataTable('#tabla_Historial', {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                    data: data.historial
+                                });
+
+                        
 
                                 $(document).find(tap).append($tablas);
 
@@ -555,6 +485,38 @@ $filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
                     }
                 });
             });
+
+
+
+            $(document).on('click','.taps_inter',function(){
+                const dataSet = [
+    ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
+    ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']]
+               $(document).find('.inter').removeClass('active')
+               $(document).find('.inter').removeClass('show')
+                $id=$(this).attr('href');
+
+                console.log( $(document).find($id))
+                $(document).find($id).addClass('active');
+                $(document).find($id).addClass('show');
+                alert( $id);
+                $tabla=$(document).find($id).dataTables();
+                new DataTable($tabla, {
+                                    columns: [
+                                        { title: 'Name' },
+                                        { title: 'Position' },
+                                        { title: 'Office' },
+                                        { title: 'Extn.' },
+                                        { title: 'Start date' },
+                                        { title: 'Salary' }
+                                    ],
+                                   data: dataSet
+                                });
+
+
+            })
+
+            
             
 
         })
@@ -651,7 +613,7 @@ $filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
 
                         // Crear el contenido de la pestaña
                         var tabContent = $('<div>')
-                        .addClass('tab-pane fade datos')
+                        .addClass('tab-pane fade taps_programas ')
                         .attr('id', 'tab' + index); 
 
                         var tabLink = $('<a>')
@@ -677,10 +639,10 @@ $filaMateria+='            <b>Créditos:</b> '+materia.creditos+' </span>'
                         cargarContenido(targetTab); // Llama a la función para cargar contenido
                     });
                     window.setTimeout(function(){
-                        elemto = $(document).find('.datos').first()
+                        elemto = $(document).find('#tab_li0')
                         elemto.addClass("active")
-                        tap=elemto.attr('data-tap')
-                        $(document).find("#"+tap).addClass('active show');
+                    
+                        $(document).find("#tab0").addClass('active show');
                      
                         elemto.click();
                     },700);

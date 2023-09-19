@@ -372,7 +372,7 @@
                                             </div>
                                             <div class="card-body center-chart fondocharts" style="position: relative;">
                                                 <canvas id="alto"></canvas>
-                                                <div style="flex: 1;">
+                                                <div>
                                                     <div class="custom-text totalMatriculas"></div>
                                                 </div>
                                             </div>

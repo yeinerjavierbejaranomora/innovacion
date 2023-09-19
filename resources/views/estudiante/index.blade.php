@@ -500,8 +500,8 @@ console.log(data.historial)
                 $(document).find($id).addClass('active');
                 $(document).find($id).addClass('show');
                 alert( $id);
-
-                new DataTable($id, {
+                $tabla=$(document).find($id).dataTables();
+                new DataTable($tabla, {
                                     columns: [
                                         { title: 'Name' },
                                         { title: 'Position' },

@@ -410,6 +410,19 @@ div .show{
                                 $tablas.append($tap_por_ver);
                                 $tablas.append($tap_vistas);
                                 $tablas.append($tap_Historial);
+
+                                
+
+
+
+
+                                new DataTable('#tabla_Viendo');
+                                new DataTable('#tabla_proyectadas');
+                                new DataTable('#tabla_por_ver');
+                                new DataTable('#tabla_vistas');
+                                new DataTable('#tabla_Historial');
+                        
+
                                 $(document).find(tap).append($tablas);
 
                               

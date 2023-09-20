@@ -145,8 +145,8 @@
     }
 
     .custom-text {
-        margin-top: 40px;
-        font-size: 14px;
+        margin-top: 7%; 
+        font-size: 1em; 
         color: black;
         font-family: sans-serif;
     }
@@ -366,7 +366,7 @@
                                         </div>
                                         <div class="card-body center-chart fondocharts" style="position: relative;">
                                             <canvas id="alto"></canvas>
-                                            <div style="flex: 1;">
+                                            <div>
                                                 <div class="custom-text totalMatriculas"></div>
                                             </div>
                                         </div>
@@ -383,7 +383,7 @@
                                         </div>
                                         <div class="card-body center-chart fondocharts">
                                             <canvas id="medio"></canvas>
-                                            <div style="flex: 1;">
+                                            <div">
                                                 <div class="custom-text totalMatriculas"></div>
                                             </div>
                                         </div>
@@ -400,7 +400,7 @@
                                         </div>
                                         <div class="card-body center-chart fondocharts">
                                             <canvas id="bajo"></canvas>
-                                            <div style="flex: 1;">
+                                            <div>
                                                 <div class="custom-text totalMatriculas"></div>
                                             </div>
                                         </div>
@@ -1177,7 +1177,7 @@
                                 },
                                 {
                                     data: 'Cursos',
-                                    title: 'Cursos abiertos',
+                                    title: 'Grupos abiertos',
                                     className: "text-center",
                                 },
                             ],
